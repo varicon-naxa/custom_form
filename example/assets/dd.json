@@ -1,0 +1,79 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+        {
+            "id": "item-dbc6af82-8036-4708-8629-bf43a766591d",
+            "name": "Date",
+            "type": "date",
+            "label": "Timesheet Date",
+            "answer": "",
+            "isRequired": false
+        },
+        {
+            "type": "time",
+            "name": "time1",
+            "id": "time1",
+            "title": "Enter time for notification",
+            "isRequired": true,
+            "min": "11:21",
+            "max": "12:12"
+        },
+        {
+            "type": "date",
+            "name": "date1",
+            "id": "date1",
+            "title": "Enter date to have leave",
+            "min": "2023-05-23",
+            "max": "2023-05-24"
+        },
+        {
+            "type": "datetimelocal",
+            "name": "datetime1",
+            "id": "datetime1",
+            "title": "What is your first day to start office",
+            "min": "2023-05-15T06:00",
+            "max": "2023-05-31T18:06"
+        },
+        {
+            "type": "multipleselect",
+            "id": "item-123123-13123",
+            "islinked": true,
+            "answer": "item1,item2",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "fromManualList": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk",
+            "selectedLinkListLabel": "susan, susan12"
+        }
+    ]
+}

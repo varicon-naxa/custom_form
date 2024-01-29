@@ -1,0 +1,50 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+        {
+            "type": "multiSignature",
+            "id": "multisignature",
+            "label": "Employe Signature",
+            "isRequired": true,
+            "choice": [
+                {
+                    "id": "item-395f1c4e-974c-486e-8647-8445819b0030",
+                    "label": "User 1"
+                },
+                {
+                    "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
+                    "label": "User 2"
+                },
+                {
+                    "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f965",
+                    "label": "User 3"
+                },
+                {
+                    "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f966",
+                    "label": "User 4"
+                },
+                {
+                    "id": "item-422d0002-df53-4e86-a995-466da7ab33ee",
+                    "label": "NA"
+                }
+            ],
+            "answer": [
+                {
+                    "id": "121312321",
+                    "attachmentId": "12",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "name": "item-e56636ff-0522-4a0a-b4e2-f2397414f966"
+                },
+                {
+                    "id": "13412132",
+                    "attachmentId": "13",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "name": "item-e56636ff-0522-4a0a-b4e2-f2397414f965"
+                }
+            ]
+        }
+    ]
+}

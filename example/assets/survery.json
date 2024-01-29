@@ -1,0 +1,194 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+        {
+            "type": "time",
+            "name": "time1",
+            "id": "time1",
+            "title": "Enter time for notification",
+            "isRequired": true,
+            "min": "11:21",
+            "max": "12:12"
+        },
+        {
+            "type": "date",
+            "name": "date1",
+            "id": "date1",
+            "title": "Enter date to have leave",
+            "min": "2023-05-23",
+            "max": "2023-05-24"
+        },
+        {
+            "type": "datetimelocal",
+            "name": "datetime1",
+            "id": "datetime1",
+            "title": "What is your first day to start office",
+            "min": "2023-05-15T06:00",
+            "max": "2023-05-31T18:06"
+        },
+        {
+            "type": "files",
+            "name": "file1",
+            "id": "file1",
+            "title": "Attach citizenship files",
+            "isMultiple": false
+        },
+        {
+            "type": "files",
+            "name": "files2",
+            "id": "files2",
+            "title": "Attach covver letter",
+            "isMultiple": true
+        },
+        {
+            "type": "dropdown",
+            "name": "select1",
+            "id": "select1",
+            "title": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": true,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+        {
+            "type": "checkbox",
+            "name": "checkbox1",
+            "id": "checkbox1",
+            "title": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "showNoneItem": true,
+            "requiredErrorText": "At least one item must be selected",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                }
+            ],
+            "showOtherItem": true,
+            "otherErrorText": "Other field comment is required."
+        },
+        {
+            "type": "radiogroup",
+            "name": "radio1",
+            "id": "radio1",
+            "title": "Select from below drop down",
+            "isRequired": true,
+            "value": 2,
+            "choice": [
+                {
+                    "text": "product 1",
+                    "value": "1"
+                },
+                {
+                    "text": "product 2",
+                    "value": "2"
+                },
+                {
+                    "text": "product 3",
+                    "value": "3"
+                }
+            ]
+        },
+        {
+            "type": "number",
+            "name": "experience",
+            "title": "Total experience test",
+            "isRequired": true,
+            "requiredErrorText": "Total exprerjsaklfjaslkd fis requreid",
+            "minErrorText": "The value should not be less than {5}",
+            "maxErrorText": "The value should not be greater than {10}"
+        },
+        {
+            "type": "url",
+            "name": "website test",
+            "title": "Website sssssstest",
+            "maxLength": 50,
+            "placeholder": "www.dasda.com"
+        },
+        {
+            "type": "text",
+            "name": "firstName",
+            "id": "firstName",
+            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "Hello this is answer here how would it be okay",
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "text",
+            "name": "question5",
+            "title": "Last Name tyest test",
+            "isRequired": true,
+            "requiredErrorText": "Last name is required",
+            "autocomplete": "name",
+            "maxLength": 35,
+            "placeholder": "Last Name placeholder"
+        },
+        {
+            "type": "email",
+            "name": "question6",
+            "title": "Email Address field",
+            "isRequired": true,
+            "requiredErrorText": "Email address is required 123",
+            "autocomplete": "name",
+            "maxLength": 50,
+            "placeholder": "Last Name placeholder"
+        },
+        {
+            "type": "date",
+            "name": "question1",
+            "title": "DOB ",
+            "isRequired": true,
+            "requiredErrorText": "DOB is required",
+            "min": "2015-10-20",
+            "max": "2023-05-25"
+        },
+        {
+            "type": "comment",
+            "name": "question2",
+            "isRequired": true,
+            "requiredErrorText": "Olla long text is required ok bro test",
+            "maxLength": 100,
+            "placeholder": "ok"
+        }
+    ]
+}

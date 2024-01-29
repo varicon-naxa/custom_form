@@ -1,0 +1,173 @@
+import 'package:flutter/material.dart';
+import 'package:varicon_form_builder/src/form_builder/form_fields/theme_search_field.dart';
+import 'package:varicon_form_builder/src/models/value_text.dart';
+import 'package:varicon_form_builder/varicon_form_builder.dart';
+
+class CustomPaginatedBottomsheet extends StatefulWidget {
+  const CustomPaginatedBottomsheet({
+    super.key,
+    required this.apiCall,
+    required this.onClicked,
+    required this.linkedQuery,
+  });
+  final Future<List<dynamic>> Function(Map<String, dynamic>) apiCall;
+  final Function(ValueText data) onClicked;
+  final String linkedQuery;
+
+  @override
+  State<CustomPaginatedBottomsheet> createState() =>
+      _CustomPaginatedBottomsheetState();
+}
+
+class _CustomPaginatedBottomsheetState
+    extends State<CustomPaginatedBottomsheet> {
+  TextEditingController searchCon = TextEditingController();
+
+  final ScrollController _scrollController = ScrollController();
+  int page = 1;
+  List<ValueText> searchedChoice = [];
+
+  bool _showLoadMore = false;
+  bool startSearch = true;
+  bool isLoading = true;
+
+  Future hitApi(
+    String? q,
+  ) async {
+    final data = await widget.apiCall({
+      'choice_id': widget.linkedQuery,
+      'page': page.toString(),
+      'q': q ?? ''
+    });
+    setState(() {
+      final retrievedData =
+          (data.map((e) => const ValueTextConverter().fromJson(e)).toList());
+      if (retrievedData.isEmpty) {
+        startSearch = false;
+      }
+      isLoading = false;
+      searchedChoice = [...searchedChoice, ...retrievedData];
+
+      page = page + 1;
+    });
+  }
+
+  void _loadMoreData() async {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      // User has reached the end of the list
+      // Load more data or trigger pagination in flutter
+      setState(() {
+        _showLoadMore = true;
+      });
+      if (startSearch) {
+        await hitApi(searchCon.text).then((value) {
+          Future.delayed(const Duration(seconds: 1), () {
+            setState(() {
+              _showLoadMore = false;
+            });
+          });
+        });
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    hitApi('');
+    _scrollController.addListener(_loadMoreData);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        ThemeSearchField(
+          name: '',
+          hintText: 'Search ...',
+          onChange: (value) {
+            setState(() {
+              page = 1;
+              isLoading = true;
+              searchedChoice = [];
+            });
+            hitApi(value);
+          },
+          controllerText: searchCon,
+        ),
+        isLoading
+            ? const CircularProgressIndicator.adaptive()
+            : Expanded(
+                child: searchedChoice.isEmpty
+                    ? Center(
+                        child: Text(
+                          'Empty List',
+                          style: Theme.of(context).textTheme.bodyLarge,
+                        ),
+                      )
+                    : Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          AppSpacing.sizedBoxH_16(),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Text('Equipment'.toUpperCase(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(color: const Color(0xff98A5B9))),
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                              shrinkWrap: true,
+                              controller: _scrollController,
+                              itemBuilder: (context, i) {
+                                return ListTile(
+                                  onTap: () {
+                                    widget.onClicked(searchedChoice[i]);
+                                    Navigator.pop(context);
+                                  },
+                                  title: Text(
+                                    searchedChoice[i].text.toString(),
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                );
+                              },
+                              itemCount: searchedChoice.length,
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
+        AppSpacing.sizedBoxH_16(),
+        _showLoadMore
+            ? Center(
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator.adaptive(),
+                    ),
+                    AppSpacing.sizedBoxH_06(),
+                    Text(
+                      'Loading more data...',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+              )
+            : const SizedBox.shrink(),
+      ],
+    );
+  }
+}

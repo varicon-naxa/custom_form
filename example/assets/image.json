@@ -1,0 +1,34 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+        {
+            "type": "files",
+            "id": "file1",
+            "label": "Attach citizenship files",
+            "isMultiple": true,
+            "isRequired": true,
+            "answer": []
+        },
+        {
+            "type": "geolocation",
+            "id": "geolocation",
+            "label": "Form Submitted From",
+            "isRequired": true,
+            "answer": {
+                "long": 12.0,
+                "lat": 12.0
+            }
+        },
+        {
+            "type": "images",
+            "id": "image1",
+            "label": "Attach covver letter",
+            "isMultiple": true,
+            "isRequired": true,
+            "answer": []
+        }
+    ]
+}

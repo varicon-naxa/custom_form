@@ -1,0 +1,134 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "hasLocation": true,
+    "elements": [
+        {
+            "id": "absd1-13s12-ads12-v4n4g-n10d9n",
+            "type": "multiSignature",
+            "name": "multiplesignature1",
+            "label": "This Signature is for Group",
+            "visible": true,
+            "isRequired": true,
+            "signature_list": []
+        },
+        {
+            "type": "dropdown",
+            "name": "select1",
+            "id": "select1",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": true,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "fromManualList": false,
+            "whichList": 1,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "answer": "item3",
+            "choice": [],
+            "showOtherItem": false,
+            "showNoneItem": false,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+        {
+            "type": "checkbox",
+            "name": "checkbox1",
+            "id": "checkbox1",
+            "fromManualList": false,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "answer":"",
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1.",
+                    "action": true
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2.",
+                    "action": false
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3.",
+                    "action": true
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4.",
+                    "action": false
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "action": true
+                }
+            ],
+            "otherErrorText": "Other field comment is required."
+        },
+        {
+            "id": "item-cc4c729d-6f89-4539-aa89-a38345df865d",
+            "label": "This is question ",
+            "name": "This is question ",
+            "isRequired": false,
+            "answer": "",
+            "type": "yesnona",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1a",
+                    "text": "Yes",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-a9de0318-6218-4e02-98e3-4d81ad273279",
+                    "text": "No",
+                    "action": false,
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        },
+                        {
+                            "id": 1005,
+                            "email": "anil.shrestha+1@varicon.com.au",
+                            "username": "Anil Shrestha"
+                        },
+                        {
+                            "id": 501,
+                            "email": "anu.prajapati@varicon.com.au",
+                            "username": "Anu Prajapati"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1aa",
+                    "text": "N/A",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

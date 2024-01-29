@@ -1,0 +1,506 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+        {
+            "id": "item-b959ce13-8487-446b-987f-cce6bac637b0",
+            "name": "Instruction",
+            "label": "Instruction",
+            "instruction": "",
+            "attachments": [
+                {
+                    "type": "image",
+                    "name": "image.png",
+                    "url": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps"
+                }
+            ],
+            "type": "instruction",
+            "isRequired": false,
+            "isConditional": false
+        },
+        {
+            "type": "time",
+            "id": "time1",
+            "label": "Enter time for notification",
+            "isRequired": true,
+            "answer": "11:23",
+            "min": "11:21",
+            "max": "12:12"
+        },
+        {
+            "type": "date",
+            "id": "date1",
+            "label": "Enter date to have leave",
+            "min": "2023-05-23",
+            "max": "2023-05-24",
+            "answer": ""
+        },
+        {
+            "type": "datetimelocal",
+            "answer": "2023-05-31T11:17",
+            "id": "datetime1",
+            "label": "What is your first day to start office",
+            "min": "2023-05-15T06:00",
+            "max": "2023-05-31T18:06"
+        },
+        {
+            "type": "files",
+            "id": "file1",
+            "label": "Attach citizenship files",
+            "isMultiple": true,
+            "isRequired": true,
+            "answer": []
+        },
+        {
+            "id": "item-cc4c729d-6f89-4539-aa89-a38345df865d",
+            "label": "This is question ",
+            "name": "This is question ",
+            "isRequired": false,
+            "answer": "",
+            "type": "yesnona",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1a",
+                    "text": "Yes",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-a9de0318-6218-4e02-98e3-4d81ad273279",
+                    "text": "No",
+                    "action": false,
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        },
+                        {
+                            "id": 1005,
+                            "email": "anil.shrestha+1@varicon.com.au",
+                            "username": "Anil Shrestha"
+                        },
+                        {
+                            "id": 501,
+                            "email": "anu.prajapati@varicon.com.au",
+                            "username": "Anu Prajapati"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1aa",
+                    "text": "N/A",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "images",
+            "id": "image1",
+            "label": "Attach covver letter",
+            "isMultiple": false,
+            "isRequired": true,
+            "answer": [
+                {
+                    "id": 12345,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                }
+            ]
+        },
+        {
+            "type": "dropdown",
+            "id": "select1",
+            "answer": "item3",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+        {
+            "type": "multipleselect",
+            "id": "select2",
+            "islinked": true,
+            "answer": "",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "fromManualList": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",  
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+        {
+            "type": "checkbox",
+            "id": "checkbox1",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": false,
+            "answer": "item1,item2",
+            "showNoneItem": false,
+            "fromManualList": true,
+            "requiredErrorText": "At least one item must be selected",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                }
+            ],
+            "showOtherItem": false,
+            "otherErrorText": "Other field comment is required."
+        },
+        {
+            "type": "radiogroup",
+            "id": "radio1",
+            "answer": "item1",
+            "label": "Select from below drop down",
+            "isRequired": false,
+            "value": "item1",
+            "choice": [
+                {
+                    "text": "product 1",
+                    "value": "item1"
+                },
+                {
+                    "text": "product 2",
+                    "value": "item2"
+                },
+                {
+                    "text": "product 3",
+                    "value": "item3"
+                }
+            ]
+        },
+        {
+            "type": "text",
+            "answer": "Susan Timilsina is the text",
+            "id": "firstName",
+            "label": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": false,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "signature",
+            "id": "signature_1",
+            "label": "Please confirm to sign",
+            "isRequired": false,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "id": "item-cc4c729d-6f89-4539-aa89-a38345df865d",
+            "label": "This is question ",
+            "name": "This is question ",
+            "isRequired": false,
+            "answer": "",
+            "type": "yesno",
+            "choices": [
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1a",
+                    "text": "Yes",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-a9de0318-6218-4e02-98e3-4d81ad273279",
+                    "text": "No",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        },
+                        {
+                            "id": 1005,
+                            "email": "anil.shrestha+1@varicon.com.au",
+                            "username": "Anil Shrestha"
+                        },
+                        {
+                            "id": 501,
+                            "email": "anu.prajapati@varicon.com.au",
+                            "username": "Anu Prajapati"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-3c12ef14-78f5-40ef-91cc-7ac45b56c05a",
+                    "text": "NA",
+                    "notify_To": [
+                        {
+                            "id": "",
+                            "email": "",
+                            "username": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "item-cc4c729d-6f89-4539-aa89-a38345df865d",
+            "label": "This is question ",
+            "name": "This is question ",
+            "isRequired": false,
+            "answer": "",
+            "type": "yesno",
+            "choice": [
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1a",
+                    "text": "Yes",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-a9de0318-6218-4e02-98e3-4d81ad273279",
+                    "text": "No",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        },
+                        {
+                            "id": 1005,
+                            "email": "anil.shrestha+1@varicon.com.au",
+                            "username": "Anil Shrestha"
+                        },
+                        {
+                            "id": 501,
+                            "email": "anu.prajapati@varicon.com.au",
+                            "username": "Anu Prajapati"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "yesnona",
+            "answer": "",
+            "id": "id_yesnona",
+            "label": "Yes/No/Na",
+            "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "placeholder": "First Name placeholder",
+            "choice": [
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1a",
+                    "text": "Yes",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-a9de0318-6218-4e02-98e3-4d81ad273279",
+                    "text": "No",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        },
+                        {
+                            "id": 1005,
+                            "email": "anil.shrestha+1@varicon.com.au",
+                            "username": "Anil Shrestha"
+                        },
+                        {
+                            "id": 501,
+                            "email": "anu.prajapati@varicon.com.au",
+                            "username": "Anu Prajapati"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-3c12ef14-78f5-40ef-91cc-7ac45b56c05a",
+                    "text": "NA",
+                    "notify_To": [
+                        {
+                            "id": "",
+                            "email": "",
+                            "username": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "signature",
+            "id": "signature_1",
+            "label": "Please confirm to sign",
+            "answer": {
+                "id": 12345,
+                "name": "adasd",
+                "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+            },
+            "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "signature",
+            "id": "signature_2",
+            "label": "Please confirm to sign",
+            "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "text",
+            "answer": "",
+            "id": "firstName",
+            "label": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "id": "item-679e97a7-1197-45a6-bf7a-90ef63402c14",
+            "name": "Select",
+            "type": "dropdown",
+            "label": "What is your choice",
+            "answer": "",
+            "isRequired": false,
+            "choice": [
+                {
+                    "id": "item-a6ca2aa9-2bef-42b0-b698-c3814d639add",
+                    "type": "option",
+                    "label": "Basketball"
+                },
+                {
+                    "id": "item-22c8f4e4-4b36-4983-ac95-a75b8341e391",
+                    "type": "option",
+                    "label": "Football"
+                },
+                {
+                    "id": "item-de0b02a8-a3fb-4a9d-b2fc-9f3ecfd40fb5",
+                    "type": "option",
+                    "label": "Cricket"
+                }
+            ]
+        },
+        {
+            "id": "item-2c3fb8a4-386b-4d5d-ae15-7d5da9788200",
+            "name": "Radio Button",
+            "type": "radiogroup",
+            "label": "What is your gender",
+            "answer": "",
+            "isRequired": false,
+            "choice": [
+                {
+                    "id": "item-b1d96bd8-fe57-45b2-8e02-02470b7d0eb8",
+                    "label": "male"
+                },
+                {
+                    "id": "item-5a513d15-2a6a-4b9c-b000-cec8c0639e44",
+                    "type": "option",
+                    "label": "female"
+                },
+                {
+                    "id": "item-b26b31f0-926c-49ae-8f61-3691b7e0f69c",
+                    "type": "option",
+                    "label": "others"
+                }
+            ]
+        }
+    ]
+}
