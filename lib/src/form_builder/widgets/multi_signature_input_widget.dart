@@ -379,7 +379,30 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
           if (answer.isNotEmpty)
             ...answer.asMap().entries.map(
               (e) {
-                return singleComponent(e);
+                return Dismissible(
+                    direction: DismissDirection.endToStart,
+                    key: Key(e.value.id ?? ''),
+                    background: const SizedBox.shrink(),
+                    secondaryBackground: Container(
+                      color: Colors.red,
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Icon(Icons.delete, color: Colors.white),
+                          ),
+                          Text('Delete', style: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ),
+                    onDismissed: (direction) {
+                      setState(() {
+                        answer.removeAt(e.key);
+                      });
+                      saveList();
+                    },
+                    child: singleComponent(e));
               },
             ).toList(),
           AppSpacing.sizedBoxH_06(),
@@ -413,41 +436,6 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
               )
             ],
           ),
-        ],
-      ),
-    );
-  }
-}
-
-class _TextContainer extends StatelessWidget {
-  final String label;
-  final String hintText;
-
-  const _TextContainer({required this.label, required this.hintText});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Text(
-              label.isEmpty ? 'Select User' : label,
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: label.isEmpty ? Colors.grey : Colors.black,
-                  ),
-            ),
-          ),
-          const Icon(
-            Icons.arrow_drop_down,
-          )
         ],
       ),
     );
