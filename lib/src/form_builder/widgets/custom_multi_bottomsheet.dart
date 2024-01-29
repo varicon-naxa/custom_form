@@ -126,7 +126,7 @@ class _CustomMultiBottomsheetState extends State<CustomMultiBottomsheet> {
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: Text('Equipment'.toUpperCase(),
+                            child: Text(widget.linkedQuery.toUpperCase(),
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium!

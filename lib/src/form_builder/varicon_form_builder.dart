@@ -58,12 +58,12 @@ class VariconFormBuilder extends StatefulWidget {
   final void Function(String stringURl) onFileClicked;
 
   @override
-  State<VariconFormBuilder> createState() => _VariconFormBuilderState();
+  State<VariconFormBuilder> createState() => VariconFormBuilderState();
 
   final Widget Function()? separatorBuilder;
 }
 
-class _VariconFormBuilderState extends State<VariconFormBuilder> {
+class VariconFormBuilderState extends State<VariconFormBuilder> {
   late final GlobalKey<FormState> formKey;
   late final GlobalKey<SignatureState> signKey;
   final ScrollController _scrollController = ScrollController();
