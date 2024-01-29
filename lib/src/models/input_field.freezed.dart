@@ -135,9 +135,6 @@ mixin _$InputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -513,9 +510,6 @@ mixin _$InputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -891,9 +885,6 @@ mixin _$InputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -1584,9 +1575,6 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -1966,9 +1954,6 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -2348,9 +2333,6 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -3134,9 +3116,6 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -3530,9 +3509,6 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -3926,9 +3902,6 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -4744,9 +4717,6 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -5139,9 +5109,6 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -5534,9 +5501,6 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -6058,7 +6022,6 @@ abstract class _$$MultiSignatureInputFieldImplCopyWith<$Res>
       @JsonKey(name: 'isRequired') bool isRequired,
       @JsonKey(name: 'readOnly') bool readOnly,
       @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-      @JsonKey(name: 'choice') @ValueTextConverter() List<ValueText> choices,
       @JsonKey(name: 'answer') List<SingleSignature>? answer});
 }
 
@@ -6081,7 +6044,6 @@ class __$$MultiSignatureInputFieldImplCopyWithImpl<$Res>
     Object? isRequired = null,
     Object? readOnly = null,
     Object? requiredErrorText = freezed,
-    Object? choices = null,
     Object? answer = freezed,
   }) {
     return _then(_$MultiSignatureInputFieldImpl(
@@ -6113,10 +6075,6 @@ class __$$MultiSignatureInputFieldImplCopyWithImpl<$Res>
           ? _value.requiredErrorText
           : requiredErrorText // ignore: cast_nullable_to_non_nullable
               as String?,
-      choices: null == choices
-          ? _value._choices
-          : choices // ignore: cast_nullable_to_non_nullable
-              as List<ValueText>,
       answer: freezed == answer
           ? _value._answer
           : answer // ignore: cast_nullable_to_non_nullable
@@ -6136,13 +6094,9 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
       @JsonKey(name: 'isRequired') this.isRequired = false,
       @JsonKey(name: 'readOnly') this.readOnly = false,
       @JsonKey(name: 'requiredErrorText') this.requiredErrorText,
-      @JsonKey(name: 'choice')
-      @ValueTextConverter()
-      final List<ValueText> choices = const [],
       @JsonKey(name: 'answer') final List<SingleSignature>? answer,
       final String? $type})
-      : _choices = choices,
-        _answer = answer,
+      : _answer = answer,
         $type = $type ?? 'multiSignature';
 
   factory _$MultiSignatureInputFieldImpl.fromJson(Map<String, dynamic> json) =>
@@ -6169,16 +6123,6 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
   @override
   @JsonKey(name: 'requiredErrorText')
   final String? requiredErrorText;
-  final List<ValueText> _choices;
-  @override
-  @JsonKey(name: 'choice')
-  @ValueTextConverter()
-  List<ValueText> get choices {
-    if (_choices is EqualUnmodifiableListView) return _choices;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_choices);
-  }
-
   final List<SingleSignature>? _answer;
   @override
   @JsonKey(name: 'answer')
@@ -6195,7 +6139,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
 
   @override
   String toString() {
-    return 'InputField.multiSignature(id: $id, label: $label, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, choices: $choices, answer: $answer)';
+    return 'InputField.multiSignature(id: $id, label: $label, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, answer: $answer)';
   }
 
   @override
@@ -6214,7 +6158,6 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
                 other.readOnly == readOnly) &&
             (identical(other.requiredErrorText, requiredErrorText) ||
                 other.requiredErrorText == requiredErrorText) &&
-            const DeepCollectionEquality().equals(other._choices, _choices) &&
             const DeepCollectionEquality().equals(other._answer, _answer));
   }
 
@@ -6229,7 +6172,6 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
       isRequired,
       readOnly,
       requiredErrorText,
-      const DeepCollectionEquality().hash(_choices),
       const DeepCollectionEquality().hash(_answer));
 
   @JsonKey(ignore: true)
@@ -6293,9 +6235,6 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -6618,7 +6557,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         geolocation,
   }) {
     return multiSignature(id, label, description, visible, isRequired, readOnly,
-        requiredErrorText, choices, answer);
+        requiredErrorText, answer);
   }
 
   @override
@@ -6675,9 +6614,6 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -7000,7 +6936,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         geolocation,
   }) {
     return multiSignature?.call(id, label, description, visible, isRequired,
-        readOnly, requiredErrorText, choices, answer);
+        readOnly, requiredErrorText, answer);
   }
 
   @override
@@ -7057,9 +6993,6 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -7384,7 +7317,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
   }) {
     if (multiSignature != null) {
       return multiSignature(id, label, description, visible, isRequired,
-          readOnly, requiredErrorText, choices, answer);
+          readOnly, requiredErrorText, answer);
     }
     return orElse();
   }
@@ -7497,9 +7430,6 @@ abstract class MultiSignatureInputField implements InputField {
           @JsonKey(name: 'isRequired') final bool isRequired,
           @JsonKey(name: 'readOnly') final bool readOnly,
           @JsonKey(name: 'requiredErrorText') final String? requiredErrorText,
-          @JsonKey(name: 'choice')
-          @ValueTextConverter()
-          final List<ValueText> choices,
           @JsonKey(name: 'answer') final List<SingleSignature>? answer}) =
       _$MultiSignatureInputFieldImpl;
 
@@ -7527,9 +7457,6 @@ abstract class MultiSignatureInputField implements InputField {
   @override
   @JsonKey(name: 'requiredErrorText')
   String? get requiredErrorText;
-  @JsonKey(name: 'choice')
-  @ValueTextConverter()
-  List<ValueText> get choices;
   @override
   @JsonKey(name: 'answer')
   List<SingleSignature>? get answer;
@@ -7837,9 +7764,6 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -8232,9 +8156,6 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -8627,9 +8548,6 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -9469,9 +9387,6 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -9866,9 +9781,6 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -10263,9 +10175,6 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -11090,9 +10999,6 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -11486,9 +11392,6 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -11882,9 +11785,6 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -12691,9 +12591,6 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -13086,9 +12983,6 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -13481,9 +13375,6 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -14285,9 +14176,6 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -14680,9 +14568,6 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -15075,9 +14960,6 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -15880,9 +15762,6 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -16275,9 +16154,6 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -16670,9 +16546,6 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -17475,9 +17348,6 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -17870,9 +17740,6 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -18265,9 +18132,6 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -19070,9 +18934,6 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -19465,9 +19326,6 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -19860,9 +19718,6 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -20604,9 +20459,6 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -20986,9 +20838,6 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -21368,9 +21217,6 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -22252,9 +22098,6 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -22654,9 +22497,6 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -23056,9 +22896,6 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -24011,9 +23848,6 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -24414,9 +24248,6 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -24817,9 +24648,6 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -25776,9 +25604,6 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -26179,9 +26004,6 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -26582,9 +26404,6 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -27475,9 +27294,6 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -27873,9 +27689,6 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -28271,9 +28084,6 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -29157,9 +28967,6 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -29556,9 +29363,6 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -29955,9 +29759,6 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -30845,9 +30646,6 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -31244,9 +31042,6 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -31643,9 +31438,6 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -32411,9 +32203,6 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -32793,9 +32582,6 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -33175,9 +32961,6 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -33896,9 +33679,6 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -34278,9 +34058,6 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -34660,9 +34437,6 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(
@@ -35368,9 +35142,6 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
         multiSignature,
     required TResult Function(
@@ -35750,9 +35521,6 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult? Function(
@@ -36132,9 +35900,6 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-            @JsonKey(name: 'choice')
-            @ValueTextConverter()
-            List<ValueText> choices,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
         multiSignature,
     TResult Function(

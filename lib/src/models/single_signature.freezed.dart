@@ -25,6 +25,7 @@ mixin _$SingleSignature {
   String? get attachmentId => throw _privateConstructorUsedError;
   String? get file => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  bool? get isLoading => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,7 +39,12 @@ abstract class $SingleSignatureCopyWith<$Res> {
           SingleSignature value, $Res Function(SingleSignature) then) =
       _$SingleSignatureCopyWithImpl<$Res, SingleSignature>;
   @useResult
-  $Res call({String? id, String? attachmentId, String? file, String? name});
+  $Res call(
+      {String? id,
+      String? attachmentId,
+      String? file,
+      String? name,
+      bool? isLoading});
 }
 
 /// @nodoc
@@ -58,6 +64,7 @@ class _$SingleSignatureCopyWithImpl<$Res, $Val extends SingleSignature>
     Object? attachmentId = freezed,
     Object? file = freezed,
     Object? name = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -76,6 +83,10 @@ class _$SingleSignatureCopyWithImpl<$Res, $Val extends SingleSignature>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLoading: freezed == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 }
@@ -88,7 +99,12 @@ abstract class _$$SingleSignatureImplCopyWith<$Res>
       __$$SingleSignatureImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id, String? attachmentId, String? file, String? name});
+  $Res call(
+      {String? id,
+      String? attachmentId,
+      String? file,
+      String? name,
+      bool? isLoading});
 }
 
 /// @nodoc
@@ -106,6 +122,7 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
     Object? attachmentId = freezed,
     Object? file = freezed,
     Object? name = freezed,
+    Object? isLoading = freezed,
   }) {
     return _then(_$SingleSignatureImpl(
       id: freezed == id
@@ -124,6 +141,10 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String?,
+      isLoading: freezed == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -132,7 +153,7 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SingleSignatureImpl implements _SingleSignature {
   const _$SingleSignatureImpl(
-      {this.id, this.attachmentId, this.file, this.name});
+      {this.id, this.attachmentId, this.file, this.name, this.isLoading});
 
   factory _$SingleSignatureImpl.fromJson(Map<String, dynamic> json) =>
       _$$SingleSignatureImplFromJson(json);
@@ -146,10 +167,12 @@ class _$SingleSignatureImpl implements _SingleSignature {
   final String? file;
   @override
   final String? name;
+  @override
+  final bool? isLoading;
 
   @override
   String toString() {
-    return 'SingleSignature(id: $id, attachmentId: $attachmentId, file: $file, name: $name)';
+    return 'SingleSignature(id: $id, attachmentId: $attachmentId, file: $file, name: $name, isLoading: $isLoading)';
   }
 
   @override
@@ -161,12 +184,15 @@ class _$SingleSignatureImpl implements _SingleSignature {
             (identical(other.attachmentId, attachmentId) ||
                 other.attachmentId == attachmentId) &&
             (identical(other.file, file) || other.file == file) &&
-            (identical(other.name, name) || other.name == name));
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, attachmentId, file, name);
+  int get hashCode =>
+      Object.hash(runtimeType, id, attachmentId, file, name, isLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -188,7 +214,8 @@ abstract class _SingleSignature implements SingleSignature {
       {final String? id,
       final String? attachmentId,
       final String? file,
-      final String? name}) = _$SingleSignatureImpl;
+      final String? name,
+      final bool? isLoading}) = _$SingleSignatureImpl;
 
   factory _SingleSignature.fromJson(Map<String, dynamic> json) =
       _$SingleSignatureImpl.fromJson;
@@ -203,6 +230,8 @@ abstract class _SingleSignature implements SingleSignature {
   String? get file;
   @override
   String? get name;
+  @override
+  bool? get isLoading;
   @override
   @JsonKey(ignore: true)
   _$$SingleSignatureImplCopyWith<_$SingleSignatureImpl> get copyWith =>

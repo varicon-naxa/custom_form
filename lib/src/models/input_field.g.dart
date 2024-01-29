@@ -125,10 +125,6 @@ _$MultiSignatureInputFieldImpl _$$MultiSignatureInputFieldImplFromJson(
       isRequired: json['isRequired'] as bool? ?? false,
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
-      choices: (json['choice'] as List<dynamic>?)
-              ?.map(const ValueTextConverter().fromJson)
-              .toList() ??
-          const [],
       answer: (json['answer'] as List<dynamic>?)
           ?.map((e) => SingleSignature.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -145,8 +141,6 @@ Map<String, dynamic> _$$MultiSignatureInputFieldImplToJson(
       'isRequired': instance.isRequired,
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
-      'choice':
-          instance.choices.map(const ValueTextConverter().toJson).toList(),
       'answer': instance.answer,
       'type': instance.$type,
     };

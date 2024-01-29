@@ -1,11 +1,10 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
+import 'package:varicon_form_builder/src/core/debouncer.dart';
 import 'package:varicon_form_builder/src/models/single_signature.dart';
-import 'package:varicon_form_builder/src/models/value_text.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -38,6 +37,7 @@ class MultiSignatureInputWidget extends StatefulWidget {
 class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   String? value;
   bool isLoading = false;
+  final debouncer = Debouncer(milliseconds: 500);
 
   List<SingleSignature> answer = [];
   GlobalKey<SignatureState> signKey = GlobalKey<SignatureState>();
@@ -67,13 +67,9 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   }
 
   Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
-    String trxt = '';
-    List<ValueText> data = widget.field.choices
-        .where((element) => element.value == singleItem.value.name)
-        .toList();
-    setState(() {
-      trxt = data.isEmpty ? '' : data[0].text;
-    });
+    TextEditingController controller =
+        TextEditingController(text: singleItem.value.name ?? '');
+
     return Container(
       key: Key(singleItem.value.id ?? ''),
       height: 300,
@@ -95,256 +91,268 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
       width: double.infinity,
       child: Column(
         children: [
-          (singleItem.value.file != null)
-              ? Stack(
-                  children: [
-                    Container(
-                      alignment: Alignment.center,
-                      height: 200,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                        12.0,
-                      )),
-                      child: widget.imageBuild({
-                        'image': singleItem.value.file,
-                        'height': 200.0,
-                        'width': 200.0
-                      }),
-                    ),
-                    Positioned(
-                      top: -15,
-                      right: 0,
-                      child: IconButton(
-                        icon: const Icon(
-                          Icons.close_rounded,
-                          color: Colors.red,
+          (singleItem.value.isLoading ?? false)
+              ? Container(
+                  alignment: Alignment.center,
+                  height: 200,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                    12.0,
+                  )),
+                  child: const CircularProgressIndicator.adaptive())
+              : (singleItem.value.file != null)
+                  ? Stack(
+                      children: [
+                        Container(
+                          alignment: Alignment.center,
+                          height: 200,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                            12.0,
+                          )),
+                          child: widget.imageBuild({
+                            'image': singleItem.value.file,
+                            'height': 200.0,
+                            'width': 200.0
+                          }),
                         ),
-                        onPressed: () {
-                          setState(() {
-                            answer[singleItem.key] =
-                                answer[singleItem.key].copyWith(
-                              file: null,
-                              attachmentId: null,
-                            );
+                        Positioned(
+                          top: -15,
+                          right: 0,
+                          child: IconButton(
+                            icon: const Icon(
+                              Icons.close_rounded,
+                              color: Colors.red,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                answer[singleItem.key] =
+                                    answer[singleItem.key].copyWith(
+                                  file: null,
+                                  attachmentId: null,
+                                );
 
-                            isLoading = false;
-                          });
-                        },
-                      ),
+                                isLoading = false;
+                              });
+                            },
+                          ),
+                        )
+                      ],
                     )
-                  ],
-                )
-              : GestureDetector(
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (BuildContext context) => AlertDialog(
-                        contentPadding: EdgeInsets.zero,
-                        insetPadding: EdgeInsets.zero,
-                        clipBehavior: Clip.antiAliasWithSaveLayer,
-                        content: StatefulBuilder(builder: (context, setStates) {
-                          return Container(
-                            color: Colors.white,
-                            width: MediaQuery.of(context).size.width - 100,
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  'Please sign below and submit',
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                ),
-                                AppSpacing.sizedBoxH_12(),
-                                Container(
-                                    height: 350,
-                                    color: Colors.black12,
-                                    child: Signature(
-                                      color: Colors.black,
-                                      key: signKey,
-                                      onSign: () {},
-                                      strokeWidth: 4.0,
-                                    )),
-                                AppSpacing.sizedBoxH_12(),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
+                  : GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            contentPadding: EdgeInsets.zero,
+                            insetPadding: EdgeInsets.zero,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            content:
+                                StatefulBuilder(builder: (context, setStates) {
+                              return Container(
+                                color: Colors.white,
+                                width: MediaQuery.of(context).size.width - 100,
+                                padding: const EdgeInsets.all(16),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        final signHere = signKey.currentState;
-                                        signHere?.clear();
-                                        Navigator.pop(context);
-                                      },
-                                      behavior: HitTestBehavior.translucent,
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 16.0),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                            4,
-                                          ),
-                                          border: Border.all(
-                                            color: const Color(0xffBDBDBD),
-                                          ),
-                                        ),
-                                        width: 130,
-                                        child: Text(
-                                          'Cancel'.toUpperCase(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                height: 1,
-                                              ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
+                                    Text(
+                                      'Please sign below and submit',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
                                     ),
-                                    AppSpacing.sizedBoxW_08(),
-                                    GestureDetector(
-                                      onTap: () async {
-                                        final signs = signKey.currentState;
-                                        if ((signs?.points ?? []).isEmpty) {
-                                          Fluttertoast.showToast(
-                                              msg:
-                                                  'Please sign to submit the signature');
-                                          return;
-                                        } else {
-                                          setState(() {
-                                            isLoading = true;
-                                          });
-                                          final sign = signKey.currentState;
-                                          final image = await sign?.getData();
-                                          var data = await image?.toByteData(
-                                              format: ui.ImageByteFormat.png);
-                                          Directory tempDir =
-                                              await getTemporaryDirectory();
-                                          String tempPath = tempDir.path;
-                                          var filePath = '$tempPath/image.png';
-                                          final buffer = data!.buffer;
-
-                                          File savedImage = await File(filePath)
-                                              .writeAsBytes(buffer.asUint8List(
-                                                  data.offsetInBytes,
-                                                  data.lengthInBytes));
-                                          final savedFileData = await widget
-                                              .attachmentSave(
-                                                  [savedImage.path]);
-                                          widget.onSaved(savedFileData[0]);
-                                          setState(() {
-                                            answer[singleItem.key] =
-                                                answer[singleItem.key].copyWith(
-                                              file: savedFileData[0]['file'],
-                                              attachmentId: savedFileData[0]
-                                                      ['id']
-                                                  .toString(),
-                                            );
-                                            saveList();
-
-                                            isLoading = false;
-                                          });
-                                          // ignore: use_build_context_synchronously
-                                          Navigator.pop(context);
-                                        }
-                                      },
-                                      behavior: HitTestBehavior.translucent,
-                                      child: Container(
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 16.0),
-                                        decoration: BoxDecoration(
-                                          color: Colors.orange,
-                                          borderRadius: BorderRadius.circular(
-                                            4,
-                                          ),
-                                          border: Border.all(
-                                            color: Colors.orange,
-                                          ),
-                                        ),
-                                        width: 130,
-                                        child: Text(
-                                          'SIGN'.toUpperCase(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.w600,
-                                                height: 1,
+                                    AppSpacing.sizedBoxH_12(),
+                                    Container(
+                                        height: 350,
+                                        color: Colors.black12,
+                                        child: Signature(
+                                          color: Colors.black,
+                                          key: signKey,
+                                          onSign: () {},
+                                          strokeWidth: 4.0,
+                                        )),
+                                    AppSpacing.sizedBoxH_12(),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        GestureDetector(
+                                          onTap: () {
+                                            final signHere =
+                                                signKey.currentState;
+                                            signHere?.clear();
+                                            Navigator.pop(context);
+                                          },
+                                          behavior: HitTestBehavior.translucent,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 16.0),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                4,
                                               ),
-                                          textAlign: TextAlign.center,
+                                              border: Border.all(
+                                                color: const Color(0xffBDBDBD),
+                                              ),
+                                            ),
+                                            width: 130,
+                                            child: Text(
+                                              'Cancel'.toUpperCase(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelLarge
+                                                  ?.copyWith(
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1,
+                                                  ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                        AppSpacing.sizedBoxW_08(),
+                                        GestureDetector(
+                                          onTap: () async {
+                                            final signs = signKey.currentState;
+                                            if ((signs?.points ?? []).isEmpty) {
+                                              Fluttertoast.showToast(
+                                                  msg:
+                                                      'Please sign to submit the signature');
+                                              return;
+                                            } else {
+                                              setState(() {
+                                                isLoading = true;
+                                                answer[singleItem.key] =
+                                                    answer[singleItem.key]
+                                                        .copyWith(
+                                                            isLoading: true);
+                                              });
+                                              final sign = signKey.currentState;
+                                              final image =
+                                                  await sign?.getData();
+                                              var data =
+                                                  await image?.toByteData(
+                                                      format: ui
+                                                          .ImageByteFormat.png);
+                                              Directory tempDir =
+                                                  await getTemporaryDirectory();
+                                              String tempPath = tempDir.path;
+                                              var filePath =
+                                                  '$tempPath/image.png';
+                                              final buffer = data!.buffer;
+
+                                              File savedImage = await File(
+                                                      filePath)
+                                                  .writeAsBytes(
+                                                      buffer.asUint8List(
+                                                          data.offsetInBytes,
+                                                          data.lengthInBytes));
+                                              Navigator.pop(context);
+
+                                              final savedFileData = await widget
+                                                  .attachmentSave(
+                                                      [savedImage.path]);
+                                              widget.onSaved(savedFileData[0]);
+                                              setState(() {
+                                                answer[singleItem.key] =
+                                                    answer[singleItem.key]
+                                                        .copyWith(
+                                                            file:
+                                                                savedFileData[0]
+                                                                    ['file'],
+                                                            attachmentId:
+                                                                savedFileData[0]
+                                                                        ['id']
+                                                                    .toString(),
+                                                            isLoading: false);
+                                                saveList();
+
+                                                isLoading = false;
+                                              });
+                                            }
+                                          },
+                                          behavior: HitTestBehavior.translucent,
+                                          child: Container(
+                                            padding: const EdgeInsets.symmetric(
+                                                vertical: 16.0),
+                                            decoration: BoxDecoration(
+                                              color: Colors.orange,
+                                              borderRadius:
+                                                  BorderRadius.circular(
+                                                4,
+                                              ),
+                                              border: Border.all(
+                                                color: Colors.orange,
+                                              ),
+                                            ),
+                                            width: 130,
+                                            child: Text(
+                                              'SIGN'.toUpperCase(),
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .labelLarge
+                                                  ?.copyWith(
+                                                    fontWeight: FontWeight.w600,
+                                                    height: 1,
+                                                  ),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          );
-                        }),
-                      ),
-                    );
-                  },
-                  child: Container(
-                    height: 200,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        16.0,
-                      ),
-                    ),
-                    width: double.infinity,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 50,
-                          width: 50,
-                          child: Image.asset(
-                            'assets/image/signature.png',
-                            package: 'varicon_form_builder',
+                              );
+                            }),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 200,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(
+                            16.0,
                           ),
                         ),
-                        Text(
-                          'Click here to add signature',
-                          style: Theme.of(context).textTheme.bodyMedium,
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              height: 50,
+                              width: 50,
+                              child: Image.asset(
+                                'assets/image/signature.png',
+                                package: 'varicon_form_builder',
+                              ),
+                            ),
+                            Text(
+                              'Click here to add signature',
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                ),
-          Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: GestureDetector(
-                  onTap: () {
-                    primaryBottomSheet(
-                      context,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        itemBuilder: (context, i) {
-                          return ListTile(
-                            onTap: () {
-                              setState(() {
-                                answer[singleItem.key] = answer[singleItem.key]
-                                    .copyWith(
-                                        name: widget.field.choices[i].value);
-                              });
-                              saveList();
-                              Navigator.pop(context);
-                            },
-                            title:
-                                Text(widget.field.choices[i].text.toString()),
-                          );
-                        },
-                        itemCount: widget.field.choices.length,
                       ),
-                    );
-                  },
-                  child: _TextContainer(
-                    hintText: '',
-                    label: trxt,
-                  ))),
+                    ),
+          TextFormField(
+            controller: controller,
+            onChanged: (data) {
+              debouncer.run(() {
+                setState(() {
+                  answer[singleItem.key] =
+                      answer[singleItem.key].copyWith(name: data);
+                });
+                saveList();
+              });
+            },
+            decoration: const InputDecoration(labelText: 'Name'),
+          ),
         ],
       ),
     );

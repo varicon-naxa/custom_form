@@ -72,10 +72,6 @@ class InputField with _$InputField implements BasicInputField {
           @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
           @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
           @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-          @JsonKey(name: 'choice')
-          @Default([])
-          @ValueTextConverter()
-          List<ValueText> choices,
           @JsonKey(name: 'answer') List<SingleSignature>? answer}) =
       MultiSignatureInputField;
 

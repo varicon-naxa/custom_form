@@ -12,6 +12,7 @@ class SingleSignature with _$SingleSignature {
     String? attachmentId,
     String? file,
     String? name,
+    bool? isLoading
   }) = _SingleSignature;
 
   factory SingleSignature.fromJson(Map<String, dynamic> json) =>

@@ -7,7 +7,7 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  const assetPath = 'assets/dd.json';
+  const assetPath = 'assets/multisignature.json';
   String currentValue = await rootBundle.loadString(assetPath);
   Map<String, dynamic> currentData = jsonDecode(currentValue);
 
