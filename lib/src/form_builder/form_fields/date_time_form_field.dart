@@ -35,10 +35,12 @@ class DateTimeFormField extends FormField<DateTime> {
                         state.value, effectiveFirstDate, effectiveLastDate),
                     firstDate: effectiveFirstDate,
                     lastDate: effectiveLastDate,
+                    initialDatePickerMode: DatePickerMode.year,
                   );
 
               timePicker() => showTimePicker(
                     context: state.context,
+                    initialEntryMode: TimePickerEntryMode.input,
                     initialTime: _getInitialTime(state.value),
                   );
 
