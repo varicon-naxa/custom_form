@@ -66,7 +66,6 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
           decoration: widget.decoration.copyWith(
             errorText: _error,
           ),
-          key: widget.formKey,
           style: Theme.of(context).textTheme.bodyLarge,
           initialCountryCode: (widget.initialCountryCode ?? '').isEmpty
               ? 'AU'
