@@ -30,7 +30,7 @@ Future<TimeOfDay?> showCustomTimePicker({
     confirmText: confirmText,
     helpText: helpText,
   );
-  return showCupertinoDialog<TimeOfDay>(
+  return showDialog<TimeOfDay>(
     context: context,
     barrierDismissible: barrierDismissible,
     barrierLabel: barrierLabel,

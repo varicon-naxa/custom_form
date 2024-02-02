@@ -44,11 +44,18 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
   @override
   Widget build(BuildContext context) {
     return CupertinoAlertDialog(
-      title: Text(widget.helpText ?? 'Select Time'),
+      title: Text(
+        widget.helpText ?? 'Select Time',
+        style: Theme.of(context).textTheme.titleLarge,
+      ),
       content: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           _buildPicker(_buildHourPicker(), 'Hours'),
+          Text(
+            ':',
+            style: Theme.of(context).textTheme.headlineMedium,
+          ),
           _buildPicker(_buildMinutePicker(), 'Minutes'),
           _buildPicker(_buildPeriodPicker(), 'AM/PM'),
         ],
@@ -101,22 +108,20 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
   }
 
   Widget _buildPicker(Widget picker, String label) {
-    return Column(
-      children: [
-        Text(label),
-        const SizedBox(height: 8),
-        SizedBox(
-          width: 60,
-          height: 300,
-          child: picker,
-        ),
-      ],
+    return Expanded(
+      child: SizedBox(
+        height: 250,
+        child: picker,
+      ),
     );
   }
 
   Widget _buildHourPicker() {
     return CupertinoPicker(
-      itemExtent: 60,
+      itemExtent: 45,
+      looping: true,
+      useMagnifier: true,
+      magnification: 1.05,
       onSelectedItemChanged: (value) {
         setState(() {
           _selectedHour = value + 1;
@@ -130,7 +135,8 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
 
   Widget _buildMinutePicker() {
     return CupertinoPicker(
-      itemExtent: 60,
+      itemExtent: 45,
+      looping: true,
       onSelectedItemChanged: (value) {
         setState(() {
           _selectedMinute = value;
@@ -144,7 +150,7 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
 
   Widget _buildPeriodPicker() {
     return CupertinoPicker(
-      itemExtent: 60,
+      itemExtent: 45,
       onSelectedItemChanged: (value) {
         setState(() {
           _isAM = value == 0;
