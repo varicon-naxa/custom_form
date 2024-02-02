@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:varicon_form_builder/src/form_builder/form_fields/form_time_picker.dart';
 
 enum DatePickerType { date, time, dateTime }
 
@@ -35,12 +36,14 @@ class DateTimeFormField extends FormField<DateTime> {
                         state.value, effectiveFirstDate, effectiveLastDate),
                     firstDate: effectiveFirstDate,
                     lastDate: effectiveLastDate,
-                    initialDatePickerMode: DatePickerMode.year,
                   );
 
-              timePicker() => showTimePicker(
+              // timePicker() => showTimePicker(
+              //       context: state.context,
+              //       initialTime: _getInitialTime(state.value),
+              //     );
+              timePicker() => showCustomTimePicker(
                     context: state.context,
-                    initialEntryMode: TimePickerEntryMode.input,
                     initialTime: _getInitialTime(state.value),
                   );
 

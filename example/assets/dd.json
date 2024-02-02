@@ -18,8 +18,7 @@
             "id": "time1",
             "title": "Enter time for notification",
             "isRequired": true,
-            "min": "11:21",
-            "max": "12:12"
+            "answer": "13:21"
         },
         {
             "type": "date",
