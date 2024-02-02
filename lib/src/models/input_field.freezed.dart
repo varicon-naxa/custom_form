@@ -20,7 +20,7 @@ InputField _$InputFieldFromJson(Map<String, dynamic> json) {
       return TextInputField.fromJson(json);
     case 'signature':
       return SignatureInputField.fromJson(json);
-    case 'multiSignature':
+    case 'multisignature':
       return MultiSignatureInputField.fromJson(json);
     case 'date':
       return DateInputField.fromJson(json);
@@ -136,7 +136,7 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -511,7 +511,7 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -886,7 +886,7 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -1213,7 +1213,7 @@ mixin _$InputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -1239,7 +1239,7 @@ mixin _$InputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -1265,7 +1265,7 @@ mixin _$InputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -1576,7 +1576,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -1955,7 +1955,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -2334,7 +2334,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -2668,7 +2668,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -2697,7 +2697,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -2726,7 +2726,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -3117,7 +3117,7 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -3510,7 +3510,7 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -3903,7 +3903,7 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -4251,7 +4251,7 @@ class _$TextInputFieldImpl implements TextInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -4280,7 +4280,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -4309,7 +4309,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -4718,7 +4718,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -5110,7 +5110,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -5502,7 +5502,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -5849,7 +5849,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -5878,7 +5878,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -5907,7 +5907,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -6097,7 +6097,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
       @JsonKey(name: 'answer') final List<SingleSignature>? answer,
       final String? $type})
       : _answer = answer,
-        $type = $type ?? 'multiSignature';
+        $type = $type ?? 'multisignature';
 
   factory _$MultiSignatureInputFieldImpl.fromJson(Map<String, dynamic> json) =>
       _$$MultiSignatureInputFieldImplFromJson(json);
@@ -6139,7 +6139,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
 
   @override
   String toString() {
-    return 'InputField.multiSignature(id: $id, label: $label, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, answer: $answer)';
+    return 'InputField.multisignature(id: $id, label: $label, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, answer: $answer)';
   }
 
   @override
@@ -6236,7 +6236,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -6556,7 +6556,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
   }) {
-    return multiSignature(id, label, description, visible, isRequired, readOnly,
+    return multisignature(id, label, description, visible, isRequired, readOnly,
         requiredErrorText, answer);
   }
 
@@ -6615,7 +6615,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -6935,7 +6935,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
   }) {
-    return multiSignature?.call(id, label, description, visible, isRequired,
+    return multisignature?.call(id, label, description, visible, isRequired,
         readOnly, requiredErrorText, answer);
   }
 
@@ -6994,7 +6994,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -7315,8 +7315,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         geolocation,
     required TResult orElse(),
   }) {
-    if (multiSignature != null) {
-      return multiSignature(id, label, description, visible, isRequired,
+    if (multisignature != null) {
+      return multisignature(id, label, description, visible, isRequired,
           readOnly, requiredErrorText, answer);
     }
     return orElse();
@@ -7328,7 +7328,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -7348,7 +7348,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
   }) {
-    return multiSignature(this);
+    return multisignature(this);
   }
 
   @override
@@ -7357,7 +7357,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -7377,7 +7377,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
   }) {
-    return multiSignature?.call(this);
+    return multisignature?.call(this);
   }
 
   @override
@@ -7386,7 +7386,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -7407,8 +7407,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult Function(GeolocationField value)? geolocation,
     required TResult orElse(),
   }) {
-    if (multiSignature != null) {
-      return multiSignature(this);
+    if (multisignature != null) {
+      return multisignature(this);
     }
     return orElse();
   }
@@ -7765,7 +7765,7 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -8157,7 +8157,7 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -8549,7 +8549,7 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -8896,7 +8896,7 @@ class _$DateInputFieldImpl implements DateInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -8925,7 +8925,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -8954,7 +8954,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -9388,7 +9388,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -9782,7 +9782,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -10176,7 +10176,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -10525,7 +10525,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -10554,7 +10554,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -10583,7 +10583,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -11000,7 +11000,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -11393,7 +11393,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -11786,7 +11786,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -12134,7 +12134,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -12163,7 +12163,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -12192,7 +12192,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -12592,7 +12592,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -12984,7 +12984,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -13376,7 +13376,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -13723,7 +13723,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -13752,7 +13752,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -13781,7 +13781,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -14177,7 +14177,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -14569,7 +14569,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -14961,7 +14961,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -15308,7 +15308,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -15337,7 +15337,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -15366,7 +15366,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -15763,7 +15763,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -16155,7 +16155,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -16547,7 +16547,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -16894,7 +16894,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -16923,7 +16923,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -16952,7 +16952,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -17349,7 +17349,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -17741,7 +17741,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -18133,7 +18133,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -18480,7 +18480,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -18509,7 +18509,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -18538,7 +18538,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -18935,7 +18935,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -19327,7 +19327,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -19719,7 +19719,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -20066,7 +20066,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -20095,7 +20095,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -20124,7 +20124,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -20460,7 +20460,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -20839,7 +20839,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -21218,7 +21218,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -21552,7 +21552,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -21581,7 +21581,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -21610,7 +21610,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -22099,7 +22099,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -22498,7 +22498,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -22897,7 +22897,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -23251,7 +23251,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -23280,7 +23280,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -23309,7 +23309,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -23849,7 +23849,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -24249,7 +24249,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -24649,7 +24649,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -25004,7 +25004,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -25033,7 +25033,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -25062,7 +25062,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -25605,7 +25605,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -26005,7 +26005,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -26405,7 +26405,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -26760,7 +26760,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -26789,7 +26789,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -26818,7 +26818,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -27295,7 +27295,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -27690,7 +27690,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -28085,7 +28085,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -28435,7 +28435,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -28464,7 +28464,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -28493,7 +28493,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -28968,7 +28968,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -29364,7 +29364,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -29760,7 +29760,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -30111,7 +30111,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -30140,7 +30140,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -30169,7 +30169,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -30647,7 +30647,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -31043,7 +31043,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -31439,7 +31439,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -31790,7 +31790,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -31819,7 +31819,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -31848,7 +31848,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -32204,7 +32204,7 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -32583,7 +32583,7 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -32962,7 +32962,7 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -33296,7 +33296,7 @@ class _$FileInputFieldImpl implements FileInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -33325,7 +33325,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -33354,7 +33354,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -33680,7 +33680,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -34059,7 +34059,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -34438,7 +34438,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -34772,7 +34772,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -34801,7 +34801,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -34830,7 +34830,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,
@@ -35143,7 +35143,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)
-        multiSignature,
+        multisignature,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -35522,7 +35522,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -35901,7 +35901,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'answer') List<SingleSignature>? answer)?
-        multiSignature,
+        multisignature,
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
@@ -36235,7 +36235,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     required TResult Function(_FallbackInputField value) fallback,
     required TResult Function(TextInputField value) text,
     required TResult Function(SignatureInputField value) signature,
-    required TResult Function(MultiSignatureInputField value) multiSignature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
     required TResult Function(DateInputField value) date,
     required TResult Function(InstructionInputField value) instruction,
     required TResult Function(SectionInputField value) section,
@@ -36264,7 +36264,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult? Function(_FallbackInputField value)? fallback,
     TResult? Function(TextInputField value)? text,
     TResult? Function(SignatureInputField value)? signature,
-    TResult? Function(MultiSignatureInputField value)? multiSignature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
     TResult? Function(DateInputField value)? date,
     TResult? Function(InstructionInputField value)? instruction,
     TResult? Function(SectionInputField value)? section,
@@ -36293,7 +36293,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult Function(_FallbackInputField value)? fallback,
     TResult Function(TextInputField value)? text,
     TResult Function(SignatureInputField value)? signature,
-    TResult Function(MultiSignatureInputField value)? multiSignature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
     TResult Function(DateInputField value)? date,
     TResult Function(InstructionInputField value)? instruction,
     TResult Function(SectionInputField value)? section,

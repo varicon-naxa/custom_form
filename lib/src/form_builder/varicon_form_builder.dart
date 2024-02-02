@@ -581,7 +581,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           ),
                         );
                       },
-                      multiSignature: (field) {
+                      multisignature: (field) {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,

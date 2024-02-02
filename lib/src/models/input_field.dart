@@ -64,7 +64,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = SignatureInputField;
 
-  const factory InputField.multiSignature(
+  const factory InputField.multisignature(
           {@JsonKey(name: 'id') required String id,
           @JsonKey(name: 'label') String? label,
           @JsonKey(name: 'description') String? description,
