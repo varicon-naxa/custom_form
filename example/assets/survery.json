@@ -128,6 +128,7 @@
         {
             "type": "number",
             "name": "experience",
+            "id": "experience123123",
             "title": "Total experience test",
             "isRequired": true,
             "requiredErrorText": "Total exprerjsaklfjaslkd fis requreid",
@@ -136,6 +137,7 @@
         },
         {
             "type": "url",
+            "id": "Adasd",
             "name": "website test",
             "title": "Website sssssstest",
             "maxLength": 50,

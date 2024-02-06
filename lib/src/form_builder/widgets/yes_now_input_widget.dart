@@ -28,7 +28,6 @@ class _YesNoInputWidgetState extends State<YesNoInputWidget> {
 
   late final List<ValueText> choices;
   late final String otherFieldKey;
-
   bool showMessage = false;
 
   @override
@@ -83,13 +82,13 @@ class _YesNoInputWidgetState extends State<YesNoInputWidget> {
           items: () {
             final items = choices.map((e) {
               return RadioMenuItem(
-                value: e.value,
-                visualDensity: const VisualDensity(
-                    horizontal: VisualDensity.minimumDensity,
-                    vertical: VisualDensity.minimumDensity),
-                title: Text(e.text),
-                isThreeLine: false,
-              );
+                  value: e.value,
+                  visualDensity: const VisualDensity(
+                      horizontal: VisualDensity.minimumDensity,
+                      vertical: VisualDensity.minimumDensity),
+                  title: Text(e.text),
+                  hasAction: e.action,
+                  hasCondition: widget.field.isConditional);
             }).toList();
             return items;
           }(),
@@ -110,7 +109,6 @@ class _YesNoInputWidgetState extends State<YesNoInputWidget> {
             );
           },
         ),
-
         if (showMessage && (widget.field.actionMessage ?? '').isNotEmpty)
           Container(
             width: double.infinity,
@@ -137,7 +135,6 @@ class _YesNoInputWidgetState extends State<YesNoInputWidget> {
               ],
             ),
           ),
-
         // Align(
         //   alignment: Alignment.centerRight,
         //   child: IconButton(

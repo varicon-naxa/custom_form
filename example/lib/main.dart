@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:example/survey_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:varicon_form_builder/varicon_form_builder.dart';
@@ -8,7 +7,7 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  const assetPath = 'assets/dd.json';
+  const assetPath = 'assets/sample.json';
   String currentValue = await rootBundle.loadString(assetPath);
   Map<String, dynamic> currentData = jsonDecode(currentValue);
 

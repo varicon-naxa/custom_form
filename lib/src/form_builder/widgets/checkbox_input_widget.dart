@@ -70,7 +70,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
     }
     if (initialValue != null &&
         initialValue.isNotEmpty &&
-        !(widget.field.islinked ?? false)) {
+        (widget.field.fromManualList)) {
       selectedChoices = choices.map(
         (e) {
           if (initialValue.contains(e.value)) {
@@ -83,20 +83,31 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
           }
         },
       ).toList();
-    } else if (widget.field.islinked ?? false) {
-      setState(() {
-        selectedIds = initialValue ?? [];
-      });
     } else {
       selectedChoices = List.filled(choices.length, null);
     }
     setState(() {
+      showMessage = checkMatchingActions();
       if ((selectedIds).isEmpty) {
         formCon.text = 'Select the item from list';
       } else {
         formCon.text = '${(selectedIds).length} item selected';
       }
     });
+  }
+
+  bool checkMatchingActions() {
+    if (selectedChoices.length != choices.length) {
+      throw ArgumentError("Lists must have the same length");
+    }
+
+    for (int i = 0; i < selectedChoices.length; i++) {
+      if ((selectedChoices[i] == true) && (choices[i].action == true)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   bool isNoneSelected() => _isSelected((v) => v is NoneValueText);

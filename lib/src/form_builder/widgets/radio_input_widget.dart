@@ -45,6 +45,19 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
     value = (widget.field.answer != null)
         ? widget.field.answer ?? widget.formValue.getStringValue('')
         : widget.formValue.getStringValue('');
+
+    if (widget.field.answer != null && widget.field.answer != '') {
+      bool containsId = choices.any((obj) => obj.value == widget.field.answer);
+
+      if (containsId) {
+        ValueText? foundObject = choices.firstWhere(
+          (obj) => obj.value == widget.field.answer,
+        );
+        setState(() {
+          showMessage = foundObject.action ?? false;
+        });
+      }
+    }
   }
 
   @override
@@ -69,16 +82,13 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
           items: () {
             final items = choices.map((e) {
               return RadioMenuItem(
-                value: e.value,
-                title: Text(
-                  e.text,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                isThreeLine: false,
-                visualDensity: const VisualDensity(
-                    horizontal: VisualDensity.minimumDensity,
-                    vertical: VisualDensity.minimumDensity),
-              );
+                  value: e.value,
+                  visualDensity: const VisualDensity(
+                      horizontal: VisualDensity.minimumDensity,
+                      vertical: VisualDensity.minimumDensity),
+                  title: Text(e.text),
+                  hasAction: e.action,
+                  hasCondition: widget.field.isConditional);
             }).toList();
             return items;
           }(),
@@ -99,27 +109,6 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
             );
           },
         ),
-
-        if ((value != '') && !widget.field.isRequired)
-          InkWell(
-            onTap: () {
-              setState(() {
-                value = '';
-              });
-            },
-            child: Container(
-              alignment: Alignment.centerRight,
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              width: double.infinity,
-              child: Text(
-                'Clear Selection',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleSmall
-                    ?.copyWith(color: Colors.orange),
-              ),
-            ),
-          ),
         if (showMessage && (widget.field.actionMessage ?? '').isNotEmpty)
           Container(
             width: double.infinity,
@@ -146,7 +135,6 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
               ],
             ),
           ),
-
         // Align(
         //   alignment: Alignment.centerRight,
         //   child: IconButton(

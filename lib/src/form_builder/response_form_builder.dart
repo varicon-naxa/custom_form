@@ -237,6 +237,15 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           ),
                         );
                       },
+                      phone: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: _AnswerDesign(
+                            answer: field.answer ?? '',
+                          ),
+                        );
+                      },
                       number: (field) {
                         return LabeledWidget(
                           labelText: labelText,

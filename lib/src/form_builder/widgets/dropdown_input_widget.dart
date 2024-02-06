@@ -29,6 +29,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
   String? value;
   TextEditingController formCon = TextEditingController();
   TextEditingController searchCon = TextEditingController();
+  bool showMessage = false;
 
   late final List<ValueText> choices;
   List<ValueText> searchedChoice = [];
@@ -67,9 +68,25 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
             (obj) => obj.value == value,
           );
           formCon.text = foundObject.text;
+          showMessage = foundObject.action ?? false;
         }
       }
     });
+  }
+
+  checkValue() {
+    if (value != null && value != '') {
+      bool containsId = choices.any((obj) => obj.value == value);
+
+      if (containsId) {
+        ValueText? foundObject = choices.firstWhere(
+          (obj) => obj.value == value,
+        );
+        setState(() {
+          showMessage = foundObject.action ?? false;
+        });
+      }
+    }
   }
 
   @override
@@ -205,6 +222,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   setState(() {
                     this.value = value;
                   });
+                  checkValue();
                 },
                 onSaved: (newValue) {
                   // remove text saved in other text field if dropdown value in not
@@ -218,6 +236,33 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   );
                 },
               ),
+              if (showMessage && (widget.field.actionMessage ?? '').isNotEmpty)
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.all(8.0),
+                  margin: const EdgeInsets.only(top: 8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.warning,
+                        color: Colors.white,
+                      ),
+                      AppSpacing.sizedBoxW_08(),
+                      Expanded(
+                        child: Text(
+                          widget.field.actionMessage.toString(),
+                          style: const TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               if (widget.field.showOtherItem && value == 'other') ...[
                 const SizedBox(
                   height: 12,

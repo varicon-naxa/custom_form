@@ -389,6 +389,46 @@ Map<String, dynamic> _$$NumberInputFieldImplToJson(
       'type': instance.$type,
     };
 
+_$PhoneInputFieldImpl _$$PhoneInputFieldImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PhoneInputFieldImpl(
+      id: json['id'] as String,
+      label: json['label'] as String?,
+      answer: json['answer'] as String?,
+      description: json['description'] as String?,
+      visible: json['visible'] as bool? ?? true,
+      isRequired: json['isRequired'] as bool? ?? false,
+      readOnly: json['readOnly'] as bool? ?? false,
+      requiredErrorText: json['requiredErrorText'] as String?,
+      hintText: json['placeholder'] as String?,
+      maxLength: json['maxLength'] as int?,
+      min: json['min'],
+      minErrorText: json['minErrorText'] as String?,
+      max: json['max'],
+      maxErrorText: json['maxErrorText'] as String?,
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$PhoneInputFieldImplToJson(
+        _$PhoneInputFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'label': instance.label,
+      'answer': instance.answer,
+      'description': instance.description,
+      'visible': instance.visible,
+      'isRequired': instance.isRequired,
+      'readOnly': instance.readOnly,
+      'requiredErrorText': instance.requiredErrorText,
+      'placeholder': instance.hintText,
+      'maxLength': instance.maxLength,
+      'min': instance.min,
+      'minErrorText': instance.minErrorText,
+      'max': instance.max,
+      'maxErrorText': instance.maxErrorText,
+      'type': instance.$type,
+    };
+
 _$EmailInputFieldImpl _$$EmailInputFieldImplFromJson(
         Map<String, dynamic> json) =>
     _$EmailInputFieldImpl(
@@ -516,6 +556,8 @@ _$DropdownInputFieldImpl _$$DropdownInputFieldImplFromJson(
       islinked: json['islinked'] as bool?,
       answerList: json['selectedLinkListLabel'] as String?,
       linkedQuery: json['islinked_query'] as String?,
+      isConditional: json['isConditional'] as bool?,
+      actionMessage: json['actionMessage'] as String?,
       allowClear: json['allowClear'] as bool? ?? true,
       hintText: json['placeholder'] as String?,
       choices: (json['choice'] as List<dynamic>?)
@@ -546,6 +588,8 @@ Map<String, dynamic> _$$DropdownInputFieldImplToJson(
       'islinked': instance.islinked,
       'selectedLinkListLabel': instance.answerList,
       'islinked_query': instance.linkedQuery,
+      'isConditional': instance.isConditional,
+      'actionMessage': instance.actionMessage,
       'allowClear': instance.allowClear,
       'placeholder': instance.hintText,
       'choice':
@@ -685,12 +729,13 @@ _$RadioInputFieldImpl _$$RadioInputFieldImplFromJson(
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
-      actionMessage: json['actionMessage'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
+      actionMessage: json['actionMessage'] as String?,
+      isConditional: json['isConditional'] as bool? ?? false,
       choices: (json['choice'] as List<dynamic>?)
               ?.map(const ValueTextConverter().fromJson)
               .toList() ??
@@ -711,12 +756,13 @@ Map<String, dynamic> _$$RadioInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
-      'actionMessage': instance.actionMessage,
       'description': instance.description,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
+      'actionMessage': instance.actionMessage,
+      'isConditional': instance.isConditional,
       'choice':
           instance.choices.map(const ValueTextConverter().toJson).toList(),
       'showNoneItem': instance.showNoneItem,

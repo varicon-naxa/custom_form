@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_widget.dart';
@@ -258,6 +259,46 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       number: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: TextFormField(
+                            initialValue: field.answer ?? '',
+                            key: _fieldKeys[
+                                widget.surveyForm.inputFields.indexOf(e)],
+                            style: Theme.of(context).textTheme.bodyLarge,
+                            readOnly: field.readOnly,
+                            keyboardType: const TextInputType.numberWithOptions(
+                                signed: true, decimal: true),
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            onSaved: (newValue) {
+                              formValue.saveString(
+                                field.id,
+                                newValue,
+                              );
+                            },
+                            inputFormatters: [
+                              FilteringTextInputFormatter.allow(
+                                  RegExp(r'^[0-9]+.?[0-9]*'))
+                            ],
+                            validator: (value) {
+                              return numberValidator(
+                                value: (value?.isNotEmpty ?? false)
+                                    ? num.tryParse(value.toString())
+                                    : null,
+                                isRequired: field.isRequired,
+                                requiredErrorText: field.requiredErrorText,
+                              );
+                            },
+                            decoration: InputDecoration(
+                              hintText: field.hintText,
+                              // labelText: labelText,
+                            ),
+                          ),
+                        );
+                      },
+                      phone: (field) {
                         PhoneNumber? phoneNumber;
                         phoneNumber = PhoneNumber.fromCompleteNumber(
                             completeNumber: field.answer ?? '');
@@ -460,6 +501,19 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           ),
                         );
                       },
+                      radiogroup: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: RadioInputWidget(
+                            field: field,
+                            formKey: _fieldKeys[
+                                widget.surveyForm.inputFields.indexOf(e)],
+                            formValue: formValue,
+                            labelText: labelText,
+                          ),
+                        );
+                      },
                       yesnona: (field) {
                         return LabeledWidget(
                           labelText: labelText,
@@ -496,19 +550,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             formKey: _fieldKeys[
                                 widget.surveyForm.inputFields.indexOf(e)],
                             apiCall: widget.apiCall,
-                            formValue: formValue,
-                            labelText: labelText,
-                          ),
-                        );
-                      },
-                      radiogroup: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: RadioInputWidget(
-                            field: field,
-                            formKey: _fieldKeys[
-                                widget.surveyForm.inputFields.indexOf(e)],
                             formValue: formValue,
                             labelText: labelText,
                           ),

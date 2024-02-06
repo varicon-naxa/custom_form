@@ -178,7 +178,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = UrlInputField;
 
-  const factory InputField.number({
+    const factory InputField.number({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
@@ -197,6 +197,26 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'max') dynamic max,
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = NumberInputField;
+
+  const factory InputField.phone({
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'visible') @Default(true) bool visible,
+    @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
+    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+    // Fields.
+    @JsonKey(name: 'placeholder') String? hintText,
+    @JsonKey(name: 'maxLength') int? maxLength,
+
+    // For number field validation.
+    @JsonKey(name: 'min') dynamic min,
+    @JsonKey(name: 'minErrorText') String? minErrorText,
+    @JsonKey(name: 'max') dynamic max,
+    @JsonKey(name: 'maxErrorText') String? maxErrorText,
+  }) = PhoneInputField;
 
   const factory InputField.email({
     @JsonKey(name: 'id') required String id,
@@ -265,7 +285,8 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'islinked') bool? islinked,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
     @JsonKey(name: 'islinked_query') String? linkedQuery,
-
+    @JsonKey(name: 'isConditional') bool? isConditional,
+    @JsonKey(name: 'actionMessage') String? actionMessage,
     // Fields.
     @JsonKey(name: 'allowClear') @Default(true) bool allowClear,
     @JsonKey(name: 'placeholder') String? hintText,
@@ -364,15 +385,17 @@ class InputField with _$InputField implements BasicInputField {
   }) = CheckboxInputField;
 
   const factory InputField.radiogroup({
-    @JsonKey(name: 'id') required String id,
+@JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
-    @JsonKey(name: 'actionMessage') String? actionMessage,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+    @JsonKey(name: 'actionMessage') String? actionMessage,
+    @JsonKey(name: 'isConditional') @Default(false) bool isConditional,
+
     // Fields.
     @JsonKey(name: 'choice')
     @Default([])
