@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:varicon_form_builder/src/form_builder/form_fields/theme_search_field.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_paginated_bs.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
@@ -102,80 +101,80 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
               ),
             ),
             onTap: () {
-              if (widget.field.islinked ?? false) {
-                primaryBottomSheet(
-                  context,
-                  child: CustomPaginatedBottomsheet(
-                    apiCall: widget.apiCall!,
-                    linkedQuery: widget.field.linkedQuery ?? '',
-                    onClicked: (ValueText data) {
-                      widget.formValue.saveString(
-                        widget.field.id,
-                        data.value,
-                      );
-                      setState(() {
-                        formCon.text = data.text;
-                      });
-                    },
-                  ),
-                );
-              } else {
-                primaryBottomSheet(
-                  context,
-                  child: StatefulBuilder(builder: (context, setState) {
-                    return Column(
-                      children: [
-                        ThemeSearchField(
-                          name: '',
-                          hintText: 'Search ...',
-                          onChange: (value) {
-                            setState(() {
-                              searchedChoice = choices
-                                  .where((obj) => obj.text.contains(value))
-                                  .toList();
-                            });
-                          },
-                          controllerText: searchCon,
-                        ),
-                        Expanded(
-                          child: searchedChoice.isEmpty
-                              ? Center(
-                                  child: Text(
-                                    'Empty List',
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge,
-                                  ),
-                                )
-                              : ListView.builder(
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, i) {
-                                    return ListTile(
-                                      onTap: () {
-                                        widget.formValue.saveString(
-                                          widget.field.id,
-                                          searchedChoice[i].value,
-                                        );
-                                        setState(() {
-                                          formCon.text = searchedChoice[i].text;
-                                        });
-                                        Navigator.pop(context);
-                                      },
-                                      title: Text(
-                                        searchedChoice[i].text.toString(),
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      ),
-                                    );
-                                  },
-                                  itemCount: searchedChoice.length,
-                                ),
-                        ),
-                      ],
+              // if (widget.field.islinked ?? false) {
+              primaryBottomSheet(
+                context,
+                child: CustomPaginatedBottomsheet(
+                  apiCall: widget.apiCall!,
+                  linkedQuery: widget.field.linkedQuery ?? '',
+                  onClicked: (ValueText data) {
+                    widget.formValue.saveString(
+                      widget.field.id,
+                      data.value,
                     );
-                  }),
-                );
-              }
+                    setState(() {
+                      formCon.text = data.text;
+                    });
+                  },
+                ),
+              );
+              // } else {
+              //   primaryBottomSheet(
+              //     context,
+              //     child: StatefulBuilder(builder: (context, setState) {
+              //       return Column(
+              //         children: [
+              //           ThemeSearchField(
+              //             name: '',
+              //             hintText: 'Search ...',
+              //             onChange: (value) {
+              //               setState(() {
+              //                 searchedChoice = choices
+              //                     .where((obj) => obj.text.contains(value))
+              //                     .toList();
+              //               });
+              //             },
+              //             controllerText: searchCon,
+              //           ),
+              //           Expanded(
+              //             child: searchedChoice.isEmpty
+              //                 ? Center(
+              //                     child: Text(
+              //                       'Empty List',
+              //                       style:
+              //                           Theme.of(context).textTheme.bodyLarge,
+              //                     ),
+              //                   )
+              //                 : ListView.builder(
+              //                     shrinkWrap: true,
+              //                     itemBuilder: (context, i) {
+              //                       return ListTile(
+              //                         onTap: () {
+              //                           widget.formValue.saveString(
+              //                             widget.field.id,
+              //                             searchedChoice[i].value,
+              //                           );
+              //                           setState(() {
+              //                             formCon.text = searchedChoice[i].text;
+              //                           });
+              //                           Navigator.pop(context);
+              //                         },
+              //                         title: Text(
+              //                           searchedChoice[i].text.toString(),
+              //                           style: Theme.of(context)
+              //                               .textTheme
+              //                               .bodyMedium,
+              //                         ),
+              //                       );
+              //                     },
+              //                     itemCount: searchedChoice.length,
+              //                   ),
+              //           ),
+              //         ],
+              //       );
+              //     }),
+              //   );
+              // }
             },
           )
         : Column(

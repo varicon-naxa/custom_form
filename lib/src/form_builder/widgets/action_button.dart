@@ -29,6 +29,13 @@ class ActionButton extends StatelessWidget {
         constraints: const BoxConstraints(maxWidth: 120.0),
         padding: EdgeInsets.symmetric(vertical: verticalPadding),
         alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(
+            borerRadius,
+          ),
+          border: Border.all(color: borderColor ?? buttonColor),
+        ),
         child: Text(
           buttonText,
           style: Theme.of(context)
@@ -37,12 +44,6 @@ class ActionButton extends StatelessWidget {
               ?.copyWith(fontSize: fontSize, height: 1, color: textColor),
           textAlign: TextAlign.center,
         ),
-        decoration: BoxDecoration(
-            color: buttonColor,
-            borderRadius: BorderRadius.circular(
-              borerRadius,
-            ),
-            border: Border.all(color: borderColor ?? buttonColor)),
       ),
     );
   }

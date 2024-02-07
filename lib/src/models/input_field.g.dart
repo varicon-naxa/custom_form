@@ -553,7 +553,6 @@ _$DropdownInputFieldImpl _$$DropdownInputFieldImplFromJson(
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       fromManualList: json['fromManualList'] as bool? ?? true,
-      islinked: json['islinked'] as bool?,
       answerList: json['selectedLinkListLabel'] as String?,
       linkedQuery: json['islinked_query'] as String?,
       isConditional: json['isConditional'] as bool?,
@@ -585,7 +584,6 @@ Map<String, dynamic> _$$DropdownInputFieldImplToJson(
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
       'fromManualList': instance.fromManualList,
-      'islinked': instance.islinked,
       'selectedLinkListLabel': instance.answerList,
       'islinked_query': instance.linkedQuery,
       'isConditional': instance.isConditional,
@@ -621,7 +619,6 @@ _$MultipleInputFieldImpl _$$MultipleInputFieldImplFromJson(
               .toList() ??
           const [],
       maxSelectedChoices: json['maxSelectedChoices'] as int?,
-      islinked: json['islinked'] as bool?,
       answerList: json['selectedLinkListLabel'] as String?,
       linkedQuery: json['islinked_query'] as String?,
       showNoneItem: json['showNoneItem'] as bool? ?? false,
@@ -650,7 +647,6 @@ Map<String, dynamic> _$$MultipleInputFieldImplToJson(
       'choice':
           instance.choices.map(const ValueTextConverter().toJson).toList(),
       'maxSelectedChoices': instance.maxSelectedChoices,
-      'islinked': instance.islinked,
       'selectedLinkListLabel': instance.answerList,
       'islinked_query': instance.linkedQuery,
       'showNoneItem': instance.showNoneItem,
@@ -676,7 +672,6 @@ _$CheckboxInputFieldImpl _$$CheckboxInputFieldImplFromJson(
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
       fromManualList: json['fromManualList'] as bool? ?? true,
-      islinked: json['islinked'] as bool?,
       answerList: json['selectedLinkListLabel'] as String?,
       linkedQuery: json['islinked_query'] as String?,
       choices: (json['choice'] as List<dynamic>?)
@@ -707,7 +702,6 @@ Map<String, dynamic> _$$CheckboxInputFieldImplToJson(
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
       'fromManualList': instance.fromManualList,
-      'islinked': instance.islinked,
       'selectedLinkListLabel': instance.answerList,
       'islinked_query': instance.linkedQuery,
       'choice':

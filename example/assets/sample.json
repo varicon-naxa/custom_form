@@ -100,11 +100,14 @@
             "type": "multipleselect",
             "label": "Biget item",
             "answer": "",
+            "fromManualList": true,
+            "actionMessage": "This is the action message ",
             "isRequired": false,
             "choice": [
                 {
                     "id": "item-200e3185-3906-4d91-a03f-62f35e8547de",
                     "type": "option",
+                    "action": true,
                     "label": "Resource and supplier",
                     "notify_To": []
                 },

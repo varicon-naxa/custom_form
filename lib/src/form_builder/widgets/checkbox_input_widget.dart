@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/checkbox_form_field.dart';
-import 'package:varicon_form_builder/src/form_builder/form_fields/theme_search_field.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_multi_bottomsheet.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
@@ -67,6 +66,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
 
     if ((widget.field.answer ?? '').isEmpty) {
       selectedIds = [];
+      selectedChoices = List.filled(choices.length, null);
     }
     if (initialValue != null &&
         initialValue.isNotEmpty &&
@@ -133,149 +133,149 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
               ),
             ),
             onTap: () {
-              if (widget.field.islinked ?? false) {
-                primaryBottomSheet(context,
-                    child: CustomMultiBottomsheet(
-                      apiCall: widget.apiCall!,
-                      answer: (widget.field.answer ?? '').isEmpty
-                          ? selectedIds.join(',')
-                          : widget.field.answer ?? selectedIds.join(','),
-                      linkedQuery: widget.field.linkedQuery ?? '',
-                      onCheckboxClicked:
-                          (List<String> data, List<String> labelist) {
-                        widget.formValue.saveString(
-                          widget.field.id,
-                          data.join(','),
-                        );
-                        widget.formValue.saveString(
-                          widget.field.id.substring(5, widget.field.id.length),
-                          labelist.join(','),
-                        );
-                        setState(() {
-                          selectedIds = data;
-                          if ((data).isEmpty) {
-                            formCon.text = 'Select the item from list';
-                          } else {
-                            formCon.text =
-                                '${selectedIds.length} item selected';
-                          }
-                        });
-                      },
-                    ));
-              } else {
-                primaryBottomSheet(
-                  context,
-                  child: StatefulBuilder(builder: (context, setState) {
-                    return Column(children: [
-                      ThemeSearchField(
-                        name: '',
-                        hintText: 'Search....',
-                        onChange: (value) {
-                          setState(() {
-                            setState(() {
-                              searcgedChoices = choices
-                                  .where((obj) => obj.text.contains(value))
-                                  .toList();
-                            });
-                          });
-                        },
-                        controllerText: searchCon,
-                      ),
-                      Expanded(
-                        child: searcgedChoices.isEmpty
-                            ? Center(
-                                child: Text(
-                                  'Empty List',
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                ),
-                              )
-                            : ListView.builder(
-                                shrinkWrap: true,
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0,
-                                ),
-                                keyboardDismissBehavior:
-                                    ScrollViewKeyboardDismissBehavior.onDrag,
-                                itemBuilder: (context, i) {
-                                  return ListTile(
-                                    onTap: () {
-                                      if (selectedIds
-                                          .contains(searcgedChoices[i].value)) {
-                                        setState(() {
-                                          selectedIds
-                                              .remove(searcgedChoices[i].value);
-                                        });
-                                      } else {
-                                        setState(() {
-                                          selectedIds
-                                              .add(searcgedChoices[i].value);
-                                        });
-                                      }
-                                      widget.formValue.saveString(
-                                        widget.field.id,
-                                        selectedIds.join(','),
-                                      );
-                                      setState(() {
-                                        if ((selectedIds).isEmpty) {
-                                          formCon.text =
-                                              'Select the item from list';
-                                        } else {
-                                          formCon.text =
-                                              '${(selectedIds).length} item selected';
-                                        }
-                                      });
-                                    },
-                                    title: Text(
-                                      searcgedChoices[i].text.toString(),
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
-                                    ),
-                                    trailing: Checkbox(
-                                      visualDensity: const VisualDensity(
-                                        horizontal:
-                                            VisualDensity.minimumDensity,
-                                        vertical: VisualDensity.minimumDensity,
-                                      ),
-                                      value: selectedIds
-                                          .contains(searcgedChoices[i].value),
-                                      onChanged: (value) {
-                                        if (selectedIds.contains(
-                                            searcgedChoices[i].value)) {
-                                          setState(() {
-                                            selectedIds.remove(
-                                                searcgedChoices[i].value);
-                                          });
-                                        } else {
-                                          setState(() {
-                                            selectedIds
-                                                .add(searcgedChoices[i].value);
-                                          });
-                                        }
-                                        widget.formValue.saveString(
-                                          widget.field.id,
-                                          selectedIds.join(','),
-                                        );
-                                        setState(() {
-                                          if ((selectedIds).isEmpty) {
-                                            formCon.text =
-                                                'Select the item from list';
-                                          } else {
-                                            formCon.text =
-                                                '${(selectedIds).length} item selected';
-                                          }
-                                        });
-                                      },
-                                    ),
-                                  );
-                                },
-                                itemCount: searcgedChoices.length,
-                              ),
-                      ),
-                    ]);
-                  }),
-                );
-              }
+              // if (widget.field.islinked ?? false) {
+              primaryBottomSheet(context,
+                  child: CustomMultiBottomsheet(
+                    apiCall: widget.apiCall!,
+                    answer: (widget.field.answer ?? '').isEmpty
+                        ? selectedIds.join(',')
+                        : widget.field.answer ?? selectedIds.join(','),
+                    linkedQuery: widget.field.linkedQuery ?? '',
+                    onCheckboxClicked:
+                        (List<String> data, List<String> labelist) {
+                      widget.formValue.saveString(
+                        widget.field.id,
+                        data.join(','),
+                      );
+                      widget.formValue.saveString(
+                        widget.field.id.substring(5, widget.field.id.length),
+                        labelist.join(','),
+                      );
+                      setState(() {
+                        selectedIds = data;
+                        if ((data).isEmpty) {
+                          formCon.text = 'Select the item from list';
+                        } else {
+                          formCon.text = '${selectedIds.length} item selected';
+                        }
+                      });
+                    },
+                  ));
+              // }
+              // else {
+              //   primaryBottomSheet(
+              //     context,
+              //     child: StatefulBuilder(builder: (context, setState) {
+              //       return Column(children: [
+              //         ThemeSearchField(
+              //           name: '',
+              //           hintText: 'Search....',
+              //           onChange: (value) {
+              //             setState(() {
+              //               setState(() {
+              //                 searcgedChoices = choices
+              //                     .where((obj) => obj.text.contains(value))
+              //                     .toList();
+              //               });
+              //             });
+              //           },
+              //           controllerText: searchCon,
+              //         ),
+              //         Expanded(
+              //           child: searcgedChoices.isEmpty
+              //               ? Center(
+              //                   child: Text(
+              //                     'Empty List',
+              //                     style: Theme.of(context).textTheme.bodyLarge,
+              //                   ),
+              //                 )
+              //               : ListView.builder(
+              //                   shrinkWrap: true,
+              //                   padding: const EdgeInsets.symmetric(
+              //                     horizontal: 16.0,
+              //                   ),
+              //                   keyboardDismissBehavior:
+              //                       ScrollViewKeyboardDismissBehavior.onDrag,
+              //                   itemBuilder: (context, i) {
+              //                     return ListTile(
+              //                       onTap: () {
+              //                         if (selectedIds
+              //                             .contains(searcgedChoices[i].value)) {
+              //                           setState(() {
+              //                             selectedIds
+              //                                 .remove(searcgedChoices[i].value);
+              //                           });
+              //                         } else {
+              //                           setState(() {
+              //                             selectedIds
+              //                                 .add(searcgedChoices[i].value);
+              //                           });
+              //                         }
+              //                         widget.formValue.saveString(
+              //                           widget.field.id,
+              //                           selectedIds.join(','),
+              //                         );
+              //                         setState(() {
+              //                           if ((selectedIds).isEmpty) {
+              //                             formCon.text =
+              //                                 'Select the item from list';
+              //                           } else {
+              //                             formCon.text =
+              //                                 '${(selectedIds).length} item selected';
+              //                           }
+              //                         });
+              //                       },
+              //                       title: Text(
+              //                         searcgedChoices[i].text.toString(),
+              //                         style: Theme.of(context)
+              //                             .textTheme
+              //                             .bodyMedium,
+              //                       ),
+              //                       trailing: Checkbox(
+              //                         visualDensity: const VisualDensity(
+              //                           horizontal:
+              //                               VisualDensity.minimumDensity,
+              //                           vertical: VisualDensity.minimumDensity,
+              //                         ),
+              //                         value: selectedIds
+              //                             .contains(searcgedChoices[i].value),
+              //                         onChanged: (value) {
+              //                           if (selectedIds.contains(
+              //                               searcgedChoices[i].value)) {
+              //                             setState(() {
+              //                               selectedIds.remove(
+              //                                   searcgedChoices[i].value);
+              //                             });
+              //                           } else {
+              //                             setState(() {
+              //                               selectedIds
+              //                                   .add(searcgedChoices[i].value);
+              //                             });
+              //                           }
+              //                           widget.formValue.saveString(
+              //                             widget.field.id,
+              //                             selectedIds.join(','),
+              //                           );
+              //                           setState(() {
+              //                             if ((selectedIds).isEmpty) {
+              //                               formCon.text =
+              //                                   'Select the item from list';
+              //                             } else {
+              //                               formCon.text =
+              //                                   '${(selectedIds).length} item selected';
+              //                             }
+              //                           });
+              //                         },
+              //                       ),
+              //                     );
+              //                   },
+              //                   itemCount: searcgedChoices.length,
+              //                 ),
+              //         ),
+              //       ]);
+              //     }),
+              //   );
+              // }
             },
           )
         : Column(

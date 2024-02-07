@@ -1,3 +1,4 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors, library_private_types_in_public_api
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/action_button.dart';

@@ -412,7 +412,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       multipleselect: (field) {
                         List<ValueText> valueAnswer = [];
 
-                        if (field.islinked ?? false) {
+                        if (!(field.fromManualList)) {
                           List<String> answers =
                               field.answerList.toString().split(',');
                           answers.map((e) {
@@ -453,7 +453,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       checkbox: (field) {
                         List<ValueText> valueAnswer = [];
 
-                        if (field.islinked ?? false) {
+                        if (!(field.fromManualList)) {
                           List<String> answers =
                               field.answerList.toString().split(',');
                           answers.map((e) {
@@ -467,7 +467,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           child: LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
-                            child: (field.islinked ?? false)
+                            child: (!(field.fromManualList))
                                 ? _MultiAnswerDesign(answer: valueAnswer)
                                 : CheckboxInputWidget(
                                     field: field,

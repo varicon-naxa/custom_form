@@ -178,7 +178,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = UrlInputField;
 
-    const factory InputField.number({
+  const factory InputField.number({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
@@ -282,7 +282,6 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @Default(true) @JsonKey(name: 'fromManualList') bool fromManualList,
-    @JsonKey(name: 'islinked') bool? islinked,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
     @JsonKey(name: 'islinked_query') String? linkedQuery,
     @JsonKey(name: 'isConditional') bool? isConditional,
@@ -337,7 +336,6 @@ class InputField with _$InputField implements BasicInputField {
     @ValueTextConverter()
     List<ValueText> choices,
     @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
-    @JsonKey(name: 'islinked') bool? islinked,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
     @JsonKey(name: 'islinked_query') String? linkedQuery,
     // None
@@ -363,7 +361,6 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
     @Default(true) @JsonKey(name: 'fromManualList') bool fromManualList,
-    @JsonKey(name: 'islinked') bool? islinked,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
     @JsonKey(name: 'islinked_query') String? linkedQuery,
     // Fields.
@@ -385,7 +382,7 @@ class InputField with _$InputField implements BasicInputField {
   }) = CheckboxInputField;
 
   const factory InputField.radiogroup({
-@JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
