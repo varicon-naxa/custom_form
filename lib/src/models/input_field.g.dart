@@ -613,6 +613,7 @@ _$MultipleInputFieldImpl _$$MultipleInputFieldImplFromJson(
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
+      isConditional: json['isConditional'] as bool? ?? false,
       fromManualList: json['fromManualList'] as bool? ?? true,
       choices: (json['choice'] as List<dynamic>?)
               ?.map(const ValueTextConverter().fromJson)
@@ -643,6 +644,7 @@ Map<String, dynamic> _$$MultipleInputFieldImplToJson(
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
+      'isConditional': instance.isConditional,
       'fromManualList': instance.fromManualList,
       'choice':
           instance.choices.map(const ValueTextConverter().toJson).toList(),
@@ -671,6 +673,7 @@ _$CheckboxInputFieldImpl _$$CheckboxInputFieldImplFromJson(
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
+      isConditional: json['isConditional'] as bool? ?? false,
       fromManualList: json['fromManualList'] as bool? ?? true,
       answerList: json['selectedLinkListLabel'] as String?,
       linkedQuery: json['islinked_query'] as String?,
@@ -701,6 +704,7 @@ Map<String, dynamic> _$$CheckboxInputFieldImplToJson(
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
+      'isConditional': instance.isConditional,
       'fromManualList': instance.fromManualList,
       'selectedLinkListLabel': instance.answerList,
       'islinked_query': instance.linkedQuery,

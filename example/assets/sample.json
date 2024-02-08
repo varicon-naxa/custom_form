@@ -95,19 +95,31 @@
             "otherErrorText": "Other field comment is required."
         },
         {
+            "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc67",
+            "name": "Multiple Choice",
+            "type": "multipleselect",
+            "label": "Biget item",
+            "answer": "12345",
+            "isConditional": false,
+            "actionMessage": "",
+            "fromManualList": false,
+            "isRequired": false,
+            "choice": []
+        },
+        {
             "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc6",
             "name": "Multiple Choice",
             "type": "multipleselect",
             "label": "Biget item",
-            "answer": "",
+            "answer": "item-200e3185-3906-4d91-a03f-62f35e8547de",
+            "isConditional": false,
+            "actionMessage": "",
             "fromManualList": true,
-            "actionMessage": "This is the action message ",
             "isRequired": false,
             "choice": [
                 {
                     "id": "item-200e3185-3906-4d91-a03f-62f35e8547de",
                     "type": "option",
-                    "action": true,
                     "label": "Resource and supplier",
                     "notify_To": []
                 },

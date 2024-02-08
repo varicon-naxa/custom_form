@@ -68,9 +68,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
       selectedIds = [];
       selectedChoices = List.filled(choices.length, null);
     }
-    if (initialValue != null &&
-        initialValue.isNotEmpty &&
-        (widget.field.fromManualList)) {
+    if (initialValue != null && initialValue.isNotEmpty) {
       selectedChoices = choices.map(
         (e) {
           if (initialValue.contains(e.value)) {
@@ -88,10 +86,12 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
     }
     setState(() {
       showMessage = checkMatchingActions();
-      if ((selectedIds).isEmpty) {
-        formCon.text = 'Select the item from list';
-      } else {
-        formCon.text = '${(selectedIds).length} item selected';
+      if (!widget.field.fromManualList) {
+        if ((initialValue ?? []).isEmpty) {
+          formCon.text = 'Select items from the list';
+        } else {
+          formCon.text = '${(initialValue ?? []).length} item selected';
+        }
       }
     });
   }
@@ -367,7 +367,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   final clearOther = (v is NoneValueText) || (isNoneSelected());
                   return CheckboxMenuItem(
                     value: v.value,
-                    hasAction: v.action,
+                    hasAction: widget.field.fromManualList ? v.action : null,
                     enabled: enabled(),
                     title: Text(
                       v.text,

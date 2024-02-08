@@ -68,9 +68,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     if ((widget.field.answer ?? '').isEmpty) {
       selectedIds = [];
       selectedChoices = List.filled(choices.length, null);
-    } else if (initialValue != null &&
-        initialValue.isNotEmpty &&
-        !(widget.field.fromManualList)) {
+    } else if (initialValue != null && initialValue.isNotEmpty) {
       selectedChoices = choices.map(
         (e) {
           if (initialValue.contains(e.value)) {
@@ -88,11 +86,12 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     }
     setState(() {
       showMessage = checkMatchingActions();
-
-      if ((selectedIds).isEmpty) {
-        formCon.text = 'Select items from the list';
-      } else {
-        formCon.text = '${(selectedIds).length} item selected';
+      if (!widget.field.fromManualList) {
+        if ((initialValue ?? []).isEmpty) {
+          formCon.text = 'Select items from the list';
+        } else {
+          formCon.text = '${(initialValue ?? []).length} item selected';
+        }
       }
     });
   }
@@ -382,7 +381,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
                   final clearOther = (v is NoneValueText) || (isNoneSelected());
                   return CheckboxMenuItem(
                     value: v.value,
-                    hasAction: v.action,
+                    hasAction: ((widget.field.isConditional) ? v.action : null),
                     enabled: enabled(),
                     title: Text(
                       v.text,

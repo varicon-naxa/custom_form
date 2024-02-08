@@ -329,6 +329,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
+    @JsonKey(name: 'isConditional') @Default(false) bool isConditional,
     @Default(true) @JsonKey(name: 'fromManualList') bool fromManualList,
     // Fields.
     @JsonKey(name: 'choice')
@@ -360,6 +361,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
+    @JsonKey(name: 'isConditional') @Default(false) bool isConditional,
     @Default(true) @JsonKey(name: 'fromManualList') bool fromManualList,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
     @JsonKey(name: 'islinked_query') String? linkedQuery,
