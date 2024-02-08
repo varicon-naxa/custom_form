@@ -1,4 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -166,6 +169,39 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     );
   }
 
+  bool compareMaps(Map<String, dynamic> map1, Map<String, dynamic> map2) {
+    // Check if both maps have the same keys
+    if (!map1.keys.toSet().containsAll(map2.keys.toSet()) ||
+        !map2.keys.toSet().containsAll(map1.keys.toSet())) {
+      return false;
+    }
+
+    // Check if values for each key are equal
+    for (var key in map1.keys) {
+      if (map1[key] != map2[key]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  bool popInvoke() {
+    Map<String, dynamic> initialResult = {};
+    for (var field in widget.surveyForm.inputFields) {
+      if (field.answer != null && field.answer != '') {
+        initialResult[field.id] = field.answer;
+      }
+    }
+    formKey.currentState?.save();
+    Map<String, dynamic> fulldata = formValue.value;
+    log(jsonEncode(initialResult));
+    log(jsonEncode(fulldata));
+
+    bool areEqual = compareMaps(initialResult, fulldata);
+    return areEqual;
+  }
+
   @override
   Widget build(BuildContext context) {
     questionNumber = 0;
@@ -219,6 +255,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                     final labelText = '$questionNumber. ${e.label ?? ''} ';
                     return e.maybeMap(
                       text: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -259,6 +299,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       number: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -299,6 +343,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       phone: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         PhoneNumber? phoneNumber;
                         phoneNumber = PhoneNumber.fromCompleteNumber(
                             completeNumber: field.answer ?? '');
@@ -327,6 +375,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       email: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           key: ValueKey(field.id),
@@ -359,6 +411,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       url: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           key: ValueKey(field.id),
@@ -394,6 +450,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       date: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -422,6 +482,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       datetimelocal: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -475,6 +539,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       dropdown: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -489,6 +557,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       yesno: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -502,6 +574,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       radiogroup: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -515,6 +591,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       yesnona: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -528,6 +608,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       checkbox: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -542,6 +626,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       multipleselect: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -556,6 +644,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       files: (field) {
+                        formValue.saveList(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -579,6 +671,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       images: (field) {
+                        formValue.saveList(
+                          field.id,
+                          field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -602,6 +698,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       signature: (field) {
+                        formValue.saveMap(
+                          field.id,
+                          field.answer ?? {},
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,

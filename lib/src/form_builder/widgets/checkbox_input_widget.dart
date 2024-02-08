@@ -143,10 +143,12 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                     linkedQuery: widget.field.linkedQuery ?? '',
                     onCheckboxClicked:
                         (List<String> data, List<String> labelist) {
+                      data.sort();
                       widget.formValue.saveString(
                         widget.field.id,
                         data.join(','),
                       );
+                      labelist.sort();
                       widget.formValue.saveString(
                         widget.field.id.substring(5, widget.field.id.length),
                         labelist.join(','),
@@ -321,7 +323,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   if (!isOtherSelected()) {
                     widget.formValue.remove(otherFieldKey);
                   }
-
+                  keys.sort();
                   widget.formValue.saveString(
                     widget.field.id,
                     keys.join(','),

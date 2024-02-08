@@ -62,7 +62,7 @@
             "islinked_query": "equipment",
             "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
             "isRequired": true,
-            "answer": "item2,item1",
+            "answer": "item1,item2",
             "requiredErrorText": "At least one item must be selected",
             "actionMessage": "This is the action message ",
             "choice": [

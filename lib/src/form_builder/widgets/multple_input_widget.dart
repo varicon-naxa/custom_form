@@ -154,10 +154,12 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
                     linkedQuery: widget.field.linkedQuery ?? '',
                     onCheckboxClicked:
                         (List<String> data, List<String> nameList) {
+                      data.sort();
                       widget.formValue.saveString(
                         widget.field.id,
                         data.join(','),
                       );
+                      nameList.sort();
                       widget.formValue.saveString(
                         widget.field.id.substring(5, widget.field.id.length),
                         nameList.join(','),
@@ -335,7 +337,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
                   if (!isOtherSelected()) {
                     widget.formValue.remove(otherFieldKey);
                   }
-
+                  keys.sort();
                   widget.formValue.saveString(
                     widget.field.id,
                     keys.join(','),
