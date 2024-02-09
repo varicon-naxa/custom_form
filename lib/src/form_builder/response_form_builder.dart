@@ -871,7 +871,7 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                     ? imageBuild!({
                         'image': e.file ?? '',
                         'height': 200.0,
-                        'width': 200,
+                        'width': 200.0,
                       })
                     : Image.network(
                         e.file ?? '',
