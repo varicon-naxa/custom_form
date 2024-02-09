@@ -49,7 +49,10 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   void initState() {
     super.initState();
     setState(() {
-      answer.addAll(widget.field.answer ?? []);
+      if ((widget.field.answer ?? []).isEmpty) {
+        answer.add(SingleSignature(
+            id: DateTime.now().microsecondsSinceEpoch.toString()));
+      }
     });
   }
 
@@ -344,10 +347,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
             controller: controller,
             onChanged: (data) {
               debouncer.run(() {
-                setState(() {
-                  answer[singleItem.key] =
-                      answer[singleItem.key].copyWith(name: data);
-                });
+                answer[singleItem.key] =
+                    answer[singleItem.key].copyWith(name: data);
                 saveList();
               });
             },
@@ -428,10 +429,15 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     );
                   }
                 },
-                icon: const Icon(Icons.add),
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.black,
+                ),
                 label: Text(
                   'Add Signature',
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: Colors.black,
+                      ),
                 ),
               )
             ],

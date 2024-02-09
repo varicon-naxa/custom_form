@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 import 'package:example/survey_page.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +21,7 @@ class _ButtonPageState extends State<ButtonPage> {
         body: Center(
           child: ElevatedButton(
             onPressed: () async {
-              const assetPath = 'assets/sample.json';
+              const assetPath = 'assets/multisignature.json';
               String currentValue = await rootBundle.loadString(assetPath);
               Map<String, dynamic> currentData = jsonDecode(currentValue);
 

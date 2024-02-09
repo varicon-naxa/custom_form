@@ -5,30 +5,11 @@
     "version": "1.0.0",
     "elements": [
         {
-            "type": "multiSignature",
+            "type": "multisignature",
             "id": "multisignature",
             "label": "Employe Signature",
             "isRequired": true,
-            "answer": [
-                {
-                    "id": "121312321",
-                    "attachmentId": "12",
-                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
-                    "name": "1"
-                },
-                {
-                    "id": "13412132",
-                    "attachmentId": "13",
-                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
-                    "name": "2"
-                },
-                {
-                    "id": "13412133",
-                    "attachmentId": "14",
-                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
-                    "name": "3"
-                }
-            ]
+            "answer": null
         }
     ]
 }

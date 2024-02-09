@@ -1,6 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-import 'dart:convert';
-import 'dart:developer';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -195,9 +193,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     }
     formKey.currentState?.save();
     Map<String, dynamic> fulldata = formValue.value;
-    log(jsonEncode(initialResult));
-    log(jsonEncode(fulldata));
-
     bool areEqual = compareMaps(initialResult, fulldata);
     return areEqual;
   }
