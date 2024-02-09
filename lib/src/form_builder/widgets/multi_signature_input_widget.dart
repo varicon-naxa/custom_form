@@ -4,7 +4,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:varicon_form_builder/src/core/debouncer.dart';
-import 'package:varicon_form_builder/src/models/single_signature.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -52,6 +51,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
       if ((widget.field.answer ?? []).isEmpty) {
         answer.add(SingleSignature(
             id: DateTime.now().microsecondsSinceEpoch.toString()));
+      } else {
+        answer.addAll(widget.field.answer ?? []);
       }
     });
   }
