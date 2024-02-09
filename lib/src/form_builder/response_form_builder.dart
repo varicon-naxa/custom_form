@@ -11,6 +11,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget
 import 'package:varicon_form_builder/src/form_builder/widgets/radio_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/yes_no_na_input_widget.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
+import 'package:varicon_form_builder/src/models/single_signature.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import 'widgets/labeled_widget.dart';
@@ -627,13 +628,43 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                               );
                       },
 
-                      // multiSignature: (field) {
-                      //   return LabeledWidget(
-                      //     labelText: labelText,
-                      //     isRequired: e.isRequired,
-                      //     child: const SizedBox(),
-                      //   );
-                      // },
+                      multisignature: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: (field.answer != null &&
+                                  (field.answer ?? []).isNotEmpty)
+                              ? _MultiSignatureAnswerDesign(
+                                  answer: field.answer ?? [],
+                                  imageBuild: widget.imageBuild,
+                                )
+                              : Column(
+                                  children: [
+                                    Text(
+                                      'No Signature',
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                            color: const Color(0xff6A737B),
+                                          ),
+                                    ),
+                                    const DottedLine(
+                                      direction: Axis.horizontal,
+                                      alignment: WrapAlignment.center,
+                                      lineLength: double.infinity,
+                                      lineThickness: 1.0,
+                                      dashLength: 4.0,
+                                      dashColor: Colors.grey,
+                                      dashRadius: 0.0,
+                                      dashGapLength: 4.0,
+                                      dashGapColor: Colors.white,
+                                      dashGapRadius: 0.0,
+                                    )
+                                  ],
+                                ),
+                        );
+                      },
 
                       orElse: () => null,
                     );
@@ -797,6 +828,72 @@ class _MultiAnswerDesign extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: answer.isEmpty ? Colors.grey : Colors.black,
                   ),
+            );
+          }).toList(),
+        ),
+        const DottedLine(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.center,
+          lineLength: double.infinity,
+          lineThickness: 1.0,
+          dashLength: 4.0,
+          dashColor: Colors.grey,
+          dashRadius: 0.0,
+          dashGapLength: 4.0,
+          dashGapColor: Colors.white,
+          dashGapRadius: 0.0,
+        )
+      ],
+    );
+  }
+}
+
+class _MultiSignatureAnswerDesign extends StatelessWidget {
+  const _MultiSignatureAnswerDesign({
+    required this.answer,
+    this.imageBuild,
+  });
+
+  final List<SingleSignature> answer;
+  final Widget Function(Map<String, dynamic>)? imageBuild;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: answer.map((e) {
+            return Column(
+              children: [
+                imageBuild != null
+                    ? imageBuild!({
+                        'image': e.file ?? '',
+                        'height': 200.0,
+                        'width': 200,
+                      })
+                    : Image.network(
+                        e.file ?? '',
+                        height: 150,
+                        width: double.infinity,
+                        fit: BoxFit.fill,
+                        errorBuilder: (context, error, stackTrace) =>
+                            const SizedBox(
+                          height: 75,
+                          child: Icon(
+                            Icons.image,
+                            size: 40,
+                          ),
+                        ),
+                      ),
+                Text(
+                  e.name ?? '',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: answer.isEmpty ? Colors.grey : Colors.black,
+                      ),
+                ),
+              ],
             );
           }).toList(),
         ),
