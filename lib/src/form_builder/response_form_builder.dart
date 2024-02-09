@@ -866,6 +866,7 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: answer.map((e) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 imageBuild != null
                     ? imageBuild!({
