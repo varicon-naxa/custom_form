@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/core/debouncer.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
@@ -50,7 +51,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     setState(() {
       if ((widget.field.answer ?? []).isEmpty) {
         answer.add(SingleSignature(
-            id: DateTime.now().microsecondsSinceEpoch.toString()));
+          id: 'item-${const Uuid().v4()}',
+        ));
       } else {
         answer.addAll(widget.field.answer ?? []);
       }
@@ -419,9 +421,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                   if (isListValid()) {
                     setState(() {
                       answer.add(SingleSignature(
-                          id: DateTime.now()
-                              .microsecondsSinceEpoch
-                              .toString()));
+                        id: 'item-${const Uuid().v4()}',
+                      ));
                     });
                   } else {
                     Fluttertoast.showToast(

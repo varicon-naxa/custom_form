@@ -11,7 +11,6 @@ import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget
 import 'package:varicon_form_builder/src/form_builder/widgets/radio_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/yes_no_na_input_widget.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
-import 'package:varicon_form_builder/src/models/single_signature.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import 'widgets/labeled_widget.dart';
