@@ -39,16 +39,18 @@ class _CustomPaginatedBottomsheetState
       'page': page.toString(),
       'q': q ?? ''
     });
-    setState(() {
-      final retrievedData =
-          (data.map((e) => const ValueTextConverter().fromJson(e)).toList());
-      if (retrievedData.isEmpty) {
-        startSearch = false;
-      }
-      isLoading = false;
-      searchedChoice = [...searchedChoice, ...retrievedData];
+    Future.microtask(() {
+      setState(() {
+        final retrievedData =
+            (data.map((e) => const ValueTextConverter().fromJson(e)).toList());
+        if (retrievedData.isEmpty) {
+          startSearch = false;
+        }
+        isLoading = false;
+        searchedChoice = [...searchedChoice, ...retrievedData];
 
-      page = page + 1;
+        page = page + 1;
+      });
     });
   }
 

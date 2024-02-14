@@ -27,6 +27,7 @@ class MultipleInputWidget extends StatefulWidget {
 }
 
 class _MultipleInputWidgetState extends State<MultipleInputWidget> {
+  String? answer;
   late List<bool?> selectedChoices;
   late final List<ValueText> choices;
   List<ValueText> searchedChoice = [];
@@ -42,6 +43,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
   @override
   void initState() {
     super.initState();
+    answer = (widget.field.answer ?? '').isEmpty ? null : widget.field.answer;
 
     showSelectAllOption = widget.field.showSelectAllItem &&
         widget.field.maxSelectedChoices == null;
@@ -63,7 +65,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     otherFieldKey = '${widget.field.id}-Comment';
 
     // Get initial values from saved data.
-    final List<String>? initialValue = widget.field.answer?.split(',');
+    final List<String>? initialValue = answer?.split(',');
 
     if ((widget.field.answer ?? '').isEmpty) {
       selectedIds = [];
