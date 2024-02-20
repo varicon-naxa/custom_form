@@ -196,6 +196,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                           onPressed: () {
                             setState(() {
                               value = null;
+                              showMessage = false;
                             });
                           },
                           icon: const Icon(

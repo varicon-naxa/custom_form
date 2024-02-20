@@ -1,8 +1,5 @@
-{
-    "title": "Forms okay okay",
-    "description": "Dynamic form generator is a form of the things in the line",
-    "name": "",
-    "version": "1.0.0",
+ {
+    "title": "Linked to list test",
     "elements": [
         {
             "id": "item-33192a2b-32eb-492d-bd8b-87dd5674f3ab",
@@ -15,6 +12,31 @@
             "isConditional": false,
             "fromManualList": false,
             "islinked_query": "project"
+        },
+        {
+            "id": "item-33192a2b-32eb-492d-bd8b-87dd5674f3abc",
+            "label": "Linked List Dropdown",
+            "answer": "",
+            "description": null,
+            "visible": true,
+            "isRequired": false,
+            "readOnly": false,
+            "requiredErrorText": null,
+            "fromManualList": true,
+            "selectedLinkListLabel": null,
+            "islinked_query": "project",
+            "isConditional": false,
+            "actionMessage": null,
+            "allowClear": true,
+            "placeholder": null,
+            "choice": [],
+            "showNoneItem": false,
+            "noneText": null,
+            "showOtherItem": false,
+            "otherText": null,
+            "otherErrorText": null,
+            "otherPlaceholder": null,
+            "type": "dropdown"
         },
         {
             "id": "item-706946aa-d818-4328-868a-6abfcbd92e1a",
@@ -58,20 +80,24 @@
             "type": "dropdown",
             "label": "Dropdown manual",
             "answer": "",
+            "actionMessage": "This is the action message ",
             "choice": [
                 {
                     "id": "item-433910cb-16ca-4711-9839-71473a54e74b",
                     "type": "option",
-                    "label": "Option 1"
+                    "label": "Option 1",
+                    "action": true
                 },
                 {
                     "id": "item-bd83d18e-e83e-4640-bfc1-efcdd643214a",
                     "type": "option",
-                    "label": "Option2"
+                    "label": "Option2",
+                    "action": true
                 }
             ],
             "isRequired": false,
             "isConditional": false
         }
-    ]
+    ],
+    "description": "Description"
 }
