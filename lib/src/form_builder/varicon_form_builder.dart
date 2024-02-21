@@ -714,10 +714,13 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       signature: (field) {
-                        formValue.saveMap(
-                          field.id,
-                          field.answer ?? {},
-                        );
+                        if (field.answer != null && field.answer != {}) {
+                          formValue.saveMap(
+                            field.id,
+                            field.answer ?? {},
+                          );
+                        }
+
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
@@ -739,10 +742,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       multisignature: (field) {
-                        formValue.saveList(
-                          field.id,
-                          field.answer ?? [],
-                        );
+                        if (field.answer != null && field.answer != []) {
+                          formValue.saveList(
+                            field.id,
+                            field.answer ?? [],
+                          );
+                        }
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
