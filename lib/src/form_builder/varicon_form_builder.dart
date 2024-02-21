@@ -756,7 +756,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                       },
                       multisignature: (field) {
-                        if (field.answer != null && field.answer != []) {
+                        if (field.answer != null &&
+                            (field.answer ?? []).isNotEmpty) {
                           formValue.saveList(
                             field.id,
                             field.answer ?? [],
