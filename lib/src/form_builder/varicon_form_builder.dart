@@ -191,6 +191,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   bool popInvoke() {
     Map<String, dynamic> initialResult = {};
     for (var field in widget.surveyForm.inputFields) {
+      log(field.id.toString());
+      log(field.answer.toString());
       if (field.answer != null && field.answer != '') {
         initialResult[field.id] = field.answer;
       }
