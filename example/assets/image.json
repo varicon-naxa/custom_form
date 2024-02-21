@@ -9,7 +9,7 @@
             "name": "Phone Number",
             "type": "phone",
             "label": "Phone Number",
-            "answer": "+6112312312312",
+            "answer": "",
             "isRequired": false,
             "selectedLinkListLabel": ""
         },

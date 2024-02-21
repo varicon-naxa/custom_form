@@ -6,6 +6,7 @@ import 'dart:developer';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_widget.dart';
@@ -363,10 +364,23 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             invalidNumberMessage: 'Invalid Phone Number',
                             isRequired: e.isRequired,
                             onSaved: (newValue) {
-                              formValue.saveString(
-                                field.id,
-                                newValue,
-                              );
+                              Country country =
+                                  PhoneNumber.getCountry(newValue);
+                              if (newValue
+                                      .replaceAll('+', '')
+                                      .toString()
+                                      .trim() !=
+                                  country.dialCode.trim()) {
+                                formValue.saveString(
+                                  field.id,
+                                  newValue,
+                                );
+                              } else {
+                                formValue.saveString(
+                                  field.id,
+                                  '',
+                                );
+                              }
                             },
                             decoration: InputDecoration(
                               hintText: field.hintText,
