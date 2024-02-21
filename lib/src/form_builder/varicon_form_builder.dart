@@ -194,7 +194,13 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       log(field.id.toString());
       log(field.answer.toString());
       if (field.answer != null && field.answer != '') {
-        initialResult[field.id] = field.answer;
+        if (field.answer is List) {
+          if (((field.answer ?? []) as List).isNotEmpty) {
+            initialResult[field.id] = field.answer;
+          }
+        } else {
+          initialResult[field.id] = field.answer;
+        }
       }
     }
     formKey.currentState?.save();
