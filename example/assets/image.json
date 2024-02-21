@@ -5,30 +5,57 @@
     "version": "1.0.0",
     "elements": [
         {
-            "type": "files",
-            "id": "file1",
-            "label": "Attach citizenship files",
-            "isMultiple": true,
-            "isRequired": true,
-            "answer": []
+            "id": "item-136391af-b017-4091-9695-79e5fa9d2979",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Phone Number",
+            "answer": "+6112312312312",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         },
         {
-            "type": "geolocation",
-            "id": "geolocation",
-            "label": "Form Submitted From",
-            "isRequired": true,
-            "answer": {
-                "long": 12.0,
-                "lat": 12.0
-            }
+            "id": "item-d8e1de8b-a917-48f1-adb9-1f4490e7fe9e",
+            "name": "Number Input",
+            "type": "number",
+            "label": "Number Input",
+            "answer": "123213",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         },
         {
-            "type": "images",
-            "id": "image1",
-            "label": "Attach covver letter",
-            "isMultiple": true,
-            "isRequired": true,
-            "answer": []
+            "id": "item-85be93e4-6964-46a0-9382-550c850bd62e",
+            "name": "Date",
+            "type": "date",
+            "label": "Date",
+            "answer": "2024-02-29",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-4b20e6a2-8582-4a30-a957-624285bf284d",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [
+                {
+                    "id": "item-500e27d8-ea9e-43a4-a8a5-099c7171f7c1",
+                    "file": "https://dev-server-varicon-backend.s3.amazonaws.com/attachments/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KSZ2FQGXF%2F20240221%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240221T071423Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEFYaCXVzLWVhc3QtMiJHMEUCICXTWl0Agm6nSVK3y5DzEXSUz2mwvkozRVa%2BkzbAl4%2BVAiEArvMxo2nMOcs7hh3gcH782wENfrxe0e2MpH2GH4ANLmUqvQUIQBABGgw0MTg1NDA4MTYwMjEiDDe2jm3PF2Q%2BmWvGMCqaBdYSZDTizh12I%2BXaZikQDD276BEP70TsxoAspDNPXFJlRX2%2Bw4rBp3b8DeETUashuxr0lKCobt0%2BSU8vF4VFODttPXflQ75DmiaplTRKgr98Y2LGx%2FF1A9fJJzr7B5K4mRLqx6Xh1Gz6eAtDEOsHbjacaohCgNZlG%2BtNWOFzFd33EuK7cN%2Fe5pZinAhYp5KdVgD21CqcTuc3eykR70RGVa8mOiKhsRx9wGL%2Bhs9NbPzwAgM8mFP0QO0k5O2yElgXu%2BpigsKMsS0Sv0Q3qknGLLAcIxdY7MpI%2BmjE1R8lt960ZmfsTLzT63mt8HGEEALbnI6SvOvO1rn5cKjGCFfO5bkKBCvhkp23hAfYik7YELIyxp9dvRDCrXsdUaBP1kE6rDnBQBkgJy9FXYsrIsd32JCqqLxh6CpKDwH%2B9toHZ3SaWN8FK6bkOc1x6sVsogx5i7M5Spph%2Fy1NGzJBVUa8NTRyRe%2FeSU7B0trgoyP0XC5ZCLVH4aq2VxIJ8kudSq3RkL4zJ%2BjxGh%2BPyWgTgxRXPzG0RuD4EH4kzXjFrT8XQ2uXmbt62MRU99A%2FIUfb7QhdM9IHOOq48M4EIEgcAqmxFlhsND9fbb1C1rPhv9ZiLyEkQX8tzbD5RsG5sliBoFybaXp1QyUmfgJrFU7ef1XuVvPAjBB8aWbC16lpBwUccBMmXf86xOCkM6B%2BbseMdI3DslJLxgeoz6j961yKTazjOSNwsoEuf9nM7%2FHpMjMdkbmKvsM29etk8Hrt6WKWbl1ysomkAJcV3w3kTKlhhK184gkVyOBU0hZqLreh%2FLlXA592ftc%2BidCqsU%2BspXsRDaLZH4VIHOuNMvur5I%2FqwNfJvNn7aYVRhnoVixAfeRkmOcqBWrdyA1IAicc4cjC7r9auBjqxAUkqEMlj63PCwsAYe5EgJTrzUgSKCdb%2Fik2l2pfM2OG10BQh6Fef4v8vnMchTUu8ctiOviqScgh1UwQFk%2Fvo6GdcN2VDSyUQblPQTit7Hgjk4L3yXfYVR%2BAJYvbDBOpR8H6W%2FXJrtVcXA%2BjaA5U2s4m23aXvpsNJaqfW7bLyuf4lMu3luzueimKWKi5Q4GYOjWFVb%2Bv4FFXNXFqnBpo4I5EjTr%2FOee9nHXjQy2ddpu9HEQ%3D%3D&X-Amz-Signature=3bb0e1420a9138777c823e0a4886916ccb009fbc1d847868d46c856b19b18781",
+                    "name": "asdasd",
+                    "isLoading": false,
+                    "attachmentId": "3106"
+                }
+            ],
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-142b1d41-9bd6-4f1e-a10f-f54cc32cb399",
+            "name": "Time",
+            "type": "time",
+            "label": "Time",
+            "answer": "12:00",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         }
     ]
 }
