@@ -376,10 +376,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   newValue,
                                 );
                               } else {
-                                formValue.saveString(
-                                  field.id,
-                                  '',
-                                );
+                                if (phoneNumber?.number != null) {
+                                  formValue.saveString(
+                                    field.id,
+                                    '',
+                                  );
+                                }
                               }
                             },
                             decoration: InputDecoration(
