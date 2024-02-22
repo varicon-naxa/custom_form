@@ -283,7 +283,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 widget.surveyForm.inputFields.indexOf(e)],
                             style: Theme.of(context).textTheme.bodyLarge,
                             readOnly: field.readOnly,
-                            keyboardType: TextInputType.text,
+                            keyboardType: (field.name ?? '')
+                                    .toLowerCase()
+                                    .contains('long')
+                                ? TextInputType.multiline
+                                : TextInputType.text,
                             textInputAction: (field.name ?? '')
                                     .toLowerCase()
                                     .contains('long')
