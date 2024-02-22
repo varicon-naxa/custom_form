@@ -284,6 +284,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             style: Theme.of(context).textTheme.bodyLarge,
                             readOnly: field.readOnly,
                             keyboardType: TextInputType.text,
+                            textInputAction: (field.name ?? '')
+                                    .toLowerCase()
+                                    .contains('long')
+                                ? TextInputAction.newline
+                                : TextInputAction.next,
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
                             maxLength: field.maxLength,
@@ -323,6 +328,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           isRequired: e.isRequired,
                           child: TextFormField(
                             initialValue: field.answer ?? '',
+                            textInputAction: TextInputAction.next,
                             key: _fieldKeys[
                                 widget.surveyForm.inputFields.indexOf(e)],
                             style: Theme.of(context).textTheme.bodyLarge,
@@ -420,6 +426,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 AutovalidateMode.onUserInteraction,
                             initialValue: (field.answer),
                             readOnly: field.readOnly,
+                            textInputAction: TextInputAction.next,
                             style: Theme.of(context).textTheme.bodyLarge,
                             keyboardType: TextInputType.emailAddress,
                             maxLength: field.maxLength,
@@ -459,6 +466,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             style: Theme.of(context).textTheme.bodyLarge,
                             keyboardType: TextInputType.number,
                             maxLength: field.maxLength,
+                            textInputAction: TextInputAction.next,
                             onSaved: (newValue) {
                               formValue.saveString(
                                 field.id,
@@ -543,6 +551,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     widget.surveyForm.inputFields.indexOf(e)],
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
+                                textInputAction: TextInputAction.next,
                                 readOnly: field.readOnly,
                                 style: Theme.of(context).textTheme.bodyLarge,
                                 keyboardType: TextInputType.text,
