@@ -102,8 +102,6 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     }
 
     for (int i = 0; i < selectedChoices.length; i++) {
-      final boolValue =
-          (selectedChoices[i] == true) && (choices[i].action == true);
       if ((selectedChoices[i] == true) && (choices[i].action == true)) {
         return true;
       }
