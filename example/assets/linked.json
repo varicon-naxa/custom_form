@@ -22,7 +22,7 @@
             "isRequired": false,
             "readOnly": false,
             "requiredErrorText": null,
-            "fromManualList": true,
+            "fromManualList": false,
             "selectedLinkListLabel": null,
             "islinked_query": "project",
             "isConditional": false,
@@ -55,7 +55,7 @@
             "name": "Multiple Select",
             "type": "multipleselect",
             "label": "Multi Select manual",
-            "answer": "",
+            "answer": "item-3e3e3e3e-3e3e-3e3e-3e3e-3e3e3e3e3e3e,item-8e8e8e8e-8e8e-8e8e-8e8e-8e8e8e8e8e8e",
             "choice": [
                 {
                     "id": "item-cb73267a-f733-424d-8cb0-fc412b6abf16",
@@ -66,13 +66,58 @@
                 {
                     "id": "item-097cee3e-13bc-49db-b1ba-1fc15c6c3122",
                     "type": "option",
-                    "label": "Option 2"
+                    "label": "Option 2",
+                    "action": true
+                },
+                {
+                    "id": "item-3e3e3e3e-3e3e-3e3e-3e3e-3e3e3e3e3e3e",
+                    "type": "option",
+                    "label": "Option 3",
+                    "action": true
+                },
+                {
+                    "id": "item-4e4e4e4e-4e4e-4e4e-4e4e-4e4e4e4e4e4e",
+                    "type": "option",
+                    "label": "Option 4",
+                    "action": true
+                },
+                {
+                    "id": "item-5e5e5e5e-5e5e-5e5e-5e5e-5e5e5e5e5e5e",
+                    "type": "option",
+                    "label": "Option 5"
+                },
+                {
+                    "id": "item-6e6e6e6e-6e6e-6e6e-6e6e-6e6e6e6e6e6e",
+                    "type": "option",
+                    "label": "Option 6"
+                },
+                {
+                    "id": "item-7e7e7e7e-7e7e-7e7e-7e7e-7e7e7e7e7e7e",
+                    "type": "option",
+                    "label": "Option 7"
+                },
+                {
+                    "id": "item-8e8e8e8e-8e8e-8e8e-8e8e-8e8e8e8e8e8e",
+                    "type": "option",
+                    "label": "Option 8"
+                },
+                {
+                    "id": "item-9e9e9e9e-9e9e-9e9e-9e9e-9e9e9e9e9e9e",
+                    "type": "option",
+                    "label": "Option 9"
+                },
+                {
+                    "id": "item-10e10e10e-10e10e10e-10e10e10e-10e10e10e-10e10e10e10e",
+                    "type": "option",
+                    "label": "Option 10"
                 }
             ],
+            
             "isRequired": false,
             "isConditional": false,
             "fromManualList": true,
-            "islinked_query": ""
+            "islinked_query": "",
+            "actionMessage": "This is the action message "
         },
         {
             "id": "item-4c82b77e-49c9-40b4-9b0a-43dc3c73792d",

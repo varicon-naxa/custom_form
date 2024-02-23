@@ -129,7 +129,7 @@ class _CustomMultiBottomsheetState extends State<CustomMultiBottomsheet> {
                             child: Text(widget.linkedQuery.toUpperCase(),
                                 style: Theme.of(context)
                                     .textTheme
-                                    .bodyMedium!
+                                    .bodyLarge!
                                     .copyWith(color: const Color(0xff98A5B9))),
                           ),
                           Expanded(
