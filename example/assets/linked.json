@@ -2,6 +2,42 @@
     "title": "Linked to list test",
     "elements": [
         {
+            "type": "text",
+            "name": "firstName",
+            "id": "firstName",
+            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "",
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "time",
+            "name": "time1",
+            "id": "time1",
+            "title": "Enter time for notification",
+            "isRequired": true,
+            "min": "11:21",
+            "max": "12:12"
+        },
+        {
+            "type": "date",
+            "name": "date1",
+            "id": "date1",
+            "title": "Enter date to have leave",
+            "min": "2023-05-23",
+            "max": "2023-05-24"
+        },
+        {
+            "type": "datetimelocal",
+            "name": "datetime1",
+            "id": "datetime1",
+            "title": "What is your first day to start office",
+            "answer": "2024-03-11T06:06"
+        },
+        {
             "id": "item-33192a2b-32eb-492d-bd8b-87dd5674f3ab",
             "name": "Dropdown",
             "type": "dropdown",
