@@ -195,7 +195,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   ),
                 ),
                 AppSpacing.sizedBoxH_08(),
-                if (widget.surveyForm.status != null)
+                if (widget.surveyForm.status != null &&
+                    widget.surveyForm.status?['id'] != null)
                   Container(
                     padding: const EdgeInsets.all(4),
                     width: double.infinity,

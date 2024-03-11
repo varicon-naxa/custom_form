@@ -304,7 +304,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             onSaved: (newValue) {
                               formValue.saveString(
                                 field.id,
-                                newValue,
+                                newValue.toString().trim(),
                               );
                             },
                             validator: (value) {
@@ -344,7 +344,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             onSaved: (newValue) {
                               formValue.saveString(
                                 field.id,
-                                newValue,
+                                newValue.toString().trim(),
                               );
                             },
                             inputFormatters: [
@@ -437,7 +437,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             onSaved: (newValue) {
                               formValue.saveString(
                                 field.id,
-                                newValue,
+                                newValue.toString().trim(),
                               );
                             },
                             validator: (value) {
@@ -474,7 +474,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             onSaved: (newValue) {
                               formValue.saveString(
                                 field.id,
-                                newValue,
+                                newValue.toString().trim(),
                               );
                             },
                             validator: (value) {
