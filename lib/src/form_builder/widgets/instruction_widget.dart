@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:varicon_form_builder/src/form_builder/varicon_form_builder.dart';
 import 'package:varicon_form_builder/src/models/input_field.dart';
 
@@ -22,6 +23,7 @@ class InstructionWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Html(data: field.description ?? ''),
         Text(
           field.description ?? '',
           style: Theme.of(context).textTheme.bodyMedium?.copyWith(

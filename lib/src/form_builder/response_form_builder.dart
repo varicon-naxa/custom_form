@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/ext/color_extension.dart';
@@ -235,6 +236,39 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           isRequired: e.isRequired,
                           child: _AnswerDesign(
                             answer: field.answer ?? '',
+                          ),
+                        );
+                      },
+                      longtext: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: Column(
+                            children: [
+                              (field.answer ?? '').isEmpty
+                                  ? const Text(
+                                      'No Response',
+                                      style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16,
+                                      ),
+                                    )
+                                  : Html(
+                                      data: field.answer ?? '',
+                                    ),
+                              const DottedLine(
+                                direction: Axis.horizontal,
+                                alignment: WrapAlignment.center,
+                                lineLength: double.infinity,
+                                lineThickness: 1.0,
+                                dashLength: 4.0,
+                                dashColor: Colors.grey,
+                                dashRadius: 0.0,
+                                dashGapLength: 4.0,
+                                dashGapColor: Colors.white,
+                                dashGapRadius: 0.0,
+                              )
+                            ],
                           ),
                         );
                       },

@@ -6,6 +6,7 @@ import 'dart:developer';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
@@ -52,6 +53,7 @@ class VariconFormBuilder extends StatefulWidget {
   final String buttonText;
   final void Function(Map<String, dynamic> formValue) onSave;
   final void Function(Map<String, dynamic> formValue) onSubmit;
+
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -73,6 +75,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   late final GlobalKey<FormState> formKey;
   late final GlobalKey<SignatureState> signKey;
   final ScrollController _scrollController = ScrollController();
+  final HtmlEditorController _htmlEditorController = HtmlEditorController();
+  HtmlEditorOptions editorOptions = const HtmlEditorOptions();
+
   List<GlobalKey<FormFieldState<String>>> _fieldKeys = [];
   int questionNumber = 0;
 
@@ -318,6 +323,61 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             decoration: InputDecoration(
                               hintText: field.hintText,
                               // labelText: labelText,
+                            ),
+                          ),
+                        );
+                      },
+                      longtext: (field) {
+                        formValue.saveString(
+                          field.id,
+                          field.answer,
+                        );
+                        editorOptions = HtmlEditorOptions(
+                          initialText: field.answer,
+                        );
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: Container(
+                            height: 320,
+                            decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: Colors.grey.shade300,
+                                ),
+                                borderRadius: BorderRadius.circular(4.0)),
+                            child: HtmlEditor(
+                              callbacks: Callbacks(onChangeContent: (code) {
+                                formValue.saveString(
+                                  field.id,
+                                  code.toString().trim(),
+                                );
+                              }),
+                              controller: _htmlEditorController, //required
+                              htmlEditorOptions: editorOptions,
+                              // textInputAction: TextInputAction.newline,
+                              htmlToolbarOptions: const HtmlToolbarOptions(
+                                defaultToolbarButtons: [
+                                  // StyleButtons(),
+                                  // FontSettingButtons(),
+                                  FontButtons(
+                                    clearAll: false,
+                                    strikethrough: false,
+                                    subscript: false,
+                                    superscript: false,
+                                  ),
+                                  // ColorButtons(),
+                                  ListButtons(listStyles: false),
+                                  ParagraphButtons(
+                                    caseConverter: false,
+                                    lineHeight: false,
+                                    textDirection: false,
+                                    increaseIndent: false,
+                                    decreaseIndent: false,
+                                  ),
+                                  // InsertButtons(),
+                                  // OtherButtons(),
+                                ],
+                              ),
                             ),
                           ),
                         );
