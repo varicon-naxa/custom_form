@@ -120,76 +120,74 @@ class _FileInputWidgetState extends State<FileInputWidget>
             AppSpacing.sizedBoxH_20(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        storeFiles(fromCamera: true);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          right: 16.0,
-                        ),
-                        child: Column(
-                          children: [
-                            const Icon(
-                              Icons.camera_alt,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      storeFiles(fromCamera: true);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.only(
+                        right: 16.0,
+                      ),
+                      width: MediaQuery.of(context).size.width / 2 - 50,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Icon(
+                            Icons.camera_alt,
+                            color: Color(
+                              0xff5F6D83,
+                            ),
+                          ),
+                          Text(
+                            'Camera',
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: const Color(
+                                        0xff5F6D83,
+                                      ),
+                                    ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 8),
+                    child: VerticalDivider(
+                      thickness: 2,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      storeFiles(fromCamera: false);
+                    },
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 2 - 50,
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Column(
+                        children: [
+                          const Icon(Icons.photo_library,
                               color: Color(
                                 0xff5F6D83,
-                              ),
-                            ),
-                            Text(
-                              'Camera',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: const Color(
-                                      0xff5F6D83,
+                              )),
+                          Text(
+                            'Photo Library',
+                            style:
+                                Theme.of(context).textTheme.bodySmall?.copyWith(
+                                      color: const Color(
+                                        0xff5F6D83,
+                                      ),
                                     ),
-                                  ),
-                            )
-                          ],
-                        ),
+                          )
+                        ],
                       ),
                     ),
-                    const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 8),
-                      child: VerticalDivider(
-                        thickness: 2,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        storeFiles(fromCamera: false);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Column(
-                          children: [
-                            const Icon(Icons.photo_library,
-                                color: Color(
-                                  0xff5F6D83,
-                                )),
-                            Text(
-                              'Photo Library',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: const Color(
-                                      0xff5F6D83,
-                                    ),
-                                  ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             AppSpacing.sizedBoxH_06(),

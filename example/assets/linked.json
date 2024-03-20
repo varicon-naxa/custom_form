@@ -2,6 +2,43 @@
     "title": "Linked to list test",
     "elements": [
         {
+            "type": "dropdown",
+            "id": "select1",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "fromManualList": false,
+            "islinked": true,
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+      
+        {
             "type": "text",
             "name": "firstName",
             "id": "firstName",
