@@ -6,7 +6,7 @@
             "name": "firstName",
             "id": "firstName",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -18,7 +18,7 @@
             "name": "long",
             "id": "longetetee",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -36,6 +36,47 @@
             "maxLength": 30,
             "answer": "",
             "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "checkbox",
+            "name": "checkbox1",
+            "id": "checkbox1",
+            "fromManualList": true,
+            "isConditional": false,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1.",
+                    "action": true
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2.",
+                    "action": false
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3.",
+                    "action": true
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4.",
+                    "action": false
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "action": true
+                }
+            ],
+            "otherErrorText": "Other field comment is required."
         }
     ],
     "description": "Description"
