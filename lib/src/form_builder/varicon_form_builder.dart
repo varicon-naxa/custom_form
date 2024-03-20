@@ -218,8 +218,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     formKey.currentState?.save();
     Map<String, dynamic> fulldata = formValue.value;
     bool areEqual = compareMaps(initialResult, fulldata);
-    log(jsonEncode(initialResult).toString());
-    log(jsonEncode(fulldata).toString());
+
     return areEqual;
   }
 
@@ -302,49 +301,56 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                         color: Colors.grey.shade300,
                                       ),
                                       borderRadius: BorderRadius.circular(4.0)),
-                                  child: HtmlEditor(
-                                    callbacks:
-                                        Callbacks(onChangeContent: (code) {
-                                      formValue.saveString(
-                                        field.id,
-                                        code.toString().trim(),
-                                      );
+                                  child: Theme(
+                                    data: ThemeData(
+                                      iconTheme: const IconThemeData(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    child: HtmlEditor(
+                                      callbacks:
+                                          Callbacks(onChangeContent: (code) {
+                                        formValue.saveString(
+                                          field.id,
+                                          code.toString().trim(),
+                                        );
 
-                                      if ((field.name ?? '')
-                                              .toLowerCase()
-                                              .contains('long') &&
-                                          field.isRequired) {
-                                        longTextAnswer['field.id'] =
-                                            code.toString().trim();
-                                      }
-                                    }),
-                                    controller:
-                                        _htmlEditorController, //required
-                                    htmlEditorOptions: editorOptions,
-                                    // textInputAction: TextInputAction.newline,
-                                    htmlToolbarOptions:
-                                        const HtmlToolbarOptions(
-                                      defaultToolbarButtons: [
-                                        // StyleButtons(),
-                                        // FontSettingButtons(),
-                                        FontButtons(
-                                          clearAll: false,
-                                          strikethrough: false,
-                                          subscript: false,
-                                          superscript: false,
-                                        ),
-                                        // ColorButtons(),
-                                        ListButtons(listStyles: false),
-                                        ParagraphButtons(
-                                          caseConverter: false,
-                                          lineHeight: false,
-                                          textDirection: false,
-                                          increaseIndent: false,
-                                          decreaseIndent: false,
-                                        ),
-                                        // InsertButtons(),
-                                        // OtherButtons(),
-                                      ],
+                                        if ((field.name ?? '')
+                                                .toLowerCase()
+                                                .contains('long') &&
+                                            field.isRequired) {
+                                          longTextAnswer['field.id'] =
+                                              code.toString().trim();
+                                        }
+                                      }),
+                                      controller:
+                                          _htmlEditorController, //required
+                                      htmlEditorOptions: editorOptions,
+                                      // textInputAction: TextInputAction.newline,
+                                      htmlToolbarOptions:
+                                          const HtmlToolbarOptions(
+                                        defaultToolbarButtons: [
+                                          // StyleButtons(),
+                                          // FontSettingButtons(),
+                                          FontButtons(
+                                            clearAll: false,
+                                            strikethrough: false,
+                                            subscript: false,
+                                            superscript: false,
+                                          ),
+                                          // ColorButtons(),
+                                          ListButtons(listStyles: false),
+                                          ParagraphButtons(
+                                            caseConverter: false,
+                                            lineHeight: false,
+                                            textDirection: false,
+                                            increaseIndent: false,
+                                            decreaseIndent: false,
+                                          ),
+                                          // InsertButtons(),
+                                          // OtherButtons(),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 )
