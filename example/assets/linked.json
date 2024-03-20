@@ -14,11 +14,23 @@
             "placeholder": "First Name placeholder"
         },
         {
-            "type": "longtext",
-            "name": "firstName",
+            "type": "text",
+            "name": "long",
             "id": "longetetee",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
             "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "",
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "text",
+            "name": "long",
+            "id": "longeteteasedasdast",
+            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,

@@ -77,6 +77,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   final ScrollController _scrollController = ScrollController();
   final HtmlEditorController _htmlEditorController = HtmlEditorController();
   HtmlEditorOptions editorOptions = const HtmlEditorOptions();
+  Map<String, dynamic> longTextAnswer = {};
 
   List<GlobalKey<FormFieldState<String>>> _fieldKeys = [];
   int questionNumber = 0;
@@ -279,107 +280,118 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           field.id,
                           field.answer,
                         );
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: TextFormField(
-                            initialValue: field.answer ?? '',
-                            key: _fieldKeys[
-                                widget.surveyForm.inputFields.indexOf(e)],
-                            style: Theme.of(context).textTheme.bodyLarge,
-                            readOnly: field.readOnly,
-                            keyboardType: (field.name ?? '')
-                                    .toLowerCase()
-                                    .contains('long')
-                                ? TextInputType.multiline
-                                : TextInputType.text,
-                            textInputAction: (field.name ?? '')
-                                    .toLowerCase()
-                                    .contains('long')
-                                ? TextInputAction.newline
-                                : TextInputAction.next,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            maxLength: field.maxLength,
-                            maxLines: (field.name ?? '')
-                                    .toLowerCase()
-                                    .contains('long')
-                                ? 3
-                                : 1,
-                            onSaved: (newValue) {
-                              formValue.saveString(
-                                field.id,
-                                newValue.toString().trim(),
-                              );
-                            },
-                            validator: (value) {
-                              return textValidator(
-                                value: value,
-                                inputType: "text",
-                                isRequired: field.isRequired,
-                                requiredErrorText: field.requiredErrorText,
-                              );
-                            },
-                            decoration: InputDecoration(
-                              hintText: field.hintText,
-                              // labelText: labelText,
-                            ),
-                          ),
-                        );
-                      },
-                      longtext: (field) {
-                        formValue.saveString(
-                          field.id,
-                          field.answer,
-                        );
+
+                        if ((field.name ?? '').toLowerCase().contains('long') &&
+                            field.isRequired) {
+                          longTextAnswer.addAll({field.id: field.answer});
+                        }
+
                         editorOptions = HtmlEditorOptions(
                           initialText: field.answer,
                         );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child: Container(
-                            height: 320,
-                            decoration: BoxDecoration(
-                                border: Border.all(
-                                  color: Colors.grey.shade300,
+                          child: (field.name ?? '')
+                                  .toLowerCase()
+                                  .contains('long')
+                              ? Container(
+                                  height: 320,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey.shade300,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4.0)),
+                                  child: HtmlEditor(
+                                    callbacks:
+                                        Callbacks(onChangeContent: (code) {
+                                      formValue.saveString(
+                                        field.id,
+                                        code.toString().trim(),
+                                      );
+
+                                      if ((field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long') &&
+                                          field.isRequired) {
+                                        longTextAnswer['field.id'] =
+                                            code.toString().trim();
+                                      }
+                                    }),
+                                    controller:
+                                        _htmlEditorController, //required
+                                    htmlEditorOptions: editorOptions,
+                                    // textInputAction: TextInputAction.newline,
+                                    htmlToolbarOptions:
+                                        const HtmlToolbarOptions(
+                                      defaultToolbarButtons: [
+                                        // StyleButtons(),
+                                        // FontSettingButtons(),
+                                        FontButtons(
+                                          clearAll: false,
+                                          strikethrough: false,
+                                          subscript: false,
+                                          superscript: false,
+                                        ),
+                                        // ColorButtons(),
+                                        ListButtons(listStyles: false),
+                                        ParagraphButtons(
+                                          caseConverter: false,
+                                          lineHeight: false,
+                                          textDirection: false,
+                                          increaseIndent: false,
+                                          decreaseIndent: false,
+                                        ),
+                                        // InsertButtons(),
+                                        // OtherButtons(),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : TextFormField(
+                                  initialValue: field.answer ?? '',
+                                  key: _fieldKeys[
+                                      widget.surveyForm.inputFields.indexOf(e)],
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  readOnly: field.readOnly,
+                                  keyboardType: (field.name ?? '')
+                                          .toLowerCase()
+                                          .contains('long')
+                                      ? TextInputType.multiline
+                                      : TextInputType.text,
+                                  textInputAction: (field.name ?? '')
+                                          .toLowerCase()
+                                          .contains('long')
+                                      ? TextInputAction.newline
+                                      : TextInputAction.next,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  maxLength: field.maxLength,
+                                  maxLines: (field.name ?? '')
+                                          .toLowerCase()
+                                          .contains('long')
+                                      ? 3
+                                      : 1,
+                                  onSaved: (newValue) {
+                                    formValue.saveString(
+                                      field.id,
+                                      newValue.toString().trim(),
+                                    );
+                                  },
+                                  validator: (value) {
+                                    return textValidator(
+                                      value: value,
+                                      inputType: "text",
+                                      isRequired: field.isRequired,
+                                      requiredErrorText:
+                                          field.requiredErrorText,
+                                    );
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: field.hintText,
+                                    // labelText: labelText,
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(4.0)),
-                            child: HtmlEditor(
-                              callbacks: Callbacks(onChangeContent: (code) {
-                                formValue.saveString(
-                                  field.id,
-                                  code.toString().trim(),
-                                );
-                              }),
-                              controller: _htmlEditorController, //required
-                              htmlEditorOptions: editorOptions,
-                              // textInputAction: TextInputAction.newline,
-                              htmlToolbarOptions: const HtmlToolbarOptions(
-                                defaultToolbarButtons: [
-                                  // StyleButtons(),
-                                  // FontSettingButtons(),
-                                  FontButtons(
-                                    clearAll: false,
-                                    strikethrough: false,
-                                    subscript: false,
-                                    superscript: false,
-                                  ),
-                                  // ColorButtons(),
-                                  ListButtons(listStyles: false),
-                                  ParagraphButtons(
-                                    caseConverter: false,
-                                    lineHeight: false,
-                                    textDirection: false,
-                                    increaseIndent: false,
-                                    decreaseIndent: false,
-                                  ),
-                                  // InsertButtons(),
-                                  // OtherButtons(),
-                                ],
-                              ),
-                            ),
-                          ),
                         );
                       },
                       number: (field) {
@@ -981,6 +993,22 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 // return if form is not valid.
                 if (!formKey.currentState!.validate()) {
                   scrollToFirstInvalidField();
+                  return;
+                }
+                // Check for empty values
+                bool hasEmptyValue = false;
+                if (longTextAnswer.isNotEmpty) {
+                  longTextAnswer.forEach((key, value) {
+                    if (value == null || value.toString().isEmpty) {
+                      hasEmptyValue = true;
+                      return;
+                    }
+                  });
+                }
+                if (hasEmptyValue) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                          'Long text field in the current form is empty')));
                   return;
                 }
 

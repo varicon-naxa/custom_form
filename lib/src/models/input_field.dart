@@ -43,28 +43,6 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'max') dynamic max,
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = TextInputField;
-
-    const factory InputField.longtext({
-    @JsonKey(name: 'id') required String id,
-    @JsonKey(name: 'label') String? label,
-    @JsonKey(name: 'name') String? name,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
-    @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'answer') String? answer,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
-  }) = LongTextInputField;
-
   const factory InputField.signature({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,

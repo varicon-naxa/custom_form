@@ -234,42 +234,38 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: field.answer ?? '',
-                          ),
-                        );
-                      },
-                      longtext: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: Column(
-                            children: [
-                              (field.answer ?? '').isEmpty
-                                  ? const Text(
-                                      'No Response',
-                                      style: TextStyle(
-                                        color: Colors.grey,
-                                        fontSize: 16,
-                                      ),
+                          child:
+                              (field.name ?? '').toLowerCase().contains('long')
+                                  ? Column(
+                                      children: [
+                                        (field.answer ?? '').isEmpty
+                                            ? const Text(
+                                                'No Response',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 16,
+                                                ),
+                                              )
+                                            : Html(
+                                                data: field.answer ?? '',
+                                              ),
+                                        const DottedLine(
+                                          direction: Axis.horizontal,
+                                          alignment: WrapAlignment.center,
+                                          lineLength: double.infinity,
+                                          lineThickness: 1.0,
+                                          dashLength: 4.0,
+                                          dashColor: Colors.grey,
+                                          dashRadius: 0.0,
+                                          dashGapLength: 4.0,
+                                          dashGapColor: Colors.white,
+                                          dashGapRadius: 0.0,
+                                        )
+                                      ],
                                     )
-                                  : Html(
-                                      data: field.answer ?? '',
+                                  : _AnswerDesign(
+                                      answer: field.answer ?? '',
                                     ),
-                              const DottedLine(
-                                direction: Axis.horizontal,
-                                alignment: WrapAlignment.center,
-                                lineLength: double.infinity,
-                                lineThickness: 1.0,
-                                dashLength: 4.0,
-                                dashColor: Colors.grey,
-                                dashRadius: 0.0,
-                                dashGapLength: 4.0,
-                                dashGapColor: Colors.white,
-                                dashGapRadius: 0.0,
-                              )
-                            ],
-                          ),
                         );
                       },
                       phone: (field) {
