@@ -24,12 +24,6 @@ class InstructionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Html(data: field.description ?? ''),
-        Text(
-          field.description ?? '',
-          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: const Color(0xff6A737B),
-              ),
-        ),
         if ((field.description ?? '').isNotEmpty) AppSpacing.sizedBoxH_06(),
         Wrap(
           children: (field.attachments ?? []).map((e) {

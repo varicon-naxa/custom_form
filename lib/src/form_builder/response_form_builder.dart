@@ -383,6 +383,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                               (obj) => obj.value == e.answer,
                             );
                             answerText = foundObject.text;
+                          } else {
+                            answerText = (field.answerList ?? '');
                           }
                         }
 
