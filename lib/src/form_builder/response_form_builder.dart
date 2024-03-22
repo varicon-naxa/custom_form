@@ -105,14 +105,18 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
               children: [
                 Text(
                   widget.surveyForm.title.toString(),
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        height: 1.2,
+                      ),
                 ),
+                AppSpacing.sizedBoxH_08(),
                 Text(
                   widget.surveyForm.description.toString(),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: const Color(0xff6A737B),
                       ),
                 ),
+                AppSpacing.sizedBoxH_08(),
               ],
             ),
           ),
@@ -605,7 +609,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
 
                       section: (field) {
                         return Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -614,8 +618,11 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
-                                    ?.copyWith(color: const Color(0xff233759)),
+                                    ?.copyWith(
+                                        color: const Color(0xff233759),
+                                        height: 1.2),
                               ),
+                              AppSpacing.sizedBoxH_08(),
                               (field.description ?? '').isEmpty
                                   ? const SizedBox.shrink()
                                   : Text(
@@ -627,6 +634,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                             color: const Color(0xff6A737B),
                                           ),
                                     ),
+                              AppSpacing.sizedBoxH_08(),
+                              const Divider(
+                                height: 1,
+                              ),
                             ],
                           ),
                         );
