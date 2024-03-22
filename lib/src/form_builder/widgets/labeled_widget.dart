@@ -3,11 +3,12 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 // ignore: must_be_immutable
 class LabeledWidget extends StatelessWidget {
-  LabeledWidget(
-      {super.key,
-      required this.labelText,
-      required this.child,
-      required this.isRequired,});
+  LabeledWidget({
+    super.key,
+    required this.labelText,
+    required this.child,
+    required this.isRequired,
+  });
   String? labelText;
   final bool isRequired;
   Widget child;
@@ -16,9 +17,16 @@ class LabeledWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+        border: Border.all(
+          color: Colors.grey.shade300,
+        ),
+      ),
       width: double.infinity,
       child: Card(
-        elevation: 1,
+        elevation: 0,
         color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(12.0),

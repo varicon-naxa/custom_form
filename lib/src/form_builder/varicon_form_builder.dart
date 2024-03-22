@@ -234,8 +234,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
           children: [
             Text(
               widget.surveyForm.title.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    height: 1.2,
+                  ),
             ),
+            AppSpacing.sizedBoxH_08(),
             Text(
               widget.surveyForm.description.toString(),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -892,8 +895,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
-                                    ?.copyWith(color: const Color(0xff233759)),
+                                    ?.copyWith(
+                                        color: const Color(0xff233759),
+                                        height: 1.2),
                               ),
+                              AppSpacing.sizedBoxH_08(),
                               (field.description ?? '').isEmpty
                                   ? const SizedBox.shrink()
                                   : Text(
@@ -905,6 +911,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                             color: const Color(0xff6A737B),
                                           ),
                                     ),
+                              AppSpacing.sizedBoxH_08(),
+                              const Divider(
+                                height: 1,
+                              ),
                             ],
                           ),
                         );
