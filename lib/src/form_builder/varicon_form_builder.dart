@@ -258,6 +258,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                       style: Theme.of(context).textTheme.bodySmall,
                     )),
               ),
+            if (widget.hasGeolocation && _currentPosition?.latitude != null)
+              AppSpacing.sizedBoxH_20(),
+
             // if (widget.isCarousel)
 
             if (!widget.isCarousel)

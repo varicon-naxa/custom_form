@@ -4,6 +4,7 @@ class CheckboxFormField extends FormField<List<bool?>> {
   CheckboxFormField({
     super.key,
     required List<CheckboxMenuItem> items,
+    required BuildContext context,
     super.onSaved,
     super.validator,
     required List<bool?> initialList,
@@ -51,6 +52,9 @@ class CheckboxFormField extends FormField<List<bool?>> {
                       value: state.value?[index] ?? false,
                       enabled: item.enabled,
                       onChanged: (value) {
+                        final focus = FocusNode();
+
+                        FocusScope.of(context).requestFocus(focus);
                         if (value == null) return;
                         late List<bool?> newState;
 

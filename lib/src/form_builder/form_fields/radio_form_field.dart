@@ -4,6 +4,7 @@ class RadioFormField<T> extends FormField<T> {
   RadioFormField({
     super.key,
     required List<RadioMenuItem<T>> items,
+    required BuildContext context,
     this.onChanged,
     this.hasMessage,
     super.onSaved,
@@ -51,6 +52,9 @@ class RadioFormField<T> extends FormField<T> {
                       controlAffinity: ListTileControlAffinity.leading,
                       value: e.value,
                       onChanged: (value) {
+                        final focus = FocusNode();
+
+                        FocusScope.of(context).requestFocus(focus);
                         state.didChange(value);
                         // finally call onChanged for each item.
                         if (hasMessage != null) {

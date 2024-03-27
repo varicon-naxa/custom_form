@@ -66,6 +66,7 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
       children: [
         RadioFormField<String>(
           value: value,
+          context: context,
           key: widget.formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => textValidator(
