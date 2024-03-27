@@ -428,13 +428,6 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                       ));
                     });
                   } else {
-                    //             answer.any((signature) =>
-                    // signature.file == null ||
-                    // signature.file == '' ||
-                    // signature.name == null ||
-                    // signature.name == '' ||
-                    // signature.attachmentId == null ||
-                    // signature.attachmentId == '');
                     if (answer.any((signature) =>
                         signature.file == null || signature.file == '')) {
                       Fluttertoast.showToast(
