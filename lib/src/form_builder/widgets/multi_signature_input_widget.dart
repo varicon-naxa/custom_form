@@ -74,7 +74,6 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
 
   Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
     final focus = FocusNode();
-
     FocusScope.of(context).requestFocus(focus);
 
     TextEditingController controller =
@@ -429,10 +428,31 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                       ));
                     });
                   } else {
-                    Fluttertoast.showToast(
-                      msg: 'Empty Signature field',
-                      backgroundColor: Colors.red,
-                    );
+                    //             answer.any((signature) =>
+                    // signature.file == null ||
+                    // signature.file == '' ||
+                    // signature.name == null ||
+                    // signature.name == '' ||
+                    // signature.attachmentId == null ||
+                    // signature.attachmentId == '');
+                    if (answer.any((signature) =>
+                        signature.file == null || signature.file == '')) {
+                      Fluttertoast.showToast(
+                        msg: 'Empty Signature field',
+                        backgroundColor: Colors.red,
+                      );
+                    } else if (answer.any((signature) =>
+                        signature.file == null || signature.file == '')) {
+                      Fluttertoast.showToast(
+                        msg: 'Signature with name field is required',
+                        backgroundColor: Colors.red,
+                      );
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: 'Empty Signature field',
+                        backgroundColor: Colors.red,
+                      );
+                    }
                   }
                 },
                 icon: const Icon(
