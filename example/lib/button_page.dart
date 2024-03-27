@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'package:example/response_test.dart';
 import 'package:example/survey_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -19,25 +20,57 @@ class _ButtonPageState extends State<ButtonPage> {
     return Scaffold(
         appBar: AppBar(),
         body: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              const assetPath = 'assets/linked.json';
-              String currentValue = await rootBundle.loadString(assetPath);
-              Map<String, dynamic> currentData = jsonDecode(currentValue);
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () async {
+                  const assetPath = 'assets/linked.json';
+                  String currentValue = await rootBundle.loadString(assetPath);
+                  Map<String, dynamic> currentData = jsonDecode(currentValue);
 
-              final SurveyPageForm form = SurveyPageForm.fromJson(currentData);
+                  final SurveyPageForm form =
+                      SurveyPageForm.fromJson(currentData);
 
-              ///Navigate on button click to SuveryPage
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (BuildContext context) {
-                    return SurveyPage(form: form, formData: currentData);
-                  },
-                ),
-              );
-            },
-            child: const Text('Go Form Page'),
+                  ///Navigate on button click to SuveryPage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) {
+                        return SurveyPage(form: form, formData: currentData);
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Go Form Page'),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  const assetPath = 'assets/response.json';
+                  String currentValue = await rootBundle.loadString(assetPath);
+                  Map<String, dynamic> currentData = jsonDecode(currentValue);
+
+                  final SurveyPageForm form =
+                      SurveyPageForm.fromJson(currentData);
+
+                  ///Navigate on button click to SuveryPage
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) {
+                        return ResponseTest(
+                          form: form,
+                          formData: currentData,
+                        );
+                        // SurveyPage(form: form, formData: currentData);
+                      },
+                    ),
+                  );
+                },
+                child: const Text('Go Response Page'),
+              ),
+            ],
           ),
         ));
   }

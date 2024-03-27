@@ -199,16 +199,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       log(field.answer.toString());
       if (field.answer != null && field.answer != '') {
         if (field.answer is List) {
-          log('indide list');
-
           if (((field.answer ?? []) as List).isNotEmpty) {
-            log('indide list list');
-
             initialResult[field.id] = field.answer;
           }
         } else {
-          log('indide list is not list');
-
           initialResult[field.id] = field.answer;
         }
       }

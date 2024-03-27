@@ -392,19 +392,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           }
                         }
 
-                        return e.answer != null && e.answer != ''
-                            ? Column(
-                                children: [
-                                  LabeledWidget(
-                                    labelText: labelText,
-                                    isRequired: e.isRequired,
-                                    child: _AnswerDesign(
-                                      answer: answerText,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : const SizedBox.shrink();
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: _AnswerDesign(
+                            answer: answerText,
+                          ),
+                        );
                       },
                       yesno: (field) {
                         String answerText = '';
@@ -419,15 +413,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             answerText = foundObject.text;
                           }
                         }
-                        return e.answer != null && e.answer != ''
-                            ? LabeledWidget(
-                                labelText: labelText,
-                                isRequired: e.isRequired,
-                                child: _AnswerDesign(
-                                  answer: answerText,
-                                ),
-                              )
-                            : const SizedBox.shrink();
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: _AnswerDesign(
+                            answer: answerText,
+                          ),
+                        );
                       },
 
                       yesnona: (field) {
@@ -594,7 +586,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                   isImage: true,
                                 ),
                               )
-                            : const SizedBox.shrink();
+                            : LabeledWidget(
+                                labelText: labelText,
+                                isRequired: e.isRequired,
+                                child: _AnswerDesign(
+                                  answer: '',
+                                ),
+                              );
                       },
                       instruction: (field) {
                         return LabeledWidget(

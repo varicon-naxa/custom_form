@@ -73,6 +73,10 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   }
 
   Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
+    final focus = FocusNode();
+
+    FocusScope.of(context).requestFocus(focus);
+
     TextEditingController controller =
         TextEditingController(text: singleItem.value.name ?? '');
 
