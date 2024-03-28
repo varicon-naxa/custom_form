@@ -64,18 +64,8 @@
             "answer": "",
             "placeholder": "First Name placeholder"
         },
-        {
-            "type": "text",
-            "name": "long",
-            "id": "longetetee",
-            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": false,
-            "requiredErrorText": "First name is required",
-            "autocomplete": "name",
-            "maxLength": 30,
-            "answer": "",
-            "placeholder": "First Name placeholder"
-        },
+
+        
         {
             "type": "text",
             "name": "long",
@@ -88,7 +78,18 @@
             "answer": "",
             "placeholder": "First Name placeholder"
         },
-
+        {
+            "type": "text",
+            "name": "long",
+            "id": "longetetesdast",
+            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": false,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "",
+            "placeholder": "First Name placeholder"
+        },
         {
             "type": "radiogroup",
             "name": "Radioname",
@@ -170,6 +171,13 @@
             "type": "multisignature",
             "label": "Multiple Signature",
             "answer": [
+                {
+                    "id": "item-a0b63d77-8884-44cd-84e0-743e2d18f416",
+                    "file": "https://bigbets-server-varicon-backend.s3.amazonaws.com/attachments/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K5AJCN66S%2F20240327%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240327T063215Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJ7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIAh1ofFTPOEoiC0zEjtimdSQJVFf3fV63ubLfWtUx%2FXuAiEAzLNBp68qgQdGkInVk3rZxFNkBJnCRbLJ4S5isDGU2FgqxQUIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDAJDaBbWiVRboWpgniqZBQqOvgcijHpemdysiWTLNJbu1uChW3vVJQp9pzyBmKAuOO6p%2BK7v85rxwPFB%2B2ZpfL5B0DUFbx9ZvISbqbboi%2BhJhYiPWJ2dfAI1%2F2r8ew7O3CxU4u8yAqU7e9UV%2B%2FKVimFZgCKMFd%2FAdUnHDm8ksZ1p9KYpdS1dbWGCNmZ%2BwQYJDQA%2BOdEtAXiu3HhegFABESbC90TA2FTEXmJu1KOYjJbJx%2Bt0rvNHXTl%2FlSYGjErEq8ZPKulvl2nVbn7417pbS85o5k4k57K%2F2sggH%2BC2phmeY9zF3ndBtz3%2FC7OWrosJuYMLvA697iShgzAUhfR7iYS8kDMahs22boYz%2BPsNgFoobMBHnVad3K4gl3nHgDaqjih1Tt09vd%2FVPbBZ%2BI6cpVgbVKTi85xvJ81SpM17DrW4Q4MqoXhotFIwtRYlGunCTJuUgn1NZsgfr3iDKPLDCuyEEjTjwIp4R7o56PV4l4KWVGKbDBLCMDNI2fwdogt4pgGinonVWGnX%2FbZXsyc2GlsKaICZ3PoIOT102pl1uAGqv5EtMWtDq%2B8Ro7MpDgOVVtVf7gbZzt9iiNbiJ7Wn8ZPjHjxjV0fo7UscrnT8OzXbo5FNnMeFMmtqwdTJTVezE96jVu4eK%2F6VZS8s3ln%2F3Ue7WvRfa%2BQubYxx%2FPnE8j5UdqrogHtQGd8KIX37bh4iP%2Fb2DILmtYiYoLV9GLmoVldgFL2fDblS6f6z9qwN3NrnVOrro7QIARSKVwi47a6fCkxnguQI6TvIGKG%2Frk2ApCtlIExJuGO9RL3oqZyt%2FOV8t%2F%2BPzA30%2FfTjZE%2BS7gmsy1FOr8ILOEIyhgOtpb3fU%2Fn292fLPBSjWAIKWfREvrN2LniAJMeeS%2Fb0w4GSxjN0Mr1UhFRk1O4NMOfkjrAGOrEBIDoayuGZzMz2951kI2WV7cnADPbRd5WEj5tvEpI40XGf81tyB2hxTq3uO%2BAA1BA%2BHf7MIfwGBectNcgRKqN9V5bg8xEpq3PPJU7bocRZfeBW%2BWZs%2BE%2B6in5NshInUsbOF6LjSDCUfP%2BpwjJEUxPhkWew3q%2FyNq96x4NefYsT9XH5vABPFcD1Yeub0y9C%2FWn%2FP%2BKhPRqZ7rzMXb7V0fZ23Thq21DQpzNkYmg8gU2hCimc&X-Amz-Signature=fbfc9dff0971015fff8643fedb3f3e7e464b8d19880392d854df24b683ac527d",
+                    "name": "prabin",
+                    "isLoading": false,
+                    "attachmentId": "7162"
+                }
             ],
             "isRequired": true
         }

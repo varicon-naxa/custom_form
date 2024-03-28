@@ -73,8 +73,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   late final GlobalKey<FormState> formKey;
   late final GlobalKey<SignatureState> signKey;
   final ScrollController _scrollController = ScrollController();
-  final HtmlEditorController _htmlEditorController = HtmlEditorController();
-  HtmlEditorOptions editorOptions = const HtmlEditorOptions();
+
   Map<String, dynamic> longTextAnswer = {};
 
   List<GlobalKey<FormFieldState<String>>> _fieldKeys = [];
@@ -273,6 +272,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                     final labelText = '$questionNumber. ${e.label ?? ''} ';
                     return e.maybeMap(
                       text: (field) {
+                        final HtmlEditorController htmlEditorController =
+                            HtmlEditorController();
+                        HtmlEditorOptions editorOptions =
+                            const HtmlEditorOptions(
+                                initialText: '<b>This is me</b>');
                         formValue.saveString(
                           field.id,
                           field.answer,
@@ -299,56 +303,53 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                         color: Colors.grey.shade300,
                                       ),
                                       borderRadius: BorderRadius.circular(4.0)),
-                                  child: Theme(
-                                    data: ThemeData(
-                                      iconTheme: const IconThemeData(
-                                        color: Colors.black,
-                                      ),
+                                  child: HtmlEditor(
+                                    callbacks:
+                                        Callbacks(onChangeContent: (code) {
+                                      formValue.saveString(
+                                        field.id,
+                                        code.toString().trim(),
+                                      );
+                                  
+                                      if ((field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long') &&
+                                          field.isRequired) {
+                                        longTextAnswer['field.id'] =
+                                            code.toString().trim();
+                                      }
+                                    }),
+                                    controller:
+                                        htmlEditorController, //required
+                                    plugins: const [],
+                                    htmlEditorOptions: editorOptions,
+                                    otherOptions: const OtherOptions(
+                                      height: 400,
                                     ),
-                                    child: HtmlEditor(
-                                      callbacks:
-                                          Callbacks(onChangeContent: (code) {
-                                        formValue.saveString(
-                                          field.id,
-                                          code.toString().trim(),
-                                        );
-
-                                        if ((field.name ?? '')
-                                                .toLowerCase()
-                                                .contains('long') &&
-                                            field.isRequired) {
-                                          longTextAnswer['field.id'] =
-                                              code.toString().trim();
-                                        }
-                                      }),
-                                      controller:
-                                          _htmlEditorController, //required
-                                      htmlEditorOptions: editorOptions,
-                                      // textInputAction: TextInputAction.newline,
-                                      htmlToolbarOptions:
-                                          const HtmlToolbarOptions(
-                                        defaultToolbarButtons: [
-                                          // StyleButtons(),
-                                          // FontSettingButtons(),
-                                          FontButtons(
-                                            clearAll: false,
-                                            strikethrough: false,
-                                            subscript: false,
-                                            superscript: false,
-                                          ),
-                                          // ColorButtons(),
-                                          ListButtons(listStyles: false),
-                                          ParagraphButtons(
-                                            caseConverter: false,
-                                            lineHeight: false,
-                                            textDirection: false,
-                                            increaseIndent: false,
-                                            decreaseIndent: false,
-                                          ),
-                                          // InsertButtons(),
-                                          // OtherButtons(),
-                                        ],
-                                      ),
+                                    // textInputAction: TextInputAction.newline,
+                                    htmlToolbarOptions:
+                                        const HtmlToolbarOptions(
+                                      defaultToolbarButtons: [
+                                        // StyleButtons(),
+                                        // FontSettingButtons(),
+                                        FontButtons(
+                                          clearAll: false,
+                                          strikethrough: false,
+                                          subscript: false,
+                                          superscript: false,
+                                        ),
+                                        // ColorButtons(),
+                                        ListButtons(listStyles: false),
+                                        ParagraphButtons(
+                                          caseConverter: false,
+                                          lineHeight: false,
+                                          textDirection: false,
+                                          increaseIndent: false,
+                                          decreaseIndent: false,
+                                        ),
+                                        // InsertButtons(),
+                                        // OtherButtons(),
+                                      ],
                                     ),
                                   ),
                                 )

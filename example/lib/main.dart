@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: AppTheme.defaultTheme.copyWith(
+      theme:
+      AppTheme.defaultTheme.copyWith(
           // bottomSheetTheme: AppTheme.defaultTheme.bottomSheetTheme
           //     .copyWith(backgroundColor: Colors.white),
           textSelectionTheme: const TextSelectionThemeData(
