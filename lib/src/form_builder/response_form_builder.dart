@@ -680,6 +680,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                   imageBuild: widget.imageBuild,
                                 )
                               : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'No Signature',
