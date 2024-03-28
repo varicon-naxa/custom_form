@@ -74,8 +74,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   late final GlobalKey<SignatureState> signKey;
   final ScrollController _scrollController = ScrollController();
 
-  Map<String, dynamic> longTextAnswer = {};
-
   List<GlobalKey<FormFieldState<String>>> _fieldKeys = [];
   int questionNumber = 0;
 
@@ -282,10 +280,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           field.answer,
                         );
 
-                        if ((field.name ?? '').toLowerCase().contains('long') &&
-                            field.isRequired) {
-                          longTextAnswer.addAll({field.id: field.answer});
-                        }
 
                         editorOptions = HtmlEditorOptions(
                           initialText: field.answer,
@@ -310,14 +304,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                         field.id,
                                         code.toString().trim(),
                                       );
-                                  
-                                      if ((field.name ?? '')
-                                              .toLowerCase()
-                                              .contains('long') &&
-                                          field.isRequired) {
-                                        longTextAnswer['field.id'] =
-                                            code.toString().trim();
-                                      }
                                     }),
                                     controller:
                                         htmlEditorController, //required
@@ -1005,22 +991,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 // return if form is not valid.
                 if (!formKey.currentState!.validate()) {
                   scrollToFirstInvalidField();
-                  return;
-                }
-                // Check for empty values
-                bool hasEmptyValue = false;
-                if (longTextAnswer.isNotEmpty) {
-                  longTextAnswer.forEach((key, value) {
-                    if (value == null || value.toString().isEmpty) {
-                      hasEmptyValue = true;
-                      return;
-                    }
-                  });
-                }
-                if (hasEmptyValue) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text(
-                          'Long text field in the current form is empty')));
                   return;
                 }
 
