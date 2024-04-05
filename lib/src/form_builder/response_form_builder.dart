@@ -137,6 +137,24 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   children: [
                     Expanded(
                       child: Text(
+                        'Submitted by',
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              color: const Color(0xff212529),
+                            ),
+                      ),
+                    ),
+                    Text(
+                      widget.surveyForm.submittedBy ?? '',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: const Color(0xff6A737B),
+                          ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
                         'Submitted On',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               color: const Color(0xff212529),
@@ -599,7 +617,11 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             labelText: e.label,
                             isRequired: e.isRequired,
                             child: InstructionWidget(
-                              onTap: (String url) {},
+                              onTap: (String url) {
+                                widget.fileClick(
+                                  {'data': url, 'title': ''},
+                                );
+                              },
                               field: field,
                               imageBuild: widget.imageBuild,
                             ));

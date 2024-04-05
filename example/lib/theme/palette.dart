@@ -33,7 +33,7 @@ class Palette {
 
   static const Color primaryTextColor = Color(0xff212529);
   static const Color secondaryTextColor = Color(0xff6A737B);
-  static const Color disabledTextColor = Color(0xff9e9e9ee6);
+  static const Color disabledTextColor = Color(0xff9e9e9e6);
 
   //toast msg color
   static const Color ktoastsucess = Color(0xff4CAF50);

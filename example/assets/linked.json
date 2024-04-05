@@ -95,7 +95,7 @@
             "name": "Radioname",
             "id": "checkbox1213123",
             "fromManualList": true,
-            "isConditional": false,
+            "isConditional": true,
             "islinked": true,
             "islinked_query": "equipment",
             "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
