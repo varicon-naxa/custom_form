@@ -15,6 +15,21 @@
             "selectedLinkListLabel": ""
         },
         {
+            "type": "files",
+            "id": "image1",
+            "label": "Attach covver letter",
+            "isMultiple": false,
+            "isRequired": false,
+            "answer": [
+                {
+                    "id": 12345,
+                    "name": "adasd",
+                    "file": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+                    "thumbnail": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                }
+            ]
+        },
+        {
             "id": "item-5251c508-e239-4325-8f94-5dae315cecb4",
             "name": "Single Select Dropdown",
             "type": "dropdown",

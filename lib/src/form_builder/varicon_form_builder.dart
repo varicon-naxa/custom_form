@@ -309,9 +309,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                         htmlEditorController, //required
                                     plugins: const [],
                                     htmlEditorOptions: editorOptions,
-                                    otherOptions: const OtherOptions(
-                                      height: 400,
-                                    ),
                                     // textInputAction: TextInputAction.newline,
                                     htmlToolbarOptions:
                                         const HtmlToolbarOptions(

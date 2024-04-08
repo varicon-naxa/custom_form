@@ -133,24 +133,26 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'Submitted by',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: const Color(0xff212529),
+                if ((widget.surveyForm.submittedBy ?? '').isNotEmpty)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Submitted by',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        widget.surveyForm.submittedBy ?? '',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
                             ),
                       ),
-                    ),
-                    Text(
-                      widget.surveyForm.submittedBy ?? '',
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: const Color(0xff6A737B),
-                          ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 Row(
                   children: [
                     Expanded(
@@ -553,6 +555,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                       (e) => _AnswerDesign(
                                         answer: e['name'],
                                         isFile: true,
+                                        isImage: false,
                                         fileClick: () {
                                           widget.fileClick({
                                             'data': e['file'],
@@ -822,22 +825,20 @@ class _AnswerDesign extends StatelessWidget {
                     ),
                   )
             : isFile
-                ? GestureDetector(
-                    onTap: () {
-                      fileClick!();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
+                ? Container(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8.0,
                             ),
@@ -846,8 +847,14 @@ class _AnswerDesign extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            fileClick!();
+                          },
+                          child: const Icon(Icons.download),
+                        )
+                      ],
                     ),
                   )
                 : Text(

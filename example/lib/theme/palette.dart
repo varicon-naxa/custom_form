@@ -33,7 +33,7 @@ class Palette {
 
   static const Color primaryTextColor = Color(0xff212529);
   static const Color secondaryTextColor = Color(0xff6A737B);
-  static const Color disabledTextColor = Color(0xff9e9e9e6);
+  static const Color disabledTextColor = Color(0xff9e9e9e);
 
   //toast msg color
   static const Color ktoastsucess = Color(0xff4CAF50);
@@ -60,7 +60,7 @@ class Palette {
 
   //bordercolor
   static Color vargrey30 = const Color(0xffced2d9).withOpacity(0.9);
-  static const Color varlightgrey = Color(0xfff5f67);
+  static const Color varlightgrey = Color(0x0fff5f67);
   static const Color quantityaddsubborder = Color(0xffc4c4c4);
   static const Color lightBackground = Color(0xffD3D7DD);
 
