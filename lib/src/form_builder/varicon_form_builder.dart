@@ -31,6 +31,7 @@ part '_helpers.dart';
 part '_navigation_button.dart';
 part '_validators.dart';
 
+///Main container for the form builder
 class VariconFormBuilder extends StatefulWidget {
   const VariconFormBuilder(
       {super.key,
@@ -48,19 +49,66 @@ class VariconFormBuilder extends StatefulWidget {
       this.padding,
       this.hasSave = false});
 
+  ///Survey page form model
+  ///
+  ///Contains forms metadata
+  ///
+  ///Contains forms various input fields
   final SurveyPageForm surveyForm;
+
+  ///Button text title
+  ///
+  ///Required to be displayed on the form button
   final String buttonText;
+
+  ///Form save callback
+  ///
+  ///Required to save the form data
   final void Function(Map<String, dynamic> formValue) onSave;
+
+  ///Form submit callback
+  ///
+  ///Submit data with filled values
   final void Function(Map<String, dynamic> formValue) onSubmit;
+
+  ///function to save attachments
+  ///
+  ///Contains function with list of attachments
+  ///
+  ///Used for images and files like signature
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
+
+  ///Used to store image paths and file paths
+  ///With height and width
   final Widget Function(Map<String, dynamic>) imageBuild;
+
+  ///API call function
+  ///
+  ///Handles various api calls required for dropdowns
+  ///
+  ///Returns list of dynamic values
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
 
+  ///Check the condition if a form item should be displayed as a carousel
   final bool isCarousel;
+
+  ///Padding for the whole form
   final EdgeInsetsGeometry? padding;
+
+  ///Check if a form has geolocation
+  ///
+  ///If true, it will capture the approximate location from where the form is being submitted
   final bool hasGeolocation;
+
+  ///Check if a form has save button
+  ///
+  ///Shows the save button on the form
   final bool hasSave;
+
+  ///Function to handle file click
+  ///
+  ///Returns the file path for form contents like images, files, instructions
   final void Function(String stringURl) onFileClicked;
 
   @override
