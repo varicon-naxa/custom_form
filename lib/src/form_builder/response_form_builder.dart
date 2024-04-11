@@ -204,7 +204,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                     children: [
                       TextSpan(
                           text: widget.surveyForm.submittedBy != null
-                              ? 'by ${widget.surveyForm.submittedBy}'
+                              ? 'by ${widget.surveyForm.submittedBy} '
                               : '',
                           style: Theme.of(context)
                               .textTheme
