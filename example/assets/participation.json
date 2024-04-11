@@ -1,0 +1,190 @@
+{
+"id": "",
+"title": "Participate Varicon Outing Event ",
+"setting": {
+    "tags": [
+        "OutingEvent"
+    ],
+    "location": null,
+    "assign_to_user": {
+        "users": null,
+        "user_roles": null
+    },
+    "edit_responses": true,
+    "assign_to_project": {
+        "project": [
+            85
+        ],
+        "timesheet_required": false,
+        "timesheet_clockin_compulsory": false
+    },
+    "assign_to_employee": {
+        "employees": [
+            38,
+            2,
+            29,
+            30,
+            22,
+            23,
+            5,
+            25,
+            6,
+            7,
+            33,
+            8,
+            9,
+            10,
+            24,
+            39,
+            3,
+            11,
+            34,
+            27,
+            1,
+            12,
+            32,
+            13,
+            31,
+            14,
+            15,
+            4,
+            16,
+            17,
+            18,
+            19,
+            36,
+            37,
+            20,
+            21
+        ],
+        "employee_roles": null,
+        "timesheet_required": true,
+        "timesheet_clockin_compulsory": false
+    },
+    "notify_on_response": [
+        {
+            "id": 7,
+            "email": "amulya@varicon.com.au",
+            "label": "Admin Amulya Acharya"
+        },
+        {
+            "id": 22,
+            "email": "nammy@varicon.com.au",
+            "label": "Nammy Kirat"
+        },
+        {
+            "id": 11,
+            "email": "asmit.shrestha@varicon.com.au",
+            "label": "Asmit Shrestha"
+        },
+        {
+            "id": 25,
+            "email": "prabin@varicon.com.au",
+            "label": "Prabin Tharu"
+        }
+    ],
+    "assign_to_equipment": {
+        "equipment": null,
+        "equipment_type": null,
+        "timesheet_clockin_compulsory": false
+    },
+    "collect_geolocation": false,
+    "status_on_submission": null
+},
+"elements": [
+    {
+        "id": "item-ce393de3-1fa9-43e8-981b-5353937032c0",
+        "name": "Full Name",
+        "type": "text",
+        "label": "Full Name",
+        "answer": "adasd",
+        "isRequired": true,
+        "selectedLinkListLabel": ""
+    },
+    {
+        "id": "item-a1d456de-dfa4-47da-b2af-cbb8aa54eee7",
+        "name": "Phone Number",
+        "type": "phone",
+        "label": "Primary Number",
+        "isRequired": true,
+        "selectedLinkListLabel": ""
+    },
+    {
+        "id": "item-1b036fd4-7419-4fed-b7a5-e74458b72a7d",
+        "name": "Phone Number",
+        "type": "phone",
+        "label": "Secondary Number",
+        "answer": "",
+        "isRequired": false,
+        "selectedLinkListLabel": ""
+    },
+    {
+        "id": "item-74bffe6d-3220-4f81-898a-e9effa1bef20",
+        "name": "Date",
+        "type": "date",
+        "label": "Date",
+        "answer": "",
+        "isRequired": false,
+        "selectedLinkListLabel": ""
+    },
+    {
+        "id": "item-15100f4a-07ad-44c7-9091-c020e872443f",
+        "name": "Yes/No",
+        "type": "yesno",
+        "label": "Participate ?",
+        "answer": "item-1760dcfd-f37b-4eb9-8659-ca476af66ee1",
+        "choice": [
+            {
+                "id": "item-1760dcfd-f37b-4eb9-8659-ca476af66ee1",
+                "label": "Yes"
+            },
+            {
+                "id": "item-c4a084d8-1267-461d-9fcd-9bdc488e5b0f",
+                "label": "No",
+                "action": true,
+                "notify_To": [
+                    {
+                        "id": 11,
+                        "email": "asmit.shrestha@varicon.com.au",
+                        "label": "Asmit Shrestha"
+                    }
+                ]
+            }
+        ],
+        "isRequired": true,
+        "isConditional": true,
+        "fromManualList": true,
+        "selectedLinkListLabel": ""
+    },
+    {
+        "id": "item-57b57f40-11d8-4ca7-a85c-09dafa29a1d7",
+        "name": "Radio",
+        "type": "radiogroup",
+        "label": "Radio",
+        "choice": [
+            {
+                "id": "item-bace4f5c-b9b5-474a-816c-effaac084976",
+                "label": "Veg"
+            },
+            {
+                "id": "item-23187893-c769-4670-803a-d8f054b74bf6",
+                "label": "Non-veg"
+            }
+        ],
+        "isRequired": false,
+        "isConditional": false,
+        "fromManualList": true,
+        "selectedLinkListLabel": ""
+    },
+    {
+        "id": "item-2597284c-955a-40ef-ae0e-6e7c4904c302",
+        "name": "Signature",
+        "type": "signature",
+        "label": "Signature",
+        "answer": {},
+        "isRequired": true,
+        "selectedLinkListLabel": ""
+    }
+],
+"description": "Description"
+}

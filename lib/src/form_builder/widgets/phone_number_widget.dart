@@ -45,22 +45,74 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
       return true;
     }
 
-    return !(phoneNumber == null ||
+    bool val = !(phoneNumber == null ||
         phoneNumber.number.isEmpty ||
         !isNumeric(phoneNumber.number));
+
+    return val;
+  }
+
+  late List<Country> _countryList;
+  late Country _selectedCountry;
+  PhoneNumber? phoneNumber;
+  late List<Country> filteredCountries;
+  late String number;
+
+  @override
+  void initState() {
+    super.initState();
+    _countryList = widget.countries ?? countries;
+    filteredCountries = _countryList;
+    number = widget.initialValue ?? '';
+    if (widget.initialCountryCode == null && number.startsWith('+')) {
+      number = number.substring(1);
+      // parse initial value
+      _selectedCountry = countries.firstWhere(
+          (country) => number.startsWith(country.fullCountryCode),
+          orElse: () => _countryList.first);
+
+      // remove country code from the initial number value
+      number = number.replaceFirst(
+          RegExp("^${_selectedCountry.fullCountryCode}"), "");
+    } else {
+      _selectedCountry = _countryList.firstWhere(
+          (item) => item.code == (widget.initialCountryCode ?? 'US'),
+          orElse: () => _countryList.first);
+
+      // remove country code from the initial number value
+      if (number.startsWith('+')) {
+        number = number.replaceFirst(
+            RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
+      } else {
+        number = number.replaceFirst(
+            RegExp("^${_selectedCountry.fullCountryCode}"), "");
+      }
+    }
+
+    phoneNumber = PhoneNumber(
+      countryISOCode: _selectedCountry.code,
+      countryCode: '+${_selectedCountry.dialCode}',
+      number: widget.initialValue ?? '',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<PhoneNumber>(
       name: widget.name,
+      initialValue: phoneNumber,
       validator: (phoneNumber) {
         if (!_isValidIsRequired(phoneNumber)) {
-          return 'required'; // This message is not displayed at all in the UI
+          setState(() =>
+              _error = FormBuilderLocalizations.of(context).requiredErrorText);
+          return _error;
+        } else {
+          setState(() => _error = null);
         }
 
         return null;
       },
+      key: widget.formKey,
       builder: (FormFieldState field) {
         return IntlPhoneField(
           decoration: widget.decoration.copyWith(
@@ -87,16 +139,6 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
           },
           invalidNumberMessage: widget.invalidNumberMessage,
           disableLengthCheck: true,
-          validator: (phoneNumber) {
-            if (!_isValidIsRequired(phoneNumber)) {
-              setState(() => _error =
-                  FormBuilderLocalizations.of(context).requiredErrorText);
-            } else {
-              setState(() => _error = null);
-            }
-
-            return null;
-          },
         );
       },
     );

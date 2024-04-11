@@ -74,7 +74,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   late final GlobalKey<SignatureState> signKey;
   final ScrollController _scrollController = ScrollController();
 
-  List<GlobalKey<FormFieldState<String>>> _fieldKeys = [];
+  List<GlobalKey<FormFieldState<dynamic>>> _fieldKeys = [];
   int questionNumber = 0;
 
   final formValue = FormValue();
@@ -85,7 +85,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 
     _fieldKeys = List.generate(
       (widget.surveyForm.inputFields).length,
-      (index) => GlobalKey<FormFieldState<String>>(),
+      (index) => GlobalKey<FormFieldState<dynamic>>(),
     );
 
     formKey = GlobalKey<FormState>();
@@ -987,6 +987,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 if (!formKey.currentState!.validate()) {
                   scrollToFirstInvalidField();
                   return;
+                } else {
+                  print('yesma aaayo');
                 }
 
                 formKey.currentState?.save();
