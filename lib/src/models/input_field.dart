@@ -43,7 +43,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'max') dynamic max,
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = TextInputField;
-
+  
   const factory InputField.signature({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,

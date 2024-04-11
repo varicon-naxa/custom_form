@@ -68,6 +68,8 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
           );
           formCon.text = foundObject.text;
           showMessage = foundObject.action ?? false;
+        } else {
+          formCon.text = (widget.field.answerList ?? '');
         }
       }
     });
@@ -111,6 +113,10 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                     widget.formValue.saveString(
                       widget.field.id,
                       data.value,
+                    );
+                    widget.formValue.saveString(
+                      widget.field.id.substring(5, widget.field.id.length),
+                      data.text,
                     );
                     setState(() {
                       formCon.text = data.text;

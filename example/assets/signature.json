@@ -50,7 +50,7 @@
             "id": "file1",
             "label": "Attach citizenship files",
             "isMultiple": true,
-            "isRequired": true,
+            "isRequired": false,
             "answer": []
         },
         {
@@ -114,7 +114,7 @@
             "id": "image1",
             "label": "Attach covver letter",
             "isMultiple": false,
-            "isRequired": true,
+            "isRequired": false,
             "answer": [
                 {
                     "id": 12345,
@@ -127,11 +127,12 @@
         {
             "type": "dropdown",
             "id": "select1",
-            "answer": "item3",
             "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
             "isRequired": false,
             "requiredErrorText": "Drop down is required",
             "commentPlaceholder": "comment are place",
+            "fromManualList": false,
+            "islinked": true,
             "choice": [
                 {
                     "value": "item1",
@@ -365,7 +366,7 @@
             "answer": "",
             "id": "id_yesnona",
             "label": "Yes/No/Na",
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -426,7 +427,7 @@
                 "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
                 "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
             },
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -436,7 +437,7 @@
             "type": "signature",
             "id": "signature_2",
             "label": "Please confirm to sign",
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -447,7 +448,7 @@
             "answer": "",
             "id": "firstName",
             "label": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,

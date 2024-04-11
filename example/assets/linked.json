@@ -1,12 +1,128 @@
  {
-    "title": "Linked to list test",
+    "title": "Linked to list test is a type of list where we can add list here",
     "elements": [
+        {
+            "type": "dropdown",
+            "id": "select1",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "fromManualList": false,
+            "islinked": true,
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+        {
+            "type": "images",
+            "id": "image1",
+            "label": "Attach covver letter",
+            "isMultiple": false,
+            "isRequired": false,
+            "answer": [
+                {
+                    "id": 12345,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                }
+            ]
+        },
+        {
+            "type": "dropdown",
+            "id": "select1",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "fromManualList": false,
+            "islinked": true,
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+       
         {
             "type": "text",
             "name": "firstName",
             "id": "firstName",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": true,
+            "isRequired": false,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "",
+            "placeholder": "First Name placeholder"
+        },
+
+        {
+            "type": "section",
+            "name": "firstNameasd",
+            "id": "firstNameasdasd",
+            "label": "This is label of section here it goes like this",
+            "description": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": false,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "",
+            "placeholder": "First Name placeholder"
+        },
+
+        
+        {
+            "type": "text",
+            "name": "long",
+            "id": "longeteteasedasdast",
+            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -14,171 +130,110 @@
             "placeholder": "First Name placeholder"
         },
         {
-            "type": "time",
-            "name": "time1",
-            "id": "time1",
-            "title": "Enter time for notification",
-            "isRequired": true,
-            "min": "11:21",
-            "max": "12:12"
-        },
-        {
-            "type": "date",
-            "name": "date1",
-            "id": "date1",
-            "title": "Enter date to have leave",
-            "min": "2023-05-23",
-            "max": "2023-05-24"
-        },
-        {
-            "type": "datetimelocal",
-            "name": "datetime1",
-            "id": "datetime1",
-            "title": "What is your first day to start office",
-            "answer": "2024-03-11T06:06"
-        },
-        {
-            "id": "item-33192a2b-32eb-492d-bd8b-87dd5674f3ab",
-            "name": "Dropdown",
-            "type": "dropdown",
-            "label": "Linked List Dropdown",
+            "type": "text",
+            "name": "long",
+            "id": "longetetesdast",
+            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": false,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
             "answer": "",
-            "choice": [],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": false,
-            "islinked_query": "project"
+            "placeholder": "First Name placeholder"
         },
         {
-            "id": "item-33192a2b-32eb-492d-bd8b-87dd5674f3abc",
-            "label": "Linked List Dropdown",
-            "answer": "",
-            "description": null,
-            "visible": true,
-            "isRequired": false,
-            "readOnly": false,
-            "requiredErrorText": null,
-            "fromManualList": false,
-            "selectedLinkListLabel": null,
-            "islinked_query": "project",
-            "isConditional": false,
-            "actionMessage": null,
-            "allowClear": true,
-            "placeholder": null,
-            "choice": [],
-            "showNoneItem": false,
-            "noneText": null,
-            "showOtherItem": false,
-            "otherText": null,
-            "otherErrorText": null,
-            "otherPlaceholder": null,
-            "type": "dropdown"
-        },
-        {
-            "id": "item-706946aa-d818-4328-868a-6abfcbd92e1a",
-            "name": "Multiple Select",
-            "type": "multipleselect",
-            "label": "Linked List Multi Select",
-            "answer": "",
-            "choice": [],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": false,
-            "islinked_query": "supplier"
-        },
-        {
-            "id": "item-96e526c2-6291-4d2d-8097-d42ff0b49ed4",
-            "name": "Multiple Select",
-            "type": "multipleselect",
-            "label": "Multi Select manual",
-            "answer": "item-3e3e3e3e-3e3e-3e3e-3e3e-3e3e3e3e3e3e,item-8e8e8e8e-8e8e-8e8e-8e8e-8e8e8e8e8e8e",
-            "choice": [
-                {
-                    "id": "item-cb73267a-f733-424d-8cb0-fc412b6abf16",
-                    "type": "option",
-                    "label": "Option 1",
-                    "notify_To": []
-                },
-                {
-                    "id": "item-097cee3e-13bc-49db-b1ba-1fc15c6c3122",
-                    "type": "option",
-                    "label": "Option 2",
-                    "action": true
-                },
-                {
-                    "id": "item-3e3e3e3e-3e3e-3e3e-3e3e-3e3e3e3e3e3e",
-                    "type": "option",
-                    "label": "Option 3",
-                    "action": true
-                },
-                {
-                    "id": "item-4e4e4e4e-4e4e-4e4e-4e4e-4e4e4e4e4e4e",
-                    "type": "option",
-                    "label": "Option 4",
-                    "action": true
-                },
-                {
-                    "id": "item-5e5e5e5e-5e5e-5e5e-5e5e-5e5e5e5e5e5e",
-                    "type": "option",
-                    "label": "Option 5"
-                },
-                {
-                    "id": "item-6e6e6e6e-6e6e-6e6e-6e6e-6e6e6e6e6e6e",
-                    "type": "option",
-                    "label": "Option 6"
-                },
-                {
-                    "id": "item-7e7e7e7e-7e7e-7e7e-7e7e-7e7e7e7e7e7e",
-                    "type": "option",
-                    "label": "Option 7"
-                },
-                {
-                    "id": "item-8e8e8e8e-8e8e-8e8e-8e8e-8e8e8e8e8e8e",
-                    "type": "option",
-                    "label": "Option 8"
-                },
-                {
-                    "id": "item-9e9e9e9e-9e9e-9e9e-9e9e-9e9e9e9e9e9e",
-                    "type": "option",
-                    "label": "Option 9"
-                },
-                {
-                    "id": "item-10e10e10e-10e10e10e-10e10e10e-10e10e10e-10e10e10e10e",
-                    "type": "option",
-                    "label": "Option 10"
-                }
-            ],
-            
-            "isRequired": false,
-            "isConditional": false,
+            "type": "radiogroup",
+            "name": "Radioname",
+            "id": "checkbox1213123",
             "fromManualList": true,
-            "islinked_query": "",
-            "actionMessage": "This is the action message "
-        },
-        {
-            "id": "item-4c82b77e-49c9-40b4-9b0a-43dc3c73792d",
-            "name": "Dropdown",
-            "type": "dropdown",
-            "label": "Dropdown manual",
-            "answer": "",
+            "isConditional": true,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "requiredErrorText": "At least one item must be selected",
             "actionMessage": "This is the action message ",
             "choice": [
                 {
-                    "id": "item-433910cb-16ca-4711-9839-71473a54e74b",
-                    "type": "option",
-                    "label": "Option 1",
-                    "action": true
+                    "value": "item1",
+                    "text": "This is item 1."
                 },
                 {
-                    "id": "item-bd83d18e-e83e-4640-bfc1-efcdd643214a",
-                    "type": "option",
-                    "label": "Option2",
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4.",
+                    "action": false
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
                     "action": true
                 }
             ],
-            "isRequired": false,
-            "isConditional": false
+            "otherErrorText": "Other field comment is required."
+        },
+        {
+            "type": "checkbox",
+            "name": "checkbox1",
+            "id": "checkbox1",
+            "fromManualList": true,
+            "isConditional": false,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "action": true
+                }
+            ],
+            "otherErrorText": "Other field comment is required."
+        },
+
+        {
+            "id": "item-94df5d01-232b-4c1d-a6fb-bfdd8c094f6a",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [
+                {
+                    "id": "item-a0b63d77-8884-44cd-84e0-743e2d18f416",
+                    "file": "https://bigbets-server-varicon-backend.s3.amazonaws.com/attachments/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K5AJCN66S%2F20240327%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240327T063215Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJ7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIAh1ofFTPOEoiC0zEjtimdSQJVFf3fV63ubLfWtUx%2FXuAiEAzLNBp68qgQdGkInVk3rZxFNkBJnCRbLJ4S5isDGU2FgqxQUIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDAJDaBbWiVRboWpgniqZBQqOvgcijHpemdysiWTLNJbu1uChW3vVJQp9pzyBmKAuOO6p%2BK7v85rxwPFB%2B2ZpfL5B0DUFbx9ZvISbqbboi%2BhJhYiPWJ2dfAI1%2F2r8ew7O3CxU4u8yAqU7e9UV%2B%2FKVimFZgCKMFd%2FAdUnHDm8ksZ1p9KYpdS1dbWGCNmZ%2BwQYJDQA%2BOdEtAXiu3HhegFABESbC90TA2FTEXmJu1KOYjJbJx%2Bt0rvNHXTl%2FlSYGjErEq8ZPKulvl2nVbn7417pbS85o5k4k57K%2F2sggH%2BC2phmeY9zF3ndBtz3%2FC7OWrosJuYMLvA697iShgzAUhfR7iYS8kDMahs22boYz%2BPsNgFoobMBHnVad3K4gl3nHgDaqjih1Tt09vd%2FVPbBZ%2BI6cpVgbVKTi85xvJ81SpM17DrW4Q4MqoXhotFIwtRYlGunCTJuUgn1NZsgfr3iDKPLDCuyEEjTjwIp4R7o56PV4l4KWVGKbDBLCMDNI2fwdogt4pgGinonVWGnX%2FbZXsyc2GlsKaICZ3PoIOT102pl1uAGqv5EtMWtDq%2B8Ro7MpDgOVVtVf7gbZzt9iiNbiJ7Wn8ZPjHjxjV0fo7UscrnT8OzXbo5FNnMeFMmtqwdTJTVezE96jVu4eK%2F6VZS8s3ln%2F3Ue7WvRfa%2BQubYxx%2FPnE8j5UdqrogHtQGd8KIX37bh4iP%2Fb2DILmtYiYoLV9GLmoVldgFL2fDblS6f6z9qwN3NrnVOrro7QIARSKVwi47a6fCkxnguQI6TvIGKG%2Frk2ApCtlIExJuGO9RL3oqZyt%2FOV8t%2F%2BPzA30%2FfTjZE%2BS7gmsy1FOr8ILOEIyhgOtpb3fU%2Fn292fLPBSjWAIKWfREvrN2LniAJMeeS%2Fb0w4GSxjN0Mr1UhFRk1O4NMOfkjrAGOrEBIDoayuGZzMz2951kI2WV7cnADPbRd5WEj5tvEpI40XGf81tyB2hxTq3uO%2BAA1BA%2BHf7MIfwGBectNcgRKqN9V5bg8xEpq3PPJU7bocRZfeBW%2BWZs%2BE%2B6in5NshInUsbOF6LjSDCUfP%2BpwjJEUxPhkWew3q%2FyNq96x4NefYsT9XH5vABPFcD1Yeub0y9C%2FWn%2FP%2BKhPRqZ7rzMXb7V0fZ23Thq21DQpzNkYmg8gU2hCimc&X-Amz-Signature=fbfc9dff0971015fff8643fedb3f3e7e464b8d19880392d854df24b683ac527d",
+                    "name": "prabin",
+                    "isLoading": false,
+                    "attachmentId": "7162"
+                }
+            ],
+            "isRequired": true
         }
     ],
-    "description": "Description"
+    "description": "Description is the describing method which describes the title in various way"
 }
+
+

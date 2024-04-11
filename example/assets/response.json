@@ -3,262 +3,97 @@
     "title": "Attendance Form",
     "elements": [
         {
-            "id": "item-34241f64-143f-4c7b-8a4d-59d3a10a301b",
-            "name": "Heading / Section",
-            "type": "section",
-            "label": "Basic Information",
-            "instruction": "basic information details",
-            "isRequired": false
-        },
-        {
-            "id": "item-9b16e30c-171c-4678-b617-4574eb5fb36e",
-            "name": "Instruction",
-            "type": "instruction",
-            "label": "How to fill attandance form",
-            "instruction": "Step 1\nStep 2\nStep 3\nStep 4",
-            "isRequired": false,
-            "attachments": [
-                {
-                    "id": 5478,
-                    "file": "https://bigbets-server-varicon-backend.s3.amazonaws.com/attachments/Screenshot_from_2023-12-20_21-23-22.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KS547ABG5%2F20231224%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20231224T071927Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEM7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD1wYgAXnZq8QnAj0itu8NVb0D6G1%2Fk0Cb8bsKqa%2BgfxAIgSJPr%2FWJ3IkJRRa1S%2BUeQ6SMjuWMvqkwIBxFBJXz9SecqvAUIWBABGgw0MTg1NDA4MTYwMjEiDN5QKa9vDU1s1U%2FwiSqZBZlT660IOWl6RJwjHqM8%2FuiaCE7g0LHBnHMUI8DrNSB9fq9CMmW2qfIRXEHzOkH5F%2BBHBNk3ZixV2vzdfIdwP9O8VHu2rgGO%2FOLSoFY9SdH27QRtFIGvVInvL1inPnP1Xdi2fAKY%2FkMrStPpYAYRoyYIhvRTEkOfT25BHGSU0f9KL8B2mtjPamni20l%2BWGFRW6Fus9W8K0RpjTqb79zDyecdToa%2FLi6CiBhA0tOI5O%2FRNu2uOcTo03IPDBB5KCZ6wR%2FhxSjse2GACezHks4A7q5NbtwxP1x8CYUzCrMu2%2BD4YWourYepY6DryVJq6j6vJctqMdLIhgTgqQMMTaEDKbfT61fJgeKFtkDnzm1gllvVoroE%2FFrifBszQJEM1gJ3xS3aW9HNJ5Bi5y8O1%2BX4YJli5gq3S62K9C5sXyKmthX0eZ9zoOxPdH2GDNMp2x9EBkEUuLa%2FEd8hrxqSQJ2TTWKAEb7V3Sgbr1DjLFzNukTvzVwtDSTZMqnqv%2Fahgif3SLvQUmBYqjMeLCp8x7yFWNrOZXEIir5WKgTFMRzlbhzwocAMfs6oyhifdY%2FcFT9qYcPzgK3moUTgEEPTQZ3J1OWmz9Opc3OhekPEeVdlKYvvCA03KaG0lJ5Z4truJoqAOwBqAwxKv5lM6xzPN2EX4qPLzPFZ8IjOqxk6FkWl3FErDI3je9%2Bhbrk2YcYR4m8oJVTr8aN8u%2BVTF1GueUo%2FbeF5PNKEtUBCCcBqZnYfDRAHLjFx6yQgoJ%2FhZf3GI00GSAd0uQWmsq5MBs64s7t2PLog4TSX12DQsODVltYyhWu%2FNbcLwOMHpeZfU6fE7kqtlnR5plzWVrdK%2FaP%2BWy8drBRfvVXR%2FiyFr42zDtF9Qc2TVG3gxui6TZpkMM2fn6wGOrEBO6%2B9NXzvNXZeHm9UUYDtX3IF8CnjrhzpeXDG9FLJUSK1fnfwEuUqA%2FgrvC70lRTMGBZL4iuG1n0WqPhhaSJ%2FvzQ%2Fdu05y2WyAAB2URN%2B%2FzwdAnR1eFa2Bvr%2BBCk840gazO9U0lpGqcXhEp0FIU3ZtudSbvq8%2BYJeIkSGLYDifpwG32UGjIFPzBaXJKSX0lpPsvwAkP85RmGzuyqLfkJBFXClfvB8Je6TKxOv5SVxilSx&X-Amz-Signature=49cd858260aa498a8340cb4fc8fb0b507a63f669e23a5942de461c62d5b149aa",
-                    "name": "Screenshot from 2023-12-20 21-23-22.png",
-                    "mime_type": "png",
-                    "thumbnail": "https://bigbets-server-varicon-backend.s3.amazonaws.com/thumbnails/Screenshot_from_2023-12-20_21-23-22_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KS547ABG5%2F20231224%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20231224T071927Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEM7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD1wYgAXnZq8QnAj0itu8NVb0D6G1%2Fk0Cb8bsKqa%2BgfxAIgSJPr%2FWJ3IkJRRa1S%2BUeQ6SMjuWMvqkwIBxFBJXz9SecqvAUIWBABGgw0MTg1NDA4MTYwMjEiDN5QKa9vDU1s1U%2FwiSqZBZlT660IOWl6RJwjHqM8%2FuiaCE7g0LHBnHMUI8DrNSB9fq9CMmW2qfIRXEHzOkH5F%2BBHBNk3ZixV2vzdfIdwP9O8VHu2rgGO%2FOLSoFY9SdH27QRtFIGvVInvL1inPnP1Xdi2fAKY%2FkMrStPpYAYRoyYIhvRTEkOfT25BHGSU0f9KL8B2mtjPamni20l%2BWGFRW6Fus9W8K0RpjTqb79zDyecdToa%2FLi6CiBhA0tOI5O%2FRNu2uOcTo03IPDBB5KCZ6wR%2FhxSjse2GACezHks4A7q5NbtwxP1x8CYUzCrMu2%2BD4YWourYepY6DryVJq6j6vJctqMdLIhgTgqQMMTaEDKbfT61fJgeKFtkDnzm1gllvVoroE%2FFrifBszQJEM1gJ3xS3aW9HNJ5Bi5y8O1%2BX4YJli5gq3S62K9C5sXyKmthX0eZ9zoOxPdH2GDNMp2x9EBkEUuLa%2FEd8hrxqSQJ2TTWKAEb7V3Sgbr1DjLFzNukTvzVwtDSTZMqnqv%2Fahgif3SLvQUmBYqjMeLCp8x7yFWNrOZXEIir5WKgTFMRzlbhzwocAMfs6oyhifdY%2FcFT9qYcPzgK3moUTgEEPTQZ3J1OWmz9Opc3OhekPEeVdlKYvvCA03KaG0lJ5Z4truJoqAOwBqAwxKv5lM6xzPN2EX4qPLzPFZ8IjOqxk6FkWl3FErDI3je9%2Bhbrk2YcYR4m8oJVTr8aN8u%2BVTF1GueUo%2FbeF5PNKEtUBCCcBqZnYfDRAHLjFx6yQgoJ%2FhZf3GI00GSAd0uQWmsq5MBs64s7t2PLog4TSX12DQsODVltYyhWu%2FNbcLwOMHpeZfU6fE7kqtlnR5plzWVrdK%2FaP%2BWy8drBRfvVXR%2FiyFr42zDtF9Qc2TVG3gxui6TZpkMM2fn6wGOrEBO6%2B9NXzvNXZeHm9UUYDtX3IF8CnjrhzpeXDG9FLJUSK1fnfwEuUqA%2FgrvC70lRTMGBZL4iuG1n0WqPhhaSJ%2FvzQ%2Fdu05y2WyAAB2URN%2B%2FzwdAnR1eFa2Bvr%2BBCk840gazO9U0lpGqcXhEp0FIU3ZtudSbvq8%2BYJeIkSGLYDifpwG32UGjIFPzBaXJKSX0lpPsvwAkP85RmGzuyqLfkJBFXClfvB8Je6TKxOv5SVxilSx&X-Amz-Signature=a2db22c2f2bae22a58c68a003cf7b3aec7689035c9b03b852aea05c40e87cbc6",
-                    "created_by": {
-                        "id": 346,
-                        "email": "amulya@varicon.com.au",
-                        "last_name": "Acharya",
-                        "first_name": "Amulya",
-                        "is_archived": false
-                    }
-                }
-            ]
-        },
-        {
-            "id": "item-96bb2abb-5fa0-4d9b-8c32-f5cde7698044",
-            "name": "Full Name",
-            "type": "text",
-            "label": "Your Full Name",
-            "answer": "Susan Timilsina",
-            "isRequired": true
-        },
-        {
-            "id": "item-d2dd728c-d8bf-45d6-819e-fba051a2e3b6",
-            "name": "Email",
-            "type": "text",
-            "label": "Your Email",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-808295a7-dcc1-49ae-bfd6-59bda60cf560",
-            "name": "Address",
-            "type": "text",
-            "label": "Address",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-b45495da-e56a-4b30-ac38-22dae9a036c6",
-            "name": "Phone Number",
-            "type": "number",
-            "label": "Phone Number",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-affe9ff9-f9b8-428c-bf30-44d467fc5a88",
-            "name": "Short Text",
-            "type": "text",
-            "label": "Notes",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-f147daeb-481a-4fb9-a26c-a9ee4f7f5ad1",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Notes with Description",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-dbc6af82-8036-4708-8629-bf43a766591d",
-            "name": "Date",
-            "type": "date",
-            "label": "Timesheet Date",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "Did you work remotely",
-            "actionMessage": "Better to work from home.",
-            "answer": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
-            "isRequired": true,
-            "isConditional": true,
-            "choice": [
-                {
-                    "id": "item-395f1c4e-974c-486e-8647-8445819b0030",
-                    "label": "Yes",
-                    "action": false,
-                    "notify_To": []
-                },
-                {
-                    "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
-                    "label": "No",
-                    "action": true,
-                    "notify_To": [
-                        {
-                            "id": 346,
-                            "email": "amulya@varicon.com.au",
-                            "username": "amulya@varicon.com.au"
-                        }
-                    ]
-                },
-                {
-                    "id": "item-422d0002-df53-4e86-a995-466da7ab33ee",
-                    "label": "NA",
-                    "action": false,
-                    "notify_To": []
-                }
-            ]
-        },
-        {
-            "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc6",
-            "name": "Multiple Choice",
-            "type": "multiplechoice",
-            "label": "Biget item",
-            "answer": "",
-            "isRequired": false,
-            "choice": [
-                {
-                    "id": "item-200e3185-3906-4d91-a03f-62f35e8547de",
-                    "type": "option",
-                    "label": "Resource and supplier",
-                    "notify_To": []
-                },
-                {
-                    "id": "item-ae9b0672-16eb-44d5-b5c7-a3412ffadb09",
-                    "type": "option",
-                    "label": "Custom Forms"
-                },
-                {
-                    "id": "item-29580bec-3511-478c-bd55-cd0a84a65ed5",
-                    "type": "option",
-                    "label": "Subcontract"
-                }
-            ]
-        },
-        {
-            "id": "item-fa6c0a65-3b73-40e0-85b4-0f2b73c2f983",
-            "name": "Select",
+            "id": "item-0ada8cbf-0ac6-4276-9bcd-a30b09e9900d",
+            "name": "Single Select Dropdown",
             "type": "dropdown",
-            "label": "Address",
-            "answer": "item-d5309151-356f-4bec-9d8d-497ed17208a1",
+            "label": "select client",
+            "choice": [],
             "isRequired": false,
-            "choice": [
-                {
-                    "id": "item-d5309151-356f-4bec-9d8d-497ed17208a1",
-                    "type": "option",
-                    "label": "Kathmandu"
-                },
-                {
-                    "id": "item-c3283d91-fb6d-4e45-a590-17d391301f46",
-                    "type": "option",
-                    "label": "Out of valley"
-                }
-            ]
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "client",
+            "selectedLinkListLabel": ""
         },
         {
-            "id": "item-80d885e9-bb3e-40ff-986e-2a180fa0d160",
-            "name": "Radio Button",
-            "type": "radiogroup",
-            "label": "Did you feel disturb while filling this form?",
-            "answer": "item-37424b8d-d09f-44c7-845e-bc973b497e1a",
-            "isRequired": true,
-            "choice": [
-                {
-                    "id": "item-32896dce-6fed-42c5-b339-d9641665dca7",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-37424b8d-d09f-44c7-845e-bc973b497e1a",
-                    "type": "option",
-                    "label": "No"
-                }
-            ]
-        },
-        {
-            "id": "item-68965d9f-54a5-4574-8024-31887242d568",
-            "name": "Checkboxes",
-            "type": "checkbox",
-            "label": "HOlidays",
-            "answer": "item-7ecf246e-dbc7-46b9-ad4f-604b03611998,item-91f23eb4-1498-4e81-8b34-34e1fdad9ed9",
-            "isRequired": false,
-            "choice": [
-                {
-                    "id": "item-7b081cea-35a5-493b-90f9-f9f54da4ff59",
-                    "label": "Sunday"
-                },
-                {
-                    "id": "item-7ecf246e-dbc7-46b9-ad4f-604b03611998",
-                    "type": "option",
-                    "label": "Monday"
-                },
-                {
-                    "id": "item-91f23eb4-1498-4e81-8b34-34e1fdad9ed9",
-                    "type": "option",
-                    "label": "Saturday"
-                }
-            ]
-        },
-        {
-            "id": "item-7c022889-bfe4-492e-b893-e7e13a45f8a0",
-            "name": "File Upload",
             "type": "files",
-            "label": "Attach file",
+            "id": "image1",
+            "label": "Attach covver letter",
+            "isMultiple": false,
+            "isRequired": false,
             "answer": [
                 {
-                    "id": 5483,
-                    "file": "https://bigbets-server-varicon-backend.s3.amazonaws.com/attachments/EmpVariconDatabase.db?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K5VR7CKVJ%2F20231227%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20231227T081824Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBgaCXVzLWVhc3QtMiJGMEQCIGcCGEef8xGIjW8OGoD6hzf5pXjfEHYLBAqdC56V4hrOAiBxq%2FPcj7Zfi%2FQC%2Fno2AnZ0Klg0EeFUAKrKdGX7orh8FyrFBQih%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDQxODU0MDgxNjAyMSIMgccYvCaZE7Ybwl84KpkFvXwjguwdX58JiO9mg%2B5zZT6k65hyD1OGsY1Ivcero85A671P%2FstuBsqptMjx3w7Aqvo%2BrjQPU%2B4hw9poVDDhmhgRku1jYgUFMx6KiBOZfzaxjke7fMtGGijJLtmRxCkVU9Onkr5eQNwgtx2PtMA2LabeyT7yzwL3TDjiywo%2BuSgLORv2i%2FJn%2B1FoSUqs7PyQ%2BL8XKGOx0XP9LGPEbvIy46CEq9YEj6cAQfr1cnqEmp2bqh3sJj04L6NvFxAbgHFDJQmGUnPZrrEYbV0Mxj9sD1b52ygfWlNJfFaLgYpxEjHyCX9aRr9jCjnr3YD%2BBD%2FRp%2FUCSdeh9AQaTVaWIw7hOEK8HHrCGn0tzj0xZ00YIigqeMUWuOj%2FkwP4RTF9nguc5bD0edwXMN9HtXhL7CrWju%2FFEX51xUSK%2BoboLNiexQGt8Xp0D2ZU1lg64rKkxCW97czEaFIOj4CPLQ2ZuAR5m%2B3uJo5eE6bYVxGAeiN07cWC%2FIh5Gg4VViulGQIqSZwsbnhtzmnWNoIp1WtsLSKkFwktfEAFW0vXuKlcTR04QFVrk91BS%2BIBARkIYfVCjIFNEN4yUF6a13usalpH2WdhLbrY83B0PiLz%2FzQQRpW74Q%2B4ugrbZmTzkeJruyaaMxLoFpF8h5hsR6YMYDMgc0ZNtRzpplHFHbTJf%2FkZsZq19%2B2zEghKtzzHELVPX6bZ4YV6vKnt%2FSJtl9vwmp4mLOjWGY5bz8d5jp0mmVrN9eIXOhzWG%2FGqwjIRI4y4OIpIfxMeb1%2FAYGFmOvGwP5yJdmupkTqW6A28ilkPTa5yIE8o9ul4zJtMKIKBWyIoAR5GOAF4FGf%2F0dNWK9LfgEjcGLsj4AW3XHWZUhTXpyZTPGVawO5NPaYBo8DkTk4wgq6vrAY6sgGWoIG6SibBXeQ41ggfMBe0Iu01TeyVrX5rxed7TgXWQJOu6RO33JzTAM2wwNS1gyq8XQ8HXMS5UdBtIis%2FFDWZiZZd%2BVSoLGaBZQ65x91bEcESsEx%2F8PvRj%2FFxe9hN6akZn9Cz%2FN8ejknBWtV8vgqwg0%2BMkYPDjuNVBA2EnWhp%2FZR553cqusnC%2FSPVp4vdfZ3wuEwaNV95ajzVP4jwlnfvQY41plRMUEuOuOE3J31lK6JJ&X-Amz-Signature=558da086788cb690626bb69fbb56a41bca05c056da943e4b2e88baeae3fc2174",
-                    "name": "EmpVariconDatabase.db",
-                    "mime_type": "db",
-                    "created_by": {
-                        "id": 996,
-                        "email": "",
-                        "last_name": "",
-                        "first_name": "",
-                        "is_archived": false
-                    }
+                    "id": 12345,
+                    "name": "adasd",
+                    "file": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf",
+                    "thumbnail": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
                 }
-            ],
-            "isRequired": false
+            ]
         },
         {
-            "id": "item-443ca516-2115-4776-9cb3-4171be3f11fd",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Your photo",
+            "id": "item-5251c508-e239-4325-8f94-5dae315cecb4",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Select user",
+            "choice": [],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "user",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ed03aa5c-c07b-475c-bb53-2328e2570fd0",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "select equipment",
+            "answer": "722",
+            "choice": [],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "equipment",
+            "selectedLinkListLabel": "(Acer V2.2)Acer V2.2"
+        },
+        {
+            "id": "item-bac42e5a-b4b6-4173-9028-3614868af5aa",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "select employee",
+            "choice": [],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "employee",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-72c5e733-68f3-40f1-8c79-eed96f350a03",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "select project",
+            "choice": [],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "project",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-01d66ab1-b382-4d61-880f-b9ee4c0cb9b9",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
             "answer": [
                 {
-                    "id": 5482,
-                    "file": "https://bigbets-server-varicon-backend.s3.amazonaws.com/attachments/IMG_0111-1703665056023.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K5VR7CKVJ%2F20231227%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20231227T081741Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBgaCXVzLWVhc3QtMiJGMEQCIGcCGEef8xGIjW8OGoD6hzf5pXjfEHYLBAqdC56V4hrOAiBxq%2FPcj7Zfi%2FQC%2Fno2AnZ0Klg0EeFUAKrKdGX7orh8FyrFBQih%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDQxODU0MDgxNjAyMSIMgccYvCaZE7Ybwl84KpkFvXwjguwdX58JiO9mg%2B5zZT6k65hyD1OGsY1Ivcero85A671P%2FstuBsqptMjx3w7Aqvo%2BrjQPU%2B4hw9poVDDhmhgRku1jYgUFMx6KiBOZfzaxjke7fMtGGijJLtmRxCkVU9Onkr5eQNwgtx2PtMA2LabeyT7yzwL3TDjiywo%2BuSgLORv2i%2FJn%2B1FoSUqs7PyQ%2BL8XKGOx0XP9LGPEbvIy46CEq9YEj6cAQfr1cnqEmp2bqh3sJj04L6NvFxAbgHFDJQmGUnPZrrEYbV0Mxj9sD1b52ygfWlNJfFaLgYpxEjHyCX9aRr9jCjnr3YD%2BBD%2FRp%2FUCSdeh9AQaTVaWIw7hOEK8HHrCGn0tzj0xZ00YIigqeMUWuOj%2FkwP4RTF9nguc5bD0edwXMN9HtXhL7CrWju%2FFEX51xUSK%2BoboLNiexQGt8Xp0D2ZU1lg64rKkxCW97czEaFIOj4CPLQ2ZuAR5m%2B3uJo5eE6bYVxGAeiN07cWC%2FIh5Gg4VViulGQIqSZwsbnhtzmnWNoIp1WtsLSKkFwktfEAFW0vXuKlcTR04QFVrk91BS%2BIBARkIYfVCjIFNEN4yUF6a13usalpH2WdhLbrY83B0PiLz%2FzQQRpW74Q%2B4ugrbZmTzkeJruyaaMxLoFpF8h5hsR6YMYDMgc0ZNtRzpplHFHbTJf%2FkZsZq19%2B2zEghKtzzHELVPX6bZ4YV6vKnt%2FSJtl9vwmp4mLOjWGY5bz8d5jp0mmVrN9eIXOhzWG%2FGqwjIRI4y4OIpIfxMeb1%2FAYGFmOvGwP5yJdmupkTqW6A28ilkPTa5yIE8o9ul4zJtMKIKBWyIoAR5GOAF4FGf%2F0dNWK9LfgEjcGLsj4AW3XHWZUhTXpyZTPGVawO5NPaYBo8DkTk4wgq6vrAY6sgGWoIG6SibBXeQ41ggfMBe0Iu01TeyVrX5rxed7TgXWQJOu6RO33JzTAM2wwNS1gyq8XQ8HXMS5UdBtIis%2FFDWZiZZd%2BVSoLGaBZQ65x91bEcESsEx%2F8PvRj%2FFxe9hN6akZn9Cz%2FN8ejknBWtV8vgqwg0%2BMkYPDjuNVBA2EnWhp%2FZR553cqusnC%2FSPVp4vdfZ3wuEwaNV95ajzVP4jwlnfvQY41plRMUEuOuOE3J31lK6JJ&X-Amz-Signature=957b44a49ad876d06ee4e6cff7f3eb4168d3e54105c2b196b68247228b653611",
-                    "name": "IMG_0111-1703665056023.jpeg",
-                    "mime_type": "jpeg",
-                    "thumbnail": "https://bigbets-server-varicon-backend.s3.amazonaws.com/thumbnails/IMG_0111-1703665056023_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K5VR7CKVJ%2F20231227%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20231227T081741Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBgaCXVzLWVhc3QtMiJGMEQCIGcCGEef8xGIjW8OGoD6hzf5pXjfEHYLBAqdC56V4hrOAiBxq%2FPcj7Zfi%2FQC%2Fno2AnZ0Klg0EeFUAKrKdGX7orh8FyrFBQih%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDQxODU0MDgxNjAyMSIMgccYvCaZE7Ybwl84KpkFvXwjguwdX58JiO9mg%2B5zZT6k65hyD1OGsY1Ivcero85A671P%2FstuBsqptMjx3w7Aqvo%2BrjQPU%2B4hw9poVDDhmhgRku1jYgUFMx6KiBOZfzaxjke7fMtGGijJLtmRxCkVU9Onkr5eQNwgtx2PtMA2LabeyT7yzwL3TDjiywo%2BuSgLORv2i%2FJn%2B1FoSUqs7PyQ%2BL8XKGOx0XP9LGPEbvIy46CEq9YEj6cAQfr1cnqEmp2bqh3sJj04L6NvFxAbgHFDJQmGUnPZrrEYbV0Mxj9sD1b52ygfWlNJfFaLgYpxEjHyCX9aRr9jCjnr3YD%2BBD%2FRp%2FUCSdeh9AQaTVaWIw7hOEK8HHrCGn0tzj0xZ00YIigqeMUWuOj%2FkwP4RTF9nguc5bD0edwXMN9HtXhL7CrWju%2FFEX51xUSK%2BoboLNiexQGt8Xp0D2ZU1lg64rKkxCW97czEaFIOj4CPLQ2ZuAR5m%2B3uJo5eE6bYVxGAeiN07cWC%2FIh5Gg4VViulGQIqSZwsbnhtzmnWNoIp1WtsLSKkFwktfEAFW0vXuKlcTR04QFVrk91BS%2BIBARkIYfVCjIFNEN4yUF6a13usalpH2WdhLbrY83B0PiLz%2FzQQRpW74Q%2B4ugrbZmTzkeJruyaaMxLoFpF8h5hsR6YMYDMgc0ZNtRzpplHFHbTJf%2FkZsZq19%2B2zEghKtzzHELVPX6bZ4YV6vKnt%2FSJtl9vwmp4mLOjWGY5bz8d5jp0mmVrN9eIXOhzWG%2FGqwjIRI4y4OIpIfxMeb1%2FAYGFmOvGwP5yJdmupkTqW6A28ilkPTa5yIE8o9ul4zJtMKIKBWyIoAR5GOAF4FGf%2F0dNWK9LfgEjcGLsj4AW3XHWZUhTXpyZTPGVawO5NPaYBo8DkTk4wgq6vrAY6sgGWoIG6SibBXeQ41ggfMBe0Iu01TeyVrX5rxed7TgXWQJOu6RO33JzTAM2wwNS1gyq8XQ8HXMS5UdBtIis%2FFDWZiZZd%2BVSoLGaBZQ65x91bEcESsEx%2F8PvRj%2FFxe9hN6akZn9Cz%2FN8ejknBWtV8vgqwg0%2BMkYPDjuNVBA2EnWhp%2FZR553cqusnC%2FSPVp4vdfZ3wuEwaNV95ajzVP4jwlnfvQY41plRMUEuOuOE3J31lK6JJ&X-Amz-Signature=bd11f59aef054de7fbda7514e3bee45115073badd37e6245a412c0532fe634e2",
-                    "created_by": {
-                        "id": 996,
-                        "email": "",
-                        "last_name": "",
-                        "first_name": "",
-                        "is_archived": false
-                    }
+                    "id": "item-a0b63d77-8884-44cd-84e0-743e2d18f416",
+                    "file": "https://bigbets-server-varicon-backend.s3.amazonaws.com/attachments/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K5AJCN66S%2F20240327%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240327T063215Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJ7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIAh1ofFTPOEoiC0zEjtimdSQJVFf3fV63ubLfWtUx%2FXuAiEAzLNBp68qgQdGkInVk3rZxFNkBJnCRbLJ4S5isDGU2FgqxQUIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDAJDaBbWiVRboWpgniqZBQqOvgcijHpemdysiWTLNJbu1uChW3vVJQp9pzyBmKAuOO6p%2BK7v85rxwPFB%2B2ZpfL5B0DUFbx9ZvISbqbboi%2BhJhYiPWJ2dfAI1%2F2r8ew7O3CxU4u8yAqU7e9UV%2B%2FKVimFZgCKMFd%2FAdUnHDm8ksZ1p9KYpdS1dbWGCNmZ%2BwQYJDQA%2BOdEtAXiu3HhegFABESbC90TA2FTEXmJu1KOYjJbJx%2Bt0rvNHXTl%2FlSYGjErEq8ZPKulvl2nVbn7417pbS85o5k4k57K%2F2sggH%2BC2phmeY9zF3ndBtz3%2FC7OWrosJuYMLvA697iShgzAUhfR7iYS8kDMahs22boYz%2BPsNgFoobMBHnVad3K4gl3nHgDaqjih1Tt09vd%2FVPbBZ%2BI6cpVgbVKTi85xvJ81SpM17DrW4Q4MqoXhotFIwtRYlGunCTJuUgn1NZsgfr3iDKPLDCuyEEjTjwIp4R7o56PV4l4KWVGKbDBLCMDNI2fwdogt4pgGinonVWGnX%2FbZXsyc2GlsKaICZ3PoIOT102pl1uAGqv5EtMWtDq%2B8Ro7MpDgOVVtVf7gbZzt9iiNbiJ7Wn8ZPjHjxjV0fo7UscrnT8OzXbo5FNnMeFMmtqwdTJTVezE96jVu4eK%2F6VZS8s3ln%2F3Ue7WvRfa%2BQubYxx%2FPnE8j5UdqrogHtQGd8KIX37bh4iP%2Fb2DILmtYiYoLV9GLmoVldgFL2fDblS6f6z9qwN3NrnVOrro7QIARSKVwi47a6fCkxnguQI6TvIGKG%2Frk2ApCtlIExJuGO9RL3oqZyt%2FOV8t%2F%2BPzA30%2FfTjZE%2BS7gmsy1FOr8ILOEIyhgOtpb3fU%2Fn292fLPBSjWAIKWfREvrN2LniAJMeeS%2Fb0w4GSxjN0Mr1UhFRk1O4NMOfkjrAGOrEBIDoayuGZzMz2951kI2WV7cnADPbRd5WEj5tvEpI40XGf81tyB2hxTq3uO%2BAA1BA%2BHf7MIfwGBectNcgRKqN9V5bg8xEpq3PPJU7bocRZfeBW%2BWZs%2BE%2B6in5NshInUsbOF6LjSDCUfP%2BpwjJEUxPhkWew3q%2FyNq96x4NefYsT9XH5vABPFcD1Yeub0y9C%2FWn%2FP%2BKhPRqZ7rzMXb7V0fZ23Thq21DQpzNkYmg8gU2hCimc&X-Amz-Signature=fbfc9dff0971015fff8643fedb3f3e7e464b8d19880392d854df24b683ac527d",
+                    "name": "prabin",
+                    "isLoading": false,
+                    "attachmentId": "7162"
                 }
             ],
-            "isRequired": false
+            "isRequired": true,
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "For Daily Attandance"

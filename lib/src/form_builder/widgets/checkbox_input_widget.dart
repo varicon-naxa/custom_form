@@ -285,6 +285,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
               CheckboxFormField(
                 initialList: selectedChoices,
                 key: widget.formKey,
+                context: context,
                 actionList: actionList,
                 validator: (value) {
                   if (value == null) return null;
@@ -373,7 +374,6 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                     enabled: enabled(),
                     title: Text(
                       v.text,
-                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     isThreeLine: false,
                     visualDensity: VisualDensity.compact,
