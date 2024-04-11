@@ -47,6 +47,14 @@
             "selectedLinkListLabel": ""
         },
         {
+            "id": "item-85be93e4-6964-46a0-9382-550c850bd31e",
+            "name": "Date",
+            "type": "datetimelocal",
+            "label": "DateTime",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-4b20e6a2-8582-4a30-a957-624285bf284d",
             "name": "Multiple Signature",
             "type": "multisignature",

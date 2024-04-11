@@ -118,7 +118,7 @@ class DateTimeFormField extends FormField<DateTime> {
     if (fieldValue != null) {
       return TimeOfDay(hour: fieldValue.hour, minute: fieldValue.minute);
     }
-    return TimeOfDay.now();
+    return const TimeOfDay(hour: 1, minute: 0);
   }
 
   static DateTime _combine(DateTime? date, TimeOfDay? time) {

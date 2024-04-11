@@ -1,7 +1,6 @@
 // ignore_for_file: must_be_immutable, unnecessary_cast
 import 'dart:io';
-
-import 'package:dotted_border/dotted_border.dart';
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/primary_bottomsheet.dart';
 import 'package:varicon_form_builder/src/mixin/file_picker_mixin.dart';
@@ -436,29 +435,30 @@ class SingleFileAddItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DottedBorder(
-      color: Colors.grey,
-      padding: const EdgeInsets.all(5),
-      child: SizedBox(
-        height: 50,
-        width: double.infinity,
-        child: TextButton.icon(
-            style: const ButtonStyle().copyWith(
-              foregroundColor: MaterialStateProperty.all(Colors.white),
-              backgroundColor: MaterialStateProperty.all(Colors.white),
-            ),
-            onPressed: () {
-              onTap();
-            },
-            icon: Icon(
-              isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
-              color: Colors.grey,
-            ),
-            label: Text(
-              isImage ? 'Upload Image' : 'Upload File',
-              style: Theme.of(context).textTheme.bodyMedium,
-            )),
+    return Container(
+      decoration: DottedDecoration(
+        borderRadius: BorderRadius.circular(4),
+        dash: const [3, 2],
+        shape: Shape.box,
       ),
+      height: 50,
+      width: double.infinity,
+      child: TextButton.icon(
+          style: const ButtonStyle().copyWith(
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+            backgroundColor: MaterialStateProperty.all(Colors.white),
+          ),
+          onPressed: () {
+            onTap();
+          },
+          icon: Icon(
+            isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
+            color: Colors.grey,
+          ),
+          label: Text(
+            isImage ? 'Upload Image' : 'Upload File',
+            style: Theme.of(context).textTheme.bodyMedium,
+          )),
     );
   }
 }

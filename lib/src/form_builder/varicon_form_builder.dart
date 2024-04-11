@@ -240,15 +240,15 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             if (widget.hasGeolocation && _currentPosition?.latitude != null)
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.orange.withOpacity(0.2),
+                  color: Colors.orange.withOpacity(0.1),
                   border: Border.all(color: Colors.orange),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: TextButton.icon(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.warning,
-                      color: Colors.red,
+                      Icons.info_outline,
+                      color: Colors.orange,
                     ),
                     label: Text(
                       'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
@@ -280,7 +280,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           field.answer,
                         );
 
-
                         editorOptions = HtmlEditorOptions(
                           initialText: field.answer,
                         );
@@ -305,8 +304,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                         code.toString().trim(),
                                       );
                                     }),
-                                    controller:
-                                        htmlEditorController, //required
+                                    controller: htmlEditorController, //required
                                     plugins: const [],
                                     htmlEditorOptions: editorOptions,
                                     // textInputAction: TextInputAction.newline,
