@@ -1,6 +1,4 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:developer';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -192,8 +190,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   bool popInvoke() {
     Map<String, dynamic> initialResult = {};
     for (var field in widget.surveyForm.inputFields) {
-      log(field.id.toString());
-      log(field.answer.toString());
       if (field.answer != null && field.answer != '') {
         if (field.answer is List) {
           if (((field.answer ?? []) as List).isNotEmpty) {
@@ -831,7 +827,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             (field.answer ?? []).isNotEmpty) {
                           formValue.saveList(
                             field.id,
-                            field.answer ?? [],
+                            (field.answer ?? [])
+                                .map((e) => e.toJson())
+                                .toList(),
                           );
                         }
                         return LabeledWidget(
@@ -987,8 +985,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 if (!formKey.currentState!.validate()) {
                   scrollToFirstInvalidField();
                   return;
-                } else {
-                  print('yesma aaayo');
                 }
 
                 formKey.currentState?.save();
