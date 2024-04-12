@@ -93,17 +93,22 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
   @override
   Widget build(BuildContext context) {
     return !(widget.field.fromManualList)
-        ? TextField(
+        ? TextFormField(
             readOnly: true,
             controller: formCon,
             key: widget.formKey,
+            validator: (values) => textValidator(
+              value: values,
+              inputType: "text",
+              isRequired: widget.field.isRequired,
+              requiredErrorText: widget.field.requiredErrorText,
+            ),
             decoration: const InputDecoration(
               suffixIcon: Icon(
                 Icons.arrow_drop_down,
               ),
             ),
             onTap: () {
-              // if (widget.field.islinked ?? false) {
               primaryBottomSheet(
                 context,
                 child: CustomPaginatedBottomsheet(
@@ -124,63 +129,6 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   },
                 ),
               );
-              // } else {
-              //   primaryBottomSheet(
-              //     context,
-              //     child: StatefulBuilder(builder: (context, setState) {
-              //       return Column(
-              //         children: [
-              //           ThemeSearchField(
-              //             name: '',
-              //             hintText: 'Search ...',
-              //             onChange: (value) {
-              //               setState(() {
-              //                 searchedChoice = choices
-              //                     .where((obj) => obj.text.contains(value))
-              //                     .toList();
-              //               });
-              //             },
-              //             controllerText: searchCon,
-              //           ),
-              //           Expanded(
-              //             child: searchedChoice.isEmpty
-              //                 ? Center(
-              //                     child: Text(
-              //                       'Empty List',
-              //                       style:
-              //                           Theme.of(context).textTheme.bodyLarge,
-              //                     ),
-              //                   )
-              //                 : ListView.builder(
-              //                     shrinkWrap: true,
-              //                     itemBuilder: (context, i) {
-              //                       return ListTile(
-              //                         onTap: () {
-              //                           widget.formValue.saveString(
-              //                             widget.field.id,
-              //                             searchedChoice[i].value,
-              //                           );
-              //                           setState(() {
-              //                             formCon.text = searchedChoice[i].text;
-              //                           });
-              //                           Navigator.pop(context);
-              //                         },
-              //                         title: Text(
-              //                           searchedChoice[i].text.toString(),
-              //                           style: Theme.of(context)
-              //                               .textTheme
-              //                               .bodyMedium,
-              //                         ),
-              //                       );
-              //                     },
-              //                     itemCount: searchedChoice.length,
-              //                   ),
-              //           ),
-              //         ],
-              //       );
-              //     }),
-              //   );
-              // }
             },
           )
         : Column(

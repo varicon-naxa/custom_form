@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/form_time_picker.dart';
 
@@ -29,6 +30,8 @@ class DateTimeFormField extends FormField<DateTime> {
             onTap: () async {
               DateTime? date;
               TimeOfDay? time;
+              final focus = FocusNode();
+              FocusScope.of(state.context).requestFocus(focus);
 
               datePicker() => showDatePicker(
                     context: state.context,

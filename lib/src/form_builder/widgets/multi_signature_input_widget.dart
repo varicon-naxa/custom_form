@@ -73,9 +73,6 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   }
 
   Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
-    final focus = FocusNode();
-    FocusScope.of(context).requestFocus(focus);
-
     TextEditingController controller =
         TextEditingController(text: singleItem.value.name ?? '');
 
@@ -152,6 +149,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     )
                   : GestureDetector(
                       onTap: () {
+                        final focus = FocusNode();
+                        FocusScope.of(context).requestFocus(focus);
                         showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
