@@ -89,7 +89,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     setState(() {
       showMessage = checkMatchingActions();
       if ((initialValue ?? []).isEmpty) {
-        formCon.text = 'Select items from the list';
+        formCon.text = 'Select the item from list';
       } else {
         formCon.text = '${(initialValue ?? []).length} item selected';
       }
@@ -132,7 +132,8 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
           return textValidator(
             value: '',
             inputType: "text",
-            isRequired: (widget.field.isRequired && selectedIds.isEmpty),
+            isRequired: (widget.field.isRequired &&
+                formCon.text == 'Select the item from list'),
             requiredErrorText: widget.field.requiredErrorText ??
                 'No any Selection in required field  ',
           );
