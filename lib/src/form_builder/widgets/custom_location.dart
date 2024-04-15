@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+///Maps widget to show location
+///
+///Accepts position to show on map
 class CustomLocation extends StatelessWidget {
   const CustomLocation({super.key, required this.postition});
   final Position postition;

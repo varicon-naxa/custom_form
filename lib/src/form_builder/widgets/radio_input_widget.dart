@@ -5,6 +5,9 @@ import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import '../../models/value_text.dart';
 
+///Custom form radio form component
+///
+///Accepts field type with radio input
 class RadioInputWidget extends StatefulWidget {
   const RadioInputWidget({
     super.key,
@@ -14,9 +17,16 @@ class RadioInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///Radio form field model
   final RadioInputField field;
+
+  ///Radio form key
   final Key formKey;
+
+  ///Form value to be used for radio input
   final FormValue formValue;
+
+  ///Field label text
   final String? labelText;
 
   @override
@@ -25,15 +35,17 @@ class RadioInputWidget extends StatefulWidget {
 
 class _RadioInputWidgetState extends State<RadioInputWidget> {
   String? value;
+  bool showMessage = false;
 
+  ///Late initialization of choices and field key
   late final List<ValueText> choices;
   late final String otherFieldKey;
-  bool showMessage = false;
 
   @override
   void initState() {
     super.initState();
 
+    ///initial values for choices
     choices = [
       ...widget.field.choices,
       if (widget.field.showNoneItem)

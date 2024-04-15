@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+///Form field for radio button that extends FormField
+///
+///Accepts key, items, onChanged, hasMessage, onSaved, validator, autovalidateMode, value and actionMessage
 class RadioFormField<T> extends FormField<T> {
   RadioFormField({
     super.key,
@@ -98,6 +101,9 @@ class _RadioFormFieldState<T> extends FormFieldState<T> {
   }
 }
 
+///Radio menu item class
+///
+///Used to create radio menu item
 class RadioMenuItem<T> {
   const RadioMenuItem({
     required this.value,
@@ -112,14 +118,27 @@ class RadioMenuItem<T> {
     this.onSelected,
   });
 
+  ///Radio menu item value boolean
   final bool enabled;
+
+  ///Radio menu item title widget
   final Widget title;
+
+  ///Radio menu item has action boolean
   final bool? hasAction;
+
+  ///Radio menu item has condition boolean
   final bool hasCondition;
 
+  ///Radio menu item on selected function
   final ValueChanged<T>? onSelected;
 
+  ///Radio menu item dynamic value
   final T value;
+
+  ///Radio menu item control affinity
+  ///
+  ///[controlAffinity] is used to set the position of the control relative to the text.
   final ListTileControlAffinity controlAffinity;
   final bool isThreeLine;
   final VisualDensity? visualDensity;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
+///Custom form labeled widget
 // ignore: must_be_immutable
 class LabeledWidget extends StatelessWidget {
   LabeledWidget(
@@ -9,7 +10,11 @@ class LabeledWidget extends StatelessWidget {
       required this.child,
       required this.isRequired,});
   String? labelText;
+
+  ///Check if field is required
   final bool isRequired;
+
+  ///Field child widget
   Widget child;
 
   @override

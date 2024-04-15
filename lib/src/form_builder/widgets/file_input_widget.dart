@@ -11,6 +11,9 @@ import '../../models/value_text.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
+///File input form widget
+///
+///Accepts field type with file input
 class FileInputWidget extends StatefulWidget {
   const FileInputWidget({
     super.key,
@@ -24,13 +27,28 @@ class FileInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///file input field model or image input field model
   final dynamic field;
+
+  ///form value for the field
   final FormValue formValue;
+
+  ///label text for the field
   final String? labelText;
+
+  ///file type for the field[image,custom,audio,video]
   final FileType filetype;
+
+  ///Function to build image values
   final Widget Function(Map<String, dynamic>) imageBuild;
+
+  ///Function to handle file click
   final Function(String) fileClicked;
+
+  ///Function to call on save
   final void Function(List<Map<String, dynamic>>) onSaved;
+
+  ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
 
@@ -54,6 +72,9 @@ class _FileInputWidgetState extends State<FileInputWidget>
     widget.formValue.saveList(widget.field.id, answer);
   }
 
+  ///Method to save file to server
+  ///
+  ///Accepts list of files and isMultiple boolean
   Future<void> saveFiletoServer(List<File>? result,
       {bool isMultiple = false}) async {
     if (result != null) {
@@ -84,6 +105,11 @@ class _FileInputWidgetState extends State<FileInputWidget>
     }
   }
 
+  ///Method to store files
+  ///
+  ///Accepts fromCamera boolean
+  ///
+  ///Checks for file type and stores files
   Future<void> storeFiles({bool fromCamera = false}) async {
     if (widget.filetype == FileType.image) {
       Navigator.of(context).pop();
@@ -316,6 +342,9 @@ class _FileInputWidgetState extends State<FileInputWidget>
   }
 }
 
+///File field single item
+///
+///Accepts file path, file name, ontap function, image build function, file clicked function and isImage boolean
 class SingleFileItem extends StatelessWidget {
   SingleFileItem(
       {super.key,
@@ -325,11 +354,23 @@ class SingleFileItem extends StatelessWidget {
       required this.imageBuild,
       this.fileClicked,
       required this.isImage});
+
+  ///Single file path
   String filePath;
+
+  ///boolean to check if file is image
   bool isImage;
+
+  ///Function to handle file tap
   Function ontap;
+
+  ///File name text
   final String fileName;
+
+  ///Function to build image for files
   final Widget? imageBuild;
+
+  ///Function to handle file click
   final Function? fileClicked;
 
   @override

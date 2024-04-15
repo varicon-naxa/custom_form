@@ -118,18 +118,31 @@ class VariconFormBuilder extends StatefulWidget {
 }
 
 class VariconFormBuilderState extends State<VariconFormBuilder> {
+  ///Global key to be inizialized for custom forms
   late final GlobalKey<FormState> formKey;
+
+  ///Global key to be inizialized for signature
   late final GlobalKey<SignatureState> signKey;
+
+  ///Custom for scroll handler controller
   final ScrollController _scrollController = ScrollController();
+
+  ///Global key list to make each field unique
   List<GlobalKey<FormFieldState<String>>> _fieldKeys = [];
+
+  ///Track total form question counts
   int questionNumber = 0;
 
+  ///Values to be submitted via forms
   final formValue = FormValue();
 
   @override
   void initState() {
     super.initState();
 
+    ///Initializing custom form state
+    ///
+    ///Sets input fields and global keys
     _fieldKeys = List.generate(
       (widget.surveyForm.inputFields).length,
       (index) => GlobalKey<FormFieldState<String>>(),
@@ -142,16 +155,22 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 
   @override
   void dispose() {
+    ///disposing resources
     super.dispose();
   }
 
+  ///Position variable to store current postion for form
   Position? _currentPosition;
 
+  ///Method to handle location
+  ///
+  ///Checks and ask for user location permission
   Future<bool> _handleLocationPermission() async {
     if (widget.hasGeolocation) {
       bool serviceEnabled;
       LocationPermission permission;
 
+      ///Asks for user location status
       serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -168,6 +187,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
           return false;
         }
       }
+
+      ///If location permission denied forever user should turn it from from app settings
       if (permission == LocationPermission.deniedForever) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
@@ -183,6 +204,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     }
   }
 
+  ///Method to handle user location
+  ///
+  ///Check for location permission and fetch position
   Future<void> _getCurrentPosition() async {
     final hasPermission = await _handleLocationPermission();
 
@@ -197,6 +221,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     });
   }
 
+  ///Method to handle error/empty on submit
+  ///
+  ///Locates user to the form field with issue
   void scrollToFirstInvalidField() {
     // Form is invalid, find the first invalid field and scroll to it
     FocusScope.of(context).requestFocus(FocusNode()); // Unfocus current field
@@ -212,6 +239,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     }
   }
 
+  ///Handle scroll animation to field with issue
   void _scrollToField(BuildContext context) {
     Scrollable.ensureVisible(
       context,
@@ -219,6 +247,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     );
   }
 
+  ///Method to compare difference between two map values
   bool compareMaps(Map<String, dynamic> map1, Map<String, dynamic> map2) {
     // Check if both maps have the same keys
     if (!map1.keys.toSet().containsAll(map2.keys.toSet()) ||

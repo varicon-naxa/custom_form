@@ -3,6 +3,11 @@ import 'package:varicon_form_builder/src/form_builder/form_fields/theme_search_f
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
+///MUlti select bottomsheet
+///
+///Accepts api call, on clicked and linked query
+///
+///Returns selected data and name list
 class CustomMultiBottomsheet extends StatefulWidget {
   const CustomMultiBottomsheet({
     super.key,
@@ -11,9 +16,19 @@ class CustomMultiBottomsheet extends StatefulWidget {
     required this.answer,
     required this.linkedQuery,
   });
+
+  ///Api call function to get data as list
   final Future<List<dynamic>> Function(Map<String, dynamic>) apiCall;
+
+  ///Function to call on clicked of checkbox item
+  ///
+  ///Returns selected data and name list
   final Function(List<String> data, List<String> nameList) onCheckboxClicked;
+
+  ///Linked query for re;ated bottomsheet data
   final String linkedQuery;
+
+  ///Answer to be shown
   final String answer;
 
   @override
@@ -32,6 +47,9 @@ class _CustomMultiBottomsheetState extends State<CustomMultiBottomsheet> {
   bool startSearch = true;
   bool isLoading = true;
 
+  ///Method to call paginated api
+  ///
+  ///Accepts query string to search
   Future hitApi(
     String? q,
   ) async {
@@ -53,6 +71,9 @@ class _CustomMultiBottomsheetState extends State<CustomMultiBottomsheet> {
     });
   }
 
+  ///Method to load more data
+  ///
+  ///Get data as per scroll for pagination
   void _loadMoreData() async {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {

@@ -3,14 +3,25 @@ import 'package:varicon_form_builder/src/form_builder/form_fields/theme_search_f
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
+///Custom bottom sheet widget
+///
+///Bottom sheet for form with multi options
+///
+///Can list and search items with checkbox
 class SimpleBottomSheet extends StatefulWidget {
   const SimpleBottomSheet(
       {super.key,
       required this.onCheckboxClicked,
       required this.answer,
       required this.choices});
+
+  ///Checkbox clicked function
+  ///
+  ///Accepts list of data and list of name
   final Function(List<String> data, List<String> nameList) onCheckboxClicked;
   final String answer;
+
+  ///Store choices option values
   final List<ValueText> choices;
 
   @override
@@ -24,6 +35,7 @@ class _SimpleBottomSheetState extends State<SimpleBottomSheet> {
 
   @override
   void initState() {
+    ///Initializing values
     super.initState();
     final List<String> initialValue = widget.answer.split(',');
     setState(() {

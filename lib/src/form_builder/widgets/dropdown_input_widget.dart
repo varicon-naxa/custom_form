@@ -5,6 +5,9 @@ import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import '../../../varicon_form_builder.dart';
 
+///Dropdown form widget
+///
+///Accepts field type with dropdown input
 class DropdownInputWidget extends StatefulWidget {
   const DropdownInputWidget(
       {super.key,
@@ -14,10 +17,19 @@ class DropdownInputWidget extends StatefulWidget {
       required this.labelText,
       this.apiCall});
 
+  ///Dropdown input field model
   final DropdownInputField field;
+
+  ///Field form value
   final FormValue formValue;
+
+  ///Field form unique key
   final Key formKey;
+
+  ///Label text for dropdown
   final String? labelText;
+
+  ///API call function to handle dropdown data/response
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
 
   @override
@@ -38,6 +50,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
   void initState() {
     super.initState();
 
+    ///Initiliaze dropdown choices with none and other options
     choices = [
       ...widget.field.choices,
       if (widget.field.showNoneItem)
@@ -73,6 +86,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
     });
   }
 
+  ///Check if dropdown value is selected and show message if required
   checkValue() {
     if (value != null && value != '') {
       bool containsId = choices.any((obj) => obj.value == value);

@@ -10,6 +10,11 @@ import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
 import 'dart:ui' as ui;
 
+///Multi signature input field
+///
+///Accepts field type with multiple signature input
+///
+///Can add multiple signature with name as required
 class MultiSignatureInputWidget extends StatefulWidget {
   MultiSignatureInputWidget({
     super.key,
@@ -21,11 +26,22 @@ class MultiSignatureInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///Multi signature input field model
   final MultiSignatureInputField field;
+
+  ///Form value to be used for multi signature input
   final FormValue formValue;
+
+  ///Field label text
   final String? labelText;
+
+  ///Function to call on save multi signature
   void Function(Map<String, dynamic> result) onSaved;
+
+  ///Image build function for signature view
   final Widget Function(Map<String, dynamic>) imageBuild;
+
+  ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
 
@@ -48,6 +64,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   @override
   void initState() {
     super.initState();
+
+    ///initializing form values
     setState(() {
       if ((widget.field.answer ?? []).isEmpty) {
         answer.add(SingleSignature(
@@ -59,6 +77,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     });
   }
 
+  ///Method to save list of signature
   saveList() {
     List<SingleSignature> filteredList = answer
         .where((signature) =>
@@ -72,6 +91,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     );
   }
 
+  ///Signature single component
   Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
     TextEditingController controller =
         TextEditingController(text: singleItem.value.name ?? '');
@@ -362,6 +382,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     );
   }
 
+  ///Check if list is valid
   bool isListValid() {
     return !answer.any((signature) =>
         signature.file == null ||

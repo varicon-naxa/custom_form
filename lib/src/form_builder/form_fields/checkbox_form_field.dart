@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
 
+///Checkbox form field
+///
+///Accepts key, items, onSaved, validator, initialList, actionList, onChanged and hasMessage
+///
+///Extends FormField for property access
 class CheckboxFormField extends FormField<List<bool?>> {
   CheckboxFormField({
     super.key,
@@ -128,6 +133,9 @@ class _CheckboxFormFieldState extends FormFieldState<List<bool?>> {
   }
 }
 
+///Checkbox menu item class
+///
+///Used to create checkbox menu item
 class CheckboxMenuItem<T> {
   const CheckboxMenuItem({
     required this.value,
@@ -141,15 +149,30 @@ class CheckboxMenuItem<T> {
     this.onChanged,
   });
 
+  ///Checkbox enabled boolean
   final bool enabled;
+
+  ///Checkbox title widget
   final Widget title;
 
+  ///Checkbox on changed handle
   final ValueChanged<bool>? onChanged;
 
+  ///Dynaimc value for value
   final T value;
+
+  ///Checkbox control affinity
   final ListTileControlAffinity controlAffinity;
+
+  ///Checkbox is three line boolean status
   final bool isThreeLine;
+
+  ///Checkbox visual density
   final VisualDensity? visualDensity;
+
+  ///Checkbox clear others on select boolean
   final bool clearOthersOnSelect;
+
+  ///Checkbox has action boolean
   final bool? hasAction;
 }

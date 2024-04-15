@@ -3,6 +3,9 @@ import 'package:varicon_form_builder/src/form_builder/form_fields/theme_search_f
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
+///Custom paginated bottomsheet
+///
+///Accepts api call, on clicked and linked query
 class CustomPaginatedBottomsheet extends StatefulWidget {
   const CustomPaginatedBottomsheet({
     super.key,
@@ -10,8 +13,14 @@ class CustomPaginatedBottomsheet extends StatefulWidget {
     required this.onClicked,
     required this.linkedQuery,
   });
+
+  ///Api call function to get data
   final Future<List<dynamic>> Function(Map<String, dynamic>) apiCall;
+
+  ///Function to call on clicked item
   final Function(ValueText data) onClicked;
+
+  ///Linked query to get data
   final String linkedQuery;
 
   @override
@@ -31,6 +40,9 @@ class _CustomPaginatedBottomsheetState
   bool startSearch = true;
   bool isLoading = true;
 
+  ///Method to call paginated api
+  ///
+  ///Accepts query string to search
   Future hitApi(
     String? q,
   ) async {
@@ -54,6 +66,9 @@ class _CustomPaginatedBottomsheetState
     });
   }
 
+  ///Method to load more data
+  ///
+  ///Hit api to get more data for pagination
   void _loadMoreData() async {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
@@ -76,6 +91,9 @@ class _CustomPaginatedBottomsheetState
 
   @override
   void initState() {
+    ///Initial api call
+    ///
+    ///Hit api to get data on page scroll end
     super.initState();
     hitApi('');
     _scrollController.addListener(_loadMoreData);
