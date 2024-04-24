@@ -5,6 +5,9 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 import '../../models/form_value.dart';
 
+///Field to input date time
+///
+///Accepts field type with date time input
 class DateTimeInputWidget extends StatefulWidget {
   const DateTimeInputWidget({
     super.key,
@@ -15,10 +18,19 @@ class DateTimeInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///Dynmaic field model [date, time, datetime]
   final dynamic field;
+
+  ///Date form key
   final Key formKey;
+
+  ///Form value fro date values
   final FormValue formValue;
+
+  ///Label text for date time
   final String? labelText;
+
+  ///Date time type enum
   final DatePickerType dateTime;
 
   @override
@@ -50,6 +62,7 @@ class _DateTimeInputWidgetState extends State<DateTimeInputWidget> {
   void initState() {
     super.initState();
 
+    ///Initial date time, min and max date time
     datePickerType = widget.dateTime;
 
     min = _parseToDateTime(widget.field.min, datePickerType);
@@ -112,6 +125,11 @@ class _DateTimeInputWidgetState extends State<DateTimeInputWidget> {
     );
   }
 
+  ///Method to parse date time
+  ///
+  ///Accepts value and date time picker type
+  ///
+  ///Returns date time afetr parsing
   static DateTime? _parseToDateTime(dynamic value, DatePickerType pickerType) {
     if (value is! String) {
       return null;

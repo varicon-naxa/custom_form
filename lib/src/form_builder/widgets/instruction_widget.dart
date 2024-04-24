@@ -3,6 +3,9 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:varicon_form_builder/src/form_builder/varicon_form_builder.dart';
 import 'package:varicon_form_builder/src/models/input_field.dart';
 
+///Instruction form widget
+///
+///Accepts field type with instruction input
 class InstructionWidget extends StatelessWidget {
   const InstructionWidget({
     super.key,
@@ -12,9 +15,16 @@ class InstructionWidget extends StatelessWidget {
     this.labelText,
   });
 
+  ///Instruction input field model
   final InstructionInputField field;
+
+  ///Label text for instruction
   final String? labelText;
+
+  ///Function to call on tap o field
   final Function(String) onTap;
+
+  ///Function to build image
   final Widget Function(Map<String, dynamic>) imageBuild;
 
   @override

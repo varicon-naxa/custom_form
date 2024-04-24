@@ -6,6 +6,11 @@ import 'package:varicon_form_builder/src/models/value_text.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 
+///Custom form multiple input form component
+///
+///Accepts field type with multiple input
+///
+///Allows to select multiple options
 class MultipleInputWidget extends StatefulWidget {
   const MultipleInputWidget({
     super.key,
@@ -16,10 +21,19 @@ class MultipleInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///Multiple input field model
   final MultipleInputField field;
+
+  ///Form value to be used for multiple input
   final FormValue formValue;
+
+  ///Form key for unique form field
   final Key formKey;
+
+  ///Field label text
   final String? labelText;
+
+  ///Api call function for multi input options
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
 
   @override
@@ -27,14 +41,15 @@ class MultipleInputWidget extends StatefulWidget {
 }
 
 class _MultipleInputWidgetState extends State<MultipleInputWidget> {
-  String? answer;
+  //Late initialization of variables/keys
   late List<bool?> selectedChoices;
   late final List<ValueText> choices;
-  List<ValueText> searchedChoice = [];
-
   late final String otherFieldKey;
-
   late final bool showSelectAllOption;
+
+  ///Local variables for answer, searched choice, message and controllers
+  String? answer;
+  List<ValueText> searchedChoice = [];
   bool showMessage = false;
   TextEditingController formCon = TextEditingController();
   TextEditingController searchCon = TextEditingController();
@@ -96,6 +111,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     });
   }
 
+  ///Method to check for matching actions
   bool checkMatchingActions() {
     if (selectedChoices.length != choices.length) {
       throw ArgumentError("Lists must have the same length");
@@ -110,6 +126,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     return false;
   }
 
+  ///Method to check selected options
   bool isNoneSelected() => _isSelected((v) => v is NoneValueText);
   bool isOtherSelected() => _isSelected((v) => v is OtherValueText);
 

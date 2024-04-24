@@ -6,6 +6,9 @@ import 'package:varicon_form_builder/src/models/value_text.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 
+///Form builder checkbox input widget
+///
+///Accepts field, formValue, formKey, labelText and apiCall
 class CheckboxInputWidget extends StatefulWidget {
   const CheckboxInputWidget(
       {super.key,
@@ -15,10 +18,19 @@ class CheckboxInputWidget extends StatefulWidget {
       this.labelText,
       this.apiCall});
 
+  ///Checkbox input field model
   final CheckboxInputField field;
+
+  ///Form value to save data as per requirement
   final FormValue formValue;
+
+  ///Form key to save form data
   final Key formKey;
+
+  ///Label text to show on form
   final String? labelText;
+
+  ///Api call to get data
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
 
   @override
@@ -26,12 +38,12 @@ class CheckboxInputWidget extends StatefulWidget {
 }
 
 class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
+  ///Varibale to be later used to show alert message
   late List<bool?> selectedChoices;
   late final List<ValueText> choices;
-
   late final String otherFieldKey;
-
   late final bool showSelectAllOption;
+
   bool showMessage = false;
   TextEditingController formCon = TextEditingController();
   TextEditingController searchCon = TextEditingController();

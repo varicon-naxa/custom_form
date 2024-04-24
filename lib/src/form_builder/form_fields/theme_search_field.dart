@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/core/debouncer.dart';
 
 ///Themed search text field widget
+///
+///Accepts name, hintText, onChange, controllerText, enable, maxLength, labelText, suffixicon and onEditingComplete
 class ThemeSearchField extends StatelessWidget {
   ThemeSearchField(
       {super.key,
@@ -14,15 +16,35 @@ class ThemeSearchField extends StatelessWidget {
       this.labelText,
       this.suffixicon,
       this.onEditingComplete});
+
+  ///Search field name
   final String name;
+
+  ///Search field hint text
   final String hintText;
+
+  ///Search field label text
   final String? labelText;
+
+  ///Search field enable boolean
   final bool? enable;
+
+  ///Search field on change function
   final Function(String) onChange;
+
+  ///Search field controller
   final TextEditingController? controllerText;
+
+  ///Search field max length
   final int? maxLength;
+
+  ///Search field suffix icon
   final Widget? suffixicon;
+
+  ///Search field on editing complete function
   final Function()? onEditingComplete;
+
+  ///Search optimization with debounce during search
   final debouncer = Debouncer(milliseconds: 500);
 
   @override

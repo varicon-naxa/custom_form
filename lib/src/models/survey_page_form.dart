@@ -7,7 +7,7 @@ import 'input_field.dart';
 part 'survey_page_form.freezed.dart';
 part 'survey_page_form.g.dart';
 
-// /pages
+///pages
 @freezed
 class SurveyPageForm with _$SurveyPageForm {
   const factory SurveyPageForm({

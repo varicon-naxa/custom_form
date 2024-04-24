@@ -1,13 +1,31 @@
 import 'package:flutter/material.dart';
 
+///Action button widget
+///
+///Accepts button text, button color, text color, border color, on pressed, font size, border radius and vertical padding
 class ActionButton extends StatelessWidget {
+  ///Button text to be shown
   final String buttonText;
+
+  ///Button color for button
   final Color buttonColor;
+
+  ///Text color for button
   final Color textColor;
+
+  ///Border color for button
   final Color? borderColor;
+
+  ///On pressed function
   final VoidCallback onPressed;
+
+  ///Font size for button text
   final double fontSize;
+
+  ///Border radius for button
   final double borerRadius;
+
+  ///Vertical padding for button
   final double verticalPadding;
 
   const ActionButton(

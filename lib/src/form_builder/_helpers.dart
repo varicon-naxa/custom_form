@@ -19,10 +19,13 @@ part of 'varicon_form_builder.dart';
 //   }
 // }
 
-
+///Predefined class for custom form spacing
 class AppSpacing {
   const AppSpacing._();
 
+  ///Spacing components for height
+  ///
+  ///Contains multiple height values
   static Widget sizedBoxH_02() => const SizedBox(height: 2);
   static Widget sizedBoxH_04() => const SizedBox(height: 4);
   static Widget sizedBoxH_05() => const SizedBox(height: 5);
@@ -33,6 +36,9 @@ class AppSpacing {
   static Widget sizedBoxH_16() => const SizedBox(height: 16);
   static Widget sizedBoxH_20() => const SizedBox(height: 20);
 
+  ///Spacing components for width
+  ///
+  ///Contains multiple width values
   static Widget sizedBoxW_02() => const SizedBox(width: 2);
   static Widget sizedBoxW_04() => const SizedBox(width: 4);
   static Widget sizedBoxW_05() => const SizedBox(width: 5);

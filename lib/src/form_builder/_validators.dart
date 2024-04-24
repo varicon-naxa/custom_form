@@ -1,5 +1,11 @@
+///Class to hold all the form validators
+///
+///Validates text, number, uri, rating and date time fields
 part of 'varicon_form_builder.dart';
 
+///Validates text fields
+///
+///checks for required type, email type and empty fields
 String? textValidator({
   required String? value,
   required String inputType,
@@ -20,6 +26,9 @@ String? textValidator({
   return null;
 }
 
+///Validates required fields
+///
+///checks for required type and empty fields
 String? requiredValidator({
   required String? value,
   bool isRequired = false,
@@ -32,6 +41,11 @@ String? requiredValidator({
   return null;
 }
 
+///Validates uri
+///
+///accepts string value along with required text error message
+///
+///URI validated using regex
 String? uriValidator({
   required String? value,
   bool isRequired = false,
@@ -57,6 +71,11 @@ String? uriValidator({
   return null;
 }
 
+///Validates number
+///
+///checks for required type, max and min values as per the input
+///
+///returns error message if the value is less than min or greater than max
 String? numberValidator({
   num? value,
   bool isRequired = false,
@@ -69,7 +88,6 @@ String? numberValidator({
   if (isRequired && (value == null)) {
     return requiredErrorText ?? 'Response required.';
   }
-
   if (min != null && value! < min) {
     return minErrorText ?? 'The value should not be less than $min';
   }
@@ -80,6 +98,9 @@ String? numberValidator({
   return null;
 }
 
+///Validates rating
+///
+///accepts rating value with required state and error message
 String? ratingValidator({
   required double? value,
   bool isRequired = false,
@@ -94,6 +115,11 @@ String? ratingValidator({
   return null;
 }
 
+///Validates date time
+///
+///accepts date time value with required state, min and max values
+///
+///returns error message if the value is less than min or greater than max
 String? dateTimeValidator({
   required DateTime? value,
   bool isRequired = false,
@@ -111,7 +137,6 @@ String? dateTimeValidator({
       return null;
     }
   }
-
   if (min != null) {
     if (value.isBefore(min)) {
       return minErrorText;

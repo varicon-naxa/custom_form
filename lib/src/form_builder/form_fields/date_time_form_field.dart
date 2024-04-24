@@ -3,20 +3,48 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/form_time_picker.dart';
 
+///Date picker type enum
+///
+///Handles date, time and dateTime
 enum DatePickerType { date, time, dateTime }
 
+///Date time form field
+///
+///
 class DateTimeFormField extends FormField<DateTime> {
   DateTimeFormField({
     super.key,
+
+    ///Date picker type
+    ///
+    ///Defaults to [DatePickerType.dateTime]
     DatePickerType type = DatePickerType.dateTime,
+
+    ///Form field validator
     super.validator,
+
+    ///Form field on changed
     super.onSaved,
+
+    ///Form field enabled boolean
     super.enabled,
+
+    ///Form field initial value
     super.initialValue,
+
+    ///Form field  frst date
     DateTime? firstDate,
+
+    ///Form field last date
     DateTime? lastDate,
+
+    ///Form field form key
     required Key formKey,
+
+    ///Form field autovalidate mode default to [AutovalidateMode.onUserInteraction]
     super.autovalidateMode = AutovalidateMode.onUserInteraction,
+
+    ///Form field date  builder
     String Function(DateTime? dateTime, DatePickerType type)? dateBuilder,
   }) : super(builder: (fieldState) {
           final state = fieldState as _DateTimeFormState;
@@ -103,6 +131,9 @@ class DateTimeFormField extends FormField<DateTime> {
   @override
   FormFieldState<DateTime> createState() => _DateTimeFormState();
 
+  ///Initial dateTime values
+  ///
+  ///Compare the field value with the initial date and last date
   static DateTime _getInitialDate(
     DateTime? fieldValue,
     DateTime initialDate,
@@ -117,6 +148,7 @@ class DateTimeFormField extends FormField<DateTime> {
     return dt.compareTo(initialDate) > 0 ? dt : initialDate;
   }
 
+  ///Initial time of day value
   static TimeOfDay _getInitialTime(DateTime? fieldValue) {
     if (fieldValue != null) {
       return TimeOfDay(hour: fieldValue.hour, minute: fieldValue.minute);
@@ -124,6 +156,7 @@ class DateTimeFormField extends FormField<DateTime> {
     return const TimeOfDay(hour: 1, minute: 0);
   }
 
+  ///Combines date and time to dateTime
   static DateTime _combine(DateTime? date, TimeOfDay? time) {
     DateTime dateTime = DateTime(0);
 
@@ -138,6 +171,7 @@ class DateTimeFormField extends FormField<DateTime> {
     return dateTime;
   }
 
+  ///Hint text for date picker type
   static String _getHintText(DatePickerType type) {
     switch (type) {
       case DatePickerType.date:
@@ -149,6 +183,11 @@ class DateTimeFormField extends FormField<DateTime> {
     }
   }
 
+  ///Returns formatted text
+  ///
+  ///Returns formatted text based on date time value and date picker type
+  ///
+  ///Returns empty string if value is null
   static String getFormattedText(DateTime? value, DatePickerType type) {
     if (value == null) return '';
     switch (type) {

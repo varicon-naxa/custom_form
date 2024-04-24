@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 ///Debouncer class for search feature
+///
+///Helps to delay the search by milliseconds 
 class Debouncer {
   final int milliseconds;
   Timer? _timer;
