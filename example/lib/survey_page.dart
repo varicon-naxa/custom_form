@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-
+import 'dart:math' as Rand ;
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
@@ -154,7 +154,7 @@ class _SurveyPageState extends State<SurveyPage> {
           await Future.delayed(const Duration(seconds: 5));
           return [
             {
-              'id': 12345,
+              'id': Rand.Random().nextDouble() * 10000,
               'file':
                   'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
               'thumbnail':
@@ -162,7 +162,7 @@ class _SurveyPageState extends State<SurveyPage> {
               'name': '300.jpg',
             },
             {
-              'id': 12346,
+              'id': Rand.Random().nextDouble() * 10000,
               'file':
                   'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
               'thumbnail':
@@ -170,7 +170,7 @@ class _SurveyPageState extends State<SurveyPage> {
               'name': '301.jpg',
             },
             {
-              'id': 12347,
+              'id': Rand.Random().nextDouble() * 10000,
               'file':
                   'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
               'thumbnail':

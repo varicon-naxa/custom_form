@@ -9,6 +9,7 @@ class CheckboxFormField extends FormField<List<bool?>> {
   CheckboxFormField({
     super.key,
     required List<CheckboxMenuItem> items,
+    required BuildContext context,
     super.onSaved,
     super.validator,
     required List<bool?> initialList,
@@ -34,29 +35,31 @@ class CheckboxFormField extends FormField<List<bool?>> {
                 children: items.indexed.map((e) {
                   final (index, item) = e;
                   return Container(
-                    margin: const EdgeInsets.only(bottom: 4),
+                    margin: const EdgeInsets.only(bottom: 8),
                     decoration: BoxDecoration(
-                        color: item.hasAction != null
-                            ? (item.hasAction!)
-                                ? const Color(0xffFDD9D7)
-                                : const Color(0xffDBEFDC)
-                            : Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                            color: item.hasAction != null
-                                ? (item.hasAction!)
-                                    ? Colors.red
-                                    : Colors.green
-                                : Colors.white)),
+                      color: item.hasAction != null
+                          ? (item.hasAction!)
+                              ? const Color(0xffFDD9D7)
+                              : const Color(0xffDBEFDC)
+                          : Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                          color: item.hasAction != null
+                              ? (item.hasAction!)
+                                  ? Colors.white
+                                  : Colors.green
+                              : Colors.white),
+                    ),
                     child: CheckboxListTile(
                       controlAffinity: ListTileControlAffinity.leading,
                       contentPadding: EdgeInsets.zero,
-                      visualDensity: const VisualDensity(
-                          horizontal: VisualDensity.minimumDensity,
-                          vertical: VisualDensity.minimumDensity),
+                      visualDensity: VisualDensity.compact,
                       value: state.value?[index] ?? false,
                       enabled: item.enabled,
                       onChanged: (value) {
+                        final focus = FocusNode();
+
+                        FocusScope.of(context).requestFocus(focus);
                         if (value == null) return;
                         late List<bool?> newState;
 

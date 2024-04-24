@@ -98,7 +98,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
 
     return Container(
       key: Key(singleItem.value.id ?? ''),
-      height: 300,
+      height: 280,
       margin: const EdgeInsets.only(
         bottom: 10,
       ),
@@ -107,7 +107,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
-          20.0,
+          8.0,
         ),
         border: Border.all(
           color: Colors.grey.shade300,
@@ -169,12 +169,17 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     )
                   : GestureDetector(
                       onTap: () {
+                        final focus = FocusNode();
+                        FocusScope.of(context).requestFocus(focus);
                         showDialog(
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
                             contentPadding: EdgeInsets.zero,
                             insetPadding: EdgeInsets.zero,
                             clipBehavior: Clip.antiAliasWithSaveLayer,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
                             content:
                                 StatefulBuilder(builder: (context, setStates) {
                               return Container(
@@ -203,7 +208,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                         )),
                                     AppSpacing.sizedBoxH_12(),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         GestureDetector(
                                           onTap: () {
@@ -446,10 +452,24 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                       ));
                     });
                   } else {
-                    Fluttertoast.showToast(
-                      msg: 'Empty Signature field',
-                      backgroundColor: Colors.red,
-                    );
+                    if (answer.any((signature) =>
+                        signature.file == null || signature.file == '')) {
+                      Fluttertoast.showToast(
+                        msg: 'Empty Signature field',
+                        backgroundColor: Colors.red,
+                      );
+                    } else if (answer.any((signature) =>
+                        signature.file == null || signature.file == '')) {
+                      Fluttertoast.showToast(
+                        msg: 'Signature with name field is required',
+                        backgroundColor: Colors.red,
+                      );
+                    } else {
+                      Fluttertoast.showToast(
+                        msg: 'Empty Signature field',
+                        backgroundColor: Colors.red,
+                      );
+                    }
                   }
                 },
                 icon: const Icon(

@@ -1,4 +1,6 @@
 import 'package:example/button_page.dart';
+import 'package:example/theme/app_theme.dart';
+import 'package:example/theme/palette.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -18,19 +20,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        useMaterial3: true,
-        primarySwatch: Colors.orange,
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: const BorderSide(
-              color: Colors.red,
-            ),
+      theme:
+      AppTheme.defaultTheme.copyWith(
+          // bottomSheetTheme: AppTheme.defaultTheme.bottomSheetTheme
+          //     .copyWith(backgroundColor: Colors.white),
+          textSelectionTheme: const TextSelectionThemeData(
+            selectionColor: Palette.primary,
+            cursorColor: Palette.primary,
+            selectionHandleColor: Palette.primary,
           ),
-          errorMaxLines: 3,
-        ),
-      ),
+          visualDensity: VisualDensity.adaptivePlatformDensity),
       home: const ButtonPage(),
     );
   }

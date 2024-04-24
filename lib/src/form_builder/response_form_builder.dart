@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/ext/color_extension.dart';
@@ -136,14 +137,18 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
               children: [
                 Text(
                   widget.surveyForm.title.toString(),
-                  style: Theme.of(context).textTheme.headlineSmall,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        height: 1.2,
+                      ),
                 ),
+                AppSpacing.sizedBoxH_08(),
                 Text(
                   widget.surveyForm.description.toString(),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: const Color(0xff6A737B),
                       ),
                 ),
+                AppSpacing.sizedBoxH_08(),
               ],
             ),
           ),
@@ -160,6 +165,26 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if ((widget.surveyForm.submittedBy ?? '').isNotEmpty)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Submitted by',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        widget.surveyForm.submittedBy ?? '',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
+                            ),
+                      ),
+                    ],
+                  ),
                 Row(
                   children: [
                     Expanded(
@@ -211,7 +236,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                     children: [
                       TextSpan(
                           text: widget.surveyForm.submittedBy != null
-                              ? 'by ${widget.surveyForm.submittedBy}'
+                              ? 'by ${widget.surveyForm.submittedBy} '
                               : '',
                           style: Theme.of(context)
                               .textTheme
@@ -262,9 +287,38 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: field.answer ?? '',
-                          ),
+                          child:
+                              (field.name ?? '').toLowerCase().contains('long')
+                                  ? Column(
+                                      children: [
+                                        (field.answer ?? '').isEmpty
+                                            ? const Text(
+                                                'No Response',
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 16,
+                                                ),
+                                              )
+                                            : Html(
+                                                data: field.answer ?? '',
+                                              ),
+                                        const DottedLine(
+                                          direction: Axis.horizontal,
+                                          alignment: WrapAlignment.center,
+                                          lineLength: double.infinity,
+                                          lineThickness: 1.0,
+                                          dashLength: 4.0,
+                                          dashColor: Colors.grey,
+                                          dashRadius: 0.0,
+                                          dashGapLength: 4.0,
+                                          dashGapColor: Colors.white,
+                                          dashGapRadius: 0.0,
+                                        )
+                                      ],
+                                    )
+                                  : _AnswerDesign(
+                                      answer: field.answer ?? '',
+                                    ),
                         );
                       },
                       phone: (field) {
@@ -382,22 +436,18 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                               (obj) => obj.value == e.answer,
                             );
                             answerText = foundObject.text;
+                          } else {
+                            answerText = (field.answerList ?? '');
                           }
                         }
 
-                        return e.answer != null && e.answer != ''
-                            ? Column(
-                                children: [
-                                  LabeledWidget(
-                                    labelText: labelText,
-                                    isRequired: e.isRequired,
-                                    child: _AnswerDesign(
-                                      answer: answerText,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : const SizedBox.shrink();
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: _AnswerDesign(
+                            answer: answerText,
+                          ),
+                        );
                       },
                       yesno: (field) {
                         String answerText = '';
@@ -412,15 +462,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             answerText = foundObject.text;
                           }
                         }
-                        return e.answer != null && e.answer != ''
-                            ? LabeledWidget(
-                                labelText: labelText,
-                                isRequired: e.isRequired,
-                                child: _AnswerDesign(
-                                  answer: answerText,
-                                ),
-                              )
-                            : const SizedBox.shrink();
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: _AnswerDesign(
+                            answer: answerText,
+                          ),
+                        );
                       },
 
                       yesnona: (field) {
@@ -536,6 +584,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                       (e) => _AnswerDesign(
                                         answer: e['name'],
                                         isFile: true,
+                                        isImage: false,
                                         fileClick: () {
                                           widget.fileClick({
                                             'data': e['file'],
@@ -587,14 +636,24 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                   isImage: true,
                                 ),
                               )
-                            : const SizedBox.shrink();
+                            : LabeledWidget(
+                                labelText: labelText,
+                                isRequired: e.isRequired,
+                                child: _AnswerDesign(
+                                  answer: '',
+                                ),
+                              );
                       },
                       instruction: (field) {
                         return LabeledWidget(
                             labelText: e.label,
                             isRequired: e.isRequired,
                             child: InstructionWidget(
-                              onTap: (String url) {},
+                              onTap: (String url) {
+                                widget.fileClick(
+                                  {'data': url, 'title': ''},
+                                );
+                              },
                               field: field,
                               imageBuild: widget.imageBuild,
                             ));
@@ -602,7 +661,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
 
                       section: (field) {
                         return Padding(
-                          padding: const EdgeInsets.only(bottom: 12),
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -611,8 +670,11 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
-                                    ?.copyWith(color: const Color(0xff233759)),
+                                    ?.copyWith(
+                                        color: const Color(0xff233759),
+                                        height: 1.2),
                               ),
+                              AppSpacing.sizedBoxH_08(),
                               (field.description ?? '').isEmpty
                                   ? const SizedBox.shrink()
                                   : Text(
@@ -624,6 +686,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                             color: const Color(0xff6A737B),
                                           ),
                                     ),
+                              AppSpacing.sizedBoxH_08(),
+                              const Divider(
+                                height: 1,
+                              ),
                             ],
                           ),
                         );
@@ -668,6 +734,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                   imageBuild: widget.imageBuild,
                                 )
                               : Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       'No Signature',
@@ -800,22 +867,20 @@ class _AnswerDesign extends StatelessWidget {
                     ),
                   )
             : isFile
-                ? GestureDetector(
-                    onTap: () {
-                      fileClick!();
-                    },
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(8.0),
-                        border: Border.all(),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
+                ? Container(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(8.0),
+                      border: Border.all(),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Padding(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 8.0,
                             ),
@@ -824,8 +889,14 @@ class _AnswerDesign extends StatelessWidget {
                               style: Theme.of(context).textTheme.bodyMedium,
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            fileClick!();
+                          },
+                          child: const Icon(Icons.download),
+                        )
+                      ],
                     ),
                   )
                 : Text(

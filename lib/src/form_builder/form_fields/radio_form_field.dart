@@ -7,6 +7,7 @@ class RadioFormField<T> extends FormField<T> {
   RadioFormField({
     super.key,
     required List<RadioMenuItem<T>> items,
+    required BuildContext context,
     this.onChanged,
     this.hasMessage,
     super.onSaved,
@@ -29,7 +30,7 @@ class RadioFormField<T> extends FormField<T> {
               child: Column(
                 children: items.map((e) {
                   return Container(
-                    margin: const EdgeInsets.only(bottom: 10),
+                    margin: const EdgeInsets.only(bottom: 8),
                     decoration: BoxDecoration(
                         color: e.hasCondition
                             ? e.hasAction != null
@@ -38,15 +39,15 @@ class RadioFormField<T> extends FormField<T> {
                                     : const Color(0xffDBEFDC)
                                 : Colors.white
                             : Colors.white,
-                        borderRadius: BorderRadius.circular(4),
+                        borderRadius: BorderRadius.circular(8),
                         border: Border.all(
                           color: e.hasCondition
                               ? e.hasAction != null
                                   ? (e.hasAction!)
                                       ? Colors.red
                                       : Colors.green
-                                  : Colors.grey
-                              : Colors.grey,
+                                  : Colors.white
+                              : Colors.white,
                         )),
                     child: RadioListTile<T>(
                       groupValue: state.value,
@@ -54,6 +55,9 @@ class RadioFormField<T> extends FormField<T> {
                       controlAffinity: ListTileControlAffinity.leading,
                       value: e.value,
                       onChanged: (value) {
+                        final focus = FocusNode();
+
+                        FocusScope.of(context).requestFocus(focus);
                         state.didChange(value);
                         // finally call onChanged for each item.
                         if (hasMessage != null) {

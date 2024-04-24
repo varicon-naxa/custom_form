@@ -1,11 +1,8 @@
 // ignore_for_file: use_build_context_synchronously
-
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
@@ -128,9 +125,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   final ScrollController _scrollController = ScrollController();
 
   ///Global key list to make each field unique
-  List<GlobalKey<FormFieldState<String>>> _fieldKeys = [];
 
   ///Track total form question counts
+  List<GlobalKey<FormFieldState<dynamic>>> _fieldKeys = [];
   int questionNumber = 0;
 
   ///Values to be submitted via forms
@@ -145,7 +142,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     ///Sets input fields and global keys
     _fieldKeys = List.generate(
       (widget.surveyForm.inputFields).length,
-      (index) => GlobalKey<FormFieldState<String>>(),
+      (index) => GlobalKey<FormFieldState<dynamic>>(),
     );
 
     formKey = GlobalKey<FormState>();
@@ -268,20 +265,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   bool popInvoke() {
     Map<String, dynamic> initialResult = {};
     for (var field in widget.surveyForm.inputFields) {
-      log(field.id.toString());
-      log(field.answer.toString());
       if (field.answer != null && field.answer != '') {
         if (field.answer is List) {
-          log('indide list');
-
           if (((field.answer ?? []) as List).isNotEmpty) {
-            log('indide list list');
-
             initialResult[field.id] = field.answer;
           }
         } else {
-          log('indide list is not list');
-
           initialResult[field.id] = field.answer;
         }
       }
@@ -289,8 +278,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     formKey.currentState?.save();
     Map<String, dynamic> fulldata = formValue.value;
     bool areEqual = compareMaps(initialResult, fulldata);
-    log(jsonEncode(initialResult).toString());
-    log(jsonEncode(fulldata).toString());
+
     return areEqual;
   }
 
@@ -308,8 +296,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
           children: [
             Text(
               widget.surveyForm.title.toString(),
-              style: Theme.of(context).textTheme.titleLarge,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    height: 1.2,
+                  ),
             ),
+            AppSpacing.sizedBoxH_08(),
             Text(
               widget.surveyForm.description.toString(),
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
@@ -320,21 +311,24 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             if (widget.hasGeolocation && _currentPosition?.latitude != null)
               Container(
                 decoration: BoxDecoration(
-                  color: Colors.orange.withOpacity(0.2),
+                  color: Colors.orange.withOpacity(0.1),
                   border: Border.all(color: Colors.orange),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: TextButton.icon(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.warning,
-                      color: Colors.red,
+                      Icons.info_outline,
+                      color: Colors.orange,
                     ),
                     label: Text(
                       'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
                       style: Theme.of(context).textTheme.bodySmall,
                     )),
               ),
+            if (widget.hasGeolocation && _currentPosition?.latitude != null)
+              AppSpacing.sizedBoxH_20(),
+
             // if (widget.isCarousel)
 
             if (!widget.isCarousel)
@@ -347,56 +341,114 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                     final labelText = '$questionNumber. ${e.label ?? ''} ';
                     return e.maybeMap(
                       text: (field) {
+                        final HtmlEditorController htmlEditorController =
+                            HtmlEditorController();
+                        HtmlEditorOptions editorOptions =
+                            const HtmlEditorOptions(
+                                initialText: '<b>This is me</b>');
                         formValue.saveString(
                           field.id,
                           field.answer,
                         );
+
+                        editorOptions = HtmlEditorOptions(
+                          initialText: field.answer,
+                        );
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child: TextFormField(
-                            initialValue: field.answer ?? '',
-                            key: _fieldKeys[
-                                widget.surveyForm.inputFields.indexOf(e)],
-                            style: Theme.of(context).textTheme.bodyLarge,
-                            readOnly: field.readOnly,
-                            keyboardType: (field.name ?? '')
-                                    .toLowerCase()
-                                    .contains('long')
-                                ? TextInputType.multiline
-                                : TextInputType.text,
-                            textInputAction: (field.name ?? '')
-                                    .toLowerCase()
-                                    .contains('long')
-                                ? TextInputAction.newline
-                                : TextInputAction.next,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            maxLength: field.maxLength,
-                            maxLines: (field.name ?? '')
-                                    .toLowerCase()
-                                    .contains('long')
-                                ? 3
-                                : 1,
-                            onSaved: (newValue) {
-                              formValue.saveString(
-                                field.id,
-                                newValue.toString().trim(),
-                              );
-                            },
-                            validator: (value) {
-                              return textValidator(
-                                value: value,
-                                inputType: "text",
-                                isRequired: field.isRequired,
-                                requiredErrorText: field.requiredErrorText,
-                              );
-                            },
-                            decoration: InputDecoration(
-                              hintText: field.hintText,
-                              // labelText: labelText,
-                            ),
-                          ),
+                          child: (field.name ?? '')
+                                  .toLowerCase()
+                                  .contains('long')
+                              ? Container(
+                                  height: 320,
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey.shade300,
+                                      ),
+                                      borderRadius: BorderRadius.circular(4.0)),
+                                  child: HtmlEditor(
+                                    callbacks:
+                                        Callbacks(onChangeContent: (code) {
+                                      formValue.saveString(
+                                        field.id,
+                                        code.toString().trim(),
+                                      );
+                                    }),
+                                    controller: htmlEditorController, //required
+                                    plugins: const [],
+                                    htmlEditorOptions: editorOptions,
+                                    // textInputAction: TextInputAction.newline,
+                                    htmlToolbarOptions:
+                                        const HtmlToolbarOptions(
+                                      defaultToolbarButtons: [
+                                        // StyleButtons(),
+                                        // FontSettingButtons(),
+                                        FontButtons(
+                                          clearAll: false,
+                                          strikethrough: false,
+                                          subscript: false,
+                                          superscript: false,
+                                        ),
+                                        // ColorButtons(),
+                                        ListButtons(listStyles: false),
+                                        ParagraphButtons(
+                                          caseConverter: false,
+                                          lineHeight: false,
+                                          textDirection: false,
+                                          increaseIndent: false,
+                                          decreaseIndent: false,
+                                        ),
+                                        // InsertButtons(),
+                                        // OtherButtons(),
+                                      ],
+                                    ),
+                                  ),
+                                )
+                              : TextFormField(
+                                  initialValue: field.answer ?? '',
+                                  key: _fieldKeys[
+                                      widget.surveyForm.inputFields.indexOf(e)],
+                                  style: Theme.of(context).textTheme.bodyLarge,
+                                  readOnly: field.readOnly,
+                                  keyboardType: (field.name ?? '')
+                                          .toLowerCase()
+                                          .contains('long')
+                                      ? TextInputType.multiline
+                                      : TextInputType.text,
+                                  textInputAction: (field.name ?? '')
+                                          .toLowerCase()
+                                          .contains('long')
+                                      ? TextInputAction.newline
+                                      : TextInputAction.next,
+                                  autovalidateMode:
+                                      AutovalidateMode.onUserInteraction,
+                                  maxLength: field.maxLength,
+                                  maxLines: (field.name ?? '')
+                                          .toLowerCase()
+                                          .contains('long')
+                                      ? 3
+                                      : 1,
+                                  onSaved: (newValue) {
+                                    formValue.saveString(
+                                      field.id,
+                                      newValue.toString().trim(),
+                                    );
+                                  },
+                                  validator: (value) {
+                                    return textValidator(
+                                      value: value,
+                                      inputType: "text",
+                                      isRequired: field.isRequired,
+                                      requiredErrorText:
+                                          field.requiredErrorText,
+                                    );
+                                  },
+                                  decoration: InputDecoration(
+                                    hintText: field.hintText,
+                                    // labelText: labelText,
+                                  ),
+                                ),
                         );
                       },
                       number: (field) {
@@ -850,7 +902,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             (field.answer ?? []).isNotEmpty) {
                           formValue.saveList(
                             field.id,
-                            field.answer ?? [],
+                            (field.answer ?? [])
+                                .map((e) => e.toJson())
+                                .toList(),
                           );
                         }
                         return LabeledWidget(
@@ -893,8 +947,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleLarge
-                                    ?.copyWith(color: const Color(0xff233759)),
+                                    ?.copyWith(
+                                        color: const Color(0xff233759),
+                                        height: 1.2),
                               ),
+                              AppSpacing.sizedBoxH_08(),
                               (field.description ?? '').isEmpty
                                   ? const SizedBox.shrink()
                                   : Text(
@@ -906,6 +963,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                             color: const Color(0xff6A737B),
                                           ),
                                     ),
+                              AppSpacing.sizedBoxH_08(),
+                              const Divider(
+                                height: 1,
+                              ),
                             ],
                           ),
                         );

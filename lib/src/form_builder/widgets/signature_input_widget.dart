@@ -217,95 +217,89 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            isLoading
-                ? Container(
-                    width: 70.0,
-                    height: 70.0,
-                    color: Colors.white,
-                  )
-                    .animate(
-                      onPlay: (controller) => controller.repeat(),
-                    )
-                    .shimmer(
-                      color: Colors.grey.shade300,
-                      duration: const Duration(seconds: 2),
-                    )
-                : SizedBox(
-                    height: 200,
+        isLoading
+            ? Container(
+                width: 70.0,
+                height: 70.0,
+                color: Colors.white,
+              )
+                .animate(
+                  onPlay: (controller) => controller.repeat(),
+                )
+                .shimmer(
+                  color: Colors.grey.shade300,
+                  duration: const Duration(seconds: 2),
+                )
+            : SizedBox(
+                height: 200,
+                width: double.infinity,
+                child: DottedBorder(
+                  child: SizedBox(
+                    height: 150,
                     width: double.infinity,
-                    child: DottedBorder(
-                      child: SizedBox(
-                        height: 150,
-                        width: double.infinity,
-                        child: answer.isEmpty
-                            ? GestureDetector(
-                                onTap: () {
-                                  openDialog();
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SizedBox(
-                                      height: 50,
-                                      width: 50,
-                                      child: Image.asset(
-                                        'assets/image/signature.png',
-                                        package: 'varicon_form_builder',
-                                      ),
-                                    ),
-                                    Text(
-                                      'Click here to add signature',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium,
-                                    ),
-                                  ],
+                    child: answer.isEmpty
+                        ? GestureDetector(
+                            onTap: () {
+                              openDialog();
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    'assets/image/signature.png',
+                                    package: 'varicon_form_builder',
+                                  ),
+                                ),
+                                Text(
+                                  'Click here to add signature',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium,
+                                ),
+                              ],
+                            ),
+                          )
+                        : Stack(
+                            children: [
+                              Container(
+                                alignment: Alignment.center,
+                                height: 200,
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                  12.0,
+                                )),
+                                child: widget.imageBuild({
+                                  'image': imaeURL,
+                                  'height': 200.0,
+                                  'width': 200.0
+                                }),
+                              ),
+                              Positioned(
+                                top: 0,
+                                right: 0,
+                                child: IconButton(
+                                  icon: const Icon(
+                                    Icons.close_rounded,
+                                    color: Colors.red,
+                                  ),
+                                  onPressed: () {
+                                    widget.onSaved({});
+                                    setState(() {
+                                      answer = {};
+                                    });
+                                  },
                                 ),
                               )
-                            : Stack(
-                                children: [
-                                  Container(
-                                    alignment: Alignment.center,
-                                    height: 200,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                      12.0,
-                                    )),
-                                    child: widget.imageBuild({
-                                      'image': imaeURL,
-                                      'height': 200.0,
-                                      'width': 200.0
-                                    }),
-                                  ),
-                                  Positioned(
-                                    top: 0,
-                                    right: 0,
-                                    child: IconButton(
-                                      icon: const Icon(
-                                        Icons.close_rounded,
-                                        color: Colors.red,
-                                      ),
-                                      onPressed: () {
-                                        widget.onSaved({});
-                                        setState(() {
-                                          answer = {};
-                                        });
-                                      },
-                                    ),
-                                  )
-                                ],
-                              ),
-                      ),
-                    ),
+                            ],
+                          ),
                   ),
-          ],
-        ),
+                ),
+              ),
       ],
     );
   }
