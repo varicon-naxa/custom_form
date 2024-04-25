@@ -52,6 +52,7 @@ class MultiSignatureInputWidget extends StatefulWidget {
 
 class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   String? value;
+  String? nameFieldValue;
   bool isLoading = false;
   final debouncer = Debouncer(milliseconds: 500);
 
@@ -60,6 +61,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
 
   late final String otherFieldKey;
   List<String> files = [];
+
+  MapEntry<int, SingleSignature>? storeSingleItem;
 
   @override
   void initState() {
@@ -98,12 +101,12 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
 
     return Container(
       key: Key(singleItem.value.id ?? ''),
-      height: 280,
+      height: 290,
       margin: const EdgeInsets.only(
         bottom: 10,
       ),
       padding: const EdgeInsets.all(
-        8,
+        10,
       ),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(
@@ -123,15 +126,21 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                   height: 200,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                    12.0,
-                  )),
-                  child: const CircularProgressIndicator.adaptive())
+                    borderRadius: BorderRadius.circular(
+                      12.0,
+                    ),
+                  ),
+                  child: const CircularProgressIndicator.adaptive(),
+                )
               : (singleItem.value.file != null)
                   ? Stack(
+                      clipBehavior: Clip.none,
                       children: [
                         Container(
                           alignment: Alignment.center,
+                          margin: const EdgeInsets.only(
+                            bottom: 10,
+                          ),
                           height: 200,
                           width: double.infinity,
                           decoration: BoxDecoration(
@@ -144,27 +153,6 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                             'width': 200.0
                           }),
                         ),
-                        Positioned(
-                          top: -15,
-                          right: 0,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.close_rounded,
-                              color: Colors.red,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                answer[singleItem.key] =
-                                    answer[singleItem.key].copyWith(
-                                  file: null,
-                                  attachmentId: null,
-                                );
-
-                                isLoading = false;
-                              });
-                            },
-                          ),
-                        )
                       ],
                     )
                   : GestureDetector(
@@ -182,22 +170,24 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                             ),
                             content:
                                 StatefulBuilder(builder: (context, setStates) {
-                              return Container(
-                                color: Colors.white,
-                                width: MediaQuery.of(context).size.width - 100,
-                                padding: const EdgeInsets.all(16),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(
-                                      'Please sign below and submit',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall,
-                                    ),
-                                    AppSpacing.sizedBoxH_12(),
-                                    Container(
+                              return SingleChildScrollView(
+                                child: Container(
+                                  color: Colors.white,
+                                  width: MediaQuery.of(context).size.width - 55,
+                                  padding: const EdgeInsets.all(16),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        'Please sign below and submit',
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .titleSmall,
+                                      ),
+                                      AppSpacing.sizedBoxH_12(),
+                                      Container(
                                         height: 350,
                                         color: Colors.black12,
                                         child: Signature(
@@ -205,138 +195,184 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                           key: signKey,
                                           onSign: () {},
                                           strokeWidth: 4.0,
-                                        )),
-                                    AppSpacing.sizedBoxH_12(),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            final signHere =
-                                                signKey.currentState;
-                                            signHere?.clear();
-                                            Navigator.pop(context);
-                                          },
-                                          behavior: HitTestBehavior.translucent,
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 16.0),
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                4,
-                                              ),
-                                              border: Border.all(
-                                                color: const Color(0xffBDBDBD),
-                                              ),
-                                            ),
-                                            width: 130,
-                                            child: Text(
-                                              'Cancel'.toUpperCase(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .labelLarge
-                                                  ?.copyWith(
-                                                    fontWeight: FontWeight.w600,
-                                                    height: 1,
+                                        ),
+                                      ),
+                                      AppSpacing.sizedBoxH_12(),
+                                      TextFormField(
+                                        controller: controller,
+                                        onChanged: (data) {
+                                          debouncer.run(() {
+                                            answer[singleItem.key] =
+                                                answer[singleItem.key]
+                                                    .copyWith(name: data);
+                                            saveList();
+                                          });
+                                        },
+                                        decoration: const InputDecoration(
+                                          labelText: 'Signatory Name',
+                                        ),
+                                      ),
+                                      AppSpacing.sizedBoxH_10(),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Expanded(
+                                            child: GestureDetector(
+                                              onTap: () {
+                                                final signHere =
+                                                    signKey.currentState;
+                                                signHere?.clear();
+                                                Navigator.pop(context);
+                                              },
+                                              behavior:
+                                                  HitTestBehavior.translucent,
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 16.0),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    4,
                                                   ),
-                                              textAlign: TextAlign.center,
+                                                  border: Border.all(
+                                                    color:
+                                                        const Color(0xffBDBDBD),
+                                                  ),
+                                                ),
+                                                // width: 130,
+                                                child: Text(
+                                                  'Cancel'.toUpperCase(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .labelLarge
+                                                      ?.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        height: 1,
+                                                      ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        AppSpacing.sizedBoxW_08(),
-                                        GestureDetector(
-                                          onTap: () async {
-                                            final signs = signKey.currentState;
-                                            if ((signs?.points ?? []).isEmpty) {
-                                              Fluttertoast.showToast(
-                                                  msg:
-                                                      'Please sign to submit the signature');
-                                              return;
-                                            } else {
-                                              setState(() {
-                                                isLoading = true;
-                                                answer[singleItem.key] =
-                                                    answer[singleItem.key]
-                                                        .copyWith(
-                                                            isLoading: true);
-                                              });
-                                              final sign = signKey.currentState;
-                                              final image =
-                                                  await sign?.getData();
-                                              var data =
-                                                  await image?.toByteData(
-                                                      format: ui
-                                                          .ImageByteFormat.png);
-                                              Directory tempDir =
-                                                  await getTemporaryDirectory();
-                                              String tempPath = tempDir.path;
-                                              var filePath =
-                                                  '$tempPath/image.png';
-                                              final buffer = data!.buffer;
-
-                                              File savedImage = await File(
-                                                      filePath)
-                                                  .writeAsBytes(
-                                                      buffer.asUint8List(
-                                                          data.offsetInBytes,
-                                                          data.lengthInBytes));
-                                              Navigator.pop(context);
-
-                                              final savedFileData = await widget
-                                                  .attachmentSave(
-                                                      [savedImage.path]);
-                                              widget.onSaved(savedFileData[0]);
-                                              setState(() {
-                                                answer[singleItem.key] =
-                                                    answer[singleItem.key]
-                                                        .copyWith(
-                                                            file:
-                                                                savedFileData[0]
-                                                                    ['file'],
-                                                            attachmentId:
-                                                                savedFileData[0]
-                                                                        ['id']
-                                                                    .toString(),
-                                                            isLoading: false);
-                                                saveList();
-
-                                                isLoading = false;
-                                              });
-                                            }
-                                          },
-                                          behavior: HitTestBehavior.translucent,
-                                          child: Container(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 16.0),
-                                            decoration: BoxDecoration(
-                                              color: Colors.orange,
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                4,
-                                              ),
-                                              border: Border.all(
-                                                color: Colors.orange,
-                                              ),
-                                            ),
-                                            width: 130,
-                                            child: Text(
-                                              'SIGN'.toUpperCase(),
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .labelLarge
-                                                  ?.copyWith(
-                                                    fontWeight: FontWeight.w600,
-                                                    height: 1,
+                                          AppSpacing.sizedBoxW_12(),
+                                          Expanded(
+                                            child: GestureDetector(
+                                              onTap: () async {
+                                                final signs =
+                                                    signKey.currentState;
+                                                if ((signs?.points ?? [])
+                                                    .isEmpty) {
+                                                  Fluttertoast.showToast(
+                                                    msg:
+                                                        'Please sign to submit the signature',
+                                                  );
+                                                  return;
+                                                } else {
+                                                  if (controller.text.isEmpty) {
+                                                    Fluttertoast.showToast(
+                                                      msg:
+                                                          'Signature with name field is required',
+                                                    );
+                                                  } else {
+                                                    setState(() {
+                                                      isLoading = true;
+                                                      answer[singleItem.key] =
+                                                          answer[singleItem.key]
+                                                              .copyWith(
+                                                                  isLoading:
+                                                                      true);
+                                                    });
+                                                    final sign =
+                                                        signKey.currentState;
+                                                    final image =
+                                                        await sign?.getData();
+                                                    var data =
+                                                        await image?.toByteData(
+                                                            format: ui
+                                                                .ImageByteFormat
+                                                                .png);
+                                                    Directory tempDir =
+                                                        await getTemporaryDirectory();
+                                                    String tempPath =
+                                                        tempDir.path;
+                                                    var filePath =
+                                                        '$tempPath/image.png';
+                                                    final buffer = data!.buffer;
+                                                    File savedImage = await File(
+                                                            filePath)
+                                                        .writeAsBytes(
+                                                            buffer.asUint8List(
+                                                                data.offsetInBytes,
+                                                                data.lengthInBytes));
+                                                    Navigator.pop(context);
+                                                    final savedFileData =
+                                                        await widget
+                                                            .attachmentSave([
+                                                      savedImage.path
+                                                    ]);
+                                                    widget.onSaved(
+                                                        savedFileData[0]);
+                                                    setState(() {
+                                                      answer[singleItem
+                                                          .key] = answer[
+                                                              singleItem.key]
+                                                          .copyWith(
+                                                              file:
+                                                                  savedFileData[
+                                                                          0]
+                                                                      ['file'],
+                                                              attachmentId:
+                                                                  savedFileData[
+                                                                              0]
+                                                                          ['id']
+                                                                      .toString(),
+                                                              isLoading: false);
+                                                      saveList();
+                                                      isLoading = false;
+                                                    });
+                                                  }
+                                                }
+                                              },
+                                              behavior:
+                                                  HitTestBehavior.translucent,
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                  vertical: 16.0,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  color: Colors.orange,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                    4,
                                                   ),
-                                              textAlign: TextAlign.center,
+                                                  border: Border.all(
+                                                    color: Colors.orange,
+                                                  ),
+                                                ),
+                                                // width: 130,
+                                                child: Text(
+                                                  'Submit'.toUpperCase(),
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .labelLarge
+                                                      ?.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.w600,
+                                                        height: 1,
+                                                      ),
+                                                  textAlign: TextAlign.center,
+                                                ),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
+                                        ],
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               );
                             }),
@@ -345,10 +381,13 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                       },
                       child: Container(
                         height: 200,
+                        margin: const EdgeInsets.only(
+                          bottom: 10,
+                        ),
                         decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: Colors.grey.shade100,
                           borderRadius: BorderRadius.circular(
-                            16.0,
+                            8,
                           ),
                         ),
                         width: double.infinity,
@@ -374,14 +413,17 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     ),
           TextFormField(
             controller: controller,
-            onChanged: (data) {
-              debouncer.run(() {
-                answer[singleItem.key] =
-                    answer[singleItem.key].copyWith(name: data);
-                saveList();
-              });
-            },
-            decoration: const InputDecoration(labelText: 'Name'),
+            readOnly: true,
+            // onChanged: (data) {
+            //   debouncer.run(() {
+            //     answer[singleItem.key] =
+            //         answer[singleItem.key].copyWith(name: data);
+            //     saveList();
+            //   });
+            // },
+            decoration: const InputDecoration(
+              labelText: 'Signatory Name',
+            ),
           ),
         ],
       ),
@@ -410,33 +452,58 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
           if (answer.isNotEmpty)
             ...answer.asMap().entries.map(
               (e) {
+                setState(() {
+                  storeSingleItem = e;
+                });
                 return Dismissible(
-                    direction: DismissDirection.endToStart,
-                    key: Key(e.value.id ?? ''),
-                    background: const SizedBox.shrink(),
-                    secondaryBackground: Container(
+                  direction: DismissDirection.endToStart,
+                  key: Key(e.value.id ?? ''),
+                  background: const SizedBox.shrink(),
+                  secondaryBackground: Container(
+                    decoration: BoxDecoration(
                       color: Colors.red,
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Icon(Icons.delete, color: Colors.white),
-                          ),
-                          Text('Delete', style: TextStyle(color: Colors.white)),
-                        ],
+                      borderRadius: BorderRadius.circular(
+                        8.0,
                       ),
                     ),
-                    onDismissed: (direction) {
-                      setState(() {
-                        answer.removeAt(e.key);
-                      });
-                      saveList();
-                    },
-                    child: singleComponent(e));
+                    child: const Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 10.0,
+                          ),
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            right: 20,
+                          ),
+                          child: Text(
+                            'Delete',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  onDismissed: (direction) {
+                    setState(() {
+                      answer.removeAt(e.key);
+                    });
+                    saveList();
+                  },
+                  child: singleComponent(e),
+                );
               },
             ).toList(),
           AppSpacing.sizedBoxH_06(),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -458,15 +525,17 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                         msg: 'Empty Signature field',
                         backgroundColor: Colors.red,
                       );
-                    } else if (answer.any((signature) =>
-                        signature.file == null || signature.file == '')) {
+                    }
+                    //  else if (answer.any((signature) =>
+                    //     signature.file == null || signature.file == '')) {
+                    //   Fluttertoast.showToast(
+                    //     msg: 'Signature with name field is required',
+                    //     backgroundColor: Colors.red,
+                    //   );
+                    // }
+                    else {
                       Fluttertoast.showToast(
                         msg: 'Signature with name field is required',
-                        backgroundColor: Colors.red,
-                      );
-                    } else {
-                      Fluttertoast.showToast(
-                        msg: 'Empty Signature field',
                         backgroundColor: Colors.red,
                       );
                     }
@@ -486,6 +555,273 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class SignaturePopUpWidget extends StatefulWidget {
+  SignaturePopUpWidget({
+    super.key,
+    this.controller,
+    required this.singleItem,
+    required this.saveList,
+    required this.attachmentSave,
+    required this.onSaved,
+    required this.signKey,
+    required this.answer,
+    this.secondSignature = false,
+    this.onSubmit,
+    this.onTextfieldChange,
+  });
+
+  final TextEditingController? controller;
+  final MapEntry<int, SingleSignature> singleItem;
+  final Function saveList;
+  final GlobalKey<SignatureState> signKey;
+  final List<SingleSignature> answer;
+  final bool secondSignature;
+  final Function? onSubmit;
+  final Function? onTextfieldChange;
+
+  ///Function to save attachment
+  final Future<List<Map<String, dynamic>>> Function(List<String>)
+      attachmentSave;
+
+  ///Function to call on save multi signature
+  void Function(Map<String, dynamic> result) onSaved;
+
+  @override
+  State<SignaturePopUpWidget> createState() => _SignaturePopUpWidgetState();
+}
+
+class _SignaturePopUpWidgetState extends State<SignaturePopUpWidget> {
+  String? value;
+  String? nameFieldValue;
+  bool isLoading = false;
+
+  final debouncer = Debouncer(milliseconds: 500);
+
+  TextEditingController internalController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        final focus = FocusNode();
+        FocusScope.of(context).requestFocus(focus);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => AlertDialog(
+            contentPadding: EdgeInsets.zero,
+            insetPadding: EdgeInsets.zero,
+            clipBehavior: Clip.antiAliasWithSaveLayer,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8.0),
+            ),
+            content: StatefulBuilder(builder: (context, setStates) {
+              return SingleChildScrollView(
+                child: Container(
+                  color: Colors.white,
+                  width: MediaQuery.of(context).size.width - 55,
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'Please sign below and submit',
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                      AppSpacing.sizedBoxH_12(),
+                      Container(
+                        height: 350,
+                        color: Colors.black12,
+                        child: Signature(
+                          color: Colors.black,
+                          key: widget.signKey,
+                          onSign: () {},
+                          strokeWidth: 4.0,
+                        ),
+                      ),
+                      AppSpacing.sizedBoxH_12(),
+                      TextFormField(
+                        controller: widget.controller ?? internalController,
+                        onChanged: (data) {
+                          widget.onTextfieldChange!;
+                        },
+                        decoration: const InputDecoration(
+                          labelText: 'Signatory Name',
+                        ),
+                      ),
+                      AppSpacing.sizedBoxH_10(),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                final signHere = widget.signKey.currentState;
+                                signHere?.clear();
+                                Navigator.pop(context);
+                              },
+                              behavior: HitTestBehavior.translucent,
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(
+                                    4,
+                                  ),
+                                  border: Border.all(
+                                    color: const Color(0xffBDBDBD),
+                                  ),
+                                ),
+                                // width: 130,
+                                child: Text(
+                                  'Cancel'.toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        height: 1,
+                                      ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                          AppSpacing.sizedBoxW_12(),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () async {
+                                // onSubmit();
+                                // widget.onSubmit!() ?? () {};
+                                final signs = widget.signKey.currentState;
+                                if ((signs?.points ?? []).isEmpty) {
+                                  Fluttertoast.showToast(
+                                    msg: 'Please sign to submit the signature',
+                                  );
+                                  return;
+                                } else {
+                                  if (widget.controller!.text.isEmpty) {
+                                    Fluttertoast.showToast(
+                                      msg:
+                                          'Signature with name field is required',
+                                    );
+                                  } else {
+                                    setState(() {
+                                      isLoading = true;
+                                      widget.answer[widget.singleItem.key] =
+                                          widget.answer[widget.singleItem.key]
+                                              .copyWith(isLoading: true);
+                                    });
+                                    final sign = widget.signKey.currentState;
+                                    final image = await sign?.getData();
+                                    var data = await image?.toByteData(
+                                        format: ui.ImageByteFormat.png);
+                                    Directory tempDir =
+                                        await getTemporaryDirectory();
+                                    String tempPath = tempDir.path;
+                                    var filePath = '$tempPath/image.png';
+                                    final buffer = data!.buffer;
+
+                                    File savedImage = await File(filePath)
+                                        .writeAsBytes(buffer.asUint8List(
+                                            data.offsetInBytes,
+                                            data.lengthInBytes));
+                                    Navigator.pop(context);
+
+                                    final savedFileData = await widget
+                                        .attachmentSave([savedImage.path]);
+                                    widget.onSaved(savedFileData[0]);
+                                    setState(() {
+                                      widget.answer[widget.singleItem.key] =
+                                          widget.answer[widget.singleItem.key]
+                                              .copyWith(
+                                                  file: savedFileData[0]
+                                                      ['file'],
+                                                  attachmentId: savedFileData[0]
+                                                          ['id']
+                                                      .toString(),
+                                                  isLoading: false);
+                                      widget.saveList();
+
+                                      isLoading = false;
+                                    });
+                                  }
+                                }
+                              },
+                              behavior: HitTestBehavior.translucent,
+                              child: Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16.0,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.orange,
+                                  borderRadius: BorderRadius.circular(
+                                    4,
+                                  ),
+                                  border: Border.all(
+                                    color: Colors.orange,
+                                  ),
+                                ),
+                                // width: 130,
+                                child: Text(
+                                  'Submit'.toUpperCase(),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w600,
+                                        height: 1,
+                                      ),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            }),
+          ),
+        );
+      },
+      child: Container(
+        height: 200,
+        margin: const EdgeInsets.only(
+          bottom: 10,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.grey.shade100,
+          borderRadius: BorderRadius.circular(
+            8,
+          ),
+        ),
+        width: double.infinity,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 50,
+              width: 50,
+              child: Image.asset(
+                'assets/image/signature.png',
+                package: 'varicon_form_builder',
+              ),
+            ),
+            Text(
+              'Click here to add signature',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+          ],
+        ),
       ),
     );
   }
