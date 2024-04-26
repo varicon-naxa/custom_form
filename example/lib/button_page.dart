@@ -26,7 +26,7 @@ class _ButtonPageState extends State<ButtonPage> {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  const assetPath = 'assets/multisignature.json';
+                  const assetPath = 'assets/sample.json';
                   String currentValue = await rootBundle.loadString(assetPath);
                   Map<String, dynamic> currentData = jsonDecode(currentValue);
 

@@ -32,7 +32,7 @@ class RadioFormField<T> extends FormField<T> {
                   return Container(
                     margin: const EdgeInsets.only(bottom: 8),
                     decoration: BoxDecoration(
-                        color: e.hasCondition
+                        color: (e.hasCondition && state.value == e.value)
                             ? e.hasAction != null
                                 ? (e.hasAction!)
                                     ? const Color(0xffFDD9D7)
@@ -41,12 +41,12 @@ class RadioFormField<T> extends FormField<T> {
                             : Colors.white,
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
-                          color: e.hasCondition
+                          color: (e.hasCondition && state.value == e.value)
                               ? e.hasAction != null
                                   ? (e.hasAction!)
                                       ? Colors.red
                                       : Colors.green
-                                  : Colors.white
+                                  : Colors.grey.shade500
                               : Colors.white,
                         )),
                     child: RadioListTile<T>(
