@@ -2,46 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-///Maps widget to show location
-///
-///Accepts position to show on map
-class CustomLocation extends StatelessWidget {
-  const CustomLocation({super.key, required this.postition});
-  final Position postition;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 250,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          10.0,
-        ),
-      ),
-      width: double.infinity,
-      child: GoogleMap(
-        mapType: MapType.normal,
-        zoomControlsEnabled: false,
-        initialCameraPosition: CameraPosition(
-          target: LatLng((postition.latitude), (postition.longitude)),
-          zoom: 10,
-        ),
-        markers: {
-          Marker(
-              markerId: const MarkerId('1'),
-              position: LatLng((postition.latitude), (postition.longitude)),
-              icon: BitmapDescriptor.defaultMarker),
-        },
-        onTap: (LatLng curentLatlng) {},
-        onMapCreated: (GoogleMapController controller) {},
-        onCameraMove: (position) {},
-      ),
-    );
-  }
-}
+// import 'package:google_maps_flutter_web/google_maps_flutter_web.dart' as webGM;
 
 class MapPicker extends StatefulWidget {
   LatLng? value;
@@ -66,9 +28,10 @@ class _MapPickerState extends State<MapPicker> {
     return Scaffold(
       body: Center(
         child: Column(
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 400,
+              // width: 400,
               height: widget.forMapField == true ? 550 : 250,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(
@@ -108,10 +71,20 @@ class _MapPickerState extends State<MapPicker> {
                                 }
                               : null,
                           mapType: MapType.normal,
+                          // myLocationButtonEnabled: true,
+                          // myLocationEnabled: false,
                           zoomGesturesEnabled: true,
                           padding: const EdgeInsets.all(0),
+                          // buildingsEnabled: true,
                           cameraTargetBounds: CameraTargetBounds.unbounded,
+                          // compassEnabled: true,
+                          // indoorViewEnabled: false,
+                          // mapToolbarEnabled: true,
                           minMaxZoomPreference: MinMaxZoomPreference.unbounded,
+                          // rotateGesturesEnabled: true,
+                          // scrollGesturesEnabled: true,
+                          // tiltGesturesEnabled: true,
+                          // trafficEnabled: false,
                           markers: widget.forMapField == true
                               ? {}
                               : {
@@ -123,6 +96,8 @@ class _MapPickerState extends State<MapPicker> {
                                   ),
                                 },
                           onTap: (LatLng curentLatlng) {},
+                          // onMapCreated: (GoogleMapController controller) {},
+                          // onCameraMove: (position) {},
                         ),
                       ),
                       if (widget.forMapField == true)
@@ -170,14 +145,8 @@ class _MapPickerState extends State<MapPicker> {
                   top: 40,
                 ),
                 child: ElevatedButton(
-                  onPressed: () async {
-                    List<Placemark> address = await placemarkFromCoordinates(
-                      widget.value!.latitude,
-                      widget.value!.longitude,
-                    );
-                    if (context.mounted) {
-                      Navigator.pop(context, address.first);
-                    }
+                  onPressed: () {
+                    Navigator.pop(context, widget.value);
                   },
                   child: const Text('Select Location'),
                 ),

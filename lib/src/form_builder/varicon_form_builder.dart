@@ -12,6 +12,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/datetime_input_wid
 import 'package:varicon_form_builder/src/form_builder/widgets/dropdown_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/file_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/map_field_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/multi_signature_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/multple_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/phone_number_widget.dart';
@@ -1005,6 +1006,16 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                                 .bodyMedium,
                                           ),
                               );
+                      },
+                      map: (field) {
+                        return LabeledWidget(
+                          labelText: e.label,
+                          isRequired: e.isRequired,
+                          child: MapFieldWidget(
+                            forMapField: true,
+                            postition: _currentPosition,
+                          ),
+                        );
                       },
                       orElse: () => null,
                     );
