@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/radio_form_field.dart';
 
-import '../../../varicon_form_builder.dart';
+import 'package:varicon_form_builder/varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import '../../models/value_text.dart';
 
+///Custom form yes/no/na form component
+///
+///Accepts field type with form value to display
+///
+///Options 1:Yes 2:No 3:Na
+///
+///Also show message if required
 class YesNoNaInputWidget extends StatefulWidget {
   const YesNoNaInputWidget({
     super.key,
@@ -14,9 +21,16 @@ class YesNoNaInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///Yes/No/Na form field widget
   final YesNoNaInputField field;
+
+  ///Form value to be used for yes/no/na option
   final FormValue formValue;
+
+  ///Required form key for form field unique
   final Key formKey;
+
+  ///Field label text
   final String? labelText;
 
   @override
@@ -24,16 +38,16 @@ class YesNoNaInputWidget extends StatefulWidget {
 }
 
 class _YesNoNaInputWidgetState extends State<YesNoNaInputWidget> {
+  ///Initializing variables for form values
   String? value;
-
   late final List<ValueText> choices;
   late final String otherFieldKey;
   bool showMessage = false;
 
   @override
   void initState() {
+    ///initializing form choices value
     super.initState();
-
     choices = [
       ...widget.field.choices,
       if (widget.field.showNoneItem)

@@ -12,6 +12,11 @@ import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
 
+///Form signature input widget
+///
+///Accepts field type with form value to display
+///
+///Open dialog with signature pad to sign and submit
 class SignatureInputWidget extends StatefulWidget {
   SignatureInputWidget({
     super.key,
@@ -23,11 +28,22 @@ class SignatureInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///Signature input model
   final SignatureInputField field;
+
+  ///Form value to be used for signature
   final FormValue formValue;
+
+  ///Field label text
   final String? labelText;
+
+  ///Image build function for sign display
   final Widget Function(Map<String, dynamic>) imageBuild;
+
+  ///On save function for signature
   void Function(Map<String, dynamic>) onSaved;
+
+  ///List of attachment save function for signature
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
 
@@ -36,15 +52,15 @@ class SignatureInputWidget extends StatefulWidget {
 }
 
 class _SignatureInputWidgetState extends State<SignatureInputWidget> {
+  ///Initializing variables for form values
   String? value;
   Map<String, dynamic> answer = {};
   bool isLoading = false;
-
-  late final GlobalKey<SignatureState> sign;
-
-  late final String otherFieldKey;
-
   String imaeURL = '';
+
+  ///Late initilize global key for signature/field
+  late final GlobalKey<SignatureState> sign;
+  late final String otherFieldKey;
 
   @override
   void initState() {
@@ -56,6 +72,11 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
     });
   }
 
+  ///Dialog to open signature pad
+  ///
+  ///Checks for signature and save the image
+  ///
+  ///Returns image data to save
   void openDialog() {
     showDialog(
       context: context,

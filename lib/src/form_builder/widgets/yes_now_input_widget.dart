@@ -5,6 +5,13 @@ import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import '../../models/value_text.dart';
 
+///Custom form yes/no form component
+///
+///Accepts field type with form value to display
+///
+///Options 1:Yes 2:No
+///
+///Also show message if required
 class YesNoInputWidget extends StatefulWidget {
   const YesNoInputWidget({
     super.key,
@@ -14,9 +21,16 @@ class YesNoInputWidget extends StatefulWidget {
     this.labelText,
   });
 
+  ///Yes/No form field widget
   final YesNoInputField field;
+
+  ///Required form key for form field unique
   final Key formKey;
+
+  ///Form value to be used for yes/no option
   final FormValue formValue;
+
+  ///Field label text
   final String? labelText;
 
   @override
@@ -26,6 +40,7 @@ class YesNoInputWidget extends StatefulWidget {
 class _YesNoInputWidgetState extends State<YesNoInputWidget> {
   String? value;
 
+  ///Initialize list of choices and field key
   late final List<ValueText> choices;
   late final String otherFieldKey;
   bool showMessage = false;

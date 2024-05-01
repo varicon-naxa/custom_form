@@ -6,18 +6,40 @@ import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
+///International phone field form component
+///
+///Accepts field type with phone number input
+///
+///Provides various country code options
 class FormBuilderIntlPhoneField extends StatefulWidget {
+  ///Phone field text
   final String name;
-  final InputDecoration decoration;
-  final String? initialCountryCode;
-  final String? initialValue;
-  final List<Country>? countries;
-  final String? invalidNumberMessage;
-  final bool isRequired;
-  final Key formKey;
-  final Function(String data) onSaved;
-  // Expose here more fields from IntlPhoneField as needed
 
+  ///Phone field decoration
+  final InputDecoration decoration;
+
+  ///Initial country code
+  final String? initialCountryCode;
+
+  ///Phone initial value
+  final String? initialValue;
+
+  ///List of countries
+  final List<Country>? countries;
+
+  ///String value for invalid number
+  final String? invalidNumberMessage;
+
+  ///boolean value for required field
+  final bool isRequired;
+
+  ///Form field key
+  final Key formKey;
+
+  ///Function to call save phone number
+  final Function(String data) onSaved;
+
+  // Expose here more fields from IntlPhoneField as needed
   const FormBuilderIntlPhoneField({
     super.key,
     required this.name,
@@ -40,6 +62,7 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
   String? _error;
   // final _fieldKey = GlobalKey<FormBuilderFieldState>();
 
+  ///Checking if phone number is valid
   _isValidIsRequired(PhoneNumber? phoneNumber) {
     if (!widget.isRequired) {
       return true;

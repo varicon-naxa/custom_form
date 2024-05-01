@@ -16,6 +16,7 @@ import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import 'widgets/labeled_widget.dart';
 
+///Main container for the respose form builder
 class ResponseFormBuilder extends StatefulWidget {
   const ResponseFormBuilder({
     super.key,
@@ -25,10 +26,26 @@ class ResponseFormBuilder extends StatefulWidget {
     required this.fileClick,
   });
 
+  ///Survey page form model
+  ///
+  ///Contains forms metadata
+  ///
+  ///Contains forms various input fields
   final SurveyPageForm surveyForm;
+
+  ///Check if a form has geolocation
+  ///
+  ///If true, it will capture the approximate location from where the form is being submitted
   final bool hasGeolocation;
 
+  ///Used to store image paths and file paths
+  ///
+  ///With height and width
   final Widget Function(Map<String, dynamic>) imageBuild;
+
+  ///Function to handle file click
+  ///
+  ///Returns the file path for form contents like images, files, instructions
   final Function(Map<String, dynamic> url) fileClick;
 
   @override
@@ -38,18 +55,26 @@ class ResponseFormBuilder extends StatefulWidget {
 class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
   int questionNumber = 0;
 
+  ///Values to be submitted via forms
   final formValue = FormValue();
 
+  ///initializing the state
   @override
   void initState() {
     super.initState();
   }
 
+  ///Dispose resources
   @override
   void dispose() {
     super.dispose();
   }
 
+  ///Method that takes date picker type
+  ///
+  ///and returns the date time value
+  ///
+  ///[value] is the value to be parsed
   static DateTime? _parseToDateTime(dynamic value, DatePickerType pickerType) {
     if (value is! String) {
       return null;
@@ -57,6 +82,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
       return null;
     }
 
+    ///switch case to handle date types and return parsed values
     switch (pickerType) {
       case DatePickerType.dateTime:
         return DateTime.parse(value);
@@ -72,6 +98,11 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
     }
   }
 
+  ///Returns formatted date time
+  ///
+  ///in comparision to date type
+  ///
+  ///and return formatted string value
   static String getFormattedText(DateTime? value, DatePickerType type) {
     if (value == null) return '';
     switch (type) {
@@ -86,6 +117,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
 
   @override
   Widget build(BuildContext context) {
+    ///Track total form question counts
     questionNumber = 0;
 
     return SingleChildScrollView(
@@ -245,14 +277,11 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
               children: widget.surveyForm.inputFields
                   .map<Widget?>((e) {
                     /// Heading of each input field
-                    ///
-
                     if (!(e is InstructionInputField ||
                         e is SectionInputField)) {
                       questionNumber++;
                     }
                     final labelText = '$questionNumber. ${e.label ?? ''} ';
-
                     return e.maybeMap(
                       text: (field) {
                         return LabeledWidget(
@@ -780,6 +809,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
 }
 
 // ignore: must_be_immutable
+///Widget that represents forms answer design
+///
+///soley for singular form items like text, titles, single image,files
 class _AnswerDesign extends StatelessWidget {
   _AnswerDesign({
     required this.answer,
@@ -790,12 +822,22 @@ class _AnswerDesign extends StatelessWidget {
     this.isFile = false,
   });
 
+  ///String values for text, image urls, files content
   final String answer;
 
+  ///Function for image/signature builder
   final Widget Function(Map<String, dynamic>)? imageBuild;
+
+  ///Function to handle file cliks action
   final Function? fileClick;
+
+  ///Checking for image
   bool isImage;
+
+  ///Checking for file
   bool isFile;
+
+  ///Checking for signature
   bool isSignature;
 
   @override
@@ -879,11 +921,15 @@ class _AnswerDesign extends StatelessWidget {
   }
 }
 
+///Widget that represents multi-forms answer design
+///
+///soley for multiple form items like text, titles,image,files
 class _MultiAnswerDesign extends StatelessWidget {
   const _MultiAnswerDesign({
     required this.answer,
   });
 
+  ///Multiple string,titles,urls list
   final List<ValueText> answer;
 
   @override
@@ -919,13 +965,20 @@ class _MultiAnswerDesign extends StatelessWidget {
   }
 }
 
+///Widget that represents forms signature answer design
+///
+///soley for multi form items signatures,images,texts
 class _MultiSignatureAnswerDesign extends StatelessWidget {
   const _MultiSignatureAnswerDesign({
     required this.answer,
     this.imageBuild,
   });
 
+  ///Multiple signature item list
   final List<SingleSignature> answer;
+
+  ///Multiple signature image builder
+  ///to view signs in image format
   final Widget Function(Map<String, dynamic>)? imageBuild;
 
   @override

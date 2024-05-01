@@ -4,10 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/action_button.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
+///Custom time picker dialog
+///
+///Accepts initial time, cancel text and confirm text
+///
+///Returns selected time
 class CustomTimePickerDialog extends StatefulWidget {
+  ///Initial time for the dialog
   final TimeOfDay initialTime;
+
+  ///Cancel text for the dialog
   final String? cancelText;
+
+  ///Confirm text for the dialog
   final String? confirmText;
+
+  ///Help text for the dialog
   final String? helpText;
 
   CustomTimePickerDialog({
@@ -34,6 +46,7 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
     _isAM = widget.initialTime.period == DayPeriod.am;
   }
 
+//Converts the selected time to 24 hour format
   int convertTo24HourFormat(int hour, bool isAM) {
     if (isAM) {
       return hour == 12 ? 0 : hour;
@@ -108,6 +121,7 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
     );
   }
 
+  ///Builds the picker dialog widget
   Widget _buildPicker(Widget picker, String label) {
     return Expanded(
       child: SizedBox(
@@ -117,6 +131,7 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
     );
   }
 
+  ///Builds the hour picker widget
   Widget _buildHourPicker() {
     return CupertinoPicker(
       itemExtent: 45,
@@ -134,6 +149,7 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
     );
   }
 
+  ///Builds the minute picker widget
   Widget _buildMinutePicker() {
     return CupertinoPicker(
       itemExtent: 45,
@@ -149,6 +165,7 @@ class _CustomTimePickerDialogState extends State<CustomTimePickerDialog> {
     );
   }
 
+  ///Builds the period picker widget
   Widget _buildPeriodPicker() {
     return CupertinoPicker(
       itemExtent: 45,

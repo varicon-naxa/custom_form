@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 ///Primary bottom sheet main template
- primaryBottomSheet(BuildContext context,
+///
+///Accepts context, child, hasBack, closeText and hasSpace
+primaryBottomSheet(BuildContext context,
     {required Widget child,
     bool hasBack = true,
     String closeText = 'Back',

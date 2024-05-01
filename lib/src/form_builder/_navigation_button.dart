@@ -1,12 +1,16 @@
 part of 'varicon_form_builder.dart';
 
+///Form elevated button for submit, update and save only operations
 class _NavigationButton extends StatelessWidget {
   const _NavigationButton({
     required this.onComplete,
     required this.buttonText,
   });
 
+  ///Function to be called on button press
   final VoidCallback onComplete;
+
+  ///Value for button text
   final String buttonText;
 
   @override
@@ -47,11 +51,15 @@ class _NavigationButton extends StatelessWidget {
   }
 }
 
+///Form button to save response
+///
+///this button will ony save the form
 class _SaveOnlyButton extends StatelessWidget {
   const _SaveOnlyButton({
     required this.onComplete,
   });
 
+  ///Function to be called on button press
   final VoidCallback onComplete;
 
   @override
