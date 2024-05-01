@@ -75,48 +75,6 @@ Map<String, dynamic> _$$TextInputFieldImplToJson(
       'type': instance.$type,
     };
 
-_$LongTextInputFieldImpl _$$LongTextInputFieldImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LongTextInputFieldImpl(
-      id: json['id'] as String,
-      label: json['label'] as String?,
-      name: json['name'] as String?,
-      description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
-      isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      answer: json['answer'] as String?,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: json['maxLength'] as int?,
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
-      $type: json['type'] as String?,
-    );
-
-Map<String, dynamic> _$$LongTextInputFieldImplToJson(
-        _$LongTextInputFieldImpl instance) =>
-    <String, dynamic>{
-      'id': instance.id,
-      'label': instance.label,
-      'name': instance.name,
-      'description': instance.description,
-      'visible': instance.visible,
-      'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'answer': instance.answer,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
-      'type': instance.$type,
-    };
-
 _$SignatureInputFieldImpl _$$SignatureInputFieldImplFromJson(
         Map<String, dynamic> json) =>
     _$SignatureInputFieldImpl(

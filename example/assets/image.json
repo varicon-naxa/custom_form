@@ -20,15 +20,6 @@
             ]
         },
         {
-            "id": "item-136391af-b017-4091-9695-79e5fa9d2979",
-            "name": "Phone Number",
-            "type": "phone",
-            "label": "Phone Number",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
             "id": "item-d8e1de8b-a917-48f1-adb9-1f4490e7fe9e",
             "name": "Number Input",
             "type": "number",
@@ -37,6 +28,16 @@
             "isRequired": false,
             "selectedLinkListLabel": ""
         },
+        {
+            "id": "item-136391af-b017-4091-9695-79e5fa9d2979",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Phone Number",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+  
         {
             "id": "item-85be93e4-6964-46a0-9382-550c850bd62e",
             "name": "Date",

@@ -11,10 +11,12 @@ class SingleSignature with _$SingleSignature {
     String? id,
     String? attachmentId,
     String? file,
-    String? name,
+    @JsonKey(name: 'signatory_name')String? name,
     bool? isLoading
   }) = _SingleSignature;
 
   factory SingleSignature.fromJson(Map<String, dynamic> json) =>
       _$SingleSignatureFromJson(json);
 }
+
+

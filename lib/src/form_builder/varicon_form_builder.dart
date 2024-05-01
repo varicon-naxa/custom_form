@@ -303,7 +303,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     controller: htmlEditorController, //required
                                     plugins: const [],
                                     htmlEditorOptions: editorOptions,
-                                    // textInputAction: TextInputAction.newline,
                                     htmlToolbarOptions:
                                         const HtmlToolbarOptions(
                                       defaultToolbarButtons: [

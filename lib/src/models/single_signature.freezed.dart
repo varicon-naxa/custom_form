@@ -12,7 +12,7 @@ part of 'single_signature.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 SingleSignature _$SingleSignatureFromJson(Map<String, dynamic> json) {
   return _SingleSignature.fromJson(json);
@@ -24,6 +24,7 @@ mixin _$SingleSignature {
   String? get id => throw _privateConstructorUsedError;
   String? get attachmentId => throw _privateConstructorUsedError;
   String? get file => throw _privateConstructorUsedError;
+  @JsonKey(name: 'signatory_name')
   String? get name => throw _privateConstructorUsedError;
   bool? get isLoading => throw _privateConstructorUsedError;
 
@@ -43,7 +44,7 @@ abstract class $SingleSignatureCopyWith<$Res> {
       {String? id,
       String? attachmentId,
       String? file,
-      String? name,
+      @JsonKey(name: 'signatory_name') String? name,
       bool? isLoading});
 }
 
@@ -103,7 +104,7 @@ abstract class _$$SingleSignatureImplCopyWith<$Res>
       {String? id,
       String? attachmentId,
       String? file,
-      String? name,
+      @JsonKey(name: 'signatory_name') String? name,
       bool? isLoading});
 }
 
@@ -153,7 +154,11 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$SingleSignatureImpl implements _SingleSignature {
   const _$SingleSignatureImpl(
-      {this.id, this.attachmentId, this.file, this.name, this.isLoading});
+      {this.id,
+      this.attachmentId,
+      this.file,
+      @JsonKey(name: 'signatory_name') this.name,
+      this.isLoading});
 
   factory _$SingleSignatureImpl.fromJson(Map<String, dynamic> json) =>
       _$$SingleSignatureImplFromJson(json);
@@ -166,6 +171,7 @@ class _$SingleSignatureImpl implements _SingleSignature {
   @override
   final String? file;
   @override
+  @JsonKey(name: 'signatory_name')
   final String? name;
   @override
   final bool? isLoading;
@@ -214,7 +220,7 @@ abstract class _SingleSignature implements SingleSignature {
       {final String? id,
       final String? attachmentId,
       final String? file,
-      final String? name,
+      @JsonKey(name: 'signatory_name') final String? name,
       final bool? isLoading}) = _$SingleSignatureImpl;
 
   factory _SingleSignature.fromJson(Map<String, dynamic> json) =
@@ -229,6 +235,7 @@ abstract class _SingleSignature implements SingleSignature {
   @override
   String? get file;
   @override
+  @JsonKey(name: 'signatory_name')
   String? get name;
   @override
   bool? get isLoading;
