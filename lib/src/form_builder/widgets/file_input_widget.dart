@@ -152,10 +152,8 @@ class _FileInputWidgetState extends State<FileInputWidget>
                     onTap: () {
                       storeFiles(fromCamera: true);
                     },
-                    child: Container(
-                      padding: const EdgeInsets.only(
-                        right: 16.0,
-                      ),
+                    child: SizedBox(
+                      height: 55,
                       width: MediaQuery.of(context).size.width / 2 - 50,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -190,10 +188,12 @@ class _FileInputWidgetState extends State<FileInputWidget>
                     onTap: () {
                       storeFiles(fromCamera: false);
                     },
-                    child: Container(
+                    child: SizedBox(
+                      height: 55,
                       width: MediaQuery.of(context).size.width / 2 - 50,
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Icon(Icons.photo_library,
                               color: Color(
@@ -407,7 +407,7 @@ class SingleFileItem extends StatelessWidget {
                         child: Material(
                           color: Colors.red, // Button color
                           child: InkWell(
-                            splashColor: Colors.red, // Splash color
+                            // splashColor: Colors.red, // Splash color
                             onTap: () {
                               ontap();
                             },
@@ -488,6 +488,11 @@ class SingleFileAddItem extends StatelessWidget {
           style: const ButtonStyle().copyWith(
             foregroundColor: MaterialStateProperty.all(Colors.white),
             backgroundColor: MaterialStateProperty.all(Colors.white),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
           ),
           onPressed: () {
             onTap();

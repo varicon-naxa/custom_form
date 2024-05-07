@@ -3,7 +3,7 @@ import 'package:varicon_form_builder/src/form_builder/form_fields/theme_search_f
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
-///MUlti select bottomsheet
+///Multi select bottomsheet
 ///
 ///Accepts api call, on clicked and linked query
 ///
@@ -161,74 +161,83 @@ class _CustomMultiBottomsheetState extends State<CustomMultiBottomsheet> {
                               keyboardDismissBehavior:
                                   ScrollViewKeyboardDismissBehavior.onDrag,
                               itemBuilder: (context, i) {
-                                return ListTile(
-                                  onTap: () {
-                                    if (selectedIds
-                                        .contains(searcgedChoices[i].value)) {
-                                      setState(() {
-                                        selectedIds
-                                            .remove(searcgedChoices[i].value);
-                                      });
-                                    } else {
-                                      setState(() {
-                                        selectedIds
-                                            .add(searcgedChoices[i].value);
-                                      });
-                                    }
-                                    List<ValueText> selectedNamelist =
-                                        searcgedChoices.fold([],
-                                            (previousValue, element) {
-                                      if (selectedIds.contains(element.value)) {
-                                        previousValue.add(element);
-                                      }
-                                      return previousValue;
-                                    });
-                                    widget.onCheckboxClicked(
-                                        selectedIds,
-                                        selectedNamelist
-                                            .map((obj) => obj.text)
-                                            .toList());
-                                  },
-                                  title: Text(
-                                    searcgedChoices[i].text.toString(),
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                                  trailing: Checkbox(
-                                    visualDensity: const VisualDensity(
-                                      horizontal: VisualDensity.minimumDensity,
-                                      vertical: VisualDensity.minimumDensity,
-                                    ),
-                                    value: selectedIds
-                                        .contains(searcgedChoices[i].value),
-                                    onChanged: (value) {
-                                      if (selectedIds
-                                          .contains(searcgedChoices[i].value)) {
-                                        setState(() {
-                                          selectedIds
-                                              .remove(searcgedChoices[i].value);
-                                        });
-                                      } else {
-                                        setState(() {
-                                          selectedIds
-                                              .add(searcgedChoices[i].value);
-                                        });
-                                      }
-                                      List<ValueText> selectedNamelist =
-                                          searcgedChoices.fold([],
-                                              (previousValue, element) {
-                                        if (selectedIds
-                                            .contains(element.value)) {
-                                          previousValue.add(element);
+                                return Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    child: ListTile(
+                                      onTap: () {
+                                        if (selectedIds.contains(
+                                            searcgedChoices[i].value)) {
+                                          setState(() {
+                                            selectedIds.remove(
+                                                searcgedChoices[i].value);
+                                          });
+                                        } else {
+                                          setState(() {
+                                            selectedIds
+                                                .add(searcgedChoices[i].value);
+                                          });
                                         }
-                                        return previousValue;
-                                      });
-                                      widget.onCheckboxClicked(
-                                          selectedIds,
-                                          selectedNamelist
-                                              .map((obj) => obj.text)
-                                              .toList());
-                                    },
+                                        List<ValueText> selectedNamelist =
+                                            searcgedChoices.fold([],
+                                                (previousValue, element) {
+                                          if (selectedIds
+                                              .contains(element.value)) {
+                                            previousValue.add(element);
+                                          }
+                                          return previousValue;
+                                        });
+                                        widget.onCheckboxClicked(
+                                            selectedIds,
+                                            selectedNamelist
+                                                .map((obj) => obj.text)
+                                                .toList());
+                                      },
+                                      title: Text(
+                                        searcgedChoices[i].text.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
+                                      trailing: Checkbox(
+                                        visualDensity: const VisualDensity(
+                                          horizontal:
+                                              VisualDensity.minimumDensity,
+                                          vertical:
+                                              VisualDensity.minimumDensity,
+                                        ),
+                                        value: selectedIds
+                                            .contains(searcgedChoices[i].value),
+                                        onChanged: (value) {
+                                          if (selectedIds.contains(
+                                              searcgedChoices[i].value)) {
+                                            setState(() {
+                                              selectedIds.remove(
+                                                  searcgedChoices[i].value);
+                                            });
+                                          } else {
+                                            setState(() {
+                                              selectedIds.add(
+                                                  searcgedChoices[i].value);
+                                            });
+                                          }
+                                          List<ValueText> selectedNamelist =
+                                              searcgedChoices.fold([],
+                                                  (previousValue, element) {
+                                            if (selectedIds
+                                                .contains(element.value)) {
+                                              previousValue.add(element);
+                                            }
+                                            return previousValue;
+                                          });
+                                          widget.onCheckboxClicked(
+                                              selectedIds,
+                                              selectedNamelist
+                                                  .map((obj) => obj.text)
+                                                  .toList());
+                                        },
+                                      ),
+                                    ),
                                   ),
                                 );
                               },

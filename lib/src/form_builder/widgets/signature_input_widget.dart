@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
@@ -109,78 +110,90 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                     )),
                 AppSpacing.sizedBoxH_12(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        final signHere = sign.currentState;
-                        signHere?.clear();
-                        Navigator.pop(context);
-                      },
-                      behavior: HitTestBehavior.translucent,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            4,
-                          ),
-                          border: Border.all(
-                            color: const Color(0xffBDBDBD),
-                          ),
-                        ),
-                        width: 130,
-                        child: Text(
-                          'Cancel'.toUpperCase(),
-                          style:
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                    Expanded(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            final signHere = sign.currentState;
+                            signHere?.clear();
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                4,
+                              ),
+                              border: Border.all(
+                                color: const Color(0xffBDBDBD),
+                              ),
+                            ),
+                            width: 130,
+                            child: Text(
+                              'Cancel'.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w600,
                                     height: 1,
                                   ),
-                          textAlign: TextAlign.center,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    AppSpacing.sizedBoxW_08(),
-                    GestureDetector(
-                      onTap: () async {
-                        final signs = sign.currentState;
-                        if ((signs?.points ?? []).isEmpty) {
-                          Fluttertoast.showToast(
-                              msg: 'Please sign to submit the signature');
-                          return;
-                        } else {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          final signKey = sign.currentState;
-                          final image = await signKey?.getData();
-                          var data = await image?.toByteData(
-                              format: ui.ImageByteFormat.png);
+                    AppSpacing.sizedBoxW_12(),
+                    Expanded(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () async {
+                            final signs = sign.currentState;
+                            if ((signs?.points ?? []).isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg: 'Please sign to submit the signature');
+                              return;
+                            } else {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              final signKey = sign.currentState;
+                              final image = await signKey?.getData();
+                              var data = await image?.toByteData(
+                                  format: ui.ImageByteFormat.png);
 
-                          Navigator.pop(context, data);
-                        }
-                      },
-                      behavior: HitTestBehavior.translucent,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(
-                            4,
-                          ),
-                          border: Border.all(
-                            color: Colors.orange,
-                          ),
-                        ),
-                        width: 130,
-                        child: Text(
-                          'SIGN'.toUpperCase(),
-                          style:
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                              Navigator.pop(context, data);
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(
+                                4,
+                              ),
+                              border: Border.all(
+                                color: Colors.orange,
+                              ),
+                            ),
+                            width: 130,
+                            child: Text(
+                              'Sign'.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w600,
                                     height: 1,
                                   ),
-                          textAlign: TextAlign.center,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -231,36 +244,38 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                   duration: const Duration(seconds: 2),
                 )
             : SizedBox(
-                height: 200,
+                height: 150,
                 width: double.infinity,
                 child: DottedBorder(
                   child: SizedBox(
                     height: 150,
                     width: double.infinity,
                     child: answer.isEmpty
-                        ? GestureDetector(
-                            onTap: () {
-                              openDialog();
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                  width: 50,
-                                  child: Image.asset(
-                                    'assets/image/signature.png',
-                                    package: 'varicon_form_builder',
+                        ? Material(
+                            color: Colors.transparent,
+                            child: InkWell(
+                              onTap: () {
+                                openDialog();
+                              },
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SizedBox(
+                                    height: 50,
+                                    width: 50,
+                                    child: Image.asset(
+                                      'assets/image/signature.png',
+                                      package: 'varicon_form_builder',
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  'Click here to add signature',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium,
-                                ),
-                              ],
+                                  Text(
+                                    'Click here to add signature',
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
                             ),
                           )
                         : Stack(

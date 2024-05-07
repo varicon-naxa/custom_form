@@ -150,15 +150,25 @@ class _CustomPaginatedBottomsheetState
                               shrinkWrap: true,
                               controller: _scrollController,
                               itemBuilder: (context, i) {
-                                return ListTile(
-                                  onTap: () {
-                                    widget.onClicked(searchedChoice[i]);
-                                    Navigator.pop(context);
-                                  },
-                                  title: Text(
-                                    searchedChoice[i].text.toString(),
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
+                                return Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      widget.onClicked(searchedChoice[i]);
+                                      Navigator.pop(context);
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 16,
+                                        horizontal: 20,
+                                      ),
+                                      child: Text(
+                                        searchedChoice[i].text.toString(),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
+                                      ),
+                                    ),
                                   ),
                                 );
                               },
