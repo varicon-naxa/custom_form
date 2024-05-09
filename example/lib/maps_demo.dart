@@ -54,7 +54,7 @@ class _MapPickerState extends State<MapPicker> {
                           ),
                         ),
                         child: GoogleMap(
-                          initialCameraPosition: CameraPosition(
+                          initialCameraPosition: const CameraPosition(
                             target: LatLng(
                                 (-4.326029675459877), (15.321166142821314)),
                             zoom: 12,
@@ -88,8 +88,8 @@ class _MapPickerState extends State<MapPicker> {
                           markers: widget.forMapField == true
                               ? {}
                               : {
-                                  Marker(
-                                    markerId: const MarkerId('1'),
+                                  const Marker(
+                                    markerId: MarkerId('1'),
                                     position: LatLng((-4.326029675459877),
                                         (15.321166142821314)),
                                     icon: BitmapDescriptor.defaultMarker,
