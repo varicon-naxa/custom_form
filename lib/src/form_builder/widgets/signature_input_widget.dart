@@ -5,10 +5,10 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -88,7 +88,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
         content: StatefulBuilder(builder: (context, setStates) {
           return Container(
             color: Colors.white,
-            width: MediaQuery.of(context).size.width - 100,
+            width: MediaQuery.of(context).size.width - 50,
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,7 +96,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
               children: [
                 Text(
                   'Please sign below and submit',
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 AppSpacing.sizedBoxH_12(),
                 Container(
@@ -108,6 +108,8 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                       onSign: () {},
                       strokeWidth: 4.0,
                     )),
+                AppSpacing.sizedBoxH_12(),
+                const SignConsentCheckBoxWidget(),
                 AppSpacing.sizedBoxH_12(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

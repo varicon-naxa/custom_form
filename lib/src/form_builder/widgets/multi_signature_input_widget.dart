@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/core/debouncer.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -191,7 +192,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                     child: Container(
                                       color: Colors.white,
                                       width: MediaQuery.of(context).size.width -
-                                          100,
+                                          50,
                                       padding: const EdgeInsets.all(16),
                                       child: Column(
                                         crossAxisAlignment:
@@ -202,7 +203,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                             'Please sign below and submit',
                                             style: Theme.of(context)
                                                 .textTheme
-                                                .titleSmall,
+                                                .titleMedium,
                                           ),
                                           AppSpacing.sizedBoxH_12(),
                                           Container(
@@ -230,7 +231,9 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                               labelText: 'Signatory Name',
                                             ),
                                           ),
-                                          AppSpacing.sizedBoxH_10(),
+                                          AppSpacing.sizedBoxH_12(),
+                                          const SignConsentCheckBoxWidget(),
+                                          AppSpacing.sizedBoxH_12(),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
