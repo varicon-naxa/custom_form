@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
@@ -30,6 +32,9 @@ class _SurveyPageState extends State<ResponseTest> {
         key: childKey,
         surveyForm: widget.form,
         hasGeolocation: false,
+        timesheetClick: (String timesheetId) {
+          log('Timesheet Id $timesheetId');
+        },
         imageBuild: (Map<String, dynamic> data) {
           return Image.network(
             data['image'],

@@ -24,6 +24,7 @@ class ResponseFormBuilder extends StatefulWidget {
     required this.hasGeolocation,
     required this.imageBuild,
     required this.fileClick,
+    required this.timesheetClick,
   });
 
   ///Survey page form model
@@ -47,6 +48,13 @@ class ResponseFormBuilder extends StatefulWidget {
   ///
   ///Returns the file path for form contents like images, files, instructions
   final Function(Map<String, dynamic> url) fileClick;
+
+
+  /// Function to handle Timesheet id click
+  /// 
+  ///  Redirect to timesheet detail page
+    final Function(String) timesheetClick;
+
 
   @override
   State<ResponseFormBuilder> createState() => _ResponseFormBuilderState();

@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-import 'package:example/maps_demo.dart';
 import 'package:example/response_test.dart';
 import 'package:example/survey_page.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +29,7 @@ class _ButtonPageState extends State<ButtonPage> {
           children: [
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/dd.json';
+                const assetPath = 'assets/sample.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 
