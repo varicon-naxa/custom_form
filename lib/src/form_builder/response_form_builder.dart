@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -49,12 +49,10 @@ class ResponseFormBuilder extends StatefulWidget {
   ///Returns the file path for form contents like images, files, instructions
   final Function(Map<String, dynamic> url) fileClick;
 
-
   /// Function to handle Timesheet id click
-  /// 
+  ///
   ///  Redirect to timesheet detail page
-    final Function(String) timesheetClick;
-
+  final Function(String) timesheetClick;
 
   @override
   State<ResponseFormBuilder> createState() => _ResponseFormBuilderState();
@@ -216,25 +214,33 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   ],
                 ),
                 if (widget.surveyForm.timesheet != null)
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          'Timesheet ID',
+                  InkWell(
+                    onTap: () {
+                      widget.timesheetClick(widget.surveyForm.timesheet ?? '');
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Timesheet ID',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  color: const Color(0xff212529),
+                                  decoration: TextDecoration.underline,
+                                ),
+                          ),
+                        ),
+                        Text(
+                          widget.surveyForm.timesheet ?? '',
                           style:
-                              Theme.of(context).textTheme.titleSmall?.copyWith(
-                                    color: const Color(0xff212529),
-                                    decoration: TextDecoration.underline,
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.orange,
                                   ),
                         ),
-                      ),
-                      Text(
-                        widget.surveyForm.timesheet ?? '',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.orange,
-                            ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 const Divider(),
                 RichText(
@@ -816,7 +822,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
   }
 }
 
-// ignore: must_be_immutable
+
 ///Widget that represents forms answer design
 ///
 ///soley for singular form items like text, titles, single image,files
