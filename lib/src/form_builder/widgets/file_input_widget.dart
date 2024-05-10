@@ -477,6 +477,7 @@ class SingleFileAddItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: const EdgeInsets.only(bottom: 8),
       decoration: DottedDecoration(
         borderRadius: BorderRadius.circular(4),
         dash: const [3, 2],

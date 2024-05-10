@@ -8,7 +8,7 @@
             "type": "images",
             "id": "image1",
             "label": "Attach covver letter",
-            "isMultiple": false,
+            "isMultiple": true,
             "isRequired": false,
             "answer": [
                 {
