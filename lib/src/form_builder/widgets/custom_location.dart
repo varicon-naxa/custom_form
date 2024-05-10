@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 ///Maps widget to show location
@@ -43,15 +42,26 @@ class CustomLocation extends StatelessWidget {
   }
 }
 
+///Widget for custom map field widget
+///
+///Accepts forMapField and position
+///
+///Can select location on map
 class MapPicker extends StatefulWidget {
   LatLng? value;
   final bool? forMapField;
+
+  ///Map location position value
   final Position? postition;
+
+  ///Map value form key
+  final Key formKey;
 
   MapPicker({
     Key? key,
     this.forMapField = false,
     this.postition,
+    required this.formKey,
   }) : super(key: key);
 
   @override
@@ -92,8 +102,8 @@ class _MapPickerState extends State<MapPicker> {
                         ),
                         child: GoogleMap(
                           initialCameraPosition: CameraPosition(
-                            target: LatLng(
-                                (-4.326029675459877), (15.321166142821314)),
+                            target: LatLng(widget.postition!.latitude,
+                                widget.postition!.longitude),
                             zoom: 12,
                           ),
                           onMapCreated: widget.forMapField == true
@@ -103,7 +113,7 @@ class _MapPickerState extends State<MapPicker> {
                               : null,
                           onCameraMove: widget.forMapField == true
                               ? (CameraPosition newPosition) {
-                                  // print(newPosition.target.toJson());
+                                  print(newPosition.target.toJson());
                                   widget.value = newPosition.target;
                                 }
                               : null,
@@ -115,12 +125,12 @@ class _MapPickerState extends State<MapPicker> {
                           markers: widget.forMapField == true
                               ? {}
                               : {
-                                  Marker(
-                                    markerId: const MarkerId('1'),
-                                    position: LatLng((-4.326029675459877),
-                                        (15.321166142821314)),
-                                    icon: BitmapDescriptor.defaultMarker,
-                                  ),
+                                  // Marker(
+                                  //   markerId: const MarkerId('1'),
+                                  //   position: LatLng((-4.326029675459877),
+                                  //       (15.321166142821314)),
+                                  //   icon: BitmapDescriptor.defaultMarker,
+                                  // ),
                                 },
                           onTap: (LatLng curentLatlng) {},
                         ),
@@ -170,13 +180,9 @@ class _MapPickerState extends State<MapPicker> {
                   top: 40,
                 ),
                 child: ElevatedButton(
-                  onPressed: () async {
-                    List<Placemark> address = await placemarkFromCoordinates(
-                      widget.value!.latitude,
-                      widget.value!.longitude,
-                    );
+                  onPressed: () {
                     if (context.mounted) {
-                      Navigator.pop(context, address.first);
+                      Navigator.pop(context, widget.value);
                     }
                   },
                   child: const Text('Select Location'),

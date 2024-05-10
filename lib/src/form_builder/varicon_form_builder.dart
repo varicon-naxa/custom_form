@@ -1008,12 +1008,35 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               );
                       },
                       map: (field) {
+                        if (field.answer != null && field.answer != {}) {
+                          formValue.saveMap(
+                            field.id,
+                            field.answer ?? {},
+                          );
+                        }
                         return LabeledWidget(
                           labelText: e.label,
                           isRequired: e.isRequired,
                           child: MapFieldWidget(
+                            formKey: _fieldKeys[
+                                widget.surveyForm.inputFields.indexOf(e)],
+                            formValue: formValue,
+                            field: field,
                             forMapField: true,
-                            postition: _currentPosition,
+                            position: (field.answer?['lat'] == null ||
+                                    field.answer?['long'] == null)
+                                ? null
+                                : Position(
+                                    latitude: field.answer?['lat'],
+                                    longitude: field.answer?['long'],
+                                    timestamp: DateTime.timestamp(),
+                                    accuracy: 50.0,
+                                    altitude: 0.0,
+                                    altitudeAccuracy: 50.0,
+                                    heading: 50.0,
+                                    headingAccuracy: 50.0,
+                                    speed: 2.0,
+                                    speedAccuracy: 50.0),
                           ),
                         );
                       },

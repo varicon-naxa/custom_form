@@ -10,7 +10,6 @@
             "name": "Map Field",
             "label": "Map Field",
             "isRequired": false,
-            "addressLine": "",
             "answer": {
                 "lat": 27.7172,
                 "long": 85.3240,

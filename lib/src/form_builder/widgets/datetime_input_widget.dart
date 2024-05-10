@@ -24,7 +24,7 @@ class DateTimeInputWidget extends StatefulWidget {
   ///Date form key
   final Key formKey;
 
-  ///Form value fro date values
+  ///Form value for date values
   final FormValue formValue;
 
   ///Label text for date time
