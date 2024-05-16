@@ -113,7 +113,6 @@ class _MapPickerState extends State<MapPicker> {
                               : null,
                           onCameraMove: widget.forMapField == true
                               ? (CameraPosition newPosition) {
-                                  print(newPosition.target.toJson());
                                   widget.value = newPosition.target;
                                 }
                               : null,
