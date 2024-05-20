@@ -73,6 +73,21 @@ class MapPicker extends StatefulWidget {
 class _MapPickerState extends State<MapPicker> {
   final Completer<GoogleMapController> _controller = Completer();
 
+  final markers = Set<Marker>();
+  MarkerId markerId = MarkerId("1");
+  LatLng latLng = LatLng(-33.865143, 151.209900);
+
+  @override
+  initState() {
+    super.initState();
+    markers.add(
+      Marker(
+        markerId: markerId,
+        position: latLng,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,8 +119,9 @@ class _MapPickerState extends State<MapPicker> {
                         ),
                         child: GoogleMap(
                           initialCameraPosition: CameraPosition(
-                            target: LatLng(widget.postition!.latitude,
-                                widget.postition!.longitude),
+                            target: LatLng(
+                                widget.postition?.latitude ?? -33.865143,
+                                widget.postition?.longitude ?? 151.209900),
                             zoom: 12,
                           ),
                           onMapCreated: widget.forMapField == true
@@ -116,6 +132,11 @@ class _MapPickerState extends State<MapPicker> {
                           onCameraMove: widget.forMapField == true
                               ? (CameraPosition newPosition) {
                                   widget.value = newPosition.target;
+                                  setState(() {
+                                    markers.add(Marker(
+                                        markerId: markerId,
+                                        position: newPosition.target));
+                                  });
                                 }
                               : null,
                           mapType: MapType.normal,
@@ -123,29 +144,50 @@ class _MapPickerState extends State<MapPicker> {
                           padding: const EdgeInsets.all(0),
                           cameraTargetBounds: CameraTargetBounds.unbounded,
                           minMaxZoomPreference: MinMaxZoomPreference.unbounded,
-                          markers: widget.forMapField == true
-                              ? {}
-                              : {
-                                  // Marker(
-                                  //   markerId: const MarkerId('1'),
-                                  //   position: LatLng((-4.326029675459877),
-                                  //       (15.321166142821314)),
-                                  //   icon: BitmapDescriptor.defaultMarker,
-                                  // ),
-                                },
+                          // markers:
+                          //     // widget.forMapField == true
+                          //     //     ? {}
+                          //     //     :
+                          //     {
+                          //   Marker(
+                          //     draggable: true,
+                          //     markerId: const MarkerId('1'),
+                          //     position: LatLng(
+                          //         (-4.326029675459877), (15.321166142821314)),
+                          //     icon: BitmapDescriptor.defaultMarker,
+                          //   ),
+                          // },
+                          markers: markers,
+                          // markers: Set<Marker>.of(
+                          //   <Marker>[
+                          //     Marker(
+                          //       draggable: true,
+                          //       markerId: MarkerId("1"),
+                          //       onDragEnd: ((newPosition) {
+                          //         print(newPosition.latitude);
+                          //         print(newPosition.longitude);
+                          //       }),
+                          //       position: LatLng((-33.865143), (151.209900)),
+                          //       icon: BitmapDescriptor.defaultMarker,
+                          //       infoWindow: const InfoWindow(
+                          //         title: 'Usted está aquí',
+                          //       ),
+                          //     )
+                          //   ],
+                          // ),
                           onTap: (LatLng curentLatlng) {},
                         ),
                       ),
-                      if (widget.forMapField == true)
-                        Positioned(
-                          bottom: maxHeight / 2,
-                          right: (maxWidth - 30) / 2,
-                          child: const Icon(
-                            Icons.location_pin,
-                            size: 32,
-                            color: Colors.green,
-                          ),
-                        ),
+                      // if (widget.forMapField == true)
+                      //   Positioned(
+                      //     bottom: maxHeight / 2,
+                      //     right: (maxWidth - 30) / 2,
+                      //     child: const Icon(
+                      //       Icons.location_pin,
+                      //       size: 32,
+                      //       color: Colors.green,
+                      //     ),
+                      //   ),
                       Positioned(
                         bottom: 30,
                         left: 30,

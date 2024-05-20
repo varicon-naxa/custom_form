@@ -975,7 +975,7 @@ _$MapFieldImpl _$$MapFieldImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
       addressLine: json['addressLine'] as String?,
-      answer: json['answer'] as Map<String, dynamic>?,
+      answer: json['answer'] as String?,
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       visible: json['visible'] as bool? ?? true,

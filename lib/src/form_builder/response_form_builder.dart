@@ -377,14 +377,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child:
-                              (field.answer ?? {}).containsKey('address_line')
-                                  ? _AnswerMapDesign(
-                                      answer: field.answer ?? {},
-                                    )
-                                  : _AnswerDesign(
-                                      answer: '',
-                                    ),
+                          child: (field.answer ?? '').contains('address')
+                              ? _AnswerMapDesign(
+                                  answer: field.answer ?? '',
+                                )
+                              : _AnswerDesign(
+                                  answer: '',
+                                ),
                         );
                       },
                       date: (field) {
@@ -958,7 +957,7 @@ class _AnswerMapDesign extends StatelessWidget {
   });
 
   ///String values for text, image urls, files content
-  final Map<String, dynamic> answer;
+  final String answer;
 
   @override
   Widget build(BuildContext context) {
@@ -969,36 +968,34 @@ class _AnswerMapDesign extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                (answer['address_line']).isEmpty
-                    ? 'No Response'
-                    : answer['address_line'],
+                (answer).isEmpty ? 'No Response' : answer,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: answer.isEmpty ? Colors.grey : Colors.black),
               ),
             ),
-            if (answer.containsKey('lat') &&
-                answer.containsKey('long') &&
-                answer['lat'] != 0.0 &&
-                answer['long'] != 0.0)
-              IconButton(
-                onPressed: () {
-                  ///Navigate to Simple Map Page
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) {
-                        return SimpleMap(
-                          lat: answer['lat'],
-                          long: answer['long'],
-                        );
-                      },
-                    ),
-                  );
-                },
-                icon: const Icon(
-                  Icons.directions,
-                ),
-              )
+            // if (answer.containsKey('lat') &&
+            //     answer.containsKey('long') &&
+            //     answer['lat'] != 0.0 &&
+            //     answer['long'] != 0.0)
+            IconButton(
+              onPressed: () {
+                ///Navigate to Simple Map Page
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute<void>(
+                //     builder: (BuildContext context) {
+                //       return SimpleMap(
+                //         lat: answer['lat'],
+                //         long: answer['long'],
+                //       );
+                //     },
+                //   ),
+                // );
+              },
+              icon: const Icon(
+                Icons.directions,
+              ),
+            )
           ],
         ),
         const DottedLine(
