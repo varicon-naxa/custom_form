@@ -6,15 +6,11 @@
     "elements": [
         {
             "id": "mapfield",
-            "type": "map",
-            "name": "Map Field",
+            "type": "text",
+            "name": "address",
             "label": "Map Field",
             "isRequired": false,
-            "answer": {
-                "lat": 27.7172,
-                "long": 85.3240,    
-                "address_line": "Kathmandu, Nepal"
-            }
+            "answer": "Kathmandu, Nepal"
         }
     ]
 }

@@ -511,7 +511,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
     @JsonKey(name: 'addressLine') String? addressLine,
-    @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+    @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'visible') @Default(true) bool visible,

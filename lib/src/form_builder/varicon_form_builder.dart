@@ -406,50 +406,64 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     ),
                                   ),
                                 )
-                              : TextFormField(
-                                  initialValue: field.answer ?? '',
-                                  key: _fieldKeys[
-                                      widget.surveyForm.inputFields.indexOf(e)],
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                  readOnly: field.readOnly,
-                                  keyboardType: (field.name ?? '')
-                                          .toLowerCase()
-                                          .contains('long')
-                                      ? TextInputType.multiline
-                                      : TextInputType.text,
-                                  textInputAction: (field.name ?? '')
-                                          .toLowerCase()
-                                          .contains('long')
-                                      ? TextInputAction.newline
-                                      : TextInputAction.next,
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  maxLength: field.maxLength,
-                                  maxLines: (field.name ?? '')
-                                          .toLowerCase()
-                                          .contains('long')
-                                      ? 3
-                                      : 1,
-                                  onSaved: (newValue) {
-                                    formValue.saveString(
-                                      field.id,
-                                      newValue.toString().trim(),
-                                    );
-                                  },
-                                  validator: (value) {
-                                    return textValidator(
-                                      value: value,
-                                      inputType: "text",
-                                      isRequired: field.isRequired,
-                                      requiredErrorText:
-                                          field.requiredErrorText,
-                                    );
-                                  },
-                                  decoration: InputDecoration(
-                                    hintText: field.hintText,
-                                    // labelText: labelText,
-                                  ),
-                                ),
+                              : (field.name ?? '')
+                                      .toLowerCase()
+                                      .contains('address')
+                                  ? 
+                                  MapFieldWidget(
+                                    formKey: _fieldKeys[widget
+                                        .surveyForm.inputFields
+                                        .indexOf(e)],
+                                    formValue: formValue,
+                                    field: field,
+                                    forMapField: true,
+                                  )
+                                  : TextFormField(
+                                      initialValue: field.answer ?? '',
+                                      key: _fieldKeys[widget
+                                          .surveyForm.inputFields
+                                          .indexOf(e)],
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                      readOnly: field.readOnly,
+                                      keyboardType: (field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long')
+                                          ? TextInputType.multiline
+                                          : TextInputType.text,
+                                      textInputAction: (field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long')
+                                          ? TextInputAction.newline
+                                          : TextInputAction.next,
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      maxLength: field.maxLength,
+                                      maxLines: (field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long')
+                                          ? 3
+                                          : 1,
+                                      onSaved: (newValue) {
+                                        formValue.saveString(
+                                          field.id,
+                                          newValue.toString().trim(),
+                                        );
+                                      },
+                                      validator: (value) {
+                                        return textValidator(
+                                          value: value,
+                                          inputType: "text",
+                                          isRequired: field.isRequired,
+                                          requiredErrorText:
+                                              field.requiredErrorText,
+                                        );
+                                      },
+                                      decoration: InputDecoration(
+                                        hintText: field.hintText,
+                                        // labelText: labelText,
+                                      ),
+                                    ),
                         );
                       },
                       number: (field) {
@@ -1006,39 +1020,39 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                                 .bodyMedium,
                                           ),
                               );
-                      },
-                      map: (field) {
-                        if (field.answer != null && field.answer != {}) {
-                          formValue.saveMap(
-                            field.id,
-                            field.answer ?? {},
-                          );
-                        }
-                        return LabeledWidget(
-                          labelText: e.label,
-                          isRequired: e.isRequired,
-                          child: MapFieldWidget(
-                            formKey: _fieldKeys[
-                                widget.surveyForm.inputFields.indexOf(e)],
-                            formValue: formValue,
-                            field: field,
-                            forMapField: true,
-                            position: (field.answer?['lat'] == null ||
-                                    field.answer?['long'] == null)
-                                ? null
-                                : Position(
-                                    latitude: field.answer?['lat'],
-                                    longitude: field.answer?['long'],
-                                    timestamp: DateTime.timestamp(),
-                                    accuracy: 50.0,
-                                    altitude: 0.0,
-                                    altitudeAccuracy: 50.0,
-                                    heading: 50.0,
-                                    headingAccuracy: 50.0,
-                                    speed: 2.0,
-                                    speedAccuracy: 50.0),
-                          ),
-                        );
+                        // },
+                        // map: (field) {
+                        //   if (field.answer != null && field.answer != {}) {
+                        //     formValue.saveMap(
+                        //       field.id,
+                        //       field.answer ?? {},
+                        //     );
+                        //   }
+                        //   return LabeledWidget(
+                        //     labelText: e.label,
+                        //     isRequired: e.isRequired,
+                        //     child: MapFieldWidget(
+                        //       formKey: _fieldKeys[
+                        //           widget.surveyForm.inputFields.indexOf(e)],
+                        //       formValue: formValue,
+                        //       field: field,
+                        //       forMapField: true,
+                        //       position: (field.answer?['lat'] == null ||
+                        //               field.answer?['long'] == null)
+                        //           ? null
+                        //           : Position(
+                        //               latitude: field.answer?['lat'],
+                        //               longitude: field.answer?['long'],
+                        //               timestamp: DateTime.timestamp(),
+                        //               accuracy: 50.0,
+                        //               altitude: 0.0,
+                        //               altitudeAccuracy: 50.0,
+                        //               heading: 50.0,
+                        //               headingAccuracy: 50.0,
+                        //               speed: 2.0,
+                        //               speedAccuracy: 50.0),
+                        //     ),
+                        //   );
                       },
                       orElse: () => null,
                     );
