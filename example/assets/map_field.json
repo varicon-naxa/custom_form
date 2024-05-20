@@ -6,8 +6,8 @@
     "elements": [
         {
             "id": "mapfield",
-            "type": "map",
-            "name": "Map Field",
+            "type": "text",
+            "name": "Address",
             "label": "Map Field",
             "isRequired": false,
             "answer": {
