@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -368,6 +369,15 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           isRequired: e.isRequired,
                           child: _AnswerDesign(
                             answer: field.answer ?? '',
+                          ),
+                        );
+                      },
+                      map: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: _AnswerMapDesign(
+                            answer: field.answer?['address_line'] ?? '',
                           ),
                         );
                       },
@@ -822,7 +832,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
   }
 }
 
-
 ///Widget that represents forms answer design
 ///
 ///soley for singular form items like text, titles, single image,files
@@ -918,6 +927,56 @@ class _AnswerDesign extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black),
                   ),
+        const DottedLine(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.center,
+          lineLength: double.infinity,
+          lineThickness: 1.0,
+          dashLength: 4.0,
+          dashColor: Colors.grey,
+          dashRadius: 0.0,
+          dashGapLength: 4.0,
+          dashGapColor: Colors.white,
+          dashGapRadius: 0.0,
+        )
+      ],
+    );
+  }
+}
+
+/// Widget that represent map field answer design
+
+class _AnswerMapDesign extends StatelessWidget {
+  _AnswerMapDesign({
+    required this.answer,
+  });
+
+  ///String values for text, image urls, files content
+  final String answer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                answer.isEmpty ? 'No Response' : answer,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: answer.isEmpty ? Colors.grey : Colors.black),
+              ),
+            ),
+            if (answer.isNotEmpty)
+              IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.directions,
+                ),
+              )
+          ],
+        ),
         const DottedLine(
           direction: Axis.horizontal,
           alignment: WrapAlignment.center,
