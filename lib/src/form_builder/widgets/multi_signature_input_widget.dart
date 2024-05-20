@@ -87,7 +87,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
         .where((signature) =>
             signature.attachmentId != null &&
             signature.file != null &&
-            signature.name != null)
+            signature.signatoryName != null)
         .toList();
     widget.formValue.saveList(
       widget.field.id,
@@ -98,7 +98,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   ///Signature single component
   Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
     TextEditingController controller =
-        TextEditingController(text: singleItem.value.name ?? '');
+        TextEditingController(text:singleItem.value.name ??  singleItem.value.name ?? '');
 
     return Container(
       key: Key(singleItem.value.id ?? ''),
@@ -223,7 +223,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                               debouncer.run(() {
                                                 answer[singleItem.key] =
                                                     answer[singleItem.key]
-                                                        .copyWith(name: data);
+                                                        .copyWith(signatoryName: data);
                                                 saveList();
                                               });
                                             },

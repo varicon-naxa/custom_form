@@ -12,6 +12,7 @@ class SingleSignature with _$SingleSignature {
     String? attachmentId,
     String? file,
     String? name,
+    @JsonKey(name: 'signatory_name') String? signatoryName,
     bool? isLoading
   }) = _SingleSignature;
 

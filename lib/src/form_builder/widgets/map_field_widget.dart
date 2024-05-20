@@ -113,14 +113,14 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
 
     //setting the address value to the map field controller
     mapFieldController.text =
-        '${address.first.name}, ${address.first.country},${address.first.locality}';
+        '${address.first.subThoroughfare} ${address.first.thoroughfare}, ${address.first.locality} ${address.first.administrativeArea} ${address.first.postalCode} ${address.first.country}';
 
     //saving the new location value to the form value
     widget.formValue.saveMap(widget.field.id, {
       'lat': latLng.latitude,
       'long': latLng.longitude,
       'addressLine':
-          '${address.first.name}, ${address.first.country},${address.first.locality}'
+          '${address.first.subThoroughfare} ${address.first.thoroughfare}, ${address.first.locality} ${address.first.administrativeArea} ${address.first.postalCode} ${address.first.country}'
     });
   }
 

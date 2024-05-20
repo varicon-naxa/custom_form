@@ -11,6 +11,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_wid
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/radio_input_widget.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/simple_map.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/yes_no_na_input_widget.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
@@ -376,9 +377,14 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child: _AnswerMapDesign(
-                            answer: field.answer?['address_line'] ?? '',
-                          ),
+                          child:
+                              (field.answer ?? {}).containsKey('address_line')
+                                  ? _AnswerMapDesign(
+                                      answer: field.answer ?? {},
+                                    )
+                                  : _AnswerDesign(
+                                      answer: '',
+                                    ),
                         );
                       },
                       date: (field) {
@@ -947,12 +953,12 @@ class _AnswerDesign extends StatelessWidget {
 /// Widget that represent map field answer design
 
 class _AnswerMapDesign extends StatelessWidget {
-  _AnswerMapDesign({
+  const _AnswerMapDesign({
     required this.answer,
   });
 
   ///String values for text, image urls, files content
-  final String answer;
+  final Map<String, dynamic> answer;
 
   @override
   Widget build(BuildContext context) {
@@ -963,14 +969,32 @@ class _AnswerMapDesign extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                answer.isEmpty ? 'No Response' : answer,
+                (answer['address_line']).isEmpty
+                    ? 'No Response'
+                    : answer['address_line'],
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     color: answer.isEmpty ? Colors.grey : Colors.black),
               ),
             ),
-            if (answer.isNotEmpty)
+            if (answer.containsKey('lat') &&
+                answer.containsKey('long') &&
+                answer['lat'] != 0.0 &&
+                answer['long'] != 0.0)
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  ///Navigate to Simple Map Page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) {
+                        return SimpleMap(
+                          lat: answer['lat'],
+                          long: answer['long'],
+                        );
+                      },
+                    ),
+                  );
+                },
                 icon: const Icon(
                   Icons.directions,
                 ),

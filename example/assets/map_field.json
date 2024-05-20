@@ -12,7 +12,7 @@
             "isRequired": false,
             "answer": {
                 "lat": 27.7172,
-                "long": 85.3240,
+                "long": 85.3240,    
                 "address_line": "Kathmandu, Nepal"
             }
         }
