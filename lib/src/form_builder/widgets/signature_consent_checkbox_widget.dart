@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:varicon_form_builder/src/constants/string_constant.dart';
 
 ///Users signatory consent checkbox list tile widget
 class SignConsentCheckBoxWidget extends StatefulWidget {
@@ -15,8 +16,8 @@ class _SignConsentCheckBoxWidgetState extends State<SignConsentCheckBoxWidget> {
   @override
   Widget build(BuildContext context) {
     return Text(
-        'By signing above, I certify that this signature is authentic and represents my genuine consent and agreement',
-        style: Theme.of(context).textTheme.bodyMedium,
-      );
+      StringConstant.signatureConsent,
+      style: Theme.of(context).textTheme.bodyMedium,
+    );
   }
 }
