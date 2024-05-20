@@ -487,51 +487,53 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                 setState(() {
                   storeSingleItem = e;
                 });
-                return Dismissible(
-                  direction: DismissDirection.endToStart,
-                  key: Key(e.value.id ?? ''),
-                  background: const SizedBox.shrink(),
-                  secondaryBackground: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(
-                        8.0,
-                      ),
-                    ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 10.0,
-                          ),
-                          child: Icon(
-                            Icons.delete,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(
-                            right: 20,
-                          ),
-                          child: Text(
-                            'Delete',
-                            style: TextStyle(
-                              color: Colors.white,
+                return e.value.attachmentId == null
+                    ? singleComponent(e)
+                    : Dismissible(
+                        direction: DismissDirection.endToStart,
+                        key: Key(e.value.id ?? ''),
+                        background: const SizedBox.shrink(),
+                        secondaryBackground: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(
+                              8.0,
                             ),
                           ),
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 10.0,
+                                ),
+                                child: Icon(
+                                  Icons.delete,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  right: 20,
+                                ),
+                                child: Text(
+                                  'Delete',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
-                  onDismissed: (direction) {
-                    setState(() {
-                      answer.removeAt(e.key);
-                    });
-                    saveList();
-                  },
-                  child: singleComponent(e),
-                );
+                        onDismissed: (direction) {
+                          setState(() {
+                            answer.removeAt(e.key);
+                          });
+                          saveList();
+                        },
+                        child: singleComponent(e),
+                      );
               },
             ).toList(),
           AppSpacing.sizedBoxH_06(),
