@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +10,6 @@ import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_wid
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/radio_input_widget.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/simple_map.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/yes_no_na_input_widget.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
@@ -1107,7 +1105,7 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         ),
                       ),
                 Text(
-                  e.name ?? '',
+                  e.signatoryName ?? e.name ?? '',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black,
                       ),

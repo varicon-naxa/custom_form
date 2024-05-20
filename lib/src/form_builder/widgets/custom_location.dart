@@ -74,8 +74,8 @@ class _MapPickerState extends State<MapPicker> {
   final Completer<GoogleMapController> _controller = Completer();
 
   final markers = Set<Marker>();
-  MarkerId markerId = MarkerId("1");
-  LatLng latLng = LatLng(-33.865143, 151.209900);
+  MarkerId markerId = const MarkerId("1");
+  LatLng latLng = const LatLng(-33.865143, 151.209900);
 
   @override
   initState() {
