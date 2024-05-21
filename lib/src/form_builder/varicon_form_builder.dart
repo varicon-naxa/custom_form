@@ -1,7 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
@@ -351,9 +353,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           field.id,
                           field.answer,
                         );
-
                         editorOptions = HtmlEditorOptions(
+                          adjustHeightForKeyboard: false,
                           initialText: field.answer,
+                          // disabled: true,
                         );
                         return LabeledWidget(
                           labelText: labelText,
@@ -361,63 +364,23 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           child: (field.name ?? '')
                                   .toLowerCase()
                                   .contains('long')
-                              ? Container(
-                                  height: 320,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.grey.shade300,
-                                      ),
-                                      borderRadius: BorderRadius.circular(4.0)),
-                                  child: HtmlEditor(
-                                    callbacks:
-                                        Callbacks(onChangeContent: (code) {
-                                      formValue.saveString(
-                                        field.id,
-                                        code.toString().trim(),
-                                      );
-                                    }),
-                                    controller: htmlEditorController, //required
-                                    plugins: const [],
-                                    htmlEditorOptions: editorOptions,
-                                    // textInputAction: TextInputAction.newline,
-                                    htmlToolbarOptions:
-                                        const HtmlToolbarOptions(
-                                      defaultToolbarButtons: [
-                                        // StyleButtons(),
-                                        // FontSettingButtons(),
-                                        FontButtons(
-                                          clearAll: false,
-                                          strikethrough: false,
-                                          subscript: false,
-                                          superscript: false,
-                                        ),
-                                        // ColorButtons(),
-                                        ListButtons(listStyles: false),
-                                        ParagraphButtons(
-                                          caseConverter: false,
-                                          lineHeight: false,
-                                          textDirection: false,
-                                          increaseIndent: false,
-                                          decreaseIndent: false,
-                                        ),
-                                        // InsertButtons(),
-                                        // OtherButtons(),
-                                      ],
-                                    ),
-                                  ),
+                              ? HtmlEditorWidget(
+                                  field: field,
+                                  htmlEditorController: htmlEditorController,
+                                  editorOptions: editorOptions,
+                                  formValue: formValue,
                                 )
                               : (field.name ?? '')
                                       .toLowerCase()
                                       .contains('address')
-                                  ? 
-                                  MapFieldWidget(
-                                    formKey: _fieldKeys[widget
-                                        .surveyForm.inputFields
-                                        .indexOf(e)],
-                                    formValue: formValue,
-                                    field: field,
-                                    forMapField: true,
-                                  )
+                                  ? MapFieldWidget(
+                                      formKey: _fieldKeys[widget
+                                          .surveyForm.inputFields
+                                          .indexOf(e)],
+                                      formValue: formValue,
+                                      field: field,
+                                      forMapField: true,
+                                    )
                                   : TextFormField(
                                       initialValue: field.answer ?? '',
                                       key: _fieldKeys[widget
@@ -1127,6 +1090,69 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 widget.onSubmit(formValue.value);
               },
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+///HTML editor widget class
+class HtmlEditorWidget extends StatelessWidget {
+  final TextInputField field;
+  final HtmlEditorController htmlEditorController;
+  final HtmlEditorOptions editorOptions;
+  final FormValue formValue;
+
+  const HtmlEditorWidget({
+    super.key,
+    required this.field,
+    required this.htmlEditorController,
+    required this.editorOptions,
+    required this.formValue,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey.shade300,
+          ),
+          borderRadius: BorderRadius.circular(4.0)),
+      child: HtmlEditor(
+        callbacks: Callbacks(onChangeContent: (code) {
+          formValue.saveString(
+            field.id,
+            code.toString().trim(),
+          );
+        }),
+        controller: htmlEditorController, //required
+        plugins: const [],
+        htmlEditorOptions: editorOptions,
+        // textInputAction: TextInputAction.newline,
+        htmlToolbarOptions: const HtmlToolbarOptions(
+          defaultToolbarButtons: [
+            // StyleButtons(),
+            // FontSettingButtons(),
+            FontButtons(
+              clearAll: false,
+              strikethrough: false,
+              subscript: false,
+              superscript: false,
+            ),
+            // ColorButtons(),
+            ListButtons(listStyles: false),
+            ParagraphButtons(
+              caseConverter: false,
+              lineHeight: false,
+              textDirection: false,
+              increaseIndent: false,
+              decreaseIndent: false,
+            ),
+            // InsertButtons(),
+            // OtherButtons(),
           ],
         ),
       ),
