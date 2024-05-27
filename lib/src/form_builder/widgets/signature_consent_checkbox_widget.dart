@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/constants/string_constant.dart';
 
 ///Users signatory consent checkbox list tile widget
-class SignConsentCheckBoxWidget extends StatefulWidget {
-  const SignConsentCheckBoxWidget({super.key});
+class SignConsentWidget extends StatefulWidget {
+  const SignConsentWidget({super.key});
 
   @override
-  State<SignConsentCheckBoxWidget> createState() =>
-      _SignConsentCheckBoxWidgetState();
+  State<SignConsentWidget> createState() => _SignConsentWidgetState();
 }
 
-class _SignConsentCheckBoxWidgetState extends State<SignConsentCheckBoxWidget> {
+class _SignConsentWidgetState extends State<SignConsentWidget> {
   bool signConsent = false;
 
   @override
