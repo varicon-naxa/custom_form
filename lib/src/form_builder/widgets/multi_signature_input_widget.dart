@@ -437,26 +437,26 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                       ),
                     ),
           if (controller.text.isNotEmpty)
-            // Container(
-            //   padding: const EdgeInsets.all(16),
-            //   width: double.infinity,
-            //   decoration: BoxDecoration(
-            //     border: Border.all(
-            //       color: Colors.grey.shade300,
-            //     ),
-            //     borderRadius: const BorderRadius.all(
-            //       Radius.circular(10),
-            //     ),
-            //   ),
-            //   child: Text(controller.text),
-            // ),
-            TextFormField(
-              controller: controller,
-              readOnly: true,
-              decoration: const InputDecoration(
-                labelText: 'Signatory Name',
+            Container(
+              padding: const EdgeInsets.all(16),
+              width: double.infinity,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey.shade300,
+                ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(10),
+                ),
               ),
+              child: Text(controller.text),
             ),
+          // TextFormField(
+          //   controller: controller,
+          //   readOnly: true,
+          //   decoration: const InputDecoration(
+          //     labelText: 'Signatory Name',
+          //   ),
+          // ),
         ],
       ),
     );
@@ -467,8 +467,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     return !answer.any((signature) =>
         signature.file == null ||
         signature.file == '' ||
-        signature.name == null ||
-        signature.name == '' ||
+        signature.signatoryName == null ||
+        signature.signatoryName == '' ||
         signature.attachmentId == null ||
         signature.attachmentId == '');
   }
@@ -558,7 +558,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                         msg: 'Empty Signature field',
                         backgroundColor: Colors.red,
                       );
-                    } else {
+                    }
+                    else {
                       Fluttertoast.showToast(
                         msg: 'Signature with name field is required',
                         backgroundColor: Colors.red,

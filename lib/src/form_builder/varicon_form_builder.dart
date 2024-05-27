@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:html_editor_enhanced/utils/options.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
@@ -355,6 +356,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                         editorOptions = HtmlEditorOptions(
                           adjustHeightForKeyboard: false,
+                          // autoAdjustHeight: false,
                           initialText: field.answer,
                           // disabled: true,
                         );
@@ -1115,7 +1117,7 @@ class HtmlEditorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      // height: 300,
       decoration: BoxDecoration(
           border: Border.all(
             color: Colors.grey.shade300,
