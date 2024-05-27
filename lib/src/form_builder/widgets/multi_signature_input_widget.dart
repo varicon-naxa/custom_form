@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable, use_build_context_synchronously
 import 'dart:io';
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -95,6 +96,37 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     );
   }
 
+  ///Dialog to remove signature
+  ///
+  ///Checks for signature and remove the image
+  void removeConfirmDialog(MapEntry<int, SingleSignature> e) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Remove Signature'),
+        content: const Text('Are you sure you want to remove the signature?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              setState(() {
+                answer.removeAt(e.key);
+              });
+              saveList();
+              Navigator.of(context).pop();
+            },
+            child: const Text('Remove'),
+          ),
+        ],
+      ),
+    );
+  }
+
   ///Signature single component
   Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
     TextEditingController controller = TextEditingController(
@@ -102,22 +134,28 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
 
     return Container(
       key: Key(singleItem.value.id ?? ''),
-      height: controller.text.isNotEmpty ? 290 : 200,
+      height: controller.text.isNotEmpty ? 335 : 200,
       margin: const EdgeInsets.only(
         bottom: 10,
       ),
-      padding: const EdgeInsets.all(
-        10,
+      padding: const EdgeInsets.only(
+        top: 18,
       ),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(
-          8.0,
-        ),
-        border: Border.all(
-          color: Colors.grey.shade300,
-          width: 2.0,
-        ),
-      ),
+      decoration: (singleItem.value.file != null)
+          ? BoxDecoration(
+              borderRadius: BorderRadius.circular(
+                8.0,
+              ),
+              border: Border.all(
+                color: Colors.grey.shade300,
+                width: 2.0,
+              ),
+            )
+          : DottedDecoration(
+              borderRadius: BorderRadius.circular(4),
+              dash: const [3, 2],
+              shape: Shape.box,
+            ),
       width: double.infinity,
       child: Column(
         children: [
@@ -157,9 +195,9 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                       ],
                     )
                   : Container(
-                      height: 174,
-                      margin: EdgeInsets.only(
-                        bottom: controller.text.isNotEmpty ? 10 : 0,
+                      height: 165,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 18,
                       ),
                       decoration: BoxDecoration(
                         color: Colors.grey.shade100,
@@ -216,7 +254,15 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                               strokeWidth: 4.0,
                                             ),
                                           ),
-                                          AppSpacing.sizedBoxH_12(),
+                                          AppSpacing.sizedBoxH_04(),
+                                          ClearSignatureWidget(
+                                            onClear: () {
+                                              final signHere =
+                                                  signKey.currentState;
+                                              signHere?.clear();
+                                            },
+                                          ),
+                                          AppSpacing.sizedBoxH_04(),
                                           TextFormField(
                                             controller: controller,
                                             onChanged: (data) {
@@ -234,7 +280,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                             ),
                                           ),
                                           AppSpacing.sizedBoxH_12(),
-                                          const SignConsentCheckBoxWidget(),
+                                          const SignConsentWidget(),
                                           AppSpacing.sizedBoxH_12(),
                                           Row(
                                             mainAxisAlignment:
@@ -248,6 +294,13 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                                       final signHere =
                                                           signKey.currentState;
                                                       signHere?.clear();
+                                                      controller.clear();
+                                                      answer[singleItem.key] =
+                                                          answer[singleItem.key]
+                                                              .copyWith(
+                                                                  signatoryName:
+                                                                      null);
+                                                      saveList();
                                                       Navigator.pop(context);
                                                     },
                                                     child: Container(
@@ -438,25 +491,53 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     ),
           if (controller.text.isNotEmpty)
             Container(
-              padding: const EdgeInsets.all(16),
-              width: double.infinity,
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey.shade300,
-                ),
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(10),
-                ),
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                top: 12,
               ),
-              child: Text(controller.text),
+              width: double.infinity,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Signatory Name'.toUpperCase(),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  Text(controller.text),
+                ],
+              ),
             ),
-          // TextFormField(
-          //   controller: controller,
-          //   readOnly: true,
-          //   decoration: const InputDecoration(
-          //     labelText: 'Signatory Name',
-          //   ),
-          // ),
+          if (controller.text.isNotEmpty)
+            IconButton(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 3,
+              ),
+              constraints: const BoxConstraints(),
+              onPressed: () {
+                removeConfirmDialog(singleItem);
+              },
+              icon: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(
+                    Icons.delete,
+                    color: Colors.red,
+                  ),
+                  const SizedBox(width: 6),
+                  Text(
+                    'Remove Signatory',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.red,
+                        ),
+                  ),
+                ],
+              ),
+            ),
         ],
       ),
     );
@@ -558,8 +639,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                         msg: 'Empty Signature field',
                         backgroundColor: Colors.red,
                       );
-                    }
-                    else {
+                    } else {
                       Fluttertoast.showToast(
                         msg: 'Signature with name field is required',
                         backgroundColor: Colors.red,
@@ -581,6 +661,47 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+///Widget to clear signature
+class ClearSignatureWidget extends StatelessWidget {
+  const ClearSignatureWidget({
+    super.key,
+    required this.onClear,
+  });
+
+  final Function onClear;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: IconButton(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+          vertical: 3,
+        ),
+        constraints: const BoxConstraints(),
+        onPressed: () => onClear(),
+        icon: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(
+              Icons.delete,
+              color: Colors.red,
+            ),
+            const SizedBox(width: 6),
+            Text(
+              'CLEAR',
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.red,
+                  ),
+            ),
+          ],
+        ),
       ),
     );
   }
