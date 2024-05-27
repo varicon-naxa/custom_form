@@ -56,6 +56,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   String? value;
   String? nameFieldValue;
   bool isLoading = false;
+  bool validate = false;
   final debouncer = Debouncer(milliseconds: 500);
 
   List<SingleSignature> answer = [];
@@ -275,8 +276,11 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                                 saveList();
                                               });
                                             },
-                                            decoration: const InputDecoration(
+                                            decoration: InputDecoration(
                                               labelText: 'Signatory Name',
+                                              errorText: validate
+                                                  ? "Value Can't Be Empty"
+                                                  : null,
                                             ),
                                           ),
                                           AppSpacing.sizedBoxH_12(),
@@ -301,6 +305,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                                                   signatoryName:
                                                                       null);
                                                       saveList();
+                                                      validate = false;
                                                       Navigator.pop(context);
                                                     },
                                                     child: Container(
@@ -345,6 +350,10 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                                     onTap: () async {
                                                       final signs =
                                                           signKey.currentState;
+                                                      setStates(() {});
+                                                      validate = controller
+                                                          .text.isEmpty;
+
                                                       if ((signs?.points ?? [])
                                                           .isEmpty) {
                                                         Fluttertoast.showToast(
@@ -355,11 +364,12 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                                       } else {
                                                         if (controller
                                                             .text.isEmpty) {
-                                                          Fluttertoast
-                                                              .showToast(
-                                                            msg:
-                                                                'Signature with name field is required',
-                                                          );
+                                                          validate = true;
+                                                          // Fluttertoast
+                                                          //     .showToast(
+                                                          //   msg:
+                                                          //       'Signature with name field is required',
+                                                          // );
                                                         } else {
                                                           setState(() {
                                                             isLoading = true;
@@ -419,6 +429,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                                                         false);
                                                             saveList();
                                                             isLoading = false;
+                                                            validate = false;
                                                           });
                                                         }
                                                       }
