@@ -47,7 +47,9 @@ class RadioFormField<T> extends FormField<T> {
                                       ? Colors.red
                                       : Colors.green
                                   : Colors.grey.shade500
-                              : Colors.white,
+                              : state.value == e.value
+                                  ? Colors.grey.shade500
+                                  : Colors.white,
                         )),
                     child: RadioListTile<T>(
                       groupValue: state.value,
