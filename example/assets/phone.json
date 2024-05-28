@@ -1,0 +1,16 @@
+{
+    "title": "Phone",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+        {
+            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Primary Phone number",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        }
+    ]
+}

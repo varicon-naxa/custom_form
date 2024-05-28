@@ -130,6 +130,7 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
           newValue.toString().trim(),
         );
       },
+      textInputAction: TextInputAction.done,
       controller: mapFieldController,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(8),
