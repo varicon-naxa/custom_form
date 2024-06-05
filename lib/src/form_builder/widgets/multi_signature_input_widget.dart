@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -62,7 +63,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
         .where((signature) =>
             signature.attachmentId != null &&
             signature.file != null &&
-            signature.signatoryName != null)
+            signature.name != null)
         .toList();
     widget.formValue.saveList(
       widget.field.id,
@@ -114,6 +115,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   }
 
   ///Signature single component
+  ///
+  ///Single signature component with image and name
   Widget singleComponent(SingleSignature singleItem) {
     return Container(
       height: 335,
@@ -197,7 +200,10 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     );
   }
 
-  signatureDialog() {
+  ///Signature dialog
+  ///
+  ///Dialog to add signature with name and consent
+  void signatureDialog() {
     SingleSignature singleSignature = SingleSignature(
       id: 'item-${const Uuid().v4()}',
     );
@@ -244,7 +250,9 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                       signHere?.clear();
                     },
                   ),
-                  AppSpacing.sizedBoxH_04(),
+                  AppSpacing.sizedBoxH_12(),
+                  const SignConsentWidget(),
+                  AppSpacing.sizedBoxH_12(),
                   TextFormField(
                     controller: controller,
                     onChanged: (data) {},
@@ -305,7 +313,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                             onTap: () async {
                               final signs = signKey.currentState;
                               validate = controller.text.isEmpty;
-
+                              setStates(() {});
                               if ((signs?.points ?? []).isEmpty) {
                                 Fluttertoast.showToast(
                                   msg: 'Please sign to submit the signature',
@@ -431,9 +439,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextButton.icon(
-                onPressed: () {
-                  signatureDialog();
-                },
+                onPressed: () => signatureDialog(),
                 icon: const Icon(
                   Icons.add,
                   color: Colors.black,
@@ -454,6 +460,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
 }
 
 ///Widget to clear signature
+///
+///buttom with icon and text
 class ClearSignatureWidget extends StatelessWidget {
   const ClearSignatureWidget({
     super.key,
