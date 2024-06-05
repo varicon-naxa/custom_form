@@ -3,9 +3,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
-import 'package:html_editor_enhanced/utils/options.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
@@ -888,19 +886,30 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         }
                         return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: MultiSignatureInputWidget(
-                            field: field,
-                            key: _fieldKeys[
-                                widget.surveyForm.inputFields.indexOf(e)],
-                            formValue: formValue,
-                            imageBuild: widget.imageBuild,
-                            attachmentSave: widget.attachmentSave,
                             labelText: labelText,
-                            onSaved: (Map<String, dynamic> result) {},
-                          ),
-                        );
+                            isRequired: e.isRequired,
+                            child: MultiSignatureInputWidget(
+                              field: field,
+                              key: _fieldKeys[
+                                  widget.surveyForm.inputFields.indexOf(e)],
+                              formValue: formValue,
+                              imageBuild: widget.imageBuild,
+                              attachmentSave: widget.attachmentSave,
+                              labelText: labelText,
+                              onSaved: (Map<String, dynamic> result) {},
+                            )
+
+                            // MultiSignatureInputWidget(
+                            //   field: field,
+                            //   key: _fieldKeys[
+                            //       widget.surveyForm.inputFields.indexOf(e)],
+                            //   formValue: formValue,
+                            //   imageBuild: widget.imageBuild,
+                            //   attachmentSave: widget.attachmentSave,
+                            //   labelText: labelText,
+                            //   onSaved: (Map<String, dynamic> result) {},
+                            // ),
+                            );
                       },
                       instruction: (field) {
                         return LabeledWidget(
