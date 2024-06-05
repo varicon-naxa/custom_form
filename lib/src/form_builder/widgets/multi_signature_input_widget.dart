@@ -5,9 +5,6 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
-import 'dart:math';
-import 'package:varicon_form_builder/src/core/debouncer.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -54,35 +51,10 @@ class MultiSignatureInputWidget extends StatefulWidget {
 }
 
 class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
-  String? value;
-  String? nameFieldValue;
-  bool isLoading = false;
-  bool validate = false;
-  final debouncer = Debouncer(milliseconds: 500);
-
   List<SingleSignature> answer = [];
   GlobalKey<SignatureState> signKey = GlobalKey<SignatureState>();
-
-  late final String otherFieldKey;
-  List<String> files = [];
-
-  MapEntry<int, SingleSignature>? storeSingleItem;
-
-  @override
-  void initState() {
-    super.initState();
-
-    ///initializing form values
-    setState(() {
-      if ((widget.field.answer ?? []).isEmpty) {
-        answer.add(SingleSignature(
-          id: 'item-${const Uuid().v4()}',
-        ));
-      } else {
-        answer.addAll(widget.field.answer ?? []);
-      }
-    });
-  }
+  bool validate = false;
+  bool isLoading = false;
 
   ///Method to save list of signature
   saveList() {
@@ -98,10 +70,22 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     );
   }
 
+  @override
+  void initState() {
+    super.initState();
+
+    ///initializing form values
+    setState(() {
+      if ((widget.field.answer ?? []).isNotEmpty) {
+        answer.addAll(widget.field.answer ?? []);
+      }
+    });
+  }
+
   ///Dialog to remove signature
   ///
   ///Checks for signature and remove the image
-  removeConfirmDialog(MapEntry<int, SingleSignature> e) {
+  removeConfirmDialog(SingleSignature e) {
     showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -117,7 +101,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
           TextButton(
             onPressed: () {
               setState(() {
-                answer.removeAt(e.key);
+                answer.removeWhere((element) => element.id == e.id);
               });
               saveList();
               Navigator.of(context).pop(true);
@@ -130,176 +114,94 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   }
 
   ///Signature single component
-  Widget singleComponent(MapEntry<int, SingleSignature> singleItem) {
-    TextEditingController controller = TextEditingController(
-        text: singleItem.value.signatoryName ?? singleItem.value.name ?? '');
-
+  Widget singleComponent(SingleSignature singleItem) {
     return Container(
-      key: Key(singleItem.value.id ?? ''),
-      height: controller.text.isNotEmpty ? 335 : 200,
+      height: 335,
       margin: const EdgeInsets.only(
         bottom: 10,
       ),
       padding: const EdgeInsets.only(
         top: 18,
       ),
-      decoration: (singleItem.value.file != null)
-          ? BoxDecoration(
-              borderRadius: BorderRadius.circular(
-                8.0,
-              ),
-              border: Border.all(
-                color: Colors.grey.shade300,
-                width: 2.0,
-              ),
-            )
-          : DottedDecoration(
-              borderRadius: BorderRadius.circular(4),
-              dash: const [3, 2],
-              shape: Shape.box,
-            ),
+      decoration: DottedDecoration(
+        borderRadius: BorderRadius.circular(4),
+        dash: const [3, 2],
+        shape: Shape.box,
+      ),
       width: double.infinity,
       child: Column(
         children: [
-          (singleItem.value.isLoading ?? false)
-              ? Container(
-                  alignment: Alignment.center,
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(
+                  bottom: 10,
+                ),
+                height: 200,
+                width: double.infinity,
+                decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(
-                      12.0,
-                    ),
-                  ),
-                  child: const CircularProgressIndicator.adaptive(),
-                )
-              : (singleItem.value.file != null)
-                  ? Stack(
-                      clipBehavior: Clip.none,
-                      children: [
-                        Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(
-                            bottom: 10,
-                          ),
-                          height: 200,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(
-                            12.0,
-                          )),
-                          child: widget.imageBuild({
-                            'image': singleItem.value.file,
-                            'height': 200.0,
-                            'width': 200.0
-                          }),
-                        ),
-                      ],
-                    )
-                  : Container(
-                      height: 165,
-                      margin: const EdgeInsets.symmetric(
-                        horizontal: 18,
-                      ),
-                      decoration: BoxDecoration(
-                        color: Colors.grey.shade100,
-                        borderRadius: BorderRadius.circular(
-                          8,
-                        ),
-                      ),
-                      width: double.infinity,
-                      child: Material(
-                        color: Colors.transparent,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(
-                            8,
-                          ),
-                          onTap: () {
-                            final focus = FocusNode();
-                            FocusScope.of(context).requestFocus(focus);
-                            signatureDialog(singleItem);
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: 50,
-                                width: 50,
-                                child: Image.asset(
-                                  'assets/image/signature.png',
-                                  package: 'varicon_form_builder',
-                                ),
-                              ),
-                              Text(
-                                'Click here to add signature',
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-          if (controller.text.isNotEmpty)
-            Container(
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                top: 12,
+                  12.0,
+                )),
+                child: widget.imageBuild({
+                  'image': singleItem.file,
+                  'height': 200.0,
+                  'width': 200.0
+                }),
               ),
-              width: double.infinity,
-              child: Text(
-                controller.text,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+            ],
+          ),
+          Container(
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 12,
             ),
-          if (controller.text.isNotEmpty)
-            IconButton(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 10,
-                vertical: 3,
-              ),
-              constraints: const BoxConstraints(),
-              onPressed: () {
-                removeConfirmDialog(singleItem);
-              },
-              icon: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(
-                    Icons.delete,
-                    color: Colors.red,
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    'Remove Signatory',
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Colors.red,
-                        ),
-                  ),
-                ],
-              ),
+            width: double.infinity,
+            child: Text(
+              singleItem.signatoryName ?? singleItem.name ?? '',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
+          ),
+          IconButton(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 3,
+            ),
+            constraints: const BoxConstraints(),
+            onPressed: () {
+              removeConfirmDialog(singleItem);
+            },
+            icon: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
+                const SizedBox(width: 6),
+                Text(
+                  'Remove Signatory',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Colors.red,
+                      ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
 
-  ///Check if list is valid
-  bool isListValid() {
-    return !answer.any((signature) =>
-        signature.file == null ||
-        signature.file == '' ||
-        signature.signatoryName == null ||
-        signature.signatoryName == '' ||
-        signature.attachmentId == null ||
-        signature.attachmentId == '');
-  }
-
-  signatureDialog(MapEntry<int, SingleSignature> singleItem) {
-    TextEditingController controller = TextEditingController(
-        text: singleItem.value.signatoryName ?? singleItem.value.name ?? '');
+  signatureDialog() {
+    SingleSignature singleSignature = SingleSignature(
+      id: 'item-${const Uuid().v4()}',
+    );
+    TextEditingController controller = TextEditingController();
     showDialog(
       barrierDismissible: false,
       context: context,
@@ -345,19 +247,14 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                   AppSpacing.sizedBoxH_04(),
                   TextFormField(
                     controller: controller,
-                    onChanged: (data) {
-                      debouncer.run(() {
-                        answer[singleItem.key] = answer[singleItem.key]
-                            .copyWith(signatoryName: data);
-                      });
-                    },
+                    onChanged: (data) {},
                     decoration: InputDecoration(
                       labelText: 'Signatory Name',
                       errorText: validate ? "Name cannot be empty" : null,
                     ),
                   ),
                   AppSpacing.sizedBoxH_12(),
-                  const SignConsentWidget(),
+                  // const SignConsentWidget(),
                   AppSpacing.sizedBoxH_12(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -370,9 +267,6 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                               final signHere = signKey.currentState;
                               signHere?.clear();
                               controller.clear();
-                              // answer[singleItem.key] = answer[singleItem.key]
-                              //     .copyWith(signatoryName: null);
-                              // saveList();
                               validate = false;
                               Navigator.pop(context);
                             },
@@ -419,18 +313,12 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                 return;
                               } else {
                                 if (controller.text.isEmpty) {
-                                  validate = true;
-                                  // Fluttertoast
-                                  //     .showToast(
-                                  //   msg:
-                                  //       'Signature with name field is required',
-                                  // );
+                                  setState(() {
+                                    validate = true;
+                                  });
                                 } else {
                                   setState(() {
                                     isLoading = true;
-                                    answer[singleItem.key] =
-                                        answer[singleItem.key]
-                                            .copyWith(isLoading: true);
                                   });
                                   final sign = signKey.currentState;
                                   final image = await sign?.getData();
@@ -450,12 +338,14 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                       .attachmentSave([savedImage.path]);
                                   widget.onSaved(savedFileData[0]);
                                   setState(() {
-                                    answer[singleItem.key] =
-                                        answer[singleItem.key].copyWith(
-                                            file: savedFileData[0]['file'],
-                                            attachmentId: savedFileData[0]['id']
-                                                .toString(),
-                                            isLoading: false);
+                                    singleSignature = singleSignature.copyWith(
+                                      file: savedFileData[0]['file'],
+                                      attachmentId:
+                                          savedFileData[0]['id'].toString(),
+                                      name: controller.text,
+                                      isLoading: false,
+                                    );
+                                    answer.add(singleSignature);
                                     saveList();
                                     isLoading = false;
                                     validate = false;
@@ -512,80 +402,37 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           if (answer.isNotEmpty)
-            ...answer.asMap().entries.map(
+            ...answer.map(
               (e) {
-                setState(() {
-                  storeSingleItem = e;
-                });
-                return e.value.attachmentId == null
-                    ? singleComponent(e)
-                    : Dismissible(
-                        direction: DismissDirection.endToStart,
-                        key: Key(e.value.id ?? ''),
-                        background: const SizedBox.shrink(),
-                        secondaryBackground: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.red,
-                            borderRadius: BorderRadius.circular(
-                              8.0,
-                            ),
-                          ),
-                          child: const Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 10.0,
-                                ),
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                  right: 20,
-                                ),
-                                child: Text(
-                                  'Delete',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        onDismissed: (direction) {
-                          setState(() {});
-                        },
-                        confirmDismiss: (direction) async {
-                          removeConfirmDialog(e);
-                          // setState(() {
-                          //   answer.removeAt(e.key);
-                          // });
-                          // saveList();
-                        },
-                        child: singleComponent(e),
-                      );
+                return singleComponent(e);
               },
             ).toList(),
           AppSpacing.sizedBoxH_06(),
+          if (isLoading)
+            Container(
+              alignment: Alignment.center,
+              height: 250,
+              width: double.infinity,
+              margin: const EdgeInsets.only(
+                bottom: 10,
+              ),
+              padding: const EdgeInsets.only(
+                top: 18,
+              ),
+              decoration: DottedDecoration(
+                borderRadius: BorderRadius.circular(4),
+                dash: const [3, 2],
+                shape: Shape.box,
+              ),
+              child: const CircularProgressIndicator.adaptive(),
+            ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               TextButton.icon(
                 onPressed: () {
-                  Random random = Random();
-                  int randomNumber = random.nextInt(1000);
-                  storeSingleItem = MapEntry(
-                      randomNumber,
-                      SingleSignature(
-                        id: 'item-${const Uuid().v4()}',
-                      ));
-                  // Check if there is any object with null values for id, attachmentId, file, and name
-                  signatureDialog(storeSingleItem!);
+                  signatureDialog();
                 },
                 icon: const Icon(
                   Icons.add,
