@@ -195,7 +195,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   children: [
                     Expanded(
                       child: Text(
-                        'Submitted On',
+                        'Submitted nn',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               color: const Color(0xff212529),
                             ),
@@ -228,7 +228,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 .titleSmall
                                 ?.copyWith(
                                   color: const Color(0xff212529),
-                                  decoration: TextDecoration.underline,
                                 ),
                           ),
                         ),
@@ -237,6 +236,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Colors.orange,
+                                  decoration: TextDecoration.underline,
+
                                   ),
                         ),
                       ],
