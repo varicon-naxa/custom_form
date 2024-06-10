@@ -623,7 +623,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                     .toList(),
                               ));
                         } else {
-                          return const SizedBox.shrink();
+                          return _AnswerDesign(answer: '');
                         }
                       },
                       images: (field) {
@@ -645,7 +645,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                     .toList(),
                               ));
                         } else {
-                          return const SizedBox.shrink();
+                          return _AnswerDesign(answer: '');
                         }
                       },
                       signature: (field) {
