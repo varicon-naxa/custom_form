@@ -24,6 +24,7 @@ class ResponseFormBuilder extends StatefulWidget {
     required this.hasGeolocation,
     required this.imageBuild,
     required this.fileClick,
+    required this.subid,
     required this.timesheetClick,
   });
 
@@ -33,6 +34,8 @@ class ResponseFormBuilder extends StatefulWidget {
   ///
   ///Contains forms various input fields
   final SurveyPageForm surveyForm;
+
+  final String subid;
 
   ///Check if a form has geolocation
   ///
@@ -195,7 +198,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   children: [
                     Expanded(
                       child: Text(
-                        'Submitted nn',
+                        'Submitted on',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               color: const Color(0xff212529),
                             ),
@@ -227,6 +230,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 .textTheme
                                 .titleSmall
                                 ?.copyWith(
+                                  decoration: TextDecoration.underline,
                                   color: const Color(0xff212529),
                                 ),
                           ),
@@ -236,13 +240,22 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Colors.orange,
-                                  decoration: TextDecoration.underline,
-
+                                    decoration: TextDecoration.underline,
                                   ),
                         ),
                       ],
                     ),
                   ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text('Submission ID',
+                          style: Theme.of(context).textTheme.titleSmall),
+                    ),
+                    Text(widget.subid,
+                        style: Theme.of(context).textTheme.bodyMedium),
+                  ],
+                ),
                 const Divider(),
                 RichText(
                   text: TextSpan(

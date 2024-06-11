@@ -252,15 +252,15 @@ class _CustomMultiBottomsheetState extends State<CustomMultiBottomsheet> {
             ? Center(
                 child: Column(
                   children: [
-                    const SizedBox(
-                      height: 24,
-                      width: 24,
-                      child: CircularProgressIndicator.adaptive(),
-                    ),
-                    AppSpacing.sizedBoxH_06(),
                     Text(
                       'Loading more data...',
                       style: Theme.of(context).textTheme.bodySmall,
+                    ),
+                    AppSpacing.sizedBoxH_06(),
+                    const SizedBox(
+                      height: 24,
+                      width: 24,
+                      child: CircularProgressIndicator(),
                     ),
                   ],
                 ),
