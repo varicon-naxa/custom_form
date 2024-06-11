@@ -8,6 +8,7 @@ part of 'value_text.dart';
 
 _$ValueTextImpl _$$ValueTextImplFromJson(Map<String, dynamic> json) =>
     _$ValueTextImpl(
+      isOtherField: json['isOtherField'] as bool?,
       action: json['action'] as bool?,
       value: readValue(json, 'value') as String,
       text: readText(json, 'text') as String,
@@ -16,6 +17,7 @@ _$ValueTextImpl _$$ValueTextImplFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$ValueTextImplToJson(_$ValueTextImpl instance) =>
     <String, dynamic>{
+      'isOtherField': instance.isOtherField,
       'action': instance.action,
       'value': instance.value,
       'text': instance.text,
@@ -27,6 +29,7 @@ _$NoneValueTextImpl _$$NoneValueTextImplFromJson(Map<String, dynamic> json) =>
       value: json['value'] as String? ?? 'none',
       text: json['text'] as String,
       action: json['action'] as bool?,
+      isOtherField: json['isOtherField'] as bool?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -35,6 +38,7 @@ Map<String, dynamic> _$$NoneValueTextImplToJson(_$NoneValueTextImpl instance) =>
       'value': instance.value,
       'text': instance.text,
       'action': instance.action,
+      'isOtherField': instance.isOtherField,
       'runtimeType': instance.$type,
     };
 
@@ -43,6 +47,7 @@ _$OtherValueTextImpl _$$OtherValueTextImplFromJson(Map<String, dynamic> json) =>
       value: json['value'] as String? ?? 'other',
       text: json['text'] as String,
       action: json['action'] as bool?,
+      isOtherField: json['isOtherField'] as bool?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -52,5 +57,6 @@ Map<String, dynamic> _$$OtherValueTextImplToJson(
       'value': instance.value,
       'text': instance.text,
       'action': instance.action,
+      'isOtherField': instance.isOtherField,
       'runtimeType': instance.$type,
     };

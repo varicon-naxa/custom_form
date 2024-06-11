@@ -332,8 +332,6 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                 ),
                 TextFormField(
                   initialValue: widget.formValue.getStringValue(otherFieldKey),
-                  maxLength: 80,
-                  maxLines: 4,
                   onSaved: (newValue) => widget.formValue.saveString(
                     otherFieldKey,
                     newValue,

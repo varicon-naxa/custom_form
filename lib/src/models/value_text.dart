@@ -8,6 +8,7 @@ part 'value_text.g.dart';
 class ValueText with _$ValueText {
   const factory ValueText({
     /// Option Action to have color
+    @JsonKey(name: 'isOtherField') bool? isOtherField,
     @JsonKey(name: 'action') bool? action,
 
     /// Value that is used for remote API consumption.
@@ -21,12 +22,14 @@ class ValueText with _$ValueText {
     @Default('none') String value,
     required String text,
     bool? action,
+    bool? isOtherField,
   }) = NoneValueText;
 
   const factory ValueText.other({
     @Default('other') String value,
     required String text,
     bool? action,
+    bool? isOtherField,
   }) = OtherValueText;
 
   factory ValueText.fromJson(Map<String, dynamic> json) =>
