@@ -4,7 +4,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
-import 'package:varicon_form_builder/src/models/models.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 ///Map field text form  widget
@@ -82,9 +81,9 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
     );
 
     //setting the address value to the map field controller
-
+    print(address);
     mapFieldController.text =
-        '${address.first.subThoroughfare} ${address.first.thoroughfare}, ${address.first.locality} ${address.first.administrativeArea} ${address.first.postalCode} ${address.first.country}';
+        '${address.first.subThoroughfare!.isEmpty ? '' : '${address.first.subThoroughfare}'} ${address.first.thoroughfare!.isEmpty ? '' : '${address.first.thoroughfare}, '}${address.first.locality} ${address.first.administrativeArea} ${address.first.postalCode} ${address.first.country}';
   }
 
   @override

@@ -3,7 +3,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_html/flutter_html.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
@@ -355,6 +354,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         );
                         editorOptions = HtmlEditorOptions(
                           adjustHeightForKeyboard: false,
+                          // autoAdjustHeight: false,
                           initialText: field.answer,
                           // disabled: true,
                         );
@@ -887,19 +887,30 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         }
                         return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: MultiSignatureInputWidget(
-                            field: field,
-                            key: _fieldKeys[
-                                widget.surveyForm.inputFields.indexOf(e)],
-                            formValue: formValue,
-                            imageBuild: widget.imageBuild,
-                            attachmentSave: widget.attachmentSave,
                             labelText: labelText,
-                            onSaved: (Map<String, dynamic> result) {},
-                          ),
-                        );
+                            isRequired: e.isRequired,
+                            child: MultiSignatureInputWidget(
+                              field: field,
+                              key: _fieldKeys[
+                                  widget.surveyForm.inputFields.indexOf(e)],
+                              formValue: formValue,
+                              imageBuild: widget.imageBuild,
+                              attachmentSave: widget.attachmentSave,
+                              labelText: labelText,
+                              onSaved: (Map<String, dynamic> result) {},
+                            )
+
+                            // MultiSignatureInputWidget(
+                            //   field: field,
+                            //   key: _fieldKeys[
+                            //       widget.surveyForm.inputFields.indexOf(e)],
+                            //   formValue: formValue,
+                            //   imageBuild: widget.imageBuild,
+                            //   attachmentSave: widget.attachmentSave,
+                            //   labelText: labelText,
+                            //   onSaved: (Map<String, dynamic> result) {},
+                            // ),
+                            );
                       },
                       instruction: (field) {
                         return LabeledWidget(
@@ -1116,7 +1127,7 @@ class HtmlEditorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      // height: 300,
       decoration: BoxDecoration(
           border: Border.all(
             color: Colors.grey.shade300,

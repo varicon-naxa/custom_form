@@ -73,7 +73,7 @@ class MapPicker extends StatefulWidget {
 class _MapPickerState extends State<MapPicker> {
   final Completer<GoogleMapController> _controller = Completer();
 
-  final markers = Set<Marker>();
+  final markers = <Marker>{};
   MarkerId markerId = const MarkerId("1");
   LatLng latLng = const LatLng(-33.865143, 151.209900);
 
@@ -90,149 +90,123 @@ class _MapPickerState extends State<MapPicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Container(
-              width: 400,
-              height: widget.forMapField == true ? 550 : 250,
+    return Material(
+      child: Column(
+        children: [
+          Expanded(
+            child: Container(
+              // width: 400,
+              height: widget.forMapField == true
+                  ? MediaQuery.of(context).size.height
+                  : 250,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(
                   widget.forMapField == true ? 0 : 10.0,
                 ),
               ),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  var maxWidth = constraints.biggest.width;
-                  var maxHeight = constraints.biggest.height;
-
-                  return Stack(
-                    children: <Widget>[
-                      Container(
-                        height: maxHeight,
-                        width: maxWidth,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            widget.forMapField == true ? 0 : 10.0,
-                          ),
-                        ),
-                        child: GoogleMap(
-                          initialCameraPosition: CameraPosition(
-                            target: LatLng(
-                                widget.postition?.latitude ?? -33.865143,
-                                widget.postition?.longitude ?? 151.209900),
-                            zoom: 12,
-                          ),
-                          onMapCreated: widget.forMapField == true
-                              ? (GoogleMapController controller) {
-                                  _controller.complete(controller);
-                                }
-                              : null,
-                          onCameraMove: widget.forMapField == true
-                              ? (CameraPosition newPosition) {
-                                  widget.value = newPosition.target;
-                                  setState(() {
-                                    markers.add(Marker(
-                                        markerId: markerId,
-                                        position: newPosition.target));
-                                  });
-                                }
-                              : null,
-                          mapType: MapType.normal,
-                          zoomGesturesEnabled: true,
-                          padding: const EdgeInsets.all(0),
-                          cameraTargetBounds: CameraTargetBounds.unbounded,
-                          minMaxZoomPreference: MinMaxZoomPreference.unbounded,
-                          // markers:
-                          //     // widget.forMapField == true
-                          //     //     ? {}
-                          //     //     :
-                          //     {
-                          //   Marker(
-                          //     draggable: true,
-                          //     markerId: const MarkerId('1'),
-                          //     position: LatLng(
-                          //         (-4.326029675459877), (15.321166142821314)),
-                          //     icon: BitmapDescriptor.defaultMarker,
-                          //   ),
-                          // },
-                          markers: markers,
-                          // markers: Set<Marker>.of(
-                          //   <Marker>[
-                          //     Marker(
-                          //       draggable: true,
-                          //       markerId: MarkerId("1"),
-                          //       onDragEnd: ((newPosition) {
-                          //         print(newPosition.latitude);
-                          //         print(newPosition.longitude);
-                          //       }),
-                          //       position: LatLng((-33.865143), (151.209900)),
-                          //       icon: BitmapDescriptor.defaultMarker,
-                          //       infoWindow: const InfoWindow(
-                          //         title: 'Usted está aquí',
-                          //       ),
-                          //     )
-                          //   ],
-                          // ),
-                          onTap: (LatLng curentLatlng) {},
-                        ),
+              child: Stack(
+                children: <Widget>[
+                  GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng(widget.postition?.latitude ?? -33.865143,
+                          widget.postition?.longitude ?? 151.209900),
+                      zoom: 12,
+                    ),
+                    onMapCreated: widget.forMapField == true
+                        ? (GoogleMapController controller) {
+                            _controller.complete(controller);
+                          }
+                        : null,
+                    onCameraMove: widget.forMapField == true
+                        ? (CameraPosition newPosition) {
+                            widget.value = newPosition.target;
+                            setState(() {
+                              markers.add(Marker(
+                                  markerId: markerId,
+                                  position: newPosition.target));
+                            });
+                          }
+                        : null,
+                    mapType: MapType.normal,
+                    zoomGesturesEnabled: true,
+                    padding: const EdgeInsets.all(0),
+                    cameraTargetBounds: CameraTargetBounds.unbounded,
+                    minMaxZoomPreference: MinMaxZoomPreference.unbounded,
+                    markers: markers,
+                    onTap: (LatLng curentLatlng) {},
+                  ),
+                  Positioned(
+                    bottom: 30,
+                    left: 30,
+                    child: Container(
+                      color: Colors.white,
+                      child: IconButton(
+                        onPressed: () async {
+                          var position = await _determinePosition();
+                          final GoogleMapController controller =
+                              await _controller.future;
+                          controller.animateCamera(
+                            CameraUpdate.newCameraPosition(
+                              CameraPosition(
+                                target: LatLng(
+                                    position.latitude, position.longitude),
+                                zoom: 12,
+                              ),
+                            ),
+                          );
+                        },
+                        icon: const Icon(Icons.my_location),
                       ),
-                      // if (widget.forMapField == true)
-                      //   Positioned(
-                      //     bottom: maxHeight / 2,
-                      //     right: (maxWidth - 30) / 2,
-                      //     child: const Icon(
-                      //       Icons.location_pin,
-                      //       size: 32,
-                      //       color: Colors.green,
-                      //     ),
-                      //   ),
-                      Positioned(
-                        bottom: 30,
-                        left: 30,
-                        child: Container(
-                          color: Colors.white,
-                          child: IconButton(
-                            onPressed: () async {
-                              var position = await _determinePosition();
-                              final GoogleMapController controller =
-                                  await _controller.future;
-                              controller.animateCamera(
-                                CameraUpdate.newCameraPosition(
-                                  CameraPosition(
-                                    target: LatLng(
-                                        position.latitude, position.longitude),
-                                    zoom: 12,
-                                  ),
-                                ),
-                              );
-                            },
-                            icon: const Icon(Icons.my_location),
-                          ),
-                        ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 15,
+                    left: 0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: const CircleBorder(),
                       ),
-                    ],
-                  );
-                },
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-            if (widget.forMapField == true)
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 40,
-                ),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (context.mounted) {
-                      Navigator.pop(context, widget.value);
-                    }
-                  },
-                  child: const Text('Select Location'),
-                ),
+          ),
+          if (widget.forMapField == true)
+            SizedBox(
+              height: 70,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButtonWidget(
+                      text: 'Cancel',
+                      bgColor: Colors.white,
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: ElevatedButtonWidget(
+                      text: 'Submit',
+                      onPressed: () {
+                        if (context.mounted) {
+                          Navigator.pop(context, widget.value);
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }
@@ -260,5 +234,54 @@ class _MapPickerState extends State<MapPicker> {
     }
 
     return await Geolocator.getCurrentPosition();
+  }
+}
+
+///Elevated button widget
+///
+///with custom text and function
+class ElevatedButtonWidget extends StatelessWidget {
+  const ElevatedButtonWidget({
+    super.key,
+    required this.onPressed,
+    required this.text,
+    this.bgColor,
+  });
+
+  final Function onPressed;
+  final String text;
+  final Color? bgColor;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 8,
+      ),
+      child: SizedBox(
+        height: 50,
+        child: ElevatedButton(
+          onPressed: () => onPressed(),
+          style: ButtonStyle(
+              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4.0),
+                  side: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+              ),
+              backgroundColor: MaterialStateProperty.all<Color>(
+                bgColor ?? Theme.of(context).primaryColor,
+              )),
+          child: Text(
+            (text).toUpperCase(),
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+          ),
+        ),
+      ),
+    );
   }
 }

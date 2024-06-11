@@ -45,12 +45,15 @@ class CheckboxFormField extends FormField<List<bool?>> {
                           : Colors.white,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                          color: (item.hasAction != null &&
-                                  state.value?[index] == true)
-                              ? (item.hasAction!)
-                                  ? Colors.red
-                                  : Colors.green
-                              : Colors.white),
+                        color: (item.hasAction != null &&
+                                state.value?[index] == true)
+                            ? (item.hasAction!)
+                                ? Colors.red
+                                : Colors.green
+                            : state.value?[index] == true
+                                ? Colors.grey.shade500
+                                : Colors.white,
+                      ),
                     ),
                     child: CheckboxListTile(
                       controlAffinity: ListTileControlAffinity.leading,

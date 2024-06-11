@@ -4,10 +4,12 @@ import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:dotted_border/dotted_border.dart';
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/multi_signature_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
@@ -73,6 +75,37 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
     });
   }
 
+  ///Dialog to remove signature
+  ///
+  ///Checks for signature and remove the image
+  void removeConfirmDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Remove Signature'),
+        content: const Text('Are you sure you want to remove the signature?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              widget.onSaved({});
+              setState(() {
+                answer = {};
+              });
+              Navigator.of(context).pop();
+            },
+            child: const Text('Remove'),
+          ),
+        ],
+      ),
+    );
+  }
+
   ///Dialog to open signature pad
   ///
   ///Checks for signature and save the image
@@ -108,8 +141,15 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                       onSign: () {},
                       strokeWidth: 4.0,
                     )),
+                AppSpacing.sizedBoxH_04(),
+                ClearSignatureWidget(
+                  onClear: () {
+                    final signHere = sign.currentState;
+                    signHere?.clear();
+                  },
+                ),
                 AppSpacing.sizedBoxH_12(),
-                const SignConsentCheckBoxWidget(),
+                const SignConsentWidget(),
                 AppSpacing.sizedBoxH_12(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -245,77 +285,94 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                   color: Colors.grey.shade300,
                   duration: const Duration(seconds: 2),
                 )
-            : SizedBox(
-                height: 150,
+            : Container(
+                // decoration: BoxDecoration(
+                //   borderRadius: BorderRadius.circular(
+                //     8.0,
+                //   ),
+                //   border: Border.all(
+                //     color: Colors.grey.shade300,
+                //     width: 2.0,
+                //   ),
+                // ),
+
+                height: 170,
                 width: double.infinity,
-                child: DottedBorder(
-                  child: SizedBox(
-                    height: 150,
-                    width: double.infinity,
-                    child: answer.isEmpty
-                        ? Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              onTap: () {
-                                openDialog();
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  SizedBox(
-                                    height: 50,
-                                    width: 50,
-                                    child: Image.asset(
-                                      'assets/image/signature.png',
-                                      package: 'varicon_form_builder',
-                                    ),
+                child: answer.isEmpty
+                    ? Container(
+                        decoration: DottedDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          dash: const [3, 2],
+                          shape: Shape.box,
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
+                            onTap: () {
+                              openDialog();
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 50,
+                                  width: 50,
+                                  child: Image.asset(
+                                    'assets/image/signature.png',
+                                    package: 'varicon_form_builder',
                                   ),
-                                  Text(
-                                    'Click here to add signature',
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
-                                  ),
-                                ],
+                                ),
+                                Text(
+                                  'Click here to add signature',
+                                  style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      )
+                    : Stack(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            height: 200,
+                            padding: const EdgeInsets.all(12),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                8.0,
+                              ),
+                              border: Border.all(
+                                color: Colors.grey.shade300,
+                                width: 2.0,
                               ),
                             ),
-                          )
-                        : Stack(
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                height: 200,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                  12.0,
-                                )),
-                                child: widget.imageBuild({
-                                  'image': imaeURL,
-                                  'height': 200.0,
-                                  'width': 200.0
-                                }),
-                              ),
-                              Positioned(
-                                top: 0,
-                                right: 0,
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.close_rounded,
-                                    color: Colors.red,
-                                  ),
-                                  onPressed: () {
-                                    widget.onSaved({});
-                                    setState(() {
-                                      answer = {};
-                                    });
-                                  },
-                                ),
-                              )
-                            ],
+                            child: widget.imageBuild({
+                              'image': imaeURL,
+                              'height': 200.0,
+                              'width': 200.0
+                            }),
                           ),
-                  ),
-                ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.close_rounded,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {
+                                removeConfirmDialog();
+                                // widget.onSaved({});
+                                // setState(() {
+                                //   answer = {};
+                                // });
+                              },
+                            ),
+                          )
+                        ],
+                      ),
               ),
       ],
     );
