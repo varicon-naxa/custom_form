@@ -377,6 +377,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                       formKey: _fieldKeys[widget
                                           .surveyForm.inputFields
                                           .indexOf(e)],
+                                      isRequired: field.isRequired,
                                       formValue: formValue,
                                       field: field,
                                       forMapField: true,
