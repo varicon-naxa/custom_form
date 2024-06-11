@@ -165,7 +165,9 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
             width: double.infinity,
             child: Text(
               singleItem.signatoryName ?? singleItem.name ?? '',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
           IconButton(
@@ -320,7 +322,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                 );
                                 return;
                               } else {
-                                if (controller.text.isEmpty) {
+                                if (controller.text.toString().trim().isEmpty) {
                                   setState(() {
                                     validate = true;
                                   });
