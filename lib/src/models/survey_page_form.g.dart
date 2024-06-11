@@ -25,6 +25,7 @@ _$SurveyPageFormImpl _$$SurveyPageFormImplFromJson(Map<String, dynamic> json) =>
       needAction: json['need_action'] as bool?,
       submittedBy: json['submitted_by'] as String?,
       updatedBy: json['updated_by'] as String?,
+      submissionNumber: json['submission_number'] as String?,
       setting: json['setting'] as Map<String, dynamic>?,
       status: json['status'] as Map<String, dynamic>?,
       inputFields: (json['elements'] as List<dynamic>?)
@@ -48,6 +49,7 @@ Map<String, dynamic> _$$SurveyPageFormImplToJson(
       'need_action': instance.needAction,
       'submitted_by': instance.submittedBy,
       'updated_by': instance.updatedBy,
+      'submission_number': instance.submissionNumber,
       'setting': instance.setting,
       'status': instance.status,
       'elements':

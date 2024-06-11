@@ -22,6 +22,7 @@ class SurveyPageForm with _$SurveyPageForm {
     @JsonKey(name: 'need_action') bool? needAction,
     @JsonKey(name: 'submitted_by') String? submittedBy,
     @JsonKey(name: 'updated_by') String? updatedBy,
+    @JsonKey(name: 'submission_number') String? submissionNumber,
     Map<String, dynamic>? setting,
     Map<String, dynamic>? status,
     @JsonKey(name: 'elements')
