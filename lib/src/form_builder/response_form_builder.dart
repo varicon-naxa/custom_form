@@ -24,7 +24,6 @@ class ResponseFormBuilder extends StatefulWidget {
     required this.hasGeolocation,
     required this.imageBuild,
     required this.fileClick,
-    required this.subid,
     required this.timesheetClick,
   });
 
@@ -34,8 +33,6 @@ class ResponseFormBuilder extends StatefulWidget {
   ///
   ///Contains forms various input fields
   final SurveyPageForm surveyForm;
-
-  final String subid;
 
   ///Check if a form has geolocation
   ///
@@ -144,6 +141,25 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    Text('Submission ID:',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(widget.surveyForm.submissionNumber ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.black)),
+                    const VerticalDivider(),
+                    Text('Form ID:',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(widget.surveyForm.formNumber ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.black)),
+                  ],
+                ),
                 Text(
                   widget.surveyForm.title.toString(),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -246,16 +262,46 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ],
                     ),
                   ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text('Submission ID',
-                          style: Theme.of(context).textTheme.titleSmall),
-                    ),
-                    Text(widget.subid,
-                        style: Theme.of(context).textTheme.bodyMedium),
-                  ],
-                ),
+                if (widget.surveyForm.equipment != null)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Equipment',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        widget.surveyForm.equipmentName ?? '',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
+                            ),
+                      ),
+                    ],
+                  ),
+                if (widget.surveyForm.project != null)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Project',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        widget.surveyForm.project ?? '',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
+                            ),
+                      ),
+                    ],
+                  ),
                 const Divider(),
                 RichText(
                   text: TextSpan(
