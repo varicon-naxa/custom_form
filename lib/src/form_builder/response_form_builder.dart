@@ -449,7 +449,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           labelText: labelText,
                           isRequired: e.isRequired,
                           child: _AnswerDesign(
-                            answer: field.answer ?? '',
+                            answer: getFormattedText(
+                                _parseToDateTime(
+                                    field.answer ?? '', DatePickerType.date),
+                                DatePickerType.date),
                           ),
                         );
                       },
