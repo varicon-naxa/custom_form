@@ -383,6 +383,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                       forMapField: true,
                                     )
                                   : TextFormField(
+                                      // inputFormatters: [
+                                      //   FilteringTextInputFormatter.deny(
+                                      //       RegExp(r'\s')),
+                                      // ],
                                       initialValue: field.answer ?? '',
                                       key: _fieldKeys[widget
                                           .surveyForm.inputFields
@@ -457,7 +461,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             },
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
-                                  RegExp(r'^[0-9]+.?[0-9]*'))
+                                  // RegExp(r'^[0-9]+.?[0-9]*'),
+                                  RegExp(r'^\s*([0-9]+)\s*$')),
                             ],
                             validator: (value) {
                               return numberValidator(
