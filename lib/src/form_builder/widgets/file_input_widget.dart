@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/primary_bottomsheet.dart';
 import 'package:varicon_form_builder/src/mixin/file_picker_mixin.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
@@ -423,45 +424,59 @@ class SingleFileItem extends StatelessWidget {
               ],
             ),
           )
-        : Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(8.0),
-              border: Border.all(),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                    child: GestureDetector(
-                  onTap: () {
-                    fileClicked!();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
+        : Material(
+            color: Colors.transparent,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      fileClicked!();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.file_copy_outlined,
+                            color: Colors.red,
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            fileName,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Text(
-                      fileName,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ),
-                )),
-                GestureDetector(
-                  onTap: () {
-                    ontap();
-                  },
-                  child: Container(
+                  )),
+                  InkWell(
+                    onTap: () => ontap(),
+                    child: Container(
                       padding: const EdgeInsets.all(10),
-                      child: const Icon(Icons.close)),
-                )
-              ],
+                      child: const Icon(Icons.close),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
   }
 }
 
+///File input form widget [button type]
+///
+///Accepts field type with file input
 class InternalFile {
   String? path;
   String? id;
@@ -469,8 +484,11 @@ class InternalFile {
 }
 
 class SingleFileAddItem extends StatelessWidget {
-  const SingleFileAddItem(
-      {super.key, required this.onTap, required this.isImage});
+  const SingleFileAddItem({
+    super.key,
+    required this.onTap,
+    required this.isImage,
+  });
   final Function onTap;
   final bool isImage;
 
@@ -486,26 +504,25 @@ class SingleFileAddItem extends StatelessWidget {
       height: 50,
       width: double.infinity,
       child: TextButton.icon(
-          style: const ButtonStyle().copyWith(
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            backgroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
+        style: const ButtonStyle().copyWith(
+          foregroundColor: MaterialStateProperty.all(Colors.white),
+          backgroundColor: MaterialStateProperty.all(Colors.white),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
             ),
           ),
-          onPressed: () {
-            onTap();
-          },
-          icon: Icon(
-            isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
-            color: Colors.grey,
-          ),
-          label: Text(
-            isImage ? 'Upload Image' : 'Upload File',
-            style: Theme.of(context).textTheme.bodyMedium,
-          )),
+        ),
+        onPressed: () => onTap(),
+        icon: Icon(
+          isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
+          color: Colors.grey,
+        ),
+        label: Text(
+          isImage ? 'Upload Image' : 'Upload File',
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
+      ),
     );
   }
 }
