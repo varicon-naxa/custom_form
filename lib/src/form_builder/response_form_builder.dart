@@ -517,7 +517,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       // },
                       dropdown: (field) {
                         String answerText = '';
-                        if (e.answer != null && e.answer != '') {
+                        if (field.answerList != null &&
+                            field.answerList != '') {
+                          answerText = field.answerList ?? '';
+                        } else if (e.answer != null && e.answer != '') {
                           bool containsId =
                               field.choices.any((obj) => obj.value == e.answer);
 

@@ -81,6 +81,8 @@ class _SurveyPageState extends State<SurveyPage> {
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
+          // log('elements ' + jsonEncode(elements).toString());
+
           final valueList = elements.map((e) {
             final key = formValue[e['id']];
             final answerKey = formValue[
@@ -89,7 +91,7 @@ class _SurveyPageState extends State<SurveyPage> {
               e.addAll({'answer': key});
             }
             if (answerKey != null) {
-              e.addAll({'a': answerKey});
+              e.addAll({'selectedLinkListLabel': answerKey});
             }
             return e;
           }).toList();
