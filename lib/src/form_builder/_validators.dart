@@ -12,7 +12,7 @@ String? textValidator({
   bool isRequired = false,
   String? requiredErrorText,
 }) {
-  if (isRequired && (value?.isEmpty ?? true)) {
+  if ((value ?? '').trim().isEmpty && isRequired) {
     return requiredErrorText ?? 'Response required.';
   }
 

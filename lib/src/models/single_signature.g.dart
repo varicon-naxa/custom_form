@@ -12,7 +12,8 @@ _$SingleSignatureImpl _$$SingleSignatureImplFromJson(
       id: json['id'] as String?,
       attachmentId: json['attachmentId'] as String?,
       file: json['file'] as String?,
-      name: json['signatory_name'] as String?,
+      name: json['name'] as String?,
+      signatoryName: json['signatory_name'] as String?,
       isLoading: json['isLoading'] as bool?,
     );
 
@@ -22,6 +23,7 @@ Map<String, dynamic> _$$SingleSignatureImplToJson(
       'id': instance.id,
       'attachmentId': instance.attachmentId,
       'file': instance.file,
-      'signatory_name': instance.name,
+      'name': instance.name,
+      'signatory_name': instance.signatoryName,
       'isLoading': instance.isLoading,
     };

@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -24,6 +24,7 @@ class ResponseFormBuilder extends StatefulWidget {
     required this.hasGeolocation,
     required this.imageBuild,
     required this.fileClick,
+    required this.timesheetClick,
   });
 
   ///Survey page form model
@@ -47,6 +48,11 @@ class ResponseFormBuilder extends StatefulWidget {
   ///
   ///Returns the file path for form contents like images, files, instructions
   final Function(Map<String, dynamic> url) fileClick;
+
+  /// Function to handle Timesheet id click
+  ///
+  ///  Redirect to timesheet detail page
+  final Function(String) timesheetClick;
 
   @override
   State<ResponseFormBuilder> createState() => _ResponseFormBuilderState();
@@ -135,6 +141,25 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    Text('Submission ID:',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(widget.surveyForm.submissionNumber ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.black)),
+                    const VerticalDivider(),
+                    Text('Form ID:',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(widget.surveyForm.formNumber ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.black)),
+                  ],
+                ),
                 Text(
                   widget.surveyForm.title.toString(),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -189,7 +214,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   children: [
                     Expanded(
                       child: Text(
-                        'Submitted On',
+                        'Submitted on',
                         style: Theme.of(context).textTheme.titleSmall?.copyWith(
                               color: const Color(0xff212529),
                             ),
@@ -208,22 +233,71 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   ],
                 ),
                 if (widget.surveyForm.timesheet != null)
+                  InkWell(
+                    onTap: () {
+                      widget.timesheetClick(widget.surveyForm.timesheet ?? '');
+                    },
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'Timesheet ID',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleSmall
+                                ?.copyWith(
+                                  decoration: TextDecoration.underline,
+                                  color: const Color(0xff212529),
+                                ),
+                          ),
+                        ),
+                        Text(
+                          widget.surveyForm.timesheet ?? '',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: Colors.orange,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                        ),
+                      ],
+                    ),
+                  ),
+                if (widget.surveyForm.equipment != null)
                   Row(
                     children: [
                       Expanded(
                         child: Text(
-                          'Timesheet ID',
+                          'Equipment',
                           style:
                               Theme.of(context).textTheme.titleSmall?.copyWith(
                                     color: const Color(0xff212529),
-                                    decoration: TextDecoration.underline,
                                   ),
                         ),
                       ),
                       Text(
-                        widget.surveyForm.timesheet ?? '',
+                        widget.surveyForm.equipmentName ?? '',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Colors.orange,
+                              color: const Color(0xff6A737B),
+                            ),
+                      ),
+                    ],
+                  ),
+                if (widget.surveyForm.project != null)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Project',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        widget.surveyForm.project ?? '',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
                             ),
                       ),
                     ],
@@ -357,12 +431,28 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           ),
                         );
                       },
+                      map: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: (field.answer ?? '').contains('address')
+                              ? _AnswerMapDesign(
+                                  answer: field.answer ?? '',
+                                )
+                              : _AnswerDesign(
+                                  answer: '',
+                                ),
+                        );
+                      },
                       date: (field) {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
                           child: _AnswerDesign(
-                            answer: field.answer ?? '',
+                            answer: getFormattedText(
+                                _parseToDateTime(
+                                    field.answer ?? '', DatePickerType.date),
+                                DatePickerType.date),
                           ),
                         );
                       },
@@ -427,7 +517,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       // },
                       dropdown: (field) {
                         String answerText = '';
-                        if (e.answer != null && e.answer != '') {
+                        if (field.answerList != null &&
+                            field.answerList != '') {
+                          answerText = field.answerList ?? '';
+                        } else if (e.answer != null && e.answer != '') {
                           bool containsId =
                               field.choices.any((obj) => obj.value == e.answer);
 
@@ -808,7 +901,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
   }
 }
 
-// ignore: must_be_immutable
 ///Widget that represents forms answer design
 ///
 ///soley for singular form items like text, titles, single image,files
@@ -921,6 +1013,72 @@ class _AnswerDesign extends StatelessWidget {
   }
 }
 
+/// Widget that represent map field answer design
+
+class _AnswerMapDesign extends StatelessWidget {
+  const _AnswerMapDesign({
+    required this.answer,
+  });
+
+  ///String values for text, image urls, files content
+  final String answer;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                (answer).isEmpty ? 'No Response' : answer,
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    color: answer.isEmpty ? Colors.grey : Colors.black),
+              ),
+            ),
+            // if (answer.containsKey('lat') &&
+            //     answer.containsKey('long') &&
+            //     answer['lat'] != 0.0 &&
+            //     answer['long'] != 0.0)
+            IconButton(
+              onPressed: () {
+                ///Navigate to Simple Map Page
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute<void>(
+                //     builder: (BuildContext context) {
+                //       return SimpleMap(
+                //         lat: answer['lat'],
+                //         long: answer['long'],
+                //       );
+                //     },
+                //   ),
+                // );
+              },
+              icon: const Icon(
+                Icons.directions,
+              ),
+            )
+          ],
+        ),
+        const DottedLine(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.center,
+          lineLength: double.infinity,
+          lineThickness: 1.0,
+          dashLength: 4.0,
+          dashColor: Colors.grey,
+          dashRadius: 0.0,
+          dashGapLength: 4.0,
+          dashGapColor: Colors.white,
+          dashGapRadius: 0.0,
+        )
+      ],
+    );
+  }
+}
+
 ///Widget that represents multi-forms answer design
 ///
 ///soley for multiple form items like text, titles,image,files
@@ -1013,7 +1171,7 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         ),
                       ),
                 Text(
-                  e.name ?? '',
+                  e.signatoryName ?? e.name ?? '',
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black,
                       ),

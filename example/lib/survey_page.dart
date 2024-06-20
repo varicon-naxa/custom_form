@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import 'dart:math' as Rand ;
+import 'dart:math' as Rand;
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
@@ -81,6 +81,8 @@ class _SurveyPageState extends State<SurveyPage> {
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
+          // log('elements ' + jsonEncode(elements).toString());
+
           final valueList = elements.map((e) {
             final key = formValue[e['id']];
             final answerKey = formValue[
@@ -89,7 +91,7 @@ class _SurveyPageState extends State<SurveyPage> {
               e.addAll({'answer': key});
             }
             if (answerKey != null) {
-              e.addAll({'a': answerKey});
+              e.addAll({'selectedLinkListLabel': answerKey});
             }
             return e;
           }).toList();

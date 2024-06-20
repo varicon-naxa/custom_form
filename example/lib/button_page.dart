@@ -15,63 +15,67 @@ class ButtonPage extends StatefulWidget {
 }
 
 class _ButtonPageState extends State<ButtonPage> {
+  TextEditingController mapFieldController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed: () async {
-                  const assetPath = 'assets/signature.json';
-                  String currentValue = await rootBundle.loadString(assetPath);
-                  Map<String, dynamic> currentData = jsonDecode(currentValue);
+      backgroundColor: Colors.grey.shade100,
+      appBar: AppBar(),
+      body: Center(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                const assetPath = 'assets/image.json';
+                String currentValue = await rootBundle.loadString(assetPath);
+                Map<String, dynamic> currentData = jsonDecode(currentValue);
 
-                  final SurveyPageForm form =
-                      SurveyPageForm.fromJson(currentData);
+                final SurveyPageForm form =
+                    SurveyPageForm.fromJson(currentData);
 
-                  ///Navigate on button click to SuveryPage
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) {
-                        return SurveyPage(form: form, formData: currentData);
-                      },
-                    ),
-                  );
-                },
-                child: const Text('Go Form Page'),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  const assetPath = 'assets/response.json';
-                  String currentValue = await rootBundle.loadString(assetPath);
-                  Map<String, dynamic> currentData = jsonDecode(currentValue);
+                ///Navigate on button click to SuveryPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return SurveyPage(form: form, formData: currentData);
+                    },
+                  ),
+                );
+              },
+              child: const Text('Go Form Page'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                const assetPath = 'assets/map_field.json';
+                String currentValue = await rootBundle.loadString(assetPath);
+                Map<String, dynamic> currentData = jsonDecode(currentValue);
 
-                  final SurveyPageForm form =
-                      SurveyPageForm.fromJson(currentData);
+                final SurveyPageForm form =
+                    SurveyPageForm.fromJson(currentData);
 
-                  ///Navigate on button click to SuveryPage
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (BuildContext context) {
-                        return ResponseTest(
-                          form: form,
-                          formData: currentData,
-                        );
-                        // SurveyPage(form: form, formData: currentData);
-                      },
-                    ),
-                  );
-                },
-                child: const Text('Go Response Page'),
-              ),
-            ],
-          ),
-        ));
+                ///Navigate on button click to SuveryPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return ResponseTest(
+                        form: form,
+                        formData: currentData,
+                      );
+                      // SurveyPage(form: form, formData: currentData);
+                    },
+                  ),
+                );
+              },
+              child: const Text('Go Response Page'),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

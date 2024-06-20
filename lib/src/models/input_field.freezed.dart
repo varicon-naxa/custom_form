@@ -60,6 +60,8 @@ InputField _$InputFieldFromJson(Map<String, dynamic> json) {
       return ImageInputField.fromJson(json);
     case 'geolocation':
       return GeolocationField.fromJson(json);
+    case 'map':
+      return MapField.fromJson(json);
 
     default:
       return _FallbackInputField.fromJson(json);
@@ -475,6 +477,18 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -868,6 +882,18 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1261,6 +1287,18 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1289,6 +1327,7 @@ mixin _$InputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1316,6 +1355,7 @@ mixin _$InputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -1343,6 +1383,7 @@ mixin _$InputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1972,6 +2013,18 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return fallback(id, label, answer, description, visible, isRequired,
         readOnly, requiredErrorText);
@@ -2369,6 +2422,18 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return fallback?.call(id, label, answer, description, visible, isRequired,
         readOnly, requiredErrorText);
@@ -2766,6 +2831,18 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (fallback != null) {
@@ -2801,6 +2878,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return fallback(this);
   }
@@ -2831,6 +2909,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return fallback?.call(this);
   }
@@ -2861,6 +2940,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (fallback != null) {
@@ -3570,6 +3650,18 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return text(
         id,
@@ -3981,6 +4073,18 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return text?.call(
         id,
@@ -4392,6 +4496,18 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (text != null) {
@@ -4441,6 +4557,7 @@ class _$TextInputFieldImpl implements TextInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return text(this);
   }
@@ -4471,6 +4588,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return text?.call(this);
   }
@@ -4501,6 +4619,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (text != null) {
@@ -5228,6 +5347,18 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return signature(
         id,
@@ -5638,6 +5769,18 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return signature?.call(
         id,
@@ -6048,6 +6191,18 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (signature != null) {
@@ -6096,6 +6251,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return signature(this);
   }
@@ -6126,6 +6282,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return signature?.call(this);
   }
@@ -6156,6 +6313,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (signature != null) {
@@ -6803,6 +6961,18 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return multisignature(id, label, description, visible, isRequired, readOnly,
         requiredErrorText, answer);
@@ -7200,6 +7370,18 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return multisignature?.call(id, label, description, visible, isRequired,
         readOnly, requiredErrorText, answer);
@@ -7597,6 +7779,18 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (multisignature != null) {
@@ -7632,6 +7826,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return multisignature(this);
   }
@@ -7662,6 +7857,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return multisignature?.call(this);
   }
@@ -7692,6 +7888,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (multisignature != null) {
@@ -8389,6 +8586,18 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return date(
         id,
@@ -8799,6 +9008,18 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return date?.call(
         id,
@@ -9209,6 +9430,18 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (date != null) {
@@ -9257,6 +9490,7 @@ class _$DateInputFieldImpl implements DateInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return date(this);
   }
@@ -9287,6 +9521,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return date?.call(this);
   }
@@ -9317,6 +9552,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (date != null) {
@@ -10069,6 +10305,18 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return instruction(
         id,
@@ -10481,6 +10729,18 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return instruction?.call(
         id,
@@ -10893,6 +11153,18 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (instruction != null) {
@@ -10943,6 +11215,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return instruction(this);
   }
@@ -10973,6 +11246,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return instruction?.call(this);
   }
@@ -11003,6 +11277,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (instruction != null) {
@@ -11738,6 +12013,18 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return section(
         id,
@@ -12149,6 +12436,18 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return section?.call(
         id,
@@ -12560,6 +12859,18 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (section != null) {
@@ -12609,6 +12920,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return section(this);
   }
@@ -12639,6 +12951,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return section?.call(this);
   }
@@ -12669,6 +12982,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (section != null) {
@@ -13387,6 +13701,18 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return time(
         id,
@@ -13797,6 +14123,18 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return time?.call(
         id,
@@ -14207,6 +14545,18 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (time != null) {
@@ -14255,6 +14605,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return time(this);
   }
@@ -14285,6 +14636,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return time?.call(this);
   }
@@ -14315,6 +14667,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (time != null) {
@@ -15029,6 +15382,18 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return url(
         id,
@@ -15439,6 +15804,18 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return url?.call(
         id,
@@ -15849,6 +16226,18 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (url != null) {
@@ -15897,6 +16286,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return url(this);
   }
@@ -15927,6 +16317,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return url?.call(this);
   }
@@ -15957,6 +16348,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (url != null) {
@@ -16672,6 +17064,18 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return number(
         id,
@@ -17082,6 +17486,18 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return number?.call(
         id,
@@ -17492,6 +17908,18 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (number != null) {
@@ -17540,6 +17968,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return number(this);
   }
@@ -17570,6 +17999,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return number?.call(this);
   }
@@ -17600,6 +18030,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (number != null) {
@@ -18315,6 +18746,18 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return phone(
         id,
@@ -18725,6 +19168,18 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return phone?.call(
         id,
@@ -19135,6 +19590,18 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (phone != null) {
@@ -19183,6 +19650,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return phone(this);
   }
@@ -19213,6 +19681,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return phone?.call(this);
   }
@@ -19243,6 +19712,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (phone != null) {
@@ -19958,6 +20428,18 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return email(
         id,
@@ -20368,6 +20850,18 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return email?.call(
         id,
@@ -20778,6 +21272,18 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (email != null) {
@@ -20826,6 +21332,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return email(this);
   }
@@ -20856,6 +21363,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return email?.call(this);
   }
@@ -20886,6 +21394,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (email != null) {
@@ -21601,6 +22110,18 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return datetimelocal(
         id,
@@ -22011,6 +22532,18 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return datetimelocal?.call(
         id,
@@ -22421,6 +22954,18 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (datetimelocal != null) {
@@ -22469,6 +23014,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return datetimelocal(this);
   }
@@ -22499,6 +23045,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return datetimelocal?.call(this);
   }
@@ -22529,6 +23076,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (datetimelocal != null) {
@@ -23183,6 +23731,18 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return comment(id, label, answer, description, visible, isRequired,
         readOnly, requiredErrorText, hintText, maxLength);
@@ -23580,6 +24140,18 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return comment?.call(id, label, answer, description, visible, isRequired,
         readOnly, requiredErrorText, hintText, maxLength);
@@ -23977,6 +24549,18 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (comment != null) {
@@ -24012,6 +24596,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return comment(this);
   }
@@ -24042,6 +24627,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return comment?.call(this);
   }
@@ -24072,6 +24658,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (comment != null) {
@@ -24892,6 +25479,18 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return dropdown(
         id,
@@ -25310,6 +25909,18 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return dropdown?.call(
         id,
@@ -25728,6 +26339,18 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (dropdown != null) {
@@ -25784,6 +26407,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return dropdown(this);
   }
@@ -25814,6 +26438,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return dropdown?.call(this);
   }
@@ -25844,6 +26469,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (dropdown != null) {
@@ -26705,6 +27331,18 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return multipleselect(
         id,
@@ -27123,6 +27761,18 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return multipleselect?.call(
         id,
@@ -27541,6 +28191,18 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (multipleselect != null) {
@@ -27597,6 +28259,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return multipleselect(this);
   }
@@ -27627,6 +28290,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return multipleselect?.call(this);
   }
@@ -27657,6 +28321,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (multipleselect != null) {
@@ -28518,6 +29183,18 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return checkbox(
         id,
@@ -28936,6 +29613,18 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return checkbox?.call(
         id,
@@ -29354,6 +30043,18 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (checkbox != null) {
@@ -29410,6 +30111,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return checkbox(this);
   }
@@ -29440,6 +30142,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return checkbox?.call(this);
   }
@@ -29470,6 +30173,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (checkbox != null) {
@@ -30278,6 +30982,18 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return radiogroup(
         id,
@@ -30692,6 +31408,18 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return radiogroup?.call(
         id,
@@ -31106,6 +31834,18 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (radiogroup != null) {
@@ -31158,6 +31898,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return radiogroup(this);
   }
@@ -31188,6 +31929,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return radiogroup?.call(this);
   }
@@ -31218,6 +31960,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (radiogroup != null) {
@@ -32014,6 +32757,18 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return yesno(
         id,
@@ -32428,6 +33183,18 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return yesno?.call(
         id,
@@ -32842,6 +33609,18 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (yesno != null) {
@@ -32894,6 +33673,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return yesno(this);
   }
@@ -32924,6 +33704,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return yesno?.call(this);
   }
@@ -32954,6 +33735,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (yesno != null) {
@@ -33750,6 +34532,18 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return yesnona(
         id,
@@ -34164,6 +34958,18 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return yesnona?.call(
         id,
@@ -34578,6 +35384,18 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (yesnona != null) {
@@ -34630,6 +35448,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return yesnona(this);
   }
@@ -34660,6 +35479,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return yesnona?.call(this);
   }
@@ -34690,6 +35510,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (yesnona != null) {
@@ -35364,6 +36185,18 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return files(id, label, answer, description, visible, isMultiple,
         isRequired, readOnly, requiredErrorText);
@@ -35761,6 +36594,18 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return files?.call(id, label, answer, description, visible, isMultiple,
         isRequired, readOnly, requiredErrorText);
@@ -36158,6 +37003,18 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (files != null) {
@@ -36193,6 +37050,7 @@ class _$FileInputFieldImpl implements FileInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return files(this);
   }
@@ -36223,6 +37081,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return files?.call(this);
   }
@@ -36253,6 +37112,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (files != null) {
@@ -36897,6 +37757,18 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return images(id, label, answer, description, visible, isMultiple,
         isRequired, readOnly, requiredErrorText);
@@ -37294,6 +38166,18 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return images?.call(id, label, answer, description, visible, isMultiple,
         isRequired, readOnly, requiredErrorText);
@@ -37691,6 +38575,18 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (images != null) {
@@ -37726,6 +38622,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return images(this);
   }
@@ -37756,6 +38653,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return images?.call(this);
   }
@@ -37786,6 +38684,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (images != null) {
@@ -38417,6 +39316,18 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
         geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
   }) {
     return geolocation(id, label, answer, description, visible, isRequired,
         readOnly, requiredErrorText);
@@ -38814,6 +39725,18 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
   }) {
     return geolocation?.call(id, label, answer, description, visible,
         isRequired, readOnly, requiredErrorText);
@@ -39211,6 +40134,18 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
         geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
     required TResult orElse(),
   }) {
     if (geolocation != null) {
@@ -39246,6 +40181,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     required TResult Function(FileInputField value) files,
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
   }) {
     return geolocation(this);
   }
@@ -39276,6 +40212,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult? Function(FileInputField value)? files,
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
   }) {
     return geolocation?.call(this);
   }
@@ -39306,6 +40243,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult Function(FileInputField value)? files,
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
     required TResult orElse(),
   }) {
     if (geolocation != null) {
@@ -39364,5 +40302,1572 @@ abstract class GeolocationField implements InputField {
   @override
   @JsonKey(ignore: true)
   _$$GeolocationFieldImplCopyWith<_$GeolocationFieldImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$MapFieldImplCopyWith<$Res>
+    implements $InputFieldCopyWith<$Res> {
+  factory _$$MapFieldImplCopyWith(
+          _$MapFieldImpl value, $Res Function(_$MapFieldImpl) then) =
+      __$$MapFieldImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'label') String? label,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'isRequired') bool isRequired,
+      @JsonKey(name: 'addressLine') String? addressLine,
+      @JsonKey(name: 'answer') String? answer,
+      @JsonKey(name: 'readOnly') bool readOnly,
+      @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+      @JsonKey(name: 'visible') bool visible,
+      @JsonKey(name: 'description') String? description});
+}
+
+/// @nodoc
+class __$$MapFieldImplCopyWithImpl<$Res>
+    extends _$InputFieldCopyWithImpl<$Res, _$MapFieldImpl>
+    implements _$$MapFieldImplCopyWith<$Res> {
+  __$$MapFieldImplCopyWithImpl(
+      _$MapFieldImpl _value, $Res Function(_$MapFieldImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? label = freezed,
+    Object? name = freezed,
+    Object? isRequired = null,
+    Object? addressLine = freezed,
+    Object? answer = freezed,
+    Object? readOnly = null,
+    Object? requiredErrorText = freezed,
+    Object? visible = null,
+    Object? description = freezed,
+  }) {
+    return _then(_$MapFieldImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      label: freezed == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isRequired: null == isRequired
+          ? _value.isRequired
+          : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      addressLine: freezed == addressLine
+          ? _value.addressLine
+          : addressLine // ignore: cast_nullable_to_non_nullable
+              as String?,
+      answer: freezed == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      readOnly: null == readOnly
+          ? _value.readOnly
+          : readOnly // ignore: cast_nullable_to_non_nullable
+              as bool,
+      requiredErrorText: freezed == requiredErrorText
+          ? _value.requiredErrorText
+          : requiredErrorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      visible: null == visible
+          ? _value.visible
+          : visible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$MapFieldImpl implements MapField {
+  const _$MapFieldImpl(
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'label') this.label,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'isRequired') this.isRequired = false,
+      @JsonKey(name: 'addressLine') this.addressLine,
+      @JsonKey(name: 'answer') this.answer,
+      @JsonKey(name: 'readOnly') this.readOnly = false,
+      @JsonKey(name: 'requiredErrorText') this.requiredErrorText,
+      @JsonKey(name: 'visible') this.visible = true,
+      @JsonKey(name: 'description') this.description,
+      final String? $type})
+      : $type = $type ?? 'map';
+
+  factory _$MapFieldImpl.fromJson(Map<String, dynamic> json) =>
+      _$$MapFieldImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final String id;
+  @override
+  @JsonKey(name: 'label')
+  final String? label;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+  @override
+  @JsonKey(name: 'isRequired')
+  final bool isRequired;
+  @override
+  @JsonKey(name: 'addressLine')
+  final String? addressLine;
+  @override
+  @JsonKey(name: 'answer')
+  final String? answer;
+  @override
+  @JsonKey(name: 'readOnly')
+  final bool readOnly;
+  @override
+  @JsonKey(name: 'requiredErrorText')
+  final String? requiredErrorText;
+  @override
+  @JsonKey(name: 'visible')
+  final bool visible;
+  @override
+  @JsonKey(name: 'description')
+  final String? description;
+
+  @JsonKey(name: 'type')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'InputField.map(id: $id, label: $label, name: $name, isRequired: $isRequired, addressLine: $addressLine, answer: $answer, readOnly: $readOnly, requiredErrorText: $requiredErrorText, visible: $visible, description: $description)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MapFieldImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.isRequired, isRequired) ||
+                other.isRequired == isRequired) &&
+            (identical(other.addressLine, addressLine) ||
+                other.addressLine == addressLine) &&
+            (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.readOnly, readOnly) ||
+                other.readOnly == readOnly) &&
+            (identical(other.requiredErrorText, requiredErrorText) ||
+                other.requiredErrorText == requiredErrorText) &&
+            (identical(other.visible, visible) || other.visible == visible) &&
+            (identical(other.description, description) ||
+                other.description == description));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, label, name, isRequired,
+      addressLine, answer, readOnly, requiredErrorText, visible, description);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MapFieldImplCopyWith<_$MapFieldImpl> get copyWith =>
+      __$$MapFieldImplCopyWithImpl<_$MapFieldImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
+        fallback,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        text,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        signature,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'answer') List<SingleSignature>? answer)
+        multisignature,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        date,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        instruction,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        section,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        time,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        url,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        number,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        phone,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        email,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)
+        datetimelocal,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength)
+        comment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'isConditional') bool? isConditional,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'allowClear') bool allowClear,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder)
+        dropdown,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showSelectAllItem') bool showSelectAllItem)
+        multipleselect,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showSelectAllItem') bool showSelectAllItem)
+        checkbox,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)
+        radiogroup,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)
+        yesno,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)
+        yesnona,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
+        files,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
+        images,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)
+        geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)
+        map,
+  }) {
+    return map(id, label, name, isRequired, addressLine, answer, readOnly,
+        requiredErrorText, visible, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        fallback,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        text,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        signature,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'answer') List<SingleSignature>? answer)?
+        multisignature,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        date,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        instruction,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        section,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        time,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        url,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        number,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        phone,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        email,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        datetimelocal,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength)?
+        comment,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'isConditional') bool? isConditional,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'allowClear') bool allowClear,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder)?
+        dropdown,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showSelectAllItem') bool showSelectAllItem)?
+        multipleselect,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showSelectAllItem') bool showSelectAllItem)?
+        checkbox,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        radiogroup,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesno,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesnona,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        files,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        images,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
+  }) {
+    return map?.call(id, label, name, isRequired, addressLine, answer, readOnly,
+        requiredErrorText, visible, description);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        fallback,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        text,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        signature,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'answer') List<SingleSignature>? answer)?
+        multisignature,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        date,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        instruction,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        section,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        time,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        url,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        number,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        phone,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        email,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength,
+            @JsonKey(name: 'min') dynamic min,
+            @JsonKey(name: 'minErrorText') String? minErrorText,
+            @JsonKey(name: 'max') dynamic max,
+            @JsonKey(name: 'maxErrorText') String? maxErrorText)?
+        datetimelocal,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'maxLength') int? maxLength)?
+        comment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'isConditional') bool? isConditional,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'allowClear') bool allowClear,
+            @JsonKey(name: 'placeholder') String? hintText,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder)?
+        dropdown,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showSelectAllItem') bool showSelectAllItem)?
+        multipleselect,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showSelectAllItem') bool showSelectAllItem)?
+        checkbox,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        radiogroup,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesno,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showNoneItem') bool showNoneItem,
+            @JsonKey(name: 'noneText') String? noneText,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'otherText') String? otherText,
+            @JsonKey(name: 'otherErrorText') String? otherErrorText,
+            @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesnona,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        files,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        images,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText)?
+        geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'description') String? description)?
+        map,
+    required TResult orElse(),
+  }) {
+    if (map != null) {
+      return map(id, label, name, isRequired, addressLine, answer, readOnly,
+          requiredErrorText, visible, description);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FallbackInputField value) fallback,
+    required TResult Function(TextInputField value) text,
+    required TResult Function(SignatureInputField value) signature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
+    required TResult Function(DateInputField value) date,
+    required TResult Function(InstructionInputField value) instruction,
+    required TResult Function(SectionInputField value) section,
+    required TResult Function(TimeInputField value) time,
+    required TResult Function(UrlInputField value) url,
+    required TResult Function(NumberInputField value) number,
+    required TResult Function(PhoneInputField value) phone,
+    required TResult Function(EmailInputField value) email,
+    required TResult Function(DateTimeInputField value) datetimelocal,
+    required TResult Function(CommentInputField value) comment,
+    required TResult Function(DropdownInputField value) dropdown,
+    required TResult Function(MultipleInputField value) multipleselect,
+    required TResult Function(CheckboxInputField value) checkbox,
+    required TResult Function(RadioInputField value) radiogroup,
+    required TResult Function(YesNoInputField value) yesno,
+    required TResult Function(YesNoNaInputField value) yesnona,
+    required TResult Function(FileInputField value) files,
+    required TResult Function(ImageInputField value) images,
+    required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
+  }) {
+    return map(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FallbackInputField value)? fallback,
+    TResult? Function(TextInputField value)? text,
+    TResult? Function(SignatureInputField value)? signature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
+    TResult? Function(DateInputField value)? date,
+    TResult? Function(InstructionInputField value)? instruction,
+    TResult? Function(SectionInputField value)? section,
+    TResult? Function(TimeInputField value)? time,
+    TResult? Function(UrlInputField value)? url,
+    TResult? Function(NumberInputField value)? number,
+    TResult? Function(PhoneInputField value)? phone,
+    TResult? Function(EmailInputField value)? email,
+    TResult? Function(DateTimeInputField value)? datetimelocal,
+    TResult? Function(CommentInputField value)? comment,
+    TResult? Function(DropdownInputField value)? dropdown,
+    TResult? Function(MultipleInputField value)? multipleselect,
+    TResult? Function(CheckboxInputField value)? checkbox,
+    TResult? Function(RadioInputField value)? radiogroup,
+    TResult? Function(YesNoInputField value)? yesno,
+    TResult? Function(YesNoNaInputField value)? yesnona,
+    TResult? Function(FileInputField value)? files,
+    TResult? Function(ImageInputField value)? images,
+    TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
+  }) {
+    return map?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FallbackInputField value)? fallback,
+    TResult Function(TextInputField value)? text,
+    TResult Function(SignatureInputField value)? signature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
+    TResult Function(DateInputField value)? date,
+    TResult Function(InstructionInputField value)? instruction,
+    TResult Function(SectionInputField value)? section,
+    TResult Function(TimeInputField value)? time,
+    TResult Function(UrlInputField value)? url,
+    TResult Function(NumberInputField value)? number,
+    TResult Function(PhoneInputField value)? phone,
+    TResult Function(EmailInputField value)? email,
+    TResult Function(DateTimeInputField value)? datetimelocal,
+    TResult Function(CommentInputField value)? comment,
+    TResult Function(DropdownInputField value)? dropdown,
+    TResult Function(MultipleInputField value)? multipleselect,
+    TResult Function(CheckboxInputField value)? checkbox,
+    TResult Function(RadioInputField value)? radiogroup,
+    TResult Function(YesNoInputField value)? yesno,
+    TResult Function(YesNoNaInputField value)? yesnona,
+    TResult Function(FileInputField value)? files,
+    TResult Function(ImageInputField value)? images,
+    TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
+    required TResult orElse(),
+  }) {
+    if (map != null) {
+      return map(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$MapFieldImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class MapField implements InputField {
+  const factory MapField(
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'label') final String? label,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'isRequired') final bool isRequired,
+          @JsonKey(name: 'addressLine') final String? addressLine,
+          @JsonKey(name: 'answer') final String? answer,
+          @JsonKey(name: 'readOnly') final bool readOnly,
+          @JsonKey(name: 'requiredErrorText') final String? requiredErrorText,
+          @JsonKey(name: 'visible') final bool visible,
+          @JsonKey(name: 'description') final String? description}) =
+      _$MapFieldImpl;
+
+  factory MapField.fromJson(Map<String, dynamic> json) =
+      _$MapFieldImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'id')
+  String get id;
+  @override
+  @JsonKey(name: 'label')
+  String? get label;
+  @JsonKey(name: 'name')
+  String? get name;
+  @override
+  @JsonKey(name: 'isRequired')
+  bool get isRequired;
+  @JsonKey(name: 'addressLine')
+  String? get addressLine;
+  @override
+  @JsonKey(name: 'answer')
+  String? get answer;
+  @override
+  @JsonKey(name: 'readOnly')
+  bool get readOnly;
+  @override
+  @JsonKey(name: 'requiredErrorText')
+  String? get requiredErrorText;
+  @override
+  @JsonKey(name: 'visible')
+  bool get visible;
+  @override
+  @JsonKey(name: 'description')
+  String? get description;
+  @override
+  @JsonKey(ignore: true)
+  _$$MapFieldImplCopyWith<_$MapFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

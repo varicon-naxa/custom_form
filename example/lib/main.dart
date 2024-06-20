@@ -20,10 +20,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme:
-      AppTheme.defaultTheme.copyWith(
+      theme: AppTheme.defaultTheme.copyWith(
           // bottomSheetTheme: AppTheme.defaultTheme.bottomSheetTheme
           //     .copyWith(backgroundColor: Colors.white),
+          dialogTheme: AppTheme.defaultTheme.dialogTheme.copyWith(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+          ),
           textSelectionTheme: const TextSelectionThemeData(
             selectionColor: Palette.primary,
             cursorColor: Palette.primary,

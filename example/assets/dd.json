@@ -9,7 +9,7 @@
             "name": "Date",
             "type": "date",
             "label": "Timesheet Date",
-            "answer": "",
+            "answer": "1969-07-20 20:18:04Z",
             "isRequired": false
         },
         {
@@ -19,6 +19,20 @@
             "title": "Enter time for notification",
             "isRequired": true,
             "answer": "13:21"
+        },
+        {
+            "type": "files",
+            "name": "file1",
+            "id": "file1",
+            "title": "Attach citizenship files",
+            "isMultiple": false
+        },
+        {
+            "type": "files",
+            "name": "files2",
+            "id": "files2",
+            "title": "Attach covver letter",
+            "isMultiple": true
         },
         {
             "type": "date",

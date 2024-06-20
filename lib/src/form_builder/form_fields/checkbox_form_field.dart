@@ -37,18 +37,23 @@ class CheckboxFormField extends FormField<List<bool?>> {
                   return Container(
                     margin: const EdgeInsets.only(bottom: 8),
                     decoration: BoxDecoration(
-                      color: item.hasAction != null
+                      color: (item.hasAction != null &&
+                              state.value?[index] == true)
                           ? (item.hasAction!)
                               ? const Color(0xffFDD9D7)
                               : const Color(0xffDBEFDC)
                           : Colors.white,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
-                          color: item.hasAction != null
-                              ? (item.hasAction!)
-                                  ? Colors.white
-                                  : Colors.green
-                              : Colors.white),
+                        color: (item.hasAction != null &&
+                                state.value?[index] == true)
+                            ? (item.hasAction!)
+                                ? Colors.red
+                                : Colors.green
+                            : state.value?[index] == true
+                                ? Colors.grey.shade500
+                                : Colors.white,
+                      ),
                     ),
                     child: CheckboxListTile(
                       controlAffinity: ListTileControlAffinity.leading,

@@ -43,7 +43,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'max') dynamic max,
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = TextInputField;
-  
+
   const factory InputField.signature({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
@@ -504,6 +504,19 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
   }) = GeolocationField;
+
+  const factory InputField.map({
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'addressLine') String? addressLine,
+    @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
+    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+    @JsonKey(name: 'visible') @Default(true) bool visible,
+    @JsonKey(name: 'description') String? description,
+  }) = MapField;
 
   factory InputField.fromJson(Map<String, dynamic> json) =>
       _$InputFieldFromJson(json);

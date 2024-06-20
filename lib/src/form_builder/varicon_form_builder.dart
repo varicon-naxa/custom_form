@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,6 +13,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/datetime_input_wid
 import 'package:varicon_form_builder/src/form_builder/widgets/dropdown_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/file_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/map_field_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/multi_signature_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/multple_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/phone_number_widget.dart';
@@ -350,9 +352,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           field.id,
                           field.answer,
                         );
-
                         editorOptions = HtmlEditorOptions(
+                          adjustHeightForKeyboard: false,
+                          // autoAdjustHeight: false,
                           initialText: field.answer,
+                          // disabled: true,
                         );
                         return LabeledWidget(
                           labelText: labelText,
@@ -360,94 +364,74 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           child: (field.name ?? '')
                                   .toLowerCase()
                                   .contains('long')
-                              ? Container(
-                                  height: 320,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.grey.shade300,
-                                      ),
-                                      borderRadius: BorderRadius.circular(4.0)),
-                                  child: HtmlEditor(
-                                    callbacks:
-                                        Callbacks(onChangeContent: (code) {
-                                      formValue.saveString(
-                                        field.id,
-                                        code.toString().trim(),
-                                      );
-                                    }),
-                                    controller: htmlEditorController, //required
-                                    plugins: const [],
-                                    htmlEditorOptions: editorOptions,
-                                    htmlToolbarOptions:
-                                        const HtmlToolbarOptions(
-                                      defaultToolbarButtons: [
-                                        // StyleButtons(),
-                                        // FontSettingButtons(),
-                                        FontButtons(
-                                          clearAll: false,
-                                          strikethrough: false,
-                                          subscript: false,
-                                          superscript: false,
-                                        ),
-                                        // ColorButtons(),
-                                        ListButtons(listStyles: false),
-                                        ParagraphButtons(
-                                          caseConverter: false,
-                                          lineHeight: false,
-                                          textDirection: false,
-                                          increaseIndent: false,
-                                          decreaseIndent: false,
-                                        ),
-                                        // InsertButtons(),
-                                        // OtherButtons(),
-                                      ],
-                                    ),
-                                  ),
+                              ? HtmlEditorWidget(
+                                  field: field,
+                                  htmlEditorController: htmlEditorController,
+                                  editorOptions: editorOptions,
+                                  formValue: formValue,
                                 )
-                              : TextFormField(
-                                  initialValue: field.answer ?? '',
-                                  key: _fieldKeys[
-                                      widget.surveyForm.inputFields.indexOf(e)],
-                                  style: Theme.of(context).textTheme.bodyLarge,
-                                  readOnly: field.readOnly,
-                                  keyboardType: (field.name ?? '')
-                                          .toLowerCase()
-                                          .contains('long')
-                                      ? TextInputType.multiline
-                                      : TextInputType.text,
-                                  textInputAction: (field.name ?? '')
-                                          .toLowerCase()
-                                          .contains('long')
-                                      ? TextInputAction.newline
-                                      : TextInputAction.next,
-                                  autovalidateMode:
-                                      AutovalidateMode.onUserInteraction,
-                                  maxLength: field.maxLength,
-                                  maxLines: (field.name ?? '')
-                                          .toLowerCase()
-                                          .contains('long')
-                                      ? 3
-                                      : 1,
-                                  onSaved: (newValue) {
-                                    formValue.saveString(
-                                      field.id,
-                                      newValue.toString().trim(),
-                                    );
-                                  },
-                                  validator: (value) {
-                                    return textValidator(
-                                      value: value,
-                                      inputType: "text",
+                              : (field.name ?? '')
+                                      .toLowerCase()
+                                      .contains('address')
+                                  ? MapFieldWidget(
+                                      formKey: _fieldKeys[widget
+                                          .surveyForm.inputFields
+                                          .indexOf(e)],
                                       isRequired: field.isRequired,
-                                      requiredErrorText:
-                                          field.requiredErrorText,
-                                    );
-                                  },
-                                  decoration: InputDecoration(
-                                    hintText: field.hintText,
-                                    // labelText: labelText,
-                                  ),
-                                ),
+                                      formValue: formValue,
+                                      field: field,
+                                      forMapField: true,
+                                    )
+                                  : TextFormField(
+                                      // inputFormatters: [
+                                      //   FilteringTextInputFormatter.deny(
+                                      //       RegExp(r'\s')),
+                                      // ],
+                                      initialValue: field.answer ?? '',
+                                      key: _fieldKeys[widget
+                                          .surveyForm.inputFields
+                                          .indexOf(e)],
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                      readOnly: field.readOnly,
+                                      keyboardType: (field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long')
+                                          ? TextInputType.multiline
+                                          : TextInputType.text,
+                                      textInputAction: (field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long')
+                                          ? TextInputAction.newline
+                                          : TextInputAction.next,
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      maxLength: field.maxLength,
+                                      maxLines: (field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long')
+                                          ? 3
+                                          : 1,
+                                      onSaved: (newValue) {
+                                        formValue.saveString(
+                                          field.id,
+                                          newValue.toString().trim(),
+                                        );
+                                      },
+                                      validator: (value) {
+                                        return textValidator(
+                                          value: value,
+                                          inputType: "text",
+                                          isRequired: field.isRequired,
+                                          requiredErrorText:
+                                              field.requiredErrorText,
+                                        );
+                                      },
+                                      decoration: InputDecoration(
+                                        hintText: field.hintText,
+                                        // labelText: labelText,
+                                      ),
+                                    ),
                         );
                       },
                       number: (field) {
@@ -477,7 +461,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             },
                             inputFormatters: [
                               FilteringTextInputFormatter.allow(
-                                  RegExp(r'^[0-9]+.?[0-9]*'))
+                                  // RegExp(r'^[0-9]+.?[0-9]*'),
+                                  RegExp(r'^\s*([0-9]+)\s*$')),
                             ],
                             validator: (value) {
                               return numberValidator(
@@ -907,19 +892,30 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         }
                         return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: MultiSignatureInputWidget(
-                            field: field,
-                            key: _fieldKeys[
-                                widget.surveyForm.inputFields.indexOf(e)],
-                            formValue: formValue,
-                            imageBuild: widget.imageBuild,
-                            attachmentSave: widget.attachmentSave,
                             labelText: labelText,
-                            onSaved: (Map<String, dynamic> result) {},
-                          ),
-                        );
+                            isRequired: e.isRequired,
+                            child: MultiSignatureInputWidget(
+                              field: field,
+                              key: _fieldKeys[
+                                  widget.surveyForm.inputFields.indexOf(e)],
+                              formValue: formValue,
+                              imageBuild: widget.imageBuild,
+                              attachmentSave: widget.attachmentSave,
+                              labelText: labelText,
+                              onSaved: (Map<String, dynamic> result) {},
+                            )
+
+                            // MultiSignatureInputWidget(
+                            //   field: field,
+                            //   key: _fieldKeys[
+                            //       widget.surveyForm.inputFields.indexOf(e)],
+                            //   formValue: formValue,
+                            //   imageBuild: widget.imageBuild,
+                            //   attachmentSave: widget.attachmentSave,
+                            //   labelText: labelText,
+                            //   onSaved: (Map<String, dynamic> result) {},
+                            // ),
+                            );
                       },
                       instruction: (field) {
                         return LabeledWidget(
@@ -1004,6 +1000,39 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                                 .bodyMedium,
                                           ),
                               );
+                        // },
+                        // map: (field) {
+                        //   if (field.answer != null && field.answer != {}) {
+                        //     formValue.saveMap(
+                        //       field.id,
+                        //       field.answer ?? {},
+                        //     );
+                        //   }
+                        //   return LabeledWidget(
+                        //     labelText: e.label,
+                        //     isRequired: e.isRequired,
+                        //     child: MapFieldWidget(
+                        //       formKey: _fieldKeys[
+                        //           widget.surveyForm.inputFields.indexOf(e)],
+                        //       formValue: formValue,
+                        //       field: field,
+                        //       forMapField: true,
+                        //       position: (field.answer?['lat'] == null ||
+                        //               field.answer?['long'] == null)
+                        //           ? null
+                        //           : Position(
+                        //               latitude: field.answer?['lat'],
+                        //               longitude: field.answer?['long'],
+                        //               timestamp: DateTime.timestamp(),
+                        //               accuracy: 50.0,
+                        //               altitude: 0.0,
+                        //               altitudeAccuracy: 50.0,
+                        //               heading: 50.0,
+                        //               headingAccuracy: 50.0,
+                        //               speed: 2.0,
+                        //               speedAccuracy: 50.0),
+                        //     ),
+                        //   );
                       },
                       orElse: () => null,
                     );
@@ -1078,6 +1107,69 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 widget.onSubmit(formValue.value);
               },
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+///HTML editor widget class
+class HtmlEditorWidget extends StatelessWidget {
+  final TextInputField field;
+  final HtmlEditorController htmlEditorController;
+  final HtmlEditorOptions editorOptions;
+  final FormValue formValue;
+
+  const HtmlEditorWidget({
+    super.key,
+    required this.field,
+    required this.htmlEditorController,
+    required this.editorOptions,
+    required this.formValue,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // height: 300,
+      decoration: BoxDecoration(
+          border: Border.all(
+            color: Colors.grey.shade300,
+          ),
+          borderRadius: BorderRadius.circular(4.0)),
+      child: HtmlEditor(
+        callbacks: Callbacks(onChangeContent: (code) {
+          formValue.saveString(
+            field.id,
+            code.toString().trim(),
+          );
+        }),
+        controller: htmlEditorController, //required
+        plugins: const [],
+        htmlEditorOptions: editorOptions,
+        // textInputAction: TextInputAction.newline,
+        htmlToolbarOptions: const HtmlToolbarOptions(
+          defaultToolbarButtons: [
+            // StyleButtons(),
+            // FontSettingButtons(),
+            FontButtons(
+              clearAll: false,
+              strikethrough: false,
+              subscript: false,
+              superscript: false,
+            ),
+            // ColorButtons(),
+            ListButtons(listStyles: false),
+            ParagraphButtons(
+              caseConverter: false,
+              lineHeight: false,
+              textDirection: false,
+              increaseIndent: false,
+              decreaseIndent: false,
+            ),
+            // InsertButtons(),
+            // OtherButtons(),
           ],
         ),
       ),

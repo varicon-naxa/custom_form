@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/radio_form_field.dart';
-
 import 'package:varicon_form_builder/varicon_form_builder.dart';
-import '../../models/form_value.dart';
-import '../../models/value_text.dart';
+import 'package:varicon_form_builder/src/models/form_value.dart';
+import 'package:varicon_form_builder/src/models/value_text.dart';
 
 ///Custom form yes/no/na form component
 ///

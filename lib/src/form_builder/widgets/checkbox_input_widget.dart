@@ -3,8 +3,8 @@ import 'package:varicon_form_builder/src/form_builder/form_fields/checkbox_form_
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_multi_bottomsheet.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
-import '../../../varicon_form_builder.dart';
-import '../../models/form_value.dart';
+import 'package:varicon_form_builder/varicon_form_builder.dart';
+import 'package:varicon_form_builder/src/models/form_value.dart';
 
 ///Form builder checkbox input widget
 ///

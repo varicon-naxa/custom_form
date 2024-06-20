@@ -967,3 +967,33 @@ Map<String, dynamic> _$$GeolocationFieldImplToJson(
       'requiredErrorText': instance.requiredErrorText,
       'type': instance.$type,
     };
+
+_$MapFieldImpl _$$MapFieldImplFromJson(Map<String, dynamic> json) =>
+    _$MapFieldImpl(
+      id: json['id'] as String,
+      label: json['label'] as String?,
+      name: json['name'] as String?,
+      isRequired: json['isRequired'] as bool? ?? false,
+      addressLine: json['addressLine'] as String?,
+      answer: json['answer'] as String?,
+      readOnly: json['readOnly'] as bool? ?? false,
+      requiredErrorText: json['requiredErrorText'] as String?,
+      visible: json['visible'] as bool? ?? true,
+      description: json['description'] as String?,
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$MapFieldImplToJson(_$MapFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'label': instance.label,
+      'name': instance.name,
+      'isRequired': instance.isRequired,
+      'addressLine': instance.addressLine,
+      'answer': instance.answer,
+      'readOnly': instance.readOnly,
+      'requiredErrorText': instance.requiredErrorText,
+      'visible': instance.visible,
+      'description': instance.description,
+      'type': instance.$type,
+    };

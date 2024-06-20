@@ -202,6 +202,20 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                     widget.field.id,
                     newValue,
                   );
+
+                  bool containsId = choices.any((obj) => obj.value == newValue);
+
+                  if (containsId) {
+                    ValueText? foundObject = choices.firstWhere(
+                      (obj) => obj.value == newValue,
+                    );
+
+                    widget.formValue.saveString(
+                      widget.field.id.substring(5, widget.field.id.length),
+                      foundObject.text,
+                    );
+                    // answerText = foundObject.text;
+                  }
                 },
               ),
               if (showMessage && (widget.field.actionMessage ?? '').isNotEmpty)

@@ -41,6 +41,18 @@ mixin _$SurveyPageForm {
   String? get submittedBy => throw _privateConstructorUsedError;
   @JsonKey(name: 'updated_by')
   String? get updatedBy => throw _privateConstructorUsedError;
+  @JsonKey(name: 'submission_number')
+  String? get submissionNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'form_number')
+  String? get formNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'equipment')
+  String? get equipment => throw _privateConstructorUsedError;
+  @JsonKey(name: 'equipment_code')
+  String? get equipmentCode => throw _privateConstructorUsedError;
+  @JsonKey(name: 'equipment_name')
+  String? get equipmentName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'project')
+  String? get project => throw _privateConstructorUsedError;
   Map<String, dynamic>? get setting => throw _privateConstructorUsedError;
   Map<String, dynamic>? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'elements')
@@ -71,6 +83,12 @@ abstract class $SurveyPageFormCopyWith<$Res> {
       @JsonKey(name: 'need_action') bool? needAction,
       @JsonKey(name: 'submitted_by') String? submittedBy,
       @JsonKey(name: 'updated_by') String? updatedBy,
+      @JsonKey(name: 'submission_number') String? submissionNumber,
+      @JsonKey(name: 'form_number') String? formNumber,
+      @JsonKey(name: 'equipment') String? equipment,
+      @JsonKey(name: 'equipment_code') String? equipmentCode,
+      @JsonKey(name: 'equipment_name') String? equipmentName,
+      @JsonKey(name: 'project') String? project,
       Map<String, dynamic>? setting,
       Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -102,6 +120,12 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
     Object? needAction = freezed,
     Object? submittedBy = freezed,
     Object? updatedBy = freezed,
+    Object? submissionNumber = freezed,
+    Object? formNumber = freezed,
+    Object? equipment = freezed,
+    Object? equipmentCode = freezed,
+    Object? equipmentName = freezed,
+    Object? project = freezed,
     Object? setting = freezed,
     Object? status = freezed,
     Object? inputFields = null,
@@ -151,6 +175,30 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
           ? _value.updatedBy
           : updatedBy // ignore: cast_nullable_to_non_nullable
               as String?,
+      submissionNumber: freezed == submissionNumber
+          ? _value.submissionNumber
+          : submissionNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      formNumber: freezed == formNumber
+          ? _value.formNumber
+          : formNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      equipment: freezed == equipment
+          ? _value.equipment
+          : equipment // ignore: cast_nullable_to_non_nullable
+              as String?,
+      equipmentCode: freezed == equipmentCode
+          ? _value.equipmentCode
+          : equipmentCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      equipmentName: freezed == equipmentName
+          ? _value.equipmentName
+          : equipmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as String?,
       setting: freezed == setting
           ? _value.setting
           : setting // ignore: cast_nullable_to_non_nullable
@@ -187,6 +235,12 @@ abstract class _$$SurveyPageFormImplCopyWith<$Res>
       @JsonKey(name: 'need_action') bool? needAction,
       @JsonKey(name: 'submitted_by') String? submittedBy,
       @JsonKey(name: 'updated_by') String? updatedBy,
+      @JsonKey(name: 'submission_number') String? submissionNumber,
+      @JsonKey(name: 'form_number') String? formNumber,
+      @JsonKey(name: 'equipment') String? equipment,
+      @JsonKey(name: 'equipment_code') String? equipmentCode,
+      @JsonKey(name: 'equipment_name') String? equipmentName,
+      @JsonKey(name: 'project') String? project,
       Map<String, dynamic>? setting,
       Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -216,6 +270,12 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
     Object? needAction = freezed,
     Object? submittedBy = freezed,
     Object? updatedBy = freezed,
+    Object? submissionNumber = freezed,
+    Object? formNumber = freezed,
+    Object? equipment = freezed,
+    Object? equipmentCode = freezed,
+    Object? equipmentName = freezed,
+    Object? project = freezed,
     Object? setting = freezed,
     Object? status = freezed,
     Object? inputFields = null,
@@ -265,6 +325,30 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
           ? _value.updatedBy
           : updatedBy // ignore: cast_nullable_to_non_nullable
               as String?,
+      submissionNumber: freezed == submissionNumber
+          ? _value.submissionNumber
+          : submissionNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      formNumber: freezed == formNumber
+          ? _value.formNumber
+          : formNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      equipment: freezed == equipment
+          ? _value.equipment
+          : equipment // ignore: cast_nullable_to_non_nullable
+              as String?,
+      equipmentCode: freezed == equipmentCode
+          ? _value.equipmentCode
+          : equipmentCode // ignore: cast_nullable_to_non_nullable
+              as String?,
+      equipmentName: freezed == equipmentName
+          ? _value.equipmentName
+          : equipmentName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      project: freezed == project
+          ? _value.project
+          : project // ignore: cast_nullable_to_non_nullable
+              as String?,
       setting: freezed == setting
           ? _value._setting
           : setting // ignore: cast_nullable_to_non_nullable
@@ -296,6 +380,12 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
       @JsonKey(name: 'need_action') this.needAction,
       @JsonKey(name: 'submitted_by') this.submittedBy,
       @JsonKey(name: 'updated_by') this.updatedBy,
+      @JsonKey(name: 'submission_number') this.submissionNumber,
+      @JsonKey(name: 'form_number') this.formNumber,
+      @JsonKey(name: 'equipment') this.equipment,
+      @JsonKey(name: 'equipment_code') this.equipmentCode,
+      @JsonKey(name: 'equipment_name') this.equipmentName,
+      @JsonKey(name: 'project') this.project,
       final Map<String, dynamic>? setting,
       final Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -349,6 +439,24 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
   @override
   @JsonKey(name: 'updated_by')
   final String? updatedBy;
+  @override
+  @JsonKey(name: 'submission_number')
+  final String? submissionNumber;
+  @override
+  @JsonKey(name: 'form_number')
+  final String? formNumber;
+  @override
+  @JsonKey(name: 'equipment')
+  final String? equipment;
+  @override
+  @JsonKey(name: 'equipment_code')
+  final String? equipmentCode;
+  @override
+  @JsonKey(name: 'equipment_name')
+  final String? equipmentName;
+  @override
+  @JsonKey(name: 'project')
+  final String? project;
   final Map<String, dynamic>? _setting;
   @override
   Map<String, dynamic>? get setting {
@@ -381,7 +489,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
 
   @override
   String toString() {
-    return 'SurveyPageForm(name: $name, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, setting: $setting, status: $status, inputFields: $inputFields)';
+    return 'SurveyPageForm(name: $name, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, setting: $setting, status: $status, inputFields: $inputFields)';
   }
 
   @override
@@ -409,6 +517,17 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
                 other.submittedBy == submittedBy) &&
             (identical(other.updatedBy, updatedBy) ||
                 other.updatedBy == updatedBy) &&
+            (identical(other.submissionNumber, submissionNumber) ||
+                other.submissionNumber == submissionNumber) &&
+            (identical(other.formNumber, formNumber) ||
+                other.formNumber == formNumber) &&
+            (identical(other.equipment, equipment) ||
+                other.equipment == equipment) &&
+            (identical(other.equipmentCode, equipmentCode) ||
+                other.equipmentCode == equipmentCode) &&
+            (identical(other.equipmentName, equipmentName) ||
+                other.equipmentName == equipmentName) &&
+            (identical(other.project, project) || other.project == project) &&
             const DeepCollectionEquality().equals(other._setting, _setting) &&
             const DeepCollectionEquality().equals(other._status, _status) &&
             const DeepCollectionEquality()
@@ -417,22 +536,29 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      name,
-      timesheet,
-      title,
-      description,
-      isResponse,
-      const DeepCollectionEquality().hash(_assignToDisplay),
-      updatedAt,
-      createdAt,
-      needAction,
-      submittedBy,
-      updatedBy,
-      const DeepCollectionEquality().hash(_setting),
-      const DeepCollectionEquality().hash(_status),
-      const DeepCollectionEquality().hash(_inputFields));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        name,
+        timesheet,
+        title,
+        description,
+        isResponse,
+        const DeepCollectionEquality().hash(_assignToDisplay),
+        updatedAt,
+        createdAt,
+        needAction,
+        submittedBy,
+        updatedBy,
+        submissionNumber,
+        formNumber,
+        equipment,
+        equipmentCode,
+        equipmentName,
+        project,
+        const DeepCollectionEquality().hash(_setting),
+        const DeepCollectionEquality().hash(_status),
+        const DeepCollectionEquality().hash(_inputFields)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -462,6 +588,12 @@ abstract class _SurveyPageForm implements SurveyPageForm {
       @JsonKey(name: 'need_action') final bool? needAction,
       @JsonKey(name: 'submitted_by') final String? submittedBy,
       @JsonKey(name: 'updated_by') final String? updatedBy,
+      @JsonKey(name: 'submission_number') final String? submissionNumber,
+      @JsonKey(name: 'form_number') final String? formNumber,
+      @JsonKey(name: 'equipment') final String? equipment,
+      @JsonKey(name: 'equipment_code') final String? equipmentCode,
+      @JsonKey(name: 'equipment_name') final String? equipmentName,
+      @JsonKey(name: 'project') final String? project,
       final Map<String, dynamic>? setting,
       final Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -503,6 +635,24 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @override
   @JsonKey(name: 'updated_by')
   String? get updatedBy;
+  @override
+  @JsonKey(name: 'submission_number')
+  String? get submissionNumber;
+  @override
+  @JsonKey(name: 'form_number')
+  String? get formNumber;
+  @override
+  @JsonKey(name: 'equipment')
+  String? get equipment;
+  @override
+  @JsonKey(name: 'equipment_code')
+  String? get equipmentCode;
+  @override
+  @JsonKey(name: 'equipment_name')
+  String? get equipmentName;
+  @override
+  @JsonKey(name: 'project')
+  String? get project;
   @override
   Map<String, dynamic>? get setting;
   @override

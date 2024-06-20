@@ -3,11 +3,13 @@
 import 'dart:io';
 import 'dart:typed_data';
 import 'dart:ui' as ui;
-import 'package:dotted_border/dotted_border.dart';
+import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/multi_signature_input_widget.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -72,6 +74,37 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
     });
   }
 
+  ///Dialog to remove signature
+  ///
+  ///Checks for signature and remove the image
+  void removeConfirmDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text('Remove Signature'),
+        content: const Text('Are you sure you want to remove the signature?'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () {
+              widget.onSaved({});
+              setState(() {
+                answer = {};
+              });
+              Navigator.of(context).pop();
+            },
+            child: const Text('Remove'),
+          ),
+        ],
+      ),
+    );
+  }
+
   ///Dialog to open signature pad
   ///
   ///Checks for signature and save the image
@@ -87,7 +120,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
         content: StatefulBuilder(builder: (context, setStates) {
           return Container(
             color: Colors.white,
-            width: MediaQuery.of(context).size.width - 100,
+            width: MediaQuery.of(context).size.width - 50,
             padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,7 +128,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
               children: [
                 Text(
                   'Please sign below and submit',
-                  style: Theme.of(context).textTheme.titleSmall,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 AppSpacing.sizedBoxH_12(),
                 Container(
@@ -107,80 +140,101 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                       onSign: () {},
                       strokeWidth: 4.0,
                     )),
+                AppSpacing.sizedBoxH_04(),
+                ClearSignatureWidget(
+                  onClear: () {
+                    final signHere = sign.currentState;
+                    signHere?.clear();
+                  },
+                ),
+                AppSpacing.sizedBoxH_12(),
+                const SignConsentWidget(),
                 AppSpacing.sizedBoxH_12(),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    GestureDetector(
-                      onTap: () {
-                        final signHere = sign.currentState;
-                        signHere?.clear();
-                        Navigator.pop(context);
-                      },
-                      behavior: HitTestBehavior.translucent,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(
-                            4,
-                          ),
-                          border: Border.all(
-                            color: const Color(0xffBDBDBD),
-                          ),
-                        ),
-                        width: 130,
-                        child: Text(
-                          'Cancel'.toUpperCase(),
-                          style:
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                    Expanded(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () {
+                            final signHere = sign.currentState;
+                            signHere?.clear();
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                4,
+                              ),
+                              border: Border.all(
+                                color: const Color(0xffBDBDBD),
+                              ),
+                            ),
+                            width: 130,
+                            child: Text(
+                              'Cancel'.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w600,
                                     height: 1,
                                   ),
-                          textAlign: TextAlign.center,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                    AppSpacing.sizedBoxW_08(),
-                    GestureDetector(
-                      onTap: () async {
-                        final signs = sign.currentState;
-                        if ((signs?.points ?? []).isEmpty) {
-                          Fluttertoast.showToast(
-                              msg: 'Please sign to submit the signature');
-                          return;
-                        } else {
-                          setState(() {
-                            isLoading = true;
-                          });
-                          final signKey = sign.currentState;
-                          final image = await signKey?.getData();
-                          var data = await image?.toByteData(
-                              format: ui.ImageByteFormat.png);
+                    AppSpacing.sizedBoxW_12(),
+                    Expanded(
+                      child: Material(
+                        color: Colors.transparent,
+                        child: InkWell(
+                          onTap: () async {
+                            final signs = sign.currentState;
+                            if ((signs?.points ?? []).isEmpty) {
+                              Fluttertoast.showToast(
+                                  msg: 'Please sign to submit the signature');
+                              return;
+                            } else {
+                              setState(() {
+                                isLoading = true;
+                              });
+                              final signKey = sign.currentState;
+                              final image = await signKey?.getData();
+                              var data = await image?.toByteData(
+                                  format: ui.ImageByteFormat.png);
 
-                          Navigator.pop(context, data);
-                        }
-                      },
-                      behavior: HitTestBehavior.translucent,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 16.0),
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(
-                            4,
-                          ),
-                          border: Border.all(
-                            color: Colors.orange,
-                          ),
-                        ),
-                        width: 130,
-                        child: Text(
-                          'SIGN'.toUpperCase(),
-                          style:
-                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                              Navigator.pop(context, data);
+                            }
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(vertical: 16.0),
+                            decoration: BoxDecoration(
+                              color: Colors.orange,
+                              borderRadius: BorderRadius.circular(
+                                4,
+                              ),
+                              border: Border.all(
+                                color: Colors.orange,
+                              ),
+                            ),
+                            width: 130,
+                            child: Text(
+                              'Sign'.toUpperCase(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelLarge
+                                  ?.copyWith(
                                     fontWeight: FontWeight.w600,
                                     height: 1,
                                   ),
-                          textAlign: TextAlign.center,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -231,14 +285,28 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                   duration: const Duration(seconds: 2),
                 )
             : SizedBox(
-                height: 200,
+                // decoration: BoxDecoration(
+                //   borderRadius: BorderRadius.circular(
+                //     8.0,
+                //   ),
+                //   border: Border.all(
+                //     color: Colors.grey.shade300,
+                //     width: 2.0,
+                //   ),
+                // ),
+
+                height: 170,
                 width: double.infinity,
-                child: DottedBorder(
-                  child: SizedBox(
-                    height: 150,
-                    width: double.infinity,
-                    child: answer.isEmpty
-                        ? GestureDetector(
+                child: answer.isEmpty
+                    ? Container(
+                        decoration: DottedDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          dash: const [3, 2],
+                          shape: Shape.box,
+                        ),
+                        child: Material(
+                          color: Colors.transparent,
+                          child: InkWell(
                             onTap: () {
                               openDialog();
                             },
@@ -256,49 +324,54 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                                 ),
                                 Text(
                                   'Click here to add signature',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ],
                             ),
-                          )
-                        : Stack(
-                            children: [
-                              Container(
-                                alignment: Alignment.center,
-                                height: 200,
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(
-                                  12.0,
-                                )),
-                                child: widget.imageBuild({
-                                  'image': imaeURL,
-                                  'height': 200.0,
-                                  'width': 200.0
-                                }),
-                              ),
-                              Positioned(
-                                top: 0,
-                                right: 0,
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.close_rounded,
-                                    color: Colors.red,
-                                  ),
-                                  onPressed: () {
-                                    widget.onSaved({});
-                                    setState(() {
-                                      answer = {};
-                                    });
-                                  },
-                                ),
-                              )
-                            ],
                           ),
-                  ),
-                ),
+                        ),
+                      )
+                    : Stack(
+                        children: [
+                          Container(
+                            alignment: Alignment.center,
+                            height: 200,
+                            padding: const EdgeInsets.all(12),
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                8.0,
+                              ),
+                              border: Border.all(
+                                color: Colors.grey.shade300,
+                                width: 2.0,
+                              ),
+                            ),
+                            child: widget.imageBuild({
+                              'image': imaeURL,
+                              'height': 200.0,
+                              'width': 200.0
+                            }),
+                          ),
+                          Positioned(
+                            top: 0,
+                            right: 0,
+                            child: IconButton(
+                              icon: const Icon(
+                                Icons.close_rounded,
+                                color: Colors.red,
+                              ),
+                              onPressed: () {
+                                removeConfirmDialog();
+                                // widget.onSaved({});
+                                // setState(() {
+                                //   answer = {};
+                                // });
+                              },
+                            ),
+                          )
+                        ],
+                      ),
               ),
       ],
     );
