@@ -2,6 +2,7 @@
 import 'dart:io';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/primary_bottomsheet.dart';
 import 'package:varicon_form_builder/src/mixin/file_picker_mixin.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
@@ -451,9 +452,11 @@ class SingleFileItem extends StatelessWidget {
                             color: Colors.red,
                           ),
                           const SizedBox(width: 8),
-                          Text(
-                            fileName,
-                            style: Theme.of(context).textTheme.bodyMedium,
+                          Expanded(
+                            child: Text(
+                              fileName,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
                           ),
                         ],
                       ),
