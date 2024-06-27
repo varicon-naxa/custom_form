@@ -113,7 +113,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
     if (value == null) return '';
     switch (type) {
       case DatePickerType.date:
-        return DateFormat.yMd().format(value);
+        return DateFormat('EEE dd/MM/yyyy').format(value);
       case DatePickerType.time:
         return DateFormat(DateFormat.HOUR_MINUTE).format(value);
       case DatePickerType.dateTime:

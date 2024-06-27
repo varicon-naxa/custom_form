@@ -17,6 +17,7 @@
             "type": "date",
             "name": "date1",
             "id": "date1",
+            "answer":"2024-06-26",
             "title": "Enter date to have leave"
         }, 
         {

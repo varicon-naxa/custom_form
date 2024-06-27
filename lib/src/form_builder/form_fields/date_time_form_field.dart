@@ -174,11 +174,11 @@ class DateTimeFormField extends FormField<DateTime> {
   static String _getHintText(DatePickerType type) {
     switch (type) {
       case DatePickerType.date:
-        return 'mm/dd/yyyy';
+        return 'dd/MM/yyyy';
       case DatePickerType.time:
         return 'hh:mm';
       case DatePickerType.dateTime:
-        return 'mm/dd/yyyy, hh:mm';
+        return 'dd/MM/yyyy, hh:mm';
     }
   }
 
@@ -191,7 +191,7 @@ class DateTimeFormField extends FormField<DateTime> {
     if (value == null) return '';
     switch (type) {
       case DatePickerType.date:
-        return DateFormat.yMd().format(value);
+        return DateFormat('EEE dd/MM/yyyy').format(value);
       case DatePickerType.time:
         return DateFormat(DateFormat.HOUR_MINUTE).format(value);
       case DatePickerType.dateTime:
