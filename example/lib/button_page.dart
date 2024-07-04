@@ -29,7 +29,7 @@ class _ButtonPageState extends State<ButtonPage> {
           children: [
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/participation.json';
+                const assetPath = 'assets/test.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 

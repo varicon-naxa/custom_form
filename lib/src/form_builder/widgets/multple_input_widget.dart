@@ -101,6 +101,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     } else {
       selectedChoices = List.filled(choices.length, null);
     }
+
     setState(() {
       showMessage = checkMatchingActions();
       if ((initialValue ?? []).isEmpty) {

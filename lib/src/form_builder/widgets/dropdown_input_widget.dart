@@ -129,17 +129,17 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   apiCall: widget.apiCall!,
                   linkedQuery: widget.field.linkedQuery ?? '',
                   onClicked: (ValueText data) {
-                    widget.formValue.saveString(
-                      widget.field.id,
-                      data.value,
-                    );
-                    widget.formValue.saveString(
-                      widget.field.id.substring(5, widget.field.id.length),
-                      data.text,
-                    );
-                    setState(() {
-                      formCon.text = data.text;
-                    });
+                    // widget.formValue.saveString(
+                    //   widget.field.id,
+                    //   data.value,
+                    // );
+                    // widget.formValue.saveString(
+                    //   widget.field.id.substring(5, widget.field.id.length),
+                    //   data.text,
+                    // );
+                    // setState(() {
+                    //   formCon.text = data.text;
+                    // });
                   },
                 ),
               );

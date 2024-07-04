@@ -132,12 +132,14 @@ class _SimpleBottomSheetState extends State<SimpleBottomSheet> {
                                   value: selectedIds
                                       .contains(searcgedChoices[i].value),
                                   onChanged: (value) {
+                                    var a = selectedIds;
                                     if (selectedIds
                                         .contains(searcgedChoices[i].value)) {
                                       setState(() {
                                         selectedIds
                                             .remove(searcgedChoices[i].value);
                                       });
+                                      var b = selectedIds;
                                     } else {
                                       setState(() {
                                         selectedIds
