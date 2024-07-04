@@ -89,10 +89,14 @@ class _SurveyPageState extends State<SurveyPage> {
                 e['id'].toString().substring(5, e['id'].toString().length)];
             if (key != null) {
               e.addAll({'answer': key});
+              if (answerKey != null) {
+                e.addAll({'selectedLinkListLabel': answerKey});
+              }
+            } else {
+              e.removeWhere((key, value) => key == 'answer');
+              e['selectedLinkListLabel'] = "";
             }
-            if (answerKey != null) {
-              e.addAll({'selectedLinkListLabel': answerKey});
-            }
+
             return e;
           }).toList();
           log(jsonEncode(valueList).toString());
