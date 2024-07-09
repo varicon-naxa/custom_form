@@ -94,10 +94,12 @@ mixin FilePickerMixin {
   }
 
   static Future<File> compressImage(String path, {int quality = 10}) async {
-    var dir = Platform.isAndroid
-        ? (await DownloadsPathProvider.downloadsDirectory ??
-            await getApplicationSupportDirectory())
-        : await getApplicationSupportDirectory();
+    // var dir = Platform.isAndroid
+    //     ? (await DownloadsPathProvider.downloadsDirectory ??
+    //         await getApplicationSupportDirectory())
+    //     : await getApplicationSupportDirectory();
+    var dir = await getApplicationSupportDirectory();
+
     final target = '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
     XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
         path, target,
