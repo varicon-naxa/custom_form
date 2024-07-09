@@ -291,6 +291,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return Form(
       key: formKey,
       child: Stack(
+        fit: StackFit.expand,
         children: [
           SingleChildScrollView(
             padding: widget.padding,
@@ -1101,7 +1102,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             bottom: 0,
             child: Container(
               color: Colors.grey[100],
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               child: _NavigationButton(
                 buttonText: widget.buttonText,
                 onComplete: () async {
