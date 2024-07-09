@@ -1131,46 +1131,49 @@ class HtmlEditorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // height: 300,
-      decoration: BoxDecoration(
-          border: Border.all(
-            color: Colors.grey.shade300,
+    return SizedBox(
+      height: 200,
+      child: Container(
+        // height: 300,
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: Colors.grey.shade300,
+            ),
+            borderRadius: BorderRadius.circular(4.0)),
+        child: HtmlEditor(
+          callbacks: Callbacks(onChangeContent: (code) {
+            formValue.saveString(
+              field.id,
+              code.toString().trim(),
+            );
+          }),
+          controller: htmlEditorController, //required
+          plugins: const [],
+          htmlEditorOptions: editorOptions,
+          // textInputAction: TextInputAction.newline,
+          htmlToolbarOptions: const HtmlToolbarOptions(
+            defaultToolbarButtons: [
+              // StyleButtons(),
+              // FontSettingButtons(),
+              FontButtons(
+                clearAll: false,
+                strikethrough: false,
+                subscript: false,
+                superscript: false,
+              ),
+              // ColorButtons(),
+              ListButtons(listStyles: false),
+              ParagraphButtons(
+                caseConverter: false,
+                lineHeight: false,
+                textDirection: false,
+                increaseIndent: false,
+                decreaseIndent: false,
+              ),
+              // InsertButtons(),
+              // OtherButtons(),
+            ],
           ),
-          borderRadius: BorderRadius.circular(4.0)),
-      child: HtmlEditor(
-        callbacks: Callbacks(onChangeContent: (code) {
-          formValue.saveString(
-            field.id,
-            code.toString().trim(),
-          );
-        }),
-        controller: htmlEditorController, //required
-        plugins: const [],
-        htmlEditorOptions: editorOptions,
-        // textInputAction: TextInputAction.newline,
-        htmlToolbarOptions: const HtmlToolbarOptions(
-          defaultToolbarButtons: [
-            // StyleButtons(),
-            // FontSettingButtons(),
-            FontButtons(
-              clearAll: false,
-              strikethrough: false,
-              subscript: false,
-              superscript: false,
-            ),
-            // ColorButtons(),
-            ListButtons(listStyles: false),
-            ParagraphButtons(
-              caseConverter: false,
-              lineHeight: false,
-              textDirection: false,
-              increaseIndent: false,
-              decreaseIndent: false,
-            ),
-            // InsertButtons(),
-            // OtherButtons(),
-          ],
         ),
       ),
     );
