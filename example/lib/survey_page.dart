@@ -93,7 +93,7 @@ class _SurveyPageState extends State<SurveyPage> {
                 e.addAll({'selectedLinkListLabel': answerKey});
               }
             } else {
-              e.removeWhere((key, value) => key == 'answer');
+              e.removeWhere((elementKey, value) => elementKey == 'answer');
               e['selectedLinkListLabel'] = "";
             }
 
