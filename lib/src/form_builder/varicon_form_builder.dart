@@ -294,6 +294,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
         thumbVisibility: true,
         thickness: 5,
         child: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           padding: widget.padding,
           controller: _scrollController,
           child: Column(
