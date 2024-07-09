@@ -29,6 +29,27 @@ class _ButtonPageState extends State<ButtonPage> {
           children: [
             ElevatedButton(
               onPressed: () async {
+                const assetPath = 'assets/question_inspection.json';
+                String currentValue = await rootBundle.loadString(assetPath);
+                Map<String, dynamic> currentData = jsonDecode(currentValue);
+
+                final SurveyPageForm form =
+                    SurveyPageForm.fromJson(currentData);
+
+                ///Navigate on button click to SuveryPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return SurveyPage(form: form, formData: currentData);
+                    },
+                  ),
+                );
+              },
+              child: const Text('Go Questrion Inspection Page'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
                 const assetPath = 'assets/image.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);

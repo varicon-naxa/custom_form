@@ -1,0 +1,803 @@
+{
+    "title": "Frame QA Inspection ",
+    "elements": [
+        {
+            "id": "item-84a54420-a1a8-4925-a152-cef8294422cd",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "General",
+            "isRequired": false,
+            "instruction": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a33155d8-8b9d-422e-ba13-a84133bc95ac",
+            "name": "Number Input",
+            "type": "number",
+            "label": "Job Number",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-29c80cc5-d976-4361-95ca-bcfadf3f86a7",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Site Managers Name:",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e3302519-a4d7-4e2b-a568-5dba2f7b5eaf",
+            "name": "Address",
+            "type": "text",
+            "label": "Site Address:",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3fa450d4-211c-4b3e-927b-f0ec28ce0205",
+            "name": "Date Time",
+            "type": "datetimelocal",
+            "label": "Date Time",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-32d4625d-4ac2-46b7-b6ba-49182e00d83b",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "OHS FRAME INSPECTION",
+            "isRequired": false,
+            "instruction": "Please complete the following questions to ensure site is prepared safe for further works",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-77d5ce7e-4489-4a5b-8242-209faa9476f0",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Is the Site Sign filled in correctly and readable? ",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 25,
+                            "email": "prabin@varicon.com.au",
+                            "label": "Prabin Tharu"
+                        }
+                    ]
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "If not, please complete asap and supply new photo.",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-51c68909-5344-44be-80a6-bb377d7c56d1",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of Site Sign ",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-cfdd587b-22cd-425f-abfa-e68032c4e6fd",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Is the slab backfilled Completed? Ensuring there is no large steps down from slab or tripping hazards?",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 25,
+                            "email": "prabin@varicon.com.au",
+                            "label": "Prabin Tharu"
+                        }
+                    ]
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "Please book asap to be completed",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-000f6fa2-e85a-4059-b41c-89298747f032",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of back fill. Min 4 photos, one from each side",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-57e5f07e-0cae-4bb4-8092-e2b737ae34cb",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Is there a Cage or Bin on site for rubbish? ",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 16,
+                            "email": "susan.timilsina@varicon.com.au",
+                            "label": "Susan Timilsina"
+                        }
+                    ]
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "Please organise a Cage or bin to be dropped off asap",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-5ee843cd-c244-49bc-beca-06960c69377a",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of Bin ",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-71bebeb7-b266-45ef-90f9-e33d94bfe67c",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Is the house swept or blown out on completion of frame?",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 21,
+                            "email": "nam@varicon.com.au",
+                            "label": "Nam Kirat"
+                        }
+                    ]
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "Contact framer to return and complete",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-80d2a2d4-84a7-482e-bd90-c0debd47b0da",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Is the metre box installed and secure?  If power is connected, is the metre box tagged?",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-bca50a0b-2bf6-4f7f-b3ed-2074c3770331",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of inside of metre box.",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ca9e5c6d-1bf4-4e2d-9710-e4db4f3f3c32",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all timber temp bracing removed including blocks off floor with all timber stacked neatly with nails removed or bent over?",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-805839a5-c33a-4ab3-9473-db1d1e63134d",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of timber neatly stacked ",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-c30091ff-2f1a-4547-9b15-62b9e645e8c2",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "SLAB AND WALL INSPECTION",
+            "isRequired": false,
+            "instruction": "Please complete the following questions. \nDO NOT SPRAY PAINT FINAL FINISHED CONCRETE",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-89cb5339-dc2e-42a0-8ea1-c9dd104d56e8",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Yes/No",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-c92700c3-b143-4f74-86d4-493720e251a0",
+            "name": "Number Input",
+            "type": "number",
+            "label": "Does the overall height of walls match the plan? Please enter height below",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-bbf9fe5c-15d8-405b-9fef-ae104b730a46",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are room dimensions correct? ",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-cb90b027-f99a-4480-ae64-c147443498d7",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are walls Plumb with in 3mm over 2m ? If out, spray arrow to location with label OOP (Out of Plumb)",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ed9b0aeb-e191-4e7c-895d-eeef1b48fb52",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of location of OOP with room name",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-99894e7d-c363-433a-aa26-282d5995bdf1",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Do bottom plate fully site on the slab? Spray any over hang more than 10mm  that may need repair. Refer to engineering plan to repair detail. ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a37b4b25-8ca5-4520-94a2-cfaffc9b79e1",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Supply photo of location of overhang and a photo with tape/ruler showing over hang amount. ",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7cc21488-209f-4788-9ee8-71070c09301d",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a816ab1b-c75f-4213-8258-0028d70b712a",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are Shower/ Ensuite concrete step downs correct for room size and depth. ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-c087b0f4-bc16-41f3-8e92-c2c5a69c18b9",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of each Ens/ bathroom or shower with step down",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-b55571f5-91d1-443a-828d-118a12872827",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are the bottom plates secure correctly to slab? Nails spaced no more than 900mm away from each other. Dyna Bolts installed as per engineering report. Ensure all little nibs are secure ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-72e38943-7bc2-41a3-97ea-ded27bae7427",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Spray location and take photo. ",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-4ee5318e-a162-4448-ac2c-2069f20efd4d",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all Windows and External door frames installed Level, Plumb, correct height and Orientation. Windows should be Packed and installed with 70mm 2.8mm gal nails or 8g screws. ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-802633c7-5a5d-4e6b-81b9-9a52d7f5178f",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Do all doors have DPC flashing installed under before insulation? ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f7079880-4baa-470f-a795-8bfcff89c65e",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of DPC Installed",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8172aa25-3c76-4f04-af47-8b9ba263779f",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Is the Sliding door tracks and door treads level with slab ready for Vinyl install? ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3f59090c-07be-4baa-8abe-c4d4176edb46",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of door bottoms",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-9c144281-6cf2-424e-b1f9-90139627fc73",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Are all wall noggins installed and nailed securely?",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-90785b12-75b8-4be1-bd11-4cc776b290cf",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Are all door ways cut out? eg material removed along the bottom of opening",
+            "choice": [
+                {
+                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ecaf78c1-b874-44f5-bffb-689e4a097c3f",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all Internal door openings correct size, height and width?  Mark orientation on slab. Width and height should be 60mm more then size of door. eg 920 door is a 980 opening.",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-0f9d7e7e-4bc0-418f-92d9-ca911d0071aa",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all Cavity sliding openings correct orientation , with openings double the door size plus 60 and plus 100 to door height?",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-fe108f0f-8ec9-42c8-ab7a-eefdee39f142",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photos of incorrect Door / Cavity sliding openings ",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-18a075ac-2e5c-4188-909c-08c119fb06c2",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all Bulkheads installed as per plan? Check level and size",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-03f9e68a-5687-4166-9e1d-7976a3c026d0",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all external wall junctions shot off with Min 6 Nails?",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e11c46b0-325b-4528-917c-af28547d7816",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Has ply brace been installed as per plan? Nailed 50mm spacing top and bottom, 100mm sides and 200mm through the middle of sheet?",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-5df5c094-eb2e-4295-85c3-820b7c7db726",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are Double studs installed under each Girder truss? ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-acfd4ac9-56d1-4832-9126-866777b951a7",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of Double studs",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-afa4dd7d-4e00-4875-9de7-a4d1d8306c00",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are required Post installed and connected to beams with Min 2 bolts into each beam and into slab with post stirrup and dyna bolts? ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-cd574f90-2ade-4227-9be5-51dac7935476",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of Post Installed.",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-07eda574-8f02-4b34-89e7-b435ad2b0f44",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Spray paint notes of important items such as Shower Niche and shaving cabinets on floor to inform trades of locations. ",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-1bd05727-2c47-458a-a3f5-63c1ad2927bb",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "TRUSS INSPECTION",
+            "isRequired": false,
+            "instruction": "Inspection is based on a timber frame and may differ when completing for steel. \nATTACHED LINK TO HELP WITH TRUSS INSPECTION https://pryda.com.au/wp-content/uploads/Pryda-Roof-Truss-Installation-Guide.pdf",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-87ca4b0e-f6e0-4ee5-aab8-a5089e59aa23",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of truss layout",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a7982e49-fe91-4400-b272-b3cfb7449c0e",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all trusses installed as per truss layout?",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e60c4237-f8a6-4c6f-989a-d0fc00ff4af5",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all trusses installed as per truss layout?",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-297eafe5-a34f-4686-b9b0-9b6a580ab626",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are trusses plumb within reason? 30mm over 2m ",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7a9dd934-0ac3-48e3-935a-76498cab64df",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all tie downs completed as per truss layout?",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-1c4b3472-20c2-4420-a721-18dc9f294c24",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all Plaster nogs above walls and for change of direction installed and flush with bottom?  Nogs above walls to be max every 600mm and change of direction should be every bay. ",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8fe1a8fb-714f-431d-92a6-ecf3f0b49f95",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are L Brackets installed max every 1800 or middle of walls? L Bracket nails into noggin or truss should centre of grooves and not nailed down to allow for movement.  A quick test would be shake the wall looking for minimal movement. Double check nib walls like fridge space for completion.",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-1e198393-e635-41d6-bc39-bfcd1f28df71",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a56b2c68-c1ea-4f41-91f2-c11b8bc37d74",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are Man hole Nogs installed? Please note nogs are to stick down the thickness of plaster batten if plaster battens are being installed. Spray location of manhole on floor.",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-fc94ba01-d82c-47d5-87d9-22a2ab4ae069",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photos of Shear Blocks",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-429783b1-dc28-405d-92dd-a7177f68a717",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are Box gutters installed as per plan? Non treated timber on base with adequate fall and up stand?",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-fbd2647b-a3c0-44f8-bc2a-1c3f9cf8b87e",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Location and photo of man hole",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-4f68a73c-d51c-4e87-9a79-0a9962566c1c",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "PLUMBING INSPECTION",
+            "isRequired": false,
+            "instruction": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-752b26a2-33de-4611-8e72-6bd7ce9132a0",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-94bf5a79-52ee-4f5e-bb23-6f8195f7e5da",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-9effa9f5-4e0e-4cb6-9ac4-cc1036c4718c",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7b4746cc-b13d-4aa9-a653-57abd96118fa",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8fb15093-1f3e-432c-baa1-c0008d7405c2",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are plumbing pipes for vanities and sinks  in their correct location? Inside the wall cavity where required?",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-b0cac46f-7a0c-41cf-a56a-2bbcb9f1328c",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are plumbing pipes for vanities and sinks  in their correct location? Inside the wall cavity where required?",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-97850d10-6fb9-4d64-89c9-004bbaf808bd",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of each toilet pipe location",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-6c658737-b4d3-42b4-aa1f-4b236a4fb802",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all toilet pipes in correct location? As per measurements on slab plan and product details? ",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-d0b816d0-5d03-471b-a3b9-e01ecf75e169",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of floor wastes",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7eff2adf-cfc0-4d58-9cf4-de2a52757c26",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are floor waste installed in correct location for showers or general use in the room?",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-c3e36a16-cf2c-4669-976e-9bd475ba0db6",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Are all storm water rises installed as per plan, capped and showing no damage? Make sure each down pipe has a riser as well as fire access point and any strip drains .",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e26d304f-5277-4c17-8b2a-9439c42ed622",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "PHOTO RECORDS",
+            "isRequired": false,
+            "instruction": "Please supply clear, wide photos of frame for record keeping. if using a iPhone Zoom out showing more of the site.",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a0b0148d-35d7-415c-9b98-e53a5e033c48",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of site from across the road - min 2 photos",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-fb84f6f3-abd9-48c3-ba96-f0adc9072bc2",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of nature strip and footpath - min 3 photos",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-4edee752-5fe2-4352-a971-eaf5f74fdb54",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of frame from all 4 corners of project - min 4 photos",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-b80fd6ad-2200-4180-800e-a4bf3541eb4f",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of internals - min 6 photos",
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f9a1a827-3c10-4569-9c05-b6ace63574d1",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of any defect not captured above. ",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        }
+    ],
+    "description": "Please complete inspection before surveyor attends and payment to framer is made. Complete one QA per dwelling to help record information and save time walking around. "
+}

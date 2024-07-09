@@ -291,6 +291,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       key: formKey,
       child: Scrollbar(
         controller: _scrollController,
+        thumbVisibility: true,
+        thickness: 5,
         child: SingleChildScrollView(
           padding: widget.padding,
           controller: _scrollController,
