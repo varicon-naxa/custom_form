@@ -98,6 +98,7 @@ mixin FilePickerMixin {
     //     ? (await DownloadsPathProvider.downloadsDirectory ??
     //         await getApplicationSupportDirectory())
     //     : await getApplicationSupportDirectory();
+  try { 
     var dir = await getApplicationSupportDirectory();
 
     final target = '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
@@ -108,6 +109,9 @@ mixin FilePickerMixin {
         compressedXFile == null ? null : File(compressedXFile.path);
 
     return compressedFile ?? File(path);
+    }catch(_){
+      return File(path);
+    }
   }
 
   // checks device permission, platform, file size and gets the Image
