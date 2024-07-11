@@ -249,13 +249,17 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 ),
                           ),
                         ),
-                        Text(
-                          widget.surveyForm.timesheet ?? '',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Colors.orange,
-                                    decoration: TextDecoration.underline,
-                                  ),
+                        Expanded(
+                          child: Text(
+                            widget.surveyForm.timesheet ?? '',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Colors.orange,
+                                  decoration: TextDecoration.underline,
+                                ),
+                          ),
                         ),
                       ],
                     ),
