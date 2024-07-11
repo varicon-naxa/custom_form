@@ -222,9 +222,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                     ),
                     Text(
                       DateFormat('dd/MM/yyyy, h:mm a').format(
-                        widget.surveyForm.updatedAt ??
-                            widget.surveyForm.createdAt ??
-                            DateTime.now(),
+                        (widget.surveyForm.updatedAt ??
+                                widget.surveyForm.createdAt ??
+                                DateTime.now())
+                            .toLocal(),
                       ),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: const Color(0xff6A737B),
