@@ -222,10 +222,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                     ),
                     Text(
                       DateFormat('dd/MM/yyyy, h:mm a').format(
-                        (widget.surveyForm.updatedAt ??
-                                widget.surveyForm.createdAt ??
-                                DateTime.now())
-                            .toLocal(),
+                        (widget.surveyForm.createdAt ?? DateTime.now()),
                       ),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: const Color(0xff6A737B),
@@ -319,9 +316,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                               ?.copyWith(fontWeight: FontWeight.bold)),
                       TextSpan(
                           text: 'on ${DateFormat('dd/MM/yyyy, h:mm a').format(
-                        widget.surveyForm.updatedAt ??
-                            widget.surveyForm.createdAt ??
-                            DateTime.now(),
+                        widget.surveyForm.updatedAt ?? DateTime.now(),
                       )}.'),
                     ],
                   ),
