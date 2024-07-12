@@ -304,7 +304,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                     ],
                   ),
-                if (widget.surveyForm.updatedAt != null) ...[
+                if (widget.surveyForm.updatedBy != null) ...[
                   const Divider(),
                   RichText(
                     text: TextSpan(
@@ -312,9 +312,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       style: Theme.of(context).textTheme.bodyMedium,
                       children: [
                         TextSpan(
-                            text: widget.surveyForm.submittedBy != null
-                                ? 'by ${widget.surveyForm.submittedBy} '
-                                : '',
+                            text: 'by ${widget.surveyForm.updatedBy} ',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
