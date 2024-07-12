@@ -222,9 +222,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                     ),
                     Text(
                       DateFormat('dd/MM/yyyy, h:mm a').format(
-                        widget.surveyForm.updatedAt ??
-                            widget.surveyForm.createdAt ??
-                            DateTime.now(),
+                        (widget.surveyForm.createdAt ?? DateTime.now()),
                       ),
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: const Color(0xff6A737B),
@@ -251,13 +249,17 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 ),
                           ),
                         ),
-                        Text(
-                          widget.surveyForm.timesheet ?? '',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Colors.orange,
-                                    decoration: TextDecoration.underline,
-                                  ),
+                        Expanded(
+                          child: Text(
+                            widget.surveyForm.timesheet ?? '',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Colors.orange,
+                                  decoration: TextDecoration.underline,
+                                ),
+                          ),
                         ),
                       ],
                     ),
@@ -302,29 +304,27 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                     ],
                   ),
-                const Divider(),
-                RichText(
-                  text: TextSpan(
-                    text: 'Last Edited ',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    children: [
-                      TextSpan(
-                          text: widget.surveyForm.submittedBy != null
-                              ? 'by ${widget.surveyForm.submittedBy} '
-                              : '',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.bold)),
-                      TextSpan(
-                          text: 'on ${DateFormat('dd/MM/yyyy, h:mm a').format(
-                        widget.surveyForm.updatedAt ??
-                            widget.surveyForm.createdAt ??
-                            DateTime.now(),
-                      )}.'),
-                    ],
+                if (widget.surveyForm.updatedBy != null) ...[
+                  const Divider(),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Last Edited ',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      children: [
+                        TextSpan(
+                            text: 'by ${widget.surveyForm.updatedBy} ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.bold)),
+                        TextSpan(
+                            text: 'on ${DateFormat('dd/MM/yyyy, h:mm a').format(
+                          widget.surveyForm.updatedAt ?? DateTime.now(),
+                        )}.'),
+                      ],
+                    ),
                   ),
-                ),
+                ],
                 AppSpacing.sizedBoxH_08(),
                 if (widget.surveyForm.status != null &&
                     widget.surveyForm.status?['id'] != null)
