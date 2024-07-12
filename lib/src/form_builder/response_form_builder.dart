@@ -304,27 +304,29 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                     ],
                   ),
-                const Divider(),
-                RichText(
-                  text: TextSpan(
-                    text: 'Last Edited ',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    children: [
-                      TextSpan(
-                          text: widget.surveyForm.submittedBy != null
-                              ? 'by ${widget.surveyForm.submittedBy} '
-                              : '',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.bold)),
-                      TextSpan(
-                          text: 'on ${DateFormat('dd/MM/yyyy, h:mm a').format(
-                        widget.surveyForm.updatedAt ?? DateTime.now(),
-                      )}.'),
-                    ],
+                if (widget.surveyForm.updatedAt != null) ...[
+                  const Divider(),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Last Edited ',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      children: [
+                        TextSpan(
+                            text: widget.surveyForm.submittedBy != null
+                                ? 'by ${widget.surveyForm.submittedBy} '
+                                : '',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.bold)),
+                        TextSpan(
+                            text: 'on ${DateFormat('dd/MM/yyyy, h:mm a').format(
+                          widget.surveyForm.updatedAt ?? DateTime.now(),
+                        )}.'),
+                      ],
+                    ),
                   ),
-                ),
+                ],
                 AppSpacing.sizedBoxH_08(),
                 if (widget.surveyForm.status != null &&
                     widget.surveyForm.status?['id'] != null)
