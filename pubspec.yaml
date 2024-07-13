@@ -12,9 +12,9 @@ dependencies:
     sdk: flutter
   freezed_annotation: ^2.2.0
   json_annotation: ^4.8.1
-  intl: ^0.18.1
-  file_picker: ^5.3.2
-  image_picker: ^1.0.1
+  intl: ^0.19.0
+  file_picker: ^8.0.6
+  image_picker: ^1.1.2
   permission_handler: ^11.2.0
   downloads_path_provider_28: ^0.1.2
   path_provider: ^2.0.15
@@ -23,24 +23,24 @@ dependencies:
   flutter_signature_pad: ^3.0.1
   flutter_animate: ^4.2.0+1
   google_maps_flutter: ^2.5.0
-  geolocator: ^10.1.0
-  geocoding: ^2.1.1
+  geolocator: ^12.0.0
+  geocoding: ^3.0.0
   dotted_line: ^3.2.2
   dotted_border: ^2.1.0
   intl_phone_field: ^3.2.0
-  form_builder_validators: ^9.1.0
+  form_builder_validators: ^11.0.0
   flutter_form_builder: ^9.1.1
-  uuid: ^3.0.5
-  flutter_html: ^3.0.0-beta.2
-  html_editor_enhanced: ^2.5.1
+  uuid: ^4.4.2
+  html_editor_enhanced: ^2.6.0
   dotted_decoration: ^2.0.0
+  flutter_widget_from_html_core: ^0.15.1
 
 
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^4.0.0
   freezed: ^2.4.0
   json_serializable: ^6.7.1
   build_runner: ^2.4.6

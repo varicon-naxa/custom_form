@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:varicon_form_builder/src/form_builder/varicon_form_builder.dart';
 import 'package:varicon_form_builder/src/models/input_field.dart';
 
@@ -33,7 +33,7 @@ class InstructionWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Html(data: field.description ?? ''),
+        HtmlWidget(field.description ?? ''),
         if ((field.description ?? '').isNotEmpty) AppSpacing.sizedBoxH_06(),
         Wrap(
           children: (field.attachments ?? []).map((e) {
@@ -95,7 +95,7 @@ class InstructionWidget extends StatelessWidget {
           } else {
             return const SizedBox.shrink();
           }
-        }).toList()
+        })
       ],
     );
   }
