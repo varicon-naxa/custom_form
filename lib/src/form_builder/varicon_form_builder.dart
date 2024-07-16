@@ -348,35 +348,33 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                       final labelText = '$questionNumber. ${e.label ?? ''} ';
                       return e.maybeMap(
                         text: (field) {
-                          // final HtmlEditorController htmlEditorController =
-                          //     HtmlEditorController();
-                          // HtmlEditorOptions editorOptions =
-                          //     const HtmlEditorOptions(
-                          //         initialText: '<b>This is me</b>');
-                          // formValue.saveString(
-                          //   field.id,
-                          //   field.answer,
-                          // );
-                          // editorOptions = HtmlEditorOptions(
-                          //   adjustHeightForKeyboard: false,
-                          //   // autoAdjustHeight: false,
-                          //   initialText: field.answer,
-                          //   // disabled: true,
-                          // );
+                          final HtmlEditorController htmlEditorController =
+                              HtmlEditorController();
+                          HtmlEditorOptions editorOptions =
+                              const HtmlEditorOptions(
+                                  initialText: '<b>This is me</b>');
+                          formValue.saveString(
+                            field.id,
+                            field.answer,
+                          );
+                          editorOptions = HtmlEditorOptions(
+                            adjustHeightForKeyboard: false,
+                            // autoAdjustHeight: false,
+                            initialText: field.answer,
+                            // disabled: true,
+                          );
                           return LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
                             child: (field.name ?? '')
                                     .toLowerCase()
                                     .contains('long')
-                                ? Container()
-                                
-                                // HtmlEditorWidget(
-                                //     field: field,
-                                //     htmlEditorController: htmlEditorController,
-                                //     editorOptions: editorOptions,
-                                //     formValue: formValue,
-                                //   )
+                                ? HtmlEditorWidget(
+                                    field: field,
+                                    htmlEditorController: htmlEditorController,
+                                    editorOptions: editorOptions,
+                                    formValue: formValue,
+                                  )
                                 : (field.name ?? '')
                                         .toLowerCase()
                                         .contains('address')
@@ -1151,43 +1149,41 @@ class HtmlEditorWidget extends StatelessWidget {
               color: Colors.grey.shade300,
             ),
             borderRadius: BorderRadius.circular(4.0)),
-        child: Container()
-        // HtmlEditor(
-        //   callbacks: Callbacks(onChangeContent: (code) {
-        //     formValue.saveString(
-        //       field.id,
-        //       code.toString().trim(),
-        //     );
-        //   }),
-        //   controller: htmlEditorController, //required
-        //   plugins: const [],
-        //   htmlEditorOptions: editorOptions,
-        //   // textInputAction: TextInputAction.newline,
-        //   htmlToolbarOptions: const HtmlToolbarOptions(
-        //     defaultToolbarButtons: [
-        //       // StyleButtons(),
-        //       // FontSettingButtons(),
-        //       FontButtons(
-        //         clearAll: false,
-        //         strikethrough: false,
-        //         subscript: false,
-        //         superscript: false,
-        //       ),
-        //       // ColorButtons(),
-        //       ListButtons(listStyles: false),
-        //       ParagraphButtons(
-        //         caseConverter: false,
-        //         lineHeight: false,
-        //         textDirection: false,
-        //         increaseIndent: false,
-        //         decreaseIndent: false,
-        //       ),
-        //       // InsertButtons(),
-        //       // OtherButtons(),
-        //     ],
-        //   ),
-        // ),
-    
+        child: HtmlEditor(
+          callbacks: Callbacks(onChangeContent: (code) {
+            formValue.saveString(
+              field.id,
+              code.toString().trim(),
+            );
+          }),
+          controller: htmlEditorController, //required
+          plugins: const [],
+          htmlEditorOptions: editorOptions,
+          // textInputAction: TextInputAction.newline,
+          htmlToolbarOptions: const HtmlToolbarOptions(
+            defaultToolbarButtons: [
+              // StyleButtons(),
+              // FontSettingButtons(),
+              FontButtons(
+                clearAll: false,
+                strikethrough: false,
+                subscript: false,
+                superscript: false,
+              ),
+              // ColorButtons(),
+              ListButtons(listStyles: false),
+              ParagraphButtons(
+                caseConverter: false,
+                lineHeight: false,
+                textDirection: false,
+                increaseIndent: false,
+                decreaseIndent: false,
+              ),
+              // InsertButtons(),
+              // OtherButtons(),
+            ],
+          ),
+        ),
       ),
     );
   }
