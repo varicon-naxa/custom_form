@@ -210,26 +210,28 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                     ],
                   ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'Submitted on',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: const Color(0xff212529),
+                if (widget.surveyForm.createdAt != null)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Submitted on',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        DateFormat('dd/MM/yyyy, h:mm a').format(
+                          (widget.surveyForm.createdAt ?? DateTime.now()),
+                        ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
                             ),
                       ),
-                    ),
-                    Text(
-                      DateFormat('dd/MM/yyyy, h:mm a').format(
-                        (widget.surveyForm.createdAt ?? DateTime.now()),
-                      ),
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: const Color(0xff6A737B),
-                          ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 if (widget.surveyForm.timesheet != null)
                   InkWell(
                     onTap: () {
