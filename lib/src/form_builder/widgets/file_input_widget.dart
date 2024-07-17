@@ -2,7 +2,6 @@
 import 'dart:io';
 import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/primary_bottomsheet.dart';
 import 'package:varicon_form_builder/src/mixin/file_picker_mixin.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
@@ -507,9 +506,9 @@ class SingleFileAddItem extends StatelessWidget {
       width: double.infinity,
       child: TextButton.icon(
         style: const ButtonStyle().copyWith(
-          foregroundColor: MaterialStateProperty.all(Colors.white),
-          backgroundColor: MaterialStateProperty.all(Colors.white),
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          foregroundColor: WidgetStateProperty.all(Colors.white),
+          backgroundColor: WidgetStateProperty.all(Colors.white),
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
