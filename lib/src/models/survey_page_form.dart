@@ -24,6 +24,7 @@ class SurveyPageForm with _$SurveyPageForm {
     @JsonKey(name: 'updated_by') String? updatedBy,
     @JsonKey(name: 'submission_number') String? submissionNumber,
     @JsonKey(name: 'form_number') String? formNumber,
+    @JsonKey(name: 'timesheet_number') String? timesheetNumber,
     @JsonKey(name: 'equipment') String? equipment,
     @JsonKey(name: 'equipment_code') String? equipmentCode,
     @JsonKey(name: 'equipment_name') String? equipmentName,

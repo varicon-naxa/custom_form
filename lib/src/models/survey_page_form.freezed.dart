@@ -45,6 +45,8 @@ mixin _$SurveyPageForm {
   String? get submissionNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'form_number')
   String? get formNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'timesheet_number')
+  String? get timesheetNumber => throw _privateConstructorUsedError;
   @JsonKey(name: 'equipment')
   String? get equipment => throw _privateConstructorUsedError;
   @JsonKey(name: 'equipment_code')
@@ -85,6 +87,7 @@ abstract class $SurveyPageFormCopyWith<$Res> {
       @JsonKey(name: 'updated_by') String? updatedBy,
       @JsonKey(name: 'submission_number') String? submissionNumber,
       @JsonKey(name: 'form_number') String? formNumber,
+      @JsonKey(name: 'timesheet_number') String? timesheetNumber,
       @JsonKey(name: 'equipment') String? equipment,
       @JsonKey(name: 'equipment_code') String? equipmentCode,
       @JsonKey(name: 'equipment_name') String? equipmentName,
@@ -122,6 +125,7 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
     Object? updatedBy = freezed,
     Object? submissionNumber = freezed,
     Object? formNumber = freezed,
+    Object? timesheetNumber = freezed,
     Object? equipment = freezed,
     Object? equipmentCode = freezed,
     Object? equipmentName = freezed,
@@ -183,6 +187,10 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
           ? _value.formNumber
           : formNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      timesheetNumber: freezed == timesheetNumber
+          ? _value.timesheetNumber
+          : timesheetNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       equipment: freezed == equipment
           ? _value.equipment
           : equipment // ignore: cast_nullable_to_non_nullable
@@ -237,6 +245,7 @@ abstract class _$$SurveyPageFormImplCopyWith<$Res>
       @JsonKey(name: 'updated_by') String? updatedBy,
       @JsonKey(name: 'submission_number') String? submissionNumber,
       @JsonKey(name: 'form_number') String? formNumber,
+      @JsonKey(name: 'timesheet_number') String? timesheetNumber,
       @JsonKey(name: 'equipment') String? equipment,
       @JsonKey(name: 'equipment_code') String? equipmentCode,
       @JsonKey(name: 'equipment_name') String? equipmentName,
@@ -272,6 +281,7 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
     Object? updatedBy = freezed,
     Object? submissionNumber = freezed,
     Object? formNumber = freezed,
+    Object? timesheetNumber = freezed,
     Object? equipment = freezed,
     Object? equipmentCode = freezed,
     Object? equipmentName = freezed,
@@ -333,6 +343,10 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
           ? _value.formNumber
           : formNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      timesheetNumber: freezed == timesheetNumber
+          ? _value.timesheetNumber
+          : timesheetNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       equipment: freezed == equipment
           ? _value.equipment
           : equipment // ignore: cast_nullable_to_non_nullable
@@ -382,6 +396,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
       @JsonKey(name: 'updated_by') this.updatedBy,
       @JsonKey(name: 'submission_number') this.submissionNumber,
       @JsonKey(name: 'form_number') this.formNumber,
+      @JsonKey(name: 'timesheet_number') this.timesheetNumber,
       @JsonKey(name: 'equipment') this.equipment,
       @JsonKey(name: 'equipment_code') this.equipmentCode,
       @JsonKey(name: 'equipment_name') this.equipmentName,
@@ -446,6 +461,9 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
   @JsonKey(name: 'form_number')
   final String? formNumber;
   @override
+  @JsonKey(name: 'timesheet_number')
+  final String? timesheetNumber;
+  @override
   @JsonKey(name: 'equipment')
   final String? equipment;
   @override
@@ -489,7 +507,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
 
   @override
   String toString() {
-    return 'SurveyPageForm(name: $name, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, setting: $setting, status: $status, inputFields: $inputFields)';
+    return 'SurveyPageForm(name: $name, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, timesheetNumber: $timesheetNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, setting: $setting, status: $status, inputFields: $inputFields)';
   }
 
   @override
@@ -521,6 +539,8 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
                 other.submissionNumber == submissionNumber) &&
             (identical(other.formNumber, formNumber) ||
                 other.formNumber == formNumber) &&
+            (identical(other.timesheetNumber, timesheetNumber) ||
+                other.timesheetNumber == timesheetNumber) &&
             (identical(other.equipment, equipment) ||
                 other.equipment == equipment) &&
             (identical(other.equipmentCode, equipmentCode) ||
@@ -551,6 +571,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
         updatedBy,
         submissionNumber,
         formNumber,
+        timesheetNumber,
         equipment,
         equipmentCode,
         equipmentName,
@@ -590,6 +611,7 @@ abstract class _SurveyPageForm implements SurveyPageForm {
       @JsonKey(name: 'updated_by') final String? updatedBy,
       @JsonKey(name: 'submission_number') final String? submissionNumber,
       @JsonKey(name: 'form_number') final String? formNumber,
+      @JsonKey(name: 'timesheet_number') final String? timesheetNumber,
       @JsonKey(name: 'equipment') final String? equipment,
       @JsonKey(name: 'equipment_code') final String? equipmentCode,
       @JsonKey(name: 'equipment_name') final String? equipmentName,
@@ -641,6 +663,9 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @override
   @JsonKey(name: 'form_number')
   String? get formNumber;
+  @override
+  @JsonKey(name: 'timesheet_number')
+  String? get timesheetNumber;
   @override
   @JsonKey(name: 'equipment')
   String? get equipment;
