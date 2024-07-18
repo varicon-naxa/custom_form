@@ -253,6 +253,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         ),
                         Expanded(
                           child: Text(
+                            textAlign: TextAlign.end,
                             widget.surveyForm.timesheetNumber ?? '',
                             style: Theme.of(context)
                                 .textTheme
