@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -11,10 +13,10 @@ class MapPicker extends StatefulWidget {
   final Position? postition;
 
   MapPicker({
-    Key? key,
+    super.key,
     this.forMapField = false,
     this.postition,
-  }) : super(key: key);
+  });
 
   @override
   State<MapPicker> createState() => _MapPickerState();
