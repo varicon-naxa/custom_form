@@ -299,11 +299,14 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                   ),
                         ),
                       ),
-                      Text(
-                        widget.surveyForm.project ?? '',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: const Color(0xff6A737B),
-                            ),
+                      Expanded(
+                        child: Text(
+                          widget.surveyForm.project ?? '',
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: const Color(0xff6A737B),
+                                  ),
+                        ),
                       ),
                     ],
                   ),
