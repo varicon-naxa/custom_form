@@ -290,7 +290,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                 if (widget.surveyForm.project != null)
                   Row(
                     children: [
-                      Flexible(
+                      Expanded(
                         child: Text(
                           'Project',
                           style:
@@ -302,6 +302,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       Expanded(
                         child: Text(
                           widget.surveyForm.project ?? '',
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: const Color(0xff6A737B),
