@@ -364,38 +364,41 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child:
-                              (field.name ?? '').toLowerCase().contains('long')
-                                  ? Column(
-                                      children: [
-                                        (field.answer ?? '').isEmpty
-                                            ? const Text(
-                                                'No Response',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 16,
-                                                ),
-                                              )
-                                            : HtmlWidget(
-                                                field.answer ?? '',
-                                              ),
-                                        const DottedLine(
-                                          direction: Axis.horizontal,
-                                          alignment: WrapAlignment.center,
-                                          lineLength: double.infinity,
-                                          lineThickness: 1.0,
-                                          dashLength: 4.0,
-                                          dashColor: Colors.grey,
-                                          dashRadius: 0.0,
-                                          dashGapLength: 4.0,
-                                          dashGapColor: Colors.white,
-                                          dashGapRadius: 0.0,
-                                        )
-                                      ],
+                          child: (field.name ?? '')
+                                  .toLowerCase()
+                                  .contains('long')
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    (field.answer ?? '').isEmpty
+                                        ? const Text(
+                                            'No Response',
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 16,
+                                            ),
+                                          )
+                                        : HtmlWidget(
+                                            field.answer ?? '',
+                                          ),
+                                    const DottedLine(
+                                      direction: Axis.horizontal,
+                                      alignment: WrapAlignment.center,
+                                      lineLength: double.infinity,
+                                      lineThickness: 1.0,
+                                      dashLength: 4.0,
+                                      dashColor: Colors.grey,
+                                      dashRadius: 0.0,
+                                      dashGapLength: 4.0,
+                                      dashGapColor: Colors.white,
+                                      dashGapRadius: 0.0,
                                     )
-                                  : _AnswerDesign(
-                                      answer: field.answer ?? '',
-                                    ),
+                                  ],
+                                )
+                              : _AnswerDesign(
+                                  answer: field.answer ?? '',
+                                ),
                         );
                       },
                       phone: (field) {
@@ -670,56 +673,52 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       files: (field) {
                         List<Map<String, dynamic>> answer =
                             (e.answer ?? []) as List<Map<String, dynamic>>;
-                        if (answer.isNotEmpty) {
-                          return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: Wrap(
-                                children: answer
-                                    .map(
-                                      (e) => _AnswerDesign(
-                                        answer: e['name'],
-                                        isFile: true,
-                                        isImage: false,
-                                        fileClick: () {
-                                          widget.fileClick({
-                                            'data': e['file'],
-                                            'title': e['name']
-                                          });
-                                        },
-                                      ),
-                                    )
-                                    .toList(),
-                              ));
-                        } else {
-                          return _AnswerDesign(
-                            answer: '',
-                          );
-                        }
+                        return LabeledWidget(
+                            labelText: labelText,
+                            isRequired: e.isRequired,
+                            child: answer.isNotEmpty
+                                ? Wrap(
+                                    children: answer
+                                        .map(
+                                          (e) => _AnswerDesign(
+                                            answer: e['name'],
+                                            isFile: true,
+                                            isImage: false,
+                                            fileClick: () {
+                                              widget.fileClick({
+                                                'data': e['file'],
+                                                'title': e['name']
+                                              });
+                                            },
+                                          ),
+                                        )
+                                        .toList(),
+                                  )
+                                : _AnswerDesign(
+                                    answer: '',
+                                  ));
                       },
                       images: (field) {
                         List<Map<String, dynamic>> answer =
                             (e.answer ?? []) as List<Map<String, dynamic>>;
-                        if (answer.isNotEmpty) {
-                          return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: Column(
-                                children: answer
-                                    .map(
-                                      (e) => _AnswerDesign(
-                                        answer: e['file'],
-                                        isImage: true,
-                                        imageBuild: widget.imageBuild,
-                                      ),
-                                    )
-                                    .toList(),
-                              ));
-                        } else {
-                          return _AnswerDesign(
-                            answer: '',
-                          );
-                        }
+                        return LabeledWidget(
+                            labelText: labelText,
+                            isRequired: e.isRequired,
+                            child: answer.isNotEmpty
+                                ? Column(
+                                    children: answer
+                                        .map(
+                                          (e) => _AnswerDesign(
+                                            answer: e['file'],
+                                            isImage: true,
+                                            imageBuild: widget.imageBuild,
+                                          ),
+                                        )
+                                        .toList(),
+                                  )
+                                : _AnswerDesign(
+                                    answer: '',
+                                  ));
                       },
                       signature: (field) {
                         Map<dynamic, dynamic> answer =
