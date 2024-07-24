@@ -139,21 +139,24 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
   @override
   Widget build(BuildContext context) {
     // List<bool> actionList = choices.map((e) => e.action ?? false).toList();
-
     return Column(children: [
       TextFormField(
         readOnly: true,
         key: widget.formKey,
         controller: formCon,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (value) {
-          return textValidator(
-            value: '',
-            inputType: "text",
-            isRequired: (widget.field.isRequired &&
-                formCon.text == 'Select the item from list'),
-            requiredErrorText: widget.field.requiredErrorText ??
-                'No any Selection in required field  ',
-          );
+          if ((answer?.split(',') ?? []).isEmpty) {
+            return textValidator(
+              value: '',
+              inputType: "text",
+              isRequired: (widget.field.isRequired &&
+                  formCon.text == 'Select the item from list'),
+              requiredErrorText: widget.field.requiredErrorText ??
+                  'No any Selection in required field  ',
+            );
+          }
+          return null;
         },
         style: Theme.of(context).textTheme.bodyMedium,
         decoration: const InputDecoration(
@@ -172,6 +175,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
                   linkedQuery: widget.field.linkedQuery ?? '',
                   onCheckboxClicked:
                       (List<String> data, List<String> nameList) {
+                    var a = data;
                     data.sort();
                     widget.formValue.saveString(
                       widget.field.id,
