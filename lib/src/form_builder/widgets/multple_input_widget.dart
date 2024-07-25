@@ -175,7 +175,6 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
                   linkedQuery: widget.field.linkedQuery ?? '',
                   onCheckboxClicked:
                       (List<String> data, List<String> nameList) {
-                    var a = data;
                     data.sort();
                     widget.formValue.saveString(
                       widget.field.id,
