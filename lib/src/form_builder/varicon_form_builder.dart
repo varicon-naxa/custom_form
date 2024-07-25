@@ -807,6 +807,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         files: (field) {
+                          var a = field;
                           formValue.saveList(
                             field.id,
                             field.answer,
@@ -825,6 +826,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               fileClicked: widget.onFileClicked,
                               onSaved: (List<Map<String, dynamic>> newValue) {
+                                var a = newValue;
                                 formValue.saveList(
                                   field.id,
                                   newValue,
@@ -834,10 +836,17 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         images: (field) {
-                          formValue.saveList(
-                            field.id,
-                            field.answer,
-                          );
+                          var a = field;
+                          if (field.answer != null) {
+                            formValue.saveList(
+                              field.id,
+                              field.answer,
+                            );
+                          }
+                          // formValue.saveList(
+                          //   field.id,
+                          //   field.answer,
+                          // );
                           return LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
@@ -890,6 +899,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         multisignature: (field) {
+                          var a = field;
                           if (field.answer != null &&
                               (field.answer ?? []).isNotEmpty) {
                             formValue.saveList(

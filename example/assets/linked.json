@@ -207,14 +207,6 @@
             ],
             "otherErrorText": "Other field comment is required."
         },
-
-        {
-            "id": "item-94df5d01-232b-4c1d-a6fb-bfdd8c094f6a",
-            "name": "Multiple Signature",
-            "type": "multisignature",
-            "label": "Multiple Signature",
-            "isRequired": true
-        },
         {
             "id": "item-8166ec96-fa58-41a0-b704-4973b0235492",
             "name": "Multi-Select Dropdown",
@@ -250,7 +242,7 @@
             "name": "Image Upload",
             "type": "images",
             "label": "Photo of back fill. Min 4 photos, one from each side",
-            "isMultiple": true,
+            "isMultiple": false,
             "isRequired": true,
             "selectedLinkListLabel": ""
         }
