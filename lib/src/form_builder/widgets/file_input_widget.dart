@@ -68,7 +68,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
   void initState() {
     super.initState();
     answer = widget.field.answer ?? [];
-    widget.formValue.saveList(widget.field.id, answer);
+    // widget.formValue.saveList(widget.field.id, answer);
   }
 
   ///Method to save file to server
