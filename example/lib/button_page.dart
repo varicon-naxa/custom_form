@@ -71,7 +71,7 @@ class _ButtonPageState extends State<ButtonPage> {
             ),
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/question_inspection.json';
+                const assetPath = 'assets/linked.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 

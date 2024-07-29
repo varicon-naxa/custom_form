@@ -360,6 +360,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: widget.surveyForm.inputFields
                   .map<Widget?>((e) {
+
                     /// Heading of each input field
                     if (!(e is InstructionInputField ||
                         e is SectionInputField)) {

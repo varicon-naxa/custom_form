@@ -3,7 +3,6 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
@@ -22,6 +21,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/yes_now_input_widg
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
+import 'package:quill_html_editor/quill_html_editor.dart';
 import 'widgets/labeled_widget.dart';
 import 'widgets/signature_input_widget.dart';
 import 'widgets/yes_no_na_input_widget.dart';
@@ -348,21 +348,21 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                       final labelText = '$questionNumber. ${e.label ?? ''} ';
                       return e.maybeMap(
                         text: (field) {
-                          final HtmlEditorController htmlEditorController =
-                              HtmlEditorController();
-                          HtmlEditorOptions editorOptions =
-                              const HtmlEditorOptions(
-                                  initialText: '<b>This is me</b>');
+                          final QuillEditorController htmlEditorController =
+                              QuillEditorController();
+                          // HtmlEditorOptions editorOptions =
+                          //     const HtmlEditorOptions(
+                          //         initialText: '<b>This is me</b>');
                           formValue.saveString(
                             field.id,
                             field.answer,
                           );
-                          editorOptions = HtmlEditorOptions(
-                            adjustHeightForKeyboard: false,
-                            // autoAdjustHeight: false,
-                            initialText: field.answer,
-                            // disabled: true,
-                          );
+                          // editorOptions = HtmlEditorOptions(
+                          //   adjustHeightForKeyboard: false,
+                          //   // autoAdjustHeight: false,
+                          //   initialText: field.answer,
+                          //   // disabled: true,
+                          // );
                           return LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
@@ -370,9 +370,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     .toLowerCase()
                                     .contains('long')
                                 ? HtmlEditorWidget(
+                                    controller: htmlEditorController,
                                     field: field,
-                                    htmlEditorController: htmlEditorController,
-                                    editorOptions: editorOptions,
+                                    // htmlEditorController: htmlEditorController,
+                                    // editorOptions: editorOptions,
                                     formValue: formValue,
                                   )
                                 : (field.name ?? '')
@@ -1134,68 +1135,214 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   }
 }
 
-///HTML editor widget class
-class HtmlEditorWidget extends StatelessWidget {
-  final TextInputField field;
-  final HtmlEditorController htmlEditorController;
-  final HtmlEditorOptions editorOptions;
-  final FormValue formValue;
-
+class HtmlEditorWidget extends StatefulWidget {
   const HtmlEditorWidget({
     super.key,
-    required this.field,
-    required this.htmlEditorController,
-    required this.editorOptions,
+    required this.controller,
     required this.formValue,
+    required this.field,
   });
+
+  final QuillEditorController controller;
+  final FormValue formValue;
+  final TextInputField field;
+
+  @override
+  State<HtmlEditorWidget> createState() => _HtmlEditorWidgetState();
+}
+
+class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
+  ///[customToolBarList] pass the custom toolbarList to show only selected styles in the editor
+
+  final customToolBarList = [
+    ToolBarStyle.bold,
+    ToolBarStyle.italic,
+    ToolBarStyle.align,
+    ToolBarStyle.color,
+    ToolBarStyle.background,
+    ToolBarStyle.listBullet,
+    ToolBarStyle.listOrdered,
+    ToolBarStyle.clean,
+    ToolBarStyle.addTable,
+    ToolBarStyle.editTable,
+  ];
+
+  final _toolbarColor = Colors.grey.shade300;
+  final _backgroundColor = Colors.white70;
+  final _toolbarIconColor = Colors.black87;
+  final _editorTextStyle = const TextStyle(
+    fontSize: 18,
+    color: Colors.black,
+    fontWeight: FontWeight.normal,
+  );
+  final _hintTextStyle = const TextStyle(
+      fontSize: 18, color: Colors.black38, fontWeight: FontWeight.normal);
+
+  bool _hasFocus = false;
+
+  QuillEditorController controller = QuillEditorController(); 
+
+  @override
+  void initState() {
+    controller = QuillEditorController();
+    controller.onTextChanged((text) {
+      debugPrint('listening to $text');
+    });
+    controller.onEditorLoaded(() {
+      debugPrint('Editor Loaded :)');
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    /// please do not forget to dispose the controller
+    widget.controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: Container(
-        // height: 300,
-        decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.grey.shade300,
-            ),
-            borderRadius: BorderRadius.circular(4.0)),
-        child: HtmlEditor(
-          callbacks: Callbacks(onChangeContent: (code) {
-            formValue.saveString(
-              field.id,
-              code.toString().trim(),
-            );
-          }),
-          controller: htmlEditorController, //required
-          plugins: const [],
-          htmlEditorOptions: editorOptions,
-          // textInputAction: TextInputAction.newline,
-          htmlToolbarOptions: const HtmlToolbarOptions(
-            defaultToolbarButtons: [
-              // StyleButtons(),
-              // FontSettingButtons(),
-              FontButtons(
-                clearAll: false,
-                strikethrough: false,
-                subscript: false,
-                superscript: false,
-              ),
-              // ColorButtons(),
-              ListButtons(listStyles: false),
-              ParagraphButtons(
-                caseConverter: false,
-                lineHeight: false,
-                textDirection: false,
-                increaseIndent: false,
-                decreaseIndent: false,
-              ),
-              // InsertButtons(),
-              // OtherButtons(),
-            ],
-          ),
+    return Column(
+      children: [
+        ToolBar(
+          toolBarColor: _toolbarColor,
+          padding: const EdgeInsets.all(8),
+          iconSize: 22,
+          iconColor: _toolbarIconColor,
+          activeIconColor: Colors.orange.shade400,
+          controller: controller,
+          crossAxisAlignment: WrapCrossAlignment.start,
+          direction: Axis.horizontal,
+          toolBarConfig: const [
+            ToolBarStyle.bold,
+            ToolBarStyle.italic,
+            ToolBarStyle.underline,
+            ToolBarStyle.link,
+            ToolBarStyle.align,
+            ToolBarStyle.color,
+            ToolBarStyle.background,
+            ToolBarStyle.listBullet,
+            ToolBarStyle.listOrdered,
+          ],
         ),
-      ),
+        QuillHtmlEditor(
+          // text: "<h1>Hello</h1>This is a quill html editor example 😊",
+          hintText: 'Hint text goes here',
+          controller: controller,
+          isEnabled: true,
+          ensureVisible: true,
+          minHeight: 200,
+          autoFocus: false,
+          textStyle: _editorTextStyle,
+          hintTextStyle: _hintTextStyle,
+          hintTextAlign: TextAlign.start,
+          padding: const EdgeInsets.only(left: 10, top: 10),
+          hintTextPadding: const EdgeInsets.only(left: 20),
+          backgroundColor: _backgroundColor,
+          inputAction: InputAction.newline,
+          onEditingComplete: (s) => debugPrint('Editing completed $s'),
+          loadingBuilder: (context) {
+            return const Center(
+                child: CircularProgressIndicator(
+              strokeWidth: 1,
+              color: Colors.red,
+            ));
+          },
+          onFocusChanged: (focus) {
+            debugPrint('has focus $focus');
+            setState(() {
+              _hasFocus = focus;
+            });
+          },
+          onTextChanged: (text) {
+            var a = text;
+            debugPrint('widget text change $text');
+            widget.formValue.saveString(
+              widget.field.id,
+              text,
+            );
+          },
+          onEditorCreated: () {
+            debugPrint('Editor has been loaded');
+            setHtmlText('Testing text on load');
+          },
+          onEditorResized: (height) => debugPrint('Editor resized $height'),
+          onSelectionChanged: (sel) =>
+              debugPrint('index ${sel.index}, range ${sel.length}'),
+        ),
+      ],
     );
   }
+
+  ///[setHtmlText] to set the html text to editor
+  void setHtmlText(String text) async {
+    await widget.controller.setText(text);
+  }
 }
+
+///HTML editor widget class
+// class HtmlEditorWidget extends StatelessWidget {
+//   final TextInputField field;
+//   final HtmlEditorController htmlEditorController;
+//   final HtmlEditorOptions editorOptions;
+//   final FormValue formValue;
+
+//   const HtmlEditorWidget({
+//     super.key,
+//     required this.field,
+//     required this.htmlEditorController,
+//     required this.editorOptions,
+//     required this.formValue,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return SizedBox(
+//       height: 200,
+//       child: Container(
+//         // height: 300,
+//         decoration: BoxDecoration(
+//             border: Border.all(
+//               color: Colors.grey.shade300,
+//             ),
+//             borderRadius: BorderRadius.circular(4.0)),
+//         child: HtmlEditor(
+//           callbacks: Callbacks(onChangeContent: (code) {
+//             formValue.saveString(
+//               field.id,
+//               code.toString().trim(),
+//             );
+//           }),
+//           controller: htmlEditorController, //required
+//           plugins: const [],
+//           htmlEditorOptions: editorOptions,
+//           // textInputAction: TextInputAction.newline,
+//           htmlToolbarOptions: const HtmlToolbarOptions(
+//             defaultToolbarButtons: [
+//               // StyleButtons(),
+//               // FontSettingButtons(),
+//               FontButtons(
+//                 clearAll: false,
+//                 strikethrough: false,
+//                 subscript: false,
+//                 superscript: false,
+//               ),
+//               // ColorButtons(),
+//               ListButtons(listStyles: false),
+//               ParagraphButtons(
+//                 caseConverter: false,
+//                 lineHeight: false,
+//                 textDirection: false,
+//                 increaseIndent: false,
+//                 decreaseIndent: false,
+//               ),
+//               // InsertButtons(),
+//               // OtherButtons(),
+//             ],
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
