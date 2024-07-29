@@ -1226,6 +1226,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           ],
         ),
         QuillHtmlEditor(
+          text: widget.field.answer ?? '',
           // text: "<h1>Hello</h1>This is a quill html editor example 😊",
           hintText: 'Hint text goes here',
           controller: controller,
@@ -1267,11 +1268,11 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               text,
             );
           },
-          onEditorCreated: () {
-            debugPrint('Editor has been loaded');
-            setHtmlText('Testing text on load');
-          },
-          onEditorResized: (height) => debugPrint('Editor resized $height'),
+          // onEditorCreated: () {
+          //   debugPrint('Editor has been loaded');
+          //   setHtmlText('Testing text on load');
+          // },
+          // onEditorResized: (height) => debugPrint('Editor resized $height'),
           onSelectionChanged: (sel) =>
               debugPrint('index ${sel.index}, range ${sel.length}'),
         ),
