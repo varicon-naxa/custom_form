@@ -308,7 +308,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             duration: const Duration(milliseconds: 400),
             height:
                 (_isVisible && MediaQuery.of(context).viewInsets.bottom == 0)
-                    ? 0
+                    ? 80
                     : 80,
             child: _NavigationButton(
               buttonText: widget.buttonText,
