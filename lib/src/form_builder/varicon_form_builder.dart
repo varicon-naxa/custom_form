@@ -402,8 +402,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         final labelText = '$questionNumber. ${e.label ?? ''} ';
                         return e.maybeMap(
                           text: (field) {
-                             QuillEditorController htmlEditorController =
-                                QuillEditorController();
+                            // QuillEditorController htmlEditorController =
+                            //     QuillEditorController();
                             // HtmlEditorOptions editorOptions =
                             //     const HtmlEditorOptions(
                             //         initialText: '<b>This is me</b>');
@@ -424,7 +424,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                       .toLowerCase()
                                       .contains('long')
                                   ? HtmlEditorWidget(
-                                      controller: htmlEditorController,
+                                      // controller: htmlEditorController,
                                       field: field,
                                       // htmlEditorController: htmlEditorController,
                                       // editorOptions: editorOptions,
@@ -1169,14 +1169,14 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 }
 
 class HtmlEditorWidget extends StatefulWidget {
-   HtmlEditorWidget({
+  const HtmlEditorWidget({
     super.key,
-    required this.controller,
+    // required this.controller,
     required this.formValue,
     required this.field,
   });
 
-   QuillEditorController controller;
+  // final QuillEditorController controller;
   final FormValue formValue;
   final TextInputField field;
 
@@ -1196,11 +1196,11 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   final _hintTextStyle = const TextStyle(
       fontSize: 18, color: Colors.black38, fontWeight: FontWeight.normal);
 
-  // QuillEditorController controller = QuillEditorController();
+  QuillEditorController controller = QuillEditorController();
 
   @override
   void initState() {
-    widget.controller = QuillEditorController();
+    // widget.controller = QuillEditorController();
     // widget.controller.onTextChanged((text) {
     // // widget.formValue.saveString(
     // //   widget.field.id,
@@ -1215,7 +1215,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
 
   @override
   void dispose() {
-    widget.controller.dispose();
+    controller.dispose();
     super.dispose();
   }
 
@@ -1229,7 +1229,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           iconSize: 22,
           iconColor: _toolbarIconColor,
           activeIconColor: Colors.orange.shade400,
-          controller: widget.controller,
+          controller: controller,
           crossAxisAlignment: WrapCrossAlignment.start,
           direction: Axis.horizontal,
           toolBarConfig: const [
@@ -1247,7 +1247,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         QuillHtmlEditor(
           hintText: '',
           text: widget.field.answer ?? '',
-          controller: widget.controller,
+          controller: controller,
           isEnabled: true,
           ensureVisible: true,
           minHeight: 200,
@@ -1272,8 +1272,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               )),
             );
           },
-          onFocusChanged: (focus) {
-          },
+          onFocusChanged: (focus) {},
           onTextChanged: (text) {
             debugPrint('widget text change $text');
 
@@ -1296,7 +1295,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
 
   ///[setHtmlText] to set the html text to editor
   void setHtmlText(String text) async {
-    await widget.controller.setText(text);
+    await controller.setText(text);
   }
 }
 
