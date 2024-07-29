@@ -1201,15 +1201,15 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   @override
   void initState() {
     widget.controller = QuillEditorController();
-    widget.controller.onTextChanged((text) {
-    // widget.formValue.saveString(
-    //   widget.field.id,
-    //   text.toString().trim(),
-    // );
-    });
-    widget.controller.onEditorLoaded(() {
-      // debugPrint('Editor Loaded :)');
-    });
+    // widget.controller.onTextChanged((text) {
+    // // widget.formValue.saveString(
+    // //   widget.field.id,
+    // //   text.toString().trim(),
+    // // );
+    // });
+    // widget.controller.onEditorLoaded(() {
+    //   // debugPrint('Editor Loaded :)');
+    // });
     super.initState();
   }
 
