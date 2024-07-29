@@ -1185,20 +1185,6 @@ class HtmlEditorWidget extends StatefulWidget {
 }
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
-  // ///[customToolBarList] pass the custom toolbarList to show only selected styles in the editor
-
-  // final customToolBarList = [
-  //   ToolBarStyle.bold,
-  //   ToolBarStyle.italic,
-  //   ToolBarStyle.align,
-  //   ToolBarStyle.color,
-  //   ToolBarStyle.background,
-  //   ToolBarStyle.listBullet,
-  //   ToolBarStyle.listOrdered,
-  //   ToolBarStyle.clean,
-  //   ToolBarStyle.addTable,
-  //   ToolBarStyle.editTable,
-  // ];
 
   final _toolbarColor = Colors.grey.shade300;
   final _backgroundColor = Colors.grey.shade100;
@@ -1211,7 +1197,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   final _hintTextStyle = const TextStyle(
       fontSize: 18, color: Colors.black38, fontWeight: FontWeight.normal);
 
-  bool _hasFocus = false;
 
   QuillEditorController controller = QuillEditorController();
 
@@ -1219,14 +1204,14 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   void initState() {
     controller = QuillEditorController();
     controller.onTextChanged((text) {
-      widget.formValue.saveString(
-        widget.field.id,
-        text.toString().trim(),
-      );
+      // widget.formValue.saveString(
+      //   widget.field.id,
+      //   text.toString().trim(),
+      // );
     });
-    // controller.onEditorLoaded(() {
-    //   debugPrint('Editor Loaded :)');
-    // });
+    controller.onEditorLoaded(() {
+      debugPrint('Editor Loaded :)');
+    });
     super.initState();
   }
 
@@ -1262,6 +1247,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           ],
         ),
         QuillHtmlEditor(
+          hintText: '',
           text: widget.field.answer ?? '',
           controller: controller,
           isEnabled: true,
@@ -1288,26 +1274,24 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               )),
             );
           },
-          // onFocusChanged: (focus) {
-          //   debugPrint('has focus $focus');
-          //   setState(() {
-          //     _hasFocus = focus;
-          //   });
-          // },
+          onFocusChanged: (focus) {
+            debugPrint('has focus $focus');
+          },
           onTextChanged: (text) {
+            print(text);
             debugPrint('widget text change $text');
             widget.formValue.saveString(
               widget.field.id,
               text.toString().trim(),
             );
           },
-          // onEditorCreated: () {
-          //   debugPrint('Editor has been loaded');
-          //   setHtmlText('Testing text on load');
-          // },
-          // onEditorResized: (height) => debugPrint('Editor resized $height'),
-          // onSelectionChanged: (sel) =>
-          //     debugPrint('index ${sel.index}, range ${sel.length}'),
+          onEditorCreated: () {
+            debugPrint('Editor has been loaded');
+            setHtmlText('Testing text on load');
+          },
+          onEditorResized: (height) => debugPrint('Editor resized $height'),
+          onSelectionChanged: (sel) =>
+              debugPrint('index ${sel.index}, range ${sel.length}'),
         ),
       ],
     );
