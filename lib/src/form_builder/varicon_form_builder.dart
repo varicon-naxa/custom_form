@@ -1246,7 +1246,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         ),
         QuillHtmlEditor(
           hintText: '',
-          text: widget.field.answer ?? 'hello',
+          text: 'hello',
           controller: controller,
           isEnabled: true,
           ensureVisible: true,
@@ -1260,6 +1260,8 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           backgroundColor: _backgroundColor,
           inputAction: InputAction.newline,
           onEditingComplete: (s) {
+            setHtmlText(s.toString().trim());
+
             widget.formValue.saveString(
               widget.field.id,
               s.toString().trim(),
@@ -1277,23 +1279,25 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               )),
             );
           },
-          onFocusChanged: (focus) {
-            debugPrint('has focus $focus');
-          },
+          // onFocusChanged: (focus) {
+          //   debugPrint('has focus $focus');
+          // },
           onTextChanged: (text) {
             debugPrint('widget text change $text');
+            setHtmlText(text.toString().trim());
+
             widget.formValue.saveString(
               widget.field.id,
               text.toString().trim(),
             );
           },
-          onEditorCreated: () {
-            debugPrint('Editor has been loaded');
-            setHtmlText('Testing text on load');
-          },
-          onEditorResized: (height) => debugPrint('Editor resized $height'),
-          onSelectionChanged: (sel) =>
-              debugPrint('index ${sel.index}, range ${sel.length}'),
+          // onEditorCreated: () {
+          //   debugPrint('Editor has been loaded');
+          //   setHtmlText(widget.field.answer ?? '');
+          // },
+          // onEditorResized: (height) => debugPrint('Editor resized $height'),
+          // onSelectionChanged: (sel) =>
+          //     debugPrint('index ${sel.index}, range ${sel.length}'),
         ),
       ],
     );
