@@ -142,13 +142,13 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   void initState() {
     super.initState();
     // _scrollController = ScrollController();
-    _scrollController = ScrollController();
-    _scrollController.addListener(() {
-      setState(() {
-        _isVisible = _scrollController.position.userScrollDirection ==
-            ScrollDirection.forward;
-      });
-    });
+    // _scrollController = ScrollController();
+    // _scrollController.addListener(() {
+    //   setState(() {
+    //     _isVisible = _scrollController.position.userScrollDirection ==
+    //         ScrollDirection.forward;
+    //   });
+    // });
 
     ///Initializing custom form state
     ///
