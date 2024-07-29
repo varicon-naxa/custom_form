@@ -1218,9 +1218,12 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   @override
   void initState() {
     controller = QuillEditorController();
-    // controller.onTextChanged((text) {
-    // debugPrint('listening to $text');
-    // });
+    controller.onTextChanged((text) {
+      widget.formValue.saveString(
+        widget.field.id,
+        text.toString().trim(),
+      );
+    });
     // controller.onEditorLoaded(() {
     //   debugPrint('Editor Loaded :)');
     // });
@@ -1260,8 +1263,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         ),
         QuillHtmlEditor(
           text: widget.field.answer ?? '',
-          // text: "<h1>Hello</h1>This is a quill html editor example 😊",
-          hintText: 'Hint text goes here',
           controller: controller,
           isEnabled: true,
           ensureVisible: true,
@@ -1276,29 +1277,28 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           inputAction: InputAction.newline,
           onEditingComplete: (s) => debugPrint('Editing completed $s'),
           loadingBuilder: (context) {
-            return Padding(
-              padding: const EdgeInsets.only(
+            return const Padding(
+              padding: EdgeInsets.only(
                 top: 18,
               ),
-              child: const Center(
+              child: Center(
                   child: CircularProgressIndicator(
                 strokeWidth: 3,
                 color: Colors.orange,
               )),
             );
           },
-          onFocusChanged: (focus) {
-            debugPrint('has focus $focus');
-            setState(() {
-              _hasFocus = focus;
-            });
-          },
+          // onFocusChanged: (focus) {
+          //   debugPrint('has focus $focus');
+          //   setState(() {
+          //     _hasFocus = focus;
+          //   });
+          // },
           onTextChanged: (text) {
-            var a = text;
             debugPrint('widget text change $text');
             widget.formValue.saveString(
               widget.field.id,
-              text,
+              text.toString().trim(),
             );
           },
           // onEditorCreated: () {
@@ -1306,8 +1306,8 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           //   setHtmlText('Testing text on load');
           // },
           // onEditorResized: (height) => debugPrint('Editor resized $height'),
-          onSelectionChanged: (sel) =>
-              debugPrint('index ${sel.index}, range ${sel.length}'),
+          // onSelectionChanged: (sel) =>
+          //     debugPrint('index ${sel.index}, range ${sel.length}'),
         ),
       ],
     );
