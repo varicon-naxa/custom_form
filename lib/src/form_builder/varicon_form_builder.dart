@@ -1246,7 +1246,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         ),
         QuillHtmlEditor(
           hintText: '',
-          text: 'hello',
+          text: widget.field.answer ?? '',
           controller: controller,
           isEnabled: true,
           ensureVisible: true,
