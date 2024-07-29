@@ -1282,10 +1282,10 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               text.toString().trim(),
             );
           },
-          onEditorCreated: () {
-            debugPrint('Editor has been loaded');
-            setHtmlText('Enter something ...');
-          },
+          // onEditorCreated: () {
+          //   debugPrint('Editor has been loaded');
+          //   setHtmlText('Enter something ...');
+          // },
           onEditorResized: (height) => debugPrint('Editor resized $height'),
           onSelectionChanged: (sel) =>
               debugPrint('index ${sel.index}, range ${sel.length}'),
