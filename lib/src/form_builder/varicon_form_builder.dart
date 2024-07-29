@@ -1259,12 +1259,12 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           hintTextPadding: const EdgeInsets.only(left: 20),
           backgroundColor: _backgroundColor,
           inputAction: InputAction.newline,
-          onEditingComplete: (s) {
-            widget.formValue.saveString(
-              widget.field.id,
-              s.toString().trim(),
-            );
-          },
+          // onEditingComplete: (s) {
+          //   widget.formValue.saveString(
+          //     widget.field.id,
+          //     s.toString().trim(),
+          //   );
+          // },
           loadingBuilder: (context) {
             return const Padding(
               padding: EdgeInsets.only(
