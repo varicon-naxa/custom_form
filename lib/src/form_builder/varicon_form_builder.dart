@@ -1260,8 +1260,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           backgroundColor: _backgroundColor,
           inputAction: InputAction.newline,
           onEditingComplete: (s) {
-            setHtmlText(s.toString().trim());
-
             widget.formValue.saveString(
               widget.field.id,
               s.toString().trim(),
@@ -1284,7 +1282,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           // },
           onTextChanged: (text) {
             debugPrint('widget text change $text');
-            setHtmlText(text.toString().trim());
 
             widget.formValue.saveString(
               widget.field.id,
