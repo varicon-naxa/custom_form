@@ -1152,23 +1152,23 @@ class HtmlEditorWidget extends StatefulWidget {
 }
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
-  ///[customToolBarList] pass the custom toolbarList to show only selected styles in the editor
+  // ///[customToolBarList] pass the custom toolbarList to show only selected styles in the editor
 
-  final customToolBarList = [
-    ToolBarStyle.bold,
-    ToolBarStyle.italic,
-    ToolBarStyle.align,
-    ToolBarStyle.color,
-    ToolBarStyle.background,
-    ToolBarStyle.listBullet,
-    ToolBarStyle.listOrdered,
-    ToolBarStyle.clean,
-    ToolBarStyle.addTable,
-    ToolBarStyle.editTable,
-  ];
+  // final customToolBarList = [
+  //   ToolBarStyle.bold,
+  //   ToolBarStyle.italic,
+  //   ToolBarStyle.align,
+  //   ToolBarStyle.color,
+  //   ToolBarStyle.background,
+  //   ToolBarStyle.listBullet,
+  //   ToolBarStyle.listOrdered,
+  //   ToolBarStyle.clean,
+  //   ToolBarStyle.addTable,
+  //   ToolBarStyle.editTable,
+  // ];
 
   final _toolbarColor = Colors.grey.shade300;
-  final _backgroundColor = Colors.white70;
+  final _backgroundColor = Colors.grey.shade100;
   final _toolbarIconColor = Colors.black87;
   final _editorTextStyle = const TextStyle(
     fontSize: 18,
@@ -1180,7 +1180,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
 
   bool _hasFocus = false;
 
-  QuillEditorController controller = QuillEditorController(); 
+  QuillEditorController controller = QuillEditorController();
 
   @override
   void initState() {
@@ -1196,7 +1196,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
 
   @override
   void dispose() {
-    /// please do not forget to dispose the controller
     widget.controller.dispose();
     super.dispose();
   }
@@ -1243,11 +1242,16 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           inputAction: InputAction.newline,
           onEditingComplete: (s) => debugPrint('Editing completed $s'),
           loadingBuilder: (context) {
-            return const Center(
-                child: CircularProgressIndicator(
-              strokeWidth: 1,
-              color: Colors.red,
-            ));
+            return Padding(
+              padding: const EdgeInsets.only(
+                top: 18,
+              ),
+              child: const Center(
+                  child: CircularProgressIndicator(
+                strokeWidth: 3,
+                color: Colors.orange,
+              )),
+            );
           },
           onFocusChanged: (focus) {
             debugPrint('has focus $focus');
