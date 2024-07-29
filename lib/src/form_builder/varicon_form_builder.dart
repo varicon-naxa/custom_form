@@ -1301,7 +1301,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
 
   ///[setHtmlText] to set the html text to editor
   void setHtmlText(String text) async {
-    await widget.controller.setText(text);
+    await controller.setText(text);
   }
 }
 
