@@ -129,95 +129,140 @@ class _FileInputWidgetState extends State<FileInputWidget>
   Widget build(BuildContext context) {
     void customBottom() {
       primaryCustomBottomSheet(
+        hasSpace: false,
         context,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppSpacing.sizedBoxH_16(),
-            Text(
-              'ADD PHOTO',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(
-                      0xff98A5B9,
-                    ),
+        child: Material(
+          color: Colors.transparent,
+          child: Wrap(
+            children: <Widget>[
+              InkWell(
+                onTap: () => storeFiles(fromCamera: true),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 16,
                   ),
-            ),
-            AppSpacing.sizedBoxH_20(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      storeFiles(fromCamera: true);
-                    },
-                    child: SizedBox(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width / 2 - 50,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.camera_alt,
-                            color: Color(
-                              0xff5F6D83,
-                            ),
-                          ),
-                          Text(
-                            'Camera',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: const Color(
-                                        0xff5F6D83,
-                                      ),
-                                    ),
-                          )
-                        ],
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.camera_alt,
+                        color: Color(0xff5F6D83),
                       ),
-                    ),
+                      const SizedBox(width: 12),
+                      Text('Camera',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: VerticalDivider(
-                      thickness: 2,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      storeFiles(fromCamera: false);
-                    },
-                    child: SizedBox(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width / 2 - 50,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.photo_library,
-                              color: Color(
-                                0xff5F6D83,
-                              )),
-                          Text(
-                            'Photo Library',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: const Color(
-                                        0xff5F6D83,
-                                      ),
-                                    ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            AppSpacing.sizedBoxH_06(),
-          ],
+              InkWell(
+                onTap: () => storeFiles(fromCamera: false),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 16,
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.photo_library, color: Color(0xff5F6D83)),
+                      const SizedBox(width: 12),
+                      Text('Photo Library',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
+        // child: Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     AppSpacing.sizedBoxH_16(),
+        //     Text(
+        //       'ADD PHOTO',
+        //       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+        //             color: const Color(
+        //               0xff98A5B9,
+        //             ),
+        //           ),
+        //     ),
+        //     AppSpacing.sizedBoxH_20(),
+        //     Padding(
+        //       padding: const EdgeInsets.symmetric(horizontal: 8.0),
+        //       child: Row(
+        //         mainAxisAlignment: MainAxisAlignment.center,
+        //         children: [
+        //           InkWell(
+        //             onTap: () {
+        //               storeFiles(fromCamera: true);
+        //             },
+        //             child: SizedBox(
+        //               height: 55,
+        //               width: MediaQuery.of(context).size.width / 2 - 50,
+        //               child: Column(
+        //                 crossAxisAlignment: CrossAxisAlignment.center,
+        //                 mainAxisAlignment: MainAxisAlignment.center,
+        //                 children: [
+        //                   const Icon(
+        //                     Icons.camera_alt,
+        //                     color: Color(
+        //                       0xff5F6D83,
+        //                     ),
+        //                   ),
+        //                   Text(
+        //                     'Camera',
+        //                     style:
+        //                         Theme.of(context).textTheme.bodySmall?.copyWith(
+        //                               color: const Color(
+        //                                 0xff5F6D83,
+        //                               ),
+        //                             ),
+        //                   )
+        //                 ],
+        //               ),
+        //             ),
+        //           ),
+        //           const Padding(
+        //             padding: EdgeInsets.symmetric(vertical: 8),
+        //             child: VerticalDivider(
+        //               thickness: 2,
+        //             ),
+        //           ),
+        //           InkWell(
+        //             onTap: () {
+        //               storeFiles(fromCamera: false);
+        //             },
+        //             child: SizedBox(
+        //               height: 55,
+        //               width: MediaQuery.of(context).size.width / 2 - 50,
+        //               child: Column(
+        //                 crossAxisAlignment: CrossAxisAlignment.center,
+        //                 mainAxisAlignment: MainAxisAlignment.center,
+        //                 children: [
+        //                   const Icon(Icons.photo_library,
+        //                       color: Color(
+        //                         0xff5F6D83,
+        //                       )),
+        //                   Text(
+        //                     'Photo Library',
+        //                     style:
+        //                         Theme.of(context).textTheme.bodySmall?.copyWith(
+        //                               color: const Color(
+        //                                 0xff5F6D83,
+        //                               ),
+        //                             ),
+        //                   )
+        //                 ],
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //       ),
+        //     ),
+        //     AppSpacing.sizedBoxH_06(),
+        //   ],
+        // ),
       );
     }
 

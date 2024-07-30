@@ -136,19 +136,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   ///Values to be submitted via forms
   final formValue = FormValue();
 
-  bool _isVisible = true;
-
   @override
   void initState() {
     super.initState();
-    // _scrollController = ScrollController();
-    // _scrollController = ScrollController();
-    // _scrollController.addListener(() {
-    //   setState(() {
-    //     _isVisible = _scrollController.position.userScrollDirection ==
-    //         ScrollDirection.forward;
-    //   });
-    // });
 
     ///Initializing custom form state
     ///
@@ -306,10 +296,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             color: Colors.white,
             padding: const EdgeInsets.all(12),
             duration: const Duration(milliseconds: 400),
-            height:
-                (_isVisible && MediaQuery.of(context).viewInsets.bottom == 0)
-                    ? 80
-                    : 80,
+            height: 80,
             child: _NavigationButton(
               buttonText: widget.buttonText,
               onComplete: () async {

@@ -10,6 +10,7 @@ Future primaryCustomBottomSheet(BuildContext context,
     bool hasSpace = true}) {
   return showModalBottomSheet(
     context: context,
+    showDragHandle: true,
     isScrollControlled: true,
     builder: (context) => Padding(
       padding: EdgeInsets.only(
