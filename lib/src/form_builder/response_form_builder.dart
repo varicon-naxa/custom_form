@@ -292,6 +292,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                 if (widget.surveyForm.project != null)
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Text(
