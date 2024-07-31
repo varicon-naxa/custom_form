@@ -29,6 +29,8 @@ class SurveyPageForm with _$SurveyPageForm {
     @JsonKey(name: 'equipment_code') String? equipmentCode,
     @JsonKey(name: 'equipment_name') String? equipmentName,
     @JsonKey(name: 'project') String? project,
+    @JsonKey(name: 'job_number') String? jobNumber,
+
     
     Map<String, dynamic>? setting,
     Map<String, dynamic>? status,

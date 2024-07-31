@@ -303,7 +303,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                       Expanded(
                         child: Text(
-                          widget.surveyForm.project ?? '',
+                          widget.surveyForm.jobNumber ??
+                              widget.surveyForm.project ??
+                              '',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style:
