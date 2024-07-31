@@ -291,8 +291,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   ),
                 if (widget.surveyForm.project != null)
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Flexible(
+                      Expanded(
                         child: Text(
                           'Project',
                           style:
@@ -306,7 +307,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           widget.surveyForm.jobNumber ??
                               widget.surveyForm.project ??
                               '',
-                          maxLines: 1,
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
