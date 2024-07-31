@@ -292,7 +292,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                 if (widget.surveyForm.project != null)
                   Row(
                     children: [
-                      Expanded(
+                      Flexible(
                         child: Text(
                           'Project',
                           style:
