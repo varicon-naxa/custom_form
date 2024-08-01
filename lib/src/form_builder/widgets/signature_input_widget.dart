@@ -255,6 +255,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
         File savedImage = await File(filePath).writeAsBytes(
             buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
         final savedFileData = await widget.attachmentSave([savedImage.path]);
+        print(savedFileData);
         widget.onSaved(savedFileData[0]);
         setState(() {
           answer = savedFileData[0];

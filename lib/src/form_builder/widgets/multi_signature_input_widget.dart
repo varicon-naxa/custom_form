@@ -347,6 +347,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                   Navigator.pop(context);
                                   final savedFileData = await widget
                                       .attachmentSave([savedImage.path]);
+                                      print(savedFileData);
                                   widget.onSaved(savedFileData[0]);
                                   setState(() {
                                     singleSignature = singleSignature.copyWith(
