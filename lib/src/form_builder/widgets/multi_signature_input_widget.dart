@@ -63,6 +63,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
         .where((signature) =>
             signature.attachmentId != null &&
             signature.file != null &&
+            signature.signatoryName != null &&
             signature.name != null)
         .toList();
     widget.formValue.saveList(
@@ -353,6 +354,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                                       attachmentId:
                                           savedFileData[0]['id'].toString(),
                                       name: controller.text,
+                                      signatoryName: controller.text,
                                       isLoading: false,
                                     );
                                     answer.add(singleSignature);

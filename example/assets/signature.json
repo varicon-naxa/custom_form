@@ -15,6 +15,15 @@
                 "isLoading": false,
                 "attachmentId": "1338"
             }
+        },
+        {
+            "id": "item-94df5d01-232b-4c1d-a6fb-bfdd8c094f6a",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [ 
+            ],
+            "isRequired": true
         }
     ],
     "description": "Description"
