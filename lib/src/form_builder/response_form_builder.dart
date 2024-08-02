@@ -717,7 +717,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             labelText: labelText,
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
-                                ? ImageLoaderQueue(
+                                ? 
+                                ImageLoaderQueue(
                                     imageUrls: answer
                                         .map((e) => e['file'].toString())
                                         .toList(),
