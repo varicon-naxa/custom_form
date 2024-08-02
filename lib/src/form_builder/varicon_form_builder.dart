@@ -1187,7 +1187,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
 
   @override
   void initState() {
-    // widget.controller = QuillEditorController();
+    controller = QuillEditorController();
     // widget.controller.onTextChanged((text) {
     // // widget.formValue.saveString(
     // //   widget.field.id,
@@ -1237,7 +1237,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           controller: controller,
           isEnabled: true,
           ensureVisible: true,
-          minHeight: 200,
+          minHeight: 100,
           autoFocus: false,
           textStyle: _editorTextStyle,
           hintTextStyle: _hintTextStyle,
