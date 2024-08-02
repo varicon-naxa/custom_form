@@ -31,7 +31,7 @@ mixin FilePickerMixin {
     List<File> files = [];
 
     if (result != null) {
-      if (result.count < 5) {
+      if (result.count <= 5) {
         for (var e in result.paths) {
           final file = File(e!);
           if (await file.length() > 25000 * 1000) {
