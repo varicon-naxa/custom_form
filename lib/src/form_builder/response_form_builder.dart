@@ -715,6 +715,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             : (e.answer ?? []) as List<Map<String, dynamic>>;
                         return LabeledWidget(
                             labelText: labelText,
+
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
                                 ?
@@ -729,6 +730,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                           (e) => _AnswerDesign(
                                             answer: e['file'],
                                             isImage: true,
+                                            containsLine: false,
                                             imageBuild: widget.imageBuild,
                                           ),
                                         )
@@ -936,6 +938,7 @@ class _AnswerDesign extends StatelessWidget {
     this.imageBuild,
     this.fileClick,
     this.isFile = false,
+    this.containsLine = false,
   });
 
   ///String values for text, image urls, files content
@@ -955,6 +958,9 @@ class _AnswerDesign extends StatelessWidget {
 
   ///Checking for signature
   bool isSignature;
+
+  ///to check if line is present
+  bool containsLine;
 
   @override
   Widget build(BuildContext context) {
@@ -1020,7 +1026,7 @@ class _AnswerDesign extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black),
                   ),
-        const DottedLine(
+       if(containsLine) const DottedLine(
           direction: Axis.horizontal,
           alignment: WrapAlignment.center,
           lineLength: double.infinity,
