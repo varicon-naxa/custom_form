@@ -1,6 +1,4 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
-import 'dart:developer';
-
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -17,6 +15,7 @@ import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import 'widgets/labeled_widget.dart';
+import 'widgets/queue_image_builder.dart';
 
 ///Main container for the respose form builder
 class ResponseFormBuilder extends StatefulWidget {
@@ -718,17 +717,22 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             labelText: labelText,
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
-                                ? Column(
-                                    children: answer
-                                        .map(
-                                          (e) => _AnswerDesign(
-                                            answer: e['file'],
-                                            isImage: true,
-                                            imageBuild: widget.imageBuild,
-                                          ),
-                                        )
+                                ? ImageLoaderQueue(
+                                    imageUrls: answer
+                                        .map((e) => e['file'].toString())
                                         .toList(),
                                   )
+                                // Column(
+                                //     children: answer
+                                //         .map(
+                                //           (e) => _AnswerDesign(
+                                //             answer: e['file'],
+                                //             isImage: true,
+                                //             imageBuild: widget.imageBuild,
+                                //           ),
+                                //         )
+                                //         .toList(),
+                                //   )
                                 : _AnswerDesign(
                                     answer: '',
                                   ));
