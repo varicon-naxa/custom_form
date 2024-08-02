@@ -717,13 +717,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             labelText: labelText,
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
-                                ? 
+                                ?
                                 // ImageLoaderQueue(
                                 //     imageUrls: answer
                                 //         .map((e) => e['file'].toString())
                                 //         .toList(),
                                 //   )
-                                Column(
+                                Wrap(
                                     children: answer
                                         .map(
                                           (e) => _AnswerDesign(
@@ -965,8 +965,8 @@ class _AnswerDesign extends StatelessWidget {
             ? imageBuild != null
                 ? imageBuild!({
                     'image': answer,
-                    'height': 200.0,
-                    'width': isSignature ? 200.0 : double.infinity,
+                    'height': 120.0,
+                    'width': isSignature ? 200.0 : 120,
                   })
                 : Image.network(
                     answer,
