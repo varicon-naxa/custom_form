@@ -29,23 +29,36 @@ mixin FilePickerMixin {
           : null,
     );
     List<File> files = [];
+
     if (result != null) {
-      for (var e in result.paths) {
-        final file = File(e!);
-        if (await file.length() > 25000 * 1000) {
-          Fluttertoast.showToast(
-              msg: "The file may not be greater than 25 MB.",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        } else {
-          files.add(file);
+      if (result.count < 5) {
+        for (var e in result.paths) {
+          final file = File(e!);
+          if (await file.length() > 25000 * 1000) {
+            Fluttertoast.showToast(
+                msg: "The file may not be greater than 25 MB.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          } else {
+            files.add(file);
+          }
         }
+        return files;
+      } else {
+        Fluttertoast.showToast(
+            msg: "You can only upload 5 files at a time.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+        return null;
       }
-      return files;
     } else {
       return null;
     }
@@ -63,30 +76,42 @@ mixin FilePickerMixin {
     );
 
     if (result != null) {
-      List<File> files = [];
-      for (var e in result.paths) {
-        final file = File(e!);
-        if (await file.length() > 25000 * 1000) {
-          Fluttertoast.showToast(
-              msg: "The file may not be greater than 25 MB.",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        } else {
-          if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
-              file.path.split('.')[1].toLowerCase == 'heic' ||
-              file.path.split('.')[1].toLowerCase == 'hevc') {
-            File compressedFile = await compressImage(file.path, quality: 35);
-            files.add(compressedFile);
+      if (result.count > 5) {
+        List<File> files = [];
+        for (var e in result.paths) {
+          final file = File(e!);
+          if (await file.length() > 25000 * 1000) {
+            Fluttertoast.showToast(
+                msg: "The file may not be greater than 25 MB.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
           } else {
-            files.add(file);
+            if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
+                file.path.split('.')[1].toLowerCase == 'heic' ||
+                file.path.split('.')[1].toLowerCase == 'hevc') {
+              File compressedFile = await compressImage(file.path, quality: 35);
+              files.add(compressedFile);
+            } else {
+              files.add(file);
+            }
           }
         }
+        return files;
+      } else {
+        Fluttertoast.showToast(
+            msg: "You can only upload 5 files at a time.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+        return null;
       }
-      return files;
     } else {
       return null;
     }
@@ -97,18 +122,19 @@ mixin FilePickerMixin {
     //     ? (await DownloadsPathProvider.downloadsDirectory ??
     //         await getApplicationSupportDirectory())
     //     : await getApplicationSupportDirectory();
-  try { 
-    var dir = await getApplicationSupportDirectory();
+    try {
+      var dir = await getApplicationSupportDirectory();
 
-    final target = '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
-    XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
-        path, target,
-        quality: quality, keepExif: true);
-    File? compressedFile =
-        compressedXFile == null ? null : File(compressedXFile.path);
+      final target =
+          '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
+      XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
+          path, target,
+          quality: quality, keepExif: true);
+      File? compressedFile =
+          compressedXFile == null ? null : File(compressedXFile.path);
 
-    return compressedFile ?? File(path);
-    }catch(_){
+      return compressedFile ?? File(path);
+    } catch (_) {
       return File(path);
     }
   }

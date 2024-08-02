@@ -718,22 +718,22 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
                                 ? 
-                                ImageLoaderQueue(
-                                    imageUrls: answer
-                                        .map((e) => e['file'].toString())
-                                        .toList(),
-                                  )
-                                // Column(
-                                //     children: answer
-                                //         .map(
-                                //           (e) => _AnswerDesign(
-                                //             answer: e['file'],
-                                //             isImage: true,
-                                //             imageBuild: widget.imageBuild,
-                                //           ),
-                                //         )
+                                // ImageLoaderQueue(
+                                //     imageUrls: answer
+                                //         .map((e) => e['file'].toString())
                                 //         .toList(),
                                 //   )
+                                Column(
+                                    children: answer
+                                        .map(
+                                          (e) => _AnswerDesign(
+                                            answer: e['file'],
+                                            isImage: true,
+                                            imageBuild: widget.imageBuild,
+                                          ),
+                                        )
+                                        .toList(),
+                                  )
                                 : _AnswerDesign(
                                     answer: '',
                                   ));
