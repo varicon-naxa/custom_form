@@ -15,7 +15,6 @@ import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import 'widgets/labeled_widget.dart';
-import 'widgets/queue_image_builder.dart';
 
 ///Main container for the respose form builder
 class ResponseFormBuilder extends StatefulWidget {
@@ -991,36 +990,37 @@ class _AnswerDesign extends StatelessWidget {
                     ),
                   )
             : isFile
-                ? Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
-                            child: Text(
-                              answer,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                ? GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      fileClick!();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Text(
+                                answer,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
                             ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            fileClick!();
-                          },
-                          child: const Icon(Icons.download),
-                        )
-                      ],
+                          const Icon(Icons.download)
+                        ],
+                      ),
                     ),
                   )
                 : Text(
