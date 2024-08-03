@@ -255,87 +255,91 @@ class _FileInputWidgetState extends State<FileInputWidget>
       }).toList());
     }
 
-    return isLoading
-        ? widget.filetype == FileType.image
-            ? Container(
-                width: 70.0,
-                height: 70.0,
-                color: Colors.white,
+    Widget isLoadingWidget() {
+      return widget.filetype == FileType.image
+          ? Container(
+              width: 70.0,
+              height: 70.0,
+              color: Colors.white,
+            )
+              .animate(
+                onPlay: (controller) => controller.repeat(),
               )
-                .animate(
-                  onPlay: (controller) => controller.repeat(),
-                )
-                .shimmer(
-                  color: Colors.grey.shade300,
-                  duration: const Duration(seconds: 2),
-                )
-            : Container(
-                width: double.infinity,
-                height: 40,
-                color: Colors.white,
+              .shimmer(
+                color: Colors.grey.shade300,
+                duration: const Duration(seconds: 2),
               )
-                .animate(
-                  onPlay: (controller) => controller.repeat(),
-                )
-                .shimmer(
-                  color: Colors.grey.shade300,
-                  duration: const Duration(seconds: 2),
-                )
-        : (widget.field.isMultiple ?? false)
-            ? Column(
-                children: [
-                  multipleItem(),
-                  SingleFileAddItem(
-                      isImage: widget.filetype == FileType.image,
-                      onTap: () async {
-                        if (widget.filetype == FileType.image) {
-                          customBottom();
-                        } else {
-                          storeFiles();
-                        }
-                      })
-                ],
+          : Container(
+              width: double.infinity,
+              height: 40,
+              color: Colors.white,
+            )
+              .animate(
+                onPlay: (controller) => controller.repeat(),
               )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if ((answer).isNotEmpty)
-                    SingleFileItem(
-                      filePath: answer[0]['file'],
-                      fileName: answer[0]['name'],
-                      imageBuild: widget.imageBuild({
-                        'image': answer[0]['file'],
-                        'height': 120.0,
-                        'width': 120.0
-                      }),
-                      fileClicked: () {
-                        widget.fileClicked(answer[0]['file']);
-                      },
-                      isImage: widget.filetype == FileType.image ? true : false,
-                      ontap: () {
-                        setState(() {
-                          widget.onSaved([]);
-
-                          answer = [];
-                        });
-                      },
-                    ),
-                  if ((answer).isEmpty)
-                    SingleFileAddItem(
-                      isImage: widget.filetype == FileType.image,
-                      onTap: () async {
-                        if (widget.filetype == FileType.image) {
-                          customBottom();
-                        } else {
-                          storeFiles(
-                            fromCamera: false,
-                          );
-                        }
-                      },
-                    )
-                ],
+              .shimmer(
+                color: Colors.grey.shade300,
+                duration: const Duration(seconds: 2),
               );
+    }
+
+    return (widget.field.isMultiple ?? false)
+        ? Column(
+            children: [
+              multipleItem(),
+              if (isLoading) isLoadingWidget(),
+              SingleFileAddItem(
+                  isImage: widget.filetype == FileType.image,
+                  onTap: () async {
+                    if (widget.filetype == FileType.image) {
+                      customBottom();
+                    } else {
+                      storeFiles();
+                    }
+                  })
+            ],
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if ((answer).isNotEmpty)
+                SingleFileItem(
+                  filePath: answer[0]['file'],
+                  fileName: answer[0]['name'],
+                  imageBuild: widget.imageBuild({
+                    'image': answer[0]['file'],
+                    'height': 120.0,
+                    'width': 120.0
+                  }),
+                  fileClicked: () {
+                    widget.fileClicked(answer[0]['file']);
+                  },
+                  isImage: widget.filetype == FileType.image ? true : false,
+                  ontap: () {
+                    setState(() {
+                      widget.onSaved([]);
+
+                      answer = [];
+                    });
+                  },
+                ),
+              if (isLoading) isLoadingWidget(),
+              if ((answer).isEmpty)
+                SingleFileAddItem(
+                  isImage: widget.filetype == FileType.image,
+                  onTap: () async {
+                    if (widget.filetype == FileType.image) {
+                      customBottom();
+                    } else {
+                      storeFiles(
+                        fromCamera: false,
+                      );
+                    }
+                  },
+                )
+            ],
+          );
   }
 }
 
