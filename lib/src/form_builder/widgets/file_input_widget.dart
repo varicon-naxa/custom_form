@@ -266,32 +266,36 @@ class _FileInputWidgetState extends State<FileInputWidget>
 
     Widget isLoadingWidget() {
       return widget.filetype == FileType.image
-          ? Container(
+          ? Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              width: 70.0,
-              height: 70.0,
-              color: Colors.white,
+              child: Container(
+                width: 70.0,
+                height: 70.0,
+                color: Colors.white,
+              )
+                  .animate(
+                    onPlay: (controller) => controller.repeat(),
+                  )
+                  .shimmer(
+                    color: Colors.grey.shade300,
+                    duration: const Duration(seconds: 2),
+                  ),
             )
-              .animate(
-                onPlay: (controller) => controller.repeat(),
-              )
-              .shimmer(
-                color: Colors.grey.shade300,
-                duration: const Duration(seconds: 2),
-              )
-          : Container(
+          : Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              width: double.infinity,
-              height: 40,
-              color: Colors.white,
-            )
-              .animate(
-                onPlay: (controller) => controller.repeat(),
+              child: Container(
+                width: double.infinity,
+                height: 40,
+                color: Colors.white,
               )
-              .shimmer(
-                color: Colors.grey.shade300,
-                duration: const Duration(seconds: 2),
-              );
+                  .animate(
+                    onPlay: (controller) => controller.repeat(),
+                  )
+                  .shimmer(
+                    color: Colors.grey.shade300,
+                    duration: const Duration(seconds: 2),
+                  ),
+            );
     }
 
     return (widget.field.isMultiple ?? false)
@@ -510,35 +514,44 @@ class SingleFileAddItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      decoration: DottedDecoration(
-        borderRadius: BorderRadius.circular(4),
-        dash: const [3, 2],
-        shape: Shape.box,
-      ),
-      height: 50,
-      width: double.infinity,
-      child: TextButton.icon(
-        style: const ButtonStyle().copyWith(
-          foregroundColor: WidgetStateProperty.all(Colors.white),
-          backgroundColor: WidgetStateProperty.all(Colors.white),
-          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 8),
+          decoration: DottedDecoration(
+            borderRadius: BorderRadius.circular(4),
+            dash: const [3, 2],
+            shape: Shape.box,
+          ),
+          height: 50,
+          width: double.infinity,
+          child: TextButton.icon(
+            style: const ButtonStyle().copyWith(
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+              backgroundColor: WidgetStateProperty.all(Colors.white),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
+              ),
+            ),
+            onPressed: () => onTap(),
+            icon: Icon(
+              isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
+              color: Colors.grey,
+            ),
+            label: Text(
+              isImage ? 'Upload Image' : 'Upload File',
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
         ),
-        onPressed: () => onTap(),
-        icon: Icon(
-          isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
-          color: Colors.grey,
-        ),
-        label: Text(
-          isImage ? 'Upload Image' : 'Upload File',
-          style: Theme.of(context).textTheme.bodyMedium,
-        ),
-      ),
+        const SizedBox(height: 8),
+        Text(
+            'Maximum file size is 25 MB. You can select up to 5 photos at a time.',
+            style: Theme.of(context).textTheme.bodySmall),
+      ],
     );
   }
 }

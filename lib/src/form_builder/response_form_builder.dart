@@ -689,6 +689,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
                                 ? Wrap(
+                                    runSpacing: 8,
                                     children: answer
                                         .map(
                                           (e) => _AnswerDesign(
@@ -715,7 +716,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             : (e.answer ?? []) as List<Map<String, dynamic>>;
                         return LabeledWidget(
                             labelText: labelText,
-
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
                                 ?
@@ -725,6 +725,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 //         .toList(),
                                 //   )
                                 Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
                                     children: answer
                                         .map(
                                           (e) => _AnswerDesign(
@@ -1026,18 +1028,19 @@ class _AnswerDesign extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black),
                   ),
-       if(containsLine) const DottedLine(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.center,
-          lineLength: double.infinity,
-          lineThickness: 1.0,
-          dashLength: 4.0,
-          dashColor: Colors.grey,
-          dashRadius: 0.0,
-          dashGapLength: 4.0,
-          dashGapColor: Colors.white,
-          dashGapRadius: 0.0,
-        )
+        if (containsLine)
+          const DottedLine(
+            direction: Axis.horizontal,
+            alignment: WrapAlignment.center,
+            lineLength: double.infinity,
+            lineThickness: 1.0,
+            dashLength: 4.0,
+            dashColor: Colors.grey,
+            dashRadius: 0.0,
+            dashGapLength: 4.0,
+            dashGapColor: Colors.white,
+            dashGapRadius: 0.0,
+          )
       ],
     );
   }
