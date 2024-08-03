@@ -148,33 +148,37 @@ class _FileInputWidgetState extends State<FileInputWidget>
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  InkWell(
-                    onTap: () {
-                      storeFiles(fromCamera: true);
-                    },
-                    child: SizedBox(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width / 2 - 50,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.camera_alt,
-                            color: Color(
-                              0xff5F6D83,
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        storeFiles(fromCamera: true);
+                      },
+                      child: SizedBox(
+                        height: 55,
+                        width: MediaQuery.of(context).size.width / 2 - 50,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.camera_alt,
+                              color: Color(
+                                0xff5F6D83,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Camera',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: const Color(
-                                        0xff5F6D83,
-                                      ),
+                            Text(
+                              'Camera',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: const Color(
+                                      0xff5F6D83,
                                     ),
-                          )
-                        ],
+                                  ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -182,33 +186,38 @@ class _FileInputWidgetState extends State<FileInputWidget>
                     padding: EdgeInsets.symmetric(vertical: 8),
                     child: VerticalDivider(
                       thickness: 2,
+                      color: Colors.grey,
                     ),
                   ),
-                  InkWell(
-                    onTap: () {
-                      storeFiles(fromCamera: false);
-                    },
-                    child: SizedBox(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width / 2 - 50,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.photo_library,
-                              color: Color(
-                                0xff5F6D83,
-                              )),
-                          Text(
-                            'Photo Library',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: const Color(
-                                        0xff5F6D83,
-                                      ),
+                  Expanded(
+                    child: InkWell(
+                      onTap: () {
+                        storeFiles(fromCamera: false);
+                      },
+                      child: SizedBox(
+                        height: 55,
+                        width: MediaQuery.of(context).size.width / 2 - 50,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.photo_library,
+                                color: Color(
+                                  0xff5F6D83,
+                                )),
+                            Text(
+                              'Photo Library',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: const Color(
+                                      0xff5F6D83,
                                     ),
-                          )
-                        ],
+                                  ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -258,6 +267,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
     Widget isLoadingWidget() {
       return widget.filetype == FileType.image
           ? Container(
+              padding: const EdgeInsets.symmetric(vertical: 8),
               width: 70.0,
               height: 70.0,
               color: Colors.white,
@@ -270,6 +280,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
                 duration: const Duration(seconds: 2),
               )
           : Container(
+              padding: const EdgeInsets.symmetric(vertical: 8),
               width: double.infinity,
               height: 40,
               color: Colors.white,
