@@ -38,8 +38,12 @@ class _SurveyPageState extends State<ResponseTest> {
         imageBuild: (Map<String, dynamic> data) {
           return Image.network(
             data['image'],
-            height: data['height'],
-            width: data['width'],
+            height: data['height'] == null
+                ? null
+                : double.parse(data['height'].toString()),
+            width: data['width'] == null
+                ? null
+                : double.parse(data['width'].toString()),
           );
         },
         fileClick: (Map<String, dynamic> url) {},

@@ -1,5 +1,4 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
-
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -290,6 +289,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                   ),
                 if (widget.surveyForm.project != null)
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
                         child: Text(
@@ -302,8 +303,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                       Expanded(
                         child: Text(
-                          widget.surveyForm.project ?? '',
-                          maxLines: 1,
+                          widget.surveyForm.jobNumber ??
+                              widget.surveyForm.project ??
+                              '',
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style:
                               Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -686,6 +689,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
                                 ? Wrap(
+                                    runSpacing: 8,
                                     children: answer
                                         .map(
                                           (e) => _AnswerDesign(
@@ -714,12 +718,21 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             labelText: labelText,
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
-                                ? Column(
+                                ?
+                                // ImageLoaderQueue(
+                                //     imageUrls: answer
+                                //         .map((e) => e['file'].toString())
+                                //         .toList(),
+                                //   )
+                                Wrap(
+                                    spacing: 8,
+                                    runSpacing: 8,
                                     children: answer
                                         .map(
                                           (e) => _AnswerDesign(
                                             answer: e['file'],
                                             isImage: true,
+                                            containsLine: false,
                                             imageBuild: widget.imageBuild,
                                           ),
                                         )
@@ -927,6 +940,7 @@ class _AnswerDesign extends StatelessWidget {
     this.imageBuild,
     this.fileClick,
     this.isFile = false,
+    this.containsLine = false,
   });
 
   ///String values for text, image urls, files content
@@ -947,6 +961,9 @@ class _AnswerDesign extends StatelessWidget {
   ///Checking for signature
   bool isSignature;
 
+  ///to check if line is present
+  bool containsLine;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -956,8 +973,8 @@ class _AnswerDesign extends StatelessWidget {
             ? imageBuild != null
                 ? imageBuild!({
                     'image': answer,
-                    'height': 200.0,
-                    'width': isSignature ? 200.0 : double.infinity,
+                    'height': 120.0,
+                    'width': isSignature ? 200.0 : 120,
                   })
                 : Image.network(
                     answer,
@@ -974,36 +991,37 @@ class _AnswerDesign extends StatelessWidget {
                     ),
                   )
             : isFile
-                ? Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
-                            child: Text(
-                              answer,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                ? GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      fileClick!();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Text(
+                                answer,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
                             ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            fileClick!();
-                          },
-                          child: const Icon(Icons.download),
-                        )
-                      ],
+                          const Icon(Icons.download)
+                        ],
+                      ),
                     ),
                   )
                 : Text(
@@ -1011,18 +1029,19 @@ class _AnswerDesign extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black),
                   ),
-        const DottedLine(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.center,
-          lineLength: double.infinity,
-          lineThickness: 1.0,
-          dashLength: 4.0,
-          dashColor: Colors.grey,
-          dashRadius: 0.0,
-          dashGapLength: 4.0,
-          dashGapColor: Colors.white,
-          dashGapRadius: 0.0,
-        )
+        if (containsLine)
+          const DottedLine(
+            direction: Axis.horizontal,
+            alignment: WrapAlignment.center,
+            lineLength: double.infinity,
+            lineThickness: 1.0,
+            dashLength: 4.0,
+            dashColor: Colors.grey,
+            dashRadius: 0.0,
+            dashGapLength: 4.0,
+            dashGapColor: Colors.white,
+            dashGapRadius: 0.0,
+          )
       ],
     );
   }
