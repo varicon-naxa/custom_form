@@ -4,7 +4,6 @@ import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/primary_bottomsheet.dart';
 import 'package:varicon_form_builder/src/mixin/file_picker_mixin.dart';
-import 'package:varicon_form_builder/varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import '../../models/value_text.dart';
 import 'package:file_picker/file_picker.dart';

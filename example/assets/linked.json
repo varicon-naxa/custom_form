@@ -2,9 +2,89 @@
     "title": "Linked to list test is a type of list where we can add list here",
     "elements": [
         {
+            "type": "dropdown",
+            "id": "select1",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "fromManualList": false,
+            "islinked": true,
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+        {
+            "type": "images",
+            "id": "image1",
+            "label": "Attach covver letter",
+            "isMultiple": true,
+            "isRequired": false
+        },
+        {
+            "type": "dropdown",
+            "id": "select2",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": false,
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "fromManualList": false,
+            "islinked": true,
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5."
+                }
+            ],
+            "showOtherItem": true,
+            "showNoneItem": true,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+       
+        {
             "type": "text",
-            "name": "long",
-            "id": "longeteteasedasdast",
+            "name": "firstName",
+            "id": "firstName",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
             "isRequired": false,
             "requiredErrorText": "First name is required",
@@ -13,12 +93,28 @@
             "answer": "",
             "placeholder": "First Name placeholder"
         },
+
+        {
+            "type": "section",
+            "name": "firstNameasd",
+            "id": "firstNameasdasd",
+            "label": "This is label of section here it goes like this",
+            "description": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": false,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "",
+            "placeholder": "First Name placeholder"
+        },
+
+        
         {
             "type": "text",
             "name": "long",
             "id": "longeteteasedasdast",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -36,6 +132,119 @@
             "maxLength": 30,
             "answer": "",
             "placeholder": "First Name placeholder"
+        },
+        {
+            "type": "radiogroup",
+            "name": "Radioname",
+            "id": "checkbox1213123",
+            "fromManualList": true,
+            "isConditional": true,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4.",
+                    "action": false
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "action": true
+                }
+            ],
+            "otherErrorText": "Other field comment is required."
+        },
+        {
+            "type": "checkbox",
+            "name": "checkbox1",
+            "id": "checkbox1",
+            "fromManualList": true,
+            "isConditional": false,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "action": true
+                }
+            ],
+            "otherErrorText": "Other field comment is required."
+        },
+        {
+            "id": "item-8166ec96-fa58-41a0-b704-4973b0235492",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi-Select Dropdown",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
+                    "label": "Optional1",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 25,
+                            "email": "prabin@varicon.com.au",
+                            "label": "Prabin Tharu"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-8fc125c2-a1dd-4560-a46b-27cb9244816b",
+                    "label": "Option 2"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-000f6fa2-e85a-4059-b41c-89298747f032",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of back fill. Min 4 photos, one from each side",
+            "isMultiple": false,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "Description is the describing method which describes the title in various way"

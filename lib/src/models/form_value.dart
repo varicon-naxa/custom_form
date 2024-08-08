@@ -49,7 +49,7 @@ class FormValue {
     } else {
       _value[k] = v;
     }
-    print('IMAGE VALUES:  $_value');
+    // print('IMAGE VALUES:  $_value');
   }
 
   /// Used for image portion
