@@ -105,7 +105,7 @@ mixin FilePickerMixin {
 
     if (result != null) {
       List<File> files = [];
-      int fileCount = result.count ?? 0;
+      int fileCount = result.count ;
 
       if (fileCount > 5) {
         Fluttertoast.showToast(
@@ -134,15 +134,7 @@ mixin FilePickerMixin {
                 fontSize: 16.0,
               );
             } else {
-              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
-                  file.path.split('.').last.toLowerCase() == 'heic' ||
-                  file.path.split('.').last.toLowerCase() == 'hevc') {
-                File compressedFile =
-                    await compressImage(file.path, quality: 35);
-                files.add(compressedFile);
-              } else {
-                files.add(file);
-              }
+              files.add(file);
             }
           }
         }
@@ -162,15 +154,7 @@ mixin FilePickerMixin {
                 fontSize: 16.0,
               );
             } else {
-              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
-                  file.path.split('.').last.toLowerCase() == 'heic' ||
-                  file.path.split('.').last.toLowerCase() == 'hevc') {
-                File compressedFile =
-                    await compressImage(file.path, quality: 35);
-                files.add(compressedFile);
-              } else {
-                files.add(file);
-              }
+              files.add(file);
             }
           }
         }
@@ -179,28 +163,6 @@ mixin FilePickerMixin {
       return files;
     } else {
       return null;
-    }
-  }
-
-  static Future<File> compressImage(String path, {int quality = 10}) async {
-    // var dir = Platform.isAndroid
-    //     ? (await DownloadsPathProvider.downloadsDirectory ??
-    //         await getApplicationSupportDirectory())
-    //     : await getApplicationSupportDirectory();
-    try {
-      var dir = await getApplicationSupportDirectory();
-
-      final target =
-          '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
-      XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
-          path, target,
-          quality: quality, keepExif: true);
-      File? compressedFile =
-          compressedXFile == null ? null : File(compressedXFile.path);
-
-      return compressedFile ?? File(path);
-    } catch (_) {
-      return File(path);
     }
   }
 
@@ -225,14 +187,7 @@ mixin FilePickerMixin {
           fontSize: 16.0);
       return null;
     } else {
-      if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
-          file.path.split('.')[1].toLowerCase == 'heic' ||
-          file.path.split('.')[1].toLowerCase == 'hevc') {
-        File compressedFile = await compressImage(file.path, quality: 35);
-        return [compressedFile];
-      } else {
-        return [file];
-      }
+      return [file];
     }
   }
 }

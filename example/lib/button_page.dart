@@ -96,7 +96,7 @@ class _ButtonPageState extends State<ButtonPage> {
             ),
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/bulk-image-file.json';
+                const assetPath = 'assets/survey.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 
