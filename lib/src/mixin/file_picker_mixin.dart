@@ -5,6 +5,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 ///File picker mixin class
@@ -28,7 +30,7 @@ mixin FilePickerMixin {
 
     if (result != null) {
       List<File> files = [];
-      int fileCount = result.count ?? 0;
+      int fileCount = result.count;
 
       if (fileCount > 5) {
         Fluttertoast.showToast(
@@ -77,7 +79,15 @@ mixin FilePickerMixin {
                 fontSize: 16.0,
               );
             } else {
-              files.add(file);
+              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
+                  file.path.split('.').last.toLowerCase() == 'heic' ||
+                  file.path.split('.').last.toLowerCase() == 'hevc') {
+                File compressedFile =
+                    await compressImage(file.path, quality: 10);
+                files.add(compressedFile);
+              } else {
+                files.add(file);
+              }
             }
           }
         }
@@ -103,7 +113,7 @@ mixin FilePickerMixin {
 
     if (result != null) {
       List<File> files = [];
-      int fileCount = result.count ;
+      int fileCount = result.count;
 
       if (fileCount > 5) {
         Fluttertoast.showToast(
@@ -132,7 +142,15 @@ mixin FilePickerMixin {
                 fontSize: 16.0,
               );
             } else {
-              files.add(file);
+              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
+                  file.path.split('.').last.toLowerCase() == 'heic' ||
+                  file.path.split('.').last.toLowerCase() == 'hevc') {
+                File compressedFile =
+                    await compressImage(file.path, quality: 10);
+                files.add(compressedFile);
+              } else {
+                files.add(file);
+              }
             }
           }
         }
@@ -152,7 +170,15 @@ mixin FilePickerMixin {
                 fontSize: 16.0,
               );
             } else {
-              files.add(file);
+              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
+                  file.path.split('.').last.toLowerCase() == 'heic' ||
+                  file.path.split('.').last.toLowerCase() == 'hevc') {
+                File compressedFile =
+                    await compressImage(file.path, quality: 10);
+                files.add(compressedFile);
+              } else {
+                files.add(file);
+              }
             }
           }
         }
@@ -161,6 +187,28 @@ mixin FilePickerMixin {
       return files;
     } else {
       return null;
+    }
+  }
+
+  static Future<File> compressImage(String path, {int quality = 10}) async {
+    // var dir = Platform.isAndroid
+    //     ? (await DownloadsPathProvider.downloadsDirectory ??
+    //         await getApplicationSupportDirectory())
+    //     : await getApplicationSupportDirectory();
+    try {
+      var dir = await getApplicationSupportDirectory();
+
+      final target =
+          '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
+      XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
+          path, target,
+          quality: quality, keepExif: true);
+      File? compressedFile =
+          compressedXFile == null ? null : File(compressedXFile.path);
+
+      return compressedFile ?? File(path);
+    } catch (_) {
+      return File(path);
     }
   }
 
@@ -185,7 +233,14 @@ mixin FilePickerMixin {
           fontSize: 16.0);
       return null;
     } else {
-      return [file];
+      if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
+          file.path.split('.')[1].toLowerCase == 'heic' ||
+          file.path.split('.')[1].toLowerCase == 'hevc') {
+        File compressedFile = await compressImage(file.path, quality: 10);
+        return [compressedFile];
+      } else {
+        return [file];
+      }
     }
   }
 }
