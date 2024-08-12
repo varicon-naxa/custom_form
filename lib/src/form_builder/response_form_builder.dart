@@ -1,9 +1,12 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
+import 'dart:developer';
+
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
+import 'package:varicon_form_builder/src/core/widget_queue_manager.dart';
 import 'package:varicon_form_builder/src/ext/color_extension.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_widget.dart';
@@ -362,7 +365,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: widget.surveyForm.inputFields
                   .map<Widget?>((e) {
-
                     /// Heading of each input field
                     if (!(e is InstructionInputField ||
                         e is SectionInputField)) {
@@ -714,6 +716,28 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         List<Map<String, dynamic>> answer = e.answer == null
                             ? []
                             : (e.answer ?? []) as List<Map<String, dynamic>>;
+                        // final WidgetQueueManager _queueManager =
+                        //     WidgetQueueManager(maxConcurrentLoads: 1);
+
+                        // log('Answer length: ${answer.length}');
+
+                        // for (int i = 0; i < answer.length; i++) {
+                        //   // Check if the file key exists and is not null
+                        //   if (answer[i].containsKey('file') &&
+                        //       answer[i]['file'] != null) {
+                        //     log('Processing index $i, file: ${answer[i]['file']}');
+
+                        //     _queueManager.addWidget(() => _AnswerDesign(
+                        //           answer: answer[i]['file'],
+                        //           isImage: true,
+                        //           containsLine: false,
+                        //           imageBuild: widget.imageBuild,
+                        //         ));
+                        //   } else {
+                        //     log('Skipping index $i due to missing or null file key');
+                        //   }
+                        // }
+
                         return LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
@@ -737,6 +761,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                           ),
                                         )
                                         .toList(),
+
+                                        // _queueManager.getProcessedWidgets(),
                                   )
                                 : _AnswerDesign(
                                     answer: '',
@@ -992,7 +1018,7 @@ class _AnswerDesign extends StatelessWidget {
                   )
             : isFile
                 ? GestureDetector(
-                  behavior: HitTestBehavior.translucent,
+                    behavior: HitTestBehavior.translucent,
                     onTap: () {
                       fileClick!();
                     },
@@ -1230,3 +1256,4 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
     );
   }
 }
+
