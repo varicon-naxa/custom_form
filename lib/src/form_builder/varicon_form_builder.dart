@@ -341,7 +341,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             // return if form state is null.
             if (formKey.currentState == null) return;
             // return if form is not valid.
-            if (!formKey.currentState!.validate() ||
+            if (!formKey.currentState!.validate() &&
                 widget.surveyForm.inputFields
                         .firstWhere((test) => test.isRequired == true)
                         .isRequired ==
@@ -351,7 +351,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
               for (int i = 0; i < _fieldKeys.length; i++) {
                 final fieldKey = _fieldKeys[i];
                 if ((fieldKey.currentState != null)) {
-                  if (!(fieldKey.currentState!.validate()) ||
+                  if (!(fieldKey.currentState!.validate()) &&
                       widget.surveyForm.inputFields
                               .firstWhere((test) => test.isRequired == true)
                               .isRequired ==
