@@ -45,6 +45,15 @@
             "isRequired": false
         },
         {
+            "id": "item-726e4de5-a519-439a-80d9-5ab27552f0db",
+            "name": "Signature",
+            "type": "signature",
+            "label": "please enter the signature",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+
+        },
+        {
             "type": "dropdown",
             "id": "select2",
             "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
