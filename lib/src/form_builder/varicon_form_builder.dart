@@ -254,6 +254,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       var fieldId = entry.value;
       log('key $fieldKey');
       log('value $fieldId`');
+      log('state ${fieldKey.currentState}`');
 
       if (fieldKey.currentState != null) {
         log(fieldKey.currentState!.toString());
@@ -579,12 +580,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     labelText: labelText,
                                     isRequired: e.isRequired,
                                     child: FormBuilderIntlPhoneField(
-                                      key: _formFieldKeys[field.id],
-                                      formKey: Key('abcdasd'),
-                                      // _formFieldKeys[field.id]
-                                      // _fieldKeys[widget
-                                      //     .surveyForm.inputFields
-                                      //     .indexOf(e)],
+                                      // key: _formFieldKeys[field.id],
+                                      fieldKey: _formFieldKeys[
+                                          field.id], // Pass the key here
+
                                       name: e.label ?? '',
                                       initialValue: phoneNumber.number,
                                       initialCountryCode:
