@@ -420,9 +420,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 );
                                 editorOptions = HtmlEditorOptions(
                                   adjustHeightForKeyboard: false,
-                                  // autoAdjustHeight: false,
                                   initialText: field.answer,
-                                  // disabled: true,
                                 );
                                 return ScrollContent(
                                   id: field.id,
@@ -444,10 +442,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                                 .toLowerCase()
                                                 .contains('address')
                                             ? MapFieldWidget(
-                                                formKey: Key('adasd'),
-                                                // _fieldKeys[widget
-                                                //     .surveyForm.inputFields
-                                                //     .indexOf(e)],
+                                              fieldKey: _formFieldKeys[field.id],
+                                                formKey: const Key('addressMap'),
                                                 isRequired: field.isRequired,
                                                 formValue: formValue,
                                                 field: field,

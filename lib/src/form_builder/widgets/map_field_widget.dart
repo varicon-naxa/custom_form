@@ -14,10 +14,11 @@ class MapFieldWidget extends StatefulWidget {
     super.key,
     required this.forMapField,
     this.position,
-    required this.formKey,
+    required this.fieldKey,
     required this.isRequired,
     required this.formValue,
     this.field,
+    required this.formKey,
   });
 
   final bool forMapField;
@@ -28,6 +29,9 @@ class MapFieldWidget extends StatefulWidget {
 
   ///Map value form key
   final Key formKey;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Form value for map values
   final FormValue formValue;
@@ -88,7 +92,7 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: widget.formKey,
+      key: widget.fieldKey,
       autocorrect: false,
       onSaved: (newValue) {
         widget.formValue.saveString(
@@ -147,6 +151,4 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
       maxLines: null,
     );
   }
-
-
 }
