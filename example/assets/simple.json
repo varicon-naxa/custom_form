@@ -1,0 +1,80 @@
+{
+    "title": "Phone",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7927",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7928",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7929",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7930",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7931",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7932",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7933",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7934",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        }
+    ]
+}

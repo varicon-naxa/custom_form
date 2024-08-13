@@ -1,11 +1,14 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:developer';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:varicon_form_builder/scroll/scroll_to_id.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.dart';
@@ -126,14 +129,31 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   ///Custom for scroll handler controller
   ScrollController _scrollController = ScrollController();
 
+  ScrollToId? scrollToId;
+  final ScrollController scrollControllerId = ScrollController();
+
   ///Global key list to make each field unique
 
   ///Track total form question counts
-  List<GlobalKey<FormFieldState<dynamic>>> _fieldKeys = [];
+  final Map<String, GlobalKey<FormFieldState<dynamic>>> _formFieldKeys = {};
+  final Map<GlobalKey<FormFieldState<dynamic>>, String> _fieldKeyToIdMap = {};
   int questionNumber = 0;
 
   ///Values to be submitted via forms
   final formValue = FormValue();
+
+  void _scrollListener() {
+    log(scrollToId!.idPosition()?.toString() ?? 'null');
+  }
+
+  // Initialize the keys and mapping
+  void _initializeKeys(List<InputField> inputFields) {
+    for (var field in inputFields) {
+      final key = GlobalKey<FormFieldState<dynamic>>();
+      _formFieldKeys[field.id] = key;
+      _fieldKeyToIdMap[key] = field.id;
+    }
+  }
 
   @override
   void initState() {
@@ -142,13 +162,15 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     ///Initializing custom form state
     ///
     ///Sets input fields and global keys
-    _fieldKeys = List.generate(
-      (widget.surveyForm.inputFields).length,
-      (index) => GlobalKey<FormFieldState<dynamic>>(),
-    );
+    _initializeKeys(widget.surveyForm.inputFields);
 
     formKey = GlobalKey<FormState>();
     signKey = GlobalKey<SignatureState>();
+
+    /// Create ScrollToId instance
+    scrollToId = ScrollToId(scrollController: scrollControllerId);
+
+    scrollControllerId.addListener(_scrollListener);
     _getCurrentPosition();
   }
 
@@ -220,30 +242,33 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     });
   }
 
-  ///Method to handle error/empty on submit
-  ///
-  ///Locates user to the form field with issue
+  // /Method to handle error/empty on submit
+  // /
+  // /Locates user to the form field with issue
   void scrollToFirstInvalidField() {
     // Form is invalid, find the first invalid field and scroll to it
     FocusScope.of(context).requestFocus(FocusNode()); // Unfocus current field
 
-    for (var fieldKey in _fieldKeys) {
-      if ((fieldKey.currentState != null)) {
-        if (!(fieldKey.currentState!.validate())) {
-          //   // Found the first invalid field, scroll to it
-          _scrollToField(fieldKey.currentContext!);
+    for (var entry in _fieldKeyToIdMap.entries) {
+      var fieldKey = entry.key;
+      var fieldId = entry.value;
+      log('key $fieldKey');
+      log('value $fieldId`');
+
+      if (fieldKey.currentState != null) {
+        log(fieldKey.currentState!.toString());
+        if (!fieldKey.currentState!.validate()) {
+          scrollToId?.animateTo(fieldId,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeIn);
+          // log('Invalid field ID: $fieldId');
+          // log((fieldKey.currentState?.value ?? '').toString());
+          // _scrollToField(fieldKey.currentContext!);
+          // Found the first invalid field, scroll to it
           break;
         }
       }
     }
-  }
-
-  ///Handle scroll animation to field with issue
-  void _scrollToField(BuildContext context) {
-    Scrollable.ensureVisible(
-      context,
-      duration: const Duration(milliseconds: 500),
-    );
   }
 
   ///Method to compare difference between two map values
@@ -329,822 +354,929 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       ),
       body: Form(
         key: formKey,
-        child: Scrollbar(
-          controller: _scrollController,
-          thumbVisibility: true,
-          thickness: 5,
-          child: SingleChildScrollView(
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            padding: widget.padding,
-            controller: _scrollController,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  widget.surveyForm.title.toString(),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        height: 1.2,
-                      ),
-                ),
-                AppSpacing.sizedBoxH_08(),
-                Text(
-                  widget.surveyForm.description.toString(),
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: const Color(0xff6A737B),
-                      ),
-                ),
-                AppSpacing.sizedBoxH_08(),
-                if (widget.hasGeolocation && _currentPosition?.latitude != null)
-                  Container(
-                    decoration: BoxDecoration(
-                      color: Colors.orange.withOpacity(0.1),
-                      border: Border.all(color: Colors.orange),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: TextButton.icon(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.info_outline,
-                          color: Colors.orange,
-                        ),
-                        label: Text(
-                          'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
-                          style: Theme.of(context).textTheme.bodySmall,
-                        )),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              widget.surveyForm.title.toString(),
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    height: 1.2,
                   ),
-                if (widget.hasGeolocation && _currentPosition?.latitude != null)
-                  AppSpacing.sizedBoxH_20(),
+            ),
+            AppSpacing.sizedBoxH_08(),
+            Text(
+              widget.surveyForm.description.toString(),
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: const Color(0xff6A737B),
+                  ),
+            ),
+            AppSpacing.sizedBoxH_08(),
+            if (widget.hasGeolocation && _currentPosition?.latitude != null)
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.orange.withOpacity(0.1),
+                  border: Border.all(color: Colors.orange),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: TextButton.icon(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.info_outline,
+                      color: Colors.orange,
+                    ),
+                    label: Text(
+                      'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
+                      style: Theme.of(context).textTheme.bodySmall,
+                    )),
+              ),
+            if (widget.hasGeolocation && _currentPosition?.latitude != null)
+              AppSpacing.sizedBoxH_20(),
 
-                // if (widget.isCarousel)
+            // if (widget.isCarousel)
 
-                if (!widget.isCarousel)
-                  ...widget.surveyForm.inputFields
-                      .map<Widget?>((e) {
-                        if (!(e is InstructionInputField ||
-                            e is SectionInputField)) {
-                          questionNumber++;
-                        }
-                        final labelText = '$questionNumber. ${e.label ?? ''} ';
-                        return e.maybeMap(
-                          text: (field) {
-                            // QuillEditorController htmlEditorController =
-                            //     QuillEditorController();
-                            final HtmlEditorController htmlEditorController =
-                                HtmlEditorController();
-                            HtmlEditorOptions editorOptions =
-                                const HtmlEditorOptions(
-                                    initialText: '<b>This is me</b>');
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            editorOptions = HtmlEditorOptions(
-                              adjustHeightForKeyboard: false,
-                              // autoAdjustHeight: false,
-                              initialText: field.answer,
-                              // disabled: true,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: (field.name ?? '')
-                                      .toLowerCase()
-                                      .contains('long')
-                                  ? HtmlEditorWidget(
-                                      field: field,
-                                      htmlEditorController:
-                                          htmlEditorController,
-                                      editorOptions: editorOptions,
-                                      formValue: formValue,
-                                    )
-                                  : (field.name ?? '')
-                                          .toLowerCase()
-                                          .contains('address')
-                                      ? MapFieldWidget(
-                                          formKey: _fieldKeys[widget
-                                              .surveyForm.inputFields
-                                              .indexOf(e)],
-                                          isRequired: field.isRequired,
-                                          formValue: formValue,
-                                          field: field,
-                                          forMapField: true,
-                                        )
-                                      : TextFormField(
-                                          // inputFormatters: [
-                                          //   FilteringTextInputFormatter.deny(
-                                          //       RegExp(r'\s')),
-                                          // ],
-                                          initialValue: field.answer ?? '',
-                                          key: _fieldKeys[widget
-                                              .surveyForm.inputFields
-                                              .indexOf(e)],
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge,
-                                          readOnly: field.readOnly,
-                                          keyboardType: (field.name ?? '')
-                                                  .toLowerCase()
-                                                  .contains('long')
-                                              ? TextInputType.multiline
-                                              : TextInputType.text,
-                                          textInputAction: (field.name ?? '')
-                                                  .toLowerCase()
-                                                  .contains('long')
-                                              ? TextInputAction.newline
-                                              : TextInputAction.next,
-                                          autovalidateMode: AutovalidateMode
-                                              .onUserInteraction,
-                                          maxLength: field.maxLength,
-                                          maxLines: (field.name ?? '')
-                                                  .toLowerCase()
-                                                  .contains('long')
-                                              ? 3
-                                              : 1,
-                                          onSaved: (newValue) {
-                                            formValue.saveString(
-                                              field.id,
-                                              newValue.toString().trim(),
-                                            );
-                                          },
-                                          validator: (value) {
-                                            return textValidator(
-                                              value: value,
-                                              inputType: "text",
-                                              isRequired: field.isRequired,
-                                              requiredErrorText:
-                                                  field.requiredErrorText,
-                                            );
-                                          },
-                                          decoration: InputDecoration(
-                                            hintText: field.hintText,
-                                            // labelText: labelText,
-                                          ),
-                                        ),
-                            );
-                          },
-                          number: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: TextFormField(
-                                initialValue: field.answer ?? '',
-                                textInputAction: TextInputAction.next,
-                                key: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                style: Theme.of(context).textTheme.bodyLarge,
-                                readOnly: field.readOnly,
-                                keyboardType:
-                                    const TextInputType.numberWithOptions(
-                                        signed: true, decimal: true),
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                onSaved: (newValue) {
-                                  formValue.saveString(
-                                    field.id,
-                                    newValue.toString().trim(),
-                                  );
-                                },
-                                inputFormatters: [
-                                  FilteringTextInputFormatter.allow(
-                                      // RegExp(r'^[0-9]+.?[0-9]*'),
-                                      RegExp(r'^\s*([0-9]+)\s*$')),
-                                ],
-                                validator: (value) {
-                                  return numberValidator(
-                                    value: (value?.isNotEmpty ?? false)
-                                        ? num.tryParse(value.toString())
-                                        : null,
-                                    isRequired: field.isRequired,
-                                    requiredErrorText: field.requiredErrorText,
-                                  );
-                                },
-                                decoration: InputDecoration(
-                                  hintText: field.hintText,
-                                  // labelText: labelText,
-                                ),
-                              ),
-                            );
-                          },
-                          phone: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            PhoneNumber? phoneNumber;
-                            phoneNumber = PhoneNumber.fromCompleteNumber(
-                                completeNumber: field.answer ?? '');
-
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: FormBuilderIntlPhoneField(
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                name: e.label ?? '',
-                                initialValue: phoneNumber.number,
-                                initialCountryCode: phoneNumber.countryISOCode,
-                                invalidNumberMessage: 'Invalid Phone Number',
-                                isRequired: e.isRequired,
-                                onSaved: (newValue) {
-                                  Country country =
-                                      PhoneNumber.getCountry(newValue);
-                                  if (newValue
-                                          .replaceAll('+', '')
-                                          .toString()
-                                          .trim() !=
-                                      country.dialCode.trim()) {
-                                    formValue.saveString(
-                                      field.id,
-                                      newValue,
-                                    );
-                                  } else {
-                                    if (phoneNumber?.number != null) {
-                                      formValue.saveString(
-                                        field.id,
-                                        '',
-                                      );
-                                    }
-                                  }
-                                },
-                                decoration: InputDecoration(
-                                  hintText: field.hintText,
-                                ),
-                              ),
-                            );
-                          },
-                          email: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              key: ValueKey(field.id),
-                              isRequired: e.isRequired,
-                              child: TextFormField(
-                                key: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                initialValue: (field.answer),
-                                readOnly: field.readOnly,
-                                textInputAction: TextInputAction.next,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                                keyboardType: TextInputType.emailAddress,
-                                maxLength: field.maxLength,
-                                onSaved: (newValue) {
-                                  formValue.saveString(
-                                    field.id,
-                                    newValue.toString().trim(),
-                                  );
-                                },
-                                validator: (value) {
-                                  return textValidator(
-                                    value: value,
-                                    inputType: "email",
-                                    isRequired: field.isRequired,
-                                    requiredErrorText: field.requiredErrorText,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          url: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              key: ValueKey(field.id),
-                              isRequired: e.isRequired,
-                              child: TextFormField(
-                                key: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                autovalidateMode:
-                                    AutovalidateMode.onUserInteraction,
-                                initialValue: (field.answer),
-                                readOnly: field.readOnly,
-                                style: Theme.of(context).textTheme.bodyLarge,
-                                keyboardType: TextInputType.number,
-                                maxLength: field.maxLength,
-                                textInputAction: TextInputAction.next,
-                                onSaved: (newValue) {
-                                  formValue.saveString(
-                                    field.id,
-                                    newValue.toString().trim(),
-                                  );
-                                },
-                                validator: (value) {
-                                  return uriValidator(
-                                    value: value,
-                                    isRequired: field.isRequired,
-                                    requiredErrorText: field.requiredErrorText,
-                                  );
-                                },
-                                decoration: InputDecoration(
-                                  hintText: field.hintText,
-                                  // labelText: labelText,
-                                ),
-                              ),
-                            );
-                          },
-                          date: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: DateTimeInputWidget(
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                field: field,
-                                dateTime: DatePickerType.date,
-                                formValue: formValue,
-                                // labelText: labelText,
-                              ),
-                            );
-                          },
-                          time: (field) {
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: DateTimeInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                dateTime: DatePickerType.time,
-                                formValue: formValue,
-                                // labelText: labelText,
-                              ),
-                            );
-                          },
-                          datetimelocal: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: DateTimeInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                dateTime: DatePickerType.dateTime,
-                                formValue: formValue,
-                                // labelText: labelText,
-                              ),
-                            );
-                          },
-                          comment: (field) {
-                            return Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                LabeledWidget(
-                                  labelText: labelText,
-                                  isRequired: e.isRequired,
-                                  child: TextFormField(
-                                    initialValue: field.answer,
-                                    key: _fieldKeys[widget
-                                        .surveyForm.inputFields
-                                        .indexOf(e)],
-                                    autovalidateMode:
-                                        AutovalidateMode.onUserInteraction,
-                                    textInputAction: TextInputAction.next,
-                                    readOnly: field.readOnly,
-                                    style:
-                                        Theme.of(context).textTheme.bodyLarge,
-                                    keyboardType: TextInputType.text,
-                                    maxLength: field.maxLength,
-                                    maxLines: 4,
-                                    onSaved: (newValue) => formValue.saveString(
-                                      field.id,
-                                      newValue,
-                                    ),
-                                    validator: (value) => textValidator(
-                                      value: value,
-                                      inputType: "comment",
-                                      isRequired: field.isRequired,
-                                      requiredErrorText:
-                                          field.requiredErrorText,
-                                    ),
-                                    decoration: InputDecoration(
-                                      hintText: field.hintText,
-                                      // labelText: labelText,
-                                    ),
-                                  ),
-                                ),
-                                AppSpacing.sizedBoxH_12(),
-                              ],
-                            );
-                          },
-                          dropdown: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: DropdownInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                apiCall: widget.apiCall,
-                                formValue: formValue,
-                                labelText: labelText,
-                              ),
-                            );
-                          },
-                          yesno: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: YesNoInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                formValue: formValue,
-                                labelText: labelText,
-                              ),
-                            );
-                          },
-                          radiogroup: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: RadioInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                formValue: formValue,
-                                labelText: labelText,
-                              ),
-                            );
-                          },
-                          yesnona: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: YesNoNaInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                formValue: formValue,
-                                labelText: labelText,
-                              ),
-                            );
-                          },
-                          checkbox: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: CheckboxInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                apiCall: widget.apiCall,
-                                formValue: formValue,
-                                labelText: labelText,
-                              ),
-                            );
-                          },
-                          multipleselect: (field) {
-                            formValue.saveString(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: MultipleInputWidget(
-                                field: field,
-                                formKey: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                apiCall: widget.apiCall,
-                                formValue: formValue,
-                                labelText: labelText,
-                              ),
-                            );
-                          },
-                          files: (field) {
-                            formValue.saveList(
-                              field.id,
-                              field.answer,
-                            );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: FileInputWidget(
-                                filetype: FileType.any,
-                                field: field,
-                                key: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                imageBuild: widget.imageBuild,
-                                attachmentSave: widget.attachmentSave,
-                                formValue: formValue,
-                                labelText: labelText,
-                                fileClicked: widget.onFileClicked,
-                                onSaved: (List<Map<String, dynamic>> newValue) {
-                                  formValue.saveList(
-                                    field.id,
-                                    newValue,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          images: (field) {
-                            if (field.answer != null) {
-                              formValue.saveList(
-                                field.id,
-                                field.answer,
-                              );
+            if (!widget.isCarousel)
+              Expanded(
+                child: InteractiveScrollViewer(
+                    scrollToId: scrollToId,
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      ...widget.surveyForm.inputFields
+                          .map<ScrollContent?>((e) {
+                            if (!(e is InstructionInputField ||
+                                e is SectionInputField)) {
+                              questionNumber++;
                             }
-                            // formValue.saveList(
-                            //   field.id,
-                            //   field.answer,
-                            // );
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: FileInputWidget(
-                                field: field,
-                                key: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                fileClicked: widget.onFileClicked,
-                                filetype: FileType.image,
-                                imageBuild: widget.imageBuild,
-                                attachmentSave: widget.attachmentSave,
-                                formValue: formValue,
-                                labelText: labelText,
-                                onSaved: (List<Map<String, dynamic>> newValue) {
-                                  formValue.saveList(
-                                    field.id,
-                                    newValue,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          signature: (field) {
-                            if (field.answer != null && field.answer != {}) {
-                              formValue.saveMap(
-                                field.id,
-                                field.answer ?? {},
-                              );
-                            }
-
-                            return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: SignatureInputWidget(
-                                field: field,
-                                key: _fieldKeys[
-                                    widget.surveyForm.inputFields.indexOf(e)],
-                                attachmentSave: widget.attachmentSave,
-                                formValue: formValue,
-                                labelText: labelText,
-                                imageBuild: widget.imageBuild,
-                                onSaved: (Map<String, dynamic> newValue) {
-                                  formValue.saveMap(
-                                    field.id,
-                                    newValue,
-                                  );
-                                },
-                              ),
-                            );
-                          },
-                          multisignature: (field) {
-                            if (field.answer != null &&
-                                (field.answer ?? []).isNotEmpty) {
-                              formValue.saveList(
-                                field.id,
-                                (field.answer ?? [])
-                                    .map((e) => e.toJson())
-                                    .toList(),
-                              );
-                            }
-                            return LabeledWidget(
-                                labelText: labelText,
-                                isRequired: e.isRequired,
-                                child: MultiSignatureInputWidget(
-                                  field: field,
-                                  key: _fieldKeys[
-                                      widget.surveyForm.inputFields.indexOf(e)],
-                                  formValue: formValue,
-                                  imageBuild: widget.imageBuild,
-                                  attachmentSave: widget.attachmentSave,
-                                  labelText: labelText,
-                                  onSaved: (Map<String, dynamic> result) {},
-                                )
-
-                                // MultiSignatureInputWidget(
-                                //   field: field,
-                                //   key: _fieldKeys[
-                                //       widget.surveyForm.inputFields.indexOf(e)],
-                                //   formValue: formValue,
-                                //   imageBuild: widget.imageBuild,
-                                //   attachmentSave: widget.attachmentSave,
-                                //   labelText: labelText,
-                                //   onSaved: (Map<String, dynamic> result) {},
-                                // ),
+                            final labelText =
+                                '$questionNumber. ${e.label ?? ''} ';
+                            return e.maybeMap(
+                              text: (field) {
+                                // QuillEditorController htmlEditorController =
+                                //     QuillEditorController();
+                                final HtmlEditorController
+                                    htmlEditorController =
+                                    HtmlEditorController();
+                                HtmlEditorOptions editorOptions =
+                                    const HtmlEditorOptions(
+                                        initialText: '<b>This is me</b>');
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
                                 );
-                          },
-                          instruction: (field) {
-                            return LabeledWidget(
-                                labelText: e.label,
-                                isRequired: e.isRequired,
-                                child: InstructionWidget(
-                                  onTap: (String url) {
-                                    widget.onFileClicked(url);
-                                  },
-                                  field: field,
-                                  key: _fieldKeys[
-                                      widget.surveyForm.inputFields.indexOf(e)],
-                                  imageBuild: widget.imageBuild,
-                                ));
-                          },
-                          section: (field) {
-                            return Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    e.label ?? '',
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .titleLarge
-                                        ?.copyWith(
-                                            color: const Color(0xff233759),
-                                            height: 1.2),
-                                  ),
-                                  AppSpacing.sizedBoxH_08(),
-                                  (field.description ?? '').isEmpty
-                                      ? const SizedBox.shrink()
-                                      : Text(
-                                          field.description ?? '',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(
-                                                color: const Color(0xff6A737B),
-                                              ),
-                                        ),
-                                  AppSpacing.sizedBoxH_08(),
-                                  const Divider(
-                                    height: 1,
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                          geolocation: (field) {
-                            return (widget.hasGeolocation)
-                                ? const SizedBox.shrink()
-                                : LabeledWidget(
+                                editorOptions = HtmlEditorOptions(
+                                  adjustHeightForKeyboard: false,
+                                  // autoAdjustHeight: false,
+                                  initialText: field.answer,
+                                  // disabled: true,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
                                     labelText: labelText,
-                                    isRequired: false,
-                                    child: (field.answer != null &&
-                                            field.answer!['lat'] != null &&
-                                            field.answer!['long'] != null)
-                                        ? CustomLocation(
-                                            postition: Position(
-                                                longitude:
-                                                    field.answer!['long'],
-                                                latitude: field.answer!['lat'],
-                                                timestamp: DateTime.timestamp(),
-                                                accuracy: 50.0,
-                                                altitude: 0.0,
-                                                altitudeAccuracy: 50.0,
-                                                heading: 50.0,
-                                                headingAccuracy: 50.0,
-                                                speed: 2.0,
-                                                speedAccuracy: 50.0),
+                                    isRequired: e.isRequired,
+                                    child: (field.name ?? '')
+                                            .toLowerCase()
+                                            .contains('long')
+                                        ? HtmlEditorWidget(
+                                            field: field,
+                                            htmlEditorController:
+                                                htmlEditorController,
+                                            editorOptions: editorOptions,
+                                            formValue: formValue,
                                           )
-                                        : (_currentPosition?.latitude != null &&
-                                                widget.hasGeolocation)
-                                            ? CustomLocation(
-                                                postition: _currentPosition!,
+                                        : (field.name ?? '')
+                                                .toLowerCase()
+                                                .contains('address')
+                                            ? MapFieldWidget(
+                                                formKey: Key('adasd'),
+                                                // _fieldKeys[widget
+                                                //     .surveyForm.inputFields
+                                                //     .indexOf(e)],
+                                                isRequired: field.isRequired,
+                                                formValue: formValue,
+                                                field: field,
+                                                forMapField: true,
                                               )
-                                            : Text(
-                                                'Location is disabled!',
+                                            : TextFormField(
+                                                // inputFormatters: [
+                                                //   FilteringTextInputFormatter.deny(
+                                                //       RegExp(r'\s')),
+                                                // ],
+                                                initialValue:
+                                                    field.answer ?? '',
+                                                key: _formFieldKeys[field.id],
                                                 style: Theme.of(context)
                                                     .textTheme
-                                                    .bodyMedium,
+                                                    .bodyLarge,
+                                                readOnly: field.readOnly,
+                                                keyboardType: (field.name ?? '')
+                                                        .toLowerCase()
+                                                        .contains('long')
+                                                    ? TextInputType.multiline
+                                                    : TextInputType.text,
+                                                textInputAction: (field.name ??
+                                                            '')
+                                                        .toLowerCase()
+                                                        .contains('long')
+                                                    ? TextInputAction.newline
+                                                    : TextInputAction.next,
+                                                autovalidateMode:
+                                                    AutovalidateMode
+                                                        .onUserInteraction,
+                                                maxLength: field.maxLength,
+                                                maxLines: (field.name ?? '')
+                                                        .toLowerCase()
+                                                        .contains('long')
+                                                    ? 3
+                                                    : 1,
+                                                onSaved: (newValue) {
+                                                  formValue.saveString(
+                                                    field.id,
+                                                    newValue.toString().trim(),
+                                                  );
+                                                },
+                                                validator: (value) {
+                                                  return textValidator(
+                                                    value: value,
+                                                    inputType: "text",
+                                                    isRequired:
+                                                        field.isRequired,
+                                                    requiredErrorText:
+                                                        field.requiredErrorText,
+                                                  );
+                                                },
+                                                decoration: InputDecoration(
+                                                  hintText: field.hintText,
+                                                  // labelText: labelText,
+                                                ),
                                               ),
-                                  );
-                            // },
-                            // map: (field) {
-                            //   if (field.answer != null && field.answer != {}) {
-                            //     formValue.saveMap(
-                            //       field.id,
-                            //       field.answer ?? {},
-                            //     );
-                            //   }
-                            //   return LabeledWidget(
-                            //     labelText: e.label,
-                            //     isRequired: e.isRequired,
-                            //     child: MapFieldWidget(
-                            //       formKey: _fieldKeys[
-                            //           widget.surveyForm.inputFields.indexOf(e)],
-                            //       formValue: formValue,
-                            //       field: field,
-                            //       forMapField: true,
-                            //       position: (field.answer?['lat'] == null ||
-                            //               field.answer?['long'] == null)
-                            //           ? null
-                            //           : Position(
-                            //               latitude: field.answer?['lat'],
-                            //               longitude: field.answer?['long'],
-                            //               timestamp: DateTime.timestamp(),
-                            //               accuracy: 50.0,
-                            //               altitude: 0.0,
-                            //               altitudeAccuracy: 50.0,
-                            //               heading: 50.0,
-                            //               headingAccuracy: 50.0,
-                            //               speed: 2.0,
-                            //               speedAccuracy: 50.0),
-                            //     ),
-                            //   );
-                          },
-                          orElse: () => null,
-                        );
-                      })
-                      .whereType<Widget>()
-                      // .separated(widget.separatorBuilder?.call())
-                      .toList(),
+                                  ),
+                                );
+                              },
+                              number: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: TextFormField(
+                                      initialValue: field.answer ?? '',
+                                      textInputAction: TextInputAction.next,
+                                      key: _formFieldKeys[field.id],
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                      readOnly: field.readOnly,
+                                      keyboardType:
+                                          const TextInputType.numberWithOptions(
+                                              signed: true, decimal: true),
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      onSaved: (newValue) {
+                                        formValue.saveString(
+                                          field.id,
+                                          newValue.toString().trim(),
+                                        );
+                                      },
+                                      inputFormatters: [
+                                        FilteringTextInputFormatter.allow(
+                                            // RegExp(r'^[0-9]+.?[0-9]*'),
+                                            RegExp(r'^\s*([0-9]+)\s*$')),
+                                      ],
+                                      validator: (value) {
+                                        return numberValidator(
+                                          value: (value?.isNotEmpty ?? false)
+                                              ? num.tryParse(value.toString())
+                                              : null,
+                                          isRequired: field.isRequired,
+                                          requiredErrorText:
+                                              field.requiredErrorText,
+                                        );
+                                      },
+                                      decoration: InputDecoration(
+                                        hintText: field.hintText,
+                                        // labelText: labelText,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              phone: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                PhoneNumber? phoneNumber;
+                                phoneNumber = PhoneNumber.fromCompleteNumber(
+                                    completeNumber: field.answer ?? '');
 
-                if (_currentPosition?.latitude != null && widget.hasGeolocation)
-                  CustomLocation(
-                    postition: widget.surveyForm.setting?['location'] != null
-                        ? Position(
-                            longitude: widget.surveyForm.setting?['location']
-                                ['long'],
-                            latitude: widget.surveyForm.setting?['location']
-                                ['lat'],
-                            timestamp: DateTime.timestamp(),
-                            accuracy: 50.0,
-                            altitude: 0.0,
-                            altitudeAccuracy: 50.0,
-                            heading: 50.0,
-                            headingAccuracy: 50.0,
-                            speed: 2.0,
-                            speedAccuracy: 50.0)
-                        : _currentPosition!,
-                  ),
-                AppSpacing.sizedBoxH_08(),
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: FormBuilderIntlPhoneField(
+                                      key: _formFieldKeys[field.id],
+                                      formKey: Key('abcdasd'),
+                                      // _formFieldKeys[field.id]
+                                      // _fieldKeys[widget
+                                      //     .surveyForm.inputFields
+                                      //     .indexOf(e)],
+                                      name: e.label ?? '',
+                                      initialValue: phoneNumber.number,
+                                      initialCountryCode:
+                                          phoneNumber.countryISOCode,
+                                      invalidNumberMessage:
+                                          'Invalid Phone Number',
+                                      isRequired: e.isRequired,
+                                      onSaved: (newValue) {
+                                        Country country =
+                                            PhoneNumber.getCountry(newValue);
+                                        if (newValue
+                                                .replaceAll('+', '')
+                                                .toString()
+                                                .trim() !=
+                                            country.dialCode.trim()) {
+                                          formValue.saveString(
+                                            field.id,
+                                            newValue,
+                                          );
+                                        } else {
+                                          if (phoneNumber?.number != null) {
+                                            formValue.saveString(
+                                              field.id,
+                                              '',
+                                            );
+                                          }
+                                        }
+                                      },
+                                      decoration: InputDecoration(
+                                        hintText: field.hintText,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              // email: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       key: ValueKey(field.id),
+                              //       isRequired: e.isRequired,
+                              //       child: TextFormField(
+                              //         key: _formFieldKeys[field.id],
+                              //         autovalidateMode:
+                              //             AutovalidateMode.onUserInteraction,
+                              //         initialValue: (field.answer),
+                              //         readOnly: field.readOnly,
+                              //         textInputAction: TextInputAction.next,
+                              //         style:
+                              //             Theme.of(context).textTheme.bodyLarge,
+                              //         keyboardType: TextInputType.emailAddress,
+                              //         maxLength: field.maxLength,
+                              //         onSaved: (newValue) {
+                              //           formValue.saveString(
+                              //             field.id,
+                              //             newValue.toString().trim(),
+                              //           );
+                              //         },
+                              //         validator: (value) {
+                              //           return textValidator(
+                              //             value: value,
+                              //             inputType: "email",
+                              //             isRequired: field.isRequired,
+                              //             requiredErrorText:
+                              //                 field.requiredErrorText,
+                              //           );
+                              //         },
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // url: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       key: ValueKey(field.id),
+                              //       isRequired: e.isRequired,
+                              //       child: TextFormField(
+                              //         key: _formFieldKeys[field.id],
+                              //         autovalidateMode:
+                              //             AutovalidateMode.onUserInteraction,
+                              //         initialValue: (field.answer),
+                              //         readOnly: field.readOnly,
+                              //         style:
+                              //             Theme.of(context).textTheme.bodyLarge,
+                              //         keyboardType: TextInputType.number,
+                              //         maxLength: field.maxLength,
+                              //         textInputAction: TextInputAction.next,
+                              //         onSaved: (newValue) {
+                              //           formValue.saveString(
+                              //             field.id,
+                              //             newValue.toString().trim(),
+                              //           );
+                              //         },
+                              //         validator: (value) {
+                              //           return uriValidator(
+                              //             value: value,
+                              //             isRequired: field.isRequired,
+                              //             requiredErrorText:
+                              //                 field.requiredErrorText,
+                              //           );
+                              //         },
+                              //         decoration: InputDecoration(
+                              //           hintText: field.hintText,
+                              //           // labelText: labelText,
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // date: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: DateTimeInputWidget(
+                              //         formKey: Key('asda'),
+                              //         // _formFieldKeys[field.id],
+                              //         field: field,
+                              //         dateTime: DatePickerType.date,
+                              //         formValue: formValue,
+                              //         // labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // time: (field) {
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: DateTimeInputWidget(
+                              //         field: field,
 
-                if (widget.hasSave)
-                  _SaveOnlyButton(onComplete: () {
-                    formKey.currentState?.save();
-                    Map<String, dynamic> fulldata = formValue.value;
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         dateTime: DatePickerType.time,
+                              //         formValue: formValue,
+                              //         // labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // datetimelocal: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: DateTimeInputWidget(
+                              //         field: field,
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         dateTime: DatePickerType.dateTime,
+                              //         formValue: formValue,
+                              //         // labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // comment: (field) {
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: Column(
+                              //       mainAxisAlignment: MainAxisAlignment.start,
+                              //       crossAxisAlignment:
+                              //           CrossAxisAlignment.start,
+                              //       children: [
+                              //         LabeledWidget(
+                              //           labelText: labelText,
+                              //           isRequired: e.isRequired,
+                              //           child: TextFormField(
+                              //             initialValue: field.answer,
+                              //             key: _fieldKeys[widget
+                              //                 .surveyForm.inputFields
+                              //                 .indexOf(e)],
+                              //             autovalidateMode: AutovalidateMode
+                              //                 .onUserInteraction,
+                              //             textInputAction: TextInputAction.next,
+                              //             readOnly: field.readOnly,
+                              //             style: Theme.of(context)
+                              //                 .textTheme
+                              //                 .bodyLarge,
+                              //             keyboardType: TextInputType.text,
+                              //             maxLength: field.maxLength,
+                              //             maxLines: 4,
+                              //             onSaved: (newValue) =>
+                              //                 formValue.saveString(
+                              //               field.id,
+                              //               newValue,
+                              //             ),
+                              //             validator: (value) => textValidator(
+                              //               value: value,
+                              //               inputType: "comment",
+                              //               isRequired: field.isRequired,
+                              //               requiredErrorText:
+                              //                   field.requiredErrorText,
+                              //             ),
+                              //             decoration: InputDecoration(
+                              //               hintText: field.hintText,
+                              //               // labelText: labelText,
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         AppSpacing.sizedBoxH_12(),
+                              //       ],
+                              //     ),
+                              //   );
+                              // },
+                              // dropdown: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: DropdownInputWidget(
+                              //         field: field,
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         apiCall: widget.apiCall,
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // yesno: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: YesNoInputWidget(
+                              //         field: field,
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // radiogroup: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: RadioInputWidget(
+                              //         field: field,
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // yesnona: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: YesNoNaInputWidget(
+                              //         field: field,
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // checkbox: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: CheckboxInputWidget(
+                              //         field: field,
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         apiCall: widget.apiCall,
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // multipleselect: (field) {
+                              //   formValue.saveString(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: MultipleInputWidget(
+                              //         field: field,
+                              //         formKey: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         apiCall: widget.apiCall,
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // files: (field) {
+                              //   formValue.saveList(
+                              //     field.id,
+                              //     field.answer,
+                              //   );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: FileInputWidget(
+                              //         filetype: FileType.any,
+                              //         field: field,
+                              //         key: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         imageBuild: widget.imageBuild,
+                              //         attachmentSave: widget.attachmentSave,
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //         fileClicked: widget.onFileClicked,
+                              //         onSaved: (List<Map<String, dynamic>>
+                              //             newValue) {
+                              //           formValue.saveList(
+                              //             field.id,
+                              //             newValue,
+                              //           );
+                              //         },
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // images: (field) {
+                              //   if (field.answer != null) {
+                              //     formValue.saveList(
+                              //       field.id,
+                              //       field.answer,
+                              //     );
+                              //   }
+                              //   // formValue.saveList(
+                              //   //   field.id,
+                              //   //   field.answer,
+                              //   // );
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: FileInputWidget(
+                              //         field: field,
+                              //         key: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         fileClicked: widget.onFileClicked,
+                              //         filetype: FileType.image,
+                              //         imageBuild: widget.imageBuild,
+                              //         attachmentSave: widget.attachmentSave,
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //         onSaved: (List<Map<String, dynamic>>
+                              //             newValue) {
+                              //           formValue.saveList(
+                              //             field.id,
+                              //             newValue,
+                              //           );
+                              //         },
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // signature: (field) {
+                              //   if (field.answer != null &&
+                              //       field.answer != {}) {
+                              //     formValue.saveMap(
+                              //       field.id,
+                              //       field.answer ?? {},
+                              //     );
+                              //   }
 
-                    if (widget.hasGeolocation) {
-                      fulldata.addAll({
-                        'location': widget.surveyForm.setting?['location']
-                                    ['lat'] ==
-                                null
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //       labelText: labelText,
+                              //       isRequired: e.isRequired,
+                              //       child: SignatureInputWidget(
+                              //         field: field,
+                              //         key: _fieldKeys[widget
+                              //             .surveyForm.inputFields
+                              //             .indexOf(e)],
+                              //         attachmentSave: widget.attachmentSave,
+                              //         formValue: formValue,
+                              //         labelText: labelText,
+                              //         imageBuild: widget.imageBuild,
+                              //         onSaved: (Map<String, dynamic> newValue) {
+                              //           formValue.saveMap(
+                              //             field.id,
+                              //             newValue,
+                              //           );
+                              //         },
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // multisignature: (field) {
+                              //   if (field.answer != null &&
+                              //       (field.answer ?? []).isNotEmpty) {
+                              //     formValue.saveList(
+                              //       field.id,
+                              //       (field.answer ?? [])
+                              //           .map((e) => e.toJson())
+                              //           .toList(),
+                              //     );
+                              //   }
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //         labelText: labelText,
+                              //         isRequired: e.isRequired,
+                              //         child: MultiSignatureInputWidget(
+                              //           field: field,
+                              //           key: _fieldKeys[widget
+                              //               .surveyForm.inputFields
+                              //               .indexOf(e)],
+                              //           formValue: formValue,
+                              //           imageBuild: widget.imageBuild,
+                              //           attachmentSave: widget.attachmentSave,
+                              //           labelText: labelText,
+                              //           onSaved:
+                              //               (Map<String, dynamic> result) {},
+                              //         )
+
+                              //         // MultiSignatureInputWidget(
+                              //         //   field: field,
+                              //         //   key: _fieldKeys[
+                              //         //       widget.surveyForm.inputFields.indexOf(e)],
+                              //         //   formValue: formValue,
+                              //         //   imageBuild: widget.imageBuild,
+                              //         //   attachmentSave: widget.attachmentSave,
+                              //         //   labelText: labelText,
+                              //         //   onSaved: (Map<String, dynamic> result) {},
+                              //         // ),
+                              //         ),
+                              //   );
+                              // },
+                              // instruction: (field) {
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: LabeledWidget(
+                              //         labelText: e.label,
+                              //         isRequired: e.isRequired,
+                              //         child: InstructionWidget(
+                              //           onTap: (String url) {
+                              //             widget.onFileClicked(url);
+                              //           },
+                              //           field: field,
+                              //           key: _fieldKeys[widget
+                              //               .surveyForm.inputFields
+                              //               .indexOf(e)],
+                              //           imageBuild: widget.imageBuild,
+                              //         )),
+                              //   );
+                              // },
+                              // section: (field) {
+                              //   return ScrollContent(
+                              //     id: field.id,
+                              //     child: Padding(
+                              //       padding: const EdgeInsets.symmetric(
+                              //           vertical: 16.0),
+                              //       child: Column(
+                              //         crossAxisAlignment:
+                              //             CrossAxisAlignment.start,
+                              //         children: [
+                              //           Text(
+                              //             e.label ?? '',
+                              //             style: Theme.of(context)
+                              //                 .textTheme
+                              //                 .titleLarge
+                              //                 ?.copyWith(
+                              //                     color:
+                              //                         const Color(0xff233759),
+                              //                     height: 1.2),
+                              //           ),
+                              //           AppSpacing.sizedBoxH_08(),
+                              //           (field.description ?? '').isEmpty
+                              //               ? const SizedBox.shrink()
+                              //               : Text(
+                              //                   field.description ?? '',
+                              //                   style: Theme.of(context)
+                              //                       .textTheme
+                              //                       .bodyMedium
+                              //                       ?.copyWith(
+                              //                         color: const Color(
+                              //                             0xff6A737B),
+                              //                       ),
+                              //                 ),
+                              //           AppSpacing.sizedBoxH_08(),
+                              //           const Divider(
+                              //             height: 1,
+                              //           ),
+                              //         ],
+                              //       ),
+                              //     ),
+                              //   );
+                              // },
+                              // geolocation: (field) {
+                              //   return (widget.hasGeolocation)
+                              //       ? ScrollContent(
+                              //           id: field.id,
+                              //           child: const SizedBox.shrink())
+                              //       : ScrollContent(
+                              //           id: field.id,
+                              //           child: LabeledWidget(
+                              //             labelText: labelText,
+                              //             isRequired: false,
+                              //             child: (field.answer != null &&
+                              //                     field.answer!['lat'] !=
+                              //                         null &&
+                              //                     field.answer!['long'] != null)
+                              //                 ? CustomLocation(
+                              //                     postition: Position(
+                              //                         longitude:
+                              //                             field.answer!['long'],
+                              //                         latitude:
+                              //                             field.answer!['lat'],
+                              //                         timestamp:
+                              //                             DateTime.timestamp(),
+                              //                         accuracy: 50.0,
+                              //                         altitude: 0.0,
+                              //                         altitudeAccuracy: 50.0,
+                              //                         heading: 50.0,
+                              //                         headingAccuracy: 50.0,
+                              //                         speed: 2.0,
+                              //                         speedAccuracy: 50.0),
+                              //                   )
+                              //                 : (_currentPosition?.latitude !=
+                              //                             null &&
+                              //                         widget.hasGeolocation)
+                              //                     ? CustomLocation(
+                              //                         postition:
+                              //                             _currentPosition!,
+                              //                       )
+                              //                     : Text(
+                              //                         'Location is disabled!',
+                              //                         style: Theme.of(context)
+                              //                             .textTheme
+                              //                             .bodyMedium,
+                              //                       ),
+                              //           ),
+                              //         );
+                              //   // },
+                              //   // map: (field) {
+                              //   //   if (field.answer != null && field.answer != {}) {
+                              //   //     formValue.saveMap(
+                              //   //       field.id,
+                              //   //       field.answer ?? {},
+                              //   //     );
+                              //   //   }
+                              //   //   return LabeledWidget(
+                              //   //     labelText: e.label,
+                              //   //     isRequired: e.isRequired,
+                              //   //     child: MapFieldWidget(
+                              //   //       formKey: _fieldKeys[
+                              //   //           widget.surveyForm.inputFields.indexOf(e)],
+                              //   //       formValue: formValue,
+                              //   //       field: field,
+                              //   //       forMapField: true,
+                              //   //       position: (field.answer?['lat'] == null ||
+                              //   //               field.answer?['long'] == null)
+                              //   //           ? null
+                              //   //           : Position(
+                              //   //               latitude: field.answer?['lat'],
+                              //   //               longitude: field.answer?['long'],
+                              //   //               timestamp: DateTime.timestamp(),
+                              //   //               accuracy: 50.0,
+                              //   //               altitude: 0.0,
+                              //   //               altitudeAccuracy: 50.0,
+                              //   //               heading: 50.0,
+                              //   //               headingAccuracy: 50.0,
+                              //   //               speed: 2.0,
+                              //   //               speedAccuracy: 50.0),
+                              //   //     ),
+                              //   //   );
+                              // },
+
+                              orElse: () => null,
+                            );
+                          })
+                          .whereType<ScrollContent>()
+                          // .separated(widget.separatorBuilder?.call())
+                          .toList(),
+                    ]),
+              ),
+
+            if (_currentPosition?.latitude != null && widget.hasGeolocation)
+              CustomLocation(
+                postition: widget.surveyForm.setting?['location'] != null
+                    ? Position(
+                        longitude: widget.surveyForm.setting?['location']
+                            ['long'],
+                        latitude: widget.surveyForm.setting?['location']['lat'],
+                        timestamp: DateTime.timestamp(),
+                        accuracy: 50.0,
+                        altitude: 0.0,
+                        altitudeAccuracy: 50.0,
+                        heading: 50.0,
+                        headingAccuracy: 50.0,
+                        speed: 2.0,
+                        speedAccuracy: 50.0)
+                    : _currentPosition!,
+              ),
+            AppSpacing.sizedBoxH_08(),
+
+            if (widget.hasSave)
+              _SaveOnlyButton(onComplete: () {
+                formKey.currentState?.save();
+                Map<String, dynamic> fulldata = formValue.value;
+
+                if (widget.hasGeolocation) {
+                  fulldata.addAll({
+                    'location':
+                        widget.surveyForm.setting?['location']['lat'] == null
                             ? {
                                 'lat': _currentPosition?.latitude,
                                 'long': _currentPosition?.longitude,
                               }
                             : widget.surveyForm.setting?['location']
-                      });
-                    }
-                    widget.onSave(formValue.value);
-                  }),
-                AppSpacing.sizedBoxH_12(),
-              ],
-            ),
-          ),
+                  });
+                }
+                widget.onSave(formValue.value);
+              }),
+            AppSpacing.sizedBoxH_12(),
+          ],
         ),
       ),
     );

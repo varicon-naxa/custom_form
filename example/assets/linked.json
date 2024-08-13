@@ -5,7 +5,7 @@
             "type": "dropdown",
             "id": "select1",
             "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
-            "isRequired": false,
+            "isRequired": true,
             "requiredErrorText": "Drop down is required",
             "commentPlaceholder": "comment are place",
             "fromManualList": false,
