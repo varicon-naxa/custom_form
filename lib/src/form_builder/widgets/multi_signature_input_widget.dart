@@ -25,6 +25,7 @@ class MultiSignatureInputWidget extends StatefulWidget {
     required this.attachmentSave,
     required this.imageBuild,
     this.labelText,
+    this.fieldKey,
   });
 
   ///Multi signature input field model
@@ -38,6 +39,9 @@ class MultiSignatureInputWidget extends StatefulWidget {
 
   ///Function to call on save multi signature
   void Function(Map<String, dynamic> result) onSaved;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Image build function for signature view
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -56,6 +60,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   GlobalKey<SignatureState> signKey = GlobalKey<SignatureState>();
   bool validate = false;
   bool isLoading = false;
+  TextEditingController formCon = TextEditingController();
 
   ///Method to save list of signature
   saveList() {
@@ -79,6 +84,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     setState(() {
       if ((widget.field.answer ?? []).isNotEmpty) {
         answer.addAll(widget.field.answer ?? []);
+        formCon.text = answer.first.name ?? '';
       }
     });
   }
@@ -454,6 +460,37 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                 ),
               )
             ],
+          ),
+          Visibility(
+            visible: true,
+            child: TextFormField(
+              controller: formCon,
+              key: widget.fieldKey,
+              autovalidateMode: AutovalidateMode.always,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                errorBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                enabled: false,
+                disabledBorder: InputBorder.none,
+                contentPadding: EdgeInsets.only(
+                  left: 120,
+                ),
+              ),
+              validator: (value) {
+                var a = value;
+                if (answer.isEmpty && value != null) {
+                  return textValidator(
+                    value: '',
+                    inputType: "text",
+                    isRequired: (widget.field.isRequired),
+                    requiredErrorText: widget.field.requiredErrorText ??
+                        'Signature is required',
+                  );
+                }
+                return null;
+              },
+            ),
           ),
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:dotted_decoration/dotted_decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/primary_bottomsheet.dart';
 import 'package:varicon_form_builder/src/mixin/file_picker_mixin.dart';
+import 'package:varicon_form_builder/varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import '../../models/value_text.dart';
 import 'package:file_picker/file_picker.dart';
@@ -23,13 +24,21 @@ class FileInputWidget extends StatefulWidget {
     required this.imageBuild,
     required this.fileClicked,
     this.labelText,
+    this.fieldKey,
+    this.emptyMsg = '',
   });
 
   ///file input field model or image input field model
   final dynamic field;
 
+  ///string msg for field empty case for required case only
+  final String? emptyMsg;
+
   ///form value for the field
   final FormValue formValue;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///label text for the field
   final String? labelText;
@@ -59,6 +68,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
   String? value;
   bool isLoading = false;
   List<Map<String, dynamic>> answer = [];
+  TextEditingController formCon = TextEditingController();
 
   late final List<ValueText> choices;
   late final String otherFieldKey;
@@ -68,6 +78,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
     super.initState();
     answer = widget.field.answer ?? [];
     widget.formValue.saveList(widget.field.id, answer);
+    formCon.text = widget.field.answer ?? '';
   }
 
   ///Method to save file to server
@@ -387,7 +398,40 @@ class _FileInputWidgetState extends State<FileInputWidget>
                       );
                     }
                   },
-                )
+                ),
+              SizedBox(
+                height: 20,
+                child: Visibility(
+                  visible: true,
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      errorText: widget.emptyMsg,
+                    ),
+                    controller: formCon,
+                    key: widget.fieldKey,
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.always,
+                    validator: (value) {
+                      if ((answer).isEmpty) {
+                        return textValidator(
+                          value: value,
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText:
+                              widget.field.requiredErrorText ?? widget.emptyMsg,
+                        );
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
             ],
           );
   }

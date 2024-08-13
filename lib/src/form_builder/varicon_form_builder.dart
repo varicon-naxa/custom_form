@@ -578,7 +578,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     child: FormBuilderIntlPhoneField(
                                       fieldKey: _formFieldKeys[
                                           field.id], // Pass the key here
-
                                       name: e.label ?? '',
                                       initialValue: phoneNumber.number,
                                       initialCountryCode:
@@ -967,118 +966,97 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               //     ),
                               //   );
                               // },
-                              // images: (field) {
-                              //   if (field.answer != null) {
-                              //     formValue.saveList(
-                              //       field.id,
-                              //       field.answer,
-                              //     );
-                              //   }
-                              //   // formValue.saveList(
-                              //   //   field.id,
-                              //   //   field.answer,
-                              //   // );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: FileInputWidget(
-                              //         field: field,
-                              //         key: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         fileClicked: widget.onFileClicked,
-                              //         filetype: FileType.image,
-                              //         imageBuild: widget.imageBuild,
-                              //         attachmentSave: widget.attachmentSave,
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //         onSaved: (List<Map<String, dynamic>>
-                              //             newValue) {
-                              //           formValue.saveList(
-                              //             field.id,
-                              //             newValue,
-                              //           );
-                              //         },
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // signature: (field) {
-                              //   if (field.answer != null &&
-                              //       field.answer != {}) {
-                              //     formValue.saveMap(
-                              //       field.id,
-                              //       field.answer ?? {},
-                              //     );
-                              //   }
-
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: SignatureInputWidget(
-                              //         field: field,
-                              //         key: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         attachmentSave: widget.attachmentSave,
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //         imageBuild: widget.imageBuild,
-                              //         onSaved: (Map<String, dynamic> newValue) {
-                              //           formValue.saveMap(
-                              //             field.id,
-                              //             newValue,
-                              //           );
-                              //         },
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // multisignature: (field) {
-                              //   if (field.answer != null &&
-                              //       (field.answer ?? []).isNotEmpty) {
-                              //     formValue.saveList(
-                              //       field.id,
-                              //       (field.answer ?? [])
-                              //           .map((e) => e.toJson())
-                              //           .toList(),
-                              //     );
-                              //   }
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //         labelText: labelText,
-                              //         isRequired: e.isRequired,
-                              //         child: MultiSignatureInputWidget(
-                              //           field: field,
-                              //           key: _fieldKeys[widget
-                              //               .surveyForm.inputFields
-                              //               .indexOf(e)],
-                              //           formValue: formValue,
-                              //           imageBuild: widget.imageBuild,
-                              //           attachmentSave: widget.attachmentSave,
-                              //           labelText: labelText,
-                              //           onSaved:
-                              //               (Map<String, dynamic> result) {},
-                              //         )
-
-                              //         // MultiSignatureInputWidget(
-                              //         //   field: field,
-                              //         //   key: _fieldKeys[
-                              //         //       widget.surveyForm.inputFields.indexOf(e)],
-                              //         //   formValue: formValue,
-                              //         //   imageBuild: widget.imageBuild,
-                              //         //   attachmentSave: widget.attachmentSave,
-                              //         //   labelText: labelText,
-                              //         //   onSaved: (Map<String, dynamic> result) {},
-                              //         // ),
-                              //         ),
-                              //   );
-                              // },
+                              images: (field) {
+                                if (field.answer != null) {
+                                  formValue.saveList(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                }
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: FileInputWidget(
+                                      fieldKey: _formFieldKeys[field.id],
+                                      field: field,
+                                      emptyMsg: 'Image is required',
+                                      fileClicked: widget.onFileClicked,
+                                      filetype: FileType.image,
+                                      imageBuild: widget.imageBuild,
+                                      attachmentSave: widget.attachmentSave,
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                      onSaved: (List<Map<String, dynamic>>
+                                          newValue) {
+                                        var a = newValue;
+                                        formValue.saveList(
+                                          field.id,
+                                          newValue,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                              signature: (field) {
+                                if (field.answer != null &&
+                                    field.answer != {}) {
+                                  formValue.saveMap(
+                                    field.id,
+                                    field.answer ?? {},
+                                  );
+                                }
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: SignatureInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      attachmentSave: widget.attachmentSave,
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                      imageBuild: widget.imageBuild,
+                                      onSaved: (Map<String, dynamic> newValue) {
+                                        formValue.saveMap(
+                                          field.id,
+                                          newValue,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                              multisignature: (field) {
+                                if (field.answer != null &&
+                                    (field.answer ?? []).isNotEmpty) {
+                                  formValue.saveList(
+                                    field.id,
+                                    (field.answer ?? [])
+                                        .map((e) => e.toJson())
+                                        .toList(),
+                                  );
+                                }
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: MultiSignatureInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      formValue: formValue,
+                                      imageBuild: widget.imageBuild,
+                                      attachmentSave: widget.attachmentSave,
+                                      labelText: labelText,
+                                      onSaved: (Map<String, dynamic> result) {},
+                                    ),
+                                  ),
+                                );
+                              },
                               // instruction: (field) {
                               //   return ScrollContent(
                               //     id: field.id,

@@ -28,6 +28,7 @@ class SignatureInputWidget extends StatefulWidget {
     required this.attachmentSave,
     required this.imageBuild,
     this.labelText,
+    required this.fieldKey,
   });
 
   ///Signature input model
@@ -38,6 +39,9 @@ class SignatureInputWidget extends StatefulWidget {
 
   ///Field label text
   final String? labelText;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Image build function for sign display
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -59,6 +63,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
   Map<String, dynamic> answer = {};
   bool isLoading = false;
   String imaeURL = '';
+  TextEditingController formCon = TextEditingController();
 
   ///Late initilize global key for signature/field
   late final GlobalKey<SignatureState> sign;
@@ -71,6 +76,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
     setState(() {
       answer = widget.field.answer ?? {};
       imaeURL = answer['file'] ?? '';
+      formCon.text = answer['file'] ?? '';
     });
   }
 
@@ -325,6 +331,42 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                                 Text(
                                   'Click here to add signature',
                                   style: Theme.of(context).textTheme.bodyMedium,
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                  child: Visibility(
+                                    visible: true,
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                        border: InputBorder.none,
+                                        errorBorder: InputBorder.none,
+                                        enabledBorder: InputBorder.none,
+                                        enabled: false,
+                                        disabledBorder: InputBorder.none,
+                                        contentPadding: EdgeInsets.only(
+                                          left: 120,
+                                        ),
+                                      ),
+                                      controller: formCon,
+                                      key: widget.fieldKey,
+                                      readOnly: true,
+                                      autovalidateMode: AutovalidateMode.always,
+                                      validator: (value) {
+                                        if ((answer).isEmpty) {
+                                          return textValidator(
+                                            value: value,
+                                            inputType: "text",
+                                            isRequired:
+                                                (widget.field.isRequired),
+                                            requiredErrorText: widget
+                                                    .field.requiredErrorText ??
+                                                'Signature is required',
+                                          );
+                                        }
+                                        return null;
+                                      },
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),

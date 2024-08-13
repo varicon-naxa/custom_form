@@ -14,12 +14,40 @@
             "selectedLinkListLabel": ""
         },
         {
+            "id": "item-94df5d01-232b-4c1d-a6fb-bfdd8c094f6a",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [ 
+            ],
+            "isRequired": true
+        },
+        {
+            "id": "item-000f6fa2-e85a-4059-b41c-89298747f032",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of back fill. Min 4 photos, one from each side",
+            "isMultiple": false,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a17763",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7928",
             "name": "Full Name",
             "type": "text",
             "label": "Full Name",
             "answer": "",
-            "isRequired": false,
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
@@ -83,5 +111,6 @@
             "isRequired": true,
             "title": "Enter date to have leave"
         }
+    
     ]
 }
