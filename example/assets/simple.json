@@ -5,6 +5,15 @@
     "version": "1.0.0",
     "elements": [
         {
+            "id": "item-972be852-1b93-44ce-be87-8665122ed336",
+            "name": "Address",
+            "type": "text",
+            "label": "Secondary",
+            "answer": "",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7927",
             "name": "Full Name",
             "type": "text",

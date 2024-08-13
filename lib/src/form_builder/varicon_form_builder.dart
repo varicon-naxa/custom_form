@@ -420,9 +420,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 );
                                 editorOptions = HtmlEditorOptions(
                                   adjustHeightForKeyboard: false,
-                                  // autoAdjustHeight: false,
                                   initialText: field.answer,
-                                  // disabled: true,
                                 );
                                 return ScrollContent(
                                   id: field.id,
