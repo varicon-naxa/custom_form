@@ -102,6 +102,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
               setState(() {
                 answer = {};
               });
+              formCon.text = '';
               Navigator.of(context).pop();
             },
             child: const Text('Remove'),

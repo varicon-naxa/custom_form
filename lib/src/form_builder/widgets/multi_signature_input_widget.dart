@@ -256,6 +256,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     onClear: () {
                       final signHere = signKey.currentState;
                       signHere?.clear();
+                      formCon.text = '';
                     },
                   ),
                   AppSpacing.sizedBoxH_12(),
