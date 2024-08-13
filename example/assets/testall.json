@@ -1,0 +1,577 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "hasLocation": true,
+    "elements":[
+        {
+            "id": "item-3780bb2a-a78a-45a1-bc44-d97d97c8c529",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "Section Heading",
+            "isRequired": false,
+            "instruction": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-9c8af1f0-9e21-45b6-a38b-988a62924c86",
+            "name": "Instruction",
+            "type": "instruction",
+            "label": "Instruction",
+            "isRequired": false,
+            "attachments": [],
+            "instruction": "<p>RTX (Real-Time Text) is a chat platform that allows users to communicate in real-time with each other. It is designed to provide a fast and efficient way to communicate with others, and it is often used for business purposes, such as customer support or team collaboration. RTX offers a variety of features, including chat rooms, private messaging, and file sharing, and it is available on a variety of devices, including desktop computers, laptops, and smartphones.</p>",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-b26d4346-4537-40f4-9f08-d1c8d873f139",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Full Name",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Primary Phone number",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-55cbd6ef-c26b-48d7-87b7-f8d6561da1c2",
+            "name": "Address",
+            "type": "text",
+            "label": "Address",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-972be852-1b93-44ce-be87-8665122ed336",
+            "name": "Address",
+            "type": "text",
+            "label": "Address",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-5a8ae635-ae20-4fdb-9253-76c1500f2763",
+            "name": "Email",
+            "type": "email",
+            "label": "Email",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-88a55bc9-7f7e-41cd-b56c-92a1d2448dbd",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Yes/No",
+            "choice": [
+                {
+                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-56e2e742-6dfb-4615-a883-e454f6869ca9",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Optional",
+            "choice": [
+                {
+                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
+                    "label": "No"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-fd62a25b-5273-4bd7-b6ce-1b5e54cad110",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Required",
+            "choice": [
+                {
+                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-79e42570-21c4-4d33-9d6f-afa5742dc53e",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Conditional Required",
+            "choice": [
+                {
+                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
+                    "label": "No"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-5a422d4f-8179-422e-b083-c9eb40d3cf65",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "optional",
+            "choice": [
+                {
+                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
+                    "label": "No"
+                },
+                {
+                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-34576fc0-1f6b-4033-9834-ed5702795fbe",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Required ",
+            "choice": [
+                {
+                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
+                    "label": "No"
+                },
+                {
+                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-88d6b74d-7100-48b6-899e-606715c998c4",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Yes/No/NA",
+            "choice": [
+                {
+                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
+                    "label": "No"
+                },
+                {
+                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-5d685af2-ba74-48fd-9e50-765aa74df9b5",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Yes/No/NA",
+            "choice": [
+                {
+                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
+                    "label": "No"
+                },
+                {
+                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8eade404-0c44-4983-811a-b3a0b317bd51",
+            "name": "Radio",
+            "type": "radiogroup",
+            "label": "Radio",
+            "choice": [
+                {
+                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
+                    "label": "Option 1"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-615c68ba-8e38-40b0-bea1-327709540c50",
+            "name": "Radio",
+            "type": "radiogroup",
+            "label": "Radio",
+            "choice": [
+                {
+                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
+                    "label": "Option 1"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-cf4e5adb-e0f8-4662-8ac2-bbb41dbb1b51",
+            "name": "Radio",
+            "type": "radiogroup",
+            "label": "Radio",
+            "choice": [
+                {
+                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
+                    "label": "Option 1"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-34618764-2963-4b3f-824d-c25dba127385",
+            "name": "Radio",
+            "type": "radiogroup",
+            "label": "Radio",
+            "choice": [
+                {
+                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
+                    "label": "Option 1"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-269e30b8-db5b-4c07-8c83-1ac7cb984cbe",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "Checkboxes",
+            "choice": [
+                {
+                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-afc5db40-8a80-495c-ac78-f052786f8e14",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-cbd26744-b333-483f-b213-1e848f6788c6",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-489cc0ad-30a9-4226-965c-1724f7f27e50",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "Checkboxes",
+            "choice": [
+                {
+                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-d97f08b8-c9d2-44fe-a2a1-bc81a3371f97",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-94afa1df-91ae-44f3-8979-d61dd61cf187",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-94a8a39e-c4bd-4f43-a8cc-9eecc69f15de",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "Checkboxes conditional",
+            "choice": [
+                {
+                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-4186bbee-5e79-4208-8ac5-3077242951b6",
+                    "label": "Option 2",
+                    "action": true
+                },
+                {
+                    "id": "item-fa59ad57-3965-4e95-ab07-f93be6376761",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8adff798-034b-4af4-93c2-92aa4eee8b48",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "Checkboxes",
+            "choice": [
+                {
+                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-0f9dbaa8-6d45-4c70-9f74-85c33b447570",
+                    "label": "Option 2",
+                    "action": true
+                },
+                {
+                    "id": "item-31ff5f81-d4c7-40e6-910d-139ff54e20f3",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "The timesheet required option can only be enabled in one place.",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-d75f109d-72bb-4e8d-893a-2639e3144db9",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Single Select Dropdown",
+            "choice": [
+                {
+                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-6b2a4812-6176-4272-80fb-d98da29f76c0",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-d0b12e45-5d03-44dd-a451-b712d2c597a8",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-c59f7fed-a5a0-4372-b3e7-622160c74ed0",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Single Select Dropdown",
+            "choice": [
+                {
+                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-82f34282-49c0-41fc-9750-b5b4c56e745a",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-9e58e854-e721-479e-aaa4-9166325560a3",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-243651fa-a97e-405e-8d34-db55bf9dab29",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Single Select Dropdown",
+            "choice": [
+                {
+                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-209ad846-be2b-4409-808e-9b5ee7c92197",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-900c1d03-4c45-4c93-aae9-57e82156a048",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-124bf961-c2ff-4a44-b4f8-dad21aa5bd0a",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Single Select Dropdown",
+            "choice": [],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "project",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8166ec96-fa58-41a0-b704-4973b0235492",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi-Select Dropdown",
+            "choice": [
+                {
+                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
+                    "label": "Optional1",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": "cd90a222-2790-4ad8-862e-1db28b50f4c5",
+                            "email": "prabin@varicon.com.au",
+                            "label": "Prabin Tharu"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-8fc125c2-a1dd-4560-a46b-27cb9244816b",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-3e2d297a-ed6f-4c62-a73e-c15e6d2e9239",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-23516b19-ebe1-4e5f-89e8-93cdd9cb8d5c",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi-Select Dropdown",
+            "choice": [
+                {
+                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-e7d739ee-9de6-4f33-a3a2-d04bc8c11b65",
+                    "label": "Option 2"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e40bde85-bd42-40d0-93ec-da5fb49879c1",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi-Select Dropdown",
+            "choice": [],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "employee",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3a4c87db-86b5-4712-a450-5966eacebebb",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Signature",
+            "answer": {},
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-60b0dc71-16b0-4806-97da-80d541b00a84",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        }
+    ]
+}

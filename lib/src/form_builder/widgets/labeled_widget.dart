@@ -5,7 +5,6 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 // ignore: must_be_immutable
 class LabeledWidget extends StatelessWidget {
   LabeledWidget({
-    super.key,
     required this.labelText,
     required this.child,
     required this.isRequired,

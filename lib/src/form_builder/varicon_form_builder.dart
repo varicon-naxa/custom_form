@@ -620,7 +620,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   id: field.id,
                                   child: LabeledWidget(
                                     labelText: labelText,
-                                    key: _formFieldKeys[field.id],
                                     isRequired: e.isRequired,
                                     child: TextFormField(
                                       key: _formFieldKeys[field.id],
@@ -661,7 +660,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   id: field.id,
                                   child: LabeledWidget(
                                     labelText: labelText,
-                                    key: _formFieldKeys[field.id],
                                     isRequired: e.isRequired,
                                     child: TextFormField(
                                       key: _formFieldKeys[field.id],
