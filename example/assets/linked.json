@@ -114,7 +114,7 @@
             "name": "long",
             "id": "longeteteasedasdast",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": false,
+            "isRequired": true,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,

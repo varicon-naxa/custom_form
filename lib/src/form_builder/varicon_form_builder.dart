@@ -15,6 +15,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.da
 import 'package:varicon_form_builder/src/form_builder/widgets/datetime_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/dropdown_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/file_input_widget.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/html_editor_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/map_field_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/multi_signature_input_widget.dart';
@@ -435,6 +436,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                             .toLowerCase()
                                             .contains('long')
                                         ? HtmlEditorWidget(
+                                            fieldKey: _formFieldKeys[field.id],
                                             field: field,
                                             htmlEditorController:
                                                 htmlEditorController,
@@ -711,7 +713,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     child: DateTimeInputWidget(
                                       fieldKey: _formFieldKeys[field.id],
                                       field: field,
-                                      
+
                                       dateTime: DatePickerType.date,
                                       formValue: formValue,
                                       // labelText: labelText,
@@ -934,38 +936,37 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               //     ),
                               //   );
                               // },
-                              // files: (field) {
-                              //   formValue.saveList(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: FileInputWidget(
-                              //         filetype: FileType.any,
-                              //         field: field,
-                              //         key: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         imageBuild: widget.imageBuild,
-                              //         attachmentSave: widget.attachmentSave,
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //         fileClicked: widget.onFileClicked,
-                              //         onSaved: (List<Map<String, dynamic>>
-                              //             newValue) {
-                              //           formValue.saveList(
-                              //             field.id,
-                              //             newValue,
-                              //           );
-                              //         },
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
+                              files: (field) {
+                                formValue.saveList(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: FileInputWidget(
+                                      emptyMsg: 'File is required',
+                                      filetype: FileType.any,
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      imageBuild: widget.imageBuild,
+                                      attachmentSave: widget.attachmentSave,
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                      fileClicked: widget.onFileClicked,
+                                      onSaved: (List<Map<String, dynamic>>
+                                          newValue) {
+                                        formValue.saveList(
+                                          field.id,
+                                          newValue,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
                               images: (field) {
                                 if (field.answer != null) {
                                   formValue.saveList(
@@ -990,7 +991,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                       labelText: labelText,
                                       onSaved: (List<Map<String, dynamic>>
                                           newValue) {
-                                        var a = newValue;
                                         formValue.saveList(
                                           field.id,
                                           newValue,
@@ -1057,145 +1057,143 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   ),
                                 );
                               },
-                              // instruction: (field) {
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //         labelText: e.label,
-                              //         isRequired: e.isRequired,
-                              //         child: InstructionWidget(
-                              //           onTap: (String url) {
-                              //             widget.onFileClicked(url);
-                              //           },
-                              //           field: field,
-                              //           key: _fieldKeys[widget
-                              //               .surveyForm.inputFields
-                              //               .indexOf(e)],
-                              //           imageBuild: widget.imageBuild,
-                              //         )),
-                              //   );
-                              // },
-                              // section: (field) {
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: Padding(
-                              //       padding: const EdgeInsets.symmetric(
-                              //           vertical: 16.0),
-                              //       child: Column(
-                              //         crossAxisAlignment:
-                              //             CrossAxisAlignment.start,
-                              //         children: [
-                              //           Text(
-                              //             e.label ?? '',
-                              //             style: Theme.of(context)
-                              //                 .textTheme
-                              //                 .titleLarge
-                              //                 ?.copyWith(
-                              //                     color:
-                              //                         const Color(0xff233759),
-                              //                     height: 1.2),
-                              //           ),
-                              //           AppSpacing.sizedBoxH_08(),
-                              //           (field.description ?? '').isEmpty
-                              //               ? const SizedBox.shrink()
-                              //               : Text(
-                              //                   field.description ?? '',
-                              //                   style: Theme.of(context)
-                              //                       .textTheme
-                              //                       .bodyMedium
-                              //                       ?.copyWith(
-                              //                         color: const Color(
-                              //                             0xff6A737B),
-                              //                       ),
-                              //                 ),
-                              //           AppSpacing.sizedBoxH_08(),
-                              //           const Divider(
-                              //             height: 1,
-                              //           ),
-                              //         ],
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // geolocation: (field) {
-                              //   return (widget.hasGeolocation)
-                              //       ? ScrollContent(
-                              //           id: field.id,
-                              //           child: const SizedBox.shrink())
-                              //       : ScrollContent(
-                              //           id: field.id,
-                              //           child: LabeledWidget(
-                              //             labelText: labelText,
-                              //             isRequired: false,
-                              //             child: (field.answer != null &&
-                              //                     field.answer!['lat'] !=
-                              //                         null &&
-                              //                     field.answer!['long'] != null)
-                              //                 ? CustomLocation(
-                              //                     postition: Position(
-                              //                         longitude:
-                              //                             field.answer!['long'],
-                              //                         latitude:
-                              //                             field.answer!['lat'],
-                              //                         timestamp:
-                              //                             DateTime.timestamp(),
-                              //                         accuracy: 50.0,
-                              //                         altitude: 0.0,
-                              //                         altitudeAccuracy: 50.0,
-                              //                         heading: 50.0,
-                              //                         headingAccuracy: 50.0,
-                              //                         speed: 2.0,
-                              //                         speedAccuracy: 50.0),
-                              //                   )
-                              //                 : (_currentPosition?.latitude !=
-                              //                             null &&
-                              //                         widget.hasGeolocation)
-                              //                     ? CustomLocation(
-                              //                         postition:
-                              //                             _currentPosition!,
-                              //                       )
-                              //                     : Text(
-                              //                         'Location is disabled!',
-                              //                         style: Theme.of(context)
-                              //                             .textTheme
-                              //                             .bodyMedium,
-                              //                       ),
-                              //           ),
-                              //         );
-                              //   // },
-                              //   // map: (field) {
-                              //   //   if (field.answer != null && field.answer != {}) {
-                              //   //     formValue.saveMap(
-                              //   //       field.id,
-                              //   //       field.answer ?? {},
-                              //   //     );
-                              //   //   }
-                              //   //   return LabeledWidget(
-                              //   //     labelText: e.label,
-                              //   //     isRequired: e.isRequired,
-                              //   //     child: MapFieldWidget(
-                              //   //       formKey: _fieldKeys[
-                              //   //           widget.surveyForm.inputFields.indexOf(e)],
-                              //   //       formValue: formValue,
-                              //   //       field: field,
-                              //   //       forMapField: true,
-                              //   //       position: (field.answer?['lat'] == null ||
-                              //   //               field.answer?['long'] == null)
-                              //   //           ? null
-                              //   //           : Position(
-                              //   //               latitude: field.answer?['lat'],
-                              //   //               longitude: field.answer?['long'],
-                              //   //               timestamp: DateTime.timestamp(),
-                              //   //               accuracy: 50.0,
-                              //   //               altitude: 0.0,
-                              //   //               altitudeAccuracy: 50.0,
-                              //   //               heading: 50.0,
-                              //   //               headingAccuracy: 50.0,
-                              //   //               speed: 2.0,
-                              //   //               speedAccuracy: 50.0),
-                              //   //     ),
-                              //   //   );
-                              // },
+                              instruction: (field) {
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                      labelText: e.label,
+                                      isRequired: e.isRequired,
+                                      child: InstructionWidget(
+                                        onTap: (String url) {
+                                          widget.onFileClicked(url);
+                                        },
+                                        field: field,
+                                        key: _formFieldKeys[field.id],
+                                        imageBuild: widget.imageBuild,
+                                      )),
+                                );
+                              },
+                              section: (field) {
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 16.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          e.label ?? '',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleLarge
+                                              ?.copyWith(
+                                                  color:
+                                                      const Color(0xff233759),
+                                                  height: 1.2),
+                                        ),
+                                        AppSpacing.sizedBoxH_08(),
+                                        (field.description ?? '').isEmpty
+                                            ? const SizedBox.shrink()
+                                            : Text(
+                                                field.description ?? '',
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .bodyMedium
+                                                    ?.copyWith(
+                                                      color: const Color(
+                                                          0xff6A737B),
+                                                    ),
+                                              ),
+                                        AppSpacing.sizedBoxH_08(),
+                                        const Divider(
+                                          height: 1,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                              geolocation: (field) {
+                                return (widget.hasGeolocation)
+                                    ? ScrollContent(
+                                        id: field.id,
+                                        child: const SizedBox.shrink())
+                                    : ScrollContent(
+                                        id: field.id,
+                                        child: LabeledWidget(
+                                          labelText: labelText,
+                                          isRequired: false,
+                                          child: (field.answer != null &&
+                                                  field.answer!['lat'] !=
+                                                      null &&
+                                                  field.answer!['long'] != null)
+                                              ? CustomLocation(
+                                                  postition: Position(
+                                                      longitude:
+                                                          field.answer!['long'],
+                                                      latitude:
+                                                          field.answer!['lat'],
+                                                      timestamp:
+                                                          DateTime.timestamp(),
+                                                      accuracy: 50.0,
+                                                      altitude: 0.0,
+                                                      altitudeAccuracy: 50.0,
+                                                      heading: 50.0,
+                                                      headingAccuracy: 50.0,
+                                                      speed: 2.0,
+                                                      speedAccuracy: 50.0),
+                                                )
+                                              : (_currentPosition?.latitude !=
+                                                          null &&
+                                                      widget.hasGeolocation)
+                                                  ? CustomLocation(
+                                                      postition:
+                                                          _currentPosition!,
+                                                    )
+                                                  : Text(
+                                                      'Location is disabled!',
+                                                      style: Theme.of(context)
+                                                          .textTheme
+                                                          .bodyMedium,
+                                                    ),
+                                        ),
+                                      );
+                                // },
+                                // map: (field) {
+                                //   if (field.answer != null && field.answer != {}) {
+                                //     formValue.saveMap(
+                                //       field.id,
+                                //       field.answer ?? {},
+                                //     );
+                                //   }
+                                //   return LabeledWidget(
+                                //     labelText: e.label,
+                                //     isRequired: e.isRequired,
+                                //     child: MapFieldWidget(
+                                //       formKey: _fieldKeys[
+                                //           widget.surveyForm.inputFields.indexOf(e)],
+                                //       formValue: formValue,
+                                //       field: field,
+                                //       forMapField: true,
+                                //       position: (field.answer?['lat'] == null ||
+                                //               field.answer?['long'] == null)
+                                //           ? null
+                                //           : Position(
+                                //               latitude: field.answer?['lat'],
+                                //               longitude: field.answer?['long'],
+                                //               timestamp: DateTime.timestamp(),
+                                //               accuracy: 50.0,
+                                //               altitude: 0.0,
+                                //               altitudeAccuracy: 50.0,
+                                //               heading: 50.0,
+                                //               headingAccuracy: 50.0,
+                                //               speed: 2.0,
+                                //               speedAccuracy: 50.0),
+                                //     ),
+                                //   );
+                              },
 
                               orElse: () => null,
                             );
@@ -1382,68 +1380,4 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 //   }
 // }
 
-///HTML editor widget class
-class HtmlEditorWidget extends StatelessWidget {
-  final TextInputField field;
-  final HtmlEditorController htmlEditorController;
-  final HtmlEditorOptions editorOptions;
-  final FormValue formValue;
 
-  const HtmlEditorWidget({
-    super.key,
-    required this.field,
-    required this.htmlEditorController,
-    required this.editorOptions,
-    required this.formValue,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: Container(
-        // height: 300,
-        decoration: BoxDecoration(
-            border: Border.all(
-              color: Colors.grey.shade300,
-            ),
-            borderRadius: BorderRadius.circular(4.0)),
-        child: HtmlEditor(
-          callbacks: Callbacks(onChangeContent: (code) {
-            formValue.saveString(
-              field.id,
-              code.toString().trim(),
-            );
-          }),
-          controller: htmlEditorController, //required
-          plugins: const [],
-          htmlEditorOptions: editorOptions,
-          // textInputAction: TextInputAction.newline,
-          htmlToolbarOptions: const HtmlToolbarOptions(
-            defaultToolbarButtons: [
-              // StyleButtons(),
-              // FontSettingButtons(),
-              FontButtons(
-                clearAll: false,
-                strikethrough: false,
-                subscript: false,
-                superscript: false,
-              ),
-              // ColorButtons(),
-              ListButtons(listStyles: false),
-              ParagraphButtons(
-                caseConverter: false,
-                lineHeight: false,
-                textDirection: false,
-                increaseIndent: false,
-                decreaseIndent: false,
-              ),
-              // InsertButtons(),
-              // OtherButtons(),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}

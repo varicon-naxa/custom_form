@@ -78,7 +78,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
     super.initState();
     answer = widget.field.answer ?? [];
     widget.formValue.saveList(widget.field.id, answer);
-    formCon.text = widget.field.answer ?? '';
+    formCon.text = (answer.isEmpty) ? '' : (answer[0]['name'] ?? '');
   }
 
   ///Method to save file to server
@@ -411,7 +411,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
                       enabled: false,
                       disabledBorder: InputBorder.none,
                       contentPadding: EdgeInsets.zero,
-                      errorText: widget.emptyMsg,
+                      // errorText: widget.emptyMsg,
                     ),
                     controller: formCon,
                     key: widget.fieldKey,
