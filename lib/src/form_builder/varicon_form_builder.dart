@@ -15,7 +15,6 @@ import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.da
 import 'package:varicon_form_builder/src/form_builder/widgets/datetime_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/dropdown_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/file_input_widget.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/html_editor_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/map_field_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/multi_signature_input_widget.dart';
@@ -411,6 +410,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 final HtmlEditorController
                                     htmlEditorController =
                                     HtmlEditorController();
+                                final TextEditingController formCon =
+                                    TextEditingController();
+
                                 HtmlEditorOptions editorOptions =
                                     const HtmlEditorOptions(
                                         initialText: '<b>This is me</b>');
@@ -431,6 +433,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                             .toLowerCase()
                                             .contains('long')
                                         ? HtmlEditorWidget(
+                                            formCon: formCon,
                                             fieldKey: _formFieldKeys[field.id],
                                             field: field,
                                             htmlEditorController:
@@ -916,6 +919,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 );
                               },
                               files: (field) {
+                                TextEditingController formCon =
+                                    TextEditingController();
+
                                 formValue.saveList(
                                   field.id,
                                   field.answer,
@@ -926,6 +932,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     labelText: labelText,
                                     isRequired: e.isRequired,
                                     child: FileInputWidget(
+                                      formCon: formCon,
                                       emptyMsg: 'File is required',
                                       filetype: FileType.any,
                                       field: field,
@@ -947,6 +954,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 );
                               },
                               images: (field) {
+                                TextEditingController formCon =
+                                    TextEditingController();
+
                                 if (field.answer != null) {
                                   formValue.saveList(
                                     field.id,
@@ -959,6 +969,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     labelText: labelText,
                                     isRequired: e.isRequired,
                                     child: FileInputWidget(
+                                      formCon: formCon,
                                       fieldKey: _formFieldKeys[field.id],
                                       field: field,
                                       emptyMsg: 'Image is required',
@@ -1224,6 +1235,118 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
           ],
         ),
       ),
+    );
+  }
+}
+
+///HTML editor widget class
+class HtmlEditorWidget extends StatelessWidget {
+  final TextInputField field;
+  final HtmlEditorController htmlEditorController;
+  final HtmlEditorOptions editorOptions;
+  final FormValue formValue;
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
+  final TextEditingController formCon;
+
+  const HtmlEditorWidget({
+    super.key,
+    required this.field,
+    required this.htmlEditorController,
+    required this.editorOptions,
+    required this.formValue,
+    this.fieldKey,
+    required this.formCon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        SizedBox(
+          height: 200,
+          child: Container(
+            // height: 300,
+            decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.grey.shade300,
+                ),
+                borderRadius: BorderRadius.circular(4.0)),
+            child: HtmlEditor(
+              callbacks: Callbacks(
+                onChangeContent: (code) {
+                  formValue.saveString(
+                    field.id,
+                    code.toString().trim(),
+                  );
+                },
+                onInit: () {
+                  formCon.text = '';
+                },
+              ),
+              controller: htmlEditorController, //required
+              plugins: const [],
+              htmlEditorOptions: editorOptions,
+              // textInputAction: TextInputAction.newline,
+              htmlToolbarOptions: const HtmlToolbarOptions(
+                defaultToolbarButtons: [
+                  // StyleButtons(),
+                  // FontSettingButtons(),
+                  FontButtons(
+                    clearAll: false,
+                    strikethrough: false,
+                    subscript: false,
+                    superscript: false,
+                  ),
+                  // ColorButtons(),
+                  ListButtons(listStyles: false),
+                  ParagraphButtons(
+                    caseConverter: false,
+                    lineHeight: false,
+                    textDirection: false,
+                    increaseIndent: false,
+                    decreaseIndent: false,
+                  ),
+                  // InsertButtons(),
+                  // OtherButtons(),
+                ],
+              ),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20,
+          child: Visibility(
+            visible: true,
+            child: TextFormField(
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                errorBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                enabled: false,
+                disabledBorder: InputBorder.none,
+                contentPadding: EdgeInsets.zero,
+                // errorText: widget.emptyMsg,
+              ),
+              controller: formCon,
+              key: fieldKey,
+              readOnly: true,
+              autovalidateMode: AutovalidateMode.always,
+              validator: (value) {
+                var a = formValue.value;
+                if (value != '') {
+                  return textValidator(
+                    value: '',
+                    inputType: "text",
+                    isRequired: (field.isRequired),
+                    requiredErrorText: 'Long text is required',
+                  );
+                }
+                return null;
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

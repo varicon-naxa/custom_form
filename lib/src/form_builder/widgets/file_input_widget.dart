@@ -26,6 +26,7 @@ class FileInputWidget extends StatefulWidget {
     this.labelText,
     this.fieldKey,
     this.emptyMsg = '',
+    required this.formCon,
   });
 
   ///file input field model or image input field model
@@ -55,6 +56,8 @@ class FileInputWidget extends StatefulWidget {
   ///Function to call on save
   final void Function(List<Map<String, dynamic>>) onSaved;
 
+  final TextEditingController formCon;
+
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
@@ -68,7 +71,6 @@ class _FileInputWidgetState extends State<FileInputWidget>
   String? value;
   bool isLoading = false;
   List<Map<String, dynamic>> answer = [];
-  TextEditingController formCon = TextEditingController();
 
   late final List<ValueText> choices;
   late final String otherFieldKey;
@@ -78,7 +80,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
     super.initState();
     answer = widget.field.answer ?? [];
     widget.formValue.saveList(widget.field.id, answer);
-    formCon.text = (answer.isEmpty) ? '' : (answer[0]['name'] ?? '');
+    widget.formCon.text = (answer.isEmpty) ? '' : (answer[0]['name'] ?? '');
   }
 
   ///Method to save file to server
@@ -372,7 +374,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
                       contentPadding: EdgeInsets.zero,
                       // errorText: widget.emptyMsg,
                     ),
-                    controller: formCon,
+                    controller: widget.formCon,
                     key: widget.fieldKey,
                     readOnly: true,
                     autovalidateMode: AutovalidateMode.always,
@@ -446,7 +448,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
                       contentPadding: EdgeInsets.zero,
                       // errorText: widget.emptyMsg,
                     ),
-                    controller: formCon,
+                    controller: widget.formCon,
                     key: widget.fieldKey,
                     readOnly: true,
                     autovalidateMode: AutovalidateMode.always,

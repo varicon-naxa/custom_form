@@ -31,6 +31,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   TextEditingController formCon = TextEditingController();
   String htmlValue = '';
 
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -49,7 +50,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                   widget.field.id,
                   code.toString().trim(),
                 );
-                setState(() => htmlValue = code.toString().trim());
+                // setState(() => htmlValue = code.toString().trim());
               }),
               controller: widget.htmlEditorController, //required
               plugins: const [],
@@ -100,7 +101,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               readOnly: true,
               autovalidateMode: AutovalidateMode.always,
               validator: (value) {
-                if (htmlValue.isEmpty) {
+                if (value != "") {
                   return textValidator(
                     value: value,
                     inputType: "text",

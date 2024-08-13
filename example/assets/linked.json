@@ -243,6 +243,27 @@
             "type": "images",
             "label": "Photo of back fill. Min 4 photos, one from each side",
             "isMultiple": false,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a17763",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        
+        {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a17764",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
             "isRequired": true,
             "selectedLinkListLabel": ""
         }
