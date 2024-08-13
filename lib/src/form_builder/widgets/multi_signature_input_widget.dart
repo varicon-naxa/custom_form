@@ -25,6 +25,7 @@ class MultiSignatureInputWidget extends StatefulWidget {
     required this.attachmentSave,
     required this.imageBuild,
     this.labelText,
+    required this.formKey,
   });
 
   ///Multi signature input field model
@@ -32,6 +33,9 @@ class MultiSignatureInputWidget extends StatefulWidget {
 
   ///Form value to be used for multi signature input
   final FormValue formValue;
+
+  ///Form key for unique form field
+  final Key formKey;
 
   ///Field label text
   final String? labelText;
@@ -56,6 +60,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   GlobalKey<SignatureState> signKey = GlobalKey<SignatureState>();
   bool validate = false;
   bool isLoading = false;
+  TextEditingController formCon = TextEditingController();
 
   ///Method to save list of signature
   saveList() {
@@ -79,6 +84,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     setState(() {
       if ((widget.field.answer ?? []).isNotEmpty) {
         answer.addAll(widget.field.answer ?? []);
+        var a = formCon.text = answer.first.name ?? '';
       }
     });
   }
@@ -454,6 +460,33 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                 ),
               )
             ],
+          ),
+          Visibility(
+            visible: true,
+            child: TextFormField(
+              controller: formCon,
+              key: widget.formKey,
+              autovalidateMode: AutovalidateMode.always,
+              decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  errorBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  enabled: false,
+                  disabledBorder: InputBorder.none,
+                  contentPadding: EdgeInsets.only(left: 105)),
+              validator: (value) {
+                if ((answer).isEmpty) {
+                  return textValidator(
+                    value: '',
+                    inputType: "text",
+                    isRequired: (widget.field.isRequired),
+                    requiredErrorText: widget.field.requiredErrorText ??
+                        'Signature is required',
+                  );
+                }
+                return null;
+              },
+            ),
           ),
         ],
       ),

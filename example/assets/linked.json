@@ -54,6 +54,22 @@
 
         },
         {
+            "type": "files",
+            "name": "file1",
+            "id": "file1",
+            "title": "Attach citizenship files",
+            "isMultiple": false
+        },
+        {
+            "id": "item-94df5d01-232b-4c1d-a6fb-bfdd8c094f6a",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [ 
+            ],
+            "isRequired": true
+        },
+        {
             "type": "dropdown",
             "id": "select2",
             "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
@@ -95,7 +111,7 @@
             "name": "firstName",
             "id": "firstName",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": false,
+            "isRequired": true,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
