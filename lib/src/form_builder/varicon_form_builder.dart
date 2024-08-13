@@ -444,7 +444,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                                 .toLowerCase()
                                                 .contains('address')
                                             ? MapFieldWidget(
-                                                formKey: Key('adasd'),
+                                                fieldKey:
+                                                    _formFieldKeys[field.id],
                                                 // _fieldKeys[widget
                                                 //     .surveyForm.inputFields
                                                 //     .indexOf(e)],

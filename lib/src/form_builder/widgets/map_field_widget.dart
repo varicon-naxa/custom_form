@@ -14,7 +14,7 @@ class MapFieldWidget extends StatefulWidget {
     super.key,
     required this.forMapField,
     this.position,
-    required this.formKey,
+    required this.fieldKey,
     required this.isRequired,
     required this.formValue,
     this.field,
@@ -27,7 +27,7 @@ class MapFieldWidget extends StatefulWidget {
   final Position? position;
 
   ///Map value form key
-  final Key formKey;
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Form value for map values
   final FormValue formValue;
@@ -88,7 +88,7 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      key: widget.formKey,
+      key: widget.fieldKey,
       autocorrect: false,
       onSaved: (newValue) {
         widget.formValue.saveString(
@@ -127,7 +127,6 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
               context: context,
               builder: (context) => MapPicker(
                 forMapField: true,
-                formKey: widget.formKey,
                 postition: currentlySelelectedPosition ?? widget.position,
               ),
             ).then((value) async {
