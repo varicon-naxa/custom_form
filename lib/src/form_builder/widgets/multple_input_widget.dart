@@ -16,7 +16,7 @@ class MultipleInputWidget extends StatefulWidget {
     super.key,
     required this.field,
     required this.formValue,
-    required this.formKey,
+    required this.fieldKey,
     this.apiCall,
     this.labelText,
   });
@@ -28,7 +28,7 @@ class MultipleInputWidget extends StatefulWidget {
   final FormValue formValue;
 
   ///Form key for unique form field
-  final Key formKey;
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Field label text
   final String? labelText;
@@ -142,7 +142,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
     return Column(children: [
       TextFormField(
         readOnly: true,
-        key: widget.formKey,
+        key: widget.fieldKey,
         controller: formCon,
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (value) {

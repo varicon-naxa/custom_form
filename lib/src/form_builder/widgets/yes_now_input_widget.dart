@@ -17,7 +17,7 @@ class YesNoInputWidget extends StatefulWidget {
     super.key,
     required this.field,
     required this.formValue,
-    required this.formKey,
+    required this.fieldKey,
     this.labelText,
   });
 
@@ -25,7 +25,7 @@ class YesNoInputWidget extends StatefulWidget {
   final YesNoInputField field;
 
   ///Required form key for form field unique
-  final Key formKey;
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Form value to be used for yes/no option
   final FormValue formValue;
@@ -82,7 +82,7 @@ class _YesNoInputWidgetState extends State<YesNoInputWidget> {
         RadioFormField<String>(
           value: value,
           context: context,
-          key: widget.formKey,
+          key: widget.fieldKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => textValidator(
             value: value,

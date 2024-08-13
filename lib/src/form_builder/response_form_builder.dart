@@ -587,9 +587,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: YesNoNaInputWidget(
                               field: field,
-                              formKey: Key(field.id),
                               formValue: formValue,
                               labelText: labelText,
+                              fieldKey: GlobalKey(),
                             ),
                           ),
                         );
@@ -657,9 +657,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 ? _MultiAnswerDesign(answer: valueAnswer)
                                 : CheckboxInputWidget(
                                     field: field,
-                                    formKey: Key(field.id),
                                     formValue: formValue,
                                     labelText: labelText,
+                                    fieldKey: GlobalKey(),
                                   ),
                           ),
                         );
@@ -672,9 +672,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: RadioInputWidget(
                               field: field,
-                              formKey: Key(field.id),
                               formValue: formValue,
                               labelText: labelText,
+                              fieldKey: GlobalKey(),
                             ),
                           ),
                         );
@@ -759,7 +759,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                         )
                                         .toList(),
 
-                                        // _queueManager.getProcessedWidgets(),
+                                    // _queueManager.getProcessedWidgets(),
                                   )
                                 : _AnswerDesign(
                                     answer: '',
@@ -1253,4 +1253,3 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
     );
   }
 }
-

@@ -14,7 +14,7 @@ class DropdownInputWidget extends StatefulWidget {
       {super.key,
       required this.field,
       required this.formValue,
-      required this.formKey,
+      required this.fieldKey,
       required this.labelText,
       this.apiCall});
 
@@ -25,7 +25,8 @@ class DropdownInputWidget extends StatefulWidget {
   final FormValue formValue;
 
   ///Field form unique key
-  final Key formKey;
+   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
+
 
   ///Label text for dropdown
   final String? labelText;
@@ -111,7 +112,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
         ? TextFormField(
             readOnly: true,
             controller: formCon,
-            key: widget.formKey,
+            key: widget.fieldKey,
             validator: (values) => textValidator(
               value: values,
               inputType: "text",
@@ -151,7 +152,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
               TextFormField(
                 readOnly: true,
                 controller: formCon,
-                key: widget.formKey,
+                key: widget.fieldKey,
                 validator: (values) => textValidator(
                   value: values,
                   inputType: "text",

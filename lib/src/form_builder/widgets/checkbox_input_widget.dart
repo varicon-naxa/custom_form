@@ -14,7 +14,7 @@ class CheckboxInputWidget extends StatefulWidget {
       {super.key,
       required this.field,
       required this.formValue,
-      required this.formKey,
+      required this.fieldKey,
       this.labelText,
       this.apiCall});
 
@@ -25,7 +25,7 @@ class CheckboxInputWidget extends StatefulWidget {
   final FormValue formValue;
 
   ///Form key to save form data
-  final Key formKey;
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Label text to show on form
   final String? labelText;
@@ -138,7 +138,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
         ? TextField(
             readOnly: true,
             controller: formCon,
-            key: widget.formKey,
+            key: widget.fieldKey,
             decoration: const InputDecoration(
               suffixIcon: Icon(
                 Icons.arrow_drop_down,
@@ -181,7 +181,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
             children: [
               CheckboxFormField(
                 initialList: selectedChoices,
-                key: widget.formKey,
+                key: widget.fieldKey,
                 context: context,
                 actionList: actionList,
                 validator: (value) {

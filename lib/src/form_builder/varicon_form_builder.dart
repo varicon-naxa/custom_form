@@ -737,7 +737,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   ),
                                 );
                               },
-
                               datetimelocal: (field) {
                                 formValue.saveString(
                                   field.id,
@@ -758,184 +757,170 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   ),
                                 );
                               },
-                              // comment: (field) {
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: Column(
-                              //       mainAxisAlignment: MainAxisAlignment.start,
-                              //       crossAxisAlignment:
-                              //           CrossAxisAlignment.start,
-                              //       children: [
-                              //         LabeledWidget(
-                              //           labelText: labelText,
-                              //           isRequired: e.isRequired,
-                              //           child: TextFormField(
-                              //             initialValue: field.answer,
-                              //             key: _fieldKeys[widget
-                              //                 .surveyForm.inputFields
-                              //                 .indexOf(e)],
-                              //             autovalidateMode: AutovalidateMode
-                              //                 .onUserInteraction,
-                              //             textInputAction: TextInputAction.next,
-                              //             readOnly: field.readOnly,
-                              //             style: Theme.of(context)
-                              //                 .textTheme
-                              //                 .bodyLarge,
-                              //             keyboardType: TextInputType.text,
-                              //             maxLength: field.maxLength,
-                              //             maxLines: 4,
-                              //             onSaved: (newValue) =>
-                              //                 formValue.saveString(
-                              //               field.id,
-                              //               newValue,
-                              //             ),
-                              //             validator: (value) => textValidator(
-                              //               value: value,
-                              //               inputType: "comment",
-                              //               isRequired: field.isRequired,
-                              //               requiredErrorText:
-                              //                   field.requiredErrorText,
-                              //             ),
-                              //             decoration: InputDecoration(
-                              //               hintText: field.hintText,
-                              //               // labelText: labelText,
-                              //             ),
-                              //           ),
-                              //         ),
-                              //         AppSpacing.sizedBoxH_12(),
-                              //       ],
-                              //     ),
-                              //   );
-                              // },
-                              // dropdown: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: DropdownInputWidget(
-                              //         field: field,
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         apiCall: widget.apiCall,
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // yesno: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: YesNoInputWidget(
-                              //         field: field,
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // radiogroup: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: RadioInputWidget(
-                              //         field: field,
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // yesnona: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: YesNoNaInputWidget(
-                              //         field: field,
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // checkbox: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: CheckboxInputWidget(
-                              //         field: field,
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         apiCall: widget.apiCall,
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // multipleselect: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: MultipleInputWidget(
-                              //         field: field,
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         apiCall: widget.apiCall,
-                              //         formValue: formValue,
-                              //         labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
+                              comment: (field) {
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      LabeledWidget(
+                                        labelText: labelText,
+                                        isRequired: e.isRequired,
+                                        child: TextFormField(
+                                          initialValue: field.answer,
+                                          key: _formFieldKeys[field.id],
+                                          autovalidateMode: AutovalidateMode
+                                              .onUserInteraction,
+                                          textInputAction: TextInputAction.next,
+                                          readOnly: field.readOnly,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyLarge,
+                                          keyboardType: TextInputType.text,
+                                          maxLength: field.maxLength,
+                                          maxLines: 4,
+                                          onSaved: (newValue) =>
+                                              formValue.saveString(
+                                            field.id,
+                                            newValue,
+                                          ),
+                                          validator: (value) => textValidator(
+                                            value: value,
+                                            inputType: "comment",
+                                            isRequired: field.isRequired,
+                                            requiredErrorText:
+                                                field.requiredErrorText,
+                                          ),
+                                          decoration: InputDecoration(
+                                            hintText: field.hintText,
+                                            // labelText: labelText,
+                                          ),
+                                        ),
+                                      ),
+                                      AppSpacing.sizedBoxH_12(),
+                                    ],
+                                  ),
+                                );
+                              },
+                              dropdown: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: DropdownInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      apiCall: widget.apiCall,
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
+                              yesno: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: YesNoInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
+                              radiogroup: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: RadioInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
+                              yesnona: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: YesNoNaInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
+                              checkbox: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: CheckboxInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      apiCall: widget.apiCall,
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
+                              multipleselect: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: MultipleInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      apiCall: widget.apiCall,
+                                      formValue: formValue,
+                                      labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
                               files: (field) {
                                 formValue.saveList(
                                   field.id,
@@ -1194,7 +1179,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 //     ),
                                 //   );
                               },
-
                               orElse: () => null,
                             );
                           })
