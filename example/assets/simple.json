@@ -77,12 +77,11 @@
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
-            "name": "Phone Number",
-            "type": "phone",
-            "label": "Primary Phone number",
+            "type": "date",
+            "name": "date1",
+            "id": "date1",
             "isRequired": true,
-            "selectedLinkListLabel": ""
+            "title": "Enter date to have leave"
         }
     ]
 }

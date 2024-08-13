@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/form_time_picker.dart';
@@ -37,8 +39,9 @@ class DateTimeFormField extends FormField<DateTime> {
     ///Form field last date
     DateTime? lastDate,
 
-    ///Form field form key
-    required Key formKey,
+    ///Form field reqyured
+    bool? isRequired,
+    final GlobalKey<FormFieldState<dynamic>>? fieldKey,
 
     ///Form field autovalidate mode default to [AutovalidateMode.onUserInteraction]
     super.autovalidateMode = AutovalidateMode.onUserInteraction,
@@ -52,6 +55,7 @@ class DateTimeFormField extends FormField<DateTime> {
           TextEditingController controller = TextEditingController(
               text: dateBuilder?.call(state.value, type) ??
                   getFormattedText(state.value, type));
+          log('key $fieldKey');
 
           return GestureDetector(
             onTap: () async {
@@ -112,13 +116,19 @@ class DateTimeFormField extends FormField<DateTime> {
               }
             },
             child: TextFormField(
-              key: formKey,
+              key: fieldKey,
               readOnly: true,
               enabled: false,
               decoration: InputDecoration(
                 errorText: state.errorText,
                 hintText: _getHintText(type).toUpperCase(),
               ),
+              validator: (data) {
+                if ((data == null || data.isEmpty) && isRequired == true) {
+                  return 'This field is required';
+                }
+                return null;
+              },
               // initialValue: dateBuilder?.call(state.value, type) ??
               //     getFormattedText(state.value, type),
               controller: controller,

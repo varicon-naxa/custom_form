@@ -252,20 +252,16 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
-      log('key $fieldKey');
-      log('value $fieldId`');
-      log('state ${fieldKey.currentState}`');
+      // log('key $fieldKey');
+      // log('value $fieldId`');
+      // log('state ${fieldKey.currentState}`');
 
       if (fieldKey.currentState != null) {
-        log(fieldKey.currentState!.toString());
+        // log('data' + fieldKey.currentState!.toString());
         if (!fieldKey.currentState!.validate()) {
           scrollToId?.animateTo(fieldId,
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeIn);
-          // log('Invalid field ID: $fieldId');
-          // log((fieldKey.currentState?.value ?? '').toString());
-          // _scrollToField(fieldKey.currentContext!);
-          // Found the first invalid field, scroll to it
           break;
         }
       }
@@ -580,7 +576,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     labelText: labelText,
                                     isRequired: e.isRequired,
                                     child: FormBuilderIntlPhoneField(
-                                      // key: _formFieldKeys[field.id],
                                       fieldKey: _formFieldKeys[
                                           field.id], // Pass the key here
 
@@ -619,153 +614,149 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   ),
                                 );
                               },
-                              // email: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       key: ValueKey(field.id),
-                              //       isRequired: e.isRequired,
-                              //       child: TextFormField(
-                              //         key: _formFieldKeys[field.id],
-                              //         autovalidateMode:
-                              //             AutovalidateMode.onUserInteraction,
-                              //         initialValue: (field.answer),
-                              //         readOnly: field.readOnly,
-                              //         textInputAction: TextInputAction.next,
-                              //         style:
-                              //             Theme.of(context).textTheme.bodyLarge,
-                              //         keyboardType: TextInputType.emailAddress,
-                              //         maxLength: field.maxLength,
-                              //         onSaved: (newValue) {
-                              //           formValue.saveString(
-                              //             field.id,
-                              //             newValue.toString().trim(),
-                              //           );
-                              //         },
-                              //         validator: (value) {
-                              //           return textValidator(
-                              //             value: value,
-                              //             inputType: "email",
-                              //             isRequired: field.isRequired,
-                              //             requiredErrorText:
-                              //                 field.requiredErrorText,
-                              //           );
-                              //         },
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // url: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       key: ValueKey(field.id),
-                              //       isRequired: e.isRequired,
-                              //       child: TextFormField(
-                              //         key: _formFieldKeys[field.id],
-                              //         autovalidateMode:
-                              //             AutovalidateMode.onUserInteraction,
-                              //         initialValue: (field.answer),
-                              //         readOnly: field.readOnly,
-                              //         style:
-                              //             Theme.of(context).textTheme.bodyLarge,
-                              //         keyboardType: TextInputType.number,
-                              //         maxLength: field.maxLength,
-                              //         textInputAction: TextInputAction.next,
-                              //         onSaved: (newValue) {
-                              //           formValue.saveString(
-                              //             field.id,
-                              //             newValue.toString().trim(),
-                              //           );
-                              //         },
-                              //         validator: (value) {
-                              //           return uriValidator(
-                              //             value: value,
-                              //             isRequired: field.isRequired,
-                              //             requiredErrorText:
-                              //                 field.requiredErrorText,
-                              //           );
-                              //         },
-                              //         decoration: InputDecoration(
-                              //           hintText: field.hintText,
-                              //           // labelText: labelText,
-                              //         ),
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // date: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: DateTimeInputWidget(
-                              //         formKey: Key('asda'),
-                              //         // _formFieldKeys[field.id],
-                              //         field: field,
-                              //         dateTime: DatePickerType.date,
-                              //         formValue: formValue,
-                              //         // labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // time: (field) {
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: DateTimeInputWidget(
-                              //         field: field,
+                              email: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    key: _formFieldKeys[field.id],
+                                    isRequired: e.isRequired,
+                                    child: TextFormField(
+                                      key: _formFieldKeys[field.id],
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      initialValue: (field.answer),
+                                      readOnly: field.readOnly,
+                                      textInputAction: TextInputAction.next,
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                      keyboardType: TextInputType.emailAddress,
+                                      maxLength: field.maxLength,
+                                      onSaved: (newValue) {
+                                        formValue.saveString(
+                                          field.id,
+                                          newValue.toString().trim(),
+                                        );
+                                      },
+                                      validator: (value) {
+                                        return textValidator(
+                                          value: value,
+                                          inputType: "email",
+                                          isRequired: field.isRequired,
+                                          requiredErrorText:
+                                              field.requiredErrorText,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                );
+                              },
+                              url: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    key: _formFieldKeys[field.id],
+                                    isRequired: e.isRequired,
+                                    child: TextFormField(
+                                      key: _formFieldKeys[field.id],
+                                      autovalidateMode:
+                                          AutovalidateMode.onUserInteraction,
+                                      initialValue: (field.answer),
+                                      readOnly: field.readOnly,
+                                      style:
+                                          Theme.of(context).textTheme.bodyLarge,
+                                      keyboardType: TextInputType.number,
+                                      maxLength: field.maxLength,
+                                      textInputAction: TextInputAction.next,
+                                      onSaved: (newValue) {
+                                        formValue.saveString(
+                                          field.id,
+                                          newValue.toString().trim(),
+                                        );
+                                      },
+                                      validator: (value) {
+                                        return uriValidator(
+                                          value: value,
+                                          isRequired: field.isRequired,
+                                          requiredErrorText:
+                                              field.requiredErrorText,
+                                        );
+                                      },
+                                      decoration: InputDecoration(
+                                        hintText: field.hintText,
+                                        // labelText: labelText,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                              date: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: DateTimeInputWidget(
+                                      fieldKey: _formFieldKeys[field.id],
+                                      field: field,
+                                      
+                                      dateTime: DatePickerType.date,
+                                      formValue: formValue,
+                                      // labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
+                              time: (field) {
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: DateTimeInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      dateTime: DatePickerType.time,
+                                      formValue: formValue,
+                                      // labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
 
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         dateTime: DatePickerType.time,
-                              //         formValue: formValue,
-                              //         // labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
-                              // datetimelocal: (field) {
-                              //   formValue.saveString(
-                              //     field.id,
-                              //     field.answer,
-                              //   );
-                              //   return ScrollContent(
-                              //     id: field.id,
-                              //     child: LabeledWidget(
-                              //       labelText: labelText,
-                              //       isRequired: e.isRequired,
-                              //       child: DateTimeInputWidget(
-                              //         field: field,
-                              //         formKey: _fieldKeys[widget
-                              //             .surveyForm.inputFields
-                              //             .indexOf(e)],
-                              //         dateTime: DatePickerType.dateTime,
-                              //         formValue: formValue,
-                              //         // labelText: labelText,
-                              //       ),
-                              //     ),
-                              //   );
-                              // },
+                              datetimelocal: (field) {
+                                formValue.saveString(
+                                  field.id,
+                                  field.answer,
+                                );
+                                return ScrollContent(
+                                  id: field.id,
+                                  child: LabeledWidget(
+                                    labelText: labelText,
+                                    isRequired: e.isRequired,
+                                    child: DateTimeInputWidget(
+                                      field: field,
+                                      fieldKey: _formFieldKeys[field.id],
+                                      dateTime: DatePickerType.dateTime,
+                                      formValue: formValue,
+                                      // labelText: labelText,
+                                    ),
+                                  ),
+                                );
+                              },
                               // comment: (field) {
                               //   return ScrollContent(
                               //     id: field.id,
