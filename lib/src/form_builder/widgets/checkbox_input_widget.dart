@@ -135,10 +135,16 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
   Widget build(BuildContext context) {
     List<bool> actionList = choices.map((e) => e.action ?? false).toList();
     return !(widget.field.fromManualList)
-        ? TextField(
+        ? TextFormField(
             readOnly: true,
             controller: formCon,
             key: widget.fieldKey,
+            validator: (value) {
+              if (selectedIds.isEmpty && widget.field.isRequired) {
+                return widget.field.requiredErrorText ?? 'Response required.';
+              }
+              return null;
+            },
             decoration: const InputDecoration(
               suffixIcon: Icon(
                 Icons.arrow_drop_down,

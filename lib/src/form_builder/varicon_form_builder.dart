@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads
 
 import 'dart:developer';
 
@@ -1185,23 +1185,24 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                     ]),
               ),
 
-            if (_currentPosition?.latitude != null && widget.hasGeolocation)
-              CustomLocation(
-                postition: widget.surveyForm.setting?['location'] != null
-                    ? Position(
-                        longitude: widget.surveyForm.setting?['location']
-                            ['long'],
-                        latitude: widget.surveyForm.setting?['location']['lat'],
-                        timestamp: DateTime.timestamp(),
-                        accuracy: 50.0,
-                        altitude: 0.0,
-                        altitudeAccuracy: 50.0,
-                        heading: 50.0,
-                        headingAccuracy: 50.0,
-                        speed: 2.0,
-                        speedAccuracy: 50.0)
-                    : _currentPosition!,
-              ),
+            // if (_currentPosition?.latitude != null && widget.hasGeolocation)
+            //   CustomLocation(
+            //     postition: widget.surveyForm.setting?['location'] != null
+            //         ? Position(
+            //             longitude: widget.surveyForm.setting?['location']
+            //                 ['long'],
+            //             latitude: widget.surveyForm.setting?['location']['lat'],
+            //             timestamp: DateTime.timestamp(),
+            //             accuracy: 50.0,
+            //             altitude: 0.0,
+            //             altitudeAccuracy: 50.0,
+            //             heading: 50.0,
+            //             headingAccuracy: 50.0,
+            //             speed: 2.0,
+            //             speedAccuracy: 50.0)
+            //         : _currentPosition!,
+            //   ),
+
             AppSpacing.sizedBoxH_08(),
 
             if (widget.hasSave)
