@@ -357,7 +357,40 @@ class _FileInputWidgetState extends State<FileInputWidget>
                     } else {
                       storeFiles();
                     }
-                  })
+                  }),
+              SizedBox(
+                height: 20,
+                child: Visibility(
+                  visible: true,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      // errorText: widget.emptyMsg,
+                    ),
+                    controller: formCon,
+                    key: widget.fieldKey,
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.always,
+                    validator: (value) {
+                      if ((answer).isEmpty) {
+                        return textValidator(
+                          value: value,
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText:
+                              widget.field.requiredErrorText ?? widget.emptyMsg,
+                        );
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
             ],
           )
         : Column(
@@ -404,7 +437,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
                 child: Visibility(
                   visible: true,
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       border: InputBorder.none,
                       errorBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,

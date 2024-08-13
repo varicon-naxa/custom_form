@@ -253,9 +253,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
-      // log('key $fieldKey');
-      // log('value $fieldId`');
-      // log('state ${fieldKey.currentState}`');
 
       if (fieldKey.currentState != null) {
         // log('data' + fieldKey.currentState!.toString());
