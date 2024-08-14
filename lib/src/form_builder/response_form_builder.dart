@@ -725,26 +725,23 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 3,
-                                      // mainAxisSpacing: 12,
-                                      childAspectRatio: 0.8,
+                                      mainAxisSpacing: 6,
+                                      crossAxisSpacing: 6,
+                                      childAspectRatio: 0.87,
                                     ),
                                     shrinkWrap: true,
                                     physics:
                                         const NeverScrollableScrollPhysics(),
                                     itemCount: answer.length,
                                     itemBuilder: (context, index) {
-                                      return Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          _AnswerDesign(
-                                            answer: answer[index]['file'],
-                                            isImage: true,
-                                            imageBuild: widget.imageBuild,
-                                          ),
-                                        ],
+                                      return SizedBox(
+                                        height: 120,
+                                        width: 120,
+                                        child: _AnswerDesign(
+                                          answer: answer[index]['file'],
+                                          isImage: true,
+                                          imageBuild: widget.imageBuild,
+                                        ),
                                       );
                                     })
                                 // Wrap(
@@ -1005,7 +1002,7 @@ class _AnswerDesign extends StatelessWidget {
                     imageUrl: answer,
                     height: isSignature ? 150 : 200,
                     width: double.infinity,
-                    fit: BoxFit.fill,
+                    fit: BoxFit.contain,
                     placeholderFadeInDuration: const Duration(seconds: 1),
                     placeholder: (context, url) => const Icon(Icons.image),
                     errorWidget: (context, error, stackTrace) => const SizedBox(

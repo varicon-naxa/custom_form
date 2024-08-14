@@ -38,15 +38,18 @@ class _SurveyPageState extends State<ResponseTest> {
         },
         imageBuild: (Map<String, dynamic> data) {
           return CachedNetworkImage(
+            fit: BoxFit.cover,
             placeholderFadeInDuration: Duration(seconds: 3),
             placeholder: (context, url) => Icon(Icons.image),
             imageUrl: data['image'],
-            height: data['height'] == null
-                ? null
-                : double.parse(data['height'].toString()),
-            width: data['width'] == null
-                ? null
-                : double.parse(data['width'].toString()),
+            height: 120,
+            width: 120,
+            // height: data['height'] == null
+            //     ? null
+            //     : double.parse(data['height'].toString()),
+            // width: data['width'] == null
+            //     ? null
+            //     : double.parse(data['width'].toString()),
           );
         },
         fileClick: (Map<String, dynamic> url) {},
