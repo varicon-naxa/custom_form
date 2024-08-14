@@ -37,8 +37,8 @@ class RadioFormField<T> extends FormField<T> {
                                 ? (e.hasAction!)
                                     ? const Color(0xffFDD9D7)
                                     : const Color(0xffDBEFDC)
-                                : Colors.white
-                            : Colors.white,
+                                : Colors.transparent
+                            : Colors.transparent,
                         borderRadius: BorderRadius.circular(8),
                         border: Border.all(
                           color: (e.hasCondition && state.value == e.value)
@@ -49,7 +49,7 @@ class RadioFormField<T> extends FormField<T> {
                                   : Colors.grey.shade500
                               : state.value == e.value
                                   ? Colors.grey.shade500
-                                  : Colors.white,
+                                  : Colors.transparent,
                         )),
                     child: RadioListTile<T>(
                       groupValue: state.value,

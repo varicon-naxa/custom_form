@@ -1001,8 +1001,8 @@ class _AnswerDesign extends StatelessWidget {
                     height: isSignature ? 150 : 200,
                     width: double.infinity,
                     fit: BoxFit.fill,
-                    placeholderFadeInDuration: Duration(seconds: 1),
-                    placeholder: (context, url) => Icon(Icons.image),
+                    placeholderFadeInDuration: const Duration(seconds: 1),
+                    placeholder: (context, url) => const Icon(Icons.image),
                     errorWidget: (context, error, stackTrace) => const SizedBox(
                       height: 75,
                       child: Icon(
@@ -1215,8 +1215,8 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         imageUrl: e.file ?? '',
                         height: 150,
                         width: double.infinity,
-                        placeholderFadeInDuration: Duration(seconds: 1),
-                        placeholder: (context, url) => Icon(Icons.image),
+                        placeholderFadeInDuration: const Duration(seconds: 1),
+                        placeholder: (context, url) => const Icon(Icons.image),
                         fit: BoxFit.fill,
                         errorWidget: (context, error, stackTrace) =>
                             const SizedBox(
