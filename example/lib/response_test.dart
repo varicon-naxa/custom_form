@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ResponseTest extends StatefulWidget {
   const ResponseTest({super.key, required this.form, required this.formData});
@@ -36,8 +37,10 @@ class _SurveyPageState extends State<ResponseTest> {
           log('Timesheet Id $timesheetId');
         },
         imageBuild: (Map<String, dynamic> data) {
-          return Image.network(
-            data['image'],
+          return CachedNetworkImage(
+            placeholderFadeInDuration: Duration(seconds: 3),
+            placeholder: (context, url) => Icon(Icons.image),
+            imageUrl: data['image'],
             height: data['height'] == null
                 ? null
                 : double.parse(data['height'].toString()),
