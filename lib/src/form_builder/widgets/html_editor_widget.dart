@@ -87,7 +87,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
           child: Visibility(
             visible: true,
             child: TextFormField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
@@ -99,7 +99,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               controller: formCon,
               key: widget.fieldKey,
               readOnly: true,
-              autovalidateMode: AutovalidateMode.always,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value != "") {
                   return textValidator(

@@ -139,6 +139,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
             readOnly: true,
             controller: formCon,
             key: widget.fieldKey,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (value) {
               if (selectedIds.isEmpty && widget.field.isRequired) {
                 return widget.field.requiredErrorText ?? 'Response required.';

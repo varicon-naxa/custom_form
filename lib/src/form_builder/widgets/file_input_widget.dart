@@ -187,94 +187,6 @@ class _FileInputWidgetState extends State<FileInputWidget>
             ],
           ),
         ),
-        // child: Column(
-        //   crossAxisAlignment: CrossAxisAlignment.start,
-        //   children: [
-        //     AppSpacing.sizedBoxH_16(),
-        //     Text(
-        //       'ADD PHOTO',
-        //       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-        //             color: const Color(
-        //               0xff98A5B9,
-        //             ),
-        //           ),
-        //     ),
-        //     AppSpacing.sizedBoxH_20(),
-        //     Padding(
-        //       padding: const EdgeInsets.symmetric(horizontal: 8.0),
-        //       child: Row(
-        //         mainAxisAlignment: MainAxisAlignment.center,
-        //         children: [
-        //           InkWell(
-        //             onTap: () {
-        //               storeFiles(fromCamera: true);
-        //             },
-        //             child: SizedBox(
-        //               height: 55,
-        //               width: MediaQuery.of(context).size.width / 2 - 50,
-        //               child: Column(
-        //                 crossAxisAlignment: CrossAxisAlignment.center,
-        //                 mainAxisAlignment: MainAxisAlignment.center,
-        //                 children: [
-        //                   const Icon(
-        //                     Icons.camera_alt,
-        //                     color: Color(
-        //                       0xff5F6D83,
-        //                     ),
-        //                   ),
-        //                   Text(
-        //                     'Camera',
-        //                     style:
-        //                         Theme.of(context).textTheme.bodySmall?.copyWith(
-        //                               color: const Color(
-        //                                 0xff5F6D83,
-        //                               ),
-        //                             ),
-        //                   )
-        //                 ],
-        //               ),
-        //             ),
-        //           ),
-        //           const Padding(
-        //             padding: EdgeInsets.symmetric(vertical: 8),
-        //             child: VerticalDivider(
-        //               thickness: 2,
-        //             ),
-        //           ),
-        //           InkWell(
-        //             onTap: () {
-        //               storeFiles(fromCamera: false);
-        //             },
-        //             child: SizedBox(
-        //               height: 55,
-        //               width: MediaQuery.of(context).size.width / 2 - 50,
-        //               child: Column(
-        //                 crossAxisAlignment: CrossAxisAlignment.center,
-        //                 mainAxisAlignment: MainAxisAlignment.center,
-        //                 children: [
-        //                   const Icon(Icons.photo_library,
-        //                       color: Color(
-        //                         0xff5F6D83,
-        //                       )),
-        //                   Text(
-        //                     'Photo Library',
-        //                     style:
-        //                         Theme.of(context).textTheme.bodySmall?.copyWith(
-        //                               color: const Color(
-        //                                 0xff5F6D83,
-        //                               ),
-        //                             ),
-        //                   )
-        //                 ],
-        //               ),
-        //             ),
-        //           ),
-        //         ],
-        //       ),
-        //     ),
-        //     AppSpacing.sizedBoxH_06(),
-        //   ],
-        // ),
       );
     }
 
@@ -377,7 +289,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
                     controller: widget.formCon,
                     key: widget.fieldKey,
                     readOnly: true,
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if ((answer).isEmpty) {
                         return textValidator(
@@ -451,7 +363,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
                     controller: widget.formCon,
                     key: widget.fieldKey,
                     readOnly: true,
-                    autovalidateMode: AutovalidateMode.always,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (value) {
                       if ((answer).isEmpty) {
                         return textValidator(

@@ -351,7 +351,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                                       controller: formCon,
                                       key: widget.fieldKey,
                                       readOnly: true,
-                                      autovalidateMode: AutovalidateMode.always,
+                                      autovalidateMode: AutovalidateMode.onUserInteraction,
                                       validator: (value) {
                                         if ((answer).isEmpty) {
                                           return textValidator(

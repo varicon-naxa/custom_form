@@ -142,7 +142,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   final formValue = FormValue();
 
   void _scrollListener() {
-    log(scrollToId!.idPosition()?.toString() ?? 'null');
   }
 
   // Initialize the keys and mapping
@@ -253,7 +252,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       var fieldId = entry.value;
 
       if (fieldKey.currentState != null) {
-        // log('data' + fieldKey.currentState!.toString());
         if (!fieldKey.currentState!.validate()) {
           scrollToId?.animateTo(fieldId,
               duration: const Duration(milliseconds: 500),
@@ -1291,13 +1289,11 @@ class HtmlEditorWidget extends StatelessWidget {
             child: HtmlEditor(
               callbacks: Callbacks(
                 onChangeContent: (code) {
+                  formCon.text = code.toString().trim();
                   formValue.saveString(
                     field.id,
                     code.toString().trim(),
                   );
-                },
-                onInit: () {
-                  formCon.text = '';
                 },
               ),
               controller: htmlEditorController, //required
@@ -1335,30 +1331,29 @@ class HtmlEditorWidget extends StatelessWidget {
           child: Visibility(
             visible: true,
             child: TextFormField(
-              decoration: InputDecoration(
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
+                labelStyle: TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
-                // errorText: widget.emptyMsg,
               ),
               controller: formCon,
               key: fieldKey,
               readOnly: true,
-              autovalidateMode: AutovalidateMode.always,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
-                var a = formValue.value;
-                if (value != '') {
-                  return textValidator(
-                    value: '',
-                    inputType: "text",
-                    isRequired: (field.isRequired),
-                    requiredErrorText: 'Long text is required',
-                  );
-                }
-                return null;
+                // var a = formValue.value;
+
+                return textValidator(
+                  value: value.toString().trim(),
+                  inputType: "text",
+                  isRequired: (field.isRequired),
+                  requiredErrorText: 'Long text is required',
+                );
               },
             ),
           ),
@@ -1367,136 +1362,3 @@ class HtmlEditorWidget extends StatelessWidget {
     );
   }
 }
-
-// class HtmlEditorWidget extends StatefulWidget {
-//   const HtmlEditorWidget({
-//     super.key,
-//     // required this.controller,
-//     required this.formValue,
-//     required this.field,
-//   });
-
-//   // final QuillEditorController controller;
-//   final FormValue formValue;
-//   final TextInputField field;
-
-//   @override
-//   State<HtmlEditorWidget> createState() => _HtmlEditorWidgetState();
-// }
-
-// class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
-//   final _toolbarColor = Colors.grey.shade300;
-//   final _backgroundColor = Colors.grey.shade100;
-//   final _toolbarIconColor = Colors.black87;
-//   final _editorTextStyle = const TextStyle(
-//     fontSize: 18,
-//     color: Colors.black,
-//     fontWeight: FontWeight.normal,
-//   );
-//   final _hintTextStyle = const TextStyle(
-//       fontSize: 18, color: Colors.black38, fontWeight: FontWeight.normal);
-
-//   QuillEditorController controller = QuillEditorController();
-
-//   @override
-//   void initState() {
-//     controller = QuillEditorController();
-//     // widget.controller.onTextChanged((text) {
-//     // // widget.formValue.saveString(
-//     // //   widget.field.id,
-//     // //   text.toString().trim(),
-//     // // );
-//     // });
-//     // widget.controller.onEditorLoaded(() {
-//     //   // debugPrint('Editor Loaded :)');
-//     // });
-//     super.initState();
-//   }
-
-//   @override
-//   void dispose() {
-//     controller.dispose();
-//     super.dispose();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         ToolBar(
-//           toolBarColor: _toolbarColor,
-//           padding: const EdgeInsets.all(8),
-//           iconSize: 22,
-//           iconColor: _toolbarIconColor,
-//           activeIconColor: Colors.orange.shade400,
-//           controller: controller,
-//           crossAxisAlignment: WrapCrossAlignment.start,
-//           direction: Axis.horizontal,
-//           toolBarConfig: const [
-//             ToolBarStyle.bold,
-//             ToolBarStyle.italic,
-//             ToolBarStyle.underline,
-//             // ToolBarStyle.link,
-//             ToolBarStyle.align,
-//             // ToolBarStyle.color,
-//             // ToolBarStyle.background,
-//             ToolBarStyle.listBullet,
-//             ToolBarStyle.listOrdered,
-//           ],
-//         ),
-//         QuillHtmlEditor(
-//           hintText: '',
-//           text: widget.field.answer ?? '',
-//           controller: controller,
-//           isEnabled: true,
-//           ensureVisible: true,
-//           minHeight: 100,
-//           autoFocus: false,
-//           textStyle: _editorTextStyle,
-//           hintTextStyle: _hintTextStyle,
-//           hintTextAlign: TextAlign.start,
-//           padding: const EdgeInsets.only(left: 10, top: 10),
-//           hintTextPadding: const EdgeInsets.only(left: 20),
-//           backgroundColor: _backgroundColor,
-//           inputAction: InputAction.newline,
-//           onEditingComplete: (s) {},
-//           loadingBuilder: (context) {
-//             return const Padding(
-//               padding: EdgeInsets.only(
-//                 top: 18,
-//               ),
-//               child: Center(
-//                   child: CircularProgressIndicator(
-//                 strokeWidth: 3,
-//                 color: Colors.orange,
-//               )),
-//             );
-//           },
-//           onFocusChanged: (focus) {},
-//           onTextChanged: (text) {
-//             debugPrint('widget text change $text');
-
-//             widget.formValue.saveString(
-//               widget.field.id,
-//               text.toString().trim(),
-//             );
-//           },
-//           // onEditorCreated: () {
-//           //   debugPrint('Editor has been loaded');
-//           //   setHtmlText('Enter something ...');
-//           // },
-//           onEditorResized: (height) => debugPrint('Editor resized $height'),
-//           onSelectionChanged: (sel) =>
-//               debugPrint('index ${sel.index}, range ${sel.length}'),
-//         ),
-//       ],
-//     );
-//   }
-
-//   ///[setHtmlText] to set the html text to editor
-//   void setHtmlText(String text) async {
-//     await controller.setText(text);
-//   }
-// }
-
-

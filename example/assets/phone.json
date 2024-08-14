@@ -5,6 +5,14 @@
     "version": "1.0.0",
     "elements": [
         {
+            "id": "item-b5b28011-43b0-4750-81b5-081f9546a63e",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-981e183b-39d3-4f43-887d-b006851146cd",
             "name": "Full Name",
             "type": "text",
