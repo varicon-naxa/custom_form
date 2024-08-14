@@ -77,7 +77,6 @@ class _SurveyPageState extends State<SurveyPage> {
         hasGeolocation: false,
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
-          log(formValue.toString());
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);

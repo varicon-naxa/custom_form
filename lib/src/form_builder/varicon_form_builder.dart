@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads
 
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:file_picker/file_picker.dart';
@@ -328,6 +329,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 
                 formKey.currentState?.save();
                 Map<String, dynamic> fulldata = formValue.value;
+
                 if (widget.hasGeolocation) {
                   fulldata.addAll({
                     'location':
@@ -339,6 +341,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                             : widget.surveyForm.setting?['location']
                   });
                 }
+                log('On Package Before' + jsonEncode(formValue.value));
 
                 widget.onSubmit(formValue.value);
               },
