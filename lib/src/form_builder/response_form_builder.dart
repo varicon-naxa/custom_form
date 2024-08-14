@@ -725,7 +725,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                     gridDelegate:
                                         const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 3,
-                                      mainAxisSpacing: 12,
+                                      // mainAxisSpacing: 12,
                                       childAspectRatio: 0.8,
                                     ),
                                     shrinkWrap: true,
@@ -733,10 +733,18 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                         const NeverScrollableScrollPhysics(),
                                     itemCount: answer.length,
                                     itemBuilder: (context, index) {
-                                      return _AnswerDesign(
-                                        answer: answer[index]['file'],
-                                        isImage: true,
-                                        imageBuild: widget.imageBuild,
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          _AnswerDesign(
+                                            answer: answer[index]['file'],
+                                            isImage: true,
+                                            imageBuild: widget.imageBuild,
+                                          ),
+                                        ],
                                       );
                                     })
                                 // Wrap(
