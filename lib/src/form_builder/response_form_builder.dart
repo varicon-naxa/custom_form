@@ -958,7 +958,6 @@ class _AnswerDesign extends StatelessWidget {
     this.fileClick,
     this.isFile = false,
     this.containsLine = false,
-    this.imageList,
   });
 
   ///String values for text, image urls, files content
@@ -966,8 +965,6 @@ class _AnswerDesign extends StatelessWidget {
 
   ///Function for image/signature builder
   final Widget Function(Map<String, dynamic>)? imageBuild;
-
-  final Map<String, dynamic>? imageList;
 
   ///Function to handle file cliks action
   final Function? fileClick;

@@ -446,53 +446,72 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextButton.icon(
-                    onPressed: () => signatureDialog(),
-                    icon: const Icon(
-                      Icons.add,
-                      color: Colors.black,
-                    ),
-                    label: Text(
-                      'Add Signature',
-                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+              Container(
+                decoration: DottedDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  dash: const [3, 2],
+                  shape: Shape.box,
+                ),
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => signatureDialog(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextButton.icon(
+                          onPressed: null,
+                          icon: const Icon(
+                            Icons.add,
                             color: Colors.black,
                           ),
+                          label: Text(
+                            'Add Signature',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                  color: Colors.black,
+                                ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
+                  ),
+                ),
               ),
               Visibility(
                 visible: true,
-                child: TextFormField(
-                  controller: formCon,
-                  key: widget.fieldKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
-                    border: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    enabled: false,
-                    disabledBorder: InputBorder.none,
-                    contentPadding: EdgeInsets.only(
-                      left: 105,
+                child: SizedBox(
+                  height: 20,
+                  child: TextFormField(
+                    controller: formCon,
+                    key: widget.fieldKey,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.only(
+                        left: 100,
+                      ),
                     ),
+                    validator: (value) {
+                      if (answer.isEmpty && value != null) {
+                        return textValidator(
+                          value: '',
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText: widget.field.requiredErrorText ??
+                              'Signature is required',
+                        );
+                      }
+                      return null;
+                    },
                   ),
-                  validator: (value) {
-                    if (answer.isEmpty && value != null) {
-                      return textValidator(
-                        value: '',
-                        inputType: "text",
-                        isRequired: (widget.field.isRequired),
-                        requiredErrorText: widget.field.requiredErrorText ??
-                            'Signature is required',
-                      );
-                    }
-                    return null;
-                  },
                 ),
               ),
             ],

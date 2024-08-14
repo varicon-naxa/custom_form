@@ -562,7 +562,7 @@
             "type": "signature",
             "label": "Signature",
             "answer": {},
-            "isRequired": false,
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
