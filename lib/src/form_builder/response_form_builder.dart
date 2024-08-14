@@ -723,10 +723,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             child: answer.isNotEmpty
                                 ? GridView.builder(
                                     gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
                                       crossAxisCount: 3,
                                       mainAxisSpacing: 12,
-                                      childAspectRatio: 0.9,
+                                      childAspectRatio: 0.8,
                                     ),
                                     shrinkWrap: true,
                                     physics:

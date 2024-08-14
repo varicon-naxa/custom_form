@@ -443,55 +443,59 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
               ),
               child: const CircularProgressIndicator.adaptive(),
             ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              TextButton.icon(
-                onPressed: () => signatureDialog(),
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
-                ),
-                label: Text(
-                  'Add Signature',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.black,
-                      ),
-                ),
-              )
-            ],
-          ),
-          Visibility(
-            visible: true,
-            child: TextFormField(
-              controller: formCon,
-              key: widget.fieldKey,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                errorBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                enabled: false,
-                disabledBorder: InputBorder.none,
-                contentPadding: EdgeInsets.only(
-                  left: 120,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextButton.icon(
+                    onPressed: () => signatureDialog(),
+                    icon: const Icon(
+                      Icons.add,
+                      color: Colors.black,
+                    ),
+                    label: Text(
+                      'Add Signature',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: Colors.black,
+                          ),
+                    ),
+                  )
+                ],
+              ),
+              Visibility(
+                visible: true,
+                child: TextFormField(
+                  controller: formCon,
+                  key: widget.fieldKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    errorBorder: InputBorder.none,
+                    enabledBorder: InputBorder.none,
+                    enabled: false,
+                    disabledBorder: InputBorder.none,
+                    contentPadding: EdgeInsets.only(
+                      left: 105,
+                    ),
+                  ),
+                  validator: (value) {
+                    if (answer.isEmpty && value != null) {
+                      return textValidator(
+                        value: '',
+                        inputType: "text",
+                        isRequired: (widget.field.isRequired),
+                        requiredErrorText: widget.field.requiredErrorText ??
+                            'Signature is required',
+                      );
+                    }
+                    return null;
+                  },
                 ),
               ),
-              validator: (value) {
-                var a = value;
-                if (answer.isEmpty && value != null) {
-                  return textValidator(
-                    value: '',
-                    inputType: "text",
-                    isRequired: (widget.field.isRequired),
-                    requiredErrorText: widget.field.requiredErrorText ??
-                        'Signature is required',
-                  );
-                }
-                return null;
-              },
-            ),
+            ],
           ),
         ],
       ),

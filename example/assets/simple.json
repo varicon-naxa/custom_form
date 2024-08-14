@@ -37,14 +37,14 @@
             "label": "Multiple Signature",
             "answer": [ 
             ],
-            "isRequired": false
+            "isRequired": true
         },
         {
             "id": "item-726e4655-a519-439a-80d9-5ab27552f0db",
             "name": "Signature",
             "type": "signature",
             "label": "please enter the signature",
-            "isRequired": false,
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {

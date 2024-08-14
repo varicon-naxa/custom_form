@@ -305,74 +305,87 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                 height: 170,
                 width: double.infinity,
                 child: answer.isEmpty
-                    ? Container(
-                        decoration: DottedDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          dash: const [3, 2],
-                          shape: Shape.box,
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              openDialog();
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                  width: 50,
-                                  child: Image.asset(
-                                    'assets/image/signature.png',
-                                    package: 'varicon_form_builder',
-                                  ),
+                    ? Column(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Container(
+                                decoration: DottedDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  dash: const [3, 2],
+                                  shape: Shape.box,
                                 ),
-                                Text(
-                                  'Click here to add signature',
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                  child: Visibility(
-                                    visible: true,
-                                    child: TextFormField(
-                                      decoration: const InputDecoration(
-                                        border: InputBorder.none,
-                                        errorBorder: InputBorder.none,
-                                        enabledBorder: InputBorder.none,
-                                        enabled: false,
-                                        disabledBorder: InputBorder.none,
-                                        contentPadding: EdgeInsets.only(
-                                          left: 120,
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      openDialog();
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          height: 50,
+                                          width: 50,
+                                          child: Image.asset(
+                                            'assets/image/signature.png',
+                                            package: 'varicon_form_builder',
+                                          ),
                                         ),
-                                      ),
-                                      controller: formCon,
-                                      key: widget.fieldKey,
-                                      readOnly: true,
-                                      autovalidateMode: AutovalidateMode.onUserInteraction,
-                                      validator: (value) {
-                                        if ((answer).isEmpty) {
-                                          return textValidator(
-                                            value: value,
-                                            inputType: "text",
-                                            isRequired:
-                                                (widget.field.isRequired),
-                                            requiredErrorText: widget
-                                                    .field.requiredErrorText ??
-                                                'Signature is required',
-                                          );
-                                        }
-                                        return null;
-                                      },
+                                        Text(
+                                          'Click here to add signature',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 20,
+                            child: Visibility(
+                              visible: true,
+                              child: TextFormField(
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  errorBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  enabled: false,
+                                  disabledBorder: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(
+                                    left: 105,
+                                  ),
+                                ),
+                                controller: formCon,
+                                key: widget.fieldKey,
+                                readOnly: true,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  if ((answer).isEmpty) {
+                                    return textValidator(
+                                      value: value,
+                                      inputType: "text",
+                                      isRequired: (widget.field.isRequired),
+                                      requiredErrorText:
+                                          widget.field.requiredErrorText ??
+                                              'Signature is required',
+                                    );
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       )
                     : Stack(
                         children: [
