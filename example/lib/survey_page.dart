@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:math' as Rand;
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SurveyPage extends StatefulWidget {
   const SurveyPage({super.key, required this.form, required this.formData});
@@ -181,10 +182,12 @@ class _SurveyPageState extends State<SurveyPage> {
           ];
         },
         imageBuild: (Map<String, dynamic> data) {
-          return Image.network(
-            data['image'],
+          return CachedNetworkImage(
+            imageUrl: data['image'],
             height: data['height'],
             width: data['width'],
+            placeholderFadeInDuration: Duration(seconds: 3),
+            placeholder: (context, url) => Icon(Icons.image),
           );
         },
         onFileClicked: (String stringURl) {},

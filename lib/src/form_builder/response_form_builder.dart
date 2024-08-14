@@ -1,4 +1,5 @@
 // ignore_for_file: use_build_context_synchronously, must_be_immutable
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -713,54 +714,47 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         List<Map<String, dynamic>> answer = e.answer == null
                             ? []
                             : (e.answer ?? []) as List<Map<String, dynamic>>;
-                        // final WidgetQueueManager _queueManager =
-                        //     WidgetQueueManager(maxConcurrentLoads: 1);
 
-                        // log('Answer length: ${answer.length}');
-
-                        // for (int i = 0; i < answer.length; i++) {
-                        //   // Check if the file key exists and is not null
-                        //   if (answer[i].containsKey('file') &&
-                        //       answer[i]['file'] != null) {
-                        //     log('Processing index $i, file: ${answer[i]['file']}');
-
-                        //     _queueManager.addWidget(() => _AnswerDesign(
-                        //           answer: answer[i]['file'],
-                        //           isImage: true,
-                        //           containsLine: false,
-                        //           imageBuild: widget.imageBuild,
-                        //         ));
-                        //   } else {
-                        //     log('Skipping index $i due to missing or null file key');
-                        //   }
-                        // }
+                        // var a = answer.map((e) => e);
 
                         return LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
-                                ?
-                                // ImageLoaderQueue(
-                                //     imageUrls: answer
-                                //         .map((e) => e['file'].toString())
+                                ? GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 12,
+                                      childAspectRatio: 0.9,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: answer.length,
+                                    itemBuilder: (context, index) {
+                                      return _AnswerDesign(
+                                        answer: answer[index]['file'],
+                                        isImage: true,
+                                        imageBuild: widget.imageBuild,
+                                      );
+                                    })
+                                // Wrap(
+                                //     spacing: 8,
+                                //     runSpacing: 8,
+                                //     children: answer
+                                //         .map(
+                                //           (e) => _AnswerDesign(
+                                //             answer: e['file'],
+                                //             isImage: true,
+                                //             containsLine: false,
+                                //             imageBuild: widget.imageBuild,
+                                //           ),
+                                //         )
                                 //         .toList(),
-                                //   )
-                                Wrap(
-                                    spacing: 8,
-                                    runSpacing: 8,
-                                    children: answer
-                                        .map(
-                                          (e) => _AnswerDesign(
-                                            answer: e['file'],
-                                            isImage: true,
-                                            containsLine: false,
-                                            imageBuild: widget.imageBuild,
-                                          ),
-                                        )
-                                        .toList(),
 
-                                    // _queueManager.getProcessedWidgets(),
-                                  )
+                                //     // _queueManager.getProcessedWidgets(),
+                                //   )
                                 : _AnswerDesign(
                                     answer: '',
                                   ));
@@ -964,6 +958,7 @@ class _AnswerDesign extends StatelessWidget {
     this.fileClick,
     this.isFile = false,
     this.containsLine = false,
+    this.imageList,
   });
 
   ///String values for text, image urls, files content
@@ -971,6 +966,8 @@ class _AnswerDesign extends StatelessWidget {
 
   ///Function for image/signature builder
   final Widget Function(Map<String, dynamic>)? imageBuild;
+
+  final Map<String, dynamic>? imageList;
 
   ///Function to handle file cliks action
   final Function? fileClick;
@@ -999,13 +996,14 @@ class _AnswerDesign extends StatelessWidget {
                     'height': 120.0,
                     'width': isSignature ? 200.0 : 120,
                   })
-                : Image.network(
-                    answer,
+                : CachedNetworkImage(
+                    imageUrl: answer,
                     height: isSignature ? 150 : 200,
                     width: double.infinity,
                     fit: BoxFit.fill,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const SizedBox(
+                    placeholderFadeInDuration: Duration(seconds: 3),
+                    placeholder: (context, url) => Icon(Icons.image),
+                    errorWidget: (context, error, stackTrace) => const SizedBox(
                       height: 75,
                       child: Icon(
                         Icons.image,
@@ -1213,12 +1211,14 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         'height': 200.0,
                         'width': 200.0,
                       })
-                    : Image.network(
-                        e.file ?? '',
+                    : CachedNetworkImage(
+                        imageUrl: e.file ?? '',
                         height: 150,
                         width: double.infinity,
+                        placeholderFadeInDuration: Duration(seconds: 3),
+                        placeholder: (context, url) => Icon(Icons.image),
                         fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) =>
+                        errorWidget: (context, error, stackTrace) =>
                             const SizedBox(
                           height: 75,
                           child: Icon(
