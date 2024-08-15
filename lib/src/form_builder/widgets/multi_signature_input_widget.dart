@@ -488,12 +488,14 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                   child: TextFormField(
                     controller: formCon,
                     key: widget.fieldKey,
+                    style: const TextStyle(color: Colors.white),
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       errorBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       enabled: false,
+                      labelStyle: TextStyle(color: Colors.white),
                       disabledBorder: InputBorder.none,
                       contentPadding: EdgeInsets.only(
                         left: 100,

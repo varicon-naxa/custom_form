@@ -277,11 +277,13 @@ class _FileInputWidgetState extends State<FileInputWidget>
                 child: Visibility(
                   visible: true,
                   child: TextFormField(
+                    style: const TextStyle(color: Colors.white),
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       errorBorder: InputBorder.none,
                       enabledBorder: InputBorder.none,
                       enabled: false,
+                      labelStyle: TextStyle(color: Colors.white),
                       disabledBorder: InputBorder.none,
                       contentPadding: EdgeInsets.zero,
                       // errorText: widget.emptyMsg,
