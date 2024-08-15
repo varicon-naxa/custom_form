@@ -93,11 +93,12 @@ class _FileInputWidgetState extends State<FileInputWidget>
         isLoading = true;
       });
       if (isMultiple) {
-        final data = await widget
-            .attachmentSave(result.map((e) => e.path.toString()).toList());
         var currentList = widget.formValue.getMappedList(
           widget.field.id,
         ) as List<Map<String, dynamic>>;
+
+        final data = await widget
+            .attachmentSave(result.map((e) => e.path.toString()).toList());
 
         widget.onSaved([...data, ...currentList]);
         setState(() {
@@ -272,41 +273,41 @@ class _FileInputWidgetState extends State<FileInputWidget>
                       storeFiles();
                     }
                   }),
-              SizedBox(
-                height: 20,
-                child: Visibility(
-                  visible: true,
-                  child: TextFormField(
-                    style: const TextStyle(color: Colors.white),
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      errorBorder: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      enabled: false,
-                      labelStyle: TextStyle(color: Colors.white),
-                      disabledBorder: InputBorder.none,
-                      contentPadding: EdgeInsets.zero,
-                      // errorText: widget.emptyMsg,
-                    ),
-                    controller: widget.formCon,
-                    key: widget.fieldKey,
-                    readOnly: true,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    validator: (value) {
-                      if ((answer).isEmpty) {
-                        return textValidator(
-                          value: value,
-                          inputType: "text",
-                          isRequired: (widget.field.isRequired),
-                          requiredErrorText:
-                              widget.field.requiredErrorText ?? widget.emptyMsg,
-                        );
-                      }
-                      return null;
-                    },
-                  ),
-                ),
-              ),
+              // SizedBox(
+              //   height: 20,
+              //   child: Visibility(
+              //     visible: true,
+              //     child: TextFormField(
+              //       style: const TextStyle(color: Colors.white),
+              //       decoration: const InputDecoration(
+              //         border: InputBorder.none,
+              //         errorBorder: InputBorder.none,
+              //         enabledBorder: InputBorder.none,
+              //         enabled: false,
+              //         labelStyle: TextStyle(color: Colors.white),
+              //         disabledBorder: InputBorder.none,
+              //         contentPadding: EdgeInsets.zero,
+              //         // errorText: widget.emptyMsg,
+              //       ),
+              //       controller: widget.formCon,
+              //       key: widget.fieldKey,
+              //       readOnly: true,
+              //       autovalidateMode: AutovalidateMode.onUserInteraction,
+              //       validator: (value) {
+              //         if ((answer).isEmpty) {
+              //           return textValidator(
+              //             value: value,
+              //             inputType: "text",
+              //             isRequired: (widget.field.isRequired),
+              //             requiredErrorText:
+              //                 widget.field.requiredErrorText ?? widget.emptyMsg,
+              //           );
+              //         }
+              //         return null;
+              //       },
+              //     ),
+              //   ),
+              // ),
             ],
           )
         : Column(

@@ -1,6 +1,6 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:geolocator/geolocator.dart';
@@ -75,6 +75,14 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  ///method to get device screen type
+  bool get isTablet {
+    final firstView = WidgetsBinding.instance.platformDispatcher.views.first;
+    final logicalShortestSide =
+        firstView.physicalSize.shortestSide / firstView.devicePixelRatio;
+    return logicalShortestSide > 600;
   }
 
   ///Method that takes date picker type
@@ -723,8 +731,8 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             child: answer.isNotEmpty
                                 ? GridView.builder(
                                     gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: isTablet ? 5 : 3,
                                       mainAxisSpacing: 6,
                                       crossAxisSpacing: 6,
                                       childAspectRatio: 0.87,

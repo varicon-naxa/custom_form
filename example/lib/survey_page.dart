@@ -163,22 +163,22 @@ class _SurveyPageState extends State<SurveyPage> {
                   'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
               'name': '300.jpg',
             },
-            {
-              'id': Rand.Random().nextDouble() * 10000,
-              'file':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'thumbnail':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'name': '301.jpg',
-            },
-            {
-              'id': Rand.Random().nextDouble() * 10000,
-              'file':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'thumbnail':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'name': '302.jpg',
-            },
+            // {
+            //   'id': Rand.Random().nextDouble() * 10000,
+            //   'file':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'thumbnail':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'name': '301.jpg',
+            // },
+            // {
+            //   'id': Rand.Random().nextDouble() * 10000,
+            //   'file':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'thumbnail':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'name': '302.jpg',
+            // },
           ];
         },
         imageBuild: (Map<String, dynamic> data) {

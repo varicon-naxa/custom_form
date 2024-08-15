@@ -44,12 +44,16 @@ class FormValue {
   }
 
   void saveList(String k, List? v) {
-    if (v == null || v.isEmpty) {
-      _value[k] = [];
-    } else {
-      _value[k] = v;
+    try {
+      if (v == null || v.isEmpty) {
+        _value[k] = [];
+      } else {
+        _value[k] = v;
+      }
+    } catch (e) {
+      print('Error: $e');
     }
-    // print('IMAGE VALUES:  $_value');
+    print('IMAGE VALUES:  $_value\n\n KEy=$k');
   }
 
   /// Used for image portion

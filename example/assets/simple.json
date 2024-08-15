@@ -107,7 +107,33 @@
             "label": "Photo of back fill. Min 4 photos, one from each side",
             "isMultiple": true,
             "isRequired": true,
-            "selectedLinkListLabel": ""
+            "selectedLinkListLabel": "",
+            "answer": [
+                {
+                    "id": 1234512,
+                    "name": "adasd",
+                    "file": "https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 1234511,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 1234510,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123459,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                }
+            ]
         },
         {
             "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7933",

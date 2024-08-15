@@ -1009,6 +1009,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                         labelText: labelText,
                                         onSaved: (List<Map<String, dynamic>>
                                             newValue) {
+                                          var a = newValue;
+                                          print(a);
                                           formValue.saveList(
                                             field.id,
                                             newValue,
