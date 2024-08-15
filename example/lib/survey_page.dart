@@ -186,8 +186,8 @@ class _SurveyPageState extends State<SurveyPage> {
             imageUrl: data['image'],
             height: data['height'],
             width: data['width'],
-            placeholderFadeInDuration: Duration(seconds: 1),
-            placeholder: (context, url) => Icon(Icons.image),
+            placeholderFadeInDuration: const Duration(seconds: 1),
+            placeholder: (context, url) => const Icon(Icons.image),
           );
         },
         onFileClicked: (String stringURl) {},

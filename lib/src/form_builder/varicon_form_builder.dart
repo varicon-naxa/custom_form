@@ -2,6 +2,7 @@
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
@@ -124,9 +125,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   ///Global key to be inizialized for signature
   late final GlobalKey<SignatureState> signKey;
 
-  ///Custom for scroll handler controller
-  ScrollController _scrollController = ScrollController();
-
   ScrollToId? scrollToId;
   final ScrollController scrollControllerId = ScrollController();
 
@@ -136,11 +134,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   final Map<String, GlobalKey<FormFieldState<dynamic>>> _formFieldKeys = {};
   final Map<GlobalKey<FormFieldState<dynamic>>, String> _fieldKeyToIdMap = {};
   int questionNumber = 0;
+  bool isScrolled = false;
 
   ///Values to be submitted via forms
   final formValue = FormValue();
-
-  void _scrollListener() {}
 
   // Initialize the keys and mapping
   void _initializeKeys(List<InputField> inputFields) {
@@ -166,13 +163,27 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     /// Create ScrollToId instance
     scrollToId = ScrollToId(scrollController: scrollControllerId);
 
-    scrollControllerId.addListener(_scrollListener);
+    scrollControllerId.addListener(() => detectScroll());
+
     _getCurrentPosition();
+  }
+
+  ///detect screen scroll to hide and show bottom nav bar
+  void detectScroll() {
+    scrollControllerId.addListener(() {
+      if ((scrollControllerId.position.pixels > 10 &&
+          scrollControllerId.position.userScrollDirection ==
+              ScrollDirection.reverse)) {
+        setState(() => isScrolled = true);
+      } else {
+        setState(() => isScrolled = false);
+      }
+    });
   }
 
   @override
   void dispose() {
-    ///disposing resources
+    scrollControllerId.dispose();
     super.dispose();
   }
 
@@ -303,75 +314,72 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     questionNumber = 0;
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: AnimatedBuilder(
-        animation: _scrollController,
-        builder: (context, child) {
-          return AnimatedContainer(
-            color: Colors.white,
-            padding: const EdgeInsets.all(12),
-            duration: const Duration(milliseconds: 400),
-            height: 75,
-            child: _NavigationButton(
-              buttonText: widget.buttonText,
-              onComplete: () async {
-                // return if form state is null.
-                if (formKey.currentState == null) return;
-                // return if form is not valid.
-                if (!formKey.currentState!.validate()) {
-                  scrollToFirstInvalidField();
-                  return;
-                }
+      bottomNavigationBar: AnimatedContainer(
+        color: Colors.white,
+        padding: const EdgeInsets.all(12),
+        duration: const Duration(milliseconds: 200),
+        height: isScrolled ? 0 : 75,
+        child: _NavigationButton(
+          buttonText: widget.buttonText,
+          onComplete: () async {
+            // return if form state is null.
+            if (formKey.currentState == null) return;
+            // return if form is not valid.
+            if (!formKey.currentState!.validate()) {
+              scrollToFirstInvalidField();
+              return;
+            }
 
-                formKey.currentState?.save();
-                Map<String, dynamic> fulldata = formValue.value;
+            formKey.currentState?.save();
+            Map<String, dynamic> fulldata = formValue.value;
 
-                if (widget.hasGeolocation) {
-                  fulldata.addAll({
-                    'location':
-                        widget.surveyForm.setting?['location']['lat'] == null
-                            ? {
-                                'lat': _currentPosition?.latitude,
-                                'long': _currentPosition?.longitude,
-                              }
-                            : widget.surveyForm.setting?['location']
-                  });
-                }
-                widget.onSubmit(formValue.value);
-              },
-            ),
-          );
-        },
+            if (widget.hasGeolocation) {
+              fulldata.addAll({
+                'location':
+                    widget.surveyForm.setting?['location']['lat'] == null
+                        ? {
+                            'lat': _currentPosition?.latitude,
+                            'long': _currentPosition?.longitude,
+                          }
+                        : widget.surveyForm.setting?['location']
+              });
+            }
+            widget.onSubmit(formValue.value);
+          },
+        ),
       ),
       body: Form(
         key: formKey,
         child: Column(
           children: [
-            if (!widget.isCarousel)
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          widget.surveyForm.title.toString(),
-                          style:
-                              Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    height: 1.2,
-                                  ),
-                        ),
-                        AppSpacing.sizedBoxH_08(),
-                        Text(
-                          widget.surveyForm.description.toString(),
-                          style:
-                              Theme.of(context).textTheme.bodySmall?.copyWith(
-                                    color: const Color(0xff6A737B),
-                                  ),
-                        ),
-                        AppSpacing.sizedBoxH_08(),
-                        // if (widget.hasGeolocation && _currentPosition?.latitude != null)
+            Visibility(
+              visible: isScrolled ? false : true,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 10,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.surveyForm.title.toString(),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                              height: 1.2,
+                            ),
+                      ),
+                      AppSpacing.sizedBoxH_08(),
+                      Text(
+                        widget.surveyForm.description.toString(),
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: const Color(0xff6A737B),
+                            ),
+                      ),
+                      AppSpacing.sizedBoxH_08(),
+                      if (widget.hasGeolocation &&
+                          _currentPosition?.latitude != null)
                         Container(
                           decoration: BoxDecoration(
                             color: Colors.orange.withOpacity(0.1),
@@ -389,891 +397,831 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 style: Theme.of(context).textTheme.bodySmall,
                               )),
                         ),
-                        if (widget.hasGeolocation &&
-                            _currentPosition?.latitude != null)
-                          AppSpacing.sizedBoxH_20(),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            if (widget.hasGeolocation && _currentPosition?.latitude != null)
+              AppSpacing.sizedBoxH_20(),
+            if (!widget.isCarousel)
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: InteractiveScrollViewer(
+                      scrollToId: scrollToId,
+                      scrollDirection: Axis.vertical,
+                      children: [
+                        ...widget.surveyForm.inputFields
+                            .map<ScrollContent?>((e) {
+                              if (!(e is InstructionInputField ||
+                                  e is SectionInputField)) {
+                                questionNumber++;
+                              }
+                              final labelText =
+                                  '$questionNumber. ${e.label ?? ''} ';
+                              return e.maybeMap(
+                                text: (field) {
+                                  // QuillEditorController htmlEditorController =
+                                  //     QuillEditorController();
+                                  final HtmlEditorController
+                                      htmlEditorController =
+                                      HtmlEditorController();
+                                  final TextEditingController formCon =
+                                      TextEditingController();
 
-                        // if (widget.isCarousel)
-                        InteractiveScrollViewer(
-                            scrollToId: scrollToId,
-                            scrollDirection: Axis.vertical,
-                            children: [
-                              ...widget.surveyForm.inputFields
-                                  .map<ScrollContent?>((e) {
-                                    if (!(e is InstructionInputField ||
-                                        e is SectionInputField)) {
-                                      questionNumber++;
-                                    }
-                                    final labelText =
-                                        '$questionNumber. ${e.label ?? ''} ';
-                                    return e.maybeMap(
-                                      text: (field) {
-                                        // QuillEditorController htmlEditorController =
-                                        //     QuillEditorController();
-                                        final HtmlEditorController
-                                            htmlEditorController =
-                                            HtmlEditorController();
-                                        final TextEditingController formCon =
-                                            TextEditingController();
-
-                                        HtmlEditorOptions editorOptions =
-                                            const HtmlEditorOptions(
-                                                initialText:
-                                                    '<b>This is me</b>');
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        editorOptions = HtmlEditorOptions(
-                                          adjustHeightForKeyboard: false,
-                                          initialText: field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: (field.name ?? '')
-                                                    .toLowerCase()
-                                                    .contains('long')
-                                                ? HtmlEditorWidget(
-                                                    formCon: formCon,
-                                                    fieldKey: _formFieldKeys[
-                                                        field.id],
-                                                    field: field,
-                                                    htmlEditorController:
-                                                        htmlEditorController,
-                                                    editorOptions:
-                                                        editorOptions,
-                                                    formValue: formValue,
-                                                  )
-                                                : (field.name ?? '')
-                                                        .toLowerCase()
-                                                        .contains('address')
-                                                    ? MapFieldWidget(
-                                                        fieldKey:
-                                                            _formFieldKeys[
-                                                                field.id],
-                                                        // _fieldKeys[widget
-                                                        //     .surveyForm.inputFields
-                                                        //     .indexOf(e)],
-                                                        isRequired:
-                                                            field.isRequired,
-                                                        formValue: formValue,
-                                                        field: field,
-                                                        forMapField: true,
-                                                      )
-                                                    : TextFormField(
-                                                        // inputFormatters: [
-                                                        //   FilteringTextInputFormatter.deny(
-                                                        //       RegExp(r'\s')),
-                                                        // ],
-                                                        initialValue:
-                                                            field.answer ?? '',
-                                                        key: _formFieldKeys[
-                                                            field.id],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .bodyLarge,
-                                                        readOnly:
-                                                            field.readOnly,
-                                                        keyboardType: (field
-                                                                        .name ??
-                                                                    '')
-                                                                .toLowerCase()
-                                                                .contains(
-                                                                    'long')
-                                                            ? TextInputType
-                                                                .multiline
-                                                            : TextInputType
-                                                                .text,
-                                                        textInputAction: (field
-                                                                        .name ??
-                                                                    '')
-                                                                .toLowerCase()
-                                                                .contains(
-                                                                    'long')
-                                                            ? TextInputAction
-                                                                .newline
-                                                            : TextInputAction
-                                                                .next,
-                                                        autovalidateMode:
-                                                            AutovalidateMode
-                                                                .onUserInteraction,
-                                                        maxLength:
-                                                            field.maxLength,
-                                                        maxLines: (field.name ??
-                                                                    '')
-                                                                .toLowerCase()
-                                                                .contains(
-                                                                    'long')
-                                                            ? 3
-                                                            : 1,
-                                                        onSaved: (newValue) {
-                                                          formValue.saveString(
-                                                            field.id,
-                                                            newValue
-                                                                .toString()
-                                                                .trim(),
-                                                          );
-                                                        },
-                                                        validator: (value) {
-                                                          return textValidator(
-                                                            value: value,
-                                                            inputType: "text",
-                                                            isRequired: field
-                                                                .isRequired,
-                                                            requiredErrorText: field
-                                                                .requiredErrorText,
-                                                          );
-                                                        },
-                                                        decoration:
-                                                            InputDecoration(
-                                                          hintText:
-                                                              field.hintText,
-                                                          // labelText: labelText,
-                                                        ),
-                                                      ),
-                                          ),
-                                        );
-                                      },
-                                      number: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: TextFormField(
-                                              initialValue: field.answer ?? '',
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              key: _formFieldKeys[field.id],
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge,
-                                              readOnly: field.readOnly,
-                                              keyboardType: const TextInputType
-                                                  .numberWithOptions(
-                                                  signed: true, decimal: true),
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
-                                              onSaved: (newValue) {
-                                                formValue.saveString(
-                                                  field.id,
-                                                  newValue.toString().trim(),
-                                                );
-                                              },
-                                              inputFormatters: [
-                                                FilteringTextInputFormatter.allow(
-                                                    // RegExp(r'^[0-9]+.?[0-9]*'),
-                                                    RegExp(r'^\s*([0-9]+)\s*$')),
-                                              ],
-                                              validator: (value) {
-                                                return numberValidator(
-                                                  value: (value?.isNotEmpty ??
-                                                          false)
-                                                      ? num.tryParse(
-                                                          value.toString())
-                                                      : null,
-                                                  isRequired: field.isRequired,
-                                                  requiredErrorText:
-                                                      field.requiredErrorText,
-                                                );
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText: field.hintText,
-                                                // labelText: labelText,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      phone: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        PhoneNumber? phoneNumber;
-                                        phoneNumber =
-                                            PhoneNumber.fromCompleteNumber(
-                                                completeNumber:
-                                                    field.answer ?? '');
-
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: FormBuilderIntlPhoneField(
-                                              fieldKey: _formFieldKeys[field
-                                                  .id], // Pass the key here
-                                              name: e.label ?? '',
-                                              initialValue: phoneNumber.number,
-                                              initialCountryCode:
-                                                  phoneNumber.countryISOCode,
-                                              invalidNumberMessage:
-                                                  'Invalid Phone Number',
-                                              isRequired: e.isRequired,
-                                              onSaved: (newValue) {
-                                                Country country =
-                                                    PhoneNumber.getCountry(
-                                                        newValue);
-                                                if (newValue
-                                                        .replaceAll('+', '')
-                                                        .toString()
-                                                        .trim() !=
-                                                    country.dialCode.trim()) {
-                                                  formValue.saveString(
-                                                    field.id,
-                                                    newValue,
-                                                  );
-                                                } else {
-                                                  if (phoneNumber?.number !=
-                                                      null) {
-                                                    formValue.saveString(
-                                                      field.id,
-                                                      '',
-                                                    );
-                                                  }
-                                                }
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText: field.hintText,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      email: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: TextFormField(
-                                              key: _formFieldKeys[field.id],
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
-                                              initialValue: (field.answer),
-                                              readOnly: field.readOnly,
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge,
-                                              keyboardType:
-                                                  TextInputType.emailAddress,
-                                              maxLength: field.maxLength,
-                                              onSaved: (newValue) {
-                                                formValue.saveString(
-                                                  field.id,
-                                                  newValue.toString().trim(),
-                                                );
-                                              },
-                                              validator: (value) {
-                                                return textValidator(
-                                                  value: value,
-                                                  inputType: "email",
-                                                  isRequired: field.isRequired,
-                                                  requiredErrorText:
-                                                      field.requiredErrorText,
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      url: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: TextFormField(
-                                              key: _formFieldKeys[field.id],
-                                              autovalidateMode: AutovalidateMode
-                                                  .onUserInteraction,
-                                              initialValue: (field.answer),
-                                              readOnly: field.readOnly,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodyLarge,
-                                              keyboardType:
-                                                  TextInputType.number,
-                                              maxLength: field.maxLength,
-                                              textInputAction:
-                                                  TextInputAction.next,
-                                              onSaved: (newValue) {
-                                                formValue.saveString(
-                                                  field.id,
-                                                  newValue.toString().trim(),
-                                                );
-                                              },
-                                              validator: (value) {
-                                                return uriValidator(
-                                                  value: value,
-                                                  isRequired: field.isRequired,
-                                                  requiredErrorText:
-                                                      field.requiredErrorText,
-                                                );
-                                              },
-                                              decoration: InputDecoration(
-                                                hintText: field.hintText,
-                                                // labelText: labelText,
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      date: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: DateTimeInputWidget(
+                                  HtmlEditorOptions editorOptions =
+                                      const HtmlEditorOptions(
+                                          initialText: '<b>This is me</b>');
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  editorOptions = HtmlEditorOptions(
+                                    adjustHeightForKeyboard: false,
+                                    initialText: field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: (field.name ?? '')
+                                              .toLowerCase()
+                                              .contains('long')
+                                          ? HtmlEditorWidget(
+                                              formCon: formCon,
                                               fieldKey:
                                                   _formFieldKeys[field.id],
                                               field: field,
-
-                                              dateTime: DatePickerType.date,
+                                              htmlEditorController:
+                                                  htmlEditorController,
+                                              editorOptions: editorOptions,
                                               formValue: formValue,
-                                              // labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      time: (field) {
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: DateTimeInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              dateTime: DatePickerType.time,
-                                              formValue: formValue,
-                                              // labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      datetimelocal: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: DateTimeInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              dateTime: DatePickerType.dateTime,
-                                              formValue: formValue,
-                                              // labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      comment: (field) {
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              LabeledWidget(
-                                                labelText: labelText,
-                                                isRequired: e.isRequired,
-                                                child: TextFormField(
-                                                  initialValue: field.answer,
+                                            )
+                                          : (field.name ?? '')
+                                                  .toLowerCase()
+                                                  .contains('address')
+                                              ? MapFieldWidget(
+                                                  fieldKey:
+                                                      _formFieldKeys[field.id],
+                                                  // _fieldKeys[widget
+                                                  //     .surveyForm.inputFields
+                                                  //     .indexOf(e)],
+                                                  isRequired: field.isRequired,
+                                                  formValue: formValue,
+                                                  field: field,
+                                                  forMapField: true,
+                                                )
+                                              : TextFormField(
+                                                  // inputFormatters: [
+                                                  //   FilteringTextInputFormatter.deny(
+                                                  //       RegExp(r'\s')),
+                                                  // ],
+                                                  initialValue:
+                                                      field.answer ?? '',
                                                   key: _formFieldKeys[field.id],
-                                                  autovalidateMode:
-                                                      AutovalidateMode
-                                                          .onUserInteraction,
-                                                  textInputAction:
-                                                      TextInputAction.next,
-                                                  readOnly: field.readOnly,
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .bodyLarge,
-                                                  keyboardType:
-                                                      TextInputType.text,
+                                                  readOnly: field.readOnly,
+                                                  keyboardType: (field.name ??
+                                                              '')
+                                                          .toLowerCase()
+                                                          .contains('long')
+                                                      ? TextInputType.multiline
+                                                      : TextInputType.text,
+                                                  textInputAction: (field
+                                                                  .name ??
+                                                              '')
+                                                          .toLowerCase()
+                                                          .contains('long')
+                                                      ? TextInputAction.newline
+                                                      : TextInputAction.next,
+                                                  autovalidateMode:
+                                                      AutovalidateMode
+                                                          .onUserInteraction,
                                                   maxLength: field.maxLength,
-                                                  maxLines: 4,
-                                                  onSaved: (newValue) =>
-                                                      formValue.saveString(
-                                                    field.id,
-                                                    newValue,
-                                                  ),
-                                                  validator: (value) =>
-                                                      textValidator(
-                                                    value: value,
-                                                    inputType: "comment",
-                                                    isRequired:
-                                                        field.isRequired,
-                                                    requiredErrorText:
-                                                        field.requiredErrorText,
-                                                  ),
+                                                  maxLines: (field.name ?? '')
+                                                          .toLowerCase()
+                                                          .contains('long')
+                                                      ? 3
+                                                      : 1,
+                                                  onSaved: (newValue) {
+                                                    formValue.saveString(
+                                                      field.id,
+                                                      newValue
+                                                          .toString()
+                                                          .trim(),
+                                                    );
+                                                  },
+                                                  validator: (value) {
+                                                    return textValidator(
+                                                      value: value,
+                                                      inputType: "text",
+                                                      isRequired:
+                                                          field.isRequired,
+                                                      requiredErrorText: field
+                                                          .requiredErrorText,
+                                                    );
+                                                  },
                                                   decoration: InputDecoration(
                                                     hintText: field.hintText,
                                                     // labelText: labelText,
                                                   ),
                                                 ),
-                                              ),
-                                              AppSpacing.sizedBoxH_12(),
-                                            ],
-                                          ),
-                                        );
-                                      },
-                                      dropdown: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: DropdownInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              apiCall: widget.apiCall,
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      yesno: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: YesNoInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      radiogroup: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: RadioInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      yesnona: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: YesNoNaInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      checkbox: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: CheckboxInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              apiCall: widget.apiCall,
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      multipleselect: (field) {
-                                        formValue.saveString(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: MultipleInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              apiCall: widget.apiCall,
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      files: (field) {
-                                        TextEditingController formCon =
-                                            TextEditingController();
+                                    ),
+                                  );
+                                },
+                                number: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: TextFormField(
+                                        initialValue: field.answer ?? '',
+                                        textInputAction: TextInputAction.next,
+                                        key: _formFieldKeys[field.id],
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                        readOnly: field.readOnly,
+                                        keyboardType: const TextInputType
+                                            .numberWithOptions(
+                                            signed: true, decimal: true),
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        onSaved: (newValue) {
+                                          formValue.saveString(
+                                            field.id,
+                                            newValue.toString().trim(),
+                                          );
+                                        },
+                                        inputFormatters: [
+                                          FilteringTextInputFormatter.allow(
+                                              // RegExp(r'^[0-9]+.?[0-9]*'),
+                                              RegExp(r'^\s*([0-9]+)\s*$')),
+                                        ],
+                                        validator: (value) {
+                                          return numberValidator(
+                                            value: (value?.isNotEmpty ?? false)
+                                                ? num.tryParse(value.toString())
+                                                : null,
+                                            isRequired: field.isRequired,
+                                            requiredErrorText:
+                                                field.requiredErrorText,
+                                          );
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText: field.hintText,
+                                          // labelText: labelText,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                phone: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  PhoneNumber? phoneNumber;
+                                  phoneNumber = PhoneNumber.fromCompleteNumber(
+                                      completeNumber: field.answer ?? '');
 
-                                        formValue.saveList(
-                                          field.id,
-                                          field.answer,
-                                        );
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: FileInputWidget(
-                                              formCon: formCon,
-                                              emptyMsg: 'File is required',
-                                              filetype: FileType.any,
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              imageBuild: widget.imageBuild,
-                                              attachmentSave:
-                                                  widget.attachmentSave,
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                              fileClicked: widget.onFileClicked,
-                                              onSaved:
-                                                  (List<Map<String, dynamic>>
-                                                      newValue) {
-                                                formValue.saveList(
-                                                  field.id,
-                                                  newValue,
-                                                );
-                                              },
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: FormBuilderIntlPhoneField(
+                                        fieldKey: _formFieldKeys[
+                                            field.id], // Pass the key here
+                                        name: e.label ?? '',
+                                        initialValue: phoneNumber.number,
+                                        initialCountryCode:
+                                            phoneNumber.countryISOCode,
+                                        invalidNumberMessage:
+                                            'Invalid Phone Number',
+                                        isRequired: e.isRequired,
+                                        onSaved: (newValue) {
+                                          Country country =
+                                              PhoneNumber.getCountry(newValue);
+                                          if (newValue
+                                                  .replaceAll('+', '')
+                                                  .toString()
+                                                  .trim() !=
+                                              country.dialCode.trim()) {
+                                            formValue.saveString(
+                                              field.id,
+                                              newValue,
+                                            );
+                                          } else {
+                                            if (phoneNumber?.number != null) {
+                                              formValue.saveString(
+                                                field.id,
+                                                '',
+                                              );
+                                            }
+                                          }
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText: field.hintText,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                email: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: TextFormField(
+                                        key: _formFieldKeys[field.id],
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        initialValue: (field.answer),
+                                        readOnly: field.readOnly,
+                                        textInputAction: TextInputAction.next,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                        keyboardType:
+                                            TextInputType.emailAddress,
+                                        maxLength: field.maxLength,
+                                        onSaved: (newValue) {
+                                          formValue.saveString(
+                                            field.id,
+                                            newValue.toString().trim(),
+                                          );
+                                        },
+                                        validator: (value) {
+                                          return textValidator(
+                                            value: value,
+                                            inputType: "email",
+                                            isRequired: field.isRequired,
+                                            requiredErrorText:
+                                                field.requiredErrorText,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                                url: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: TextFormField(
+                                        key: _formFieldKeys[field.id],
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        initialValue: (field.answer),
+                                        readOnly: field.readOnly,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyLarge,
+                                        keyboardType: TextInputType.number,
+                                        maxLength: field.maxLength,
+                                        textInputAction: TextInputAction.next,
+                                        onSaved: (newValue) {
+                                          formValue.saveString(
+                                            field.id,
+                                            newValue.toString().trim(),
+                                          );
+                                        },
+                                        validator: (value) {
+                                          return uriValidator(
+                                            value: value,
+                                            isRequired: field.isRequired,
+                                            requiredErrorText:
+                                                field.requiredErrorText,
+                                          );
+                                        },
+                                        decoration: InputDecoration(
+                                          hintText: field.hintText,
+                                          // labelText: labelText,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                date: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: DateTimeInputWidget(
+                                        fieldKey: _formFieldKeys[field.id],
+                                        field: field,
+
+                                        dateTime: DatePickerType.date,
+                                        formValue: formValue,
+                                        // labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                time: (field) {
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: DateTimeInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        dateTime: DatePickerType.time,
+                                        formValue: formValue,
+                                        // labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                datetimelocal: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: DateTimeInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        dateTime: DatePickerType.dateTime,
+                                        formValue: formValue,
+                                        // labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                comment: (field) {
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        LabeledWidget(
+                                          labelText: labelText,
+                                          isRequired: e.isRequired,
+                                          child: TextFormField(
+                                            initialValue: field.answer,
+                                            key: _formFieldKeys[field.id],
+                                            autovalidateMode: AutovalidateMode
+                                                .onUserInteraction,
+                                            textInputAction:
+                                                TextInputAction.next,
+                                            readOnly: field.readOnly,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyLarge,
+                                            keyboardType: TextInputType.text,
+                                            maxLength: field.maxLength,
+                                            maxLines: 4,
+                                            onSaved: (newValue) =>
+                                                formValue.saveString(
+                                              field.id,
+                                              newValue,
+                                            ),
+                                            validator: (value) => textValidator(
+                                              value: value,
+                                              inputType: "comment",
+                                              isRequired: field.isRequired,
+                                              requiredErrorText:
+                                                  field.requiredErrorText,
+                                            ),
+                                            decoration: InputDecoration(
+                                              hintText: field.hintText,
+                                              // labelText: labelText,
                                             ),
                                           ),
-                                        );
-                                      },
-                                      images: (field) {
-                                        TextEditingController formCon =
-                                            TextEditingController();
+                                        ),
+                                        AppSpacing.sizedBoxH_12(),
+                                      ],
+                                    ),
+                                  );
+                                },
+                                dropdown: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: DropdownInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        apiCall: widget.apiCall,
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                yesno: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: YesNoInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                radiogroup: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: RadioInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                yesnona: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: YesNoNaInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                checkbox: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: CheckboxInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        apiCall: widget.apiCall,
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                multipleselect: (field) {
+                                  formValue.saveString(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: MultipleInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        apiCall: widget.apiCall,
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                files: (field) {
+                                  TextEditingController formCon =
+                                      TextEditingController();
 
-                                        if (field.answer != null) {
+                                  formValue.saveList(
+                                    field.id,
+                                    field.answer,
+                                  );
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: FileInputWidget(
+                                        formCon: formCon,
+                                        emptyMsg: 'File is required',
+                                        filetype: FileType.any,
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        imageBuild: widget.imageBuild,
+                                        attachmentSave: widget.attachmentSave,
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                        fileClicked: widget.onFileClicked,
+                                        onSaved: (List<Map<String, dynamic>>
+                                            newValue) {
                                           formValue.saveList(
                                             field.id,
-                                            field.answer,
+                                            newValue,
                                           );
-                                        }
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: FileInputWidget(
-                                              formCon: formCon,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              field: field,
-                                              emptyMsg: 'Image is required',
-                                              fileClicked: widget.onFileClicked,
-                                              filetype: FileType.image,
-                                              imageBuild: widget.imageBuild,
-                                              attachmentSave:
-                                                  widget.attachmentSave,
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                              onSaved:
-                                                  (List<Map<String, dynamic>>
-                                                      newValue) {
-                                                formValue.saveList(
-                                                  field.id,
-                                                  newValue,
-                                                );
-                                              },
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      signature: (field) {
-                                        if (field.answer != null &&
-                                            field.answer != {}) {
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                                images: (field) {
+                                  TextEditingController formCon =
+                                      TextEditingController();
+
+                                  if (field.answer != null) {
+                                    formValue.saveList(
+                                      field.id,
+                                      field.answer,
+                                    );
+                                  }
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: FileInputWidget(
+                                        formCon: formCon,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        field: field,
+                                        emptyMsg: 'Image is required',
+                                        fileClicked: widget.onFileClicked,
+                                        filetype: FileType.image,
+                                        imageBuild: widget.imageBuild,
+                                        attachmentSave: widget.attachmentSave,
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                        onSaved: (List<Map<String, dynamic>>
+                                            newValue) {
+                                          formValue.saveList(
+                                            field.id,
+                                            newValue,
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                                signature: (field) {
+                                  if (field.answer != null &&
+                                      field.answer != {}) {
+                                    formValue.saveMap(
+                                      field.id,
+                                      field.answer ?? {},
+                                    );
+                                  }
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: SignatureInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        attachmentSave: widget.attachmentSave,
+                                        formValue: formValue,
+                                        labelText: labelText,
+                                        imageBuild: widget.imageBuild,
+                                        onSaved:
+                                            (Map<String, dynamic> newValue) {
                                           formValue.saveMap(
                                             field.id,
-                                            field.answer ?? {},
+                                            newValue,
                                           );
-                                        }
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: SignatureInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              attachmentSave:
-                                                  widget.attachmentSave,
-                                              formValue: formValue,
-                                              labelText: labelText,
-                                              imageBuild: widget.imageBuild,
-                                              onSaved: (Map<String, dynamic>
-                                                  newValue) {
-                                                formValue.saveMap(
-                                                  field.id,
-                                                  newValue,
-                                                );
-                                              },
-                                            ),
+                                        },
+                                      ),
+                                    ),
+                                  );
+                                },
+                                multisignature: (field) {
+                                  if (field.answer != null &&
+                                      (field.answer ?? []).isNotEmpty) {
+                                    formValue.saveList(
+                                      field.id,
+                                      (field.answer ?? [])
+                                          .map((e) => e.toJson())
+                                          .toList(),
+                                    );
+                                  }
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                      labelText: labelText,
+                                      isRequired: e.isRequired,
+                                      child: MultiSignatureInputWidget(
+                                        field: field,
+                                        fieldKey: _formFieldKeys[field.id],
+                                        formValue: formValue,
+                                        imageBuild: widget.imageBuild,
+                                        attachmentSave: widget.attachmentSave,
+                                        labelText: labelText,
+                                        onSaved:
+                                            (Map<String, dynamic> result) {},
+                                      ),
+                                    ),
+                                  );
+                                },
+                                instruction: (field) {
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: LabeledWidget(
+                                        labelText: e.label,
+                                        isRequired: e.isRequired,
+                                        child: InstructionWidget(
+                                          onTap: (String url) {
+                                            widget.onFileClicked(url);
+                                          },
+                                          field: field,
+                                          key: _formFieldKeys[field.id],
+                                          imageBuild: widget.imageBuild,
+                                        )),
+                                  );
+                                },
+                                section: (field) {
+                                  return ScrollContent(
+                                    id: field.id,
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16.0),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            e.label ?? '',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleLarge
+                                                ?.copyWith(
+                                                    color:
+                                                        const Color(0xff233759),
+                                                    height: 1.2),
                                           ),
-                                        );
-                                      },
-                                      multisignature: (field) {
-                                        if (field.answer != null &&
-                                            (field.answer ?? []).isNotEmpty) {
-                                          formValue.saveList(
-                                            field.id,
-                                            (field.answer ?? [])
-                                                .map((e) => e.toJson())
-                                                .toList(),
-                                          );
-                                        }
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                            labelText: labelText,
-                                            isRequired: e.isRequired,
-                                            child: MultiSignatureInputWidget(
-                                              field: field,
-                                              fieldKey:
-                                                  _formFieldKeys[field.id],
-                                              formValue: formValue,
-                                              imageBuild: widget.imageBuild,
-                                              attachmentSave:
-                                                  widget.attachmentSave,
-                                              labelText: labelText,
-                                              onSaved: (Map<String, dynamic>
-                                                  result) {},
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                      instruction: (field) {
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: LabeledWidget(
-                                              labelText: e.label,
-                                              isRequired: e.isRequired,
-                                              child: InstructionWidget(
-                                                onTap: (String url) {
-                                                  widget.onFileClicked(url);
-                                                },
-                                                field: field,
-                                                key: _formFieldKeys[field.id],
-                                                imageBuild: widget.imageBuild,
-                                              )),
-                                        );
-                                      },
-                                      section: (field) {
-                                        return ScrollContent(
-                                          id: field.id,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                vertical: 16.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  e.label ?? '',
+                                          AppSpacing.sizedBoxH_08(),
+                                          (field.description ?? '').isEmpty
+                                              ? const SizedBox.shrink()
+                                              : Text(
+                                                  field.description ?? '',
                                                   style: Theme.of(context)
                                                       .textTheme
-                                                      .titleLarge
+                                                      .bodyMedium
                                                       ?.copyWith(
-                                                          color: const Color(
-                                                              0xff233759),
-                                                          height: 1.2),
+                                                        color: const Color(
+                                                            0xff6A737B),
+                                                      ),
                                                 ),
-                                                AppSpacing.sizedBoxH_08(),
-                                                (field.description ?? '')
-                                                        .isEmpty
-                                                    ? const SizedBox.shrink()
+                                          AppSpacing.sizedBoxH_08(),
+                                          const Divider(
+                                            height: 1,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                },
+                                geolocation: (field) {
+                                  return (widget.hasGeolocation)
+                                      ? ScrollContent(
+                                          id: field.id,
+                                          child: const SizedBox.shrink())
+                                      : ScrollContent(
+                                          id: field.id,
+                                          child: LabeledWidget(
+                                            labelText: labelText,
+                                            isRequired: false,
+                                            child: (field.answer != null &&
+                                                    field.answer!['lat'] !=
+                                                        null &&
+                                                    field.answer!['long'] !=
+                                                        null)
+                                                ? CustomLocation(
+                                                    postition: Position(
+                                                        longitude: field
+                                                            .answer!['long'],
+                                                        latitude: field
+                                                            .answer!['lat'],
+                                                        timestamp: DateTime
+                                                            .timestamp(),
+                                                        accuracy: 50.0,
+                                                        altitude: 0.0,
+                                                        altitudeAccuracy: 50.0,
+                                                        heading: 50.0,
+                                                        headingAccuracy: 50.0,
+                                                        speed: 2.0,
+                                                        speedAccuracy: 50.0),
+                                                  )
+                                                : (_currentPosition?.latitude !=
+                                                            null &&
+                                                        widget.hasGeolocation)
+                                                    ? CustomLocation(
+                                                        postition:
+                                                            _currentPosition!,
+                                                      )
                                                     : Text(
-                                                        field.description ?? '',
+                                                        'Location is disabled!',
                                                         style: Theme.of(context)
                                                             .textTheme
-                                                            .bodyMedium
-                                                            ?.copyWith(
-                                                              color: const Color(
-                                                                  0xff6A737B),
-                                                            ),
+                                                            .bodyMedium,
                                                       ),
-                                                AppSpacing.sizedBoxH_08(),
-                                                const Divider(
-                                                  height: 1,
-                                                ),
-                                              ],
-                                            ),
                                           ),
                                         );
-                                      },
-                                      geolocation: (field) {
-                                        return (widget.hasGeolocation)
-                                            ? ScrollContent(
-                                                id: field.id,
-                                                child: const SizedBox.shrink())
-                                            : ScrollContent(
-                                                id: field.id,
-                                                child: LabeledWidget(
-                                                  labelText: labelText,
-                                                  isRequired: false,
-                                                  child: (field.answer !=
-                                                              null &&
-                                                          field.answer![
-                                                                  'lat'] !=
-                                                              null &&
-                                                          field.answer![
-                                                                  'long'] !=
-                                                              null)
-                                                      ? CustomLocation(
-                                                          postition: Position(
-                                                              longitude:
-                                                                  field.answer![
-                                                                      'long'],
-                                                              latitude:
-                                                                  field.answer![
-                                                                      'lat'],
-                                                              timestamp: DateTime
-                                                                  .timestamp(),
-                                                              accuracy: 50.0,
-                                                              altitude: 0.0,
-                                                              altitudeAccuracy:
-                                                                  50.0,
-                                                              heading: 50.0,
-                                                              headingAccuracy:
-                                                                  50.0,
-                                                              speed: 2.0,
-                                                              speedAccuracy:
-                                                                  50.0),
-                                                        )
-                                                      : (_currentPosition
-                                                                      ?.latitude !=
-                                                                  null &&
-                                                              widget
-                                                                  .hasGeolocation)
-                                                          ? CustomLocation(
-                                                              postition:
-                                                                  _currentPosition!,
-                                                            )
-                                                          : Text(
-                                                              'Location is disabled!',
-                                                              style: Theme.of(
-                                                                      context)
-                                                                  .textTheme
-                                                                  .bodyMedium,
-                                                            ),
-                                                ),
-                                              );
-                                        // },
-                                        // map: (field) {
-                                        //   if (field.answer != null && field.answer != {}) {
-                                        //     formValue.saveMap(
-                                        //       field.id,
-                                        //       field.answer ?? {},
-                                        //     );
-                                        //   }
-                                        //   return LabeledWidget(
-                                        //     labelText: e.label,
-                                        //     isRequired: e.isRequired,
-                                        //     child: MapFieldWidget(
-                                        //       formKey: _fieldKeys[
-                                        //           widget.surveyForm.inputFields.indexOf(e)],
-                                        //       formValue: formValue,
-                                        //       field: field,
-                                        //       forMapField: true,
-                                        //       position: (field.answer?['lat'] == null ||
-                                        //               field.answer?['long'] == null)
-                                        //           ? null
-                                        //           : Position(
-                                        //               latitude: field.answer?['lat'],
-                                        //               longitude: field.answer?['long'],
-                                        //               timestamp: DateTime.timestamp(),
-                                        //               accuracy: 50.0,
-                                        //               altitude: 0.0,
-                                        //               altitudeAccuracy: 50.0,
-                                        //               heading: 50.0,
-                                        //               headingAccuracy: 50.0,
-                                        //               speed: 2.0,
-                                        //               speedAccuracy: 50.0),
-                                        //     ),
-                                        //   );
-                                      },
-                                      orElse: () => null,
-                                    );
-                                  })
-                                  .whereType<ScrollContent>()
-                                  // .separated(widget.separatorBuilder?.call())
-                                  .toList(),
-                            ]),
-                      ],
-                    ),
-                  ),
+                                  // },
+                                  // map: (field) {
+                                  //   if (field.answer != null && field.answer != {}) {
+                                  //     formValue.saveMap(
+                                  //       field.id,
+                                  //       field.answer ?? {},
+                                  //     );
+                                  //   }
+                                  //   return LabeledWidget(
+                                  //     labelText: e.label,
+                                  //     isRequired: e.isRequired,
+                                  //     child: MapFieldWidget(
+                                  //       formKey: _fieldKeys[
+                                  //           widget.surveyForm.inputFields.indexOf(e)],
+                                  //       formValue: formValue,
+                                  //       field: field,
+                                  //       forMapField: true,
+                                  //       position: (field.answer?['lat'] == null ||
+                                  //               field.answer?['long'] == null)
+                                  //           ? null
+                                  //           : Position(
+                                  //               latitude: field.answer?['lat'],
+                                  //               longitude: field.answer?['long'],
+                                  //               timestamp: DateTime.timestamp(),
+                                  //               accuracy: 50.0,
+                                  //               altitude: 0.0,
+                                  //               altitudeAccuracy: 50.0,
+                                  //               heading: 50.0,
+                                  //               headingAccuracy: 50.0,
+                                  //               speed: 2.0,
+                                  //               speedAccuracy: 50.0),
+                                  //     ),
+                                  //   );
+                                },
+                                orElse: () => null,
+                              );
+                            })
+                            .whereType<ScrollContent>()
+                            // .separated(widget.separatorBuilder?.call())
+                            .toList(),
+                      ]),
                 ),
               ),
 
