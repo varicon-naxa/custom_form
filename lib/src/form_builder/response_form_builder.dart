@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:geolocator/geolocator.dart';
@@ -723,8 +722,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             ? []
                             : (e.answer ?? []) as List<Map<String, dynamic>>;
 
-                        // var a = answer.map((e) => e);
-
                         return LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
@@ -970,7 +967,6 @@ class _AnswerDesign extends StatelessWidget {
     this.imageBuild,
     this.fileClick,
     this.isFile = false,
-    this.containsLine = false,
   });
 
   ///String values for text, image urls, files content
@@ -991,8 +987,7 @@ class _AnswerDesign extends StatelessWidget {
   ///Checking for signature
   bool isSignature;
 
-  ///to check if line is present
-  bool containsLine;
+
 
   @override
   Widget build(BuildContext context) {
@@ -1060,19 +1055,20 @@ class _AnswerDesign extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black),
                   ),
-        if (containsLine)
-          const DottedLine(
-            direction: Axis.horizontal,
-            alignment: WrapAlignment.center,
-            lineLength: double.infinity,
-            lineThickness: 1.0,
-            dashLength: 4.0,
-            dashColor: Colors.grey,
-            dashRadius: 0.0,
-            dashGapLength: 4.0,
-            dashGapColor: Colors.white,
-            dashGapRadius: 0.0,
-          )
+        // if (containsLine)
+        //   const DottedLine(
+        //     direction: Axis.horizontal,
+        //     alignment: WrapAlignment.center,
+        //     lineLength: double.infinity,
+        //     lineThickness: 1.0,
+        //     dashLength: 4.0,
+        //     dashColor: Colors.grey,
+        //     dashRadius: 0.0,
+        //     dashGapLength: 4.0,
+        //     dashGapColor: Colors.white,
+        //     dashGapRadius: 0.0,
+        //   )
+     
       ],
     );
   }
