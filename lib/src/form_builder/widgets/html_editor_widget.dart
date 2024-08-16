@@ -27,7 +27,6 @@ class HtmlEditorWidget extends StatefulWidget {
 }
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
-  @override
   TextEditingController formCon = TextEditingController();
   String htmlValue = '';
 

@@ -169,18 +169,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     _getCurrentPosition();
   }
 
-  ///detect screen scroll to hide and show bottom nav bar
-  void detectScroll() {
-    scrollControllerId.addListener(() {
-      if ((scrollControllerId.position.pixels > 10 &&
-          scrollControllerId.position.userScrollDirection ==
-              ScrollDirection.reverse)) {
-        setState(() => isScrolled = true);
-      } else {
-        setState(() => isScrolled = false);
-      }
-    });
-  }
 
   @override
   void dispose() {
