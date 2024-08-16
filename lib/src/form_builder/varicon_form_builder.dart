@@ -9,6 +9,7 @@ import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/phone_number.dart';
 import 'package:varicon_form_builder/scroll/scroll_to_id.dart';
 import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/bottom_nav_btn_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/datetime_input_widget.dart';
@@ -163,7 +164,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     /// Create ScrollToId instance
     scrollToId = ScrollToId(scrollController: scrollControllerId);
 
-    scrollControllerId.addListener(() => detectScroll());
+    // scrollControllerId.addListener(() => detectScroll());
 
     _getCurrentPosition();
   }
@@ -314,39 +315,16 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     questionNumber = 0;
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: AnimatedContainer(
-        color: Colors.white,
-        padding: const EdgeInsets.all(12),
-        duration: const Duration(milliseconds: 200),
-        height: isScrolled ? 0 : 75,
-        child: _NavigationButton(
-          buttonText: widget.buttonText,
-          onComplete: () async {
-            // return if form state is null.
-            if (formKey.currentState == null) return;
-            // return if form is not valid.
-            if (!formKey.currentState!.validate()) {
-              scrollToFirstInvalidField();
-              return;
-            }
-
-            formKey.currentState?.save();
-            Map<String, dynamic> fulldata = formValue.value;
-
-            if (widget.hasGeolocation) {
-              fulldata.addAll({
-                'location':
-                    widget.surveyForm.setting?['location']['lat'] == null
-                        ? {
-                            'lat': _currentPosition?.latitude,
-                            'long': _currentPosition?.longitude,
-                          }
-                        : widget.surveyForm.setting?['location']
-              });
-            }
-            widget.onSubmit(formValue.value);
-          },
-        ),
+      bottomNavigationBar: SubmitUpdateButtonWidget(
+        formKey: formKey,
+        formValue: formValue,
+        scrollController: scrollControllerId,
+        hasGeolocation: widget.hasGeolocation,
+        surveyForm: widget.surveyForm,
+        currentPosition: _currentPosition,
+        buttonText: widget.buttonText,
+        onSubmit: widget.onSubmit,
+        scrollToFirstInvalidField: scrollToFirstInvalidField,
       ),
       body: Form(
         key: formKey,

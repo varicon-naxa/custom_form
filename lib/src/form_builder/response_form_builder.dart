@@ -723,7 +723,7 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             ? []
                             : (e.answer ?? []) as List<Map<String, dynamic>>;
 
-                        // var a = answer.map((e) => e);
+                        var a = answer.map((e) => e);
 
                         return LabeledWidget(
                             labelText: labelText,

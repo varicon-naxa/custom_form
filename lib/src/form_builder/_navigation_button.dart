@@ -1,8 +1,8 @@
 part of 'varicon_form_builder.dart';
 
 ///Form elevated button for submit, update and save only operations
-class _NavigationButton extends StatelessWidget {
-  const _NavigationButton({
+class NavigationButton extends StatelessWidget {
+  const NavigationButton({
     required this.onComplete,
     required this.buttonText,
   });
