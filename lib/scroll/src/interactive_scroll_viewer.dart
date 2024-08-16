@@ -64,6 +64,8 @@ class _InteractiveScrollViewerState extends State<InteractiveScrollViewer> {
     /// Default
     if (widget.scrollDirection == Axis.vertical) {
       return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: widget.scrollToId!.scrollContentsList.map((scrollContents) {
           return buildRepaintBoundary(scrollContents);
         }).toList(),

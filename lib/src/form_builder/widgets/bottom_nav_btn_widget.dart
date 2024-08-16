@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
@@ -36,41 +35,13 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
 }
 
 class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
-  bool isScrolled = false;
-
-  @override
-  void initState() {
-    super.initState();
-    widget.scrollController.addListener(() => detectScroll());
-  }
-
-  ///detect screen scroll to hide and show bottom nav bar
-  void detectScroll() {
-    widget.scrollController.addListener(() {
-      if (widget.scrollController.position.pixels ==
-              widget.scrollController.position.maxScrollExtent &&
-          (widget.scrollController.position.userScrollDirection ==
-                  ScrollDirection.reverse ||
-              widget.scrollController.position.userScrollDirection ==
-                  ScrollDirection.forward)) {
-        setState(() => isScrolled = false);
-      } else if ((widget.scrollController.position.pixels > 10 &&
-          widget.scrollController.position.userScrollDirection ==
-              ScrollDirection.reverse)) {
-        setState(() => isScrolled = true);
-      } else {
-        setState(() => isScrolled = false);
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       color: Colors.white,
       padding: const EdgeInsets.all(12),
       duration: const Duration(milliseconds: 200),
-      height: isScrolled ? 0 : 75,
+      height: 75,
       child: NavigationButton(
         buttonText: widget.buttonText,
         onComplete: () async {
