@@ -482,7 +482,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                 ),
               ),
               Visibility(
-                visible: true,
+                visible: answer.isEmpty ? true : false,
                 child: SizedBox(
                   height: 20,
                   child: TextFormField(
@@ -507,8 +507,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                           value: '',
                           inputType: "text",
                           isRequired: (widget.field.isRequired),
-                          requiredErrorText: widget.field.requiredErrorText ??
-                              'Signature is required',
+                          requiredErrorText: 'Signature is required',
                         );
                       }
                       return null;

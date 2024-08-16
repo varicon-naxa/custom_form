@@ -40,6 +40,23 @@
             "isRequired": true
         },
         {
+            "id": "item-94df5d01-232b-4c1d-a6fb-bfdd8c094f6t",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [ 
+            ],
+            "isRequired": true
+        },
+        {
+            "id": "item-726e4655-a519-439a-80d9-5ab27552f0d2",
+            "name": "Signature",
+            "type": "signature",
+            "label": "please enter the signature",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-726e4655-a519-439a-80d9-5ab27552f0db",
             "name": "Signature",
             "type": "signature",
