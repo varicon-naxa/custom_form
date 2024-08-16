@@ -65,6 +65,16 @@
             "selectedLinkListLabel": ""
         },
         {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a177",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7928",
             "name": "Full Name",
             "type": "text",

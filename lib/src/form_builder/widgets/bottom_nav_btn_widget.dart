@@ -4,9 +4,21 @@ import 'package:geolocator/geolocator.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
-
+///CF bottom nav btn widget
+///
+///Btn for submit and update form, reacts on scroll for visibility
 class SubmitUpdateButtonWidget extends StatefulWidget {
-  const SubmitUpdateButtonWidget({super.key, required this.buttonText, required this.formKey, required this.formValue, required this.onSubmit, required this.scrollToFirstInvalidField, required this.hasGeolocation, required this.surveyForm, required this.currentPosition, required this.scrollController});
+  const SubmitUpdateButtonWidget(
+      {super.key,
+      required this.buttonText,
+      required this.formKey,
+      required this.formValue,
+      required this.onSubmit,
+      required this.scrollToFirstInvalidField,
+      required this.hasGeolocation,
+      required this.surveyForm,
+      required this.currentPosition,
+      required this.scrollController});
 
   final String buttonText;
   final GlobalKey<FormState> formKey;
@@ -18,8 +30,6 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
   final Position? currentPosition;
   final ScrollController scrollController;
 
-
-
   @override
   State<SubmitUpdateButtonWidget> createState() =>
       _SubmitUpdateButtonWidgetState();
@@ -28,17 +38,23 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
 class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
   bool isScrolled = false;
 
-
   @override
   void initState() {
     super.initState();
     widget.scrollController.addListener(() => detectScroll());
   }
 
-    ///detect screen scroll to hide and show bottom nav bar
+  ///detect screen scroll to hide and show bottom nav bar
   void detectScroll() {
     widget.scrollController.addListener(() {
-      if ((widget.scrollController.position.pixels > 10 &&
+      if (widget.scrollController.position.pixels ==
+              widget.scrollController.position.maxScrollExtent &&
+          (widget.scrollController.position.userScrollDirection ==
+                  ScrollDirection.reverse ||
+              widget.scrollController.position.userScrollDirection ==
+                  ScrollDirection.forward)) {
+        setState(() => isScrolled = false);
+      } else if ((widget.scrollController.position.pixels > 10 &&
           widget.scrollController.position.userScrollDirection ==
               ScrollDirection.reverse)) {
         setState(() => isScrolled = true);

@@ -15,6 +15,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.da
 import 'package:varicon_form_builder/src/form_builder/widgets/datetime_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/dropdown_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/file_input_widget.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/form_title_info_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/map_field_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/multi_signature_input_widget.dart';
@@ -169,7 +170,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     _getCurrentPosition();
   }
 
-
   @override
   void dispose() {
     scrollControllerId.dispose();
@@ -318,62 +318,21 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
         key: formKey,
         child: Column(
           children: [
-            Visibility(
-              visible: isScrolled ? false : true,
-              child: SingleChildScrollView(
+            FormTitleInfoWidget(
+              hasGeolocation: widget.hasGeolocation,
+              surveyForm: widget.surveyForm,
+              currentPosition: _currentPosition,
+              scrollController: scrollControllerId,
+            ),
+            if (!widget.isCarousel)
+              Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(
                     left: 16,
                     right: 16,
-                    top: 10,
+                    top: 16,
+                    bottom: 25,
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.surveyForm.title.toString(),
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                              height: 1.2,
-                            ),
-                      ),
-                      AppSpacing.sizedBoxH_08(),
-                      Text(
-                        widget.surveyForm.description.toString(),
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                              color: const Color(0xff6A737B),
-                            ),
-                      ),
-                      AppSpacing.sizedBoxH_08(),
-                      if (widget.hasGeolocation &&
-                          _currentPosition?.latitude != null)
-                        Container(
-                          decoration: BoxDecoration(
-                            color: Colors.orange.withOpacity(0.1),
-                            border: Border.all(color: Colors.orange),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: TextButton.icon(
-                              onPressed: () {},
-                              icon: const Icon(
-                                Icons.info_outline,
-                                color: Colors.orange,
-                              ),
-                              label: Text(
-                                'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
-                                style: Theme.of(context).textTheme.bodySmall,
-                              )),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            if (widget.hasGeolocation && _currentPosition?.latitude != null)
-              AppSpacing.sizedBoxH_20(),
-            if (!widget.isCarousel)
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(16),
                   child: InteractiveScrollViewer(
                       scrollToId: scrollToId,
                       scrollDirection: Axis.vertical,
