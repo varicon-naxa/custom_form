@@ -1,4 +1,4 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -74,6 +74,14 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  ///method to get device screen type
+  bool get isTablet {
+    final firstView = WidgetsBinding.instance.platformDispatcher.views.first;
+    final logicalShortestSide =
+        firstView.physicalSize.shortestSide / firstView.devicePixelRatio;
+    return logicalShortestSide > 600;
   }
 
   ///Method that takes date picker type
@@ -587,9 +595,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: YesNoNaInputWidget(
                               field: field,
-                              formKey: Key(field.id),
                               formValue: formValue,
                               labelText: labelText,
+                              fieldKey: GlobalKey(),
                             ),
                           ),
                         );
@@ -657,9 +665,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 ? _MultiAnswerDesign(answer: valueAnswer)
                                 : CheckboxInputWidget(
                                     field: field,
-                                    formKey: Key(field.id),
                                     formValue: formValue,
                                     labelText: labelText,
+                                    fieldKey: GlobalKey(),
                                   ),
                           ),
                         );
@@ -672,9 +680,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: RadioInputWidget(
                               field: field,
-                              formKey: Key(field.id),
                               formValue: formValue,
                               labelText: labelText,
+                              fieldKey: GlobalKey(),
                             ),
                           ),
                         );
@@ -713,30 +721,50 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         List<Map<String, dynamic>> answer = e.answer == null
                             ? []
                             : (e.answer ?? []) as List<Map<String, dynamic>>;
+
                         return LabeledWidget(
                             labelText: labelText,
                             isRequired: e.isRequired,
                             child: answer.isNotEmpty
-                                ?
-                                // ImageLoaderQueue(
-                                //     imageUrls: answer
-                                //         .map((e) => e['file'].toString())
+                                ? GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: isTablet ? 5 : 3,
+                                      mainAxisSpacing: 6,
+                                      crossAxisSpacing: 6,
+                                      childAspectRatio: 0.87,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: answer.length,
+                                    itemBuilder: (context, index) {
+                                      return SizedBox(
+                                        height: 120,
+                                        width: 120,
+                                        child: _AnswerDesign(
+                                          answer: answer[index]['file'],
+                                          isImage: true,
+                                          imageBuild: widget.imageBuild,
+                                        ),
+                                      );
+                                    })
+                                // Wrap(
+                                //     spacing: 8,
+                                //     runSpacing: 8,
+                                //     children: answer
+                                //         .map(
+                                //           (e) => _AnswerDesign(
+                                //             answer: e['file'],
+                                //             isImage: true,
+                                //             containsLine: false,
+                                //             imageBuild: widget.imageBuild,
+                                //           ),
+                                //         )
                                 //         .toList(),
+
+                                //     // _queueManager.getProcessedWidgets(),
                                 //   )
-                                Wrap(
-                                    spacing: 8,
-                                    runSpacing: 8,
-                                    children: answer
-                                        .map(
-                                          (e) => _AnswerDesign(
-                                            answer: e['file'],
-                                            isImage: true,
-                                            containsLine: false,
-                                            imageBuild: widget.imageBuild,
-                                          ),
-                                        )
-                                        .toList(),
-                                  )
                                 : _AnswerDesign(
                                     answer: '',
                                   ));
@@ -939,7 +967,6 @@ class _AnswerDesign extends StatelessWidget {
     this.imageBuild,
     this.fileClick,
     this.isFile = false,
-    this.containsLine = false,
   });
 
   ///String values for text, image urls, files content
@@ -960,8 +987,7 @@ class _AnswerDesign extends StatelessWidget {
   ///Checking for signature
   bool isSignature;
 
-  ///to check if line is present
-  bool containsLine;
+
 
   @override
   Widget build(BuildContext context) {
@@ -975,13 +1001,14 @@ class _AnswerDesign extends StatelessWidget {
                     'height': 120.0,
                     'width': isSignature ? 200.0 : 120,
                   })
-                : Image.network(
-                    answer,
+                : CachedNetworkImage(
+                    imageUrl: answer,
                     height: isSignature ? 150 : 200,
                     width: double.infinity,
-                    fit: BoxFit.fill,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const SizedBox(
+                    fit: BoxFit.contain,
+                    placeholderFadeInDuration: const Duration(seconds: 1),
+                    placeholder: (context, url) => const Icon(Icons.image),
+                    errorWidget: (context, error, stackTrace) => const SizedBox(
                       height: 75,
                       child: Icon(
                         Icons.image,
@@ -991,7 +1018,7 @@ class _AnswerDesign extends StatelessWidget {
                   )
             : isFile
                 ? GestureDetector(
-                  behavior: HitTestBehavior.translucent,
+                    behavior: HitTestBehavior.translucent,
                     onTap: () {
                       fileClick!();
                     },
@@ -1028,19 +1055,20 @@ class _AnswerDesign extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black),
                   ),
-        if (containsLine)
-          const DottedLine(
-            direction: Axis.horizontal,
-            alignment: WrapAlignment.center,
-            lineLength: double.infinity,
-            lineThickness: 1.0,
-            dashLength: 4.0,
-            dashColor: Colors.grey,
-            dashRadius: 0.0,
-            dashGapLength: 4.0,
-            dashGapColor: Colors.white,
-            dashGapRadius: 0.0,
-          )
+        // if (containsLine)
+        //   const DottedLine(
+        //     direction: Axis.horizontal,
+        //     alignment: WrapAlignment.center,
+        //     lineLength: double.infinity,
+        //     lineThickness: 1.0,
+        //     dashLength: 4.0,
+        //     dashColor: Colors.grey,
+        //     dashRadius: 0.0,
+        //     dashGapLength: 4.0,
+        //     dashGapColor: Colors.white,
+        //     dashGapRadius: 0.0,
+        //   )
+     
       ],
     );
   }
@@ -1189,12 +1217,14 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         'height': 200.0,
                         'width': 200.0,
                       })
-                    : Image.network(
-                        e.file ?? '',
+                    : CachedNetworkImage(
+                        imageUrl: e.file ?? '',
                         height: 150,
                         width: double.infinity,
+                        placeholderFadeInDuration: const Duration(seconds: 1),
+                        placeholder: (context, url) => const Icon(Icons.image),
                         fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) =>
+                        errorWidget: (context, error, stackTrace) =>
                             const SizedBox(
                           height: 75,
                           child: Icon(

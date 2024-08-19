@@ -6,38 +6,38 @@ import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
 
-///International phone field form component
+/// International phone field form component
 ///
-///Accepts field type with phone number input
+/// Accepts field type with phone number input
 ///
-///Provides various country code options
+/// Provides various country code options
 class FormBuilderIntlPhoneField extends StatefulWidget {
-  ///Phone field text
+  /// Phone field text
   final String name;
 
-  ///Phone field decoration
+  /// Phone field decoration
   final InputDecoration decoration;
 
-  ///Initial country code
+  /// Initial country code
   final String? initialCountryCode;
 
-  ///Phone initial value
+  /// Phone initial value
   final String? initialValue;
 
-  ///List of countries
+  /// List of countries
   final List<Country>? countries;
 
-  ///String value for invalid number
+  /// String value for invalid number
   final String? invalidNumberMessage;
 
-  ///boolean value for required field
+  /// Boolean value for required field
   final bool isRequired;
 
-  ///Form field key
-  final Key formKey;
-
-  ///Function to call save phone number
+  /// Function to call save phone number
   final Function(String data) onSaved;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   // Expose here more fields from IntlPhoneField as needed
   const FormBuilderIntlPhoneField({
@@ -45,12 +45,12 @@ class FormBuilderIntlPhoneField extends StatefulWidget {
     required this.name,
     required this.decoration,
     required this.onSaved,
-    required this.formKey,
     this.initialCountryCode,
     this.countries,
     this.invalidNumberMessage,
     this.initialValue,
     this.isRequired = false,
+    this.fieldKey,
   });
 
   @override
@@ -60,41 +60,23 @@ class FormBuilderIntlPhoneField extends StatefulWidget {
 
 class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
   String? _error;
-  // final _fieldKey = GlobalKey<FormBuilderFieldState>();
-
-  ///Checking if phone number is valid
-  _isValidIsRequired(PhoneNumber? phoneNumber) {
-    if (!widget.isRequired) {
-      return true;
-    }
-
-    bool val = !(phoneNumber == null ||
-        phoneNumber.number.isEmpty ||
-        !isNumeric(phoneNumber.number));
-
-    return val;
-  }
-
   late List<Country> _countryList;
   late Country _selectedCountry;
   PhoneNumber? phoneNumber;
-  late List<Country> filteredCountries;
   late String number;
 
   @override
   void initState() {
     super.initState();
     _countryList = widget.countries ?? countries;
-    filteredCountries = _countryList;
     number = widget.initialValue ?? '';
+
     if (widget.initialCountryCode == null && number.startsWith('+')) {
       number = number.substring(1);
-      // parse initial value
-      _selectedCountry = countries.firstWhere(
+      _selectedCountry = _countryList.firstWhere(
           (country) => number.startsWith(country.fullCountryCode),
           orElse: () => _countryList.first);
 
-      // remove country code from the initial number value
       number = number.replaceFirst(
           RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
@@ -102,7 +84,6 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
           (item) => item.code == (widget.initialCountryCode ?? 'US'),
           orElse: () => _countryList.first);
 
-      // remove country code from the initial number value
       if (number.startsWith('+')) {
         number = number.replaceFirst(
             RegExp("^\\+${_selectedCountry.fullCountryCode}"), "");
@@ -115,13 +96,26 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
     phoneNumber = PhoneNumber(
       countryISOCode: _selectedCountry.code,
       countryCode: '+${_selectedCountry.dialCode}',
-      number: widget.initialValue ?? '',
+      number: number,
     );
+  }
+
+  bool _isValidIsRequired(PhoneNumber? phoneNumber) {
+    if (!widget.isRequired) {
+      return true;
+    }
+
+    bool val = !(phoneNumber == null ||
+        phoneNumber.number.isEmpty ||
+        !isNumeric(phoneNumber.number));
+
+    return val;
   }
 
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<PhoneNumber>(
+      key: widget.fieldKey, // Pass the key here
       name: widget.name,
       initialValue: phoneNumber,
       validator: (phoneNumber) {
@@ -135,19 +129,27 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
 
         return null;
       },
-      key: widget.formKey,
-      builder: (FormFieldState field) {
+      builder: (FormFieldState<PhoneNumber> field) {
         return IntlPhoneField(
+          validator: (phoneNumber) {
+            if (!_isValidIsRequired(phoneNumber)) {
+              setState(() => _error =
+                  FormBuilderLocalizations.of(context).requiredErrorText);
+              return _error;
+            } else {
+              setState(() => _error = null);
+            }
+            return null;
+          },
           decoration: widget.decoration.copyWith(
             errorText: _error,
           ),
           style: Theme.of(context).textTheme.bodyLarge,
-          initialCountryCode: (widget.initialCountryCode ?? '').isEmpty
-              ? 'AU'
-              : widget.initialCountryCode,
+          initialCountryCode: widget.initialCountryCode ?? 'US',
           initialValue: widget.initialValue,
           countries: widget.countries,
           textInputAction: TextInputAction.next,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onChanged: (phoneNumber) => field.didChange(phoneNumber),
           onSaved: (phoneNumber) {
             field.didChange(phoneNumber);

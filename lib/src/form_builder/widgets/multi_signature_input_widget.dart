@@ -25,6 +25,7 @@ class MultiSignatureInputWidget extends StatefulWidget {
     required this.attachmentSave,
     required this.imageBuild,
     this.labelText,
+    this.fieldKey,
   });
 
   ///Multi signature input field model
@@ -38,6 +39,9 @@ class MultiSignatureInputWidget extends StatefulWidget {
 
   ///Function to call on save multi signature
   void Function(Map<String, dynamic> result) onSaved;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Image build function for signature view
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -56,6 +60,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   GlobalKey<SignatureState> signKey = GlobalKey<SignatureState>();
   bool validate = false;
   bool isLoading = false;
+  TextEditingController formCon = TextEditingController();
 
   ///Method to save list of signature
   saveList() {
@@ -79,6 +84,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     setState(() {
       if ((widget.field.answer ?? []).isNotEmpty) {
         answer.addAll(widget.field.answer ?? []);
+        formCon.text = answer.first.name ?? '';
       }
     });
   }
@@ -250,6 +256,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     onClear: () {
                       final signHere = signKey.currentState;
                       signHere?.clear();
+                      formCon.text = '';
                     },
                   ),
                   AppSpacing.sizedBoxH_12(),
@@ -436,23 +443,78 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
               ),
               child: const CircularProgressIndicator.adaptive(),
             ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              TextButton.icon(
-                onPressed: () => signatureDialog(),
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
+              Container(
+                decoration: DottedDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  dash: const [3, 2],
+                  shape: Shape.box,
                 ),
-                label: Text(
-                  'Add Signature',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.black,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => signatureDialog(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextButton.icon(
+                          onPressed: null,
+                          icon: const Icon(
+                            Icons.add,
+                            color: Colors.black,
+                          ),
+                          label: Text(
+                            'Add Signature',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                  color: Colors.black,
+                                ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: answer.isEmpty ? true : false,
+                child: SizedBox(
+                  height: 20,
+                  child: TextFormField(
+                    controller: formCon,
+                    key: widget.fieldKey,
+                    style: const TextStyle(color: Colors.white),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      labelStyle: TextStyle(color: Colors.white),
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.only(
+                        left: 100,
                       ),
+                    ),
+                    validator: (value) {
+                      if (answer.isEmpty && value != null) {
+                        return textValidator(
+                          value: '',
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText: 'Signature is required',
+                        );
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ],

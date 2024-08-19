@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:math' as Rand;
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class SurveyPage extends StatefulWidget {
   const SurveyPage({super.key, required this.form, required this.formData});
@@ -77,7 +78,6 @@ class _SurveyPageState extends State<SurveyPage> {
         hasGeolocation: false,
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
-          log(formValue.toString());
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
@@ -163,29 +163,31 @@ class _SurveyPageState extends State<SurveyPage> {
                   'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
               'name': '300.jpg',
             },
-            {
-              'id': Rand.Random().nextDouble() * 10000,
-              'file':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'thumbnail':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'name': '301.jpg',
-            },
-            {
-              'id': Rand.Random().nextDouble() * 10000,
-              'file':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'thumbnail':
-                  'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-              'name': '302.jpg',
-            },
+            // {
+            //   'id': Rand.Random().nextDouble() * 10000,
+            //   'file':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'thumbnail':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'name': '301.jpg',
+            // },
+            // {
+            //   'id': Rand.Random().nextDouble() * 10000,
+            //   'file':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'thumbnail':
+            //       'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+            //   'name': '302.jpg',
+            // },
           ];
         },
         imageBuild: (Map<String, dynamic> data) {
-          return Image.network(
-            data['image'],
+          return CachedNetworkImage(
+            imageUrl: data['image'],
             height: data['height'],
             width: data['width'],
+            placeholderFadeInDuration: const Duration(seconds: 1),
+            placeholder: (context, url) => const Icon(Icons.image),
           );
         },
         onFileClicked: (String stringURl) {},

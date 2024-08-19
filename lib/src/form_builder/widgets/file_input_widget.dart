@@ -24,13 +24,22 @@ class FileInputWidget extends StatefulWidget {
     required this.imageBuild,
     required this.fileClicked,
     this.labelText,
+    this.fieldKey,
+    this.emptyMsg = '',
+    required this.formCon,
   });
 
   ///file input field model or image input field model
   final dynamic field;
 
+  ///string msg for field empty case for required case only
+  final String? emptyMsg;
+
   ///form value for the field
   final FormValue formValue;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///label text for the field
   final String? labelText;
@@ -46,6 +55,8 @@ class FileInputWidget extends StatefulWidget {
 
   ///Function to call on save
   final void Function(List<Map<String, dynamic>>) onSaved;
+
+  final TextEditingController formCon;
 
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
@@ -69,6 +80,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
     super.initState();
     answer = widget.field.answer ?? [];
     widget.formValue.saveList(widget.field.id, answer);
+    widget.formCon.text = (answer.isEmpty) ? '' : (answer[0]['name'] ?? '');
   }
 
   ///Method to save file to server
@@ -81,11 +93,12 @@ class _FileInputWidgetState extends State<FileInputWidget>
         isLoading = true;
       });
       if (isMultiple) {
-        final data = await widget
-            .attachmentSave(result.map((e) => e.path.toString()).toList());
         var currentList = widget.formValue.getMappedList(
           widget.field.id,
         ) as List<Map<String, dynamic>>;
+
+        final data = await widget
+            .attachmentSave(result.map((e) => e.path.toString()).toList());
 
         widget.onSaved([...data, ...currentList]);
         setState(() {
@@ -129,103 +142,51 @@ class _FileInputWidgetState extends State<FileInputWidget>
   Widget build(BuildContext context) {
     void customBottom() {
       primaryCustomBottomSheet(
+        hasSpace: false,
         context,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppSpacing.sizedBoxH_16(),
-            Text(
-              'ADD PHOTO',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(
-                      0xff98A5B9,
-                    ),
+        child: Material(
+          color: Colors.transparent,
+          child: Wrap(
+            children: <Widget>[
+              InkWell(
+                onTap: () => storeFiles(fromCamera: true),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 16,
                   ),
-            ),
-            AppSpacing.sizedBoxH_20(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        storeFiles(fromCamera: true);
-                      },
-                      child: SizedBox(
-                        height: 55,
-                        width: MediaQuery.of(context).size.width / 2 - 50,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(
-                              Icons.camera_alt,
-                              color: Color(
-                                0xff5F6D83,
-                              ),
-                            ),
-                            Text(
-                              'Camera',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: const Color(
-                                      0xff5F6D83,
-                                    ),
-                                  ),
-                            )
-                          ],
-                        ),
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.camera_alt,
+                        color: Color(0xff5F6D83),
                       ),
-                    ),
+                      const SizedBox(width: 12),
+                      Text('Camera',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: VerticalDivider(
-                      thickness: 2,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  Expanded(
-                    child: InkWell(
-                      onTap: () {
-                        storeFiles(fromCamera: false);
-                      },
-                      child: SizedBox(
-                        height: 55,
-                        width: MediaQuery.of(context).size.width / 2 - 50,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Icon(Icons.photo_library,
-                                color: Color(
-                                  0xff5F6D83,
-                                )),
-                            Text(
-                              'Photo Library',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: const Color(
-                                      0xff5F6D83,
-                                    ),
-                                  ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            AppSpacing.sizedBoxH_06(),
-          ],
+              InkWell(
+                onTap: () => storeFiles(fromCamera: false),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 16,
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.photo_library, color: Color(0xff5F6D83)),
+                      const SizedBox(width: 12),
+                      Text('Photo Library',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -311,7 +272,42 @@ class _FileInputWidgetState extends State<FileInputWidget>
                     } else {
                       storeFiles();
                     }
-                  })
+                  }),
+              SizedBox(
+                height: 20,
+                child: Visibility(
+                  visible: answer.isEmpty ? true : false,
+                  child: TextFormField(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      labelStyle: TextStyle(color: Colors.white),
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      // errorText: widget.emptyMsg,
+                    ),
+                    controller: widget.formCon,
+                    key: widget.fieldKey,
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if ((answer).isEmpty) {
+                        return textValidator(
+                          value: value,
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText:
+                              widget.field.requiredErrorText ?? widget.emptyMsg,
+                        );
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
             ],
           )
         : Column(
@@ -352,7 +348,40 @@ class _FileInputWidgetState extends State<FileInputWidget>
                       );
                     }
                   },
-                )
+                ),
+              SizedBox(
+                height: 20,
+                child: Visibility(
+                  visible: true,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      // errorText: widget.emptyMsg,
+                    ),
+                    controller: widget.formCon,
+                    key: widget.fieldKey,
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if ((answer).isEmpty) {
+                        return textValidator(
+                          value: value,
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText:
+                              widget.field.requiredErrorText ?? widget.emptyMsg,
+                        );
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
             ],
           );
   }

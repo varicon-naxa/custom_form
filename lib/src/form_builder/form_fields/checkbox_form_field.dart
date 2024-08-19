@@ -41,8 +41,8 @@ class CheckboxFormField extends FormField<List<bool?>> {
                               state.value?[index] == true)
                           ? (item.hasAction!)
                               ? const Color(0xffFDD9D7)
-                              : const Color(0xffDBEFDC)
-                          : Colors.white,
+                              : Colors.transparent
+                          : Colors.transparent,
                       borderRadius: BorderRadius.circular(8),
                       border: Border.all(
                         color: (item.hasAction != null &&
@@ -52,7 +52,7 @@ class CheckboxFormField extends FormField<List<bool?>> {
                                 : Colors.green
                             : state.value?[index] == true
                                 ? Colors.grey.shade500
-                                : Colors.white,
+                                : Colors.transparent,
                       ),
                     ),
                     child: CheckboxListTile(

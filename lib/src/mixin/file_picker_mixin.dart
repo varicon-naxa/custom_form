@@ -30,7 +30,7 @@ mixin FilePickerMixin {
 
     if (result != null) {
       List<File> files = [];
-      int fileCount = result.count ?? 0;
+      int fileCount = result.count;
 
       if (fileCount > 5) {
         Fluttertoast.showToast(
@@ -79,7 +79,15 @@ mixin FilePickerMixin {
                 fontSize: 16.0,
               );
             } else {
-              files.add(file);
+              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
+                  file.path.split('.').last.toLowerCase() == 'heic' ||
+                  file.path.split('.').last.toLowerCase() == 'hevc') {
+                File compressedFile =
+                    await compressImage(file.path, quality: 10);
+                files.add(compressedFile);
+              } else {
+                files.add(file);
+              }
             }
           }
         }
@@ -105,7 +113,7 @@ mixin FilePickerMixin {
 
     if (result != null) {
       List<File> files = [];
-      int fileCount = result.count ?? 0;
+      int fileCount = result.count;
 
       if (fileCount > 5) {
         Fluttertoast.showToast(
@@ -138,7 +146,7 @@ mixin FilePickerMixin {
                   file.path.split('.').last.toLowerCase() == 'heic' ||
                   file.path.split('.').last.toLowerCase() == 'hevc') {
                 File compressedFile =
-                    await compressImage(file.path, quality: 35);
+                    await compressImage(file.path, quality: 10);
                 files.add(compressedFile);
               } else {
                 files.add(file);
@@ -166,7 +174,7 @@ mixin FilePickerMixin {
                   file.path.split('.').last.toLowerCase() == 'heic' ||
                   file.path.split('.').last.toLowerCase() == 'hevc') {
                 File compressedFile =
-                    await compressImage(file.path, quality: 35);
+                    await compressImage(file.path, quality: 10);
                 files.add(compressedFile);
               } else {
                 files.add(file);
@@ -228,7 +236,7 @@ mixin FilePickerMixin {
       if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
           file.path.split('.')[1].toLowerCase == 'heic' ||
           file.path.split('.')[1].toLowerCase == 'hevc') {
-        File compressedFile = await compressImage(file.path, quality: 35);
+        File compressedFile = await compressImage(file.path, quality: 10);
         return [compressedFile];
       } else {
         return [file];

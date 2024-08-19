@@ -1,11 +1,11 @@
- {
+{
     "title": "Linked to list test is a type of list where we can add list here",
     "elements": [
         {
             "type": "dropdown",
             "id": "select1",
             "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
-            "isRequired": false,
+            "isRequired": true,
             "requiredErrorText": "Drop down is required",
             "commentPlaceholder": "comment are place",
             "fromManualList": false,
@@ -114,7 +114,7 @@
             "name": "long",
             "id": "longeteteasedasdast",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": false,
+            "isRequired": true,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -243,11 +243,31 @@
             "type": "images",
             "label": "Photo of back fill. Min 4 photos, one from each side",
             "isMultiple": false,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a17763",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        
+        {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a17764",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
             "isRequired": true,
             "selectedLinkListLabel": ""
         }
     ],
     "description": "Description is the describing method which describes the title in various way"
 }
-
 

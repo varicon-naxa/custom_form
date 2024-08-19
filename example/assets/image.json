@@ -14,7 +14,7 @@
                 {
                     "id": 1234512,
                     "name": "adasd",
-                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "file": "https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                     "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
                 },
                 {
@@ -101,6 +101,123 @@
                 {
                     "id": 12345,
                     "name": "adasd-adaasd-13123-qeqweqewqwe123123-1313123123-131312312312313123",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                }
+            ]
+        },
+        {
+            "type": "files",
+            "id": "file",
+            "label": "Attach files letter",
+            "isMultiple": true,
+            "isRequired": false,
+            "answer": [
+                {
+                    "id": 123456,
+                    "name": "adasd-adaasd-13123-qeqweqewqwe123123-1313123123-131312312312313123",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 1234567,
+                    "name": "adasd-adaasd-13123-qeqweqewqwe123123-1313123123-131312312312313123",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                }
+            ]
+        },
+        {
+            "type": "images",
+            "id": "image2",
+            "label": "Attach covver letter",
+            "isMultiple": true,
+            "isRequired": false,
+            "answer": [
+                {
+                    "id": 1234512,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 1234511,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 1234510,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123459,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123458,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123457,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123456,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123455,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                }
+            ]
+        },
+        {
+            "type": "images",
+            "id": "image3",
+            "label": "Attach covver letter",
+            "isMultiple": true,
+            "isRequired": false,
+            "answer": [
+                {
+                    "id": 1234512,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 1234511,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 1234510,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123459,
+                    "name": "adasd",
+                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
+                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
+                },
+                {
+                    "id": 123458,
+                    "name": "adasd",
                     "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
                     "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
                 }

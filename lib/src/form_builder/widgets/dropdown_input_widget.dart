@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_paginated_bs.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/primary_bottomsheet.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import '../../../varicon_form_builder.dart';
@@ -13,7 +14,7 @@ class DropdownInputWidget extends StatefulWidget {
       {super.key,
       required this.field,
       required this.formValue,
-      required this.formKey,
+      required this.fieldKey,
       required this.labelText,
       this.apiCall});
 
@@ -24,7 +25,8 @@ class DropdownInputWidget extends StatefulWidget {
   final FormValue formValue;
 
   ///Field form unique key
-  final Key formKey;
+   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
+
 
   ///Label text for dropdown
   final String? labelText;
@@ -110,7 +112,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
         ? TextFormField(
             readOnly: true,
             controller: formCon,
-            key: widget.formKey,
+            key: widget.fieldKey,
             validator: (values) => textValidator(
               value: values,
               inputType: "text",
@@ -147,77 +149,166 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
           )
         : Column(
             children: [
-              DropdownButtonFormField<String>(
-                value: value,
-                key: widget.formKey,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
+              TextFormField(
+                readOnly: true,
+                controller: formCon,
+                key: widget.fieldKey,
                 validator: (values) => textValidator(
                   value: values,
                   inputType: "text",
                   isRequired: widget.field.isRequired,
                   requiredErrorText: widget.field.requiredErrorText,
                 ),
-                decoration: InputDecoration(
-                  hintText: widget.field.hintText,
-                  suffixIcon: value != null
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              value = null;
-                              showMessage = false;
-                            });
-                          },
-                          icon: const Icon(
-                            Icons.close,
-                            color: Colors.orange,
-                          ),
-                        )
-                      : null,
+                decoration: const InputDecoration(
+                  suffixIcon: Icon(
+                    Icons.arrow_drop_down,
+                  ),
                 ),
-                items: () {
-                  final items = choices.map((e) {
-                    return DropdownMenuItem(
-                      value: e.value,
-                      child: Text(
-                        e.text,
-                        style: Theme.of(context).textTheme.bodyMedium,
+                onTap: () {
+                  primaryCustomBottomSheet(
+                    hasSpace: false,
+                    context,
+                    child: Material(
+                      color: Colors.transparent,
+                      child: Column(
+                        children: [
+                          ...choices.map(
+                            (e) => SizedBox(
+                              width: double.infinity,
+                              child: InkWell(
+                                onTap: () {
+                                  // widget.formValue.saveString(
+                                  //   widget.field.id,
+                                  //   e.value,
+                                  // );
+                                  // widget.formValue.saveString(
+                                  //   widget.field.id
+                                  //       .substring(5, widget.field.id.length),
+                                  //   e.text,
+                                  // );
+                                  // setState(() {
+                                  //   formCon.text = e.text;
+                                  // });
+                                  // Navigator.pop(context);
+
+                                  // remove text saved in other text field if dropdown value in not
+                                  // other
+                                  if (e.value != 'other') {
+                                    widget.formValue.remove(otherFieldKey);
+                                  }
+                                  widget.formValue.saveString(
+                                    widget.field.id,
+                                    e.value,
+                                  );
+
+                                  bool containsId = choices
+                                      .any((obj) => obj.value == e.value);
+
+                                  if (containsId) {
+                                    ValueText? foundObject = choices.firstWhere(
+                                      (obj) => obj.value == e.value,
+                                    );
+
+                                    widget.formValue.saveString(
+                                      widget.field.id
+                                          .substring(5, widget.field.id.length),
+                                      foundObject.text,
+                                    );
+                                  }
+                                  setState(() => formCon.text = e.text);
+                                  Navigator.pop(context);
+                                },
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 16,
+                                    horizontal: 16,
+                                  ),
+                                  child: Text(
+                                    e.text,
+                                    style:
+                                        Theme.of(context).textTheme.bodyLarge,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    );
-                  }).toList();
-                  return items;
-                }(),
-                onChanged: (value) {
-                  setState(() {
-                    this.value = value;
-                  });
-                  checkValue();
-                },
-                onSaved: (newValue) {
-                  // remove text saved in other text field if dropdown value in not
-                  // other
-                  if (newValue != 'other') {
-                    widget.formValue.remove(otherFieldKey);
-                  }
-                  widget.formValue.saveString(
-                    widget.field.id,
-                    newValue,
+                    ),
                   );
-
-                  bool containsId = choices.any((obj) => obj.value == newValue);
-
-                  if (containsId) {
-                    ValueText? foundObject = choices.firstWhere(
-                      (obj) => obj.value == newValue,
-                    );
-
-                    widget.formValue.saveString(
-                      widget.field.id.substring(5, widget.field.id.length),
-                      foundObject.text,
-                    );
-                    // answerText = foundObject.text;
-                  }
                 },
               ),
+              // DropdownButtonFormField<String>(
+              //   value: value,
+              //   key: widget.formKey,
+              //   autovalidateMode: AutovalidateMode.onUserInteraction,
+              //   validator: (values) => textValidator(
+              //     value: values,
+              //     inputType: "text",
+              //     isRequired: widget.field.isRequired,
+              //     requiredErrorText: widget.field.requiredErrorText,
+              //   ),
+              //   decoration: InputDecoration(
+              //     hintText: widget.field.hintText,
+              //     suffixIcon: value != null
+              //         ? IconButton(
+              //             onPressed: () {
+              //               setState(() {
+              //                 value = null;
+              //                 showMessage = false;
+              //               });
+              //             },
+              //             icon: const Icon(
+              //               Icons.close,
+              //               color: Colors.orange,
+              //             ),
+              //           )
+              //         : null,
+              //   ),
+              //   items: () {
+              //     final items = choices.map((e) {
+              //       return DropdownMenuItem(
+              //         value: e.value,
+              //         child: Text(
+              //           e.text,
+              //           style: Theme.of(context).textTheme.bodyMedium,
+              //         ),
+              //       );
+              //     }).toList();
+              //     return items;
+              //   }(),
+              //   onChanged: (value) {
+              //     setState(() {
+              //       this.value = value;
+              //     });
+              //     checkValue();
+              //   },
+              //   onSaved: (newValue) {
+              //     // remove text saved in other text field if dropdown value in not
+              //     // other
+              //     if (newValue != 'other') {
+              //       widget.formValue.remove(otherFieldKey);
+              //     }
+              //     widget.formValue.saveString(
+              //       widget.field.id,
+              //       newValue,
+              //     );
+
+              //     bool containsId = choices.any((obj) => obj.value == newValue);
+
+              //     if (containsId) {
+              //       ValueText? foundObject = choices.firstWhere(
+              //         (obj) => obj.value == newValue,
+              //       );
+
+              //       widget.formValue.saveString(
+              //         widget.field.id.substring(5, widget.field.id.length),
+              //         foundObject.text,
+              //       );
+              //       // answerText = foundObject.text;
+              //     }
+              //   },
+              // ),
               if (showMessage && (widget.field.actionMessage ?? '').isNotEmpty)
                 Container(
                   width: double.infinity,

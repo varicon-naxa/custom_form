@@ -28,6 +28,7 @@ class SignatureInputWidget extends StatefulWidget {
     required this.attachmentSave,
     required this.imageBuild,
     this.labelText,
+    required this.fieldKey,
   });
 
   ///Signature input model
@@ -38,6 +39,9 @@ class SignatureInputWidget extends StatefulWidget {
 
   ///Field label text
   final String? labelText;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Image build function for sign display
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -59,6 +63,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
   Map<String, dynamic> answer = {};
   bool isLoading = false;
   String imaeURL = '';
+  TextEditingController formCon = TextEditingController();
 
   ///Late initilize global key for signature/field
   late final GlobalKey<SignatureState> sign;
@@ -71,6 +76,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
     setState(() {
       answer = widget.field.answer ?? {};
       imaeURL = answer['file'] ?? '';
+      formCon.text = answer['file'] ?? '';
     });
   }
 
@@ -96,6 +102,7 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
               setState(() {
                 answer = {};
               });
+              formCon.text = '';
               Navigator.of(context).pop();
             },
             child: const Text('Remove'),
@@ -298,38 +305,89 @@ class _SignatureInputWidgetState extends State<SignatureInputWidget> {
                 height: 170,
                 width: double.infinity,
                 child: answer.isEmpty
-                    ? Container(
-                        decoration: DottedDecoration(
-                          borderRadius: BorderRadius.circular(4),
-                          dash: const [3, 2],
-                          shape: Shape.box,
-                        ),
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              openDialog();
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 50,
-                                  width: 50,
-                                  child: Image.asset(
-                                    'assets/image/signature.png',
-                                    package: 'varicon_form_builder',
+                    ? Column(
+                        children: [
+                          Expanded(
+                            child: SizedBox(
+                              width: double.infinity,
+                              child: Container(
+                                decoration: DottedDecoration(
+                                  borderRadius: BorderRadius.circular(4),
+                                  dash: const [3, 2],
+                                  shape: Shape.box,
+                                ),
+                                child: Material(
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                    onTap: () {
+                                      openDialog();
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          height: 50,
+                                          width: 50,
+                                          child: Image.asset(
+                                            'assets/image/signature.png',
+                                            package: 'varicon_form_builder',
+                                          ),
+                                        ),
+                                        Text(
+                                          'Click here to add signature',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodyMedium,
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                Text(
-                                  'Click here to add signature',
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                              ],
+                              ),
                             ),
                           ),
-                        ),
+                          SizedBox(
+                            height: 20,
+                            child: Visibility(
+                              visible: true,
+                              child: TextFormField(
+                                style: const TextStyle(color: Colors.white),
+                                decoration: const InputDecoration(
+                                  border: InputBorder.none,
+                                  errorBorder: InputBorder.none,
+                                  enabledBorder: InputBorder.none,
+                                  enabled: false,
+                                  labelStyle: TextStyle(color: Colors.white),
+                                  disabledBorder: InputBorder.none,
+                                  contentPadding: EdgeInsets.only(
+                                    left: 105,
+                                  ),
+                                ),
+                                controller: formCon,
+                                key: widget.fieldKey,
+                                readOnly: true,
+                                autovalidateMode:
+                                    AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                  if ((answer).isEmpty) {
+                                    return textValidator(
+                                      value: value,
+                                      inputType: "text",
+                                      isRequired: (widget.field.isRequired),
+                                      requiredErrorText:
+                                          widget.field.requiredErrorText ??
+                                              'Signature is required',
+                                    );
+                                  }
+                                  return null;
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
                       )
                     : Stack(
                         children: [

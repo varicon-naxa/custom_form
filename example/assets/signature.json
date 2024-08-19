@@ -15,7 +15,19 @@
                 "isLoading": false,
                 "attachmentId": "1338"
             }
-        }
+        },
+                      {
+                                     "id": "item-078a2cbc-c6af-49df-a59e-c60d3407773f",
+                                     "name": "Multi-Select Dropdown",
+                                     "type": "multipleselect",
+                                     "label": "Email",
+                                     "choice": [],
+                                     "isRequired": true,
+                                     "isConditional": false,
+                                     "fromManualList": false,
+                                     "islinked_query": "user",
+                                     "selectedLinkListLabel": "Anil Shrestha"
+                                }
     ],
     "description": "Description"
 }

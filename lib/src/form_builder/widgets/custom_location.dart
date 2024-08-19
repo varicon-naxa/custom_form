@@ -57,14 +57,12 @@ class MapPicker extends StatefulWidget {
   final Position? postition;
 
   ///Map value form key
-  final Key formKey;
 
   MapPicker({
-    Key? key,
+    super.key,
     this.forMapField = false,
     this.postition,
-    required this.formKey,
-  }) : super(key: key);
+  });
 
   @override
   State<MapPicker> createState() => _MapPickerState();
