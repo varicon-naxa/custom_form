@@ -2,7 +2,6 @@
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
@@ -1135,7 +1134,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 }
 
 ///HTML editor widget class
-class HtmlEditorWidget extends StatelessWidget {
+class HtmlEditorWidget extends StatefulWidget {
   final TextInputField field;
   final HtmlEditorController htmlEditorController;
   final HtmlEditorOptions editorOptions;
@@ -1154,6 +1153,18 @@ class HtmlEditorWidget extends StatelessWidget {
   });
 
   @override
+  State<HtmlEditorWidget> createState() => _HtmlEditorWidgetState();
+}
+
+class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
+  bool empty = false;
+
+  void change(String v) {
+    widget.formCon.text = v;
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -1169,16 +1180,16 @@ class HtmlEditorWidget extends StatelessWidget {
             child: HtmlEditor(
               callbacks: Callbacks(
                 onChangeContent: (code) {
-                  formCon.text = code.toString().trim();
-                  formValue.saveString(
-                    field.id,
+                  change(code.toString().trim());
+                  widget.formValue.saveString(
+                    widget.field.id,
                     code.toString().trim(),
                   );
                 },
               ),
-              controller: htmlEditorController, //required
+              controller: widget.htmlEditorController, //required
               plugins: const [],
-              htmlEditorOptions: editorOptions,
+              htmlEditorOptions: widget.editorOptions,
               // textInputAction: TextInputAction.newline,
               htmlToolbarOptions: const HtmlToolbarOptions(
                 defaultToolbarButtons: [
@@ -1212,26 +1223,36 @@ class HtmlEditorWidget extends StatelessWidget {
             visible: true,
             child: TextFormField(
               style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
+                errorText: empty == true ? 'Long text is required' : '',
                 labelStyle: TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
               ),
-              controller: formCon,
-              key: fieldKey,
+              controller: widget.formCon,
+              key: widget.fieldKey,
               readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChanged: (value) {
+                setState(() {
+                  empty = false;
+                });
+              },
               validator: (value) {
+                setState(() {
+                  empty = true;
+                });
+
                 // var a = formValue.value;
 
                 return textValidator(
                   value: value.toString().trim(),
                   inputType: "text",
-                  isRequired: (field.isRequired),
+                  isRequired: (widget.field.isRequired),
                   requiredErrorText: 'Long text is required',
                 );
               },

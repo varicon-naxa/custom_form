@@ -14,6 +14,26 @@
             "selectedLinkListLabel": ""
         },
         {
+            "type": "text",
+            "name": "long",
+            "id": "longetetesdast",
+            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "isRequired": true,
+            "requiredErrorText": "First name is required",
+            "autocomplete": "name",
+            "maxLength": 30,
+            "answer": "",
+            "placeholder": "First Name placeholder"
+        },
+        {
+            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Primary Phone number",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7927",
             "name": "Full Name",
             "type": "text",
@@ -80,7 +100,7 @@
             "type": "text",
             "label": "Full Name",
             "answer": "",
-            "isRequired": false,
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
@@ -124,7 +144,7 @@
             "type": "date",
             "name": "date1",
             "id": "date1",
-            "isRequired": false,
+            "isRequired": true,
             "title": "Enter date to have leave"
         },
         {

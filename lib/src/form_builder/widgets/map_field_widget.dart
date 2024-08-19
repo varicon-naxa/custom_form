@@ -29,8 +29,6 @@ class MapFieldWidget extends StatefulWidget {
   ///Map value form key
   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
-
-
   ///Form value for map values
   final FormValue formValue;
 
@@ -92,6 +90,7 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
     return TextFormField(
       key: widget.fieldKey,
       autocorrect: false,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       onSaved: (newValue) {
         widget.formValue.saveString(
           widget.field?.id ?? '',

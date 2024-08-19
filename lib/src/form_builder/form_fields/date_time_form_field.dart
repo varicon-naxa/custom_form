@@ -119,16 +119,17 @@ class DateTimeFormField extends FormField<DateTime> {
               key: fieldKey,
               readOnly: true,
               enabled: false,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
               decoration: InputDecoration(
                 errorText: state.errorText,
                 hintText: _getHintText(type).toUpperCase(),
               ),
-              validator: (data) {
-                if ((data == null || data.isEmpty) && isRequired == true) {
-                  return 'This field is required';
-                }
-                return null;
-              },
+              // validator: (data) {
+              //   if ((data == null || data.isEmpty) && isRequired == true) {
+              //     return 'This field is required';
+              //   }
+              //   return null;
+              // },
               // initialValue: dateBuilder?.call(state.value, type) ??
               //     getFormattedText(state.value, type),
               controller: controller,

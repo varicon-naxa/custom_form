@@ -58,8 +58,7 @@ class FormBuilderIntlPhoneField extends StatefulWidget {
       _FormBuilderIntlPhoneFieldState();
 }
 
-class _FormBuilderIntlPhoneFieldState
-    extends State<FormBuilderIntlPhoneField> {
+class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
   String? _error;
   late List<Country> _countryList;
   late Country _selectedCountry;
@@ -132,6 +131,16 @@ class _FormBuilderIntlPhoneFieldState
       },
       builder: (FormFieldState<PhoneNumber> field) {
         return IntlPhoneField(
+          validator: (phoneNumber) {
+            if (!_isValidIsRequired(phoneNumber)) {
+              setState(() => _error =
+                  FormBuilderLocalizations.of(context).requiredErrorText);
+              return _error;
+            } else {
+              setState(() => _error = null);
+            }
+            return null;
+          },
           decoration: widget.decoration.copyWith(
             errorText: _error,
           ),
@@ -140,6 +149,7 @@ class _FormBuilderIntlPhoneFieldState
           initialValue: widget.initialValue,
           countries: widget.countries,
           textInputAction: TextInputAction.next,
+          autovalidateMode: AutovalidateMode.onUserInteraction,
           onChanged: (phoneNumber) => field.didChange(phoneNumber),
           onSaved: (phoneNumber) {
             field.didChange(phoneNumber);
