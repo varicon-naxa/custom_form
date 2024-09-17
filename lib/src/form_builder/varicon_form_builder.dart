@@ -1,4 +1,6 @@
-// ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads
+// ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
+
+import 'dart:developer';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -798,6 +800,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         checkbox: (field) {
+                          log('checkbox bhitra aayo');
                           formValue.saveString(
                             field.id,
                             field.answer,
@@ -840,11 +843,14 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         files: (field) {
                           TextEditingController formCon =
                               TextEditingController();
+                          if (field.answer != null &&
+                              (field.answer ?? []).isNotEmpty) {
+                            formValue.saveList(
+                              field.id,
+                              field.answer,
+                            );
+                          }
 
-                          formValue.saveList(
-                            field.id,
-                            field.answer,
-                          );
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -875,7 +881,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           TextEditingController formCon =
                               TextEditingController();
 
-                          if (field.answer != null) {
+                          if (field.answer != null &&
+                              (field.answer ?? []).isNotEmpty) {
                             formValue.saveList(
                               field.id,
                               field.answer,
@@ -898,8 +905,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 formValue: formValue,
                                 labelText: labelText,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
-                                  var a = newValue;
-                                  print(a);
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -910,7 +915,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         signature: (field) {
-                          if (field.answer != null && field.answer != {}) {
+                          if (field.answer != null &&
+                              field.answer != {} &&
+                              field.answer.toString() != '{}') {
                             formValue.saveMap(
                               field.id,
                               field.answer ?? {},
@@ -1229,7 +1236,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 enabledBorder: InputBorder.none,
                 enabled: false,
                 errorText: empty == true ? 'Long text is required' : '',
-                labelStyle: TextStyle(color: Colors.white),
+                labelStyle: const TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
               ),

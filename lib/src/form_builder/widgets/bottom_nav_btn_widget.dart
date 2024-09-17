@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
@@ -49,9 +52,12 @@ class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
           if (widget.formKey.currentState == null) return;
           // return if form is not valid.
           if (!widget.formKey.currentState!.validate()) {
+            log('data' + jsonEncode(widget.formValue.value));
             widget.scrollToFirstInvalidField();
+            log('data 2' + jsonEncode(widget.formValue.value));
             return;
           }
+          log('data 3' + jsonEncode(widget.formValue.value));
 
           widget.formKey.currentState?.save();
           Map<String, dynamic> fulldata = widget.formValue.value;
