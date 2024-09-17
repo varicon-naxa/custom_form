@@ -5,6 +5,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
 import 'package:flutter_signature_pad/flutter_signature_pad.dart';
@@ -24,6 +25,7 @@ class MultiSignatureInputWidget extends StatefulWidget {
     required this.attachmentSave,
     required this.imageBuild,
     this.labelText,
+    this.fieldKey,
   });
 
   ///Multi signature input field model
@@ -37,6 +39,9 @@ class MultiSignatureInputWidget extends StatefulWidget {
 
   ///Function to call on save multi signature
   void Function(Map<String, dynamic> result) onSaved;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Image build function for signature view
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -55,6 +60,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   GlobalKey<SignatureState> signKey = GlobalKey<SignatureState>();
   bool validate = false;
   bool isLoading = false;
+  TextEditingController formCon = TextEditingController();
 
   ///Method to save list of signature
   saveList() {
@@ -62,7 +68,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
         .where((signature) =>
             signature.attachmentId != null &&
             signature.file != null &&
-            signature.signatoryName != null)
+            signature.name != null)
         .toList();
     widget.formValue.saveList(
       widget.field.id,
@@ -78,6 +84,7 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     setState(() {
       if ((widget.field.answer ?? []).isNotEmpty) {
         answer.addAll(widget.field.answer ?? []);
+        formCon.text = answer.first.name ?? '';
       }
     });
   }
@@ -114,6 +121,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
   }
 
   ///Signature single component
+  ///
+  ///Single signature component with image and name
   Widget singleComponent(SingleSignature singleItem) {
     return Container(
       height: 335,
@@ -162,7 +171,9 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
             width: double.infinity,
             child: Text(
               singleItem.signatoryName ?? singleItem.name ?? '',
-              style: Theme.of(context).textTheme.bodyMedium,
+              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
             ),
           ),
           IconButton(
@@ -197,7 +208,10 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
     );
   }
 
-  signatureDialog() {
+  ///Signature dialog
+  ///
+  ///Dialog to add signature with name and consent
+  void signatureDialog() {
     SingleSignature singleSignature = SingleSignature(
       id: 'item-${const Uuid().v4()}',
     );
@@ -242,9 +256,12 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                     onClear: () {
                       final signHere = signKey.currentState;
                       signHere?.clear();
+                      formCon.text = '';
                     },
                   ),
-                  AppSpacing.sizedBoxH_04(),
+                  AppSpacing.sizedBoxH_12(),
+                  const SignConsentWidget(),
+                  AppSpacing.sizedBoxH_12(),
                   TextFormField(
                     controller: controller,
                     onChanged: (data) {},
@@ -305,14 +322,14 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
                             onTap: () async {
                               final signs = signKey.currentState;
                               validate = controller.text.isEmpty;
-
+                              setStates(() {});
                               if ((signs?.points ?? []).isEmpty) {
                                 Fluttertoast.showToast(
                                   msg: 'Please sign to submit the signature',
                                 );
                                 return;
                               } else {
-                                if (controller.text.isEmpty) {
+                                if (controller.text.toString().trim().isEmpty) {
                                   setState(() {
                                     validate = true;
                                   });
@@ -426,25 +443,78 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
               ),
               child: const CircularProgressIndicator.adaptive(),
             ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
+          Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              TextButton.icon(
-                onPressed: () {
-                  signatureDialog();
-                },
-                icon: const Icon(
-                  Icons.add,
-                  color: Colors.black,
+              Container(
+                decoration: DottedDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  dash: const [3, 2],
+                  shape: Shape.box,
                 ),
-                label: Text(
-                  'Add Signature',
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.black,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: () => signatureDialog(),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        TextButton.icon(
+                          onPressed: null,
+                          icon: const Icon(
+                            Icons.add,
+                            color: Colors.black,
+                          ),
+                          label: Text(
+                            'Add Signature',
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                  color: Colors.black,
+                                ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Visibility(
+                visible: answer.isEmpty ? true : false,
+                child: SizedBox(
+                  height: 20,
+                  child: TextFormField(
+                    controller: formCon,
+                    key: widget.fieldKey,
+                    style: const TextStyle(color: Colors.white),
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      labelStyle: TextStyle(color: Colors.white),
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.only(
+                        left: 100,
                       ),
+                    ),
+                    validator: (value) {
+                      if (answer.isEmpty && value != null) {
+                        return textValidator(
+                          value: '',
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText: 'Signature is required',
+                        );
+                      }
+                      return null;
+                    },
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ],
@@ -454,6 +524,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
 }
 
 ///Widget to clear signature
+///
+///buttom with icon and text
 class ClearSignatureWidget extends StatelessWidget {
   const ClearSignatureWidget({
     super.key,

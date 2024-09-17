@@ -11,18 +11,16 @@ import '../../models/form_value.dart';
 class DateTimeInputWidget extends StatefulWidget {
   const DateTimeInputWidget({
     super.key,
-    required this.formKey,
     required this.field,
     required this.formValue,
     required this.dateTime,
     this.labelText,
+        this.fieldKey,
+
   });
 
   ///Dynmaic field model [date, time, datetime]
   final dynamic field;
-
-  ///Date form key
-  final Key formKey;
 
   ///Form value for date values
   final FormValue formValue;
@@ -32,6 +30,9 @@ class DateTimeInputWidget extends StatefulWidget {
 
   ///Date time type enum
   final DatePickerType dateTime;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   @override
   State<DateTimeInputWidget> createState() => _DateTimeInputWidgetState();
@@ -78,14 +79,16 @@ class _DateTimeInputWidgetState extends State<DateTimeInputWidget> {
   @override
   Widget build(BuildContext context) {
     return DateTimeFormField(
-      formKey: widget.formKey,
+      fieldKey: widget.fieldKey,
       initialValue: _parseToDateTime(
         widget.field.answer,
         datePickerType,
       ),
+      
       type: datePickerType,
       firstDate: firstDate,
       lastDate: lastDate,
+      isRequired: widget.field.isRequired,
       onSaved: (newValue) {
         if (newValue == null) return;
 

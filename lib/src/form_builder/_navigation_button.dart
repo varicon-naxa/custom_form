@@ -1,8 +1,8 @@
 part of 'varicon_form_builder.dart';
 
 ///Form elevated button for submit, update and save only operations
-class _NavigationButton extends StatelessWidget {
-  const _NavigationButton({
+class NavigationButton extends StatelessWidget {
+  const NavigationButton({
     required this.onComplete,
     required this.buttonText,
   });
@@ -21,12 +21,12 @@ class _NavigationButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onComplete,
         style: ButtonStyle(
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4.0),
               ),
             ),
-            backgroundColor: MaterialStateProperty.all<Color>(
+            backgroundColor: WidgetStateProperty.all<Color>(
               Theme.of(context).primaryColor,
             )),
         child: Text(
@@ -70,15 +70,15 @@ class _SaveOnlyButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onComplete,
         style: ButtonStyle(
-          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+          shape: WidgetStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4.0),
             ),
           ),
-          backgroundColor: MaterialStateProperty.all<Color>(
+          backgroundColor: WidgetStateProperty.all<Color>(
             Colors.white,
           ),
-          side: MaterialStateProperty.all<BorderSide>(
+          side: WidgetStateProperty.all<BorderSide>(
             const BorderSide(color: Colors.orange),
           ),
         ),

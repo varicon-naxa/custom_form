@@ -11,6 +11,54 @@
             "label": "Map Field",
             "isRequired": false,
             "answer": "1 Promenade Road, Vaucluse New South Wales 2030 Australia"
+        },
+        {
+            "id": "item-124bf961-c2ff-4a44-b4f8-dad21aa5bd0a",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Single Select Dropdown",
+            "choice": [
+                {
+                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-6b2a4812-6176-4272-80fb-d98da29f76c0",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-d0b12e45-5d03-44dd-a451-b712d2c597a8",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true
+   
+        },
+        {
+            "id": "item-e40bde85-bd42-40d0-93ec-da5fb49879c1",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi-Select Dropdown",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-6b2a4812-6176-4272-80fb-d98da29f76c0",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-d0b12e45-5d03-44dd-a451-b712d2c597a8",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true
         }
     ]
 }

@@ -13,7 +13,7 @@ class RadioInputWidget extends StatefulWidget {
     super.key,
     required this.field,
     required this.formValue,
-    required this.formKey,
+    required this.fieldKey,
     this.labelText,
   });
 
@@ -21,7 +21,7 @@ class RadioInputWidget extends StatefulWidget {
   final RadioInputField field;
 
   ///Radio form key
-  final Key formKey;
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Form value to be used for radio input
   final FormValue formValue;
@@ -83,7 +83,7 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
         RadioFormField<String>(
           value: value,
           context: context,
-          key: widget.formKey,
+          key: widget.fieldKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           validator: (value) => textValidator(
             value: value,

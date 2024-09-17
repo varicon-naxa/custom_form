@@ -29,7 +29,28 @@ class _ButtonPageState extends State<ButtonPage> {
           children: [
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/multisignature.json';
+                const assetPath = 'assets/testall.json';
+                String currentValue = await rootBundle.loadString(assetPath);
+                Map<String, dynamic> currentData = jsonDecode(currentValue);
+
+                final SurveyPageForm form =
+                    SurveyPageForm.fromJson(currentData);
+
+                ///Navigate on button click to SuveryPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return SurveyPage(form: form, formData: currentData);
+                    },
+                  ),
+                );
+              },
+              child: const Text('Go Questrion Inspection Page'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                const assetPath = 'assets/simple.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 
@@ -50,7 +71,7 @@ class _ButtonPageState extends State<ButtonPage> {
             ),
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/linked.json';
+                const assetPath = 'assets/image.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 
@@ -71,7 +92,32 @@ class _ButtonPageState extends State<ButtonPage> {
                   ),
                 );
               },
-              child: const Text('Go Response Page'),
+              child: const Text('Go Response Page of Single form Image'),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                const assetPath = 'assets/survey.json';
+                String currentValue = await rootBundle.loadString(assetPath);
+                Map<String, dynamic> currentData = jsonDecode(currentValue);
+
+                final SurveyPageForm form =
+                    SurveyPageForm.fromJson(currentData);
+
+                ///Navigate on button click to SuveryPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (BuildContext context) {
+                      return ResponseTest(
+                        form: form,
+                        formData: currentData,
+                      );
+                      // SurveyPage(form: form, formData: currentData);
+                    },
+                  ),
+                );
+              },
+              child: const Text('Go Response Page of Bulk form Image'),
             ),
           ],
         ),

@@ -57,14 +57,12 @@ class MapPicker extends StatefulWidget {
   final Position? postition;
 
   ///Map value form key
-  final Key formKey;
 
   MapPicker({
-    Key? key,
+    super.key,
     this.forMapField = false,
     this.postition,
-    required this.formKey,
-  }) : super(key: key);
+  });
 
   @override
   State<MapPicker> createState() => _MapPickerState();
@@ -263,7 +261,7 @@ class ElevatedButtonWidget extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () => onPressed(),
           style: ButtonStyle(
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
                 RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(4.0),
                   side: const BorderSide(
@@ -271,7 +269,7 @@ class ElevatedButtonWidget extends StatelessWidget {
                   ),
                 ),
               ),
-              backgroundColor: MaterialStateProperty.all<Color>(
+              backgroundColor: WidgetStateProperty.all<Color>(
                 bgColor ?? Theme.of(context).primaryColor,
               )),
           child: Text(

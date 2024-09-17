@@ -1,7 +1,7 @@
-// ignore_for_file: use_build_context_synchronously, must_be_immutable
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/ext/color_extension.dart';
@@ -76,6 +76,14 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
     super.dispose();
   }
 
+  ///method to get device screen type
+  bool get isTablet {
+    final firstView = WidgetsBinding.instance.platformDispatcher.views.first;
+    final logicalShortestSide =
+        firstView.physicalSize.shortestSide / firstView.devicePixelRatio;
+    return logicalShortestSide > 600;
+  }
+
   ///Method that takes date picker type
   ///
   ///and returns the date time value
@@ -141,6 +149,25 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Row(
+                  children: [
+                    Text('Submission ID:',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(widget.surveyForm.submissionNumber ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.black)),
+                    const VerticalDivider(),
+                    Text('Form ID:',
+                        style: Theme.of(context).textTheme.bodySmall),
+                    Text(widget.surveyForm.formNumber ?? '',
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(color: Colors.black)),
+                  ],
+                ),
                 Text(
                   widget.surveyForm.title.toString(),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -191,28 +218,28 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                     ],
                   ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        'Submitted On',
-                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                              color: const Color(0xff212529),
+                if (widget.surveyForm.createdAt != null)
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Submitted on',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        DateFormat('dd/MM/yyyy, h:mm a').format(
+                          (widget.surveyForm.createdAt ?? DateTime.now()),
+                        ),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
                             ),
                       ),
-                    ),
-                    Text(
-                      DateFormat('dd/MM/yyyy, h:mm a').format(
-                        widget.surveyForm.updatedAt ??
-                            widget.surveyForm.createdAt ??
-                            DateTime.now(),
-                      ),
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: const Color(0xff6A737B),
-                          ),
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
                 if (widget.surveyForm.timesheet != null)
                   InkWell(
                     onTap: () {
@@ -227,44 +254,97 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 .textTheme
                                 .titleSmall
                                 ?.copyWith(
+                                  decoration: TextDecoration.underline,
                                   color: const Color(0xff212529),
+                                ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Text(
+                            textAlign: TextAlign.end,
+                            widget.surveyForm.timesheetNumber ?? '',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(
+                                  color: Colors.orange,
                                   decoration: TextDecoration.underline,
                                 ),
                           ),
                         ),
-                        Text(
-                          widget.surveyForm.timesheet ?? '',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: Colors.orange,
-                                  ),
-                        ),
                       ],
                     ),
                   ),
-                const Divider(),
-                RichText(
-                  text: TextSpan(
-                    text: 'Last Edited ',
-                    style: Theme.of(context).textTheme.bodyMedium,
+                if (widget.surveyForm.equipment != null)
+                  Row(
                     children: [
-                      TextSpan(
-                          text: widget.surveyForm.submittedBy != null
-                              ? 'by ${widget.surveyForm.submittedBy} '
-                              : '',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.bold)),
-                      TextSpan(
-                          text: 'on ${DateFormat('dd/MM/yyyy, h:mm a').format(
-                        widget.surveyForm.updatedAt ??
-                            widget.surveyForm.createdAt ??
-                            DateTime.now(),
-                      )}.'),
+                      Expanded(
+                        child: Text(
+                          'Equipment',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Text(
+                        widget.surveyForm.equipmentName ?? '',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xff6A737B),
+                            ),
+                      ),
                     ],
                   ),
-                ),
+                if (widget.surveyForm.project != null)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          'Project',
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    color: const Color(0xff212529),
+                                  ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          widget.surveyForm.jobNumber ??
+                              widget.surveyForm.project ??
+                              '',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: const Color(0xff6A737B),
+                                  ),
+                        ),
+                      ),
+                    ],
+                  ),
+                if (widget.surveyForm.updatedBy != null) ...[
+                  const Divider(),
+                  RichText(
+                    text: TextSpan(
+                      text: 'Last Edited ',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                      children: [
+                        TextSpan(
+                            text: 'by ${widget.surveyForm.updatedBy} ',
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.bold)),
+                        TextSpan(
+                            text: 'on ${DateFormat('dd/MM/yyyy, h:mm a').format(
+                          widget.surveyForm.updatedAt ?? DateTime.now(),
+                        )}.'),
+                      ],
+                    ),
+                  ),
+                ],
                 AppSpacing.sizedBoxH_08(),
                 if (widget.surveyForm.status != null &&
                     widget.surveyForm.status?['id'] != null)
@@ -301,38 +381,41 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                         return LabeledWidget(
                           labelText: labelText,
                           isRequired: e.isRequired,
-                          child:
-                              (field.name ?? '').toLowerCase().contains('long')
-                                  ? Column(
-                                      children: [
-                                        (field.answer ?? '').isEmpty
-                                            ? const Text(
-                                                'No Response',
-                                                style: TextStyle(
-                                                  color: Colors.grey,
-                                                  fontSize: 16,
-                                                ),
-                                              )
-                                            : Html(
-                                                data: field.answer ?? '',
-                                              ),
-                                        const DottedLine(
-                                          direction: Axis.horizontal,
-                                          alignment: WrapAlignment.center,
-                                          lineLength: double.infinity,
-                                          lineThickness: 1.0,
-                                          dashLength: 4.0,
-                                          dashColor: Colors.grey,
-                                          dashRadius: 0.0,
-                                          dashGapLength: 4.0,
-                                          dashGapColor: Colors.white,
-                                          dashGapRadius: 0.0,
-                                        )
-                                      ],
+                          child: (field.name ?? '')
+                                  .toLowerCase()
+                                  .contains('long')
+                              ? Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    (field.answer ?? '').isEmpty
+                                        ? const Text(
+                                            'No Response',
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                              fontSize: 16,
+                                            ),
+                                          )
+                                        : HtmlWidget(
+                                            field.answer ?? '',
+                                          ),
+                                    const DottedLine(
+                                      direction: Axis.horizontal,
+                                      alignment: WrapAlignment.center,
+                                      lineLength: double.infinity,
+                                      lineThickness: 1.0,
+                                      dashLength: 4.0,
+                                      dashColor: Colors.grey,
+                                      dashRadius: 0.0,
+                                      dashGapLength: 4.0,
+                                      dashGapColor: Colors.white,
+                                      dashGapRadius: 0.0,
                                     )
-                                  : _AnswerDesign(
-                                      answer: field.answer ?? '',
-                                    ),
+                                  ],
+                                )
+                              : _AnswerDesign(
+                                  answer: field.answer ?? '',
+                                ),
                         );
                       },
                       phone: (field) {
@@ -389,7 +472,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                           labelText: labelText,
                           isRequired: e.isRequired,
                           child: _AnswerDesign(
-                            answer: field.answer ?? '',
+                            answer: getFormattedText(
+                                _parseToDateTime(
+                                    field.answer ?? '', DatePickerType.date),
+                                DatePickerType.date),
                           ),
                         );
                       },
@@ -454,7 +540,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       // },
                       dropdown: (field) {
                         String answerText = '';
-                        if (e.answer != null && e.answer != '') {
+                        if (field.answerList != null &&
+                            field.answerList != '') {
+                          answerText = field.answerList ?? '';
+                        } else if (e.answer != null && e.answer != '') {
                           bool containsId =
                               field.choices.any((obj) => obj.value == e.answer);
 
@@ -506,9 +595,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: YesNoNaInputWidget(
                               field: field,
-                              formKey: Key(field.id),
                               formValue: formValue,
                               labelText: labelText,
+                              fieldKey: GlobalKey(),
                             ),
                           ),
                         );
@@ -576,9 +665,9 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 ? _MultiAnswerDesign(answer: valueAnswer)
                                 : CheckboxInputWidget(
                                     field: field,
-                                    formKey: Key(field.id),
                                     formValue: formValue,
                                     labelText: labelText,
+                                    fieldKey: GlobalKey(),
                                   ),
                           ),
                         );
@@ -591,62 +680,94 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                             isRequired: e.isRequired,
                             child: RadioInputWidget(
                               field: field,
-                              formKey: Key(field.id),
                               formValue: formValue,
                               labelText: labelText,
+                              fieldKey: GlobalKey(),
                             ),
                           ),
                         );
                       },
                       files: (field) {
-                        List<Map<String, dynamic>> answer =
-                            (e.answer ?? []) as List<Map<String, dynamic>>;
-                        if (answer.isNotEmpty) {
-                          return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: Wrap(
-                                children: answer
-                                    .map(
-                                      (e) => _AnswerDesign(
-                                        answer: e['name'],
-                                        isFile: true,
-                                        isImage: false,
-                                        fileClick: () {
-                                          widget.fileClick({
-                                            'data': e['file'],
-                                            'title': e['name']
-                                          });
-                                        },
-                                      ),
-                                    )
-                                    .toList(),
-                              ));
-                        } else {
-                          return _AnswerDesign(answer: '');
-                        }
+                        List<Map<String, dynamic>> answer = e.answer == null
+                            ? []
+                            : (e.answer ?? []) as List<Map<String, dynamic>>;
+                        return LabeledWidget(
+                            labelText: labelText,
+                            isRequired: e.isRequired,
+                            child: answer.isNotEmpty
+                                ? Wrap(
+                                    runSpacing: 8,
+                                    children: answer
+                                        .map(
+                                          (e) => _AnswerDesign(
+                                            answer: e['name'],
+                                            isFile: true,
+                                            isImage: false,
+                                            fileClick: () {
+                                              widget.fileClick({
+                                                'data': e['file'],
+                                                'title': e['name']
+                                              });
+                                            },
+                                          ),
+                                        )
+                                        .toList(),
+                                  )
+                                : _AnswerDesign(
+                                    answer: '',
+                                  ));
                       },
                       images: (field) {
-                        List<Map<String, dynamic>> answer =
-                            (e.answer ?? []) as List<Map<String, dynamic>>;
-                        if (answer.isNotEmpty) {
-                          return LabeledWidget(
-                              labelText: labelText,
-                              isRequired: e.isRequired,
-                              child: Column(
-                                children: answer
-                                    .map(
-                                      (e) => _AnswerDesign(
-                                        answer: e['file'],
-                                        isImage: true,
-                                        imageBuild: widget.imageBuild,
-                                      ),
-                                    )
-                                    .toList(),
-                              ));
-                        } else {
-                          return _AnswerDesign(answer: '');
-                        }
+                        List<Map<String, dynamic>> answer = e.answer == null
+                            ? []
+                            : (e.answer ?? []) as List<Map<String, dynamic>>;
+
+                        return LabeledWidget(
+                            labelText: labelText,
+                            isRequired: e.isRequired,
+                            child: answer.isNotEmpty
+                                ? GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: isTablet ? 5 : 3,
+                                      mainAxisSpacing: 6,
+                                      crossAxisSpacing: 6,
+                                      childAspectRatio: 0.87,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    itemCount: answer.length,
+                                    itemBuilder: (context, index) {
+                                      return SizedBox(
+                                        height: 120,
+                                        width: 120,
+                                        child: _AnswerDesign(
+                                          answer: answer[index]['file'],
+                                          isImage: true,
+                                          imageBuild: widget.imageBuild,
+                                        ),
+                                      );
+                                    })
+                                // Wrap(
+                                //     spacing: 8,
+                                //     runSpacing: 8,
+                                //     children: answer
+                                //         .map(
+                                //           (e) => _AnswerDesign(
+                                //             answer: e['file'],
+                                //             isImage: true,
+                                //             containsLine: false,
+                                //             imageBuild: widget.imageBuild,
+                                //           ),
+                                //         )
+                                //         .toList(),
+
+                                //     // _queueManager.getProcessedWidgets(),
+                                //   )
+                                : _AnswerDesign(
+                                    answer: '',
+                                  ));
                       },
                       signature: (field) {
                         Map<dynamic, dynamic> answer =
@@ -866,6 +987,8 @@ class _AnswerDesign extends StatelessWidget {
   ///Checking for signature
   bool isSignature;
 
+
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -875,16 +998,17 @@ class _AnswerDesign extends StatelessWidget {
             ? imageBuild != null
                 ? imageBuild!({
                     'image': answer,
-                    'height': 200.0,
-                    'width': isSignature ? 200.0 : double.infinity,
+                    'height': 120.0,
+                    'width': isSignature ? 200.0 : 120,
                   })
-                : Image.network(
-                    answer,
+                : CachedNetworkImage(
+                    imageUrl: answer,
                     height: isSignature ? 150 : 200,
                     width: double.infinity,
-                    fit: BoxFit.fill,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const SizedBox(
+                    fit: BoxFit.contain,
+                    placeholderFadeInDuration: const Duration(seconds: 1),
+                    placeholder: (context, url) => const Icon(Icons.image),
+                    errorWidget: (context, error, stackTrace) => const SizedBox(
                       height: 75,
                       child: Icon(
                         Icons.image,
@@ -893,36 +1017,37 @@ class _AnswerDesign extends StatelessWidget {
                     ),
                   )
             : isFile
-                ? Container(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.2),
-                      borderRadius: BorderRadius.circular(8.0),
-                      border: Border.all(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8.0,
-                            ),
-                            child: Text(
-                              answer,
-                              style: Theme.of(context).textTheme.bodyMedium,
+                ? GestureDetector(
+                    behavior: HitTestBehavior.translucent,
+                    onTap: () {
+                      fileClick!();
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 12, horizontal: 8),
+                      decoration: BoxDecoration(
+                        color: Colors.grey.withOpacity(0.2),
+                        borderRadius: BorderRadius.circular(8.0),
+                        border: Border.all(),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Text(
+                                answer,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
                             ),
                           ),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            fileClick!();
-                          },
-                          child: const Icon(Icons.download),
-                        )
-                      ],
+                          const Icon(Icons.download)
+                        ],
+                      ),
                     ),
                   )
                 : Text(
@@ -930,18 +1055,20 @@ class _AnswerDesign extends StatelessWidget {
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black),
                   ),
-        const DottedLine(
-          direction: Axis.horizontal,
-          alignment: WrapAlignment.center,
-          lineLength: double.infinity,
-          lineThickness: 1.0,
-          dashLength: 4.0,
-          dashColor: Colors.grey,
-          dashRadius: 0.0,
-          dashGapLength: 4.0,
-          dashGapColor: Colors.white,
-          dashGapRadius: 0.0,
-        )
+        // if (containsLine)
+        //   const DottedLine(
+        //     direction: Axis.horizontal,
+        //     alignment: WrapAlignment.center,
+        //     lineLength: double.infinity,
+        //     lineThickness: 1.0,
+        //     dashLength: 4.0,
+        //     dashColor: Colors.grey,
+        //     dashRadius: 0.0,
+        //     dashGapLength: 4.0,
+        //     dashGapColor: Colors.white,
+        //     dashGapRadius: 0.0,
+        //   )
+     
       ],
     );
   }
@@ -1090,12 +1217,14 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         'height': 200.0,
                         'width': 200.0,
                       })
-                    : Image.network(
-                        e.file ?? '',
+                    : CachedNetworkImage(
+                        imageUrl: e.file ?? '',
                         height: 150,
                         width: double.infinity,
+                        placeholderFadeInDuration: const Duration(seconds: 1),
+                        placeholder: (context, url) => const Icon(Icons.image),
                         fit: BoxFit.fill,
-                        errorBuilder: (context, error, stackTrace) =>
+                        errorWidget: (context, error, stackTrace) =>
                             const SizedBox(
                           height: 75,
                           child: Icon(

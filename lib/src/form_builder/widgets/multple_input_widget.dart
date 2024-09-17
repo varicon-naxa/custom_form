@@ -16,7 +16,7 @@ class MultipleInputWidget extends StatefulWidget {
     super.key,
     required this.field,
     required this.formValue,
-    required this.formKey,
+    required this.fieldKey,
     this.apiCall,
     this.labelText,
   });
@@ -28,7 +28,7 @@ class MultipleInputWidget extends StatefulWidget {
   final FormValue formValue;
 
   ///Form key for unique form field
-  final Key formKey;
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Field label text
   final String? labelText;
@@ -139,21 +139,24 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
   @override
   Widget build(BuildContext context) {
     // List<bool> actionList = choices.map((e) => e.action ?? false).toList();
-
     return Column(children: [
       TextFormField(
         readOnly: true,
-        key: widget.formKey,
+        key: widget.fieldKey,
         controller: formCon,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (value) {
-          return textValidator(
-            value: '',
-            inputType: "text",
-            isRequired: (widget.field.isRequired &&
-                formCon.text == 'Select the item from list'),
-            requiredErrorText: widget.field.requiredErrorText ??
-                'No any Selection in required field  ',
-          );
+          if ((answer?.split(',') ?? []).isEmpty) {
+            return textValidator(
+              value: '',
+              inputType: "text",
+              isRequired: (widget.field.isRequired &&
+                  formCon.text == 'Select the item from list'),
+              requiredErrorText: widget.field.requiredErrorText ??
+                  'No any Selection in required field  ',
+            );
+          }
+          return null;
         },
         style: Theme.of(context).textTheme.bodyMedium,
         decoration: const InputDecoration(

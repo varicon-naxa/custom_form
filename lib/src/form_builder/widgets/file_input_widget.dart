@@ -24,13 +24,22 @@ class FileInputWidget extends StatefulWidget {
     required this.imageBuild,
     required this.fileClicked,
     this.labelText,
+    this.fieldKey,
+    this.emptyMsg = '',
+    required this.formCon,
   });
 
   ///file input field model or image input field model
   final dynamic field;
 
+  ///string msg for field empty case for required case only
+  final String? emptyMsg;
+
   ///form value for the field
   final FormValue formValue;
+
+  /// Global key for the form field state
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///label text for the field
   final String? labelText;
@@ -46,6 +55,8 @@ class FileInputWidget extends StatefulWidget {
 
   ///Function to call on save
   final void Function(List<Map<String, dynamic>>) onSaved;
+
+  final TextEditingController formCon;
 
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
@@ -69,6 +80,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
     super.initState();
     answer = widget.field.answer ?? [];
     widget.formValue.saveList(widget.field.id, answer);
+    widget.formCon.text = (answer.isEmpty) ? '' : (answer[0]['name'] ?? '');
   }
 
   ///Method to save file to server
@@ -81,11 +93,12 @@ class _FileInputWidgetState extends State<FileInputWidget>
         isLoading = true;
       });
       if (isMultiple) {
-        final data = await widget
-            .attachmentSave(result.map((e) => e.path.toString()).toList());
         var currentList = widget.formValue.getMappedList(
           widget.field.id,
         ) as List<Map<String, dynamic>>;
+
+        final data = await widget
+            .attachmentSave(result.map((e) => e.path.toString()).toList());
 
         widget.onSaved([...data, ...currentList]);
         setState(() {
@@ -129,94 +142,51 @@ class _FileInputWidgetState extends State<FileInputWidget>
   Widget build(BuildContext context) {
     void customBottom() {
       primaryCustomBottomSheet(
+        hasSpace: false,
         context,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AppSpacing.sizedBoxH_16(),
-            Text(
-              'ADD PHOTO',
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: const Color(
-                      0xff98A5B9,
-                    ),
+        child: Material(
+          color: Colors.transparent,
+          child: Wrap(
+            children: <Widget>[
+              InkWell(
+                onTap: () => storeFiles(fromCamera: true),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 16,
                   ),
-            ),
-            AppSpacing.sizedBoxH_20(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      storeFiles(fromCamera: true);
-                    },
-                    child: SizedBox(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width / 2 - 50,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(
-                            Icons.camera_alt,
-                            color: Color(
-                              0xff5F6D83,
-                            ),
-                          ),
-                          Text(
-                            'Camera',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: const Color(
-                                        0xff5F6D83,
-                                      ),
-                                    ),
-                          )
-                        ],
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.camera_alt,
+                        color: Color(0xff5F6D83),
                       ),
-                    ),
+                      const SizedBox(width: 12),
+                      Text('Camera',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 8),
-                    child: VerticalDivider(
-                      thickness: 2,
-                    ),
-                  ),
-                  InkWell(
-                    onTap: () {
-                      storeFiles(fromCamera: false);
-                    },
-                    child: SizedBox(
-                      height: 55,
-                      width: MediaQuery.of(context).size.width / 2 - 50,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.photo_library,
-                              color: Color(
-                                0xff5F6D83,
-                              )),
-                          Text(
-                            'Photo Library',
-                            style:
-                                Theme.of(context).textTheme.bodySmall?.copyWith(
-                                      color: const Color(
-                                        0xff5F6D83,
-                                      ),
-                                    ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            AppSpacing.sizedBoxH_06(),
-          ],
+              InkWell(
+                onTap: () => storeFiles(fromCamera: false),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16,
+                    horizontal: 16,
+                  ),
+                  child: Row(
+                    children: [
+                      const Icon(Icons.photo_library, color: Color(0xff5F6D83)),
+                      const SizedBox(width: 12),
+                      Text('Photo Library',
+                          style: Theme.of(context).textTheme.bodyLarge),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       );
     }
@@ -255,87 +225,165 @@ class _FileInputWidgetState extends State<FileInputWidget>
       }).toList());
     }
 
-    return isLoading
-        ? widget.filetype == FileType.image
-            ? Container(
+    Widget isLoadingWidget() {
+      return widget.filetype == FileType.image
+          ? Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Container(
                 width: 70.0,
                 height: 70.0,
                 color: Colors.white,
               )
-                .animate(
-                  onPlay: (controller) => controller.repeat(),
-                )
-                .shimmer(
-                  color: Colors.grey.shade300,
-                  duration: const Duration(seconds: 2),
-                )
-            : Container(
+                  .animate(
+                    onPlay: (controller) => controller.repeat(),
+                  )
+                  .shimmer(
+                    color: Colors.grey.shade300,
+                    duration: const Duration(seconds: 2),
+                  ),
+            )
+          : Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Container(
                 width: double.infinity,
                 height: 40,
                 color: Colors.white,
               )
-                .animate(
-                  onPlay: (controller) => controller.repeat(),
-                )
-                .shimmer(
-                  color: Colors.grey.shade300,
-                  duration: const Duration(seconds: 2),
-                )
-        : (widget.field.isMultiple ?? false)
-            ? Column(
-                children: [
-                  multipleItem(),
-                  SingleFileAddItem(
-                      isImage: widget.filetype == FileType.image,
-                      onTap: () async {
-                        if (widget.filetype == FileType.image) {
-                          customBottom();
-                        } else {
-                          storeFiles();
-                        }
-                      })
-                ],
-              )
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if ((answer).isNotEmpty)
-                    SingleFileItem(
-                      filePath: answer[0]['file'],
-                      fileName: answer[0]['name'],
-                      imageBuild: widget.imageBuild({
-                        'image': answer[0]['file'],
-                        'height': 120.0,
-                        'width': 120.0
-                      }),
-                      fileClicked: () {
-                        widget.fileClicked(answer[0]['file']);
-                      },
-                      isImage: widget.filetype == FileType.image ? true : false,
-                      ontap: () {
-                        setState(() {
-                          widget.onSaved([]);
+                  .animate(
+                    onPlay: (controller) => controller.repeat(),
+                  )
+                  .shimmer(
+                    color: Colors.grey.shade300,
+                    duration: const Duration(seconds: 2),
+                  ),
+            );
+    }
 
-                          answer = [];
-                        });
-                      },
+    return (widget.field.isMultiple ?? false)
+        ? Column(
+            children: [
+              multipleItem(),
+              if (isLoading) isLoadingWidget(),
+              SingleFileAddItem(
+                  isImage: widget.filetype == FileType.image,
+                  onTap: () async {
+                    if (widget.filetype == FileType.image) {
+                      customBottom();
+                    } else {
+                      storeFiles();
+                    }
+                  }),
+              SizedBox(
+                height: 20,
+                child: Visibility(
+                  visible: answer.isEmpty ? true : false,
+                  child: TextFormField(
+                    style: const TextStyle(color: Colors.white),
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      labelStyle: TextStyle(color: Colors.white),
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      // errorText: widget.emptyMsg,
                     ),
-                  if ((answer).isEmpty)
-                    SingleFileAddItem(
-                      isImage: widget.filetype == FileType.image,
-                      onTap: () async {
-                        if (widget.filetype == FileType.image) {
-                          customBottom();
-                        } else {
-                          storeFiles(
-                            fromCamera: false,
-                          );
-                        }
-                      },
-                    )
-                ],
-              );
+                    controller: widget.formCon,
+                    key: widget.fieldKey,
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if ((answer).isEmpty) {
+                        return textValidator(
+                          value: value,
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText:
+                              widget.field.requiredErrorText ?? widget.emptyMsg,
+                        );
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+            ],
+          )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if ((answer).isNotEmpty)
+                SingleFileItem(
+                  filePath: answer[0]['file'],
+                  fileName: answer[0]['name'],
+                  imageBuild: widget.imageBuild({
+                    'image': answer[0]['file'],
+                    'height': 120.0,
+                    'width': 120.0
+                  }),
+                  fileClicked: () {
+                    widget.fileClicked(answer[0]['file']);
+                  },
+                  isImage: widget.filetype == FileType.image ? true : false,
+                  ontap: () {
+                    setState(() {
+                      widget.onSaved([]);
+
+                      answer = [];
+                    });
+                  },
+                ),
+              if (isLoading) isLoadingWidget(),
+              if ((answer).isEmpty)
+                SingleFileAddItem(
+                  isImage: widget.filetype == FileType.image,
+                  onTap: () async {
+                    if (widget.filetype == FileType.image) {
+                      customBottom();
+                    } else {
+                      storeFiles(
+                        fromCamera: false,
+                      );
+                    }
+                  },
+                ),
+              SizedBox(
+                height: 20,
+                child: Visibility(
+                  visible: true,
+                  child: TextFormField(
+                    decoration: const InputDecoration(
+                      border: InputBorder.none,
+                      errorBorder: InputBorder.none,
+                      enabledBorder: InputBorder.none,
+                      enabled: false,
+                      disabledBorder: InputBorder.none,
+                      contentPadding: EdgeInsets.zero,
+                      // errorText: widget.emptyMsg,
+                    ),
+                    controller: widget.formCon,
+                    key: widget.fieldKey,
+                    readOnly: true,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if ((answer).isEmpty) {
+                        return textValidator(
+                          value: value,
+                          inputType: "text",
+                          isRequired: (widget.field.isRequired),
+                          requiredErrorText:
+                              widget.field.requiredErrorText ?? widget.emptyMsg,
+                        );
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+              ),
+            ],
+          );
   }
 }
 
@@ -423,45 +471,61 @@ class SingleFileItem extends StatelessWidget {
               ],
             ),
           )
-        : Container(
-            decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(8.0),
-              border: Border.all(),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Expanded(
-                    child: GestureDetector(
-                  onTap: () {
-                    fileClicked!();
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
+        : Material(
+            color: Colors.transparent,
+            child: Container(
+              margin: const EdgeInsets.only(bottom: 8),
+              decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      fileClicked!();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0,
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(
+                            Icons.file_copy_outlined,
+                            color: Colors.red,
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              fileName,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    child: Text(
-                      fileName,
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                  ),
-                )),
-                GestureDetector(
-                  onTap: () {
-                    ontap();
-                  },
-                  child: Container(
+                  )),
+                  InkWell(
+                    onTap: () => ontap(),
+                    child: Container(
                       padding: const EdgeInsets.all(10),
-                      child: const Icon(Icons.close)),
-                )
-              ],
+                      child: const Icon(Icons.close),
+                    ),
+                  )
+                ],
+              ),
             ),
           );
   }
 }
 
+///File input form widget [button type]
+///
+///Accepts field type with file input
 class InternalFile {
   String? path;
   String? id;
@@ -469,43 +533,54 @@ class InternalFile {
 }
 
 class SingleFileAddItem extends StatelessWidget {
-  const SingleFileAddItem(
-      {super.key, required this.onTap, required this.isImage});
+  const SingleFileAddItem({
+    super.key,
+    required this.onTap,
+    required this.isImage,
+  });
   final Function onTap;
   final bool isImage;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 8),
-      decoration: DottedDecoration(
-        borderRadius: BorderRadius.circular(4),
-        dash: const [3, 2],
-        shape: Shape.box,
-      ),
-      height: 50,
-      width: double.infinity,
-      child: TextButton.icon(
-          style: const ButtonStyle().copyWith(
-            foregroundColor: MaterialStateProperty.all(Colors.white),
-            backgroundColor: MaterialStateProperty.all(Colors.white),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(bottom: 8),
+          decoration: DottedDecoration(
+            borderRadius: BorderRadius.circular(4),
+            dash: const [3, 2],
+            shape: Shape.box,
+          ),
+          height: 50,
+          width: double.infinity,
+          child: TextButton.icon(
+            style: const ButtonStyle().copyWith(
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+              backgroundColor: WidgetStateProperty.all(Colors.white),
+              shape: WidgetStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(4),
+                ),
               ),
             ),
+            onPressed: () => onTap(),
+            icon: Icon(
+              isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
+              color: Colors.grey,
+            ),
+            label: Text(
+              isImage ? 'Upload Image' : 'Upload File',
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
           ),
-          onPressed: () {
-            onTap();
-          },
-          icon: Icon(
-            isImage ? Icons.add_photo_alternate_outlined : Icons.file_present,
-            color: Colors.grey,
-          ),
-          label: Text(
-            isImage ? 'Upload Image' : 'Upload File',
-            style: Theme.of(context).textTheme.bodyMedium,
-          )),
+        ),
+        const SizedBox(height: 8),
+        Text(
+            'Maximum file size is 25 MB. You can select up to 5 photos at a time.',
+            style: Theme.of(context).textTheme.bodySmall),
+      ],
     );
   }
 }

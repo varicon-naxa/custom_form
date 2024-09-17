@@ -3,6 +3,12 @@
     "description": "Dynamic form generator is a form of the things in the line",
     "name": "",
     "version": "1.0.0",
+    "project": "ABC Construction project",
+    "equipment": null,
+    "equipment_code": "Code",
+    "equipment_name": "Name",
+    "form_number": "12",
+    "submission_number": "466",
     "elements": [
         {
             "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",

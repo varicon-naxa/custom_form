@@ -19,3 +19,5 @@ class SingleSignature with _$SingleSignature {
   factory SingleSignature.fromJson(Map<String, dynamic> json) =>
       _$SingleSignatureFromJson(json);
 }
+
+
