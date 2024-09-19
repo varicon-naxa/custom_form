@@ -52,12 +52,9 @@ class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
           if (widget.formKey.currentState == null) return;
           // return if form is not valid.
           if (!widget.formKey.currentState!.validate()) {
-            log('data' + jsonEncode(widget.formValue.value));
             widget.scrollToFirstInvalidField();
-            log('data 2' + jsonEncode(widget.formValue.value));
             return;
           }
-          log('data 3' + jsonEncode(widget.formValue.value));
 
           widget.formKey.currentState?.save();
           Map<String, dynamic> fulldata = widget.formValue.value;

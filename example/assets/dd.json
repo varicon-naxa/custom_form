@@ -4,41 +4,66 @@
     "name": "",
     "version": "1.0.0",
     "elements": [
-
         {
-            "id": "item-9acbb49a-a9c0-46bd-82ae-879422564726",
-            "name": "Checkboxes",
-            "type": "checkbox",
-            "label": "Incident type",
-            "answer": "",
+            "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",
+            "name": "This is question ",
+            "type": "radiogroup",
+            "label": "Did you work remotely",
+            "actionMessage": "Better to work from home.",
+            "answer": "This is other answer",
             "isRequired": true,
-            "isConditional": false,
+            "isConditional": true,
+            "showOtherItem": true,
             "choice": [
                 {
-                    "id": "item-d1988063-d379-4191-bbfe-3c1db5310f2a",
-                    "label": "Injury"
+                    "id": "item-395f1c4e-974c-486e-8647-8445819b0030",
+                    "label": "Yes Ans",
+                    "action": false,
+                    "notify_To": []
                 },
                 {
-                    "id": "item-886c1dad-1b6f-4f23-afe7-25a55f23f8f8",
-                    "label": "Equipment Damage",
-                    "isOtherField": false
+                    "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
+                    "label": "No Ans",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 346,
+                            "email": "amulya@varicon.com.au",
+                            "username": "amulya@varicon.com.au"
+                        }
+                    ]
                 },
                 {
-                    "id": "item-1935d2bf-f757-488d-a947-1491909b4fdf",
-                    "label": "Environmental",
-                    "isOtherField": false
+                    "id": "item-422d0002-df53-4e86-a995-466da7ab33ee",
+                    "label": "NA ans",
+                    "action": false,
+                    "notify_To": []
+                }
+            ]
+        },        {
+            "id": "item-269e30b8-db5b-4c07-8c83-1ac7cb984cbe",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "Checkboxes",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-afc5db40-8a80-495c-ac78-f052786f8e14",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-cbd26744-b333-483f-b213-1e848f6788c6",
+                    "label": "Option 3"
                 }
             ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": true,
             "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-dbd77c44-ffdc-43b4-9a32-52b5ef878fa7",
-            "name": "Signature",
-            "type": "signature",
-            "label": "Signature",
-            "answer": {},
-            "isRequired": true,
             "selectedLinkListLabel": ""
         }
     ]
