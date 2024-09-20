@@ -47,8 +47,9 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
   bool showMessage = false;
   TextEditingController formCon = TextEditingController();
   TextEditingController searchCon = TextEditingController();
+  TextEditingController otherFieldController = TextEditingController();
   List<String> selectedIds = [];
-  List<ValueText> searcgedChoices = [];
+  List<ValueText> searchedChoices = [];
 
   @override
   void initState() {
@@ -68,7 +69,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
         ValueText.other(text: widget.field.otherText ?? 'Other (describe)'),
     ];
     setState(() {
-      searcgedChoices = choices;
+      searchedChoices = choices;
     });
 
     otherFieldKey = '${widget.field.id}-Comment';
@@ -84,6 +85,15 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
       selectedChoices = choices.map(
         (e) {
           if (initialValue.contains(e.value)) {
+            setState(() {
+              selectedIds.add(e.value);
+            });
+            return true;
+          } else if (e.value == 'other') {
+            List<String> filteredValues = initialValue
+                .where((value) => !value.contains("item-"))
+                .toList();
+            otherFieldController.text = filteredValues.first;
             setState(() {
               selectedIds.add(e.value);
             });
@@ -112,13 +122,11 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
     if (selectedChoices.length != choices.length) {
       throw ArgumentError("Lists must have the same length");
     }
-
     for (int i = 0; i < selectedChoices.length; i++) {
       if ((selectedChoices[i] == true) && (choices[i].action == true)) {
         return true;
       }
     }
-
     return false;
   }
 
@@ -211,10 +219,20 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   });
                 },
                 onSaved: (newValue) {
+                  var a = newValue;
                   final keys = newValue!.indexed
                       .map((e) {
                         final (i, v) = e;
                         if (v ?? false) {
+                          if (choices[i].value == 'other') {
+                            var b = otherFieldController.text;
+                            widget.formValue.saveString(
+                              widget.field.id,
+                              otherFieldController.text,
+                            );
+
+                            return otherFieldController.text;
+                          }
                           return choices[i].value;
                         } else {
                           return null;
@@ -335,14 +353,17 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
 
               if (widget.field.showOtherItem && isOtherSelected()) ...[
                 const SizedBox(
-                  height: 16,
+                  height: 12,
                 ),
                 TextFormField(
-                  initialValue: widget.formValue.getStringValue(otherFieldKey),
-                  onSaved: (newValue) => widget.formValue.saveString(
-                    otherFieldKey,
-                    newValue,
-                  ),
+                  controller: otherFieldController,
+                  maxLength: 80,
+                  maxLines: 4,
+                  // initialValue: widget.formValue.getStringValue(otherFieldKey),
+                  // onSaved: (newValue) => widget.formValue.saveString(
+                  //   otherFieldKey,
+                  //   newValue,
+                  // ),
                   validator: (value) => textValidator(
                     value: value,
                     inputType: "text",

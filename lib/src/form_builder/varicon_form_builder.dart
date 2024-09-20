@@ -800,7 +800,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         checkbox: (field) {
-                          log('checkbox bhitra aayo');
                           formValue.saveString(
                             field.id,
                             field.answer,
