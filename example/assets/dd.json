@@ -10,7 +10,6 @@
             "type": "radiogroup",
             "label": "Did you work remotely",
             "actionMessage": "Better to work from home.",
-            "answer": "This is other answer",
             "isRequired": true,
             "isConditional": true,
             "showOtherItem": true,

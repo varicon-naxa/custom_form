@@ -59,8 +59,6 @@ class ResponseFormBuilder extends StatefulWidget {
 }
 
 class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
-  int questionNumber = 0;
-
   ///Values to be submitted via forms
   final formValue = FormValue();
 
@@ -132,7 +130,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
   @override
   Widget build(BuildContext context) {
     ///Track total form question counts
-    questionNumber = 0;
 
     return SingleChildScrollView(
       child: Column(
@@ -371,11 +368,11 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
               children: widget.surveyForm.inputFields
                   .map<Widget?>((e) {
                     /// Heading of each input field
-                    if (!(e is InstructionInputField ||
-                        e is SectionInputField)) {
-                      questionNumber++;
-                    }
-                    final labelText = '$questionNumber. ${e.label ?? ''} ';
+                    // if (!(e is InstructionInputField ||
+                    //     e is SectionInputField)) {
+                    //   questionNumber++;
+                    // }
+                    final labelText = '${e.label ?? ''} ';
                     return e.maybeMap(
                       text: (field) {
                         return LabeledWidget(
@@ -987,8 +984,6 @@ class _AnswerDesign extends StatelessWidget {
   ///Checking for signature
   bool isSignature;
 
-
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1068,7 +1063,6 @@ class _AnswerDesign extends StatelessWidget {
         //     dashGapColor: Colors.white,
         //     dashGapRadius: 0.0,
         //   )
-     
       ],
     );
   }

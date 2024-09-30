@@ -136,7 +136,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   ///Track total form question counts
   final Map<String, GlobalKey<FormFieldState<dynamic>>> _formFieldKeys = {};
   final Map<GlobalKey<FormFieldState<dynamic>>, String> _fieldKeyToIdMap = {};
-  int questionNumber = 0;
+  // int questionNumber = 0;
   bool isScrolled = false;
 
   ///Values to be submitted via forms
@@ -301,7 +301,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 
   @override
   Widget build(BuildContext context) {
-    questionNumber = 0;
+    // questionNumber = 0;
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: SubmitUpdateButtonWidget(
@@ -336,11 +336,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 ),
                 ...widget.surveyForm.inputFields
                     .map<ScrollContent?>((e) {
-                      if (!(e is InstructionInputField ||
-                          e is SectionInputField)) {
-                        questionNumber++;
-                      }
-                      final labelText = '$questionNumber. ${e.label ?? ''} ';
+                      // if (!(e is InstructionInputField ||
+                      //     e is SectionInputField)) {
+                      //   questionNumber++;
+                      // }
+                      final labelText = '${e.label ?? ''} ';
                       return e.maybeMap(
                         text: (field) {
                           // QuillEditorController htmlEditorController =
