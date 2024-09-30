@@ -47,7 +47,7 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
     super.initState();
 
     ///initial values for choices
-    choices = [
+  choices = [
       ...widget.field.choices,
       if (widget.field.showNoneItem)
         ValueText.none(text: widget.field.noneText ?? 'None'),
