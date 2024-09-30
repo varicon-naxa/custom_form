@@ -5,134 +5,45 @@
     "version": "1.0.0",
     "elements": [
         {
-            "id": "item-b5b28011-43b0-4750-81b5-081f9546a63e",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Long Text",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-981e183b-39d3-4f43-887d-b006851146cd",
+            "id": "item-40d35c05-3708-4200-814b-ed687ddf9cdb",
             "name": "Full Name",
             "type": "text",
             "label": "Full Name",
-            "answer": "",
             "isRequired": false,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-f018a5db-f0c2-469c-8018-ad92d084c0a5",
-            "name": "Full Name",
-            "type": "text",
-            "label": "Full Name",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-cbf46f68-8c80-4463-a339-d68b0a6826e7",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Image Upload",
-            "answer": [],
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-db9fe6fa-3dcd-4d43-8027-f1f7bf99f4b2",
+            "id": "item-3ff316b3-4414-42a1-b327-9800daa38d79",
             "name": "Email",
             "type": "email",
             "label": "Email",
-            "answer": "",
             "isRequired": false,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-e60c6551-9c46-49f5-ae4f-9df72e6f930d",
-            "name": "Full Name",
-            "type": "text",
-            "label": "Full Name",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-1e43b5bf-ff63-41db-8e06-66620bc67a07",
-            "name": "File Upload",
-            "type": "files",
-            "label": "File Upload",
-            "answer": [],
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-d4282e01-c6b9-42a2-b9da-df63ef58c095",
+            "id": "item-0835f20d-2923-4300-8c9d-744acc1b8679",
             "name": "Short Text",
             "type": "text",
             "label": "Short Text",
             "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-f9db2e44-5183-4465-a62b-1e04d4777245",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
-            "answer": "",
-            "choice": [],
             "isRequired": true,
-            "isConditional": false,
-            "fromManualList": false,
-            "islinked_query": "equipment",
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-0f60db9b-dd05-45a2-80f3-45fef7f329af",
-            "name": "Number Input",
-            "type": "number",
-            "label": "Number Input",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-640929fc-9fba-4528-a212-beb65f8d746a",
-            "name": "Short Text",
+            "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56f652",
+            "name": "Long Text",
             "type": "text",
-            "label": "Short Text",
-            "answer": "",
+            "label": "Long Text",
             "isRequired": false,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-8a859d3a-1594-4ee5-88c9-44c888ae333e",
-            "name": "Date Time",
-            "type": "datetimelocal",
-            "label": "Date Time",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-d750f3ae-1a76-402e-80e1-d61d4bcf6596",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-1d8d9f1f-a926-40b9-93d8-d01667cff13d",
-                    "label": "Option 1"
-                }
-            ],
+            "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43f",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Signature",
+            "answer": {},
             "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "islinked_query": "",
             "selectedLinkListLabel": ""
         }
     ]
