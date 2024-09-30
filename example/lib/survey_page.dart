@@ -81,7 +81,6 @@ class _SurveyPageState extends State<SurveyPage> {
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
-          // log('elements ' + jsonEncode(elements).toString());
 
           final valueList = elements.map((e) {
             final key = formValue[e['id']];

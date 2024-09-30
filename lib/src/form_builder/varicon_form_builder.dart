@@ -454,6 +454,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
+                                onTapOutside: (event) => FocusManager
+                                    .instance.primaryFocus
+                                    ?.unfocus(),
                                 initialValue: field.answer ?? '',
                                 textInputAction: TextInputAction.next,
                                 key: _formFieldKeys[field.id],
@@ -553,6 +556,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
+                                onTapOutside: (event) => FocusManager
+                                    .instance.primaryFocus
+                                    ?.unfocus(),
                                 key: _formFieldKeys[field.id],
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -689,6 +695,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   labelText: labelText,
                                   isRequired: e.isRequired,
                                   child: TextFormField(
+                                    onTapOutside: (event) => FocusManager
+                                        .instance.primaryFocus
+                                        ?.unfocus(),
                                     initialValue: field.answer,
                                     key: _formFieldKeys[field.id],
                                     autovalidateMode:
@@ -1178,7 +1187,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         SizedBox(
           height: 200,
           child: Container(
-            // height: 300,
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.grey.shade300,
@@ -1186,29 +1194,38 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
-                onChangeContent: (code) {
-                  change(code.toString().trim());
+                // onFocus: () {
+                //   print('onFocus');
+                //   widget.formValue.saveString(
+                //     widget.field.id,
+                //     widget.formCon.text,
+                //   );
+                // },
+                onBlur: () {
                   widget.formValue.saveString(
                     widget.field.id,
-                    code.toString().trim(),
+                    widget.formCon.text,
+                  );
+                },
+                onChangeContent: (code) {
+                  widget.formCon.text = code.toString().trim();
+                  widget.formValue.saveString(
+                    widget.field.id,
+                    widget.formCon.text,
                   );
                 },
               ),
               controller: widget.htmlEditorController, //required
               plugins: const [],
               htmlEditorOptions: widget.editorOptions,
-              // textInputAction: TextInputAction.newline,
               htmlToolbarOptions: const HtmlToolbarOptions(
                 defaultToolbarButtons: [
-                  // StyleButtons(),
-                  // FontSettingButtons(),
                   FontButtons(
                     clearAll: false,
                     strikethrough: false,
                     subscript: false,
                     superscript: false,
                   ),
-                  // ColorButtons(),
                   ListButtons(listStyles: false),
                   ParagraphButtons(
                     caseConverter: false,
@@ -1217,8 +1234,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                     increaseIndent: false,
                     decreaseIndent: false,
                   ),
-                  // InsertButtons(),
-                  // OtherButtons(),
                 ],
               ),
             ),
@@ -1230,12 +1245,12 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
             visible: true,
             child: TextFormField(
               style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
-                errorText: empty == true ? 'Long text is required' : '',
+                // errorText: empty == true ? 'Long text is required' : '',
                 labelStyle: const TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
@@ -1253,9 +1268,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 setState(() {
                   empty = true;
                 });
-
-                // var a = formValue.value;
-
                 return textValidator(
                   value: value.toString().trim(),
                   inputType: "text",
