@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:file_picker/file_picker.dart';
@@ -299,6 +300,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return areEqual;
   }
 
+  final HtmlEditorController htmlEditorController = HtmlEditorController();
+
   @override
   Widget build(BuildContext context) {
     questionNumber = 0;
@@ -343,16 +346,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                       final labelText = '$questionNumber. ${e.label ?? ''} ';
                       return e.maybeMap(
                         text: (field) {
-                          // QuillEditorController htmlEditorController =
-                          //     QuillEditorController();
-                          final HtmlEditorController htmlEditorController =
-                              HtmlEditorController();
                           final TextEditingController formCon =
                               TextEditingController();
-
                           HtmlEditorOptions editorOptions =
-                              const HtmlEditorOptions(
-                                  initialText: '<b>This is me</b>');
+                              const HtmlEditorOptions();
                           formValue.saveString(
                             field.id,
                             field.answer,
@@ -396,6 +393,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                           //   FilteringTextInputFormatter.deny(
                                           //       RegExp(r'\s')),
                                           // ],
+                                          onTapOutside: (event) => FocusManager
+                                              .instance.primaryFocus
+                                              ?.unfocus(),
                                           initialValue: field.answer ?? '',
                                           key: _formFieldKeys[field.id],
                                           style: Theme.of(context)
@@ -421,6 +421,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                               ? 3
                                               : 1,
                                           onSaved: (newValue) {
+                                            htmlEditorController
+                                                .editorController!
+                                                .clearFocus();
                                             formValue.saveString(
                                               field.id,
                                               newValue.toString().trim(),
@@ -454,6 +457,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
+                                onTapOutside: (event) => FocusManager
+                                    .instance.primaryFocus
+                                    ?.unfocus(),
                                 initialValue: field.answer ?? '',
                                 textInputAction: TextInputAction.next,
                                 key: _formFieldKeys[field.id],
@@ -465,6 +471,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 onSaved: (newValue) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -515,6 +523,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 invalidNumberMessage: 'Invalid Phone Number',
                                 isRequired: e.isRequired,
                                 onSaved: (newValue) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
                                   Country country =
                                       PhoneNumber.getCountry(newValue);
                                   if (newValue
@@ -553,6 +563,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
+                                onTapOutside: (event) => FocusManager
+                                    .instance.primaryFocus
+                                    ?.unfocus(),
                                 key: _formFieldKeys[field.id],
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -563,6 +576,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 keyboardType: TextInputType.emailAddress,
                                 maxLength: field.maxLength,
                                 onSaved: (newValue) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -591,6 +606,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
+                                onTapOutside: (event) => FocusManager
+                                    .instance.primaryFocus
+                                    ?.unfocus(),
                                 key: _formFieldKeys[field.id],
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -601,6 +619,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 maxLength: field.maxLength,
                                 textInputAction: TextInputAction.next,
                                 onSaved: (newValue) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -634,7 +654,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               child: DateTimeInputWidget(
                                 fieldKey: _formFieldKeys[field.id],
                                 field: field,
-
                                 dateTime: DatePickerType.date,
                                 formValue: formValue,
                                 // labelText: labelText,
@@ -689,6 +708,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   labelText: labelText,
                                   isRequired: e.isRequired,
                                   child: TextFormField(
+                                    onTapOutside: (event) => FocusManager
+                                        .instance.primaryFocus
+                                        ?.unfocus(),
                                     initialValue: field.answer,
                                     key: _formFieldKeys[field.id],
                                     autovalidateMode:
@@ -700,10 +722,14 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     keyboardType: TextInputType.text,
                                     maxLength: field.maxLength,
                                     maxLines: 4,
-                                    onSaved: (newValue) => formValue.saveString(
-                                      field.id,
-                                      newValue,
-                                    ),
+                                    onSaved: (newValue) {
+                                      htmlEditorController.editorController!
+                                          .clearFocus();
+                                      formValue.saveString(
+                                        field.id,
+                                        newValue,
+                                      );
+                                    },
                                     validator: (value) => textValidator(
                                       value: value,
                                       inputType: "comment",
@@ -868,6 +894,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 fileClicked: widget.onFileClicked,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -905,6 +933,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 formValue: formValue,
                                 labelText: labelText,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -936,6 +966,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 imageBuild: widget.imageBuild,
                                 onSaved: (Map<String, dynamic> newValue) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
                                   formValue.saveMap(
                                     field.id,
                                     newValue,
@@ -967,7 +999,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 imageBuild: widget.imageBuild,
                                 attachmentSave: widget.attachmentSave,
                                 labelText: labelText,
-                                onSaved: (Map<String, dynamic> result) {},
+                                onSaved: (Map<String, dynamic> result) {
+                                  htmlEditorController.editorController!
+                                      .clearFocus();
+                                },
                               ),
                             ),
                           );
@@ -1165,10 +1200,13 @@ class HtmlEditorWidget extends StatefulWidget {
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   bool empty = false;
+  final _debouncer = Debouncer(milliseconds: 800);
 
-  void change(String v) {
-    widget.formCon.text = v;
-    setState(() {});
+  void saveLongText() {
+    widget.formValue.saveString(
+      widget.field.id,
+      widget.formCon.text,
+    );
   }
 
   @override
@@ -1178,7 +1216,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         SizedBox(
           height: 200,
           child: Container(
-            // height: 300,
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.grey.shade300,
@@ -1186,29 +1223,34 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
+                onFocus: () {
+                  saveLongText();
+                },
+                onBlur: () {
+                  saveLongText();
+                },
                 onChangeContent: (code) {
-                  change(code.toString().trim());
-                  widget.formValue.saveString(
-                    widget.field.id,
-                    code.toString().trim(),
-                  );
+                  if (code.toString().trim().isNotEmpty) {
+                    _debouncer.run(() {
+                      Future.microtask(() {
+                        widget.formCon.text = code.toString().trim();
+                        saveLongText();
+                      });
+                    });
+                  }
                 },
               ),
               controller: widget.htmlEditorController, //required
               plugins: const [],
               htmlEditorOptions: widget.editorOptions,
-              // textInputAction: TextInputAction.newline,
               htmlToolbarOptions: const HtmlToolbarOptions(
                 defaultToolbarButtons: [
-                  // StyleButtons(),
-                  // FontSettingButtons(),
                   FontButtons(
                     clearAll: false,
                     strikethrough: false,
                     subscript: false,
                     superscript: false,
                   ),
-                  // ColorButtons(),
                   ListButtons(listStyles: false),
                   ParagraphButtons(
                     caseConverter: false,
@@ -1217,8 +1259,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                     increaseIndent: false,
                     decreaseIndent: false,
                   ),
-                  // InsertButtons(),
-                  // OtherButtons(),
                 ],
               ),
             ),
@@ -1230,12 +1270,12 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
             visible: true,
             child: TextFormField(
               style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
-                errorText: empty == true ? 'Long text is required' : '',
+                // errorText: empty == true ? 'Long text is required' : '',
                 labelStyle: const TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
@@ -1253,9 +1293,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 setState(() {
                   empty = true;
                 });
-
-                // var a = formValue.value;
-
                 return textValidator(
                   value: value.toString().trim(),
                   inputType: "text",
@@ -1268,5 +1305,21 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         ),
       ],
     );
+  }
+}
+
+///Debouncer class for search feature
+class Debouncer {
+  final int milliseconds;
+  Timer? _timer;
+
+  Debouncer({this.milliseconds = 1000});
+
+  ///checks the timer with durations
+  run(VoidCallback action) {
+    if (_timer != null || (_timer?.isActive ?? false)) {
+      _timer?.cancel();
+    }
+    _timer = Timer(Duration(milliseconds: milliseconds), action);
   }
 }

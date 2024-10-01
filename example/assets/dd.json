@@ -121,6 +121,25 @@
             ]
         },
         {
+            "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56f652",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": false,
+            "selectedLinkListLabel": "",
+            "answer":""
+            
+        },
+        {
+            "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43f",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Signature",
+            "answer": {},
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",
             "name": "Yes/No/NA",
             "type": "radiogroup",
@@ -236,6 +255,16 @@
             "isConditional": false,
             "fromManualList": true
    
+        },
+        {
+            "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56f657",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": false,
+            "selectedLinkListLabel": "",
+            "answer":""
+            
         },
         {
             "id": "item-e40bde85-bd42-40d0-93ec-da5fb49879c1",
