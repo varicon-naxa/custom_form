@@ -1225,17 +1225,9 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               callbacks: Callbacks(
                 onFocus: () {
                   saveLongText();
-                  // widget.formValue.saveString(
-                  //   widget.field.id,
-                  //   widget.formCon.text,
-                  // );
                 },
                 onBlur: () {
                   saveLongText();
-                  // widget.formValue.saveString(
-                  //   widget.field.id,
-                  //   widget.formCon.text,
-                  // );
                 },
                 onChangeContent: (code) {
                   if (code.toString().trim().isNotEmpty) {
@@ -1243,11 +1235,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                       Future.microtask(() {
                         widget.formCon.text = code.toString().trim();
                         saveLongText();
-                        // widget.formValue.saveString(
-                        //   widget.field.id,
-                        //   widget.formCon.text,
-                        // );
-                        // setState(() {});
                       });
                     });
                   }
@@ -1277,45 +1264,45 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
             ),
           ),
         ),
-        // SizedBox(
-        //   height: 20,
-        //   child: Visibility(
-        //     visible: true,
-        //     child: TextFormField(
-        //       style: const TextStyle(color: Colors.white),
-        //       decoration: const InputDecoration(
-        //         border: InputBorder.none,
-        //         errorBorder: InputBorder.none,
-        //         enabledBorder: InputBorder.none,
-        //         enabled: false,
-        //         // errorText: empty == true ? 'Long text is required' : '',
-        //         labelStyle: const TextStyle(color: Colors.white),
-        //         disabledBorder: InputBorder.none,
-        //         contentPadding: EdgeInsets.zero,
-        //       ),
-        //       controller: widget.formCon,
-        //       key: widget.fieldKey,
-        //       readOnly: true,
-        //       autovalidateMode: AutovalidateMode.onUserInteraction,
-        //       onChanged: (value) {
-        //         setState(() {
-        //           empty = false;
-        //         });
-        //       },
-        //       validator: (value) {
-        //         setState(() {
-        //           empty = true;
-        //         });
-        //         return textValidator(
-        //           value: value.toString().trim(),
-        //           inputType: "text",
-        //           isRequired: (widget.field.isRequired),
-        //           requiredErrorText: 'Long text is required',
-        //         );
-        //       },
-        //     ),
-        //   ),
-        // ),
+        SizedBox(
+          height: 20,
+          child: Visibility(
+            visible: true,
+            child: TextFormField(
+              style: const TextStyle(color: Colors.white),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                errorBorder: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                enabled: false,
+                // errorText: empty == true ? 'Long text is required' : '',
+                labelStyle: const TextStyle(color: Colors.white),
+                disabledBorder: InputBorder.none,
+                contentPadding: EdgeInsets.zero,
+              ),
+              controller: widget.formCon,
+              key: widget.fieldKey,
+              readOnly: true,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              onChanged: (value) {
+                setState(() {
+                  empty = false;
+                });
+              },
+              validator: (value) {
+                setState(() {
+                  empty = true;
+                });
+                return textValidator(
+                  value: value.toString().trim(),
+                  inputType: "text",
+                  isRequired: (widget.field.isRequired),
+                  requiredErrorText: 'Long text is required',
+                );
+              },
+            ),
+          ),
+        ),
       ],
     );
   }
