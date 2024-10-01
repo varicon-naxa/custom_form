@@ -18,7 +18,7 @@
             "name": "long",
             "id": "longetetesdast",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": true,
+            "isRequired": false,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,

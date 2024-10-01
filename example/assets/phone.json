@@ -35,7 +35,9 @@
             "type": "text",
             "label": "Long Text",
             "isRequired": false,
-            "selectedLinkListLabel": ""
+            "selectedLinkListLabel": "",
+            "answer":""
+            
         },
         {
             "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43f",
