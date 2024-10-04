@@ -1231,12 +1231,12 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 },
                 onChangeContent: (code) {
                   if (code.toString().trim().isNotEmpty) {
-                    _debouncer.run(() {
-                      Future.microtask(() {
-                        widget.formCon.text = code.toString().trim();
-                        saveLongText();
-                      });
-                    });
+                    // _debouncer.run(() {
+                    // Future.microtask(() {
+                    widget.formCon.text = code.toString().trim();
+                    saveLongText();
+                    // });
+                    // });
                   }
                 },
               ),
