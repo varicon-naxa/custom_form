@@ -1360,16 +1360,16 @@ class HtmlEditorWidget extends StatelessWidget {
                 onChangeContent: (code) {
                   formCon.text = code.toString().trim();
 
-                  if (code.toString().trim().isNotEmpty) {
-                    _debouncer.run(() {
-                      Future.microtask(() {
-                        formValue.saveString(
-                          field.id,
-                          code.toString().trim(),
-                        );
-                      });
+                  // if (code.toString().trim().isNotEmpty) {
+                  _debouncer.run(() {
+                    Future.microtask(() {
+                      formValue.saveString(
+                        field.id,
+                        code.toString().trim(),
+                      );
                     });
-                  }
+                  });
+                  // }
                 },
               ),
               controller: htmlEditorController, //required
