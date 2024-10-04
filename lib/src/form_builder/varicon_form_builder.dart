@@ -1351,12 +1351,12 @@ class HtmlEditorWidget extends StatelessWidget {
                     formCon.text,
                   );
                 },
-                onBlur: () {
-                  formValue.saveString(
-                    field.id,
-                    formCon.text,
-                  );
-                },
+                // onBlur: () {
+                //   formValue.saveString(
+                //     field.id,
+                //     formCon.text,
+                //   );
+                // },
                 onChangeContent: (code) {
                   formCon.text = code.toString().trim();
 
