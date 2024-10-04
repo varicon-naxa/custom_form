@@ -1361,14 +1361,14 @@ class HtmlEditorWidget extends StatelessWidget {
                   formCon.text = code.toString().trim();
 
                   // if (code.toString().trim().isNotEmpty) {
-                  _debouncer.run(() {
-                    Future.microtask(() {
-                      formValue.saveString(
-                        field.id,
-                        code.toString().trim(),
-                      );
-                    });
-                  });
+                  // _debouncer.run(() {
+                  // Future.microtask(() {
+                  formValue.saveString(
+                    field.id,
+                    code.toString().trim(),
+                  );
+                  // });
+                  // });
                   // }
                 },
               ),
