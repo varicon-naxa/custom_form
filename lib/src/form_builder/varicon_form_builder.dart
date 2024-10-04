@@ -1223,21 +1223,21 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
-                onFocus: () {
-                  // saveLongText();
-                },
-                onBlur: () {
-                  // saveLongText();
-                },
+                // onFocus: () {
+                // saveLongText();
+                // },
+                // onBlur: () {
+                // saveLongText();
+                // },
                 onChangeContent: (code) {
                   // if (code.toString().trim().isNotEmpty) {
-                  _debouncer.run(() {
-                    Future.microtask(() {
-                      widget.formCon.text = code.toString().trim();
-                      saveLongText();
-                      setState(() {});
-                    });
-                  });
+                  // _debouncer.run(() {
+                  //   Future.microtask(() {
+                  widget.formCon.text = code.toString().trim();
+                  saveLongText();
+                  setState(() {});
+                  //   });
+                  // });
                   // }
                 },
               ),
