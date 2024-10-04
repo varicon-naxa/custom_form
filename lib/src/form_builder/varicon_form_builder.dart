@@ -1200,7 +1200,7 @@ class HtmlEditorWidget extends StatefulWidget {
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   bool empty = false;
-  final _debouncer = Debouncer(milliseconds: 800);
+  final _debouncer = Debouncer(milliseconds: 300);
 
   void saveLongText() {
     widget.formValue.saveString(
@@ -1224,10 +1224,10 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
             child: HtmlEditor(
               callbacks: Callbacks(
                 onFocus: () {
-                  saveLongText();
+                  // saveLongText();
                 },
                 onBlur: () {
-                  saveLongText();
+                  // saveLongText();
                 },
                 onChangeContent: (code) {
                   // if (code.toString().trim().isNotEmpty) {
