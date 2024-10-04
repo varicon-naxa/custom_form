@@ -1270,12 +1270,12 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
             visible: true,
             child: TextFormField(
               style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
-                errorText: empty == true ? 'Long text is required' : '',
+                // errorText: empty == true ? 'Long text is required' : '',
                 labelStyle: const TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
@@ -1284,11 +1284,11 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               key: widget.fieldKey,
               readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              onChanged: (value) {
-                setState(() {
-                  empty = false;
-                });
-              },
+              // onChanged: (value) {
+              //   setState(() {
+              //     empty = false;
+              //   });
+              // },
               validator: (value) {
                 // setState(() {
                 //   empty = true;
