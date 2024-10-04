@@ -1230,15 +1230,14 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                   saveLongText();
                 },
                 onChangeContent: (code) {
-                  if (code.toString().trim().isNotEmpty) {
-                    // _debouncer.run(() {
-                    // Future.microtask(() {
-                    widget.formCon.text = code.toString().trim();
-                    saveLongText();
-                    setState(() {});
-                    // });
-                    // });
-                  }
+                  // if (code.toString().trim().isNotEmpty) {
+                    _debouncer.run(() {
+                      Future.microtask(() {
+                        widget.formCon.text = code.toString().trim();
+                        saveLongText();
+                      });
+                    });
+                  // }
                 },
               ),
               controller: widget.htmlEditorController, //required
