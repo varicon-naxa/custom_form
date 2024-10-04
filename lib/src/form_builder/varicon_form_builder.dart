@@ -300,8 +300,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return areEqual;
   }
 
-  final HtmlEditorController htmlEditorController = HtmlEditorController();
-
   @override
   Widget build(BuildContext context) {
     questionNumber = 0;
@@ -346,6 +344,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                       final labelText = '$questionNumber. ${e.label ?? ''} ';
                       return e.maybeMap(
                         text: (field) {
+                          final HtmlEditorController htmlEditorController =
+                              HtmlEditorController();
+
                           final TextEditingController formCon =
                               TextEditingController();
                           HtmlEditorOptions editorOptions =
@@ -471,8 +472,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -523,8 +524,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 invalidNumberMessage: 'Invalid Phone Number',
                                 isRequired: e.isRequired,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                   Country country =
                                       PhoneNumber.getCountry(newValue);
                                   if (newValue
@@ -576,8 +577,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 keyboardType: TextInputType.emailAddress,
                                 maxLength: field.maxLength,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -619,8 +620,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 maxLength: field.maxLength,
                                 textInputAction: TextInputAction.next,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -723,8 +724,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     maxLength: field.maxLength,
                                     maxLines: 4,
                                     onSaved: (newValue) {
-                                      htmlEditorController.editorController!
-                                          .clearFocus();
+                                      // htmlEditorController.editorController!
+                                      //     .clearFocus();
                                       formValue.saveString(
                                         field.id,
                                         newValue,
@@ -894,8 +895,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 fileClicked: widget.onFileClicked,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -933,8 +934,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 formValue: formValue,
                                 labelText: labelText,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -966,8 +967,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 imageBuild: widget.imageBuild,
                                 onSaved: (Map<String, dynamic> newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                   formValue.saveMap(
                                     field.id,
                                     newValue,
@@ -1000,8 +1001,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 attachmentSave: widget.attachmentSave,
                                 labelText: labelText,
                                 onSaved: (Map<String, dynamic> result) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  // htmlEditorController.editorController!
+                                  //     .clearFocus();
                                 },
                               ),
                             ),
@@ -1175,142 +1176,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   }
 }
 
-// ///HTML editor widget class
-// class HtmlEditorWidget extends StatefulWidget {
-//   final TextInputField field;
-//   final HtmlEditorController htmlEditorController;
-//   final HtmlEditorOptions editorOptions;
-//   final FormValue formValue;
-//   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
-//   final TextEditingController formCon;
-
-//   const HtmlEditorWidget({
-//     super.key,
-//     required this.field,
-//     required this.htmlEditorController,
-//     required this.editorOptions,
-//     required this.formValue,
-//     this.fieldKey,
-//     required this.formCon,
-//   });
-
-//   @override
-//   State<HtmlEditorWidget> createState() => _HtmlEditorWidgetState();
-// }
-
-// class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
-//   bool empty = false;
-//   final _debouncer = Debouncer(milliseconds: 300);
-
-//   void saveLongText() {
-//     widget.formValue.saveString(
-//       widget.field.id,
-//       widget.formCon.text,
-//     );
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         SizedBox(
-//           height: 200,
-//           child: Container(
-//             decoration: BoxDecoration(
-//                 border: Border.all(
-//                   color: Colors.grey.shade300,
-//                 ),
-//                 borderRadius: BorderRadius.circular(4.0)),
-//             child: HtmlEditor(
-//               callbacks: Callbacks(
-//                 // onFocus: () {
-//                 // saveLongText();
-//                 // },
-//                 // onBlur: () {
-//                 // saveLongText();
-//                 // },
-//                 onChangeContent: (code) {
-//                   // if (code.toString().trim().isNotEmpty) {
-//                   // _debouncer.run(() {
-//                   //   Future.microtask(() {
-//                   widget.formCon.text = code.toString().trim();
-//                   saveLongText();
-//                   setState(() {});
-//                   //   });
-//                   // });
-//                   // }
-//                 },
-//               ),
-//               controller: widget.htmlEditorController, //required
-//               plugins: const [],
-//               htmlEditorOptions: widget.editorOptions,
-//               htmlToolbarOptions: const HtmlToolbarOptions(
-//                 defaultToolbarButtons: [
-//                   FontButtons(
-//                     clearAll: false,
-//                     strikethrough: false,
-//                     subscript: false,
-//                     superscript: false,
-//                   ),
-//                   ListButtons(listStyles: false),
-//                   ParagraphButtons(
-//                     caseConverter: false,
-//                     lineHeight: false,
-//                     textDirection: false,
-//                     increaseIndent: false,
-//                     decreaseIndent: false,
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//         SizedBox(
-//           height: 20,
-//           child: Visibility(
-//             visible: true,
-//             child: TextFormField(
-//               style: const TextStyle(color: Colors.white),
-//               decoration: const InputDecoration(
-//                 border: InputBorder.none,
-//                 errorBorder: InputBorder.none,
-//                 enabledBorder: InputBorder.none,
-//                 enabled: false,
-//                 // errorText: empty == true ? 'Long text is required' : '',
-//                 labelStyle: const TextStyle(color: Colors.white),
-//                 disabledBorder: InputBorder.none,
-//                 contentPadding: EdgeInsets.zero,
-//               ),
-//               controller: widget.formCon,
-//               key: widget.fieldKey,
-//               readOnly: true,
-//               autovalidateMode: AutovalidateMode.onUserInteraction,
-//               // onChanged: (value) {
-//               //   setState(() {
-//               //     empty = false;
-//               //   });
-//               // },
-//               validator: (value) {
-//                 // setState(() {
-//                 //   empty = true;
-//                 // });
-//                 return textValidator(
-//                   value: value.toString().trim(),
-//                   inputType: "text",
-//                   isRequired: (widget.field.isRequired),
-//                   requiredErrorText: 'Long text is required',
-//                 );
-//               },
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
 ///HTML editor widget class
-class HtmlEditorWidget extends StatelessWidget {
+class HtmlEditorWidget extends StatefulWidget {
   final TextInputField field;
   final HtmlEditorController htmlEditorController;
   final HtmlEditorOptions editorOptions;
@@ -1329,13 +1196,27 @@ class HtmlEditorWidget extends StatelessWidget {
   });
 
   @override
+  State<HtmlEditorWidget> createState() => _HtmlEditorWidgetState();
+}
+
+class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
+  bool empty = false;
+  final _debouncer = Debouncer(milliseconds: 300);
+
+  void saveLongText() {
+    widget.formValue.saveString(
+      widget.field.id,
+      widget.formCon.text,
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
           height: 200,
           child: Container(
-            // height: 300,
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.grey.shade300,
@@ -1343,29 +1224,34 @@ class HtmlEditorWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
+                onFocus: () {
+                  saveLongText();
+                },
+                onBlur: () {
+                  saveLongText();
+                },
                 onChangeContent: (code) {
-                  formCon.text = code.toString().trim();
-                  formValue.saveString(
-                    field.id,
-                    code.toString().trim(),
-                  );
+                  if (code.toString().trim().isNotEmpty) {
+                    _debouncer.run(() {
+                      Future.microtask(() {
+                        widget.formCon.text = code.toString().trim();
+                        saveLongText();
+                      });
+                    });
+                  }
                 },
               ),
-              controller: htmlEditorController, //required
+              controller: widget.htmlEditorController, //required
               plugins: const [],
-              htmlEditorOptions: editorOptions,
-              // textInputAction: TextInputAction.newline,
+              htmlEditorOptions: widget.editorOptions,
               htmlToolbarOptions: const HtmlToolbarOptions(
                 defaultToolbarButtons: [
-                  // StyleButtons(),
-                  // FontSettingButtons(),
                   FontButtons(
                     clearAll: false,
                     strikethrough: false,
                     subscript: false,
                     superscript: false,
                   ),
-                  // ColorButtons(),
                   ListButtons(listStyles: false),
                   ParagraphButtons(
                     caseConverter: false,
@@ -1374,8 +1260,6 @@ class HtmlEditorWidget extends StatelessWidget {
                     increaseIndent: false,
                     decreaseIndent: false,
                   ),
-                  // InsertButtons(),
-                  // OtherButtons(),
                 ],
               ),
             ),
@@ -1392,21 +1276,28 @@ class HtmlEditorWidget extends StatelessWidget {
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
-                labelStyle: TextStyle(color: Colors.white),
+                // errorText: empty == true ? 'Long text is required' : '',
+                labelStyle: const TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
               ),
-              controller: formCon,
-              key: fieldKey,
+              controller: widget.formCon,
+              key: widget.fieldKey,
               readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
+              // onChanged: (value) {
+              //   setState(() {
+              //     empty = false;
+              //   });
+              // },
               validator: (value) {
-                // var a = formValue.value;
-
+                // setState(() {
+                //   empty = true;
+                // });
                 return textValidator(
                   value: value.toString().trim(),
                   inputType: "text",
-                  isRequired: (field.isRequired),
+                  isRequired: (widget.field.isRequired),
                   requiredErrorText: 'Long text is required',
                 );
               },
@@ -1417,6 +1308,115 @@ class HtmlEditorWidget extends StatelessWidget {
     );
   }
 }
+
+///HTML editor widget class
+// class HtmlEditorWidget extends StatelessWidget {
+//   final TextInputField field;
+//   final HtmlEditorController htmlEditorController;
+//   final HtmlEditorOptions editorOptions;
+//   final FormValue formValue;
+//   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
+//   final TextEditingController formCon;
+
+//   const HtmlEditorWidget({
+//     super.key,
+//     required this.field,
+//     required this.htmlEditorController,
+//     required this.editorOptions,
+//     required this.formValue,
+//     this.fieldKey,
+//     required this.formCon,
+//   });
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Column(
+//       children: [
+//         SizedBox(
+//           height: 200,
+//           child: Container(
+//             // height: 300,
+//             decoration: BoxDecoration(
+//                 border: Border.all(
+//                   color: Colors.grey.shade300,
+//                 ),
+//                 borderRadius: BorderRadius.circular(4.0)),
+//             child: HtmlEditor(
+//               callbacks: Callbacks(
+//                 onChangeContent: (code) {
+//                   formCon.text = code.toString().trim();
+//                   formValue.saveString(
+//                     field.id,
+//                     code.toString().trim(),
+//                   );
+//                 },
+//               ),
+//               controller: htmlEditorController, //required
+//               plugins: const [],
+//               htmlEditorOptions: editorOptions,
+//               // textInputAction: TextInputAction.newline,
+//               htmlToolbarOptions: const HtmlToolbarOptions(
+//                 defaultToolbarButtons: [
+//                   // StyleButtons(),
+//                   // FontSettingButtons(),
+//                   FontButtons(
+//                     clearAll: false,
+//                     strikethrough: false,
+//                     subscript: false,
+//                     superscript: false,
+//                   ),
+//                   // ColorButtons(),
+//                   ListButtons(listStyles: false),
+//                   ParagraphButtons(
+//                     caseConverter: false,
+//                     lineHeight: false,
+//                     textDirection: false,
+//                     increaseIndent: false,
+//                     decreaseIndent: false,
+//                   ),
+//                   // InsertButtons(),
+//                   // OtherButtons(),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         ),
+//         SizedBox(
+//           height: 20,
+//           child: Visibility(
+//             visible: true,
+//             child: TextFormField(
+//               style: const TextStyle(color: Colors.white),
+//               decoration: const InputDecoration(
+//                 border: InputBorder.none,
+//                 errorBorder: InputBorder.none,
+//                 enabledBorder: InputBorder.none,
+//                 enabled: false,
+//                 labelStyle: TextStyle(color: Colors.white),
+//                 disabledBorder: InputBorder.none,
+//                 contentPadding: EdgeInsets.zero,
+//               ),
+//               controller: formCon,
+//               key: fieldKey,
+//               readOnly: true,
+//               autovalidateMode: AutovalidateMode.onUserInteraction,
+//               validator: (value) {
+//                 // var a = formValue.value;
+
+//                 return textValidator(
+//                   value: value.toString().trim(),
+//                   inputType: "text",
+//                   isRequired: (field.isRequired),
+//                   requiredErrorText: 'Long text is required',
+//                 );
+//               },
+//             ),
+//           ),
+//         ),
+//       ],
+//     );
+//   }
+// }
 
 ///Debouncer class for search feature
 class Debouncer {
