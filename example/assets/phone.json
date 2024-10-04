@@ -5,32 +5,17 @@
     "version": "1.0.0",
     "elements": [
         {
-            "id": "item-40d35c05-3708-4200-814b-ed687ddf9cdb",
-            "name": "Full Name",
-            "type": "text",
-            "label": "Full Name",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-3ff316b3-4414-42a1-b327-9800daa38d79",
-            "name": "Email",
-            "type": "email",
-            "label": "Email",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-0835f20d-2923-4300-8c9d-744acc1b8679",
-            "name": "Short Text",
-            "type": "text",
-            "label": "Short Text",
-            "answer": "",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
             "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56f652",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": true,
+            "selectedLinkListLabel": "",
+            "answer":""
+            
+        },
+        {
+            "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56f952",
             "name": "Long Text",
             "type": "text",
             "label": "Long Text",
@@ -40,13 +25,15 @@
             
         },
         {
-            "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43f",
-            "name": "Signature",
-            "type": "signature",
-            "label": "Signature",
-            "answer": {},
-            "isRequired": true,
-            "selectedLinkListLabel": ""
+            "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56u952",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": false,
+            "selectedLinkListLabel": "",
+            "answer":""
+            
         }
+
     ]
 }
