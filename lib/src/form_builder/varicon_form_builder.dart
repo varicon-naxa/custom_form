@@ -1330,8 +1330,6 @@ class HtmlEditorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _debouncer = Debouncer(milliseconds: 300);
-
     return Column(
       children: [
         SizedBox(
@@ -1345,31 +1343,12 @@ class HtmlEditorWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
-                // onFocus: () {
-                //   formValue.saveString(
-                //     field.id,
-                //     formCon.text,
-                //   );
-                // },
-                // onBlur: () {
-                //   formValue.saveString(
-                //     field.id,
-                //     formCon.text,
-                //   );
-                // },
                 onChangeContent: (code) {
                   formCon.text = code.toString().trim();
-
-                  // if (code.toString().trim().isNotEmpty) {
-                  // _debouncer.run(() {
-                  // Future.microtask(() {
                   formValue.saveString(
                     field.id,
                     code.toString().trim(),
                   );
-                  // });
-                  // });
-                  // }
                 },
               ),
               controller: htmlEditorController, //required
