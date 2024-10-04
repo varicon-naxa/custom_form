@@ -422,9 +422,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                               ? 3
                                               : 1,
                                           onSaved: (newValue) {
-                                            htmlEditorController
-                                                .editorController!
-                                                .clearFocus();
+                                            // htmlEditorController
+                                            //     .editorController!
+                                            //     .clearFocus();
                                             formValue.saveString(
                                               field.id,
                                               newValue.toString().trim(),
