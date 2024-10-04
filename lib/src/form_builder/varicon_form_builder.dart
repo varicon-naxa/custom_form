@@ -1345,12 +1345,12 @@ class HtmlEditorWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
-                onFocus: () {
-                  formValue.saveString(
-                    field.id,
-                    formCon.text,
-                  );
-                },
+                // onFocus: () {
+                //   formValue.saveString(
+                //     field.id,
+                //     formCon.text,
+                //   );
+                // },
                 // onBlur: () {
                 //   formValue.saveString(
                 //     field.id,
