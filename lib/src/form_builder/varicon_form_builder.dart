@@ -1235,6 +1235,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                     // Future.microtask(() {
                     widget.formCon.text = code.toString().trim();
                     saveLongText();
+                    setState(() {});
                     // });
                     // });
                   }
