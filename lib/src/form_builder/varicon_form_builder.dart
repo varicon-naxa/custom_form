@@ -1,10 +1,8 @@
-// ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
-
-import 'dart:async';
-import 'dart:developer';
+// ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:intl_phone_field/countries.dart';
@@ -300,8 +298,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return areEqual;
   }
 
-  final HtmlEditorController htmlEditorController = HtmlEditorController();
-
   @override
   Widget build(BuildContext context) {
     questionNumber = 0;
@@ -346,10 +342,16 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                       final labelText = '$questionNumber. ${e.label ?? ''} ';
                       return e.maybeMap(
                         text: (field) {
+                          // QuillEditorController htmlEditorController =
+                          //     QuillEditorController();
+                          final HtmlEditorController htmlEditorController =
+                              HtmlEditorController();
                           final TextEditingController formCon =
                               TextEditingController();
+
                           HtmlEditorOptions editorOptions =
-                              const HtmlEditorOptions();
+                              const HtmlEditorOptions(
+                                  initialText: '<b>This is me</b>');
                           formValue.saveString(
                             field.id,
                             field.answer,
@@ -393,9 +395,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                           //   FilteringTextInputFormatter.deny(
                                           //       RegExp(r'\s')),
                                           // ],
-                                          onTapOutside: (event) => FocusManager
-                                              .instance.primaryFocus
-                                              ?.unfocus(),
                                           initialValue: field.answer ?? '',
                                           key: _formFieldKeys[field.id],
                                           style: Theme.of(context)
@@ -421,9 +420,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                               ? 3
                                               : 1,
                                           onSaved: (newValue) {
-                                            htmlEditorController
-                                                .editorController!
-                                                .clearFocus();
                                             formValue.saveString(
                                               field.id,
                                               newValue.toString().trim(),
@@ -457,9 +453,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
-                                onTapOutside: (event) => FocusManager
-                                    .instance.primaryFocus
-                                    ?.unfocus(),
                                 initialValue: field.answer ?? '',
                                 textInputAction: TextInputAction.next,
                                 key: _formFieldKeys[field.id],
@@ -471,8 +464,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -523,8 +514,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 invalidNumberMessage: 'Invalid Phone Number',
                                 isRequired: e.isRequired,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
                                   Country country =
                                       PhoneNumber.getCountry(newValue);
                                   if (newValue
@@ -563,9 +552,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
-                                onTapOutside: (event) => FocusManager
-                                    .instance.primaryFocus
-                                    ?.unfocus(),
                                 key: _formFieldKeys[field.id],
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -576,8 +562,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 keyboardType: TextInputType.emailAddress,
                                 maxLength: field.maxLength,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -606,9 +590,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               labelText: labelText,
                               isRequired: e.isRequired,
                               child: TextFormField(
-                                onTapOutside: (event) => FocusManager
-                                    .instance.primaryFocus
-                                    ?.unfocus(),
                                 key: _formFieldKeys[field.id],
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
@@ -619,8 +600,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 maxLength: field.maxLength,
                                 textInputAction: TextInputAction.next,
                                 onSaved: (newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -654,6 +633,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               child: DateTimeInputWidget(
                                 fieldKey: _formFieldKeys[field.id],
                                 field: field,
+
                                 dateTime: DatePickerType.date,
                                 formValue: formValue,
                                 // labelText: labelText,
@@ -708,9 +688,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                   labelText: labelText,
                                   isRequired: e.isRequired,
                                   child: TextFormField(
-                                    onTapOutside: (event) => FocusManager
-                                        .instance.primaryFocus
-                                        ?.unfocus(),
                                     initialValue: field.answer,
                                     key: _formFieldKeys[field.id],
                                     autovalidateMode:
@@ -722,14 +699,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     keyboardType: TextInputType.text,
                                     maxLength: field.maxLength,
                                     maxLines: 4,
-                                    onSaved: (newValue) {
-                                      htmlEditorController.editorController!
-                                          .clearFocus();
-                                      formValue.saveString(
-                                        field.id,
-                                        newValue,
-                                      );
-                                    },
+                                    onSaved: (newValue) => formValue.saveString(
+                                      field.id,
+                                      newValue,
+                                    ),
                                     validator: (value) => textValidator(
                                       value: value,
                                       inputType: "comment",
@@ -826,7 +799,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         checkbox: (field) {
-                          log('checkbox bhitra aayo');
                           formValue.saveString(
                             field.id,
                             field.answer,
@@ -869,14 +841,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         files: (field) {
                           TextEditingController formCon =
                               TextEditingController();
-                          if (field.answer != null &&
-                              (field.answer ?? []).isNotEmpty) {
-                            formValue.saveList(
-                              field.id,
-                              field.answer,
-                            );
-                          }
 
+                          formValue.saveList(
+                            field.id,
+                            field.answer,
+                          );
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -894,8 +863,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 fileClicked: widget.onFileClicked,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -909,8 +876,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           TextEditingController formCon =
                               TextEditingController();
 
-                          if (field.answer != null &&
-                              (field.answer ?? []).isNotEmpty) {
+                          if (field.answer != null) {
                             formValue.saveList(
                               field.id,
                               field.answer,
@@ -933,8 +899,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 formValue: formValue,
                                 labelText: labelText,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
+                                  var a = newValue;
+                                  print(a);
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -945,9 +911,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         signature: (field) {
-                          if (field.answer != null &&
-                              field.answer != {} &&
-                              field.answer.toString() != '{}') {
+                          if (field.answer != null && field.answer != {}) {
                             formValue.saveMap(
                               field.id,
                               field.answer ?? {},
@@ -966,8 +930,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 imageBuild: widget.imageBuild,
                                 onSaved: (Map<String, dynamic> newValue) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
                                   formValue.saveMap(
                                     field.id,
                                     newValue,
@@ -999,10 +961,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 imageBuild: widget.imageBuild,
                                 attachmentSave: widget.attachmentSave,
                                 labelText: labelText,
-                                onSaved: (Map<String, dynamic> result) {
-                                  htmlEditorController.editorController!
-                                      .clearFocus();
-                                },
+                                onSaved: (Map<String, dynamic> result) {},
                               ),
                             ),
                           );
@@ -1176,7 +1135,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
 }
 
 ///HTML editor widget class
-class HtmlEditorWidget extends StatefulWidget {
+class HtmlEditorWidget extends StatelessWidget {
   final TextInputField field;
   final HtmlEditorController htmlEditorController;
   final HtmlEditorOptions editorOptions;
@@ -1195,27 +1154,13 @@ class HtmlEditorWidget extends StatefulWidget {
   });
 
   @override
-  State<HtmlEditorWidget> createState() => _HtmlEditorWidgetState();
-}
-
-class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
-  bool empty = false;
-  final _debouncer = Debouncer(milliseconds: 300);
-
-  void saveLongText() {
-    widget.formValue.saveString(
-      widget.field.id,
-      widget.formCon.text,
-    );
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
           height: 200,
           child: Container(
+            // height: 300,
             decoration: BoxDecoration(
                 border: Border.all(
                   color: Colors.grey.shade300,
@@ -1223,35 +1168,29 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
-                // onFocus: () {
-                // saveLongText();
-                // },
-                // onBlur: () {
-                // saveLongText();
-                // },
                 onChangeContent: (code) {
-                  // if (code.toString().trim().isNotEmpty) {
-                  // _debouncer.run(() {
-                  //   Future.microtask(() {
-                  widget.formCon.text = code.toString().trim();
-                  saveLongText();
-                  setState(() {});
-                  //   });
-                  // });
-                  // }
+                  formCon.text = code.toString().trim();
+                  formValue.saveString(
+                    field.id,
+                    code.toString().trim(),
+                  );
                 },
               ),
-              controller: widget.htmlEditorController, //required
+              controller: htmlEditorController, //required
               plugins: const [],
-              htmlEditorOptions: widget.editorOptions,
+              htmlEditorOptions: editorOptions,
+              // textInputAction: TextInputAction.newline,
               htmlToolbarOptions: const HtmlToolbarOptions(
                 defaultToolbarButtons: [
+                  // StyleButtons(),
+                  // FontSettingButtons(),
                   FontButtons(
                     clearAll: false,
                     strikethrough: false,
                     subscript: false,
                     superscript: false,
                   ),
+                  // ColorButtons(),
                   ListButtons(listStyles: false),
                   ParagraphButtons(
                     caseConverter: false,
@@ -1260,6 +1199,8 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                     increaseIndent: false,
                     decreaseIndent: false,
                   ),
+                  // InsertButtons(),
+                  // OtherButtons(),
                 ],
               ),
             ),
@@ -1276,28 +1217,21 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
-                // errorText: empty == true ? 'Long text is required' : '',
-                labelStyle: const TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
               ),
-              controller: widget.formCon,
-              key: widget.fieldKey,
+              controller: formCon,
+              key: fieldKey,
               readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              // onChanged: (value) {
-              //   setState(() {
-              //     empty = false;
-              //   });
-              // },
               validator: (value) {
-                // setState(() {
-                //   empty = true;
-                // });
+                // var a = formValue.value;
+
                 return textValidator(
                   value: value.toString().trim(),
                   inputType: "text",
-                  isRequired: (widget.field.isRequired),
+                  isRequired: (field.isRequired),
                   requiredErrorText: 'Long text is required',
                 );
               },
@@ -1306,21 +1240,5 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         ),
       ],
     );
-  }
-}
-
-///Debouncer class for search feature
-class Debouncer {
-  final int milliseconds;
-  Timer? _timer;
-
-  Debouncer({this.milliseconds = 1000});
-
-  ///checks the timer with durations
-  run(VoidCallback action) {
-    if (_timer != null || (_timer?.isActive ?? false)) {
-      _timer?.cancel();
-    }
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
   }
 }
