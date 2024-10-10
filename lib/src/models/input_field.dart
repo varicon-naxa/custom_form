@@ -5,6 +5,8 @@ import 'package:varicon_form_builder/src/json_converters/value_text_converter.da
 import 'package:varicon_form_builder/src/models/single_signature.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 
+import '../json_converters/input_field_converter.dart';
+
 part 'input_field.freezed.dart';
 part 'input_field.g.dart';
 
@@ -517,6 +519,23 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'description') String? description,
   }) = MapField;
+
+  const factory InputField.table({
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'visible') @Default(true) bool visible,
+    @JsonKey(name: 'isRow') @Default(true) bool isRow,
+    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
+    @JsonKey(name: 'contents')
+    @InputFieldConverter()
+    @Default(<List<InputField>>[])
+    List<List<InputField>> inputFields,
+  }) = TableField;
 
   factory InputField.fromJson(Map<String, dynamic> json) =>
       _$InputFieldFromJson(json);

@@ -1,3 +1,5 @@
+import '../../varicon_form_builder.dart';
+
 /// {@template FormValue}
 /// Represents value of the form to submit.
 /// {@endtemplate}
@@ -96,5 +98,20 @@ class FormValue {
       return v.toDouble();
     }
     throw const FormatException('Value is not neither String nor num.');
+  }
+
+  void saveTableField(String id, TableField tableField) {
+    _value[id] = tableField.inputFields.map((row) {
+      return row.map((field) => field.toJson()).toList();
+    }).toList();
+  }
+
+  List<List<InputField>>? getTableFieldData(String id) {
+    final tableFieldMap = _value[id];
+
+    return tableFieldMap.map<List<InputField>>((row) {
+      if (row is! List) return [];
+      return row.map((fieldJson) => InputField.fromJson(fieldJson)).toList();
+    }).toList();
   }
 }
