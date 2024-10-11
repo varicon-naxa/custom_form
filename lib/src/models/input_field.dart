@@ -537,6 +537,23 @@ class InputField with _$InputField implements BasicInputField {
     List<List<InputField>> inputFields,
   }) = TableField;
 
+  const factory InputField.advtable({
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+    @JsonKey(name: 'description') String? description,
+    @JsonKey(name: 'visible') @Default(true) bool visible,
+    @JsonKey(name: 'isRow') @Default(true) bool isRow,
+    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
+    @JsonKey(name: 'contents')
+    @InputFieldConverter()
+    @Default(<List<InputField>>[])
+    List<List<InputField>> inputFields,
+  }) = AdvanceTableField;
+
   factory InputField.fromJson(Map<String, dynamic> json) =>
       _$InputFieldFromJson(json);
 }

@@ -93,7 +93,7 @@ class _SurveyPageState extends State<SurveyPage> {
                 e['id'].toString().substring(5, e['id'].toString().length)];
 
             if (key != null) {
-              if (e['type'] == 'table') {
+              if (e['type'] == 'table' || e['type'] == 'advtable') {
                 List<List<dynamic>> contents =
                     List<List<dynamic>>.from(e['contents']);
                 for (var rowIndex = 0; rowIndex < contents.length; rowIndex++) {

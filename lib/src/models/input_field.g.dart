@@ -1037,3 +1037,45 @@ Map<String, dynamic> _$$TableFieldImplToJson(_$TableFieldImpl instance) =>
           .toList(),
       'type': instance.$type,
     };
+
+_$AdvanceTableFieldImpl _$$AdvanceTableFieldImplFromJson(
+        Map<String, dynamic> json) =>
+    _$AdvanceTableFieldImpl(
+      id: json['id'] as String,
+      label: json['label'] as String?,
+      name: json['name'] as String?,
+      isRequired: json['isRequired'] as bool? ?? false,
+      answer: json['answer'] as String?,
+      requiredErrorText: json['requiredErrorText'] as String?,
+      description: json['description'] as String?,
+      visible: json['visible'] as bool? ?? true,
+      isRow: json['isRow'] as bool? ?? true,
+      readOnly: json['readOnly'] as bool? ?? false,
+      inputFields: (json['contents'] as List<dynamic>?)
+              ?.map((e) => (e as List<dynamic>)
+                  .map((e) => const InputFieldConverter()
+                      .fromJson(e as Map<String, dynamic>))
+                  .toList())
+              .toList() ??
+          const <List<InputField>>[],
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$AdvanceTableFieldImplToJson(
+        _$AdvanceTableFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'label': instance.label,
+      'name': instance.name,
+      'isRequired': instance.isRequired,
+      'answer': instance.answer,
+      'requiredErrorText': instance.requiredErrorText,
+      'description': instance.description,
+      'visible': instance.visible,
+      'isRow': instance.isRow,
+      'readOnly': instance.readOnly,
+      'contents': instance.inputFields
+          .map((e) => e.map(const InputFieldConverter().toJson).toList())
+          .toList(),
+      'type': instance.$type,
+    };

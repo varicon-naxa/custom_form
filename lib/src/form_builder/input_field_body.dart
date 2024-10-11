@@ -82,6 +82,11 @@ class _InputFieldsBodyState extends State<InputFieldsBody> {
           field.id,
           _tableStates[field.id]!,
         );
+      } else if (field is AdvanceTableField) {
+        widget.formValue.saveAdvanceTableField(
+          field.id,
+          field,
+        );
       }
     }
   }
@@ -870,6 +875,138 @@ class _InputFieldsBodyState extends State<InputFieldsBody> {
             //               speedAccuracy: 50.0),
             //     ),
             //   );
+          },
+          advtable: (field) {
+            return ScrollContent(
+                id: field.id,
+                child: field.isRow
+                    ? Column(
+                        children:
+                            field.inputFields.asMap().entries.map((entry) {
+                          final index = entry.key;
+                          final e = entry.value;
+
+                          return Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xffF5F5F5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            padding: const EdgeInsets.all(8),
+                            margin: const EdgeInsets.only(bottom: 12.0),
+                            child: ExpandableWidget(
+                              initialExpanded: true,
+                              expandableHeader: Row(
+                                children: [
+                                  Text(
+                                    'Row $index (${e.length} Questions)',
+                                  ),
+                                  const Spacer(),
+                                  const Icon(Icons.keyboard_arrow_up)
+                                ],
+                              ),
+                              expandedHeader: Padding(
+                                padding: const EdgeInsets.only(
+                                  bottom: 8,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Row $index (${e.length} Questions)',
+                                    ),
+                                    const Spacer(),
+                                    const Icon(Icons.keyboard_arrow_down)
+                                  ],
+                                ),
+                              ),
+                              expandableChild: InputFieldsBody(
+                                inputfields: e,
+                                formFieldKeys: widget.formFieldKeys,
+                                fieldKeyToIdMap: widget.fieldKeyToIdMap,
+                                scrollToId: widget.scrollToId,
+                                formValue: widget.formValue,
+                                onFileClicked: widget.onFileClicked,
+                                imageBuild: widget.imageBuild,
+                                hasGeolocation: widget.hasGeolocation,
+                                currentPosition: widget.currentPosition,
+                                apiCall: widget.apiCall,
+                                attachmentSave: widget.attachmentSave,
+                              ),
+                            ),
+                          );
+                        }).toList(),
+                      )
+                    : Column(
+                        children: [
+                          for (int columnIndex = 0;
+                              columnIndex < field.inputFields[0].length;
+                              columnIndex++)
+                            Container(
+                              decoration: BoxDecoration(
+                                color: const Color(0xffF5F5F5),
+                                borderRadius: BorderRadius.circular(8.0),
+                              ),
+                              padding: const EdgeInsets.all(8),
+                              margin: const EdgeInsets.only(bottom: 12),
+                              child: ExpandableWidget(
+                                initialExpanded: true,
+                                expandableHeader: Row(
+                                  children: [
+                                    Text(
+                                      'Column ${columnIndex + 1} ',
+                                    ),
+                                    const Spacer(),
+                                    const Icon(Icons.keyboard_arrow_up)
+                                  ],
+                                ),
+                                expandedHeader: Padding(
+                                  padding: const EdgeInsets.only(
+                                    bottom: 8,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        'Column ${columnIndex + 1}',
+                                      ),
+                                      const Spacer(),
+                                      const Icon(Icons.keyboard_arrow_down)
+                                    ],
+                                  ),
+                                ),
+                                expandableChild: Column(
+                                  children: field.inputFields
+                                      .asMap()
+                                      .entries
+                                      .map((entry) {
+                                    final row = entry.value;
+
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xffF5F5F5),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      padding: const EdgeInsets.all(8),
+                                      margin: const EdgeInsets.only(bottom: 8),
+                                      child: InputFieldsBody(
+                                        inputfields: [row[columnIndex]],
+                                        formFieldKeys: widget.formFieldKeys,
+                                        fieldKeyToIdMap: widget.fieldKeyToIdMap,
+                                        scrollToId: widget.scrollToId,
+                                        formValue: widget.formValue,
+                                        onFileClicked: widget.onFileClicked,
+                                        imageBuild: widget.imageBuild,
+                                        hasGeolocation: widget.hasGeolocation,
+                                        currentPosition: widget.currentPosition,
+                                        apiCall: widget.apiCall,
+                                        attachmentSave: widget.attachmentSave,
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ),
+                        ],
+                      ));
           },
           table: (field) {
             TableField table = _tableStates[field.id] ?? field;

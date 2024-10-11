@@ -106,6 +106,12 @@ class FormValue {
     }).toList();
   }
 
+  void saveAdvanceTableField(String id, AdvanceTableField tableField) {
+    _value[id] = tableField.inputFields.map((row) {
+      return row.map((field) => field.toJson()).toList();
+    }).toList();
+  }
+
   List<List<InputField>>? getTableFieldData(String id) {
     final tableFieldMap = _value[id];
 
