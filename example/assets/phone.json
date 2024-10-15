@@ -5,6 +5,14 @@
     "version": "1.0.0",
     "elements": [
         {
+            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Primary Phone number",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-972be852-1b93-44ce-be87-8665122ed336",
             "name": "Address",
             "type": "text",
