@@ -71,18 +71,22 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
     _countryList = widget.countries ?? countries;
     number = widget.initialValue ?? '';
 
-    if (widget.initialCountryCode == null && number.startsWith('+')) {
+    if ((widget.initialCountryCode == null && number.startsWith('+'))) {
       number = number.substring(1);
       _selectedCountry = _countryList.firstWhere(
           (country) => number.startsWith(country.fullCountryCode),
-          orElse: () => _countryList.first);
+          orElse: () => _countryList.firstWhere((item) => item.code == 'AU'));
 
       number = number.replaceFirst(
           RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
       _selectedCountry = _countryList.firstWhere(
-          (item) => item.code == (widget.initialCountryCode ?? 'US'),
-          orElse: () => _countryList.first);
+          (item) =>
+              item.code ==
+              (widget.initialCountryCode == ''
+                  ? 'AU'
+                  : widget.initialCountryCode ?? 'AU'),
+          orElse: () => _countryList.firstWhere((item) => item.code == 'AU'));
 
       if (number.startsWith('+')) {
         number = number.replaceFirst(
@@ -145,7 +149,9 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
             errorText: _error,
           ),
           style: Theme.of(context).textTheme.bodyLarge,
-          initialCountryCode: widget.initialCountryCode ?? 'US',
+          initialCountryCode: widget.initialCountryCode == ''
+              ? 'AU'
+              : widget.initialCountryCode ?? 'AU',
           initialValue: widget.initialValue,
           countries: widget.countries,
           textInputAction: TextInputAction.next,
