@@ -1,0 +1,41 @@
+{
+    "title":"Form new field Table",
+    "description":"Dynamic form generator is a form of the things in the line",
+    "name":"",
+    "version":"1.0.0",
+    "elements":[
+       {
+          "id":"item-3b3cec1e-9c6f-471d-a533-e0da6aa11444",
+          "name":"Simple Table",
+          "type":"table",
+          "label":"This is a table question fill row-wise",
+          "isRequired":true,
+          "selectedLinkListLabel":"",
+          "maxRow":5,
+          "isRow":true,
+          "contents":[
+             [
+                {
+                   "id":"item-3b3cec1e-9c6f-471d-a533-e0da6aa11445",
+                   "name":"Name",
+                   "type":"text",
+                   "label":"Name",
+                   "isRequired":true,
+                   "selectedLinkListLabel":""
+                },
+                {
+                   "id":"item-68fbb667-b16e-4639-a65d-c991b77ab43f",
+                   "name":"Signature",
+                   "type":"signature",
+                   "label":"Signature",
+                   "answer":{
+                      
+                   },
+                   "isRequired":true,
+                   "selectedLinkListLabel":""
+                }
+               ]
+          ]
+       }
+    ]
+ }

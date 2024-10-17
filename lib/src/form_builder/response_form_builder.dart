@@ -909,6 +909,19 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 ),
                         );
                       },
+                      table: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: SizedBox(),
+                          //  TableInputWidget(
+                          //   field: field,
+                          //   fieldKey: _formFieldKeys[field.id],
+                          //   formValue: formValue,
+                          //   labelText: labelText,
+                          // ),
+                        );
+                      },
 
                       orElse: () => null,
                     );
@@ -986,8 +999,6 @@ class _AnswerDesign extends StatelessWidget {
 
   ///Checking for signature
   bool isSignature;
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -1068,7 +1079,6 @@ class _AnswerDesign extends StatelessWidget {
         //     dashGapColor: Colors.white,
         //     dashGapRadius: 0.0,
         //   )
-     
       ],
     );
   }
