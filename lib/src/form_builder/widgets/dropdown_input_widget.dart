@@ -25,8 +25,7 @@ class DropdownInputWidget extends StatefulWidget {
   final FormValue formValue;
 
   ///Field form unique key
-   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
-
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Label text for dropdown
   final String? labelText;
@@ -132,16 +131,16 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   linkedQuery: widget.field.linkedQuery ?? '',
                   onClicked: (ValueText data) {
                     widget.formValue.saveString(
-                      widget.field.id,
-                      data.value,
-                    );
-                    widget.formValue.saveString(
                       widget.field.id.substring(5, widget.field.id.length),
                       data.text,
                     );
-                    setState(() {
-                      formCon.text = data.text;
-                    });
+                    widget.formValue.saveString(
+                      widget.field.id,
+                      data.value,
+                    );
+                    // setState(() {
+                    formCon.text = data.text;
+                    // });
                   },
                 ),
               );
