@@ -422,9 +422,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                               ? 3
                                               : 1,
                                           onSaved: (newValue) {
-                                            // htmlEditorController
-                                            //     .editorController!
-                                            //     .clearFocus();
                                             formValue.saveString(
                                               field.id,
                                               newValue.toString().trim(),
@@ -448,10 +445,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         number: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -472,8 +471,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 autovalidateMode:
                                     AutovalidateMode.onUserInteraction,
                                 onSaved: (newValue) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -502,10 +499,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         phone: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           PhoneNumber? phoneNumber;
                           phoneNumber = PhoneNumber.fromCompleteNumber(
                               completeNumber: field.answer ?? '');
@@ -524,8 +523,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 invalidNumberMessage: 'Invalid Phone Number',
                                 isRequired: e.isRequired,
                                 onSaved: (newValue) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
                                   Country country =
                                       PhoneNumber.getCountry(newValue);
                                   if (newValue
@@ -554,10 +551,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         email: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -577,8 +576,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 keyboardType: TextInputType.emailAddress,
                                 maxLength: field.maxLength,
                                 onSaved: (newValue) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -597,10 +594,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         url: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -620,8 +619,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 maxLength: field.maxLength,
                                 textInputAction: TextInputAction.next,
                                 onSaved: (newValue) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
                                   formValue.saveString(
                                     field.id,
                                     newValue.toString().trim(),
@@ -643,10 +640,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         date: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -679,10 +678,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         datetimelocal: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -724,8 +725,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     maxLength: field.maxLength,
                                     maxLines: 4,
                                     onSaved: (newValue) {
-                                      // htmlEditorController.editorController!
-                                      //     .clearFocus();
                                       formValue.saveString(
                                         field.id,
                                         newValue,
@@ -750,10 +749,13 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         dropdown: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          var a = field;
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -770,10 +772,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         yesno: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -789,10 +793,13 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         radiogroup: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          var c = field;
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -808,10 +815,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         yesnona: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -828,10 +837,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         },
                         checkbox: (field) {
                           log('checkbox bhitra aayo');
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -848,10 +859,13 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         multipleselect: (field) {
-                          formValue.saveString(
-                            field.id,
-                            field.answer,
-                          );
+                          var b = field;
+                          if (field.answer != null && (field.answer != null)) {
+                            formValue.saveString(
+                              field.id,
+                              field.answer,
+                            );
+                          }
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -895,8 +909,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 fileClicked: widget.onFileClicked,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -934,8 +946,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 formValue: formValue,
                                 labelText: labelText,
                                 onSaved: (List<Map<String, dynamic>> newValue) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
                                   formValue.saveList(
                                     field.id,
                                     newValue,
@@ -967,8 +977,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 labelText: labelText,
                                 imageBuild: widget.imageBuild,
                                 onSaved: (Map<String, dynamic> newValue) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
                                   formValue.saveMap(
                                     field.id,
                                     newValue,
@@ -1000,10 +1008,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 imageBuild: widget.imageBuild,
                                 attachmentSave: widget.attachmentSave,
                                 labelText: labelText,
-                                onSaved: (Map<String, dynamic> result) {
-                                  // htmlEditorController.editorController!
-                                  //     .clearFocus();
-                                },
+                                onSaved: (Map<String, dynamic> result) {},
                               ),
                             ),
                           );
@@ -1064,6 +1069,14 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         geolocation: (field) {
+                          if (field.answer != null &&
+                              field.answer != {} &&
+                              field.answer.toString() != '{}') {
+                            formValue.saveMap(
+                              field.id,
+                              field.answer ?? {},
+                            );
+                          }
                           return (widget.hasGeolocation)
                               ? ScrollContent(
                                   id: field.id, child: const SizedBox.shrink())
