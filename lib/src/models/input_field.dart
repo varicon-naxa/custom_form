@@ -530,6 +530,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'isRow') @Default(true) bool isRow,
     @JsonKey(name: 'contents')
     @InputFieldConverter()
     // @Default(<InputField>[])

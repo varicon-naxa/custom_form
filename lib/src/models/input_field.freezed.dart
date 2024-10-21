@@ -502,6 +502,7 @@ mixin _$InputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -922,6 +923,7 @@ mixin _$InputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -1342,6 +1344,7 @@ mixin _$InputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -2086,6 +2089,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -2510,6 +2514,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -2934,6 +2939,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -3771,6 +3777,7 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -4209,6 +4216,7 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -4647,6 +4655,7 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -5516,6 +5525,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -5953,6 +5963,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -6390,6 +6401,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -7178,6 +7190,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -7602,6 +7615,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -8026,6 +8040,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -8851,6 +8866,7 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -9288,6 +9304,7 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -9725,6 +9742,7 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -10618,6 +10636,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -11057,6 +11076,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -11496,6 +11516,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -12374,6 +12395,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -12812,6 +12834,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -13250,6 +13273,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -14110,6 +14134,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -14547,6 +14572,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -14984,6 +15010,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -15839,6 +15866,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -16276,6 +16304,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -16713,6 +16742,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -17569,6 +17599,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -18006,6 +18037,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -18443,6 +18475,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -19299,6 +19332,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -19736,6 +19770,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -20173,6 +20208,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -21029,6 +21065,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -21466,6 +21503,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -21903,6 +21941,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -22759,6 +22798,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -23196,6 +23236,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -23633,6 +23674,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -24428,6 +24470,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -24852,6 +24895,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -25276,6 +25320,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -26224,6 +26269,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -26669,6 +26715,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -27114,6 +27161,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -28124,6 +28172,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -28569,6 +28618,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -29014,6 +29064,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -30024,6 +30075,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -30469,6 +30521,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -30914,6 +30967,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -31871,6 +31925,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -32312,6 +32367,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -32753,6 +32809,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -33694,6 +33751,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -34135,6 +34193,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -34576,6 +34635,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -35517,6 +35577,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -35958,6 +36019,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -36399,6 +36461,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -37218,6 +37281,7 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -37642,6 +37706,7 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -38066,6 +38131,7 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -38838,6 +38904,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -39262,6 +39329,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -39686,6 +39754,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -40445,6 +40514,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -40869,6 +40939,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -41293,6 +41364,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -42054,6 +42126,7 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
@@ -42478,6 +42551,7 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -42902,6 +42976,7 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -43093,6 +43168,7 @@ abstract class _$$TableFieldImplCopyWith<$Res>
       @JsonKey(name: 'visible') bool visible,
       @JsonKey(name: 'readOnly') bool readOnly,
       @JsonKey(name: 'answer') String? answer,
+      @JsonKey(name: 'isRow') bool isRow,
       @JsonKey(name: 'contents')
       @InputFieldConverter()
       List<List<InputField>>? inputFields});
@@ -43119,6 +43195,7 @@ class __$$TableFieldImplCopyWithImpl<$Res>
     Object? visible = null,
     Object? readOnly = null,
     Object? answer = freezed,
+    Object? isRow = null,
     Object? inputFields = freezed,
   }) {
     return _then(_$TableFieldImpl(
@@ -43162,6 +43239,10 @@ class __$$TableFieldImplCopyWithImpl<$Res>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String?,
+      isRow: null == isRow
+          ? _value.isRow
+          : isRow // ignore: cast_nullable_to_non_nullable
+              as bool,
       inputFields: freezed == inputFields
           ? _value._inputFields
           : inputFields // ignore: cast_nullable_to_non_nullable
@@ -43184,6 +43265,7 @@ class _$TableFieldImpl implements TableField {
       @JsonKey(name: 'visible') this.visible = true,
       @JsonKey(name: 'readOnly') this.readOnly = false,
       @JsonKey(name: 'answer') this.answer,
+      @JsonKey(name: 'isRow') this.isRow = true,
       @JsonKey(name: 'contents')
       @InputFieldConverter()
       final List<List<InputField>>? inputFields,
@@ -43224,6 +43306,9 @@ class _$TableFieldImpl implements TableField {
   @override
   @JsonKey(name: 'answer')
   final String? answer;
+  @override
+  @JsonKey(name: 'isRow')
+  final bool isRow;
   final List<List<InputField>>? _inputFields;
   @override
   @JsonKey(name: 'contents')
@@ -43241,7 +43326,7 @@ class _$TableFieldImpl implements TableField {
 
   @override
   String toString() {
-    return 'InputField.table(id: $id, tableId: $tableId, label: $label, name: $name, isRequired: $isRequired, requiredErrorText: $requiredErrorText, description: $description, visible: $visible, readOnly: $readOnly, answer: $answer, inputFields: $inputFields)';
+    return 'InputField.table(id: $id, tableId: $tableId, label: $label, name: $name, isRequired: $isRequired, requiredErrorText: $requiredErrorText, description: $description, visible: $visible, readOnly: $readOnly, answer: $answer, isRow: $isRow, inputFields: $inputFields)';
   }
 
   @override
@@ -43263,6 +43348,7 @@ class _$TableFieldImpl implements TableField {
             (identical(other.readOnly, readOnly) ||
                 other.readOnly == readOnly) &&
             (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.isRow, isRow) || other.isRow == isRow) &&
             const DeepCollectionEquality()
                 .equals(other._inputFields, _inputFields));
   }
@@ -43281,6 +43367,7 @@ class _$TableFieldImpl implements TableField {
       visible,
       readOnly,
       answer,
+      isRow,
       const DeepCollectionEquality().hash(_inputFields));
 
   @JsonKey(ignore: true)
@@ -43704,13 +43791,14 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)
         table,
   }) {
     return table(id, tableId, label, name, isRequired, requiredErrorText,
-        description, visible, readOnly, answer, inputFields);
+        description, visible, readOnly, answer, isRow, inputFields);
   }
 
   @override
@@ -44128,13 +44216,14 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
         table,
   }) {
     return table?.call(id, tableId, label, name, isRequired, requiredErrorText,
-        description, visible, readOnly, answer, inputFields);
+        description, visible, readOnly, answer, isRow, inputFields);
   }
 
   @override
@@ -44552,6 +44641,7 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'visible') bool visible,
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRow') bool isRow,
             @JsonKey(name: 'contents')
             @InputFieldConverter()
             List<List<InputField>>? inputFields)?
@@ -44560,7 +44650,7 @@ class _$TableFieldImpl implements TableField {
   }) {
     if (table != null) {
       return table(id, tableId, label, name, isRequired, requiredErrorText,
-          description, visible, readOnly, answer, inputFields);
+          description, visible, readOnly, answer, isRow, inputFields);
     }
     return orElse();
   }
@@ -44685,6 +44775,7 @@ abstract class TableField implements InputField {
       @JsonKey(name: 'visible') final bool visible,
       @JsonKey(name: 'readOnly') final bool readOnly,
       @JsonKey(name: 'answer') final String? answer,
+      @JsonKey(name: 'isRow') final bool isRow,
       @JsonKey(name: 'contents')
       @InputFieldConverter()
       final List<List<InputField>>? inputFields}) = _$TableFieldImpl;
@@ -44720,6 +44811,8 @@ abstract class TableField implements InputField {
   @override
   @JsonKey(name: 'answer')
   String? get answer;
+  @JsonKey(name: 'isRow')
+  bool get isRow;
   @JsonKey(name: 'contents')
   @InputFieldConverter()
   List<List<InputField>>? get inputFields;

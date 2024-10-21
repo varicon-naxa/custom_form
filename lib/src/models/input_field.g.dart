@@ -1010,6 +1010,7 @@ _$TableFieldImpl _$$TableFieldImplFromJson(Map<String, dynamic> json) =>
       visible: json['visible'] as bool? ?? true,
       readOnly: json['readOnly'] as bool? ?? false,
       answer: json['answer'] as String?,
+      isRow: json['isRow'] as bool? ?? true,
       inputFields: (json['contents'] as List<dynamic>?)
           ?.map((e) => (e as List<dynamic>)
               .map((e) => const InputFieldConverter()
@@ -1031,6 +1032,7 @@ Map<String, dynamic> _$$TableFieldImplToJson(_$TableFieldImpl instance) =>
       'visible': instance.visible,
       'readOnly': instance.readOnly,
       'answer': instance.answer,
+      'isRow': instance.isRow,
       'contents': instance.inputFields
           ?.map((e) => e.map(const InputFieldConverter().toJson).toList())
           .toList(),
