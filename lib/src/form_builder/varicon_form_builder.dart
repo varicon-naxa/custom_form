@@ -1,9 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
 import 'dart:async';
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -138,21 +135,22 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   ///Global key list to make each field unique
 
   ///Track total form question counts
-  final Map<String, GlobalKey<FormFieldState<dynamic>>> _formFieldKeys = {};
+  // final Map<String, GlobalKey<FormFieldState<dynamic>>> _formFieldKeys = {};
+
   final Map<GlobalKey<FormFieldState<dynamic>>, String> _fieldKeyToIdMap = {};
   bool isScrolled = false;
 
   ///Values to be submitted via forms
   final formValue = FormValue();
 
-  // Initialize the keys and mapping
-  void _initializeKeys(List<InputField> inputFields) {
-    for (var field in inputFields) {
-      final key = GlobalKey<FormFieldState<dynamic>>();
-      _formFieldKeys[field.id] = key;
-      _fieldKeyToIdMap[key] = field.id;
-    }
-  }
+  // // Initialize the keys and mapping
+  // void _initializeKeys(List<InputField> inputFields) {
+  //   for (var field in inputFields) {
+  //     final key = GlobalKey<FormFieldState<dynamic>>();
+  //     _formFieldKeys[field.id] = key;
+  //     _fieldKeyToIdMap[key] = field.id;
+  //   }
+  // }
 
   @override
   void initState() {
@@ -328,13 +326,13 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             scrollDirection: Axis.vertical,
             children: [
               ScrollContent(
+                id: 'form_title',
                 child: FormTitleInfoWidget(
                   hasGeolocation: widget.hasGeolocation,
                   surveyForm: widget.surveyForm,
                   currentPosition: _currentPosition,
                   scrollController: scrollControllerId,
                 ),
-                id: 'form_title',
               ),
               ScrollContent(
                 id: 'form-body',
@@ -448,12 +446,6 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     ///Sets input fields and global keys
     _initializeKeys(widget.surveyForm.inputFields);
 
-    // formKey = GlobalKey<FormState>();
-    // signKey = GlobalKey<SignatureState>();
-
-    // /// Create ScrollToId instance
-    // scrollToId = ScrollToId(scrollController: scrollControllerId);
-
     // // scrollControllerId.addListener(() => detectScroll());
 
     // _getCurrentPosition();
@@ -487,7 +479,7 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
         if (key == 'id' && value is String) {
           return MapEntry(key, 'item-${uuid.v4()}'); // Generate a new UUID
         }
-        if (key == 'key') {
+        if (key == 'key' || key == 'answer') {
           return MapEntry(key, null); // Generate a new UUID
         }
         if (value is Map<String, dynamic>) {
@@ -547,11 +539,15 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///builds all forem input field
-  ScrollContent? _buildInputField(InputField field, BuildContext context) {
-    final labelText = '${field.label ?? ''} ';
-    var a = field;
+  ScrollContent? _buildInputField(InputField field, BuildContext context,
+      {bool haslabel = true}) {
+    final labelText = haslabel ? '${field.label ?? ''} ' : '';
     return field.maybeMap(
-      text: (field) => _buildTextInput(field, labelText, context),
+      text: (field) => _buildTextInput(
+        field,
+        labelText,
+        context,
+      ),
       number: (field) => _buildNumberInput(field, labelText, context),
       phone: (field) => _buildPhoneInput(field, labelText, context),
       email: (field) => _buildEmailInput(field, labelText, context),
@@ -1405,7 +1401,7 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     String labelText,
     BuildContext context,
   ) {
-    TableField _currentTableField = field;
+    TableField currentTableField = field;
     List<bool> visibleRows = _visibleRows[field.id] ?? [];
     TableField table = _tableState[field.id] ?? field;
 
@@ -1420,8 +1416,8 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
 
     setState(() {
       //updating the newly added input fields
-      _currentTableField =
-          _currentTableField.copyWith(inputFields: modifiedInputField);
+      currentTableField =
+          currentTableField.copyWith(inputFields: modifiedInputField);
     });
 
     return ScrollContent(
@@ -1429,31 +1425,31 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
       child: LabeledWidget(
           labelText: labelText,
           isRequired: field.isRequired,
-          child: table.isRow
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ListView.builder(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              table.isRow
+                  ? ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: _currentTableField.inputFields?.length,
+                      itemCount: currentTableField.inputFields?.length,
                       itemBuilder: (context, index) {
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 8),
                           child: ExpandableWidget(
                             expandableHeader: TableExpandableHeaderWidget(
                               index: index,
-                              field: _currentTableField,
+                              field: currentTableField,
                             ),
                             expandedHeader: TableExpandableHeaderWidget(
                               index: index,
-                              field: _currentTableField,
+                              field: currentTableField,
                               isExpanded: true,
                             ),
                             expandableChild: Container(
                               color: Colors.grey.shade200,
                               child: Column(
-                                children: _currentTableField.inputFields![index]
+                                children: currentTableField.inputFields![index]
                                     .map<Widget>((item) {
                                   return Padding(
                                     padding: const EdgeInsets.symmetric(
@@ -1468,27 +1464,8 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
                           ),
                         );
                       },
-                    ),
-                    //add new row button
-                    OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        side: const BorderSide(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      onPressed: () => addNewRow(table),
-                      icon: const Icon(Icons.add),
-                      label: const Text('Add Row'),
                     )
-                  ],
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Column(
+                  : Column(
                       children: [
                         for (int columnIndex = 0;
                             columnIndex < modifiedInputField[0].length;
@@ -1541,110 +1518,33 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
                                       horizontal: 8,
                                     ),
                                     child: _buildInputField(
-                                            row[columnIndex], context) ??
+                                            row[columnIndex], context,
+                                            haslabel: rowIndex <= 0) ??
                                         const SizedBox.shrink(),
                                   );
-                                  // return Container(
-                                  //   decoration: BoxDecoration(
-                                  //     color: const Color(0xffF5F5F5),
-                                  //     borderRadius:
-                                  //         BorderRadius.circular(8.0),
-                                  //   ),
-                                  //   padding: const EdgeInsets.all(8),
-                                  //   margin: const EdgeInsets.only(bottom: 8),
-                                  //   child: InputFieldsBody(
-                                  //     inputfields: [row[columnIndex]],
-                                  //     formFieldKeys: widget.formFieldKeys,
-                                  //     fieldKeyToIdMap: widget.fieldKeyToIdMap,
-                                  //     scrollToId: widget.scrollToId,
-                                  //     formValue: widget.formValue,
-                                  //     onFileClicked: widget.onFileClicked,
-                                  //     imageBuild: widget.imageBuild,
-                                  //     hasGeolocation: widget.hasGeolocation,
-                                  //     currentPosition: widget.currentPosition,
-                                  //     apiCall: widget.apiCall,
-                                  //     attachmentSave: widget.attachmentSave,
-                                  //   ),
-                                  // );
                                 }).toList(),
                               ),
                             ),
                           ),
                       ],
                     ),
-                    // ListView.builder(
-                    //   shrinkWrap: true,
-                    //   physics: const NeverScrollableScrollPhysics(),
-                    //   itemCount: modifiedInputField.length,
-                    //   itemBuilder: (context, index) {
-                    //     return Padding(
-                    //       padding: const EdgeInsets.only(bottom: 8),
-                    //       child: ExpandableWidget(
-                    //         expandableHeader: TableExpandableHeaderWidget(
-                    //           index: index,
-                    //           field: _currentTableField,
-                    //         ),
-                    //         expandedHeader: TableExpandableHeaderWidget(
-                    //           index: index,
-                    //           field: _currentTableField,
-                    //           isExpanded: true,
-                    //         ),
-                    //         expandableChild: Container(
-                    //           color: Colors.grey.shade200,
-                    //           child: Column(
-                    //             children:
-                    //                 modifiedInputField.asMap().entries.map(
-                    //               (entry) {
-                    //                 final rowIndex = entry.key;
-                    //                 final row = entry.value;
-                    //                 if (rowIndex >= visibleRows.length ||
-                    //                     !visibleRows[rowIndex]) {
-                    //                   return const SizedBox.shrink();
-                    //                 }
-                    //                 // return SizedBox();
-                    //                 return Padding(
-                    //                   padding: const EdgeInsets.symmetric(
-                    //                     horizontal: 8,
-                    //                   ),
-                    //                   child: _buildInputField(row[index], context) ??
-                    //                       const SizedBox.shrink(),
-                    //                 );
-                    //               },
-                    //             ).toList(),
-                    //             // child: Column(
-                    //             //   children: modifiedInputField[index]
-                    //             //       .map<Widget>((item) {
-                    //             //     return Padding(
-                    //             //       padding: const EdgeInsets.symmetric(
-                    //             //         horizontal: 8,
-                    //             //       ),
-                    //             //       child: _buildInputField(item, context) ??
-                    //             //           const SizedBox.shrink(),
-                    //             //     );
-                    //             //   }).toList(),
-                    //             // ),
-                    //           ),
-                    //         ),
-                    //       ),
-                    //     );
-                    //   },
-                    // ),
-                    //add new row button
-                    OutlinedButton.icon(
-                      style: OutlinedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        side: const BorderSide(
-                          color: Colors.grey,
-                        ),
-                      ),
-                      onPressed: () => addNewRow(table),
-                      icon: const Icon(Icons.add),
-                      label: const Text('Add Row'),
-                    )
-                  ],
-                )),
+
+              //add new row button
+              OutlinedButton.icon(
+                style: OutlinedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5),
+                  ),
+                  side: const BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                onPressed: () => addNewRow(table),
+                icon: const Icon(Icons.add),
+                label: const Text('Add Row'),
+              )
+            ],
+          )),
     );
   }
 }
