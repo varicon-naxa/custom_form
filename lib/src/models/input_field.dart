@@ -406,6 +406,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'noneText') String? noneText,
     // Other
     @JsonKey(name: 'showOtherItem') @Default(false) bool showOtherItem,
+    @JsonKey(name: 'otherAnswer') String? otherAnswer,
     @JsonKey(name: 'otherText') String? otherText,
     @JsonKey(name: 'otherErrorText') String? otherErrorText,
     @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,

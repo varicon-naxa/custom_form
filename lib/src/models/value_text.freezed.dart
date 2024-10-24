@@ -32,6 +32,8 @@ ValueText _$ValueTextFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ValueText {
   /// Option Action to have color
+  @JsonKey(name: 'isOtherField')
+  bool? get isOtherField => throw _privateConstructorUsedError;
   @JsonKey(name: 'action')
   bool? get action => throw _privateConstructorUsedError;
 
@@ -45,34 +47,49 @@ mixin _$ValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        none,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        other,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -110,7 +127,8 @@ abstract class $ValueTextCopyWith<$Res> {
       _$ValueTextCopyWithImpl<$Res, ValueText>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'action') bool? action,
+      {@JsonKey(name: 'isOtherField') bool? isOtherField,
+      @JsonKey(name: 'action') bool? action,
       @JsonKey(readValue: readValue) String value,
       @JsonKey(readValue: readText) String text});
 }
@@ -128,11 +146,16 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isOtherField = freezed,
     Object? action = freezed,
     Object? value = null,
     Object? text = null,
   }) {
     return _then(_value.copyWith(
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
       action: freezed == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -158,7 +181,8 @@ abstract class _$$ValueTextImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'action') bool? action,
+      {@JsonKey(name: 'isOtherField') bool? isOtherField,
+      @JsonKey(name: 'action') bool? action,
       @JsonKey(readValue: readValue) String value,
       @JsonKey(readValue: readText) String text});
 }
@@ -174,11 +198,16 @@ class __$$ValueTextImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isOtherField = freezed,
     Object? action = freezed,
     Object? value = null,
     Object? text = null,
   }) {
     return _then(_$ValueTextImpl(
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
       action: freezed == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -199,7 +228,8 @@ class __$$ValueTextImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ValueTextImpl implements _ValueText {
   const _$ValueTextImpl(
-      {@JsonKey(name: 'action') this.action,
+      {@JsonKey(name: 'isOtherField') this.isOtherField,
+      @JsonKey(name: 'action') this.action,
       @JsonKey(readValue: readValue) required this.value,
       @JsonKey(readValue: readText) required this.text,
       final String? $type})
@@ -209,6 +239,9 @@ class _$ValueTextImpl implements _ValueText {
       _$$ValueTextImplFromJson(json);
 
   /// Option Action to have color
+  @override
+  @JsonKey(name: 'isOtherField')
+  final bool? isOtherField;
   @override
   @JsonKey(name: 'action')
   final bool? action;
@@ -228,7 +261,7 @@ class _$ValueTextImpl implements _ValueText {
 
   @override
   String toString() {
-    return 'ValueText(action: $action, value: $value, text: $text)';
+    return 'ValueText(isOtherField: $isOtherField, action: $action, value: $value, text: $text)';
   }
 
   @override
@@ -236,6 +269,8 @@ class _$ValueTextImpl implements _ValueText {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ValueTextImpl &&
+            (identical(other.isOtherField, isOtherField) ||
+                other.isOtherField == isOtherField) &&
             (identical(other.action, action) || other.action == action) &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.text, text) || other.text == text));
@@ -243,7 +278,8 @@ class _$ValueTextImpl implements _ValueText {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, action, value, text);
+  int get hashCode =>
+      Object.hash(runtimeType, isOtherField, action, value, text);
 
   @JsonKey(ignore: true)
   @override
@@ -255,44 +291,59 @@ class _$ValueTextImpl implements _ValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        none,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        other,
   }) {
-    return $default(action, value, text);
+    return $default(isOtherField, action, value, text);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
   }) {
-    return $default?.call(action, value, text);
+    return $default?.call(isOtherField, action, value, text);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(action, value, text);
+      return $default(isOtherField, action, value, text);
     }
     return orElse();
   }
@@ -341,7 +392,8 @@ class _$ValueTextImpl implements _ValueText {
 
 abstract class _ValueText implements ValueText {
   const factory _ValueText(
-          {@JsonKey(name: 'action') final bool? action,
+          {@JsonKey(name: 'isOtherField') final bool? isOtherField,
+          @JsonKey(name: 'action') final bool? action,
           @JsonKey(readValue: readValue) required final String value,
           @JsonKey(readValue: readText) required final String text}) =
       _$ValueTextImpl;
@@ -352,6 +404,9 @@ abstract class _ValueText implements ValueText {
   @override
 
   /// Option Action to have color
+  @JsonKey(name: 'isOtherField')
+  bool? get isOtherField;
+  @override
   @JsonKey(name: 'action')
   bool? get action;
   @override
@@ -378,7 +433,7 @@ abstract class _$$NoneValueTextImplCopyWith<$Res>
       __$$NoneValueTextImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String text, bool? action});
+  $Res call({String value, String text, bool? action, bool? isOtherField});
 }
 
 /// @nodoc
@@ -395,6 +450,7 @@ class __$$NoneValueTextImplCopyWithImpl<$Res>
     Object? value = null,
     Object? text = null,
     Object? action = freezed,
+    Object? isOtherField = freezed,
   }) {
     return _then(_$NoneValueTextImpl(
       value: null == value
@@ -409,6 +465,10 @@ class __$$NoneValueTextImplCopyWithImpl<$Res>
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -420,6 +480,7 @@ class _$NoneValueTextImpl implements NoneValueText {
       {this.value = 'none',
       required this.text,
       this.action,
+      this.isOtherField,
       final String? $type})
       : $type = $type ?? 'none';
 
@@ -433,13 +494,15 @@ class _$NoneValueTextImpl implements NoneValueText {
   final String text;
   @override
   final bool? action;
+  @override
+  final bool? isOtherField;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ValueText.none(value: $value, text: $text, action: $action)';
+    return 'ValueText.none(value: $value, text: $text, action: $action, isOtherField: $isOtherField)';
   }
 
   @override
@@ -449,12 +512,15 @@ class _$NoneValueTextImpl implements NoneValueText {
             other is _$NoneValueTextImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.action, action) || other.action == action));
+            (identical(other.action, action) || other.action == action) &&
+            (identical(other.isOtherField, isOtherField) ||
+                other.isOtherField == isOtherField));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, value, text, action);
+  int get hashCode =>
+      Object.hash(runtimeType, value, text, action, isOtherField);
 
   @JsonKey(ignore: true)
   @override
@@ -466,44 +532,59 @@ class _$NoneValueTextImpl implements NoneValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        none,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        other,
   }) {
-    return none(value, text, action);
+    return none(value, text, action, isOtherField);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
   }) {
-    return none?.call(value, text, action);
+    return none?.call(value, text, action, isOtherField);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
     required TResult orElse(),
   }) {
     if (none != null) {
-      return none(value, text, action);
+      return none(value, text, action, isOtherField);
     }
     return orElse();
   }
@@ -554,7 +635,8 @@ abstract class NoneValueText implements ValueText {
   const factory NoneValueText(
       {final String value,
       required final String text,
-      final bool? action}) = _$NoneValueTextImpl;
+      final bool? action,
+      final bool? isOtherField}) = _$NoneValueTextImpl;
 
   factory NoneValueText.fromJson(Map<String, dynamic> json) =
       _$NoneValueTextImpl.fromJson;
@@ -565,6 +647,8 @@ abstract class NoneValueText implements ValueText {
   String get text;
   @override
   bool? get action;
+  @override
+  bool? get isOtherField;
   @override
   @JsonKey(ignore: true)
   _$$NoneValueTextImplCopyWith<_$NoneValueTextImpl> get copyWith =>
@@ -579,7 +663,7 @@ abstract class _$$OtherValueTextImplCopyWith<$Res>
       __$$OtherValueTextImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String text, bool? action});
+  $Res call({String value, String text, bool? action, bool? isOtherField});
 }
 
 /// @nodoc
@@ -596,6 +680,7 @@ class __$$OtherValueTextImplCopyWithImpl<$Res>
     Object? value = null,
     Object? text = null,
     Object? action = freezed,
+    Object? isOtherField = freezed,
   }) {
     return _then(_$OtherValueTextImpl(
       value: null == value
@@ -610,6 +695,10 @@ class __$$OtherValueTextImplCopyWithImpl<$Res>
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -621,6 +710,7 @@ class _$OtherValueTextImpl implements OtherValueText {
       {this.value = 'other',
       required this.text,
       this.action,
+      this.isOtherField,
       final String? $type})
       : $type = $type ?? 'other';
 
@@ -634,13 +724,15 @@ class _$OtherValueTextImpl implements OtherValueText {
   final String text;
   @override
   final bool? action;
+  @override
+  final bool? isOtherField;
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ValueText.other(value: $value, text: $text, action: $action)';
+    return 'ValueText.other(value: $value, text: $text, action: $action, isOtherField: $isOtherField)';
   }
 
   @override
@@ -650,12 +742,15 @@ class _$OtherValueTextImpl implements OtherValueText {
             other is _$OtherValueTextImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.action, action) || other.action == action));
+            (identical(other.action, action) || other.action == action) &&
+            (identical(other.isOtherField, isOtherField) ||
+                other.isOtherField == isOtherField));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, value, text, action);
+  int get hashCode =>
+      Object.hash(runtimeType, value, text, action, isOtherField);
 
   @JsonKey(ignore: true)
   @override
@@ -668,44 +763,59 @@ class _$OtherValueTextImpl implements OtherValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        none,
+    required TResult Function(
+            String value, String text, bool? action, bool? isOtherField)
+        other,
   }) {
-    return other(value, text, action);
+    return other(value, text, action, isOtherField);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult? Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
   }) {
-    return other?.call(value, text, action);
+    return other?.call(value, text, action, isOtherField);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        none,
+    TResult Function(
+            String value, String text, bool? action, bool? isOtherField)?
+        other,
     required TResult orElse(),
   }) {
     if (other != null) {
-      return other(value, text, action);
+      return other(value, text, action, isOtherField);
     }
     return orElse();
   }
@@ -756,7 +866,8 @@ abstract class OtherValueText implements ValueText {
   const factory OtherValueText(
       {final String value,
       required final String text,
-      final bool? action}) = _$OtherValueTextImpl;
+      final bool? action,
+      final bool? isOtherField}) = _$OtherValueTextImpl;
 
   factory OtherValueText.fromJson(Map<String, dynamic> json) =
       _$OtherValueTextImpl.fromJson;
@@ -767,6 +878,8 @@ abstract class OtherValueText implements ValueText {
   String get text;
   @override
   bool? get action;
+  @override
+  bool? get isOtherField;
   @override
   @JsonKey(ignore: true)
   _$$OtherValueTextImplCopyWith<_$OtherValueTextImpl> get copyWith =>

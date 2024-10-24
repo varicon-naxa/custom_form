@@ -40,20 +40,21 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
   ///Late initialization of choices and field key
   late final List<ValueText> choices;
   late final String otherFieldKey;
+  TextEditingController otherFieldController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
 
     ///initial values for choices
-    choices = [
+  choices = [
       ...widget.field.choices,
       if (widget.field.showNoneItem)
         ValueText.none(text: widget.field.noneText ?? 'None'),
       if (widget.field.showOtherItem)
         ValueText.other(text: widget.field.otherText ?? 'Other (describe)'),
     ];
-    otherFieldKey = '${widget.field.id}-Comment';
+
     value = (widget.field.answer != null)
         ? widget.field.answer ?? widget.formValue.getStringValue('')
         : widget.formValue.getStringValue('');
@@ -68,6 +69,9 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
         setState(() {
           showMessage = foundObject.action ?? false;
         });
+      } else {
+        otherFieldController.text = widget.field.answer ?? '';
+        value = 'other';
       }
     }
   }
@@ -93,7 +97,9 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
             });
           },
           items: () {
-            final items = choices.map((e) {
+            List<ValueText> finalChoices = [...choices];
+            finalChoices.removeWhere((element) => element.isOtherField == true);
+            final items = finalChoices.map((e) {
               return RadioMenuItem(
                   value: e.value,
                   visualDensity: const VisualDensity(
@@ -113,13 +119,18 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
           onSaved: (newValue) {
             // remove text saved in other text field if dropdown value in not
             // other
-            if (newValue != 'other') {
-              widget.formValue.remove(otherFieldKey);
+
+            if (newValue == 'other') {
+              widget.formValue.saveString(
+                widget.field.id,
+                otherFieldController.text,
+              );
+            } else {
+              widget.formValue.saveString(
+                widget.field.id,
+                newValue,
+              );
             }
-            widget.formValue.saveString(
-              widget.field.id,
-              newValue,
-            );
           },
         ),
         if (showMessage && (widget.field.actionMessage ?? '').isNotEmpty)
@@ -164,13 +175,10 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
             height: 12,
           ),
           TextFormField(
-            initialValue: widget.formValue.getStringValue(otherFieldKey),
+            controller: otherFieldController,
             maxLength: 80,
             maxLines: 4,
-            onSaved: (newValue) => widget.formValue.saveString(
-              otherFieldKey,
-              newValue,
-            ),
+            onSaved: (newValue) {},
             validator: (value) => textValidator(
               value: value,
               inputType: "text",
