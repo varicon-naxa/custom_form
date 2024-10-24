@@ -663,10 +663,13 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     String labelText,
     BuildContext context,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
+
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -720,10 +723,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     String labelText,
     BuildContext context,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     PhoneNumber? phoneNumber;
     phoneNumber =
         PhoneNumber.fromCompleteNumber(completeNumber: field.answer ?? '');
@@ -773,10 +778,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     String labelText,
     BuildContext context,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -820,10 +827,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     String labelText,
     BuildContext context,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -869,10 +878,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     DateInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -919,10 +930,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     DateTimeInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -999,10 +1012,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     DropdownInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -1024,10 +1039,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     YesNoInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -1048,10 +1065,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     RadioInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -1072,10 +1091,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     YesNoNaInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -1096,10 +1117,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     CheckboxInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
@@ -1121,10 +1144,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
     MultipleInputField field,
     String labelText,
   ) {
-    widget.formValue.saveString(
-      field.id,
-      field.answer,
-    );
+    if (field.answer != null && (field.answer != null)) {
+      widget.formValue.saveString(
+        field.id,
+        field.answer,
+      );
+    }
     return ScrollContent(
       id: field.id,
       child: LabeledWidget(
