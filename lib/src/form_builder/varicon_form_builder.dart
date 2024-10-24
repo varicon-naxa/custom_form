@@ -570,6 +570,7 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
       section: (field) => _buildSectionInput(field, context),
       geolocation: (field) => _buildGeolocationInput(field, labelText, context),
       table: (field) => _buildTableInput(field, labelText, context),
+      advtable: (field) => _buildAdvTableInput(field, labelText, context),
       orElse: () => null,
     );
   }
@@ -1547,6 +1548,136 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
           )),
     );
   }
+
+  ///Advance Table input field build method
+  ScrollContent _buildAdvTableInput(
+    AdvTableField currentTableField,
+    String labelText,
+    BuildContext context,
+  ) {
+    AdvTableField field = currentTableField;
+
+    List<List<InputField>> modifiedInputField =
+        (field.inputFields ?? []).map((row) {
+      return row.map((field) {
+        return field.copyWith(
+          isRequired: field.isRequired ? field.isRequired : false,
+        );
+      }).toList();
+    }).toList();
+    setState(() {
+      //updating the newly added input fields
+      field = field.copyWith(inputFields: modifiedInputField);
+    });
+    return ScrollContent(
+      id: field.id,
+      child: LabeledWidget(
+          labelText: labelText,
+          isRequired: field.isRequired,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              field.isRow
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: field.inputFields?.length,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 8),
+                          child: ExpandableWidget(
+                            expandableHeader: TableExpandableHeaderWidget(
+                              index: index,
+                              field: field,
+                            ),
+                            expandedHeader: TableExpandableHeaderWidget(
+                              index: index,
+                              field: field,
+                              isExpanded: true,
+                            ),
+                            expandableChild: Container(
+                              color: Colors.grey.shade200,
+                              child: Column(
+                                children: field.inputFields![index]
+                                    .map<Widget>((item) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    child: _buildInputField(item, context) ??
+                                        const SizedBox.shrink(),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                    )
+                  : Column(
+                      children: [
+                        for (int columnIndex = 0;
+                            columnIndex < (field.inputFields ?? [])[0].length;
+                            columnIndex++)
+                          Container(
+                            decoration: BoxDecoration(
+                              color: const Color(0xffF5F5F5),
+                              borderRadius: BorderRadius.circular(8.0),
+                            ),
+                            padding: const EdgeInsets.all(8),
+                            margin: const EdgeInsets.only(bottom: 12),
+                            child: ExpandableWidget(
+                              initialExpanded: true,
+                              expandableHeader: Row(
+                                children: [
+                                  Text(
+                                    'Column ${columnIndex + 1} ',
+                                  ),
+                                  const Spacer(),
+                                  const Icon(Icons.keyboard_arrow_up)
+                                ],
+                              ),
+                              expandedHeader: Padding(
+                                padding: const EdgeInsets.only(
+                                  bottom: 8,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'Column ${columnIndex + 1}',
+                                    ),
+                                    const Spacer(),
+                                    const Icon(Icons.keyboard_arrow_down)
+                                  ],
+                                ),
+                              ),
+                              expandableChild: Column(
+                                children: (field.inputFields ?? [])
+                                    .asMap()
+                                    .entries
+                                    .map((entry) {
+                                  final rowIndex = entry.key;
+                                  final row = entry.value;
+
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 8,
+                                    ),
+                                    child: _buildInputField(
+                                            row[columnIndex], context,
+                                            haslabel: rowIndex <= 0) ??
+                                        const SizedBox.shrink(),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+            ],
+          )),
+    );
+  }
 }
 
 ///Table expandable header info and count widget
@@ -1560,7 +1691,7 @@ class TableExpandableHeaderWidget extends StatelessWidget {
 
   final bool? isExpanded;
   final int index;
-  final TableField field;
+  final dynamic field;
 
   @override
   Widget build(BuildContext context) {

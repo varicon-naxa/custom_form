@@ -1,0 +1,90 @@
+{
+    "title": "Linked to list test is a type of list where we can add list here",
+    "elements": [
+        {
+            "type": "advtable",
+            "name": "date1",
+            "isRow": false,
+            "isRequired": false,
+            "id": "ba1i123-nae01m-34k14nd-12o1j23",
+            "label": "Enter table title",
+            "contents": [
+                [
+                    {
+                        "id": "item-972be852-1b93-44ce-be87-8665122ed336",
+                        "label": "Secondary",
+                        "name": "Address",
+                        "description": null,
+                        "visible": true,
+                        "isRequired": true,
+                        "readOnly": false,
+                        "requiredErrorText": null,
+                        "placeholder": null,
+                        "maxLength": null,
+                        "min": null,
+                        "minErrorText": null,
+                        "max": null,
+                        "maxErrorText": null,
+                        "type": "text"
+                    },
+                    {
+                        "id": "experience123123",
+                        "label": "this is second question",
+                        "answer": "2",
+                        "description": null,
+                        "visible": true,
+                        "isRequired": true,
+                        "readOnly": false,
+                        "requiredErrorText": "Total exprerjsaklfjaslkd fis requreid",
+                        "placeholder": null,
+                        "maxLength": null,
+                        "min": null,
+                        "minErrorText": "The value should not be less than {5}",
+                        "max": null,
+                        "maxErrorText": "The value should not be greater than {10}",
+                        "type": "number"
+                    }
+                ],
+                [
+                    {
+                        "id": "48ada2f2-cf25-447d-8f23-f8971122353d",
+                        "label": "this",
+                        "answer": "666",
+                        "description": null,
+                        "visible": true,
+                        "isRequired": true,
+                        "readOnly": false,
+                        "requiredErrorText": "Total exprerjsaklfjaslkd fis requreid",
+                        "placeholder": null,
+                        "maxLength": null,
+                        "min": null,
+                        "minErrorText": "The value should not be less than {5}",
+                        "max": null,
+                        "maxErrorText": "The value should not be greater than {10}",
+                        "type": "number"
+                    },
+                    {
+                        "id": "d72368f7-64ef-415b-9fdc-5af2e74779b3",
+                        "label": "Secondary",
+                        "name": "Address",
+                        "description": null,
+                        "visible": true,
+                        "isRequired": true,
+                        "readOnly": false,
+                        "answer": "11 Tara Street, Woollahra New South Wales 2025 Australia",
+                        "requiredErrorText": null,
+                        "placeholder": null,
+                        "maxLength": null,
+                        "min": null,
+                        "minErrorText": null,
+                        "max": null,
+                        "maxErrorText": null,
+                        "type": "text"
+                    } 
+                ]
+            ]
+        }
+    ],
+    "description": "Description is the describing method which describes the title in various way"
+}
+
