@@ -88,6 +88,7 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       key: widget.fieldKey,
       autocorrect: false,
       autovalidateMode: AutovalidateMode.onUserInteraction,

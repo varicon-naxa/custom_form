@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:varicon_form_builder/varicon_form_builder.dart';
+
 /// {@template FormValue}
 /// Represents value of the form to submit.
 /// {@endtemplate}
@@ -96,5 +99,11 @@ class FormValue {
       return v.toDouble();
     }
     throw const FormatException('Value is not neither String nor num.');
+  }
+
+  void saveTableField(String id, TableField table) {
+    _value[id] = table.inputFields?.map((row) {
+      return row.map((e) => e.toJson()).toList();
+    }).toList();
   }
 }

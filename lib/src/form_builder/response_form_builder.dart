@@ -906,6 +906,19 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                                 ),
                         );
                       },
+                      table: (field) {
+                        return LabeledWidget(
+                          labelText: labelText,
+                          isRequired: e.isRequired,
+                          child: SizedBox(),
+                          //  TableInputWidget(
+                          //   field: field,
+                          //   fieldKey: _formFieldKeys[field.id],
+                          //   formValue: formValue,
+                          //   labelText: labelText,
+                          // ),
+                        );
+                      },
 
                       orElse: () => null,
                     );

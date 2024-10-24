@@ -999,3 +999,85 @@ Map<String, dynamic> _$$MapFieldImplToJson(_$MapFieldImpl instance) =>
       'description': instance.description,
       'type': instance.$type,
     };
+
+_$TableFieldImpl _$$TableFieldImplFromJson(Map<String, dynamic> json) =>
+    _$TableFieldImpl(
+      id: json['id'] as String,
+      tableId: json['tableId'] as String?,
+      label: json['label'] as String?,
+      name: json['name'] as String?,
+      isRequired: json['isRequired'] as bool? ?? false,
+      requiredErrorText: json['requiredErrorText'] as String?,
+      description: json['description'] as String?,
+      visible: json['visible'] as bool? ?? true,
+      readOnly: json['readOnly'] as bool? ?? false,
+      answer: json['answer'] as String?,
+      isRow: json['isRow'] as bool? ?? true,
+      inputFields: (json['contents'] as List<dynamic>?)
+          ?.map((e) => (e as List<dynamic>)
+              .map((e) => const InputFieldConverter()
+                  .fromJson(e as Map<String, dynamic>))
+              .toList())
+          .toList(),
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$TableFieldImplToJson(_$TableFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'tableId': instance.tableId,
+      'label': instance.label,
+      'name': instance.name,
+      'isRequired': instance.isRequired,
+      'requiredErrorText': instance.requiredErrorText,
+      'description': instance.description,
+      'visible': instance.visible,
+      'readOnly': instance.readOnly,
+      'answer': instance.answer,
+      'isRow': instance.isRow,
+      'contents': instance.inputFields
+          ?.map((e) => e.map(const InputFieldConverter().toJson).toList())
+          .toList(),
+      'type': instance.$type,
+    };
+
+_$AdvTableFieldImpl _$$AdvTableFieldImplFromJson(Map<String, dynamic> json) =>
+    _$AdvTableFieldImpl(
+      id: json['id'] as String,
+      tableId: json['tableId'] as String?,
+      label: json['label'] as String?,
+      name: json['name'] as String?,
+      isRequired: json['isRequired'] as bool? ?? false,
+      requiredErrorText: json['requiredErrorText'] as String?,
+      description: json['description'] as String?,
+      visible: json['visible'] as bool? ?? true,
+      readOnly: json['readOnly'] as bool? ?? false,
+      answer: json['answer'] as String?,
+      isRow: json['isRow'] as bool? ?? true,
+      inputFields: (json['contents'] as List<dynamic>?)
+          ?.map((e) => (e as List<dynamic>)
+              .map((e) => const InputFieldConverter()
+                  .fromJson(e as Map<String, dynamic>))
+              .toList())
+          .toList(),
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$AdvTableFieldImplToJson(_$AdvTableFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'tableId': instance.tableId,
+      'label': instance.label,
+      'name': instance.name,
+      'isRequired': instance.isRequired,
+      'requiredErrorText': instance.requiredErrorText,
+      'description': instance.description,
+      'visible': instance.visible,
+      'readOnly': instance.readOnly,
+      'answer': instance.answer,
+      'isRow': instance.isRow,
+      'contents': instance.inputFields
+          ?.map((e) => e.map(const InputFieldConverter().toJson).toList())
+          .toList(),
+      'type': instance.$type,
+    };
