@@ -3,11 +3,16 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image/image.dart' as img;
+
+import 'package:varicon_form_builder/src/form_builder/widgets/camera_image_info.dart';
 
 ///File picker mixin class
 mixin FilePickerMixin {
@@ -212,35 +217,197 @@ mixin FilePickerMixin {
     }
   }
 
-  // checks device permission, platform, file size and gets the Image
-  Future<List<File>?> getCameraImageFiles(
-      {bool? allowMultiple = false, void Function()? isLoading}) async {
-    await [Permission.camera, Permission.microphone].request();
-    final result = await ImagePicker.platform
-        .getImageFromSource(source: ImageSource.camera);
-    if (isLoading != null) isLoading();
-    if (result == null) return null;
-    var file = File(result.path);
+  Future<File> convertUint8ListToFile(Uint8List uint8List) async {
+    // Save the edited image to a new file
+    final directory = await getApplicationSupportDirectory();
+    final newImagePath =
+        '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.png';
+    File file = File(newImagePath);
+    return await file.writeAsBytes(uint8List);
+  }
 
-    if (await file.length() > 25000 * 1000) {
+  //method to navigate to the edited image page
+  Future<Uint8List?> _openEditedImage(
+    File imageFile,
+    BuildContext? context,
+    List<String> imageInfo,
+  ) async {
+    Uint8List? imageWithMetaData;
+    if (context != null) {
+      await showDialog(
+          context: context,
+          barrierDismissible: true,
+          builder: (context) {
+            return StatefulBuilder(builder: (context, setState) {
+              return Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding:
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                child: LayoutBuilder(builder: (context, constraints) {
+                  // Calculate the maximum height for the dialog
+
+                  return Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: CameraImageInfoPage(
+                      imageFile: imageFile,
+                      imageInfo: imageInfo,
+                    ),
+                  );
+                }),
+              );
+            });
+          }).then((val) {
+        if (val != null) {
+          imageWithMetaData = val;
+        }
+      });
+      return imageWithMetaData;
+    } else {
       Fluttertoast.showToast(
-          msg: "The file may not be greater than 25 MB.",
+          msg: "Something went wrong",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.red,
           textColor: Colors.white,
           fontSize: 16.0);
-      return null;
-    } else {
-      if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
-          file.path.split('.')[1].toLowerCase == 'heic' ||
-          file.path.split('.')[1].toLowerCase == 'hevc') {
-        File compressedFile = await compressImage(file.path, quality: 10);
-        return [compressedFile];
+
+      return imageWithMetaData;
+    }
+  }
+
+  // checks device permission, platform, file size and gets the Image
+  Future<List<File>?> getCameraImageFiles(
+      {bool? allowMultiple = false,
+      void Function()? isLoading,
+      required BuildContext context,
+      required String locationData,
+      required Widget Function(File imageFile) customPainter}) async {
+    String guidelines = '''
+
+To utilize this feature, please follow these steps to enable storage access on your device:
+
+1. Access App Settings
+2. Find App Permissions
+3. Locate Storage Permission
+4. Enable Storage Access
+5. If specified separately, ensure access to Photos and Videos
+6. Return to App
+''';
+    try {
+      await [Permission.camera, Permission.microphone].request();
+      final result = await ImagePicker.platform
+          .getImageFromSource(source: ImageSource.camera);
+      if (isLoading != null) isLoading();
+      if (result == null) return null;
+      var file = File(result.path);
+
+      if (await file.length() > 25000 * 1000) {
+        Fluttertoast.showToast(
+            msg: "The file may not be greater than 25 MB.",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+        return null;
       } else {
-        return [file];
+        final editedImage = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => customPainter(
+              file,
+            ),
+          ),
+        );
+        final File fileImage = await convertUint8ListToFile(editedImage);
+
+        // Add timestamp
+        final timestamp = DateTime.now();
+        String firstLine =
+            DateFormat('dd MMM, yyyy hh:mm aa').format(timestamp);
+
+        List<String> lines = [firstLine];
+        lines.add(locationData);
+
+        Uint8List? updatedImage =
+            await _openEditedImage(fileImage, context, lines);
+        final List<Future<File>> futures = [
+          if (updatedImage != null) convertUint8ListToFile(updatedImage),
+        ];
+
+        return await Future.wait(futures);
       }
+    } on PlatformException catch (e) {
+      if (e.code == 'camera_access_denied') {
+        var status = await Permission.camera.request();
+        if (status.isGranted) {
+          await getCameraImageFiles(
+              isLoading: isLoading,
+              context: context,
+              locationData: locationData,
+              customPainter: customPainter);
+        } else if (status.isDenied) {
+          showD(
+              context: context,
+              title: 'Camera Access Denied',
+              message: guidelines);
+        } else if (status.isPermanentlyDenied) {
+          showD(
+              context: context,
+              title: 'Camera Access Denied',
+              message: guidelines);
+        }
+      }
+    } catch (e) {
+      return null;
+    }
+    return null;
+  }
+
+  void showMessageInDialog(
+      {required BuildContext context,
+      required String title,
+      required String message}) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text(title),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              openAppSettings();
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void showD({BuildContext? context, String? title, required String message}) {
+    if (context != null) {
+      showMessageInDialog(
+          context: context, title: title ?? '', message: message);
+    } else {
+      Fluttertoast.showToast(
+          msg: message,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
+      Future.delayed(const Duration(seconds: 5), () {
+        openAppSettings();
+      });
     }
   }
 }
