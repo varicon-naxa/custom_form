@@ -1,19 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/ext/color_extension.dart';
-import 'package:varicon_form_builder/src/form_builder/form_fields/date_time_form_field.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/checkbox_input_widget.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_location.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/instruction_widget.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/radio_input_widget.dart';
-import 'package:varicon_form_builder/src/form_builder/widgets/yes_no_na_input_widget.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
+import 'response_widget.dart';
 import 'widgets/labeled_widget.dart';
 
 ///Main container for the respose form builder
@@ -80,51 +75,6 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
     final logicalShortestSide =
         firstView.physicalSize.shortestSide / firstView.devicePixelRatio;
     return logicalShortestSide > 600;
-  }
-
-  ///Method that takes date picker type
-  ///
-  ///and returns the date time value
-  ///
-  ///[value] is the value to be parsed
-  static DateTime? _parseToDateTime(dynamic value, DatePickerType pickerType) {
-    if (value is! String) {
-      return null;
-    } else if (value.isEmpty) {
-      return null;
-    }
-
-    ///switch case to handle date types and return parsed values
-    switch (pickerType) {
-      case DatePickerType.dateTime:
-        return DateTime.parse(value);
-      case DatePickerType.date:
-        return DateTime.parse(value);
-      case DatePickerType.time:
-        final dt = value.split(':');
-        final dur = Duration(
-          hours: int.parse(dt.first),
-          minutes: int.parse(dt.last),
-        );
-        return DateTime(0).add(dur);
-    }
-  }
-
-  ///Returns formatted date time
-  ///
-  ///in comparision to date type
-  ///
-  ///and return formatted string value
-  static String getFormattedText(DateTime? value, DatePickerType type) {
-    if (value == null) return '';
-    switch (type) {
-      case DatePickerType.date:
-        return DateFormat.yMd().format(value);
-      case DatePickerType.time:
-        return DateFormat(DateFormat.HOUR_MINUTE).format(value);
-      case DatePickerType.dateTime:
-        return '${DateFormat.yMd().format(value)}, ${DateFormat(DateFormat.HOUR_MINUTE).format(value)}';
-    }
   }
 
   @override
@@ -363,569 +313,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.surveyForm.inputFields
-                  .map<Widget?>((e) {
-                    /// Heading of each input field
-                    // if (!(e is InstructionInputField ||
-                    //     e is SectionInputField)) {
-                    //   questionNumber++;
-                    // }
-                    final labelText = '${e.label ?? ''} ';
-                    return e.maybeMap(
-                      text: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: (field.name ?? '')
-                                  .toLowerCase()
-                                  .contains('long')
-                              ? Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    (field.answer ?? '').isEmpty
-                                        ? const Text(
-                                            'No Response',
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 16,
-                                            ),
-                                          )
-                                        : HtmlWidget(
-                                            field.answer ?? '',
-                                          ),
-                                    const DottedLine(
-                                      direction: Axis.horizontal,
-                                      alignment: WrapAlignment.center,
-                                      lineLength: double.infinity,
-                                      lineThickness: 1.0,
-                                      dashLength: 4.0,
-                                      dashColor: Colors.grey,
-                                      dashRadius: 0.0,
-                                      dashGapLength: 4.0,
-                                      dashGapColor: Colors.white,
-                                      dashGapRadius: 0.0,
-                                    )
-                                  ],
-                                )
-                              : _AnswerDesign(
-                                  answer: field.answer ?? '',
-                                ),
-                        );
-                      },
-                      phone: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: field.answer ?? '',
-                          ),
-                        );
-                      },
-                      number: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: field.answer ?? '',
-                          ),
-                        );
-                      },
-                      email: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: field.answer ?? '',
-                          ),
-                        );
-                      },
-                      url: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: field.answer ?? '',
-                          ),
-                        );
-                      },
-                      map: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: (field.answer ?? '').contains('address')
-                              ? _AnswerMapDesign(
-                                  answer: field.answer ?? '',
-                                )
-                              : _AnswerDesign(
-                                  answer: '',
-                                ),
-                        );
-                      },
-                      date: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: getFormattedText(
-                                _parseToDateTime(
-                                    field.answer ?? '', DatePickerType.date),
-                                DatePickerType.date),
-                          ),
-                        );
-                      },
-                      time: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: getFormattedText(
-                                _parseToDateTime(
-                                    field.answer ?? '', DatePickerType.time),
-                                DatePickerType.time),
-                          ),
-                        );
-                      },
-                      datetimelocal: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: getFormattedText(
-                                _parseToDateTime(field.answer ?? '',
-                                    DatePickerType.dateTime),
-                                DatePickerType.dateTime),
-                          ),
-                        );
-                      },
-                      // comment: (field) {
-                      //   return Column(
-                      //     mainAxisAlignment: MainAxisAlignment.start,
-                      //     crossAxisAlignment: CrossAxisAlignment.start,
-                      //     children: [
-                      //       LabeledWidget(
-                      //         labelText: labelText,
-                      //         isRequired: e.isRequired,
-                      //         child: TextFormField(
-                      //           initialValue: field.answer,
-                      //           readOnly: field.readOnly,
-                      //           style: Theme.of(context).textTheme.bodyLarge,
-                      //           keyboardType: TextInputType.text,
-                      //           maxLength: field.maxLength,
-                      //           maxLines: 4,
-                      //           onSaved: (newValue) => formValue.saveString(
-                      //             field.id,
-                      //             newValue,
-                      //           ),
-                      //           validator: (value) => textValidator(
-                      //             value: value,
-                      //             inputType: "comment",
-                      //             isRequired: field.isRequired,
-                      //             requiredErrorText: field.requiredErrorText,
-                      //           ),
-                      //           decoration: widget.inputDecoration.copyWith(
-                      //             hintText: field.hintText,
-                      //             labelText: labelText,
-                      //           ),
-                      //         ),
-                      //       ),
-                      //       AppSpacing.sizedBoxH_12(),
-                      //     ],
-                      //   );
-                      // },
-                      dropdown: (field) {
-                        String answerText = '';
-                        if (field.answerList != null &&
-                            field.answerList != '') {
-                          answerText = field.answerList ?? '';
-                        } else if (e.answer != null && e.answer != '') {
-                          bool containsId =
-                              field.choices.any((obj) => obj.value == e.answer);
-
-                          if (containsId) {
-                            ValueText? foundObject = field.choices.firstWhere(
-                              (obj) => obj.value == e.answer,
-                            );
-                            answerText = foundObject.text;
-                          } else {
-                            answerText = (field.answerList ?? '');
-                          }
-                        }
-
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: answerText,
-                          ),
-                        );
-                      },
-                      yesno: (field) {
-                        String answerText = '';
-                        if (e.answer != null && e.answer != '') {
-                          bool containsId =
-                              field.choices.any((obj) => obj.value == e.answer);
-
-                          if (containsId) {
-                            ValueText? foundObject = field.choices.firstWhere(
-                              (obj) => obj.value == e.answer,
-                            );
-                            answerText = foundObject.text;
-                          }
-                        }
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: _AnswerDesign(
-                            answer: answerText,
-                          ),
-                        );
-                      },
-
-                      yesnona: (field) {
-                        return IgnorePointer(
-                          ignoring: true,
-                          child: LabeledWidget(
-                            labelText: labelText,
-                            isRequired: e.isRequired,
-                            child: YesNoNaInputWidget(
-                              field: field,
-                              formValue: formValue,
-                              labelText: labelText,
-                              fieldKey: GlobalKey(),
-                            ),
-                          ),
-                        );
-                      },
-
-                      multipleselect: (field) {
-                        List<ValueText> valueAnswer = [];
-
-                        if (!(field.fromManualList)) {
-                          List<String> answers =
-                              field.answerList.toString().split(',');
-                          answers.map((e) {
-                            valueAnswer.add(ValueText(
-                                value: DateTime.now().microsecond.toString(),
-                                text: e));
-                          }).toList();
-                        } else {
-                          if (e.answer != null && e.answer != '') {
-                            List<String> answers =
-                                e.answer.toString().split(',');
-                            field.choices.map((e) {
-                              String? data = answers.firstWhere(
-                                (element) => element == e.value,
-                                orElse: () {
-                                  return '';
-                                },
-                              );
-                              if (data != '') {
-                                valueAnswer.add(e);
-                              }
-                            }).toList();
-                          }
-                        }
-
-                        return IgnorePointer(
-                          ignoring: true,
-                          child: LabeledWidget(
-                            labelText: labelText,
-                            isRequired: e.isRequired,
-                            child: (e.answer == null || e.answer == '')
-                                ? _AnswerDesign(answer: '')
-                                : _MultiAnswerDesign(answer: valueAnswer),
-                          ),
-                        );
-                      },
-
-                      checkbox: (field) {
-                        List<ValueText> valueAnswer = [];
-
-                        if (!(field.fromManualList)) {
-                          List<String> answers =
-                              field.answerList.toString().split(',');
-                          answers.map((e) {
-                            valueAnswer.add(ValueText(
-                                value: DateTime.now().microsecond.toString(),
-                                text: e));
-                          }).toList();
-                        }
-                        return IgnorePointer(
-                          ignoring: true,
-                          child: LabeledWidget(
-                            labelText: labelText,
-                            isRequired: e.isRequired,
-                            child: (!(field.fromManualList))
-                                ? _MultiAnswerDesign(answer: valueAnswer)
-                                : CheckboxInputWidget(
-                                    field: field,
-                                    formValue: formValue,
-                                    labelText: labelText,
-                                    fieldKey: GlobalKey(),
-                                  ),
-                          ),
-                        );
-                      },
-                      radiogroup: (field) {
-                        return IgnorePointer(
-                          ignoring: true,
-                          child: LabeledWidget(
-                            labelText: labelText,
-                            isRequired: e.isRequired,
-                            child: RadioInputWidget(
-                              field: field,
-                              formValue: formValue,
-                              labelText: labelText,
-                              fieldKey: GlobalKey(),
-                            ),
-                          ),
-                        );
-                      },
-                      files: (field) {
-                        List<Map<String, dynamic>> answer = e.answer == null
-                            ? []
-                            : (e.answer ?? []) as List<Map<String, dynamic>>;
-                        return LabeledWidget(
-                            labelText: labelText,
-                            isRequired: e.isRequired,
-                            child: answer.isNotEmpty
-                                ? Wrap(
-                                    runSpacing: 8,
-                                    children: answer
-                                        .map(
-                                          (e) => _AnswerDesign(
-                                            answer: e['name'],
-                                            isFile: true,
-                                            isImage: false,
-                                            fileClick: () {
-                                              widget.fileClick({
-                                                'data': e['file'],
-                                                'title': e['name']
-                                              });
-                                            },
-                                          ),
-                                        )
-                                        .toList(),
-                                  )
-                                : _AnswerDesign(
-                                    answer: '',
-                                  ));
-                      },
-                      images: (field) {
-                        List<Map<String, dynamic>> answer = e.answer == null
-                            ? []
-                            : (e.answer ?? []) as List<Map<String, dynamic>>;
-
-                        return LabeledWidget(
-                            labelText: labelText,
-                            isRequired: e.isRequired,
-                            child: answer.isNotEmpty
-                                ? GridView.builder(
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: isTablet ? 5 : 3,
-                                      mainAxisSpacing: 6,
-                                      crossAxisSpacing: 6,
-                                      childAspectRatio: 0.87,
-                                    ),
-                                    shrinkWrap: true,
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    itemCount: answer.length,
-                                    itemBuilder: (context, index) {
-                                      return SizedBox(
-                                        height: 120,
-                                        width: 120,
-                                        child: _AnswerDesign(
-                                          answer: answer[index]['file'],
-                                          isImage: true,
-                                          imageBuild: widget.imageBuild,
-                                        ),
-                                      );
-                                    })
-                                // Wrap(
-                                //     spacing: 8,
-                                //     runSpacing: 8,
-                                //     children: answer
-                                //         .map(
-                                //           (e) => _AnswerDesign(
-                                //             answer: e['file'],
-                                //             isImage: true,
-                                //             containsLine: false,
-                                //             imageBuild: widget.imageBuild,
-                                //           ),
-                                //         )
-                                //         .toList(),
-
-                                //     // _queueManager.getProcessedWidgets(),
-                                //   )
-                                : _AnswerDesign(
-                                    answer: '',
-                                  ));
-                      },
-                      signature: (field) {
-                        Map<dynamic, dynamic> answer =
-                            (e.answer ?? {}) as Map<dynamic, dynamic>;
-                        return (answer.containsKey('id') &&
-                                answer.containsKey('file'))
-                            ? LabeledWidget(
-                                labelText: labelText,
-                                isRequired: e.isRequired,
-                                child: _AnswerDesign(
-                                  answer: answer['file'],
-                                  isSignature: true,
-                                  imageBuild: widget.imageBuild,
-                                  isImage: true,
-                                ),
-                              )
-                            : LabeledWidget(
-                                labelText: labelText,
-                                isRequired: e.isRequired,
-                                child: _AnswerDesign(
-                                  answer: '',
-                                ),
-                              );
-                      },
-                      instruction: (field) {
-                        return LabeledWidget(
-                            labelText: e.label,
-                            isRequired: e.isRequired,
-                            child: InstructionWidget(
-                              onTap: (String url) {
-                                widget.fileClick(
-                                  {'data': url, 'title': ''},
-                                );
-                              },
-                              field: field,
-                              imageBuild: widget.imageBuild,
-                            ));
-                      },
-
-                      section: (field) {
-                        return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                e.label ?? '',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleLarge
-                                    ?.copyWith(
-                                        color: const Color(0xff233759),
-                                        height: 1.2),
-                              ),
-                              AppSpacing.sizedBoxH_08(),
-                              (field.description ?? '').isEmpty
-                                  ? const SizedBox.shrink()
-                                  : Text(
-                                      field.description ?? '',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            color: const Color(0xff6A737B),
-                                          ),
-                                    ),
-                              AppSpacing.sizedBoxH_08(),
-                              const Divider(
-                                height: 1,
-                              ),
-                            ],
-                          ),
-                        );
-                      },
-                      geolocation: (field) {
-                        return (widget.hasGeolocation && field.answer == null)
-                            ? const SizedBox.shrink()
-                            : LabeledWidget(
-                                labelText: labelText,
-                                isRequired: false,
-                                child: (field.answer!['long'] != null)
-                                    ? CustomLocation(
-                                        postition: Position(
-                                            longitude: field.answer!['long'],
-                                            latitude: field.answer!['lat'],
-                                            timestamp: DateTime.timestamp(),
-                                            accuracy: 50.0,
-                                            altitude: 0.0,
-                                            altitudeAccuracy: 50.0,
-                                            heading: 50.0,
-                                            headingAccuracy: 50.0,
-                                            speed: 2.0,
-                                            speedAccuracy: 50.0),
-                                      )
-                                    : Text(
-                                        'Location is disabled!',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium,
-                                      ),
-                              );
-                      },
-
-                      multisignature: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: (field.answer != null &&
-                                  (field.answer ?? []).isNotEmpty)
-                              ? _MultiSignatureAnswerDesign(
-                                  answer: field.answer ?? [],
-                                  imageBuild: widget.imageBuild,
-                                )
-                              : Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'No Signature',
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            color: const Color(0xff6A737B),
-                                          ),
-                                    ),
-                                    const DottedLine(
-                                      direction: Axis.horizontal,
-                                      alignment: WrapAlignment.center,
-                                      lineLength: double.infinity,
-                                      lineThickness: 1.0,
-                                      dashLength: 4.0,
-                                      dashColor: Colors.grey,
-                                      dashRadius: 0.0,
-                                      dashGapLength: 4.0,
-                                      dashGapColor: Colors.white,
-                                      dashGapRadius: 0.0,
-                                    )
-                                  ],
-                                ),
-                        );
-                      },
-                      table: (field) {
-                        return LabeledWidget(
-                          labelText: labelText,
-                          isRequired: e.isRequired,
-                          child: SizedBox(),
-                          //  TableInputWidget(
-                          //   field: field,
-                          //   fieldKey: _formFieldKeys[field.id],
-                          //   formValue: formValue,
-                          //   labelText: labelText,
-                          // ),
-                        );
-                      },
-
-                      orElse: () => null,
-                    );
-                  })
-                  .whereType<Widget>()
-                  // .separated(widget.separatorBuilder?.call())
-                  .toList(),
+            child: ResponseWidget(
+              inputFields: widget.surveyForm.inputFields,
+              imageBuild: widget.imageBuild,
+              hasGeolocation: widget.hasGeolocation,
+              isTablet: isTablet,
+              fileClick: widget.fileClick,
+              formValue: formValue,
             ),
           ),
           if (widget.hasGeolocation &&
@@ -969,8 +363,10 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
 ///Widget that represents forms answer design
 ///
 ///soley for singular form items like text, titles, single image,files
-class _AnswerDesign extends StatelessWidget {
-  _AnswerDesign({
+// ignore: must_be_immutable
+class AnswerDesign extends StatelessWidget {
+  AnswerDesign({
+    super.key,
     required this.answer,
     this.isImage = false,
     this.isSignature = false,
@@ -1083,8 +479,9 @@ class _AnswerDesign extends StatelessWidget {
 
 /// Widget that represent map field answer design
 
-class _AnswerMapDesign extends StatelessWidget {
-  const _AnswerMapDesign({
+class AnswerMapDesign extends StatelessWidget {
+  const AnswerMapDesign({
+    super.key,
     required this.answer,
   });
 
@@ -1150,8 +547,9 @@ class _AnswerMapDesign extends StatelessWidget {
 ///Widget that represents multi-forms answer design
 ///
 ///soley for multiple form items like text, titles,image,files
-class _MultiAnswerDesign extends StatelessWidget {
-  const _MultiAnswerDesign({
+class MultiAnswerDesign extends StatelessWidget {
+  const MultiAnswerDesign({
+    super.key,
     required this.answer,
   });
 
@@ -1194,8 +592,9 @@ class _MultiAnswerDesign extends StatelessWidget {
 ///Widget that represents forms signature answer design
 ///
 ///soley for multi form items signatures,images,texts
-class _MultiSignatureAnswerDesign extends StatelessWidget {
-  const _MultiSignatureAnswerDesign({
+class MultiSignatureAnswerDesign extends StatelessWidget {
+  const MultiSignatureAnswerDesign({
+    super.key,
     required this.answer,
     this.imageBuild,
   });
