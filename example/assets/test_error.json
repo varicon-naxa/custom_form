@@ -1,0 +1,362 @@
+ {
+        "title": "TNE Civil Incident Witness Statement Form - SUBJECT TO LEGAL PRIVILEGE",
+        "elements": [
+            {
+                "id": "item-7f83b9b0-43b8-4b8c-8518-d49ef5922898",
+                "name": "Instruction",
+                "type": "instruction",
+                "label": "Please use this form to factually state events, timelines, and observations!",
+                "isRequired": false,
+                "attachments": [],
+                "instruction": "<p>Take as many photos (and or videos) as you can. Make sure angle and zoom is suitable to tell a story (e.g., take a picture of the incident scene, then the equipment involved then the direct location of the incident)</p>",
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-519c9d58-c049-49e3-9364-a5180a56e616",
+                "name": "Date Time",
+                "type": "datetimelocal",
+                "label": "Date and Time of this form being completed: ",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-0732e9d7-2baf-48b8-b8f7-f13af2273453",
+                "name": "Date Time",
+                "type": "datetimelocal",
+                "label": "Date and Time of the incident: ",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-d025a3cd-0ef8-4b5b-ac4b-d92a36f28139",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Witness full name:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-5b44f705-1e0d-4f5e-82cb-152e0deb3de8",
+                "name": "Phone Number",
+                "type": "phone",
+                "label": "Your phone number? (Optional - you can provide email below)",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-710e9459-a5d7-49f4-ba58-e9ddc72b2615",
+                "name": "Email",
+                "type": "email",
+                "label": "Your e-mail address? (Optional - you can provide phone number above)",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-f5688acb-7155-44fa-b15e-e598d51d2a7e",
+                "name": "Single Select Dropdown",
+                "type": "dropdown",
+                "label": "Select the Project you are working at",
+                "choice": [],
+                "isRequired": true,
+                "isConditional": false,
+                "fromManualList": false,
+                "islinked_query": "project",
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-a442d5f7-73ae-43f8-9fe9-26dd6a8b7363",
+                "name": "Single Select Dropdown",
+                "type": "dropdown",
+                "label": "Your position?",
+                "choice": [
+                    {
+                        "id": "item-4131dcbb-7c14-4c84-ae32-be0ef017b584",
+                        "label": "Site Supervisor"
+                    },
+                    {
+                        "id": "item-9f3ec30f-bdf2-4f79-bc23-ecf0c949954f",
+                        "label": "Site Engineer"
+                    },
+                    {
+                        "id": "item-7a35bbcc-310f-4a6d-b609-7a14e7c76e35",
+                        "label": "Superintendent"
+                    },
+                    {
+                        "id": "item-1cf38f01-5de5-4cbb-b1a9-d1f3aef5c5ad",
+                        "label": "Construction Manager"
+                    },
+                    {
+                        "id": "item-6bea0946-4833-4599-9456-3e174cbc93a6",
+                        "label": "Manager (other)"
+                    },
+                    {
+                        "id": "item-bc00ddd1-eb00-467e-9cb6-d7d61dd5cb08",
+                        "label": "TNE Civil Worker"
+                    },
+                    {
+                        "id": "item-c8181c8c-f807-45a8-9006-7dfec9bfed24",
+                        "label": "Other"
+                    }
+                ],
+                "isRequired": true,
+                "isConditional": false,
+                "fromManualList": true,
+                "islinked_query": "",
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-fad7896d-4e23-4a99-b559-ba93552617d2",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-a7c8eb8e-c560-4756-be8c-832bf3b044c3",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-ae5c8d16-1f16-4809-96b5-86d8c8ed5de0",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-5ea49510-bfa8-47c7-8847-e3d72afef417",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-95a49496-ecb0-4945-bc72-9acd40699fb8",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-dcd23462-36be-4db7-804a-caf34138e2cc",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-ee08daf2-0846-4b09-a0a2-7ab97dab4767",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-bedf2b76-c716-4ead-873c-00f4bd84f6de",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-46a88e39-800a-49d9-9a19-2fc25fe4d4c0",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-3cb8702d-7948-41e3-b69c-c12ceb3a3a2d",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-7bde3b2f-abde-44fb-b9db-c5b52bc227ba",
+                "name": "Full Name",
+                "type": "text",
+                "label": "Who else was involved or was a witness? Ensure each one fills out this Form for themselves!:",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-08d1f369-3de8-4560-bf54-b51250485e97",
+                "name": "Long Text",
+                "type": "text",
+                "label": "STATEMENT: Please use this field to factually state events, timelines, and observations!",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-4e667f39-d8ba-4835-a28e-78c1584e2c35",
+                "name": "Long Text",
+                "type": "text",
+                "label": "Timeline of events (e.g., 13:00 incident - 13:05 incident scene frozen - 13:15 scene secure etc)",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-7232bbc3-653d-455d-a3c8-711b4b2f0d72",
+                "name": "Long Text",
+                "type": "text",
+                "label": "Did you note anything unusual prior to or during the incident? (sights, sounds, smells, etc.)?",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-6b3323d6-bbeb-4011-8fd0-b946f87cceb0",
+                "name": "Long Text",
+                "type": "text",
+                "label": "What was your role in the incident sequence?",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-319bda32-edad-4d81-86de-fecf1da505ce",
+                "name": "Long Text",
+                "type": "text",
+                "label": "What conditions influenced the incident? (weather, time of day, equipment malfunctions, etc.)",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-b45432d3-6cb1-4e04-8687-392383037a5b",
+                "name": "Long Text",
+                "type": "text",
+                "label": "Who was assessed for Fitness for Work after the incident (BAC test, drug test, fatigue, illness)? ",
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-dfad6b3c-afbc-42bd-9b0c-31980f698eda",
+                "name": "Long Text",
+                "type": "text",
+                "label": "Anything else?",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-04571b03-7530-45b2-88ed-3eeb07ae4406",
+                "name": "Image Upload",
+                "type": "images",
+                "label": "Take as many pictures as you want (depending on file size max.25MB total; if full use next field)!",
+                "isMultiple": true,
+                "isRequired": true,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-bdedc9cd-31a0-45c8-b5dd-45d13933275f",
+                "name": "Image Upload",
+                "type": "images",
+                "label": "Take as many pictures as you want (depending on file size max.25MB total; if full use next field)!",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-5886e409-28e5-4035-b87f-a609537f4f4d",
+                "name": "Image Upload",
+                "type": "images",
+                "label": "Take as many pictures as you want (depending on file size max.25MB total; if full use next field)!",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-f97072bd-e09e-427f-9df9-e2cdf566cc16",
+                "name": "Image Upload",
+                "type": "images",
+                "label": "Take as many pictures as you want (depending on file size max.25MB total; if full use next field)!",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-1e0826a2-effe-48d3-a060-cb578f0291fb",
+                "name": "Image Upload",
+                "type": "images",
+                "label": "Take as many pictures as you want (depending on file size max.25MB total; if full use next field)!",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-9eed7013-d2bc-444b-a5b7-51b224997a73",
+                "name": "Image Upload",
+                "type": "images",
+                "label": "Take as many pictures as you want (depending on file size max.25MB total; if full use next field)!",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-3cb6f492-654c-4261-a860-c5ad915523ac",
+                "name": "Image Upload",
+                "type": "images",
+                "label": "Take as many pictures as you want (depending on file size max.25MB total; if full use next field)!",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-a66f380a-fd4d-4ccf-992f-48187d6a320f",
+                "name": "File Upload",
+                "type": "files",
+                "label": "Supporting documents? Videos?",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-cc6182c4-abc4-425d-81fa-52c286f429c9",
+                "name": "File Upload",
+                "type": "files",
+                "label": "Supporting documents? Videos?",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-563d85bb-961a-44a7-aa70-87ceefd665a3",
+                "name": "File Upload",
+                "type": "files",
+                "label": "Supporting documents? Videos?",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-d1884a87-bc47-4532-bcbf-8b1ae93f71f4",
+                "name": "File Upload",
+                "type": "files",
+                "label": "Supporting documents? Videos?",
+                "isMultiple": true,
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-d745681d-adaf-48f8-8503-250aba1c46b3",
+                "name": "Instruction",
+                "type": "instruction",
+                "label": "THANK YOU FOR YOUR Statement!",
+                "isRequired": false,
+                "attachments": [],
+                "instruction": "",
+                "selectedLinkListLabel": ""
+            }
+        ],
+        "description": ""
+    }
