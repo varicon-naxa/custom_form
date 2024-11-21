@@ -1244,12 +1244,23 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                   saveLongText();
                 },
                 onChangeContent: (code) {
-                  if (code.toString().trim().isNotEmpty) {
+                  print('code after backspace: $code');
+                  if (code.toString().isNotEmpty &&
+                      empty == true &&
+                      code.toString().trim() != '<p><br></p>') {
+                    print("Inside if");
+                    print(code);
                     _debouncer.run(() {
                       Future.microtask(() {
                         widget.formCon.text = code.toString().trim();
                         saveLongText();
                       });
+                    });
+                  } else {
+                    print("Inside else");
+                    widget.formCon.clear();
+                    setState(() {
+                      empty = true;
                     });
                   }
                 },
@@ -1304,15 +1315,29 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               //   });
               // },
               validator: (value) {
-                // setState(() {
-                //   empty = true;
-                // });
-                return textValidator(
-                  value: value.toString().trim(),
-                  inputType: "text",
-                  isRequired: (widget.field.isRequired),
-                  requiredErrorText: 'Long text is required',
-                );
+                String a = value ?? '';
+                print(a);
+                // if (value != null && value.isNotEmpty) {
+                setState(() {
+                  empty = true;
+                });
+                // }
+                if (empty == true) {
+                  print('value null cha');
+                  if (a.isNotEmpty) {
+                    saveLongText();
+                  }
+                  return textValidator(
+                    value: a.toString().trim(),
+                    inputType: "text",
+                    isRequired: (widget.field.isRequired),
+                    requiredErrorText: 'Long text is required',
+                  );
+                } else {
+                  print('value null chaina');
+
+                  return null;
+                }
               },
             ),
           ),
