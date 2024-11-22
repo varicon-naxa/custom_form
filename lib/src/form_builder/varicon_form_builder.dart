@@ -1217,7 +1217,7 @@ class HtmlEditorWidget extends StatefulWidget {
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   bool empty = false;
-  final _debouncer = Debouncer(milliseconds: 300);
+  // final _debouncer = Debouncer(milliseconds: 300);
 
   void saveLongText() {
     widget.formValue.saveString(
@@ -1247,21 +1247,30 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                   saveLongText();
                 },
                 onChangeContent: (code) {
+                  print('code: $code');
+                  print('text: ${widget.formCon.text}');
                   if (code.toString().isNotEmpty &&
                       empty == true &&
                       code.toString().trim() != '<p><br></p>') {
-                    _debouncer.run(() {
-                      Future.microtask(() {
-                        widget.formCon.text = code.toString().trim();
-                        saveLongText();
-                      });
-                    });
+                    widget.formCon.text = code.toString().trim();
+                    saveLongText();
+                    // _debouncer.run(() {
+                    //   Future.microtask(() {
+
+                    //   });
+                    // });
                   } else {
+                    widget.formCon.text = code.toString().trim();
                     widget.formCon.clear();
+                    saveLongText();
+
                     setState(() {
                       empty = true;
                     });
                   }
+
+                  print('After code: $code');
+                  print('After text: ${widget.formCon.text}');
                 },
               ),
               controller: widget.htmlEditorController, //required
