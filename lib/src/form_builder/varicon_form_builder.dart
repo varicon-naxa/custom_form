@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -50,6 +51,8 @@ class VariconFormBuilder extends StatefulWidget {
       required this.isCarousel,
       required this.hasGeolocation,
       required this.onFileClicked,
+      required this.customPainter,
+      required this.locationData,
       this.apiCall,
       this.padding,
       this.hasSave = false});
@@ -100,6 +103,12 @@ class VariconFormBuilder extends StatefulWidget {
 
   ///Padding for the whole form
   final EdgeInsetsGeometry? padding;
+
+  ///Widget for custom image painter
+  final Widget Function(File imageFile) customPainter;
+
+  ///Current Locatio
+  final String locationData;
 
   ///Check if a form has geolocation
   ///
@@ -914,6 +923,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     newValue,
                                   );
                                 },
+                                locationData: widget.locationData,
+                                customPainter: widget.customPainter,
                               ),
                             ),
                           );
@@ -936,6 +947,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               isRequired: e.isRequired,
                               child: FileInputWidget(
                                 formCon: formCon,
+                                locationData: widget.locationData,
+                                customPainter: widget.customPainter,
                                 fieldKey: _formFieldKeys[field.id],
                                 field: field,
                                 emptyMsg: 'Image is required',

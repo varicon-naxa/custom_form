@@ -190,6 +190,10 @@ class _SurveyPageState extends State<SurveyPage> {
           );
         },
         onFileClicked: (String stringURl) {},
+        customPainter: (data){
+          return Container();
+        },
+        locationData: '',
       ),
     );
   }

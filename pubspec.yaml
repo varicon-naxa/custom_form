@@ -37,6 +37,8 @@ dependencies:
   cached_network_image: ^3.3.1
   flutter_image_compress: ^2.3.0
   scrollable_positioned_list: ^0.3.8
+  screenshot: ^3.0.0
+  image: ^4.3.0
 
 dev_dependencies:
   flutter_test:
