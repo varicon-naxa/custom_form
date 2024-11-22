@@ -1247,11 +1247,10 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                   saveLongText();
                 },
                 onChangeContent: (code) {
-                  print('code: $code');
-                  print('text: ${widget.formCon.text}');
                   if (code.toString().isNotEmpty &&
                       empty == true &&
-                      code.toString().trim() != '<p><br></p>') {
+                      (code.toString().trim() != '<p><br></p>' ||
+                          code.toString().trim() != '<br>')) {
                     widget.formCon.text = code.toString().trim();
                     saveLongText();
                     // _debouncer.run(() {
@@ -1268,9 +1267,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                       empty = true;
                     });
                   }
-
-                  print('After code: $code');
-                  print('After text: ${widget.formCon.text}');
                 },
               ),
               controller: widget.htmlEditorController, //required
