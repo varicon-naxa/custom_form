@@ -1226,6 +1226,10 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
     );
   }
 
+  static String stripHtml(String text) {
+    return text.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ' ');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1249,8 +1253,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 onChangeContent: (code) {
                   if (code.toString().isNotEmpty &&
                       empty == true &&
-                      (code.toString().trim() != '<p><br></p>' ||
-                          code.toString().trim() != '<br>')) {
+                      stripHtml(code.toString()).isNotEmpty) {
                     widget.formCon.text = code.toString().trim();
                     saveLongText();
                     // _debouncer.run(() {
