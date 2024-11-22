@@ -317,15 +317,16 @@ To utilize this feature, please follow these steps to enable storage access on y
             fontSize: 16.0);
         return null;
       } else {
-        final editedImage = await Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => customPainter(
-              file,
-            ),
-          ),
-        );
-        final File fileImage = await convertUint8ListToFile(editedImage);
+        // final editedImage = await Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => customPainter(
+        //       file,
+        //     ),
+        //   ),
+        // );
+        final File fileImage = file;
+        // await convertUint8ListToFile(editedImage);
 
         // Add timestamp
         final timestamp = DateTime.now();
