@@ -1335,7 +1335,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                     saveLongText();
                   }
                   return textValidator(
-                    value: a.toString().trim(),
+                    value: stripHtml(a.toString().trim()),
                     inputType: "text",
                     isRequired: (widget.field.isRequired),
                     requiredErrorText: 'Long text is required',
