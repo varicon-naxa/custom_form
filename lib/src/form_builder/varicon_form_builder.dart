@@ -346,8 +346,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                         text: (field) {
                           final HtmlEditorController htmlEditorController =
                               HtmlEditorController(
-                                  processNewLineAsBr: false,
-                                  processOutputHtml: false);
+                            processNewLineAsBr: false,
+                            processOutputHtml: false,
+                          );
 
                           final TextEditingController formCon =
                               TextEditingController();
@@ -1246,7 +1247,9 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                   saveLongText();
                 },
                 onChangeContent: (code) {
-                  if (code.toString().isNotEmpty && empty == true) {
+                  if (code.toString().isNotEmpty &&
+                      empty == true &&
+                      code.toString().trim() != '<p><br></p>') {
                     _debouncer.run(() {
                       Future.microtask(() {
                         widget.formCon.text = code.toString().trim();
@@ -1297,7 +1300,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 enabledBorder: InputBorder.none,
                 enabled: false,
                 // errorText: empty == true ? 'Long text is required' : '',
-                labelStyle:  TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
               ),
