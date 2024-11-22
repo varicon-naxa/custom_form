@@ -1227,7 +1227,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   }
 
   static String stripHtml(String text) {
-    return text.replaceAll(RegExp(r'<[^>]*>|&[^;]+;'), ' ');
+    return text.replaceAll(RegExp(r"<[^>]*>"), ' ');
   }
 
   @override
