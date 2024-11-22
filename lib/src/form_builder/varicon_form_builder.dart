@@ -384,19 +384,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                           .contains('address')
                                       ? MapFieldWidget(
                                           fieldKey: _formFieldKeys[field.id],
-                                          // _fieldKeys[widget
-                                          //     .surveyForm.inputFields
-                                          //     .indexOf(e)],
                                           isRequired: field.isRequired,
                                           formValue: formValue,
                                           field: field,
                                           forMapField: true,
                                         )
                                       : TextFormField(
-                                          // inputFormatters: [
-                                          //   FilteringTextInputFormatter.deny(
-                                          //       RegExp(r'\s')),
-                                          // ],
                                           onTapOutside: (event) => FocusManager
                                               .instance.primaryFocus
                                               ?.unfocus(),
@@ -441,7 +434,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                           },
                                           decoration: InputDecoration(
                                             hintText: field.hintText,
-                                            // labelText: labelText,
                                           ),
                                         ),
                             ),
@@ -495,7 +487,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 },
                                 decoration: InputDecoration(
                                   hintText: field.hintText,
-                                  // labelText: labelText,
                                 ),
                               ),
                             ),
@@ -636,7 +627,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 },
                                 decoration: InputDecoration(
                                   hintText: field.hintText,
-                                  // labelText: labelText,
                                 ),
                               ),
                             ),
@@ -659,7 +649,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 field: field,
                                 dateTime: DatePickerType.date,
                                 formValue: formValue,
-                                // labelText: labelText,
                               ),
                             ),
                           );
@@ -675,7 +664,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 fieldKey: _formFieldKeys[field.id],
                                 dateTime: DatePickerType.time,
                                 formValue: formValue,
-                                // labelText: labelText,
                               ),
                             ),
                           );
@@ -697,7 +685,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                 fieldKey: _formFieldKeys[field.id],
                                 dateTime: DatePickerType.dateTime,
                                 formValue: formValue,
-                                // labelText: labelText,
                               ),
                             ),
                           );
@@ -742,7 +729,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                                     ),
                                     decoration: InputDecoration(
                                       hintText: field.hintText,
-                                      // labelText: labelText,
                                     ),
                                   ),
                                 ),
@@ -862,7 +848,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                           );
                         },
                         multipleselect: (field) {
-                          var b = field;
                           if (field.answer != null && (field.answer != null)) {
                             formValue.saveString(
                               field.id,
@@ -894,7 +879,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                               field.answer,
                             );
                           }
-
                           return ScrollContent(
                             id: field.id,
                             child: LabeledWidget(
@@ -1156,7 +1140,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                       );
                     })
                     .whereType<ScrollContent>()
-                    // .separated(widget.separatorBuilder?.call())
                     .toList(),
                 if (widget.hasSave) ...[
                   ScrollContent(
@@ -1217,7 +1200,6 @@ class HtmlEditorWidget extends StatefulWidget {
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   bool empty = false;
-  // final _debouncer = Debouncer(milliseconds: 300);
 
   void saveLongText() {
     widget.formValue.saveString(
@@ -1256,16 +1238,10 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                       stripHtml(code.toString()).isNotEmpty) {
                     widget.formCon.text = code.toString().trim();
                     saveLongText();
-                    // _debouncer.run(() {
-                    //   Future.microtask(() {
-
-                    //   });
-                    // });
                   } else {
                     widget.formCon.text = code.toString().trim();
                     widget.formCon.clear();
                     saveLongText();
-
                     setState(() {
                       empty = true;
                     });
@@ -1307,7 +1283,6 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
-                // errorText: empty == true ? 'Long text is required' : '',
                 labelStyle: TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
@@ -1316,33 +1291,21 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               key: widget.fieldKey,
               readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              // onChanged: (value) {
-              //   setState(() {
-              //     empty = false;
-              //   });
-              // },
               validator: (value) {
-                String a = value ?? '';
-                print(a);
-                // if (value != null && value.isNotEmpty) {
                 setState(() {
                   empty = true;
                 });
-                // }
                 if (empty == true) {
-                  print('value null cha');
-                  if (a.isNotEmpty) {
+                  if ((value??'').isNotEmpty) {
                     saveLongText();
                   }
                   return textValidator(
-                    value: stripHtml(a.toString().trim()),
+                    value: stripHtml((value??'').toString().trim()),
                     inputType: "text",
                     isRequired: (widget.field.isRequired),
                     requiredErrorText: 'Long text is required',
                   );
                 } else {
-                  print('value null chaina');
-
                   return null;
                 }
               },
@@ -1351,130 +1314,5 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
         ),
       ],
     );
-  }
-}
-
-///HTML editor widget class
-// class HtmlEditorWidget extends StatelessWidget {
-//   final TextInputField field;
-//   final HtmlEditorController htmlEditorController;
-//   final HtmlEditorOptions editorOptions;
-//   final FormValue formValue;
-//   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
-//   final TextEditingController formCon;
-
-//   const HtmlEditorWidget({
-//     super.key,
-//     required this.field,
-//     required this.htmlEditorController,
-//     required this.editorOptions,
-//     required this.formValue,
-//     this.fieldKey,
-//     required this.formCon,
-//   });
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       children: [
-//         SizedBox(
-//           height: 200,
-//           child: Container(
-//             // height: 300,
-//             decoration: BoxDecoration(
-//                 border: Border.all(
-//                   color: Colors.grey.shade300,
-//                 ),
-//                 borderRadius: BorderRadius.circular(4.0)),
-//             child: HtmlEditor(
-//               callbacks: Callbacks(
-//                 onChangeContent: (code) {
-//                   formCon.text = code.toString().trim();
-//                   formValue.saveString(
-//                     field.id,
-//                     code.toString().trim(),
-//                   );
-//                 },
-//               ),
-//               controller: htmlEditorController, //required
-//               plugins: const [],
-//               htmlEditorOptions: editorOptions,
-//               // textInputAction: TextInputAction.newline,
-//               htmlToolbarOptions: const HtmlToolbarOptions(
-//                 defaultToolbarButtons: [
-//                   // StyleButtons(),
-//                   // FontSettingButtons(),
-//                   FontButtons(
-//                     clearAll: false,
-//                     strikethrough: false,
-//                     subscript: false,
-//                     superscript: false,
-//                   ),
-//                   // ColorButtons(),
-//                   ListButtons(listStyles: false),
-//                   ParagraphButtons(
-//                     caseConverter: false,
-//                     lineHeight: false,
-//                     textDirection: false,
-//                     increaseIndent: false,
-//                     decreaseIndent: false,
-//                   ),
-//                   // InsertButtons(),
-//                   // OtherButtons(),
-//                 ],
-//               ),
-//             ),
-//           ),
-//         ),
-//         SizedBox(
-//           height: 20,
-//           child: Visibility(
-//             visible: true,
-//             child: TextFormField(
-//               style: const TextStyle(color: Colors.white),
-//               decoration: const InputDecoration(
-//                 border: InputBorder.none,
-//                 errorBorder: InputBorder.none,
-//                 enabledBorder: InputBorder.none,
-//                 enabled: false,
-//                 labelStyle: TextStyle(color: Colors.white),
-//                 disabledBorder: InputBorder.none,
-//                 contentPadding: EdgeInsets.zero,
-//               ),
-//               controller: formCon,
-//               key: fieldKey,
-//               readOnly: true,
-//               autovalidateMode: AutovalidateMode.onUserInteraction,
-//               validator: (value) {
-//                 // var a = formValue.value;
-
-//                 return textValidator(
-//                   value: value.toString().trim(),
-//                   inputType: "text",
-//                   isRequired: (field.isRequired),
-//                   requiredErrorText: 'Long text is required',
-//                 );
-//               },
-//             ),
-//           ),
-//         ),
-//       ],
-//     );
-//   }
-// }
-
-///Debouncer class for search feature
-class Debouncer {
-  final int milliseconds;
-  Timer? _timer;
-
-  Debouncer({this.milliseconds = 1000});
-
-  ///checks the timer with durations
-  run(VoidCallback action) {
-    if (_timer != null || (_timer?.isActive ?? false)) {
-      _timer?.cancel();
-    }
-    _timer = Timer(Duration(milliseconds: milliseconds), action);
   }
 }
