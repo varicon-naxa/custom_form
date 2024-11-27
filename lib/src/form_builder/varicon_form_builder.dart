@@ -1751,13 +1751,16 @@ class HtmlEditorWidget extends StatefulWidget {
 
 class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
   bool empty = false;
-  final _debouncer = Debouncer(milliseconds: 300);
 
   void saveLongText() {
     widget.formValue.saveString(
       widget.field.id,
       widget.formCon.text,
     );
+  }
+
+  static String stripHtml(String text) {
+    return text.replaceAll(RegExp(r"<[^>]*>"), ' ');
   }
 
   @override
@@ -1781,12 +1784,17 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                   saveLongText();
                 },
                 onChangeContent: (code) {
-                  if (code.toString().trim().isNotEmpty) {
-                    _debouncer.run(() {
-                      Future.microtask(() {
-                        widget.formCon.text = code.toString().trim();
-                        saveLongText();
-                      });
+                  if (code.toString().isNotEmpty &&
+                      empty == true &&
+                      stripHtml(code.toString()).isNotEmpty) {
+                    widget.formCon.text = code.toString().trim();
+                    saveLongText();
+                  } else {
+                    widget.formCon.text = code.toString().trim();
+                    widget.formCon.clear();
+                    saveLongText();
+                    setState(() {
+                      empty = true;
                     });
                   }
                 },
@@ -1826,8 +1834,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 errorBorder: InputBorder.none,
                 enabledBorder: InputBorder.none,
                 enabled: false,
-                // errorText: empty == true ? 'Long text is required' : '',
-                labelStyle: const TextStyle(color: Colors.white),
+                labelStyle: TextStyle(color: Colors.white),
                 disabledBorder: InputBorder.none,
                 contentPadding: EdgeInsets.zero,
               ),
@@ -1835,21 +1842,23 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
               key: widget.fieldKey,
               readOnly: true,
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              // onChanged: (value) {
-              //   setState(() {
-              //     empty = false;
-              //   });
-              // },
               validator: (value) {
-                // setState(() {
-                //   empty = true;
-                // });
-                return textValidator(
-                  value: value.toString().trim(),
-                  inputType: "text",
-                  isRequired: (widget.field.isRequired),
-                  requiredErrorText: 'Long text is required',
-                );
+                setState(() {
+                  empty = true;
+                });
+                if (empty == true) {
+                  if ((value ?? '').isNotEmpty) {
+                    saveLongText();
+                  }
+                  return textValidator(
+                    value: stripHtml((value ?? '').toString().trim()),
+                    inputType: "text",
+                    isRequired: (widget.field.isRequired),
+                    requiredErrorText: 'Long text is required',
+                  );
+                } else {
+                  return null;
+                }
               },
             ),
           ),
