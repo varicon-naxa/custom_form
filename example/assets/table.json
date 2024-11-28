@@ -25,6 +25,158 @@
                     }
                 ]
             ]
+        },{
+            "id": "item-6a6f30eb-8cc5-47e7-84b3-ca2600b6b8fd",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Column 1",
+                "Column 2",
+                "Column 3"
+            ],
+            "contents": [
+                [
+                    {
+                        "id": "item-0fa75ad3-72e8-4d44-8704-10b8fe85cebc",
+                        "icon": {
+                            "key": null,
+                            "ref": null,
+                            "type": "svg",
+                            "props": {
+                                "fill": "none",
+                                "width": "54",
+                                "xmlns": "http://www.w3.org/2000/svg",
+                                "height": "56",
+                                "viewBox": "0 0 54 56",
+                                "children": [
+                                    {
+                                        "key": null,
+                                        "ref": null,
+                                        "type": "rect",
+                                        "props": {
+                                            "fill": "#FFF4E3",
+                                            "width": "54",
+                                            "height": "56"
+                                        },
+                                        "_owner": null
+                                    },
+                                    {
+                                        "key": null,
+                                        "ref": null,
+                                        "type": "path",
+                                        "props": {
+                                            "d": "M35 34L32 31V33H19V35H32V37L35 34ZM23.5 27.8H28.5L29.4 30H31.5L26.75 19H25.25L20.5 30H22.6L23.5 27.8ZM26 20.98L27.87 26H24.13L26 20.98Z",
+                                            "fill": "#FBAD33"
+                                        },
+                                        "_owner": null
+                                    }
+                                ]
+                            },
+                            "_owner": null
+                        },
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 1",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-e8baa597-c351-4fc9-ae3c-ce7f5f048577",
+                        "icon": {
+                            "key": null,
+                            "ref": null,
+                            "type": "svg",
+                            "props": {
+                                "fill": "none",
+                                "width": "54",
+                                "xmlns": "http://www.w3.org/2000/svg",
+                                "height": "56",
+                                "viewBox": "0 0 54 56",
+                                "children": [
+                                    {
+                                        "key": null,
+                                        "ref": null,
+                                        "type": "rect",
+                                        "props": {
+                                            "fill": "#FFF4E3",
+                                            "width": "54",
+                                            "height": "56"
+                                        },
+                                        "_owner": null
+                                    },
+                                    {
+                                        "key": null,
+                                        "ref": null,
+                                        "type": "path",
+                                        "props": {
+                                            "d": "M35 34L32 31V33H19V35H32V37L35 34ZM23.5 27.8H28.5L29.4 30H31.5L26.75 19H25.25L20.5 30H22.6L23.5 27.8ZM26 20.98L27.87 26H24.13L26 20.98Z",
+                                            "fill": "#FBAD33"
+                                        },
+                                        "_owner": null
+                                    }
+                                ]
+                            },
+                            "_owner": null
+                        },
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 2",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-180e8cec-8b1c-460d-82e2-3390e4222383",
+                        "icon": {
+                            "key": null,
+                            "ref": null,
+                            "type": "svg",
+                            "props": {
+                                "fill": "none",
+                                "width": "54",
+                                "xmlns": "http://www.w3.org/2000/svg",
+                                "height": "56",
+                                "viewBox": "0 0 54 56",
+                                "children": [
+                                    {
+                                        "key": null,
+                                        "ref": null,
+                                        "type": "rect",
+                                        "props": {
+                                            "fill": "#FFF4E3",
+                                            "width": "54",
+                                            "height": "56"
+                                        },
+                                        "_owner": null
+                                    },
+                                    {
+                                        "key": null,
+                                        "ref": null,
+                                        "type": "path",
+                                        "props": {
+                                            "d": "M35 34L32 31V33H19V35H32V37L35 34ZM23.5 27.8H28.5L29.4 30H31.5L26.75 19H25.25L20.5 30H22.6L23.5 27.8ZM26 20.98L27.87 26H24.13L26 20.98Z",
+                                            "fill": "#FBAD33"
+                                        },
+                                        "_owner": null
+                                    }
+                                ]
+                            },
+                            "_owner": null
+                        },
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 3",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    }
+                ]
+            ],
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "Description is the describing method which describes the title in various way"
