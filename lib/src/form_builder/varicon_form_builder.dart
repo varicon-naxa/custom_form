@@ -681,7 +681,7 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
           style: Theme.of(context).textTheme.bodyLarge,
           readOnly: field.readOnly,
           keyboardType: const TextInputType.numberWithOptions(
-              signed: true, decimal: true),
+              signed: false, decimal: false),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           onSaved: (newValue) {
             // htmlEditorController.editorController!
@@ -692,9 +692,11 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
             );
           },
           inputFormatters: [
-            FilteringTextInputFormatter.allow(
-                // RegExp(r'^[0-9]+.?[0-9]*'),
-                RegExp(r'^\s*([0-9]+)\s*$')),
+            FilteringTextInputFormatter.digitsOnly
+
+            // FilteringTextInputFormatter.allow(
+            //     // RegExp(r'^[0-9]+.?[0-9]*'),
+            //     RegExp(r'^\s*([0-9]+)\s*$')),
           ],
           validator: (value) {
             return numberValidator(
