@@ -76,6 +76,9 @@ class _SurveyPageState extends State<SurveyPage> {
         isCarousel: false,
         surveyForm: widget.form,
         hasGeolocation: false,
+        autoSave: (data) {
+          log('dasdasd ' + data.toString());
+        },
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
           Map<String, dynamic> data = widget.formData;

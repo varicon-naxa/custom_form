@@ -9,6 +9,11 @@ class FormValue {
   FormValue();
 
   final Map<String, dynamic> _value = {};
+  void Function(Map<String, dynamic>)? _onSaveCallback;
+
+  void setOnSaveCallback(void Function(Map<String, dynamic>) callback) {
+    _onSaveCallback = callback;
+  }
 
   Map<String, dynamic> get value => _value;
 
@@ -27,6 +32,7 @@ class FormValue {
       _value.remove(k);
     } else {
       _value[k] = v;
+      _onSaveCallback?.call(_value);
     }
   }
 
@@ -35,6 +41,7 @@ class FormValue {
       _value.remove(k);
     } else {
       _value[k] = v;
+      _onSaveCallback?.call(_value);
     }
   }
 
@@ -43,6 +50,7 @@ class FormValue {
       _value.remove(k);
     } else {
       _value[k] = num.parse(v);
+      _onSaveCallback?.call(_value);
     }
   }
 
@@ -52,6 +60,7 @@ class FormValue {
         _value[k] = [];
       } else {
         _value[k] = v;
+        _onSaveCallback?.call(_value);
       }
     } catch (e) {
       print('Error: $e');
@@ -105,5 +114,6 @@ class FormValue {
     _value[id] = table.inputFields?.map((row) {
       return row.map((e) => e.toJson()).toList();
     }).toList();
+    _onSaveCallback?.call(_value);
   }
 }

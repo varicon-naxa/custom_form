@@ -50,6 +50,7 @@ class VariconFormBuilder extends StatefulWidget {
       required this.isCarousel,
       required this.hasGeolocation,
       required this.onFileClicked,
+      required this.autoSave,
       this.apiCall,
       this.padding,
       this.hasSave = false});
@@ -87,6 +88,10 @@ class VariconFormBuilder extends StatefulWidget {
   ///Used to store image paths and file paths
   ///With height and width
   final Widget Function(Map<String, dynamic>) imageBuild;
+
+  ///Used to store image paths and file paths
+  ///With height and width
+  final void Function(Map<String, dynamic>) autoSave;
 
   ///API call function
   ///
@@ -155,6 +160,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   @override
   void initState() {
     super.initState();
+    formValue.setOnSaveCallback(widget.autoSave);
 
     ///Initializing custom form state
     ///
@@ -634,6 +640,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
                     maxLines: (field.name ?? '').toLowerCase().contains('long')
                         ? 3
                         : 1,
+                    onChanged: (data) {
+                      widget.formValue.saveString(
+                        field.id,
+                        data,
+                      );
+                    },
                     onSaved: (newValue) {
                       widget.formValue.saveString(
                         field.id,
