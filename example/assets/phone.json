@@ -5,6 +5,43 @@
     "version": "1.0.0",
     "elements": [
         {
+            "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",
+            "name": "This is question ",
+            "type": "radiogroup",
+            "label": "Did you work remotely",
+            "actionMessage": "Better to work from home.",
+            "isRequired": true,
+            "isConditional": true,
+            "showOtherItem": true,
+            "choice": [
+                {
+                    "id": "item-395f1c4e-974c-486e-8647-8445819b0030",
+                    "label": "Yes Ans",
+                    "action": false,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
+                    "label": "No Ans",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 346,
+                            "email": "amulya@varicon.com.au",
+                            "username": "amulya@varicon.com.au"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-422d0002-df53-4e86-a995-466da7ab33ee",
+                    "label": "NA ans",
+                    "action": false,
+                    "notify_To": []
+                }
+            ]
+        },
+     
+        {
             "id": "item-972be852-1b93-44ce-be87-8665122ed336",
             "name": "Address",
             "type": "text",

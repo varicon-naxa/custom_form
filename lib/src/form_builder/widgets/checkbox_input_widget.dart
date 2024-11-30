@@ -217,6 +217,36 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   setState(() {
                     selectedChoices = value;
                   });
+                  final keys = value.indexed
+                      .map((e) {
+                        final (i, v) = e;
+                        if (v ?? false) {
+                          if (choices[i].value == 'other') {
+                            widget.formValue.autosaveString(
+                              widget.field.id,
+                              otherFieldController.text,
+                            );
+
+                            return otherFieldController.text;
+                          }
+                          return choices[i].value;
+                        } else {
+                          return null;
+                        }
+                      })
+                      .whereType<String>()
+                      .where((e) => e != 'selectAll') // remove selectAll if any
+                      .toList();
+                  // remove text saved in other text field if dropdown value in not
+                  // other
+                  if (!isOtherSelected()) {
+                    widget.formValue.autoremove(otherFieldKey);
+                  }
+                  keys.sort();
+                  widget.formValue.autosaveString(
+                    widget.field.id,
+                    keys.join(','),
+                  );
                 },
                 onSaved: (newValue) {
                   var a = newValue;
