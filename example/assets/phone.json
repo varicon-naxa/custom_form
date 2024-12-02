@@ -5,6 +5,14 @@
     "version": "1.0.0",
     "elements": [
         {
+            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Primary Phone number",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "experience123123",
             "label": "this is second question",
             "answer": "2",
