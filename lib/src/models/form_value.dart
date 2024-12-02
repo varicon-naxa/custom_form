@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 /// {@template FormValue}

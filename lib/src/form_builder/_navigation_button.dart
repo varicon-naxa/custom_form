@@ -3,6 +3,7 @@ part of 'varicon_form_builder.dart';
 ///Form elevated button for submit, update and save only operations
 class NavigationButton extends StatelessWidget {
   const NavigationButton({
+    super.key,
     required this.onComplete,
     required this.buttonText,
   });
@@ -57,10 +58,13 @@ class NavigationButton extends StatelessWidget {
 class _SaveOnlyButton extends StatelessWidget {
   const _SaveOnlyButton({
     required this.onComplete,
+    this.buttonText = 'Save Only',
   });
 
   ///Function to be called on button press
   final VoidCallback onComplete;
+
+  final String buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +87,7 @@ class _SaveOnlyButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Save Only'.toUpperCase(),
+          buttonText.toUpperCase(),
           style: Theme.of(context)
               .textTheme
               .bodyMedium

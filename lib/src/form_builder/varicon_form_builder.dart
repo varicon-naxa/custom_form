@@ -38,21 +38,24 @@ part '_validators.dart';
 
 ///Main container for the form builder
 class VariconFormBuilder extends StatefulWidget {
-  const VariconFormBuilder(
-      {super.key,
-      required this.surveyForm,
-      required this.buttonText,
-      this.separatorBuilder,
-      required this.onSave,
-      required this.onSubmit,
-      required this.attachmentSave,
-      required this.imageBuild,
-      required this.isCarousel,
-      required this.hasGeolocation,
-      required this.onFileClicked,
-      this.apiCall,
-      this.padding,
-      this.hasSave = false});
+  const VariconFormBuilder({
+    super.key,
+    required this.surveyForm,
+    required this.buttonText,
+    this.separatorBuilder,
+    required this.onSave,
+    required this.onSubmit,
+    required this.attachmentSave,
+    required this.imageBuild,
+    required this.isCarousel,
+    required this.hasGeolocation,
+    required this.onFileClicked,
+    this.onAutoSave,
+    this.apiCall,
+    this.padding,
+    this.hasSave = false,
+    this.hasAutoSave = false,
+  });
 
   ///Survey page form model
   ///
@@ -110,6 +113,16 @@ class VariconFormBuilder extends StatefulWidget {
   ///
   ///Shows the save button on the form
   final bool hasSave;
+
+  ///Check if a form has save button
+  ///
+  ///Shows the save button on the form
+  final bool hasAutoSave;
+
+  ///Form save callback
+  ///
+  ///Required to save the form data
+  final void Function(Map<String, dynamic> formValue)? onAutoSave;
 
   ///Function to handle file click
   ///
@@ -374,6 +387,37 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 ),
                 ScrollContent(
                     id: 'spacing_2', child: AppSpacing.sizedBoxH_12()),
+              ],
+              if (widget.hasAutoSave) ...[
+                ScrollContent(
+                    id: 'progreessspacing', child: AppSpacing.sizedBoxH_08()),
+                ScrollContent(
+                  id: 'progreeesave_button',
+                  child: _SaveOnlyButton(
+                      buttonText: 'Progressive Save',
+                      onComplete: () {
+                        formKey.currentState?.save();
+                        Map<String, dynamic> fulldata = formValue.value;
+
+                        if (widget.hasGeolocation) {
+                          fulldata.addAll({
+                            'location': widget.surveyForm.setting?['location']
+                                        ['lat'] ==
+                                    null
+                                ? {
+                                    'lat': _currentPosition?.latitude,
+                                    'long': _currentPosition?.longitude,
+                                  }
+                                : widget.surveyForm.setting?['location']
+                          });
+                        }
+                        if (widget.onAutoSave != null) {
+                          widget.onAutoSave!(formValue.value);
+                        }
+                      }),
+                ),
+                ScrollContent(
+                    id: 'progressspacing_2', child: AppSpacing.sizedBoxH_12()),
               ],
             ],
           ),
