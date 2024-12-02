@@ -8,7 +8,7 @@
             "isRequired": false,
             "id": "ba1i123-nae01m-34k14nd-12o1j23",
             "label": "Enter table title",
-            "contents": [
+            "elements": [
                 [
                     {
                         "id": "item-972be852-1b93-44ce-be87-8665122ed336",
