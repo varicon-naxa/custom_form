@@ -12,8 +12,13 @@ primaryBottomSheet(BuildContext context,
     context: context,
     isScrollControlled: true,
     backgroundColor: Colors.transparent,
+    useSafeArea: true,
+    constraints: const BoxConstraints(
+      maxWidth: double.infinity,
+    ),
     builder: (context) => Container(
       color: Colors.white,
+      width: double.infinity,
       height: MediaQuery.of(context).size.height - 100,
       child: child,
     ),

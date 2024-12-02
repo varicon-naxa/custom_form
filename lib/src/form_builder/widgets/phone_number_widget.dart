@@ -81,7 +81,11 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
           RegExp("^${_selectedCountry.fullCountryCode}"), "");
     } else {
       _selectedCountry = _countryList.firstWhere(
-          (item) => item.code == (widget.initialCountryCode ?? 'US'),
+          (item) =>
+              item.code ==
+              (widget.initialCountryCode == ''
+                  ? 'AU'
+                  : widget.initialCountryCode ?? 'AU'),
           orElse: () => _countryList.first);
 
       if (number.startsWith('+')) {
@@ -145,7 +149,7 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
             errorText: _error,
           ),
           style: Theme.of(context).textTheme.bodyLarge,
-          initialCountryCode: widget.initialCountryCode ?? 'US',
+          initialCountryCode: phoneNumber?.countryISOCode,
           initialValue: widget.initialValue,
           countries: widget.countries,
           textInputAction: TextInputAction.next,
