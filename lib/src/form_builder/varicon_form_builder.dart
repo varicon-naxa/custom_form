@@ -50,7 +50,7 @@ class VariconFormBuilder extends StatefulWidget {
     required this.isCarousel,
     required this.hasGeolocation,
     required this.onFileClicked,
-    this.onAutoSave,
+    required this.autoSave,
     this.apiCall,
     this.padding,
     this.hasSave = false,
@@ -91,6 +91,10 @@ class VariconFormBuilder extends StatefulWidget {
   ///With height and width
   final Widget Function(Map<String, dynamic>) imageBuild;
 
+  ///Used to store image paths and file paths
+  ///With height and width
+  final void Function(Map<String, dynamic>) autoSave;
+
   ///API call function
   ///
   ///Handles various api calls required for dropdowns
@@ -119,10 +123,6 @@ class VariconFormBuilder extends StatefulWidget {
   ///Shows the save button on the form
   final bool hasAutoSave;
 
-  ///Form save callback
-  ///
-  ///Required to save the form data
-  final void Function(Map<String, dynamic> formValue)? onAutoSave;
 
   ///Function to handle file click
   ///
@@ -168,6 +168,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   @override
   void initState() {
     super.initState();
+    formValue.setOnSaveCallback(widget.autoSave);
 
     ///Initializing custom form state
     ///
@@ -313,25 +314,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return areEqual;
   }
 
-  void onAutoSave() {
-    formKey.currentState?.save();
-    Map<String, dynamic> fulldata = formValue.value;
-
-    if (widget.hasGeolocation) {
-      fulldata.addAll({
-        'location': widget.surveyForm.setting?['location']['lat'] == null
-            ? {
-                'lat': _currentPosition?.latitude,
-                'long': _currentPosition?.longitude,
-              }
-            : widget.surveyForm.setting?['location']
-      });
-    }
-    if (widget.onAutoSave != null) {
-      widget.onAutoSave!(formValue.value);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -346,7 +328,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
         buttonText: widget.buttonText,
         onSubmit: widget.onSubmit,
         scrollToFirstInvalidField: scrollToFirstInvalidField,
-        onAutoSave: onAutoSave,
         hasAutoSave: widget.hasAutoSave,
       ),
       body: Form(
@@ -668,6 +649,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
                     maxLines: (field.name ?? '').toLowerCase().contains('long')
                         ? 3
                         : 1,
+                    onChanged: (data) {
+                      widget.formValue.saveString(
+                        field.id,
+                        data,
+                      );
+                    },
                     onSaved: (newValue) {
                       widget.formValue.saveString(
                         field.id,

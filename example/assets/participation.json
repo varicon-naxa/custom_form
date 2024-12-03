@@ -9,7 +9,6 @@
             "isRequired": true,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
-            "maxLength": 30,
             "answer": "",
             "placeholder": "First Name placeholder"
         },

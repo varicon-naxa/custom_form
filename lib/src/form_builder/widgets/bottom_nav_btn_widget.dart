@@ -18,7 +18,6 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
       required this.surveyForm,
       required this.currentPosition,
       required this.scrollController,
-      required this.onAutoSave,
       this.hasAutoSave = false});
 
   final String buttonText;
@@ -31,7 +30,6 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
   final Position? currentPosition;
   final ScrollController scrollController;
   final bool hasAutoSave;
-  final VoidCallback onAutoSave;
 
   @override
   State<SubmitUpdateButtonWidget> createState() =>
@@ -52,7 +50,9 @@ class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
             Expanded(
               child: NavigationButton(
                 buttonText: 'SUBMIT LATER',
-                onComplete: widget.onAutoSave,
+                onComplete: () {
+                  Navigator.pop(context);
+                },
                 isAutoSave: true,
               ),
             ),

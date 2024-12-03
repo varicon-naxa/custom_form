@@ -76,6 +76,56 @@ class _SurveyPageState extends State<SurveyPage> {
         isCarousel: false,
         surveyForm: widget.form,
         hasGeolocation: false,
+        autoSave: (formValue) {
+          Map<String, dynamic> data = widget.formData;
+          List<Map<String, dynamic>> elements =
+              List<Map<String, dynamic>>.from(data['elements']);
+
+          final valueList = elements.map((e) {
+            if (e['type'] == 'table') {
+              // Update table structure before applying answers
+              e['contents'] = formValue[e['id']];
+            }
+
+            final key = formValue[e['id']];
+            final answerKey = formValue[
+                e['id'].toString().substring(5, e['id'].toString().length)];
+
+            if (key != null) {
+              if (e['type'] == 'table' || e['type'] == 'advtable') {
+                List<List<dynamic>> contents =
+                    List<List<dynamic>>.from(e['contents']);
+                for (var rowIndex = 0; rowIndex < contents.length; rowIndex++) {
+                  contents[rowIndex] =
+                      List<Map<String, dynamic>>.from(contents[rowIndex]);
+                  for (var cellIndex = 0;
+                      cellIndex < contents[rowIndex].length;
+                      cellIndex++) {
+                    Map<String, dynamic> cell = contents[rowIndex][cellIndex];
+                    String cellId = cell['id'];
+                    final subanswerKey = formValue[cellId
+                        .toString()
+                        .substring(5, cellId.toString().length)];
+                    if (subanswerKey != null) {
+                      cell['selectedLinkListLabel'] = subanswerKey;
+                    }
+                    if (formValue.containsKey(cellId)) {
+                      cell['answer'] = formValue[cellId];
+                    }
+                  }
+                }
+                e['contents'] = contents;
+              } else {
+                e.addAll({'answer': key});
+              }
+            }
+            if (answerKey != null) {
+              e.addAll({'selectedLinkListLabel': answerKey});
+            }
+            return e;
+          }).toList();
+          log(jsonEncode(valueList).toString());
+        },
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
           Map<String, dynamic> data = widget.formData;
