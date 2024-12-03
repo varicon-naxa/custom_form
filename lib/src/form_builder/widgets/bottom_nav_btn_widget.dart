@@ -17,7 +17,9 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
       required this.hasGeolocation,
       required this.surveyForm,
       required this.currentPosition,
-      required this.scrollController});
+      required this.scrollController,
+      required this.onAutoSave,
+      this.hasAutoSave = false});
 
   final String buttonText;
   final GlobalKey<FormState> formKey;
@@ -28,6 +30,8 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
   final SurveyPageForm surveyForm;
   final Position? currentPosition;
   final ScrollController scrollController;
+  final bool hasAutoSave;
+  final VoidCallback onAutoSave;
 
   @override
   State<SubmitUpdateButtonWidget> createState() =>
@@ -42,32 +46,49 @@ class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
       padding: const EdgeInsets.all(12),
       duration: const Duration(milliseconds: 200),
       height: 75,
-      child: NavigationButton(
-        buttonText: widget.buttonText,
-        onComplete: () async {
-          // return if form state is null.
-          if (widget.formKey.currentState == null) return;
-          // return if form is not valid.
-          if (!widget.formKey.currentState!.validate()) {
-            widget.scrollToFirstInvalidField();
-            return;
-          }
+      child: Row(
+        children: [
+          if (widget.hasAutoSave) ...[
+            Expanded(
+              child: NavigationButton(
+                buttonText: 'SUBMIT LATER',
+                onComplete: widget.onAutoSave,
+                isAutoSave: true,
+              ),
+            ),
+            AppSpacing.sizedBoxW_12(),
+          ],
+          Expanded(
+            child: NavigationButton(
+              buttonText: widget.buttonText,
+              onComplete: () async {
+                // return if form state is null.
+                if (widget.formKey.currentState == null) return;
+                // return if form is not valid.
+                if (!widget.formKey.currentState!.validate()) {
+                  widget.scrollToFirstInvalidField();
+                  return;
+                }
 
-          widget.formKey.currentState?.save();
-          Map<String, dynamic> fulldata = widget.formValue.value;
+                widget.formKey.currentState?.save();
+                Map<String, dynamic> fulldata = widget.formValue.value;
 
-          if (widget.hasGeolocation) {
-            fulldata.addAll({
-              'location': widget.surveyForm.setting?['location']['lat'] == null
-                  ? {
-                      'lat': widget.currentPosition?.latitude,
-                      'long': widget.currentPosition?.longitude,
-                    }
-                  : widget.surveyForm.setting?['location']
-            });
-          }
-          widget.onSubmit(widget.formValue.value);
-        },
+                if (widget.hasGeolocation) {
+                  fulldata.addAll({
+                    'location':
+                        widget.surveyForm.setting?['location']['lat'] == null
+                            ? {
+                                'lat': widget.currentPosition?.latitude,
+                                'long': widget.currentPosition?.longitude,
+                              }
+                            : widget.surveyForm.setting?['location']
+                  });
+                }
+                widget.onSubmit(widget.formValue.value);
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

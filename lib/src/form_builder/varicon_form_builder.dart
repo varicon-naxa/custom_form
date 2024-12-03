@@ -313,6 +313,25 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return areEqual;
   }
 
+  void onAutoSave() {
+    formKey.currentState?.save();
+    Map<String, dynamic> fulldata = formValue.value;
+
+    if (widget.hasGeolocation) {
+      fulldata.addAll({
+        'location': widget.surveyForm.setting?['location']['lat'] == null
+            ? {
+                'lat': _currentPosition?.latitude,
+                'long': _currentPosition?.longitude,
+              }
+            : widget.surveyForm.setting?['location']
+      });
+    }
+    if (widget.onAutoSave != null) {
+      widget.onAutoSave!(formValue.value);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -327,6 +346,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
         buttonText: widget.buttonText,
         onSubmit: widget.onSubmit,
         scrollToFirstInvalidField: scrollToFirstInvalidField,
+        onAutoSave: onAutoSave,
+        hasAutoSave: widget.hasAutoSave,
       ),
       body: Form(
         key: formKey,
@@ -387,37 +408,6 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                 ),
                 ScrollContent(
                     id: 'spacing_2', child: AppSpacing.sizedBoxH_12()),
-              ],
-              if (widget.hasAutoSave) ...[
-                ScrollContent(
-                    id: 'progreessspacing', child: AppSpacing.sizedBoxH_08()),
-                ScrollContent(
-                  id: 'progreeesave_button',
-                  child: _SaveOnlyButton(
-                      buttonText: 'Progressive Save',
-                      onComplete: () {
-                        formKey.currentState?.save();
-                        Map<String, dynamic> fulldata = formValue.value;
-
-                        if (widget.hasGeolocation) {
-                          fulldata.addAll({
-                            'location': widget.surveyForm.setting?['location']
-                                        ['lat'] ==
-                                    null
-                                ? {
-                                    'lat': _currentPosition?.latitude,
-                                    'long': _currentPosition?.longitude,
-                                  }
-                                : widget.surveyForm.setting?['location']
-                          });
-                        }
-                        if (widget.onAutoSave != null) {
-                          widget.onAutoSave!(formValue.value);
-                        }
-                      }),
-                ),
-                ScrollContent(
-                    id: 'progressspacing_2', child: AppSpacing.sizedBoxH_12()),
               ],
             ],
           ),
