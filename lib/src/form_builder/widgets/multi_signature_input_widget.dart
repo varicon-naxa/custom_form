@@ -230,8 +230,8 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
             'Your Signature ans Signatory name here',
             style: Theme.of(context).textTheme.labelLarge,
           ),
-          iconTheme: IconThemeData(
-            color: Theme.of(context).colorScheme.secondaryContainer,
+          iconTheme: const IconThemeData(
+            color: Color(0xff233759),
           ),
         ),
         bottomNavigationBar: ScrollableBottomBar(
