@@ -76,6 +76,7 @@ class _SurveyPageState extends State<SurveyPage> {
         isCarousel: false,
         surveyForm: widget.form,
         hasGeolocation: false,
+        hasAutoSave: true,
         autoSave: (formValue) {
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =

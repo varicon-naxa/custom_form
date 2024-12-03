@@ -51,7 +51,42 @@ class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
               child: NavigationButton(
                 buttonText: 'SUBMIT LATER',
                 onComplete: () {
-                  Navigator.pop(context);
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Column(
+                          children: [
+                            Icon(
+                              Icons.info,
+                              size: 60,
+                              color: Theme.of(context).primaryColor,
+                            ),
+                            Text(
+                              'The submission will be saved to draft.',
+                              textAlign: TextAlign.center,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ],
+                        ),
+                        content: const Text(
+                          'Please note clocking out from Varicon will remove these draft submissions.',
+                          textAlign: TextAlign.center,
+                        ),
+                        actions: <Widget>[
+                          NavigationButton(
+                            buttonText: 'OKAY',
+                            onComplete: () async {
+                              Navigator.of(context).pop();
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  ).then((data) {
+                    Navigator.of(context).pop();
+                  });
                 },
                 isAutoSave: true,
               ),
