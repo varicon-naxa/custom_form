@@ -692,11 +692,15 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
             );
           },
           inputFormatters: [
-            FilteringTextInputFormatter.digitsOnly
-
-            // FilteringTextInputFormatter.allow(
-            //     // RegExp(r'^[0-9]+.?[0-9]*'),
-            //     RegExp(r'^\s*([0-9]+)\s*$')),
+            FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+            TextInputFormatter.withFunction((oldValue, newValue) {
+              final text = newValue.text;
+              return text.isEmpty
+                  ? newValue
+                  : double.tryParse(text) == null
+                      ? oldValue
+                      : newValue;
+            }),
           ],
           validator: (value) {
             return numberValidator(
