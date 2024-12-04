@@ -333,7 +333,7 @@
             "name": "Checkboxes",
             "type": "checkbox",
             "label": "Checkboxes",
-            "answer": "from chekbox,item-afc5db40-8a80-495c-ac78-f052786f8e14,item-cbd26744-b333-483f-b213-1e848f6788c6",
+            "answer": "item-afc5db40-8a80-495c-ac78-f052786f8e14,item-cbd26744-b333-483f-b213-1e848f6788c6",
             "choice": [
                 {
                     "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
@@ -352,7 +352,7 @@
             "isConditional": false,
             "showOtherItem": true,
             "fromManualList": true,
-            "selectedLinkListLabel": ""
+            "selectedLinkListLabel": "Option 1, Option 2"
         }
     ]
 }

@@ -26,7 +26,7 @@
                         "max": null,
                         "maxErrorText": null,
                         "type": "text"
-                    },
+                                        },
                     {
                         "id": "experience123123",
                         "label": "this is second question",
