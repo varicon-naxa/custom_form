@@ -31,12 +31,8 @@
             "type": "table",
             "isRow": true,
             "label": "Simple Table",
-            "headers": [
-                "Column 1",
-                "Column 2",
-                "Column 3"
-            ],
-            "elements": [
+
+            "contents": [
                 [
                     {
                         "id": "item-0fa75ad3-72e8-4d44-8704-10b8fe85cebc",
