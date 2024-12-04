@@ -8,7 +8,7 @@
             "isRequired": false,
             "id": "ba1i123-nae01m-34k14nd-12o1j23",
             "title": "Enter table title",
-            "elements": [
+            "contents": [
                 [
                     {
                         "id": "item-e2f8dc52-26bf-471d-9ea8-13bc18eb06ac",
@@ -36,7 +36,7 @@
                 "Column 2",
                 "Column 3"
             ],
-            "elements": [
+            "contents": [
                 [
                     {
                         "id": "item-0fa75ad3-72e8-4d44-8704-10b8fe85cebc",
