@@ -83,6 +83,11 @@ class _MapFieldWidgetState extends State<MapFieldWidget> {
     //setting the address value to the map field controller
     mapFieldController.text =
         '${address.first.subThoroughfare!.isEmpty ? '' : '${address.first.subThoroughfare}'} ${address.first.thoroughfare!.isEmpty ? '' : '${address.first.thoroughfare}, '}${address.first.locality} ${address.first.administrativeArea} ${address.first.postalCode} ${address.first.country}';
+
+    widget.formValue.autosaveString(
+      widget.field?.id ?? '',
+      mapFieldController.text,
+    );
   }
 
   @override

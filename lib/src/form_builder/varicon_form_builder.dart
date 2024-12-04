@@ -38,21 +38,24 @@ part '_validators.dart';
 
 ///Main container for the form builder
 class VariconFormBuilder extends StatefulWidget {
-  const VariconFormBuilder(
-      {super.key,
-      required this.surveyForm,
-      required this.buttonText,
-      this.separatorBuilder,
-      required this.onSave,
-      required this.onSubmit,
-      required this.attachmentSave,
-      required this.imageBuild,
-      required this.isCarousel,
-      required this.hasGeolocation,
-      required this.onFileClicked,
-      this.apiCall,
-      this.padding,
-      this.hasSave = false});
+  const VariconFormBuilder({
+    super.key,
+    required this.surveyForm,
+    required this.buttonText,
+    this.separatorBuilder,
+    required this.onSave,
+    required this.onSubmit,
+    required this.attachmentSave,
+    required this.imageBuild,
+    required this.isCarousel,
+    required this.hasGeolocation,
+    required this.onFileClicked,
+    required this.autoSave,
+    this.apiCall,
+    this.padding,
+    this.hasSave = false,
+    this.hasAutoSave = false,
+  });
 
   ///Survey page form model
   ///
@@ -88,6 +91,10 @@ class VariconFormBuilder extends StatefulWidget {
   ///With height and width
   final Widget Function(Map<String, dynamic>) imageBuild;
 
+  ///Used to store image paths and file paths
+  ///With height and width
+  final void Function(Map<String, dynamic>) autoSave;
+
   ///API call function
   ///
   ///Handles various api calls required for dropdowns
@@ -110,6 +117,12 @@ class VariconFormBuilder extends StatefulWidget {
   ///
   ///Shows the save button on the form
   final bool hasSave;
+
+  ///Check if a form has save button
+  ///
+  ///Shows the save button on the form
+  final bool hasAutoSave;
+
 
   ///Function to handle file click
   ///
@@ -155,6 +168,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
   @override
   void initState() {
     super.initState();
+    formValue.setOnSaveCallback(widget.autoSave);
 
     ///Initializing custom form state
     ///
@@ -314,6 +328,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
         buttonText: widget.buttonText,
         onSubmit: widget.onSubmit,
         scrollToFirstInvalidField: scrollToFirstInvalidField,
+        hasAutoSave: widget.hasAutoSave,
       ),
       body: Form(
         key: formKey,
@@ -634,6 +649,12 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
                     maxLines: (field.name ?? '').toLowerCase().contains('long')
                         ? 3
                         : 1,
+                    onChanged: (data) {
+                      widget.formValue.saveString(
+                        field.id,
+                        data,
+                      );
+                    },
                     onSaved: (newValue) {
                       widget.formValue.saveString(
                         field.id,

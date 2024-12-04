@@ -110,6 +110,10 @@ class _YesNoNaInputWidgetState extends State<YesNoNaInputWidget> {
             setState(() {
               this.value = value;
             });
+            widget.formValue.autosaveString(
+              widget.field.id,
+              value,
+            );
           },
           onSaved: (newValue) {
             // remove text saved in other text field if dropdown value in not

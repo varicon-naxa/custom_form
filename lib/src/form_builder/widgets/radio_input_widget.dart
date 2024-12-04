@@ -47,7 +47,7 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
     super.initState();
 
     ///initial values for choices
-  choices = [
+    choices = [
       ...widget.field.choices,
       if (widget.field.showNoneItem)
         ValueText.none(text: widget.field.noneText ?? 'None'),
@@ -115,6 +115,17 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
             setState(() {
               this.value = value;
             });
+            if (value == 'other') {
+              widget.formValue.autosaveString(
+                widget.field.id,
+                otherFieldController.text,
+              );
+            } else {
+              widget.formValue.autosaveString(
+                widget.field.id,
+                value,
+              );
+            }
           },
           onSaved: (newValue) {
             // remove text saved in other text field if dropdown value in not

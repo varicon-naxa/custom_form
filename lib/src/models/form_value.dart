@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 /// {@template FormValue}
@@ -9,40 +8,69 @@ class FormValue {
   FormValue();
 
   final Map<String, dynamic> _value = {};
+  final Map<String, dynamic> _savedValue = {};
+  void Function(Map<String, dynamic>)? _onSaveCallback;
+
+  void setOnSaveCallback(void Function(Map<String, dynamic>) callback) {
+    _onSaveCallback = callback;
+  }
 
   Map<String, dynamic> get value => _value;
+  Map<String, dynamic> get savedValue => _value;
 
   void remove(String k) => _value.remove(k);
+  void autoremove(String k) => _savedValue.remove(k);
 
   void saveNum(String k, num? v) {
     if (v == null) {
       _value.remove(k);
+      _savedValue.remove(k);
     } else {
       _value[k] = v;
+      _savedValue[k] = v;
+      _onSaveCallback?.call(_savedValue);
     }
   }
 
   void saveString(String k, String? v) {
     if (v == null || v.isEmpty) {
       _value.remove(k);
+      _savedValue.remove(k);
     } else {
       _value[k] = v;
+      _savedValue[k] = v;
+      _onSaveCallback?.call(_savedValue);
+    }
+  }
+
+  void autosaveString(String k, String? v) {
+    if (v == null || v.isEmpty) {
+      _savedValue.remove(k);
+    } else {
+      _savedValue[k] = v;
+      _onSaveCallback?.call(_savedValue);
     }
   }
 
   void saveMap(String k, Map<String, dynamic> v) {
     if (v.isEmpty) {
       _value.remove(k);
+      _savedValue.remove(k);
     } else {
       _value[k] = v;
+      _savedValue[k] = v;
+      _onSaveCallback?.call(_savedValue);
     }
   }
 
   void saveStringAsNum(String k, String? v) {
     if (v == null || v.isEmpty) {
       _value.remove(k);
+      _savedValue.remove(k);
     } else {
       _value[k] = num.parse(v);
+      _savedValue[k] = num.parse(v);
+      _onSaveCallback?.call(_savedValue);
     }
   }
 
@@ -50,8 +78,11 @@ class FormValue {
     try {
       if (v == null || v.isEmpty) {
         _value[k] = [];
+        _savedValue[k] = [];
       } else {
         _value[k] = v;
+        _savedValue[k] = v;
+        _onSaveCallback?.call(_savedValue);
       }
     } catch (e) {
       print('Error: $e');
@@ -105,5 +136,9 @@ class FormValue {
     _value[id] = table.inputFields?.map((row) {
       return row.map((e) => e.toJson()).toList();
     }).toList();
+    _savedValue[id] = table.inputFields?.map((row) {
+      return row.map((e) => e.toJson()).toList();
+    }).toList();
+    _onSaveCallback?.call(_savedValue);
   }
 }
