@@ -29,7 +29,8 @@ class _ButtonPageState extends State<ButtonPage> {
           children: [
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/phone.json';
+                const assetPath = 'assets/image.json';
+                // const assetPath = 'assets/advance.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 
@@ -50,7 +51,7 @@ class _ButtonPageState extends State<ButtonPage> {
             ),
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/phone.json';
+                const assetPath = 'assets/table.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 
@@ -96,7 +97,7 @@ class _ButtonPageState extends State<ButtonPage> {
             ),
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/survey.json';
+                const assetPath = 'assets/dd.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 

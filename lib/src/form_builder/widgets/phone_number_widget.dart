@@ -86,7 +86,7 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
               (widget.initialCountryCode == ''
                   ? 'AU'
                   : widget.initialCountryCode ?? 'AU'),
-          orElse: () => _countryList.firstWhere((item) => item.code == 'AU'));
+          orElse: () => _countryList.first);
 
       if (number.startsWith('+')) {
         number = number.replaceFirst(
@@ -149,9 +149,7 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
             errorText: _error,
           ),
           style: Theme.of(context).textTheme.bodyLarge,
-          initialCountryCode: widget.initialCountryCode == ''
-              ? 'AU'
-              : widget.initialCountryCode ?? 'AU',
+          initialCountryCode: phoneNumber?.countryISOCode,
           initialValue: widget.initialValue,
           countries: widget.countries,
           textInputAction: TextInputAction.next,

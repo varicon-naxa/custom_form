@@ -5,6 +5,8 @@ import 'package:path_provider/path_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:uuid/uuid.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
+import 'package:varicon_form_builder/src/form_builder/widgets/scrollable_bottom_bar.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/signature_consent_checkbox_widget.dart';
 import '../../../varicon_form_builder.dart';
 import '../../models/form_value.dart';
@@ -216,196 +218,192 @@ class _MultiSignatureInputWidgetState extends State<MultiSignatureInputWidget> {
       id: 'item-${const Uuid().v4()}',
     );
     TextEditingController controller = TextEditingController();
-    showDialog(
-      barrierDismissible: false,
-      context: context,
-      builder: (BuildContext context) => AlertDialog(
-        contentPadding: EdgeInsets.zero,
-        insetPadding: EdgeInsets.zero,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8.0),
+
+    primaryBottomSheet(
+      context,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          elevation: 0,
+          title: Text(
+            'Your Signature ans Signatory name here',
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
+          iconTheme: const IconThemeData(
+            color: Color(0xff233759),
+          ),
         ),
-        content: StatefulBuilder(builder: (context, setStates) {
-          return SingleChildScrollView(
-            child: Container(
-              color: Colors.white,
-              width: MediaQuery.of(context).size.width - 50,
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Please sign below and submit',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  AppSpacing.sizedBoxH_12(),
-                  Container(
-                    height: 350,
-                    color: Colors.black12,
-                    child: Signature(
-                      color: Colors.black,
-                      key: signKey,
-                      onSign: () {},
-                      strokeWidth: 4.0,
+        bottomNavigationBar: ScrollableBottomBar(
+          kBottomNavigationBarCustomHeight: 75,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () {
+                        final signHere = signKey.currentState;
+                        signHere?.clear();
+                        controller.clear();
+                        validate = false;
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 16.0),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            4,
+                          ),
+                          border: Border.all(
+                            color: const Color(0xffBDBDBD),
+                          ),
+                        ),
+                        // width: 130,
+                        child: Text(
+                          'Cancel'.toUpperCase(),
+                          style:
+                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    height: 1,
+                                  ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
                     ),
                   ),
-                  AppSpacing.sizedBoxH_04(),
-                  ClearSignatureWidget(
-                    onClear: () {
-                      final signHere = signKey.currentState;
-                      signHere?.clear();
-                      formCon.text = '';
-                    },
-                  ),
-                  AppSpacing.sizedBoxH_12(),
-                  const SignConsentWidget(),
-                  AppSpacing.sizedBoxH_12(),
-                  TextFormField(
-                    controller: controller,
-                    onChanged: (data) {},
-                    decoration: InputDecoration(
-                      labelText: 'Signatory Name',
-                      errorText: validate ? "Name cannot be empty" : null,
-                    ),
-                  ),
-                  AppSpacing.sizedBoxH_12(),
-                  // const SignConsentWidget(),
-                  AppSpacing.sizedBoxH_12(),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () {
-                              final signHere = signKey.currentState;
-                              signHere?.clear();
-                              controller.clear();
+                ),
+                AppSpacing.sizedBoxW_12(),
+                Expanded(
+                  child: Material(
+                    color: Colors.transparent,
+                    child: InkWell(
+                      onTap: () async {
+                        final signs = signKey.currentState;
+                        validate = controller.text.isEmpty;
+                        setState(() {});
+                        if ((signs?.points ?? []).isEmpty) {
+                          Fluttertoast.showToast(
+                            msg: 'Please sign to submit the signature',
+                          );
+                          return;
+                        } else {
+                          if (controller.text.toString().trim().isEmpty) {
+                            Fluttertoast.showToast(
+                                msg: 'Please add signatory name');
+                            setState(() {
+                              validate = true;
+                            });
+                          } else {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            final sign = signKey.currentState;
+                            final image = await sign?.getData();
+                            var data = await image?.toByteData(
+                                format: ui.ImageByteFormat.png);
+                            Directory tempDir = await getTemporaryDirectory();
+                            String tempPath = tempDir.path;
+                            var filePath = '$tempPath/image.png';
+                            final buffer = data!.buffer;
+                            File savedImage = await File(filePath).writeAsBytes(
+                                buffer.asUint8List(
+                                    data.offsetInBytes, data.lengthInBytes));
+                            Navigator.pop(context);
+                            final savedFileData =
+                                await widget.attachmentSave([savedImage.path]);
+                            widget.onSaved(savedFileData[0]);
+                            setState(() {
+                              singleSignature = singleSignature.copyWith(
+                                file: savedFileData[0]['file'],
+                                attachmentId: savedFileData[0]['id'].toString(),
+                                name: controller.text,
+                                isLoading: false,
+                              );
+                              answer.add(singleSignature);
+                              saveList();
+                              isLoading = false;
                               validate = false;
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 16.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(
-                                  4,
-                                ),
-                                border: Border.all(
-                                  color: const Color(0xffBDBDBD),
-                                ),
-                              ),
-                              // width: 130,
-                              child: Text(
-                                'Cancel'.toUpperCase(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelLarge
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      height: 1,
-                                    ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
+                            });
+                          }
+                        }
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                          vertical: 16.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.orange,
+                          borderRadius: BorderRadius.circular(
+                            4,
+                          ),
+                          border: Border.all(
+                            color: Colors.orange,
                           ),
                         ),
-                      ),
-                      AppSpacing.sizedBoxW_12(),
-                      Expanded(
-                        child: Material(
-                          color: Colors.transparent,
-                          child: InkWell(
-                            onTap: () async {
-                              final signs = signKey.currentState;
-                              validate = controller.text.isEmpty;
-                              setStates(() {});
-                              if ((signs?.points ?? []).isEmpty) {
-                                Fluttertoast.showToast(
-                                  msg: 'Please sign to submit the signature',
-                                );
-                                return;
-                              } else {
-                                if (controller.text.toString().trim().isEmpty) {
-                                  setState(() {
-                                    validate = true;
-                                  });
-                                } else {
-                                  setState(() {
-                                    isLoading = true;
-                                  });
-                                  final sign = signKey.currentState;
-                                  final image = await sign?.getData();
-                                  var data = await image?.toByteData(
-                                      format: ui.ImageByteFormat.png);
-                                  Directory tempDir =
-                                      await getTemporaryDirectory();
-                                  String tempPath = tempDir.path;
-                                  var filePath = '$tempPath/image.png';
-                                  final buffer = data!.buffer;
-                                  File savedImage = await File(filePath)
-                                      .writeAsBytes(buffer.asUint8List(
-                                          data.offsetInBytes,
-                                          data.lengthInBytes));
-                                  Navigator.pop(context);
-                                  final savedFileData = await widget
-                                      .attachmentSave([savedImage.path]);
-                                  widget.onSaved(savedFileData[0]);
-                                  setState(() {
-                                    singleSignature = singleSignature.copyWith(
-                                      file: savedFileData[0]['file'],
-                                      attachmentId:
-                                          savedFileData[0]['id'].toString(),
-                                      name: controller.text,
-                                      isLoading: false,
-                                    );
-                                    answer.add(singleSignature);
-                                    saveList();
-                                    isLoading = false;
-                                    validate = false;
-                                  });
-                                }
-                              }
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 16.0,
-                              ),
-                              decoration: BoxDecoration(
-                                color: Colors.orange,
-                                borderRadius: BorderRadius.circular(
-                                  4,
-                                ),
-                                border: Border.all(
-                                  color: Colors.orange,
-                                ),
-                              ),
-                              // width: 130,
-                              child: Text(
-                                'Submit'.toUpperCase(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelLarge
-                                    ?.copyWith(
-                                      fontWeight: FontWeight.w600,
-                                      height: 1,
-                                    ),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
+                        // width: 130,
+                        child: Text(
+                          'Submit'.toUpperCase(),
+                          style:
+                              Theme.of(context).textTheme.labelLarge?.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    height: 1,
+                                  ),
+                          textAlign: TextAlign.center,
                         ),
                       ),
-                    ],
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          );
-        }),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            color: Colors.white,
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  height: 350,
+                  width: double.infinity,
+                  color: Colors.black12,
+                  child: Signature(
+                    color: Colors.black,
+                    key: signKey,
+                    onSign: () {},
+                    strokeWidth: 4.0,
+                  ),
+                ),
+                AppSpacing.sizedBoxH_04(),
+                ClearSignatureWidget(
+                  onClear: () {
+                    final signHere = signKey.currentState;
+                    signHere?.clear();
+                    formCon.text = '';
+                  },
+                ),
+                AppSpacing.sizedBoxH_12(),
+                const SignConsentWidget(),
+                AppSpacing.sizedBoxH_12(),
+                TextFormField(
+                  controller: controller,
+                  onChanged: (data) {},
+                  decoration: InputDecoration(
+                    labelText: 'Signatory Name',
+                    errorText: validate ? "Name cannot be empty" : null,
+                  ),
+                ),
+                AppSpacing.sizedBoxH_12(),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

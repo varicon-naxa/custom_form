@@ -141,22 +141,23 @@
         },
         {
             "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",
-            "name": "Yes/No/NA",
+            "name": "This is question ",
             "type": "radiogroup",
             "label": "Did you work remotely",
             "actionMessage": "Better to work from home.",
             "isRequired": true,
             "isConditional": true,
+            "showOtherItem": true,
             "choice": [
                 {
                     "id": "item-395f1c4e-974c-486e-8647-8445819b0030",
-                    "label": "Yes",
+                    "label": "Yes Ans",
                     "action": false,
                     "notify_To": []
                 },
                 {
                     "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
-                    "label": "No",
+                    "label": "No Ans",
                     "action": true,
                     "notify_To": [
                         {
@@ -168,7 +169,7 @@
                 },
                 {
                     "id": "item-422d0002-df53-4e86-a995-466da7ab33ee",
-                    "label": "NA",
+                    "label": "NA ans",
                     "action": false,
                     "notify_To": []
                 }
@@ -328,50 +329,30 @@
             "placeholder": "Select...OKkk",
             "selectedLinkListLabel": "susan, susan12"
         },        {
-            "id": "item-dbc6af82-8036-4708-8629-bf43a766591d",
-            "name": "Date",
-            "type": "date",
-            "label": "Timesheet Date",
-            "answer": "1969-07-20 20:18:04Z",
-            "isRequired": false
-        },
-        {
-            "type": "time",
-            "name": "time1",
-            "id": "time1",
-            "title": "Enter time for notification",
-            "isRequired": true,
-            "answer": "13:21"
-        },
-        {
-            "type": "files",
-            "name": "file1",
-            "id": "file1",
-            "title": "Attach citizenship files",
-            "isMultiple": false
-        },
-        {
-            "type": "files",
-            "name": "files2",
-            "id": "files2",
-            "title": "Attach covver letter",
-            "isMultiple": true
-        },
-        {
-            "type": "date",
-            "name": "date1",
-            "id": "date1",
-            "title": "Enter date to have leave",
-            "min": "2023-05-23",
-            "max": "2023-05-24"
-        },
-        {
-            "type": "datetimelocal",
-            "name": "datetime1",
-            "id": "datetime1",
-            "title": "What is your first day to start office",
-            "min": "2023-05-15T06:00",
-            "max": "2023-05-31T18:06"
+            "id": "item-269e30b8-db5b-4c07-8c83-1ac7cb984cbe",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "Checkboxes",
+            "answer": "from chekbox,item-afc5db40-8a80-495c-ac78-f052786f8e14,item-cbd26744-b333-483f-b213-1e848f6788c6",
+            "choice": [
+                {
+                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
+                    "label": "Option 1"
+                },
+                {
+                    "id": "item-afc5db40-8a80-495c-ac78-f052786f8e14",
+                    "label": "Option 2"
+                },
+                {
+                    "id": "item-cbd26744-b333-483f-b213-1e848f6788c6",
+                    "label": "Option 3"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
         }
     ]
 }

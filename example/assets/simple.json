@@ -5,15 +5,6 @@
     "version": "1.0.0",
     "elements": [
         {
-            "id": "item-972be852-1b93-44ce-be87-8665122ed336",
-            "name": "Address",
-            "type": "text",
-            "label": "Secondary",
-            "answer": "",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
             "type": "text",
             "name": "long",
             "id": "longetetesdast",
@@ -32,6 +23,42 @@
             "label": "Primary Phone number",
             "isRequired": true,
             "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11444",
+            "name": "Simple Table",
+            "type": "table",
+            "label": "Simple Table Example",
+            "isRequired": true,
+            "selectedLinkListLabel": "",
+            "maxRow":5,
+            "contents": [
+                {
+                    "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11445",
+                    "name": "Name",
+                    "type": "text",
+                    "label": "Name",
+                    "isRequired": true,
+                    "selectedLinkListLabel": ""
+                },
+                {
+                    "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11446",
+                    "name": "Age",
+                    "type": "number",
+                    "label": "Age",
+                    "isRequired": false,
+                    "selectedLinkListLabel": ""
+                },
+                {
+                    "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43f",
+                    "name": "Signature",
+                    "type": "signature",
+                    "label": "Signature",
+                    "answer": {},
+                    "isRequired": true,
+                    "selectedLinkListLabel": ""
+                }
+            ]
         }
     ]
 }

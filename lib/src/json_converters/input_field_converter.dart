@@ -10,7 +10,6 @@ class InputFieldConverter
 
   @override
   InputField fromJson(Map<String, dynamic> json) {
-    // final inputType = json['type'];
     return InputField.fromJson(json);
   }
 

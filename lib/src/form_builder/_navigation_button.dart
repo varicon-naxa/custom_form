@@ -2,16 +2,18 @@ part of 'varicon_form_builder.dart';
 
 ///Form elevated button for submit, update and save only operations
 class NavigationButton extends StatelessWidget {
-  const NavigationButton({
-    required this.onComplete,
-    required this.buttonText,
-  });
+  const NavigationButton(
+      {super.key,
+      required this.onComplete,
+      required this.buttonText,
+      this.isAutoSave = false});
 
   ///Function to be called on button press
   final VoidCallback onComplete;
 
   ///Value for button text
   final String buttonText;
+  final bool isAutoSave;
 
   @override
   Widget build(BuildContext context) {
@@ -24,10 +26,14 @@ class NavigationButton extends StatelessWidget {
             shape: WidgetStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(4.0),
+                side: BorderSide(
+                  color:
+                      isAutoSave ? const Color(0xff233759) : Colors.transparent,
+                ),
               ),
             ),
             backgroundColor: WidgetStateProperty.all<Color>(
-              Theme.of(context).primaryColor,
+              isAutoSave ? Colors.white : Theme.of(context).primaryColor,
             )),
         child: Text(
           buttonText.toUpperCase(),
@@ -57,10 +63,13 @@ class NavigationButton extends StatelessWidget {
 class _SaveOnlyButton extends StatelessWidget {
   const _SaveOnlyButton({
     required this.onComplete,
+    this.buttonText = 'Save Only',
   });
 
   ///Function to be called on button press
   final VoidCallback onComplete;
+
+  final String buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -83,7 +92,7 @@ class _SaveOnlyButton extends StatelessWidget {
           ),
         ),
         child: Text(
-          'Save Only'.toUpperCase(),
+          buttonText.toUpperCase(),
           style: Theme.of(context)
               .textTheme
               .bodyMedium

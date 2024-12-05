@@ -4,14 +4,13 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 ///Custom form labeled widget
 // ignore: must_be_immutable
 class LabeledWidget extends StatelessWidget {
-  LabeledWidget({super.key, 
+  LabeledWidget({
+    super.key,
     required this.labelText,
     required this.child,
     required this.isRequired,
   });
   String? labelText;
-
-  
 
   ///Check if field is required
   final bool isRequired;
@@ -21,7 +20,6 @@ class LabeledWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       margin: const EdgeInsets.only(bottom: 12.0),
       decoration: BoxDecoration(
@@ -41,27 +39,28 @@ class LabeledWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(color: Colors.black),
-                  children: [
-                    TextSpan(
-                      text: labelText,
-                      style: Theme.of(context)
-                          .textTheme
-                          .titleMedium
-                          ?.copyWith(color: Colors.black),
-                    ),
-                    if (isRequired)
-                      const TextSpan(
-                        text: '*',
-                        style: TextStyle(
-                          color: Colors.red,
-                        ),
+              if ((labelText ?? '').isNotEmpty)
+                RichText(
+                  text: TextSpan(
+                    style: const TextStyle(color: Colors.black),
+                    children: [
+                      TextSpan(
+                        text: labelText,
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(color: Colors.black),
                       ),
-                  ],
+                      if (isRequired)
+                        const TextSpan(
+                          text: '*',
+                          style: TextStyle(
+                            color: Colors.red,
+                          ),
+                        ),
+                    ],
+                  ),
                 ),
-              ),
               AppSpacing.sizedBoxH_06(),
               child,
             ],

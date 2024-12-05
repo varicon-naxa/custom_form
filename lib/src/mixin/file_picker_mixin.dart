@@ -1,9 +1,13 @@
 // ignore_for_file: invalid_use_of_visible_for_testing_member, unrelated_type_equality_checks, depend_on_referenced_packages
 
 import 'dart:io';
+import 'dart:typed_data';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:image_editor/image_editor.dart';
+import 'package:image_picker/image_picker.dart' as Picker;
+import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -212,12 +216,91 @@ mixin FilePickerMixin {
     }
   }
 
+  //convert Uint8List to File
+  Future<File> convertUint8ListToFile(Uint8List uint8List) async {
+    // Save the edited image to a new file
+    final directory = await getApplicationSupportDirectory();
+    final newImagePath =
+        '${directory.path}/IMG_${DateTime.now().millisecondsSinceEpoch}.png';
+    File file = File(newImagePath);
+    return await file.writeAsBytes(uint8List);
+  }
+
+  Future<String> getCurrentTimezone() async {
+    try {
+      final _timezone = await FlutterTimezone.getLocalTimezone();
+      return _timezone;
+      // Utils.customLog(
+      //     'Could not get the local timezone' + _timezone.toString());
+    } catch (e) {
+      // Utils.customLog('Could not get the local timezone');
+      return '';
+    }
+  }
+
+  Future<File?> handleOption(
+      {required Uint8List currentImage, required String? address}) async {
+    // final aliFontUrl =
+    //     'https://cdn.jsdelivr.net/gh/kikt-blog/ali_font@master/Alibaba-PuHuiTi-Medium.ttf';
+
+    // final body = await http.get(Uri.parse(aliFontUrl));
+
+    // final tmpDir = await getTemporaryDirectory();
+    // final f = File(
+    //     '${tmpDir.absolute.path}/${DateTime.now().millisecondsSinceEpoch}.ttf');
+    // f.writeAsBytesSync(body.bodyBytes);
+
+    // final fontName = await FontManager.registerFont(f);
+    final timestamp = DateTime.now();
+    String firstLine = DateFormat('dd MMM, yyyy hh:mm aa').format(timestamp);
+    String timeZone = await getCurrentTimezone();
+
+    String lines = '$firstLine $timeZone';
+
+    if (address != null) {
+      lines = '$firstLine $timeZone \n$address';
+    }
+    final ImageEditorOption option = ImageEditorOption();
+    final AddTextOption textOption = AddTextOption();
+
+    textOption.addText(
+      EditorText(
+          offset: const Offset(10, 10),
+          text: lines,
+          fontSizePx: 75,
+          textColor: Colors.red,
+          // fontName: fontName,
+          textAlign: TextAlign.left),
+    );
+    option.outputFormat = const OutputFormat.jpeg(20);
+
+    option.addOption(textOption);
+
+    option.outputFormat = const OutputFormat.jpeg(20);
+
+    final unifileImage = await ImageEditor.editImage(
+      image: currentImage,
+      imageEditorOption: option,
+    );
+    if (unifileImage == null) {
+      return null;
+    }
+    final fileImage = convertUint8ListToFile(unifileImage);
+
+    return fileImage;
+    // return fileImage;
+  }
+
   // checks device permission, platform, file size and gets the Image
   Future<List<File>?> getCameraImageFiles(
-      {bool? allowMultiple = false, void Function()? isLoading}) async {
+      {bool? allowMultiple = false,
+      void Function()? isLoading,
+      required BuildContext context,
+      required String locationData,
+      required Widget Function(File imageFile) customPainter}) async {
     await [Permission.camera, Permission.microphone].request();
-    final result = await ImagePicker.platform
-        .getImageFromSource(source: ImageSource.camera);
+    final result = await Picker.ImagePicker.platform
+        .getImageFromSource(source: Picker.ImageSource.camera);
     if (isLoading != null) isLoading();
     if (result == null) return null;
     var file = File(result.path);
@@ -233,13 +316,21 @@ mixin FilePickerMixin {
           fontSize: 16.0);
       return null;
     } else {
-      if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
-          file.path.split('.')[1].toLowerCase == 'heic' ||
-          file.path.split('.')[1].toLowerCase == 'hevc') {
-        File compressedFile = await compressImage(file.path, quality: 10);
-        return [compressedFile];
+      final editedImage = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => customPainter(
+            file,
+          ),
+        ),
+      );
+
+      File? fileCustomImage =
+          await handleOption(currentImage: editedImage, address: locationData);
+      if (fileCustomImage != null) {
+        return [fileCustomImage];
       } else {
-        return [file];
+        return [];
       }
     }
   }

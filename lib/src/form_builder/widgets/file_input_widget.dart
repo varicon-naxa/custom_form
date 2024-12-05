@@ -23,6 +23,8 @@ class FileInputWidget extends StatefulWidget {
     required this.onSaved,
     required this.imageBuild,
     required this.fileClicked,
+    required this.locationData,
+    required this.customPainter,
     this.labelText,
     this.fieldKey,
     this.emptyMsg = '',
@@ -46,6 +48,12 @@ class FileInputWidget extends StatefulWidget {
 
   ///file type for the field[image,custom,audio,video]
   final FileType filetype;
+
+  ///label text for the field
+  final String locationData;
+
+  ///label text for the field
+  final Widget Function(File imageFile) customPainter;
 
   ///Function to build image values
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -122,12 +130,17 @@ class _FileInputWidgetState extends State<FileInputWidget>
   ///Accepts fromCamera boolean
   ///
   ///Checks for file type and stores files
-  Future<void> storeFiles({bool fromCamera = false}) async {
+  Future<void> storeFiles({
+    bool fromCamera = false,
+  }) async {
     if (widget.filetype == FileType.image) {
       Navigator.of(context).pop();
     }
     if (fromCamera) {
-      final result = await getCameraImageFiles();
+      final result = await getCameraImageFiles(
+        context: context,
+          locationData: widget.locationData,
+          customPainter: widget.customPainter);
       saveFiletoServer(result, isMultiple: widget.field.isMultiple ?? false);
     } else {
       final result = await getFiles(
