@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -302,8 +303,11 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return true;
   }
 
-  void clearEmptyLists(Map<String, dynamic> map) {
-    map.removeWhere((key, value) => value is List && value.isEmpty);
+  void clearEmptyListsAndMaps(Map<String, dynamic> map) {
+    map.removeWhere((key, value) =>
+        (value is List && value.isEmpty) || (value is Map && value.isEmpty));
+
+    log('lof  ' + map.toString());
   }
 
   bool popInvoke() {
@@ -320,9 +324,12 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       }
     }
     formKey.currentState?.save();
+    clearEmptyListsAndMaps(initialResult);
+
     Map<String, dynamic> fulldata = {};
     fulldata.addAll(formValue.value);
-    clearEmptyLists(fulldata);
+    clearEmptyListsAndMaps(fulldata);
+
     bool areEqual = compareMaps(initialResult, fulldata);
 
     return areEqual;
