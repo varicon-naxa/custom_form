@@ -123,7 +123,6 @@ class VariconFormBuilder extends StatefulWidget {
   ///Shows the save button on the form
   final bool hasAutoSave;
 
-
   ///Function to handle file click
   ///
   ///Returns the file path for form contents like images, files, instructions
@@ -294,6 +293,10 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
     return true;
   }
 
+  void clearEmptyLists(Map<String, dynamic> map) {
+    map.removeWhere((key, value) => value is List && value.isEmpty);
+  }
+
   bool popInvoke() {
     Map<String, dynamic> initialResult = {};
     for (var field in widget.surveyForm.inputFields) {
@@ -308,7 +311,9 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
       }
     }
     formKey.currentState?.save();
-    Map<String, dynamic> fulldata = formValue.value;
+    Map<String, dynamic> fulldata = {};
+    fulldata.addAll(formValue.value);
+    clearEmptyLists(fulldata);
     bool areEqual = compareMaps(initialResult, fulldata);
 
     return areEqual;
