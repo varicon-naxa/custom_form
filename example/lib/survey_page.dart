@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math' as Rand;
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
@@ -272,6 +273,10 @@ class _SurveyPageState extends State<SurveyPage> {
           );
         },
         onFileClicked: (String stringURl) {},
+        customPainter: (File imageFile) {
+          return Container();
+        },
+        locationData: '',
       ),
     );
   }
