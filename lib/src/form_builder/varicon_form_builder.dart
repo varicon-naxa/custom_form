@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
 import 'dart:async';
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -51,6 +52,8 @@ class VariconFormBuilder extends StatefulWidget {
     required this.hasGeolocation,
     required this.onFileClicked,
     required this.autoSave,
+    required this.customPainter,
+    required this.locationData,
     this.apiCall,
     this.padding,
     this.hasSave = false,
@@ -78,6 +81,12 @@ class VariconFormBuilder extends StatefulWidget {
   ///
   ///Submit data with filled values
   final void Function(Map<String, dynamic> formValue) onSubmit;
+
+  ///Widget for custom image painter
+  final Widget Function(File imageFile) customPainter;
+
+  ///Current Location
+  final String locationData;
 
   ///function to save attachments
   ///
@@ -367,6 +376,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                   onFileClicked: widget.onFileClicked,
                   hasGeolocation: widget.hasGeolocation,
                   apiCall: widget.apiCall,
+                  locationData: widget.locationData,
+                  customPainter: widget.customPainter,
                 ),
               ),
               if (widget.hasSave) ...[
@@ -413,6 +424,8 @@ class FormInputWidgets extends StatefulWidget {
     required this.currentPosition,
     required this.attachmentSave,
     required this.imageBuild,
+    required this.customPainter,
+    required this.locationData,
     this.apiCall,
     required this.onFileClicked,
     required this.hasGeolocation,
@@ -421,6 +434,13 @@ class FormInputWidgets extends StatefulWidget {
   final SurveyPageForm surveyForm;
   final FormValue formValue;
   final Position? currentPosition;
+
+  ///Widget for custom image painter
+  final Widget Function(File imageFile) customPainter;
+
+  ///Current Location
+  final String locationData;
+
   final void Function(String stringURl) onFileClicked;
   final bool hasGeolocation;
   // final Map<String, GlobalKey<FormFieldState<dynamic>>> formFieldKeys;
@@ -582,8 +602,18 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
       yesnona: (field) => _buildYesNoNaInput(field, labelText),
       checkbox: (field) => _buildCheckboxInput(field, labelText),
       multipleselect: (field) => _buildMultipleSelectInput(field, labelText),
-      files: (field) => _buildFilesInput(field, labelText),
-      images: (field) => _buildImagesInput(field, labelText),
+      files: (field) => _buildFilesInput(
+        field,
+        labelText,
+        locationData: widget.locationData,
+        customPainter: widget.customPainter,
+      ),
+      images: (field) => _buildImagesInput(
+        field,
+        labelText,
+        locationData: widget.locationData,
+        customPainter: widget.customPainter,
+      ),
       signature: (field) => _buildSignatureInput(field, labelText),
       multisignature: (field) => _buildMultiSignatureInput(field, labelText),
       instruction: (field) => _buildInstructionInput(field, labelText),
@@ -1174,10 +1204,9 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///Files input field build method
-  ScrollContent _buildFilesInput(
-    FileInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildFilesInput(FileInputField field, String labelText,
+      {required String locationData,
+      required Widget Function(File imageFile) customPainter}) {
     TextEditingController formCon = TextEditingController();
     if (field.answer != null && (field.answer ?? []).isNotEmpty) {
       widget.formValue.saveList(
@@ -1210,16 +1239,17 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
               newValue,
             );
           },
+          locationData: locationData,
+          customPainter: customPainter,
         ),
       ),
     );
   }
 
   ///Images input field build method
-  ScrollContent _buildImagesInput(
-    ImageInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildImagesInput(ImageInputField field, String labelText,
+      {required String locationData,
+      required Widget Function(File imageFile) customPainter}) {
     TextEditingController formCon = TextEditingController();
 
     if (field.answer != null && (field.answer ?? []).isNotEmpty) {
@@ -1235,6 +1265,8 @@ class _FormInputWidgetsState extends State<FormInputWidgets> {
         isRequired: field.isRequired,
         child: FileInputWidget(
           formCon: formCon,
+          locationData: locationData,
+          customPainter: customPainter,
           fieldKey: _formFieldKeys[field.id],
           field: field,
           emptyMsg: 'Image is required',

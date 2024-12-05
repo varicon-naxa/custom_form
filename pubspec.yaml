@@ -41,6 +41,8 @@ dependencies:
   screenshot: ^3.0.0
   image: ^4.3.0
   expandable: ^5.0.1
+  image_editor: ^1.6.0
+  flutter_timezone: ^3.0.1
 
 dev_dependencies:
   flutter_test:
