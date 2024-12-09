@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -34,7 +35,7 @@ import 'widgets/yes_now_input_widget.dart';
 
 class FormInputWidgets extends StatefulWidget {
   const FormInputWidgets({
-    Key? key,
+    super.key,
     required this.surveyForm,
     required this.formValue,
     // required this.formFieldKeys,
@@ -46,7 +47,7 @@ class FormInputWidgets extends StatefulWidget {
     this.apiCall,
     required this.onFileClicked,
     required this.hasGeolocation,
-  }) : super(key: key);
+  });
   final SurveyPageForm surveyForm;
   final FormValue formValue;
   final Position? currentPosition;
@@ -188,9 +189,12 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     // Form is invalid, find the first invalid field and scroll to it
     FocusScope.of(context).requestFocus(FocusNode()); // Unfocus current field
 
+    // item-9304eeab-4bd9-4010-a332-86ce9e2ddf43
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
+      log('fieldId: $fieldId');
+      log('fieldkey: $fieldKey');
 
       if (fieldKey.currentState != null) {
         if (!fieldKey.currentState!.validate()) {
@@ -198,7 +202,11 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeIn);
           break;
+        } else {
+          log('fieldKey.currentState!.validate()2 ${fieldKey.currentState?.value}');
         }
+      } else {
+        log('fieldKey.currentState!.validate()1 ${fieldKey.currentState?.value}');
       }
     }
   }
