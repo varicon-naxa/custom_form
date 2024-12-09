@@ -6,17 +6,16 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 ///
 ///Hide & show on scroll behaviour
 class FormTitleInfoWidget extends StatefulWidget {
-  const FormTitleInfoWidget(
-      {super.key,
-      required this.hasGeolocation,
-      required this.surveyForm,
-      this.currentPosition,
-      required this.scrollController});
+  const FormTitleInfoWidget({
+    super.key,
+    required this.hasGeolocation,
+    required this.surveyForm,
+    this.currentPosition,
+  });
 
   final bool hasGeolocation;
   final SurveyPageForm surveyForm;
   final Position? currentPosition;
-  final ScrollController scrollController;
 
   @override
   State<FormTitleInfoWidget> createState() => _FormTitleInfoWidgetState();
@@ -42,7 +41,6 @@ class _FormTitleInfoWidgetState extends State<FormTitleInfoWidget> {
                 color: const Color(0xff6A737B),
               ),
         ),
-        AppSpacing.sizedBoxH_08(),
         if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
           Container(
             decoration: BoxDecoration(

@@ -1,0 +1,299 @@
+{
+    "title": "FRM-3005 Pre-Shift Brief",
+    "elements": [
+        {
+            "id": "item-9304eeab-4bd9-4010-a332-86ce9e2ddf43",
+            "name": "Date Time",
+            "type": "datetimelocal",
+            "label": "Date Time",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-eea942f3-1558-4895-b6cf-a20683c6ea2d",
+            "name": "Number Input",
+            "type": "number",
+            "label": "Duration (in mins)",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a73c9e18-3a3c-49ab-8e32-425594489991",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Project/Site Location",
+            "choice": [],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "project",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e34e7995-ecd6-48ff-8f63-7875f0f5e339",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Site UHF Channel",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a6195302-4051-4603-a9e9-95a2c13e6f3c",
+            "name": "Long Text",
+            "type": "text",
+            "label": "What are the hazards for today?",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-2b0daa3a-0fc1-4b37-8ecd-4be93dd8e3c2",
+            "name": "Long Text",
+            "type": "text",
+            "label": "What are the weather conditions for today and will they introduce new hazards to our work?",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-64673a39-0a02-4908-9446-797bfa595b7e",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Will we need to coordinate with other parties on site?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-383924cd-99bb-4e7a-af1f-fc17f5e12287",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Planned activities",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3377a1ed-e1f6-4dc6-9798-40b3b2ea7512",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Safe Work Method Statements used:",
+            "choice": [
+                {
+                    "id": "item-b6dd3992-10a3-4eda-83d4-ee9ba2cb250a",
+                    "label": "SWMS-001 REV 00 Earthworks Excavation & Pavements"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-35971887-f45e-4c2e-8eaf-a67bc700cb6d",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Have alll personnel signed on relevant SWMS?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ba0f5bfc-9ed8-4152-b8ef-3792df7acc1c",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Have plant pre-starts been completed?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7460ed5a-46da-41e0-8c24-8aacde35d08a",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Are current DBYD/Excavation permits on site?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-65b2d786-1167-4726-b570-fc35dac4f2ea",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Is PPE available for planned tasks?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7a3cedff-cd75-46e0-bb3b-eb02b9c1fb6c",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Has muster point & first aid kid location been identified?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ccf4f2b4-85a7-49b2-95dc-78b9998c341b",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Name of first Aider/s?",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e32f4f4d-cac2-43e1-931b-3b90e1c16571",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Have quality procedures been checked?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-16103da7-f29d-4b93-9825-62e2308a4a10",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Have environmental requirements been checked?",
+            "choice": [
+                {
+                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-963ac452-6f4e-4e6c-ae99-086c2f911ea7",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have any incidents/near misses been reported?",
+            "choice": [
+                {
+                    "id": "item-f8bb3809-9300-4d10-b7f3-18b8f40e4c9a",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-0bd1e006-3db9-4aed-a611-6200fe88a56e",
+                    "label": "No"
+                },
+                {
+                    "id": "item-290c933c-2ea0-4c76-980f-759c20c2575b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-14775ecb-ada5-4eb3-8881-9f5a25943482",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Supervisor Signature",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ca9a60eb-79d4-4445-8654-f4a959164bec",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Supervisor Name",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ea026bba-96f4-49e6-8fc6-aa2ca1ca9906",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Attendees",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        }
+    ],
+    "description": ""
+}

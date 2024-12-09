@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:varicon_form_builder/src/models/form_value.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
+import '../form_elements.dart';
 
 ///CF bottom nav btn widget
 ///
@@ -13,23 +16,21 @@ class SubmitUpdateButtonWidget extends StatefulWidget {
       required this.formKey,
       required this.formValue,
       required this.onSubmit,
-      required this.scrollToFirstInvalidField,
       required this.hasGeolocation,
       required this.surveyForm,
       required this.currentPosition,
-      required this.scrollController,
+      required this.formInputWidgetsKey,
       this.hasAutoSave = false});
 
   final String buttonText;
   final GlobalKey<FormState> formKey;
   final FormValue formValue;
   final Function onSubmit;
-  final Function scrollToFirstInvalidField;
   final bool hasGeolocation;
   final SurveyPageForm surveyForm;
   final Position? currentPosition;
-  final ScrollController scrollController;
   final bool hasAutoSave;
+  final GlobalKey<FormInputWidgetsState> formInputWidgetsKey;
 
   @override
   State<SubmitUpdateButtonWidget> createState() =>
@@ -97,29 +98,34 @@ class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
             child: NavigationButton(
               buttonText: widget.buttonText,
               onComplete: () async {
-                // return if form state is null.
-                if (widget.formKey.currentState == null) return;
-                // return if form is not valid.
-                if (!widget.formKey.currentState!.validate()) {
-                  widget.scrollToFirstInvalidField();
-                  return;
-                }
+                try {
+                  // return if form state is null.
+                  if (widget.formKey.currentState == null) return;
+                  // return if form is not valid.
+                  if (!widget.formKey.currentState!.validate()) {
+                    widget.formInputWidgetsKey.currentState
+                        ?.scrollToFirstInvalidField();
+                    return;
+                  }
 
-                widget.formKey.currentState?.save();
-                Map<String, dynamic> fulldata = widget.formValue.value;
+                  widget.formKey.currentState?.save();
+                  Map<String, dynamic> fulldata = widget.formValue.value;
 
-                if (widget.hasGeolocation) {
-                  fulldata.addAll({
-                    'location':
-                        widget.surveyForm.setting?['location']['lat'] == null
-                            ? {
-                                'lat': widget.currentPosition?.latitude,
-                                'long': widget.currentPosition?.longitude,
-                              }
-                            : widget.surveyForm.setting?['location']
-                  });
+                  if (widget.hasGeolocation) {
+                    fulldata.addAll({
+                      'location':
+                          widget.surveyForm.setting?['location']['lat'] == null
+                              ? {
+                                  'lat': widget.currentPosition?.latitude,
+                                  'long': widget.currentPosition?.longitude,
+                                }
+                              : widget.surveyForm.setting?['location']
+                    });
+                  }
+                  widget.onSubmit(widget.formValue.value);
+                } catch (e) {
+                  log('catch bhitra' + e.toString());
                 }
-                widget.onSubmit(widget.formValue.value);
               },
             ),
           ),
