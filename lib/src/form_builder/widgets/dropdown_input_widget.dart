@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_paginated_bs.dart';
@@ -25,8 +27,7 @@ class DropdownInputWidget extends StatefulWidget {
   final FormValue formValue;
 
   ///Field form unique key
-   final GlobalKey<FormFieldState<dynamic>>? fieldKey;
-
+  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
 
   ///Label text for dropdown
   final String? labelText;
@@ -131,14 +132,17 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   apiCall: widget.apiCall!,
                   linkedQuery: widget.field.linkedQuery ?? '',
                   onClicked: (ValueText data) {
-                    widget.formValue.saveString(
-                      widget.field.id,
-                      data.value,
-                    );
+                    log('Text ' + data.text);
+                    log('Valur ' + data.value);
                     widget.formValue.saveString(
                       widget.field.id.substring(5, widget.field.id.length),
                       data.text,
                     );
+                    widget.formValue.saveString(
+                      widget.field.id,
+                      data.value,
+                    );
+
                     setState(() {
                       formCon.text = data.text;
                     });
