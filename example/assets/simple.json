@@ -4,6 +4,123 @@
     "name": "",
     "version": "1.0.0",
     "elements": [
+
+        {
+            "id": "item-4e8dbd5b-ae69-4d5f-99cd-4f6a6f631583",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Column 1",
+                "Column 2",
+                "Column 3"
+            ],
+            "contents": [
+                [
+                    {
+                        "id": "item-d7b5d500-b996-4517-a0ac-dbc3609b2360",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Column 1",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-8a27ec37-a35e-4249-9979-2a55e8be2418",
+                                "type": "option",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-7c625745-d90b-4fe6-88ef-f34759d5e8fe",
+                                "type": "option",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-95f6fb1a-b403-4cd2-a943-a26a625551db",
+                                "type": "option",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-0f380f84-b1e5-4659-8960-46aff2189666",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Column 2",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-548fb6b1-a770-4230-87fa-d0fce95562c6",
+                                "type": "option",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-d118a041-1510-4fdd-9ea9-231d46f4e28d",
+                                "type": "option",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-150fa091-ad6b-40a3-9931-4a5b04969c0b",
+                                "type": "option",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-71d4ca05-e2e8-4171-9fec-7042f46ca819",
+                                "type": "option",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-2463eedc-3c08-43c7-8f68-1ea6d062242b",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Column 3",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "supplier"
+                    }
+                ]
+            ],
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
         {
             "id": "item-af251d12-b924-4f06-95ba-c74d743fe111",
             "name": "Simple Table",
