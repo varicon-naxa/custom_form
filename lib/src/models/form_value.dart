@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 /// {@template FormValue}
@@ -35,7 +33,6 @@ class FormValue {
   }
 
   void saveString(String k, String? v) {
-    log('saveString: $k, $v');
     if (v == null || v.isEmpty) {
       _value.remove(k);
       _savedValue.remove(k);

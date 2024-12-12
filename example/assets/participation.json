@@ -12,6 +12,18 @@
             "fromManualList": false,
             "islinked_query": "project",
             "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-124bf961-c2ff-4a44-b4f8-dad21aa5bd9a",
+            "name": "Multi Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi Select Dropdown",
+            "choice": [],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "project",
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "Description"

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_bottomsheet.dart';
 import 'package:varicon_form_builder/src/form_builder/widgets/custom_paginated_bs.dart';
@@ -132,8 +130,6 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   apiCall: widget.apiCall!,
                   linkedQuery: widget.field.linkedQuery ?? '',
                   onClicked: (ValueText data) {
-                    log('Text ' + data.text);
-                    log('Valur ' + data.value);
                     widget.formValue.saveString(
                       widget.field.id.substring(5, widget.field.id.length),
                       data.text,
