@@ -1,300 +1,888 @@
 {
-    "title": "FRM-3005 Pre-Shift Brief",
+    "title": "Table widget form",
+    "description": "",
     "elements": [
         {
-            "id": "item-9304eeab-4bd9-4010-a332-86ce9e2ddf43",
-            "name": "Date Time",
-            "type": "datetimelocal",
-            "label": "Date Time",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-eea942f3-1558-4895-b6cf-a20683c6ea2d",
-            "name": "Number Input",
-            "type": "number",
-            "label": "Duration (in mins)",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-       
-        {
-            "id": "item-a73c9e18-3a3c-49ab-8e32-425594489991",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Project/Site Location",
-            "choice": [],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": false,
-            "islinked_query": "project",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-e34e7995-ecd6-48ff-8f63-7875f0f5e339",
-            "name": "Short Text",
-            "type": "text",
-            "label": "Site UHF Channel",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-a6195302-4051-4603-a9e9-95a2c13e6f3c",
-            "name": "Long Text",
-            "type": "text",
-            "label": "What are the hazards for today?",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-2b0daa3a-0fc1-4b37-8ecd-4be93dd8e3c2",
-            "name": "Long Text",
-            "type": "text",
-            "label": "What are the weather conditions for today and will they introduce new hazards to our work?",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-64673a39-0a02-4908-9446-797bfa595b7e",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Will we need to coordinate with other parties on site?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
+            "id": "item-88f013cb-44cb-4de2-b7ae-859145e1234f",
+            "name": "Advanced Table",
+            "isRow": true,
+            "label": "Normal elements",
+            "headers": [
+                "Filled Text",
+                "Email",
+                "Location",
+                "Phone",
+                "Number",
+                "Short text",
+                "Long text",
+                "Date",
+                "Time",
+                "Date time"
+            ],
+            "contents": [
+                [
+                    {
+                        "id": "item-00eeac80-38fc-4726-9979-80bec58f7c3a",
+                        "max": null,
+                        "min": null,
+                        "type": "email",
+                        "label": "Column 1",
+                        "answer": "",
+                        "visible": true,
+                        "readOnly": false,
+                        "maxLength": null,
+                        "isRequired": false,
+                        "description": null,
+                        "placeholder": null,
+                        "maxErrorText": null,
+                        "minErrorText": null,
+                        "requiredErrorText": null
+                    },
+                    {
+                        "id": "item-e889b546-ac10-410e-9da1-d66e8f68142a",
+                        "max": null,
+                        "min": null,
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 2",
+                        "answer": "",
+                        "visible": true,
+                        "readOnly": false,
+                        "maxLength": null,
+                        "isRequired": false,
+                        "description": null,
+                        "placeholder": null,
+                        "maxErrorText": null,
+                        "minErrorText": null,
+                        "requiredErrorText": null
+                    },
+                    {
+                        "id": "item-72297a68-41a4-44b5-83bb-95fae85fac89",
+                        "max": null,
+                        "min": null,
+                        "type": "datetimelocal",
+                        "label": "Column 3",
+                        "answer": "",
+                        "visible": true,
+                        "readOnly": false,
+                        "maxLength": null,
+                        "isRequired": false,
+                        "description": null,
+                        "placeholder": null,
+                        "maxErrorText": null,
+                        "minErrorText": null,
+                        "requiredErrorText": null
+                    },
+                    {
+                        "id": "item-2bbd31d7-dab2-4e21-8c97-4448ef0251f2",
+                        "type": "yesnona",
+                        "label": "Column 4",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "text": "Yes",
+                                "value": "item-6dce31a7-cdd7-4760-9554-9791205b2eeb",
+                                "action": false,
+                                "isOtherField": null
+                            },
+                            {
+                                "text": "No",
+                                "value": "item-1b65305b-18ab-4cef-a1dc-14661fda8e84",
+                                "action": false,
+                                "isOtherField": null
+                            },
+                            {
+                                "text": "NA",
+                                "value": "item-ce5c4635-155b-4d06-ac62-af18f42f9d86",
+                                "action": false,
+                                "isOtherField": null
+                            }
+                        ],
+                        "visible": true,
+                        "noneText": null,
+                        "readOnly": false,
+                        "otherText": null,
+                        "isRequired": false,
+                        "description": null,
+                        "showNoneItem": false,
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "otherErrorText": null,
+                        "showClearButton": false,
+                        "otherPlaceholder": null,
+                        "requiredErrorText": null
+                    },
+                    {
+                        "id": "item-3b801414-34cb-4e08-936a-93aa27dcf312",
+                        "type": "radiogroup",
+                        "label": "Column 5",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "text": "Option 1",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 3",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 4",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            }
+                        ],
+                        "visible": true,
+                        "noneText": null,
+                        "readOnly": false,
+                        "otherText": null,
+                        "isRequired": false,
+                        "description": null,
+                        "otherAnswer": null,
+                        "showNoneItem": false,
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "otherErrorText": null,
+                        "showClearButton": false,
+                        "otherPlaceholder": null,
+                        "requiredErrorText": null
+                    },
+                    {
+                        "id": "item-cf06ac66-2113-4c12-b18b-696467711f59",
+                        "type": "checkbox",
+                        "label": "Column 6",
+                        "answer": ",",
+                        "choice": [
+                            {
+                                "text": "Option 1",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 3",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 4",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 5",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "Option 6",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            },
+                            {
+                                "text": "",
+                                "value": "",
+                                "action": false,
+                                "isOtherField": false
+                            }
+                        ],
+                        "visible": true,
+                        "noneText": null,
+                        "readOnly": false,
+                        "otherText": null,
+                        "isRequired": false,
+                        "description": null,
+                        "showNoneItem": false,
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": true,
+                        "islinked_query": null,
+                        "otherErrorText": null,
+                        "otherPlaceholder": null,
+                        "requiredErrorText": null,
+                        "showSelectAllItem": false,
+                        "maxSelectedChoices": null,
+                        "selectedLinkListLabel": null
+                    },
+                    {
+                        "id": "item-d7dff453-e278-43a4-83c2-fd452f40d741",
+                        "type": "dropdown",
+                        "label": "Column 7",
+                        "answer": "8a972bb6-9098-4108-a1a0-a7098816eda9",
+                        "choice": [],
+                        "visible": true,
+                        "noneText": null,
+                        "readOnly": false,
+                        "otherText": null,
+                        "allowClear": true,
+                        "isRequired": false,
+                        "description": null,
+                        "placeholder": null,
+                        "showNoneItem": false,
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": false,
+                        "islinked_query": "project",
+                        "otherErrorText": null,
+                        "otherPlaceholder": null,
+                        "requiredErrorText": null,
+                        "selectedLinkListLabel": "(Hospital-12)Nepal Korea Hospital"
+                    },
+                    {
+                        "id": "item-4612f83b-6788-4782-bcc2-c971ec18c80f",
+                        "type": "multipleselect",
+                        "label": "Column 8",
+                        "answer": "2b41c213-9756-40b2-be5f-a47d34464210,597a4a92-56a6-4989-a5e9-269d6833ff09,a430179b-43e0-43ab-a771-59b6f0941f24",
+                        "choice": [],
+                        "visible": true,
+                        "noneText": null,
+                        "readOnly": false,
+                        "otherText": null,
+                        "isRequired": false,
+                        "description": null,
+                        "showNoneItem": false,
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": false,
+                        "islinked_query": "user",
+                        "otherErrorText": null,
+                        "otherPlaceholder": null,
+                        "requiredErrorText": null,
+                        "showSelectAllItem": false,
+                        "maxSelectedChoices": null,
+                        "selectedLinkListLabel": "Anil Shrestha,AnuDon Prajapati,Nammy Kirat"
+                    },
+                    {
+                        "id": "item-b30d1d18-f572-4e44-a8a2-fc41aca49e5b",
+                        "type": "files",
+                        "label": "Column 9",
+                        "answer": [
+                            {
+                                "id": "c8394774-5c3e-4d95-985b-ea341215f181",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/attachments/52174ff6-5c01-445d-868e-6bfd100d0b6a.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20241210%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241210T161108Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=35c6f857e9fe3c8060c25820704ed37608b10a2b50413480dbc52e31bc28aa4c",
+                                "name": "5d2d1f60-b711-11ef-a8d6-a9c88c0e4612.jpg",
+                                "mime_type": "jpg",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/thumbnails/52174ff6-5c01-445d-868e-6bfd100d0b6a_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20241210%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241210T161108Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=f8fc0b0b9b3c956519634e8d2dd1f0076293366315bd514e61c5f84d28e1d866",
+                                "created_by": {
+                                    "id": "646d39e1-f245-405e-bc0c-2e6ee2412040",
+                                    "email": "susan.timilsina@varicon.com.au",
+                                    "last_name": "Timilsina",
+                                    "first_name": "Susan",
+                                    "is_archived": false
+                                }
+                            }
+                        ],
+                        "visible": true,
+                        "readOnly": false,
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "description": null,
+                        "requiredErrorText": null
+                    },
+                    {
+                        "id": "item-f82d8cad-07e3-4d89-ab26-8c3ad00216ed",
+                        "type": "multisignature",
+                        "label": "Column 10",
+                        "answer": [
+                            {
+                                "id": "item-0dae31aa-ddb5-4de0-a9c8-f712eef9af37",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/attachments/bcb69dc0-505d-4ed1-b664-421ce3c4d248.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20241210%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241210T161101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=070d3bed184cdc9205fdfb600e2ff420cc0a630b8a812cb9545912ac43e07a58",
+                                "name": "Susan",
+                                "isLoading": false,
+                                "attachmentId": "bedc5e13-5b8f-4fb2-9b2e-e2c3278b5dd8",
+                                "signatory_name": null
+                            }
+                        ],
+                        "visible": true,
+                        "readOnly": false,
+                        "isRequired": false,
+                        "description": null,
+                        "requiredErrorText": null
+                    }
+                ]
             ],
             "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
+            "selectedLinkListLabel": "",
+            "type": "advtable"
         },
         {
-            "id": "item-383924cd-99bb-4e7a-af1f-fc17f5e12287",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Planned activities",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-3377a1ed-e1f6-4dc6-9798-40b3b2ea7512",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Safe Work Method Statements used:",
-            "choice": [
-                {
-                    "id": "item-b6dd3992-10a3-4eda-83d4-ee9ba2cb250a",
-                    "label": "SWMS-001 REV 00 Earthworks Excavation & Pavements"
-                }
+            "id": "item-bd65af6e-a4a2-4e26-aad0-0b896c251eed",
+            "name": "Advanced Table",
+            "isRow": true,
+            "label": "Yes/no/radio/checkbox",
+            "headers": [
+                "Yes/no",
+                "Yes/no conditional",
+                "Yes/no/na",
+                "Yes/no/na conditional",
+                "Radio",
+                "Radio conditional",
+                "Checkbox",
+                "Checkbox conditional"
             ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-35971887-f45e-4c2e-8eaf-a67bc700cb6d",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Have alll personnel signed on relevant SWMS?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
+            "contents": [
+                [
+                    {
+                        "name": "Yes/No",
+                        "type": "yesno",
+                        "label": "Yes/no",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-8430d278-a717-41e8-8601-8349f73bdd6c",
+                                "label": "Yes",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-443537b2-db64-4ae1-ab9a-05baa1f20219",
+                                "label": "No",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "name": "Yes/No",
+                        "type": "yesno",
+                        "label": "Yes/no conditional",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-466d1d28-a26a-4cd0-8a45-78a66f5a0809",
+                                "label": "Yes",
+                                "action": true,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-7284886b-2d10-4a6a-b08e-5cc4230e0070",
+                                "label": "No",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "fromManualList": true
+                    },
+                    {
+                        "name": "Yes/No/NA",
+                        "type": "yesnona",
+                        "label": "Yes/no/na",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-cc0ff81c-c29c-4843-ae06-5c968488526d",
+                                "label": "Yes",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-45222fd3-265c-48c6-a8f8-784624c13b2e",
+                                "label": "No",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-e52c6898-83d7-4dad-a6d0-1b085ea4ab4d",
+                                "label": "NA",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-52383ffd-5a26-4cf3-99e9-66f2f90177bd",
+                        "name": "Yes/No/NA",
+                        "type": "yesnona",
+                        "label": "Yes/no/na conditional",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-02f65765-a5a7-492c-917a-617d6a541cd5",
+                                "label": "Yes",
+                                "action": true,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-4211bf3a-c496-464d-b33c-15b8a2332b58",
+                                "label": "No",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-331415b9-ecee-49ff-9281-8e29bd611a17",
+                                "label": "NA",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-e53f28b3-8f90-44d4-bce5-6d7d6cf411b7",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Radio",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-91757356-b19c-444f-8ebe-55686e55ed6f",
+                                "type": "option",
+                                "label": "Option 1",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-876e3b17-1ba6-42a9-92d7-c4e2aa7202a7",
+                                "type": "option",
+                                "label": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-4e9ecf1e-e9fc-4dcc-a771-3ef2b1bb718c",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Radio conditional",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-b48dbd4f-d780-4e67-a83c-8d6875c18d6e",
+                                "type": "option",
+                                "label": "Option 1",
+                                "value": "",
+                                "action": true,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-376b88b6-b146-40e4-bed2-0c93409932bc",
+                                "type": "option",
+                                "label": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-47824307-8f3d-4791-bfbc-a090c3eeb70d",
+                                "type": "option",
+                                "label": "Option 3",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-48c017b2-2a03-4ab8-bcf0-7027ffd1e3ae",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Checkbox",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-a57c0d48-74b3-4806-9157-bd6c09f99d28",
+                                "type": "option",
+                                "label": "Option 1",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-6c842311-c630-4fc9-9a81-e0271139c48a",
+                                "type": "option",
+                                "label": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-4f180037-1ca4-4076-8e84-bf28f3be48f9",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Checkbox conditional",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-5612c8c2-edee-466a-b5d8-b5569d5fc243",
+                                "type": "option",
+                                "label": "Option 1",
+                                "value": "",
+                                "action": true,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-a14fe838-284b-4b75-a714-c562a5dc6035",
+                                "type": "option",
+                                "label": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "fromManualList": true
+                    }
+                ],
+                [
+                    {
+                        "id": "item-7c6009f3-3948-419c-afb0-15482be74071",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Yes/no",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-94da27d2-078f-4925-8806-c166282c3a06",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Yes/no conditional",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-c0511ff4-ebdc-4bb0-b828-c8fee5fa76e0",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Yes/no/na",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-e47924c2-8e8b-4727-9e1d-06ade83d9d44",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Yes/no/na conditional",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-c6b634c9-90fc-4d35-8dab-cc8b4848de5c",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Radio",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-6306dd30-d469-4524-adfd-542b9bcfa1eb",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Radio conditional",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-89027d4c-dad1-4383-85d1-41dccfc745ee",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Checkbox",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-f6176fa6-f871-4e54-8c39-c8dc09ce6660",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Checkbox conditional",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    }
+                ]
             ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-ba0f5bfc-9ed8-4152-b8ef-3792df7acc1c",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Have plant pre-starts been completed?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-7460ed5a-46da-41e0-8c24-8aacde35d08a",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Are current DBYD/Excavation permits on site?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-65b2d786-1167-4726-b570-fc35dac4f2ea",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Is PPE available for planned tasks?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-7a3cedff-cd75-46e0-bb3b-eb02b9c1fb6c",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Has muster point & first aid kid location been identified?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-ccf4f2b4-85a7-49b2-95dc-78b9998c341b",
-            "name": "Short Text",
-            "type": "text",
-            "label": "Name of first Aider/s?",
             "isRequired": false,
-            "selectedLinkListLabel": ""
+            "selectedLinkListLabel": "",
+            "type": "advtable"
         },
         {
-            "id": "item-e32f4f4d-cac2-43e1-931b-3b90e1c16571",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Have quality procedures been checked?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
+            "id": "item-4e1c9451-99a4-4a40-96ca-77f46c2f7b80",
+            "name": "Advanced Table",
+            "isRow": true,
+            "label": "dropdowns/uplaods",
+            "headers": [
+                "Single select dropdown",
+                "Single select dropdown conditional",
+                "Single select dropdown linked list",
+                "Multi select dropdown",
+                "Multi select dropdown conditional",
+                "Multi select dropdown linked list",
+                "Photo upload",
+                "File upload",
+                "Signature",
+                "Multi signature"
             ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-16103da7-f29d-4b93-9825-62e2308a4a10",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Have environmental requirements been checked?",
-            "choice": [
-                {
-                    "id": "item-8e1e4bee-e7da-4a5c-80d3-5974005af07f",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f9387b55-1802-4037-8423-921aa5bf1154",
-                    "label": "No"
-                }
+            "contents": [
+                [
+                    {
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Single select dropdown",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-ff1d3a87-61a7-4935-bc35-987951f9c73e",
+                                "type": "option",
+                                "label": "Option 1",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-ee87dab9-1ad4-4be1-8831-d7d54bf60e53",
+                                "type": "option",
+                                "label": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true,
+                        "islinked_query": ""
+                    },
+                    {
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Single select dropdown conditional",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-51ed8199-54aa-42db-9b71-8f9f6317952e",
+                                "type": "option",
+                                "label": "Option 1",
+                                "value": "",
+                                "action": true,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-2738b251-3aac-4986-8696-57b44a9a6b7f",
+                                "type": "option",
+                                "label": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "fromManualList": true,
+                        "islinked_query": ""
+                    },
+                    {
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Single select dropdown linked list",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "project"
+                    },
+                    {
+                        "id": "item-104b8659-d888-43a2-90e9-5f8129e1ffa8",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Multi select dropdown",
+                        "answer": "",
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "project"
+                    },
+                    {
+                        "id": "item-b0ef9b80-db6b-4132-94e4-50c5fe607294",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Multi select dropdown conditional",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-f23ecdec-76a6-47e4-8f52-4b11c39bedcd",
+                                "type": "option",
+                                "label": "Option 1",
+                                "value": "",
+                                "action": true,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-aa50404a-b43f-4366-8dc7-0b745b448532",
+                                "type": "option",
+                                "label": "Option 2",
+                                "value": "",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "fromManualList": true,
+                        "islinked_query": ""
+                    },
+                    {
+                        "id": "item-edf83096-c8e5-44e2-ac3b-85a098e79ba5",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Multi select dropdown linked list",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "project"
+                    },
+                    {
+                        "id": "item-b7b1fa48-9e05-4101-abbd-8813b50b6688",
+                        "name": "Image Upload",
+                        "type": "images",
+                        "label": "Photo upload",
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-378cc78f-92e3-4e9f-a3c4-d403cb77a884",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "File upload",
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-1ede99dd-4387-4734-aa9b-83996442ea68",
+                        "name": "Signature",
+                        "type": "signature",
+                        "label": "Signature",
+                        "answer": {},
+                        "isRequired": false,
+                        "initialAnswer": {}
+                    },
+                    {
+                        "id": "item-c8f262ac-d94d-4d96-8089-e17ad631c6ee",
+                        "name": "Multiple Signature",
+                        "type": "multisignature",
+                        "label": "Multi signature",
+                        "answer": [],
+                        "isRequired": false,
+                        "initialAnswer": []
+                    }
+                ]
             ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-963ac452-6f4e-4e6c-ae99-086c2f911ea7",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "Have any incidents/near misses been reported?",
-            "choice": [
-                {
-                    "id": "item-f8bb3809-9300-4d10-b7f3-18b8f40e4c9a",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-0bd1e006-3db9-4aed-a611-6200fe88a56e",
-                    "label": "No"
-                },
-                {
-                    "id": "item-290c933c-2ea0-4c76-980f-759c20c2575b",
-                    "label": "NA"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-14775ecb-ada5-4eb3-8881-9f5a25943482",
-            "name": "Signature",
-            "type": "signature",
-            "label": "Supervisor Signature",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-ca9a60eb-79d4-4445-8654-f4a959164bec",
-            "name": "Short Text",
-            "type": "text",
-            "label": "Supervisor Name",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-ea026bba-96f4-49e6-8fc6-aa2ca1ca9906",
-            "name": "Multiple Signature",
-            "type": "multisignature",
-            "label": "Attendees",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
+            "isRequired": false,
+            "selectedLinkListLabel": "",
+            "type": "table"
         }
-    ],
-    "description": ""
+    ]
 }

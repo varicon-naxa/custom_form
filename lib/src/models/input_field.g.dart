@@ -1004,6 +1004,8 @@ _$TableFieldImpl _$$TableFieldImplFromJson(Map<String, dynamic> json) =>
     _$TableFieldImpl(
       id: json['id'] as String,
       tableId: json['tableId'] as String?,
+      headers:
+          (json['headers'] as List<dynamic>?)?.map((e) => e as String).toList(),
       label: json['label'] as String?,
       name: json['name'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
@@ -1026,6 +1028,7 @@ Map<String, dynamic> _$$TableFieldImplToJson(_$TableFieldImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'tableId': instance.tableId,
+      'headers': instance.headers,
       'label': instance.label,
       'name': instance.name,
       'isRequired': instance.isRequired,
@@ -1044,6 +1047,8 @@ Map<String, dynamic> _$$TableFieldImplToJson(_$TableFieldImpl instance) =>
 _$AdvTableFieldImpl _$$AdvTableFieldImplFromJson(Map<String, dynamic> json) =>
     _$AdvTableFieldImpl(
       id: json['id'] as String,
+      headers:
+          (json['headers'] as List<dynamic>?)?.map((e) => e as String).toList(),
       tableId: json['tableId'] as String?,
       label: json['label'] as String?,
       name: json['name'] as String?,
@@ -1066,6 +1071,7 @@ _$AdvTableFieldImpl _$$AdvTableFieldImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$AdvTableFieldImplToJson(_$AdvTableFieldImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'headers': instance.headers,
       'tableId': instance.tableId,
       'label': instance.label,
       'name': instance.name,

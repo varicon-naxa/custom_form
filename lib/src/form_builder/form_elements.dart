@@ -1195,7 +1195,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
                                     'Column ${columnIndex + 1} ',
                                   ),
                                   const Spacer(),
-                                  const Icon(Icons.keyboard_arrow_up)
+                                  const Icon(Icons.keyboard_arrow_down)
                                 ],
                               ),
                               expandedHeader: Padding(
@@ -1208,7 +1208,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
                                       'Column ${columnIndex + 1}',
                                     ),
                                     const Spacer(),
-                                    const Icon(Icons.keyboard_arrow_down)
+                                    const Icon(Icons.keyboard_arrow_up)
                                   ],
                                 ),
                               ),

@@ -523,6 +523,7 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.table({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'tableId') String? tableId,
+    List<String>? headers,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
@@ -539,6 +540,7 @@ class InputField with _$InputField implements BasicInputField {
   }) = TableField;
   const factory InputField.advtable({
     @JsonKey(name: 'id') required String id,
+        List<String>? headers,
     @JsonKey(name: 'tableId') String? tableId,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'name') String? name,

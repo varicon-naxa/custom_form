@@ -497,6 +497,7 @@ mixin _$InputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -512,6 +513,7 @@ mixin _$InputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -935,6 +937,7 @@ mixin _$InputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -950,6 +953,7 @@ mixin _$InputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -1373,6 +1377,7 @@ mixin _$InputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -1388,6 +1393,7 @@ mixin _$InputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -2138,6 +2144,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -2153,6 +2160,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -2580,6 +2588,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -2595,6 +2604,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -3022,6 +3032,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -3037,6 +3048,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -3880,6 +3892,7 @@ class _$TextInputFieldImpl implements TextInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -3895,6 +3908,7 @@ class _$TextInputFieldImpl implements TextInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -4336,6 +4350,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -4351,6 +4366,7 @@ class _$TextInputFieldImpl implements TextInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -4792,6 +4808,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -4807,6 +4824,7 @@ class _$TextInputFieldImpl implements TextInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -5682,6 +5700,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -5697,6 +5716,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -6137,6 +6157,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -6152,6 +6173,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -6592,6 +6614,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -6607,6 +6630,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -7401,6 +7425,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -7416,6 +7441,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -7843,6 +7869,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -7858,6 +7885,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -8285,6 +8313,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -8300,6 +8329,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -9131,6 +9161,7 @@ class _$DateInputFieldImpl implements DateInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -9146,6 +9177,7 @@ class _$DateInputFieldImpl implements DateInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -9586,6 +9618,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -9601,6 +9634,7 @@ class _$DateInputFieldImpl implements DateInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -10041,6 +10075,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -10056,6 +10091,7 @@ class _$DateInputFieldImpl implements DateInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -10955,6 +10991,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -10970,6 +11007,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -11412,6 +11450,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -11427,6 +11466,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -11869,6 +11909,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -11884,6 +11925,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -12768,6 +12810,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -12783,6 +12826,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -13224,6 +13268,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -13239,6 +13284,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -13680,6 +13726,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -13695,6 +13742,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -14561,6 +14609,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -14576,6 +14625,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -15016,6 +15066,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -15031,6 +15082,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -15471,6 +15523,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -15486,6 +15539,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -16347,6 +16401,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -16362,6 +16417,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -16802,6 +16858,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -16817,6 +16874,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -17257,6 +17315,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -17272,6 +17331,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -18134,6 +18194,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -18149,6 +18210,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -18589,6 +18651,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -18604,6 +18667,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -19044,6 +19108,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -19059,6 +19124,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -19921,6 +19987,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -19936,6 +20003,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -20376,6 +20444,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -20391,6 +20460,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -20831,6 +20901,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -20846,6 +20917,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -21708,6 +21780,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -21723,6 +21796,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -22163,6 +22237,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -22178,6 +22253,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -22618,6 +22694,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -22633,6 +22710,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -23495,6 +23573,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -23510,6 +23589,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -23950,6 +24030,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -23965,6 +24046,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -24405,6 +24487,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -24420,6 +24503,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -25221,6 +25305,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -25236,6 +25321,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -25663,6 +25749,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -25678,6 +25765,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -26105,6 +26193,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -26120,6 +26209,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -27074,6 +27164,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -27089,6 +27180,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -27537,6 +27629,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -27552,6 +27645,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -28000,6 +28094,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -28015,6 +28110,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -29031,6 +29127,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -29046,6 +29143,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -29494,6 +29592,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -29509,6 +29608,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -29957,6 +30057,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -29972,6 +30073,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -30988,6 +31090,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -31003,6 +31106,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -31451,6 +31555,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -31466,6 +31571,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -31914,6 +32020,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -31929,6 +32036,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -32906,6 +33014,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -32921,6 +33030,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -33366,6 +33476,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -33381,6 +33492,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -33826,6 +33938,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -33841,6 +33954,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -34792,6 +34906,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -34807,6 +34922,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -35251,6 +35367,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -35266,6 +35383,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -35710,6 +35828,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -35725,6 +35844,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -36672,6 +36792,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -36687,6 +36808,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -37131,6 +37253,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -37146,6 +37269,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -37590,6 +37714,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -37605,6 +37730,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -38430,6 +38556,7 @@ class _$FileInputFieldImpl implements FileInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -38445,6 +38572,7 @@ class _$FileInputFieldImpl implements FileInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -38872,6 +39000,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -38887,6 +39016,7 @@ class _$FileInputFieldImpl implements FileInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -39314,6 +39444,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -39329,6 +39460,7 @@ class _$FileInputFieldImpl implements FileInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -40107,6 +40239,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -40122,6 +40255,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -40549,6 +40683,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -40564,6 +40699,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -40991,6 +41127,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -41006,6 +41143,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -41771,6 +41909,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -41786,6 +41925,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -42213,6 +42353,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -42228,6 +42369,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -42655,6 +42797,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -42670,6 +42813,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -43437,6 +43581,7 @@ class _$MapFieldImpl implements MapField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -43452,6 +43597,7 @@ class _$MapFieldImpl implements MapField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -43879,6 +44025,7 @@ class _$MapFieldImpl implements MapField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -43894,6 +44041,7 @@ class _$MapFieldImpl implements MapField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -44321,6 +44469,7 @@ class _$MapFieldImpl implements MapField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -44336,6 +44485,7 @@ class _$MapFieldImpl implements MapField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -44532,6 +44682,7 @@ abstract class _$$TableFieldImplCopyWith<$Res>
   $Res call(
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'tableId') String? tableId,
+      List<String>? headers,
       @JsonKey(name: 'label') String? label,
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'isRequired') bool isRequired,
@@ -44559,6 +44710,7 @@ class __$$TableFieldImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? tableId = freezed,
+    Object? headers = freezed,
     Object? label = freezed,
     Object? name = freezed,
     Object? isRequired = null,
@@ -44579,6 +44731,10 @@ class __$$TableFieldImplCopyWithImpl<$Res>
           ? _value.tableId
           : tableId // ignore: cast_nullable_to_non_nullable
               as String?,
+      headers: freezed == headers
+          ? _value._headers
+          : headers // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       label: freezed == label
           ? _value.label
           : label // ignore: cast_nullable_to_non_nullable
@@ -44629,6 +44785,7 @@ class _$TableFieldImpl implements TableField {
   const _$TableFieldImpl(
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'tableId') this.tableId,
+      final List<String>? headers,
       @JsonKey(name: 'label') this.label,
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'isRequired') this.isRequired = false,
@@ -44642,7 +44799,8 @@ class _$TableFieldImpl implements TableField {
       @InputFieldConverter()
       final List<List<InputField>>? inputFields,
       final String? $type})
-      : _inputFields = inputFields,
+      : _headers = headers,
+        _inputFields = inputFields,
         $type = $type ?? 'table';
 
   factory _$TableFieldImpl.fromJson(Map<String, dynamic> json) =>
@@ -44654,6 +44812,16 @@ class _$TableFieldImpl implements TableField {
   @override
   @JsonKey(name: 'tableId')
   final String? tableId;
+  final List<String>? _headers;
+  @override
+  List<String>? get headers {
+    final value = _headers;
+    if (value == null) return null;
+    if (_headers is EqualUnmodifiableListView) return _headers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'label')
   final String? label;
@@ -44698,7 +44866,7 @@ class _$TableFieldImpl implements TableField {
 
   @override
   String toString() {
-    return 'InputField.table(id: $id, tableId: $tableId, label: $label, name: $name, isRequired: $isRequired, requiredErrorText: $requiredErrorText, description: $description, visible: $visible, readOnly: $readOnly, answer: $answer, isRow: $isRow, inputFields: $inputFields)';
+    return 'InputField.table(id: $id, tableId: $tableId, headers: $headers, label: $label, name: $name, isRequired: $isRequired, requiredErrorText: $requiredErrorText, description: $description, visible: $visible, readOnly: $readOnly, answer: $answer, isRow: $isRow, inputFields: $inputFields)';
   }
 
   @override
@@ -44708,6 +44876,7 @@ class _$TableFieldImpl implements TableField {
             other is _$TableFieldImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.tableId, tableId) || other.tableId == tableId) &&
+            const DeepCollectionEquality().equals(other._headers, _headers) &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.isRequired, isRequired) ||
@@ -44731,6 +44900,7 @@ class _$TableFieldImpl implements TableField {
       runtimeType,
       id,
       tableId,
+      const DeepCollectionEquality().hash(_headers),
       label,
       name,
       isRequired,
@@ -45156,6 +45326,7 @@ class _$TableFieldImpl implements TableField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -45171,6 +45342,7 @@ class _$TableFieldImpl implements TableField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -45186,8 +45358,20 @@ class _$TableFieldImpl implements TableField {
             List<List<InputField>>? inputFields)
         advtable,
   }) {
-    return table(id, tableId, label, name, isRequired, requiredErrorText,
-        description, visible, readOnly, answer, isRow, inputFields);
+    return table(
+        id,
+        tableId,
+        headers,
+        label,
+        name,
+        isRequired,
+        requiredErrorText,
+        description,
+        visible,
+        readOnly,
+        answer,
+        isRow,
+        inputFields);
   }
 
   @override
@@ -45598,6 +45782,7 @@ class _$TableFieldImpl implements TableField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -45613,6 +45798,7 @@ class _$TableFieldImpl implements TableField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -45628,8 +45814,20 @@ class _$TableFieldImpl implements TableField {
             List<List<InputField>>? inputFields)?
         advtable,
   }) {
-    return table?.call(id, tableId, label, name, isRequired, requiredErrorText,
-        description, visible, readOnly, answer, isRow, inputFields);
+    return table?.call(
+        id,
+        tableId,
+        headers,
+        label,
+        name,
+        isRequired,
+        requiredErrorText,
+        description,
+        visible,
+        readOnly,
+        answer,
+        isRow,
+        inputFields);
   }
 
   @override
@@ -46040,6 +46238,7 @@ class _$TableFieldImpl implements TableField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -46055,6 +46254,7 @@ class _$TableFieldImpl implements TableField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -46072,8 +46272,20 @@ class _$TableFieldImpl implements TableField {
     required TResult orElse(),
   }) {
     if (table != null) {
-      return table(id, tableId, label, name, isRequired, requiredErrorText,
-          description, visible, readOnly, answer, isRow, inputFields);
+      return table(
+          id,
+          tableId,
+          headers,
+          label,
+          name,
+          isRequired,
+          requiredErrorText,
+          description,
+          visible,
+          readOnly,
+          answer,
+          isRow,
+          inputFields);
     }
     return orElse();
   }
@@ -46193,6 +46405,7 @@ abstract class TableField implements InputField {
   const factory TableField(
       {@JsonKey(name: 'id') required final String id,
       @JsonKey(name: 'tableId') final String? tableId,
+      final List<String>? headers,
       @JsonKey(name: 'label') final String? label,
       @JsonKey(name: 'name') final String? name,
       @JsonKey(name: 'isRequired') final bool isRequired,
@@ -46214,6 +46427,7 @@ abstract class TableField implements InputField {
   String get id;
   @JsonKey(name: 'tableId')
   String? get tableId;
+  List<String>? get headers;
   @override
   @JsonKey(name: 'label')
   String? get label;
@@ -46258,6 +46472,7 @@ abstract class _$$AdvTableFieldImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'id') String id,
+      List<String>? headers,
       @JsonKey(name: 'tableId') String? tableId,
       @JsonKey(name: 'label') String? label,
       @JsonKey(name: 'name') String? name,
@@ -46285,6 +46500,7 @@ class __$$AdvTableFieldImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
+    Object? headers = freezed,
     Object? tableId = freezed,
     Object? label = freezed,
     Object? name = freezed,
@@ -46302,6 +46518,10 @@ class __$$AdvTableFieldImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
+      headers: freezed == headers
+          ? _value._headers
+          : headers // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
       tableId: freezed == tableId
           ? _value.tableId
           : tableId // ignore: cast_nullable_to_non_nullable
@@ -46355,6 +46575,7 @@ class __$$AdvTableFieldImplCopyWithImpl<$Res>
 class _$AdvTableFieldImpl implements AdvTableField {
   const _$AdvTableFieldImpl(
       {@JsonKey(name: 'id') required this.id,
+      final List<String>? headers,
       @JsonKey(name: 'tableId') this.tableId,
       @JsonKey(name: 'label') this.label,
       @JsonKey(name: 'name') this.name,
@@ -46369,7 +46590,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
       @InputFieldConverter()
       final List<List<InputField>>? inputFields,
       final String? $type})
-      : _inputFields = inputFields,
+      : _headers = headers,
+        _inputFields = inputFields,
         $type = $type ?? 'advtable';
 
   factory _$AdvTableFieldImpl.fromJson(Map<String, dynamic> json) =>
@@ -46378,6 +46600,16 @@ class _$AdvTableFieldImpl implements AdvTableField {
   @override
   @JsonKey(name: 'id')
   final String id;
+  final List<String>? _headers;
+  @override
+  List<String>? get headers {
+    final value = _headers;
+    if (value == null) return null;
+    if (_headers is EqualUnmodifiableListView) return _headers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   @JsonKey(name: 'tableId')
   final String? tableId;
@@ -46425,7 +46657,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
 
   @override
   String toString() {
-    return 'InputField.advtable(id: $id, tableId: $tableId, label: $label, name: $name, isRequired: $isRequired, requiredErrorText: $requiredErrorText, description: $description, visible: $visible, readOnly: $readOnly, answer: $answer, isRow: $isRow, inputFields: $inputFields)';
+    return 'InputField.advtable(id: $id, headers: $headers, tableId: $tableId, label: $label, name: $name, isRequired: $isRequired, requiredErrorText: $requiredErrorText, description: $description, visible: $visible, readOnly: $readOnly, answer: $answer, isRow: $isRow, inputFields: $inputFields)';
   }
 
   @override
@@ -46434,6 +46666,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
         (other.runtimeType == runtimeType &&
             other is _$AdvTableFieldImpl &&
             (identical(other.id, id) || other.id == id) &&
+            const DeepCollectionEquality().equals(other._headers, _headers) &&
             (identical(other.tableId, tableId) || other.tableId == tableId) &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.name, name) || other.name == name) &&
@@ -46457,6 +46690,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
   int get hashCode => Object.hash(
       runtimeType,
       id,
+      const DeepCollectionEquality().hash(_headers),
       tableId,
       label,
       name,
@@ -46883,6 +47117,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -46898,6 +47133,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
         table,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -46913,8 +47149,20 @@ class _$AdvTableFieldImpl implements AdvTableField {
             List<List<InputField>>? inputFields)
         advtable,
   }) {
-    return advtable(id, tableId, label, name, isRequired, requiredErrorText,
-        description, visible, readOnly, answer, isRow, inputFields);
+    return advtable(
+        id,
+        headers,
+        tableId,
+        label,
+        name,
+        isRequired,
+        requiredErrorText,
+        description,
+        visible,
+        readOnly,
+        answer,
+        isRow,
+        inputFields);
   }
 
   @override
@@ -47325,6 +47573,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -47340,6 +47589,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
         table,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -47357,6 +47607,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
   }) {
     return advtable?.call(
         id,
+        headers,
         tableId,
         label,
         name,
@@ -47778,6 +48029,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
     TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
@@ -47793,6 +48045,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
         table,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            List<String>? headers,
             @JsonKey(name: 'tableId') String? tableId,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'name') String? name,
@@ -47810,8 +48063,20 @@ class _$AdvTableFieldImpl implements AdvTableField {
     required TResult orElse(),
   }) {
     if (advtable != null) {
-      return advtable(id, tableId, label, name, isRequired, requiredErrorText,
-          description, visible, readOnly, answer, isRow, inputFields);
+      return advtable(
+          id,
+          headers,
+          tableId,
+          label,
+          name,
+          isRequired,
+          requiredErrorText,
+          description,
+          visible,
+          readOnly,
+          answer,
+          isRow,
+          inputFields);
     }
     return orElse();
   }
@@ -47930,6 +48195,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
 abstract class AdvTableField implements InputField {
   const factory AdvTableField(
       {@JsonKey(name: 'id') required final String id,
+      final List<String>? headers,
       @JsonKey(name: 'tableId') final String? tableId,
       @JsonKey(name: 'label') final String? label,
       @JsonKey(name: 'name') final String? name,
@@ -47950,6 +48216,7 @@ abstract class AdvTableField implements InputField {
   @override
   @JsonKey(name: 'id')
   String get id;
+  List<String>? get headers;
   @JsonKey(name: 'tableId')
   String? get tableId;
   @override
