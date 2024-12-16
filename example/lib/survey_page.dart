@@ -79,6 +79,7 @@ class _SurveyPageState extends State<SurveyPage> {
         hasGeolocation: false,
         hasAutoSave: true,
         autoSave: (formValue) {
+          log('yaha aayo but print vayena');
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
@@ -179,7 +180,7 @@ class _SurveyPageState extends State<SurveyPage> {
             }
             return e;
           }).toList();
-          // log('after' + jsonEncode(valueList).toString());
+          log('after' + jsonEncode(valueList).toString());
         },
         onSave: (formValue) {
           Map<String, dynamic> data = widget.formData;
