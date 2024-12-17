@@ -2,83 +2,6 @@
     "title": "Test All widget Form",
     "elements": [ 
         {
-            "type": "text",
-            "name": "firstName",
-            "id": "firstName",
-            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": true,
-            "requiredErrorText": "First name is required",
-            "autocomplete": "name",
-            "answer": "",
-            "placeholder": "First Name placeholder"
-        },
-        {
-            "type": "date",
-            "name": "date1",
-            "id": "date1",
-            "title": "Enter date to have leave"
-        }, 
-        {
-
-            "id": "item-d75f109d-72bb-4e8d-893a-2639e3144db9",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Single Select Dropdown",
-            "choice": [
-                {
-                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-6b2a4812-6176-4272-80fb-d98da29f76c0",
-                    "label": "Option 2"
-                },
-                {
-                    "id": "item-d0b12e45-5d03-44dd-a451-b712d2c597a8",
-                    "label": "Option 3"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-c59f7fed-a5a0-4372-b3e7-622160c74ed0",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Single Select Dropdown",
-            "choice": [
-                {
-                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-243651fa-a97e-405e-8d34-db55bf9dab29",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Single Select Dropdown",
-            "choice": [
-                {
-                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
             "id": "item-124bf961-c2ff-4a44-b4f8-dad21aa5bd0a",
             "name": "Single Select Dropdown",
             "type": "dropdown",
@@ -91,73 +14,15 @@
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-8166ec96-fa58-41a0-b704-4973b0235492",
-            "name": "Multi-Select Dropdown",
+            "id": "item-124bf961-c2ff-4a44-b4f8-dad21aa5bd9a",
+            "name": "Multi Select Dropdown",
             "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
-            "choice": [
-                {
-                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
-                    "label": "Optional1",
-                    "action": true,
-                    "notify_To": [
-                        {
-                            "id": 25,
-                            "email": "prabin@varicon.com.au",
-                            "label": "Prabin Tharu"
-                        }
-                    ]
-                },
-                {
-                    "id": "item-8fc125c2-a1dd-4560-a46b-27cb9244816b",
-                    "label": "Option 2"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-23516b19-ebe1-4e5f-89e8-93cdd9cb8d5c",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
-            "choice": [
-                {
-                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-e7d739ee-9de6-4f33-a3a2-d04bc8c11b65",
-                    "label": "Option 2"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-e40bde85-bd42-40d0-93ec-da5fb49879c1",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
+            "label": "Multi Select Dropdown",
             "choice": [],
             "isRequired": true,
             "isConditional": false,
             "fromManualList": false,
-            "islinked_query": "employee",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-60b0dc71-16b0-4806-97da-80d541b00a84",
-            "name": "Multiple Signature",
-            "type": "multisignature",
-            "label": "Multiple Signature",
-            "isRequired": true,
+            "islinked_query": "project",
             "selectedLinkListLabel": ""
         }
     ],

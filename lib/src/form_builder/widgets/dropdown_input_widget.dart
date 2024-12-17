@@ -138,9 +138,10 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                       widget.field.id,
                       data.value,
                     );
-                    // setState(() {
-                    formCon.text = data.text;
-                    // });
+
+                    setState(() {
+                      formCon.text = data.text;
+                    });
                   },
                 ),
               );

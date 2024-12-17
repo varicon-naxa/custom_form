@@ -79,6 +79,7 @@ class _SurveyPageState extends State<SurveyPage> {
         hasGeolocation: false,
         hasAutoSave: true,
         autoSave: (formValue) {
+          log('yaha aayo but print vayena');
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
@@ -130,6 +131,8 @@ class _SurveyPageState extends State<SurveyPage> {
         },
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
+          // log('Defore' + jsonEncode(formValue).toString());
+
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
@@ -177,7 +180,7 @@ class _SurveyPageState extends State<SurveyPage> {
             }
             return e;
           }).toList();
-          log(jsonEncode(valueList).toString());
+          log('after' + jsonEncode(valueList).toString());
         },
         onSave: (formValue) {
           Map<String, dynamic> data = widget.formData;
@@ -196,41 +199,41 @@ class _SurveyPageState extends State<SurveyPage> {
           if (mapData['page'] == '1' && mapData['q'].toString().isEmpty) {
             await Future.delayed(const Duration(seconds: 2));
             return [
-              {"value": '12345', "text": 'equipment1'},
-              {"value": '54123', "text": 'equipment2'},
-              {"value": '123461', "text": 'equipment3'},
-              {"value": '123462', "text": 'equipment31'},
-              {"value": '123463', "text": 'equipment32'},
-              {"value": '123464', "text": 'equipment33'},
-              {"value": '123465', "text": 'equipment34'},
-              {"value": '123466', "text": 'equipment35'},
-              {"value": '123467', "text": 'equipment36'},
-              {"value": '123468', "text": 'equipment37'},
-              {"value": '123469', "text": 'equipment38'},
-              {"value": '1234610', "text": 'equipment39'},
-              {"value": '1234611', "text": 'equipment310'},
+              {"id": '12345', "label": 'equipment1'},
+              {"id": '54123', "label": 'equipment2'},
+              {"id": '123461', "label": 'equipment3'},
+              {"id": '123462', "label": 'equipment31'},
+              {"id": '123463', "label": 'equipment32'},
+              {"id": '123464', "label": 'equipment33'},
+              {"id": '123465', "label": 'equipment34'},
+              {"id": '123466', "label": 'equipment35'},
+              {"id": '123467', "label": 'equipment36'},
+              {"id": '123468', "label": 'equipment37'},
+              {"id": '123469', "label": 'equipment38'},
+              {"id": '1234610', "label": 'equipment39'},
+              {"id": '1234611', "label": 'equipment310'},
             ];
           } else if (mapData['page'] == '2') {
             await Future.delayed(const Duration(seconds: 5));
             return [
-              {'value': '123451', 'text': 'equipment4'},
-              {'value': '541213', 'text': 'equipment5'},
-              {'value': '123146', 'text': 'equipment6'},
+              {'id': '123451', 'label': 'equipment4'},
+              {'id': '541213', 'label': 'equipment5'},
+              {'id': '123146', 'label': 'equipment6'},
             ];
           } else if (mapData['page'] == '1' &&
               mapData['q'].toString().isNotEmpty) {
             await Future.delayed(const Duration(seconds: 5));
             return [
-              {'value': '121345', 'text': 'equipment7'},
-              {'value': '5411123', 'text': 'equipment8'},
-              {'value': '123416', 'text': 'equipment9'},
+              {'id': '121345', 'label': 'equipment7'},
+              {'id': '5411123', 'label': 'equipment8'},
+              {'id': '123416', 'label': 'equipment9'},
             ];
           } else {
             await Future.delayed(const Duration(seconds: 5));
             return [
-              {'value': '132345', 'text': 'equipment10'},
-              {'value': '154123', 'text': 'equipment11'},
-              {'value': '212346', 'text': 'equipment12'},
+              {'id': '132345', 'label': 'equipment10'},
+              {'id': '154123', 'label': 'equipment11'},
+              {'id': '212346', 'label': 'equipment12'},
             ];
           }
         },

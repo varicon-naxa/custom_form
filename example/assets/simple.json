@@ -4,61 +4,234 @@
     "name": "",
     "version": "1.0.0",
     "elements": [
+
         {
-            "type": "text",
-            "name": "long",
-            "id": "longetetesdast",
-            "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
+            "id": "item-4e8dbd5b-ae69-4d5f-99cd-4f6a6f631583",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Column 1",
+                "Column 2",
+                "Column 3"
+            ],
+            "contents": [
+                [
+                    {
+                        "id": "item-d7b5d500-b996-4517-a0ac-dbc3609b2360",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Column 1",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-8a27ec37-a35e-4249-9979-2a55e8be2418",
+                                "type": "option",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-7c625745-d90b-4fe6-88ef-f34759d5e8fe",
+                                "type": "option",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-95f6fb1a-b403-4cd2-a943-a26a625551db",
+                                "type": "option",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-0f380f84-b1e5-4659-8960-46aff2189666",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Column 2",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-548fb6b1-a770-4230-87fa-d0fce95562c6",
+                                "type": "option",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-d118a041-1510-4fdd-9ea9-231d46f4e28d",
+                                "type": "option",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-150fa091-ad6b-40a3-9931-4a5b04969c0b",
+                                "type": "option",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            },
+                            {
+                                "id": "item-71d4ca05-e2e8-4171-9fec-7042f46ca819",
+                                "type": "option",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": false
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-2463eedc-3c08-43c7-8f68-1ea6d062242b",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Column 3",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "supplier"
+                    }
+                ]
+            ],
             "isRequired": false,
-            "requiredErrorText": "First name is required",
-            "autocomplete": "name",
-            "maxLength": 30,
-            "answer": "",
-            "placeholder": "First Name placeholder"
-        },
-        {
-            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
-            "name": "Phone Number",
-            "type": "phone",
-            "label": "Primary Phone number",
-            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11444",
+            "id": "item-af251d12-b924-4f06-95ba-c74d743fe111",
             "name": "Simple Table",
-            "type": "table",
-            "label": "Simple Table Example",
-            "isRequired": true,
-            "selectedLinkListLabel": "",
-            "maxRow":5,
+            "type": "advtable",
+            "isRow": false,
+            "label": "Advance Table",
             "contents": [
-                {
-                    "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11445",
-                    "name": "Name",
-                    "type": "text",
-                    "label": "Name",
-                    "isRequired": true,
-                    "selectedLinkListLabel": ""
-                },
-                {
-                    "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11446",
-                    "name": "Age",
-                    "type": "number",
-                    "label": "Age",
-                    "isRequired": false,
-                    "selectedLinkListLabel": ""
-                },
-                {
-                    "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43f",
-                    "name": "Signature",
-                    "type": "signature",
-                    "label": "Signature",
-                    "answer": {},
-                    "isRequired": true,
-                    "selectedLinkListLabel": ""
-                }
-            ]
+                [
+                    {
+                        "id": "item-104b8659-d888-43a2-90e9-5f8129e1ffa8",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Multi select dropdown",
+                        "answer": "",
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "project"
+                    }, {
+                        "type": "dropdown",
+                        "id": "select1",
+                        "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+                        "isRequired": true,
+                        "requiredErrorText": "Drop down is required",
+                        "commentPlaceholder": "comment are place",
+                        "fromManualList": false,
+                        "islinked": true,
+                        "choice": [
+                            {
+                                "value": "item1",
+                                "text": "This is item 1."
+                            },
+                            {
+                                "value": "item2",
+                                "text": "This is item 2."
+                            },
+                            {
+                                "value": "item3",
+                                "text": "This is item 3."
+                            },
+                            {
+                                "value": "item4",
+                                "text": "This is item 4."
+                            },
+                            {
+                                "value": "item5",
+                                "text": "This is item 5."
+                            }
+                        ],
+                        "showOtherItem": true,
+                        "showNoneItem": true,
+                        "otherErrorText": "Empty comment required",
+                        "placeholder": "Select...OKkk"
+                    }
+                ],
+                [
+                    {
+                        "id": "item-104b8659-d888-43a2-90e9-5f8129e1ffa4",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Multi select dropdown",
+                        "answer": "",
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "project"
+                    }, {
+                        "type": "dropdown",
+                        "id": "select12",
+                        "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+                        "isRequired": true,
+                        "requiredErrorText": "Drop down is required",
+                        "commentPlaceholder": "comment are place",
+                        "fromManualList": false,
+                        "islinked": true,
+                        "choice": [
+                            {
+                                "value": "item1",
+                                "text": "This is item 1."
+                            },
+                            {
+                                "value": "item2",
+                                "text": "This is item 2."
+                            },
+                            {
+                                "value": "item3",
+                                "text": "This is item 3."
+                            },
+                            {
+                                "value": "item4",
+                                "text": "This is item 4."
+                            },
+                            {
+                                "value": "item5",
+                                "text": "This is item 5."
+                            }
+                        ],
+                        "showOtherItem": true,
+                        "showNoneItem": true,
+                        "otherErrorText": "Empty comment required",
+                        "placeholder": "Select...OKkk"
+                    }
+                ]
+               
+            ],
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         }
     ]
 }
