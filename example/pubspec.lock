@@ -685,6 +685,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.3.0"
+<<<<<<< HEAD
   image_editor:
     dependency: transitive
     description:
@@ -717,6 +718,8 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+=======
+>>>>>>> b0aecbe405297ea2f551fe751e21ee208829a09e
   image_picker:
     dependency: transitive
     description:
