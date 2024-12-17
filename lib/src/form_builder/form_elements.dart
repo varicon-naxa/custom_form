@@ -402,6 +402,14 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
               newValue.toString().trim(),
             );
           },
+          onChanged: (newValue) {
+            // htmlEditorController.editorController!
+            //     .clearFocus();
+            widget.formValue.saveString(
+              field.id,
+              newValue.toString().trim(),
+            );
+          },
           inputFormatters: [
             FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
             TextInputFormatter.withFunction((oldValue, newValue) {
@@ -518,6 +526,14 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
               newValue.toString().trim(),
             );
           },
+          onChanged: (newValue) {
+            // htmlEditorController.editorController!
+            //     .clearFocus();
+            widget.formValue.saveString(
+              field.id,
+              newValue.toString().trim(),
+            );
+          },
           validator: (value) {
             return textValidator(
               value: value,
@@ -558,6 +574,14 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
           maxLength: field.maxLength,
           textInputAction: TextInputAction.next,
           onSaved: (newValue) {
+            // htmlEditorController.editorController!
+            //     .clearFocus();
+            widget.formValue.saveString(
+              field.id,
+              newValue.toString().trim(),
+            );
+          },
+          onChanged: (newValue) {
             // htmlEditorController.editorController!
             //     .clearFocus();
             widget.formValue.saveString(
@@ -1764,3 +1788,315 @@ class _TableInputWidgetState extends State<TableInputWidget> {
     );
   }
 }
+
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:uuid/uuid.dart';
+// import 'package:varicon_form_builder/varicon_form_builder.dart';
+
+// import '../../models/form_value.dart';
+// import '../form_elements.dart';
+// import 'expandable_widget.dart';
+// import 'labeled_widget.dart';
+
+// /// Table input widget that handles both row and column based layouts
+// class TableInputWidget extends StatefulWidget {
+//   final TableField field;
+//   final String labelText;
+//   final bool isRequired;
+//   final TableStateManager tableManager;
+//   final Widget Function(InputField, BuildContext, {bool haslabel}) inputBuilder;
+
+//   const TableInputWidget({
+//     super.key,
+//     required this.field,
+//     required this.labelText,
+//     required this.isRequired,
+//     required this.tableManager,
+//     required this.inputBuilder,
+//   });
+
+//   @override
+//   State<TableInputWidget> createState() => _TableInputWidgetState();
+// }
+
+// class _TableInputWidgetState extends State<TableInputWidget> {
+//   late TableField currentField;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     currentField = widget.tableManager.getTableState(widget.field.id) ?? widget.field;
+//     widget.tableManager.addListener(_onTableStateChanged);
+//   }
+
+  
+
+//   @override
+//   void dispose() {
+//     widget.tableManager.removeListener(_onTableStateChanged);
+//     super.dispose();
+//   }
+
+//   void _onTableStateChanged() {
+//     setState(() {
+//       currentField = widget.tableManager.getTableState(widget.field.id) ?? widget.field;
+//     });
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return LabeledWidget(
+//       labelText: widget.labelText,
+//       isRequired: widget.isRequired,
+//       child: Column(
+//         crossAxisAlignment: CrossAxisAlignment.start,
+//         children: [
+//           if (currentField.isRow)
+//             _buildRowBasedTable(context)
+//           else
+//             _buildColumnBasedTable(context),
+          
+//           const SizedBox(height: 8),
+          
+//           OutlinedButton.icon(
+//             style: OutlinedButton.styleFrom(
+//               shape: RoundedRectangleBorder(
+//                 borderRadius: BorderRadius.circular(5),
+//               ),
+//               side: const BorderSide(color: Colors.grey),
+//             ),
+//             onPressed: () async {
+//               await widget.tableManager.addRow(currentField);
+//             },
+//             icon: const Icon(Icons.add),
+//             label: const Text('Add Row'),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+
+//   Widget _buildRowBasedTable(BuildContext context) {
+//     return Column(
+//       children: [
+//         for (int index = 0; index < (currentField.inputFields?.length ?? 0); index++)
+//           _buildTableRow(context, index),
+//       ],
+//     );
+//   }
+
+//   Widget _buildTableRow(BuildContext context, int index) {
+//     return Padding(
+//       padding: const EdgeInsets.only(bottom: 8),
+//       child: ExpandableWidget(
+//         key: ValueKey('table_row_${currentField.id}_$index'),
+//         expandableHeader: TableExpandableHeaderWidget(
+//           index: index,
+//           field: currentField,
+//         ),
+//         expandedHeader: TableExpandableHeaderWidget(
+//           index: index,
+//           field: currentField,
+//           isExpanded: true,
+//         ),
+//         expandableChild: Container(
+//           color: Colors.grey.shade200,
+//           child: Column(
+//             children: (currentField.inputFields?[index] ?? []).map<Widget>((item) {
+//               return Padding(
+//                 padding: const EdgeInsets.symmetric(horizontal: 8),
+//                 child: widget.inputBuilder(item, context, haslabel: true),
+//               );
+//             }).toList(),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget _buildColumnBasedTable(BuildContext context) {
+//     return Column(
+//       children: [
+//         for (int columnIndex = 0; 
+//              columnIndex < ((currentField.inputFields ?? [])[0]).length; 
+//              columnIndex++)
+//           _buildColumnSection(context, columnIndex),
+//       ],
+//     );
+//   }
+
+//   Widget _buildColumnSection(BuildContext context, int columnIndex) {
+//     return Container(
+//       decoration: BoxDecoration(
+//         color: const Color(0xffF5F5F5),
+//         borderRadius: BorderRadius.circular(8.0),
+//       ),
+//       padding: const EdgeInsets.all(8),
+//       margin: const EdgeInsets.only(bottom: 12),
+//       child: ExpandableWidget(
+//         initialExpanded: true,
+//         expandableHeader: _buildColumnHeader(columnIndex, false),
+//         expandedHeader: _buildColumnHeader(columnIndex, true),
+//         expandableChild: Column(
+//           children: (currentField.inputFields ?? []).asMap().entries.map((entry) {
+//             final rowIndex = entry.key;
+//             final row = entry.value;
+//             return Padding(
+//               padding: const EdgeInsets.symmetric(horizontal: 8),
+//               child: widget.inputBuilder(
+//                 row[columnIndex], 
+//                 context,
+//                 haslabel: rowIndex <= 0,
+//               ),
+//             );
+//           }).toList(),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Widget _buildColumnHeader(int columnIndex, bool isExpanded) {
+//     return Padding(
+//       padding: EdgeInsets.only(bottom: isExpanded ? 8 : 0),
+//       child: Row(
+//         children: [
+//           Text('Column ${columnIndex + 1}'),
+//           const Spacer(),
+//           Icon(isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down)
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+
+// /// A manager class that handles the state and operations for dynamic tables in forms.
+// /// 
+// /// This class manages:
+// /// - Table states and their modifications
+// /// - Row visibility
+// /// - Form value updates
+// /// - Row addition and generation
+// /// 
+// /// It extends [ChangeNotifier] to provide state change notifications to listeners.
+// class TableStateManager extends ChangeNotifier {
+//   /// Internal storage for table states indexed by table ID
+//   final Map<String, TableField> _tableStates = {};
+
+//   /// Tracks visibility of rows for each table
+//   final Map<String, List<bool>> _visibleRows = {};
+
+//   /// Reference to the form value object for persisting changes
+//   final FormValue formValue;
+
+//   /// Creates a new TableStateManager instance.
+//   /// 
+//   /// [formValue] is required to persist table state changes to the form.
+//   TableStateManager(this.formValue);
+
+//   /// Initializes a table's state with the provided field configuration.
+//   /// 
+//   /// This method:
+//   /// - Sets up the initial table state
+//   /// - Initializes row visibility
+//   /// - Saves the initial state to form value
+//   /// - Notifies listeners of the initialization
+//   /// 
+//   /// [field] The table field configuration to initialize
+//   void initializeTable(TableField field) {
+//     _tableStates[field.id] = field;
+//     _visibleRows[field.id] = 
+//         List.generate((field.inputFields ?? []).length, (_) => true);
+//     formValue.saveTableField(field.id, field);
+//     notifyListeners();
+//   }
+
+//   /// Adds a new row to the specified table.
+//   /// 
+//   /// This method:
+//   /// - Creates a new row based on the first row's template
+//   /// - Generates new unique IDs for all fields in the new row
+//   /// - Updates the table state with the new row
+//   /// - Updates row visibility
+//   /// - Persists changes to form value
+//   /// - Notifies listeners of the change
+//   /// 
+//   /// [field] The table field to add a row to
+//   Future<void> addRow(TableField field) async {
+//     if ((field.inputFields ?? []).isEmpty) return;
+
+//     List<InputField> newRow = (field.inputFields ?? [])[0].map((field) {
+//       return _generateNewFieldId(field);
+//     }).toList();
+
+//     List<List<InputField>> updatedRows = 
+//         List.from(field.inputFields ?? [])..add(newRow);
+    
+//     TableField updatedField = field.copyWith(
+//       inputFields: updatedRows,
+//       id: field.id,
+//     );
+
+//     _tableStates[field.id] = updatedField;
+//     _visibleRows[field.id] = List.from(_visibleRows[field.id] ?? [])..add(true);
+//     formValue.saveTableField(field.id, updatedField);
+//     notifyListeners();
+//   }
+
+//   /// Retrieves the current state of a table by its ID.
+//   /// 
+//   /// Returns null if the table state doesn't exist.
+//   /// 
+//   /// [id] The ID of the table to retrieve
+//   TableField? getTableState(String id) => _tableStates[id];
+
+//   /// Gets the visibility state of rows for a specific table.
+//   /// 
+//   /// Returns an empty list if no visibility state exists.
+//   /// 
+//   /// [id] The ID of the table to get row visibility for
+//   List<bool> getVisibleRows(String id) => _visibleRows[id] ?? [];
+
+//   /// Generates a new unique ID for a field and its nested components.
+//   /// 
+//   /// This method:
+//   /// - Creates a deep copy of the field
+//   /// - Generates new UUIDs for all field IDs
+//   /// - Clears any existing answers or keys
+//   /// - Maintains other field properties
+//   /// 
+//   /// [field] The field to generate new IDs for
+//   /// Returns a new [InputField] with updated IDs
+//   InputField _generateNewFieldId(InputField field) {
+//     var uuid = const Uuid();
+    
+//     Map<String, dynamic> updateId(Map<String, dynamic> item) {
+//       return Map.from(item).map((key, value) {
+//         if (key == 'id' && value is String) {
+//           return MapEntry(key, 'item-${uuid.v4()}');
+//         }
+//         if (key == 'key' || key == 'answer') {
+//           return MapEntry(key, null);
+//         }
+//         if (value is Map<String, dynamic>) {
+//           return MapEntry(key, updateId(value));
+//         }
+//         if (value is List) {
+//           return MapEntry(
+//               key,
+//               value.map((e) => 
+//                   e is Map<String, dynamic> ? updateId(e) : e).toList());
+//         }
+//         return MapEntry(key, value);
+//       });
+//     }
+
+//     return InputField.fromJson(updateId(field.toJson()));
+//   }
+// }
+
+
+
