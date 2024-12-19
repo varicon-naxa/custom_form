@@ -1013,7 +1013,7 @@ _$TableFieldImpl _$$TableFieldImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       readOnly: json['readOnly'] as bool? ?? false,
-      answer: json['answer'] as String?,
+      answer: json['answer'] as List<dynamic>?,
       isRow: json['isRow'] as bool? ?? true,
       inputFields: (json['contents'] as List<dynamic>?)
           ?.map((e) => (e as List<dynamic>)
@@ -1057,7 +1057,7 @@ _$AdvTableFieldImpl _$$AdvTableFieldImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       readOnly: json['readOnly'] as bool? ?? false,
-      answer: json['answer'] as String?,
+      answer: json['answer'] as List<dynamic>?,
       isRow: json['isRow'] as bool? ?? true,
       inputFields: (json['contents'] as List<dynamic>?)
           ?.map((e) => (e as List<dynamic>)
