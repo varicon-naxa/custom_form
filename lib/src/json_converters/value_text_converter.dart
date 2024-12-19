@@ -22,8 +22,8 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
 
   @override
   Map<String, dynamic> toJson(ValueText object) => {
-        'value': object.value,
-        'text': object.text,
+        'id': object.value,
+        'label': object.text,
         'action': object.action,
         'isOtherField': object.isOtherField
       };
