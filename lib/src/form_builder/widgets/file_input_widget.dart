@@ -138,7 +138,7 @@ class _FileInputWidgetState extends State<FileInputWidget>
     }
     if (fromCamera) {
       final result = await getCameraImageFiles(
-        context: context,
+          context: context,
           locationData: widget.locationData,
           customPainter: widget.customPainter);
       saveFiletoServer(result, isMultiple: widget.field.isMultiple ?? false);
@@ -147,7 +147,9 @@ class _FileInputWidgetState extends State<FileInputWidget>
           type:
               widget.filetype == FileType.image ? FileType.image : FileType.any,
           allowMultiple: widget.field.isMultiple ?? false);
-      saveFiletoServer(result, isMultiple: widget.field.isMultiple ?? false);
+      if (result != null) {
+        saveFiletoServer(result, isMultiple: widget.field.isMultiple ?? false);
+      }
     }
   }
 
