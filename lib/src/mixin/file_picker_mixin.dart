@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:image_editor/image_editor.dart';
 import 'package:image_picker/image_picker.dart' as Picker;
+import 'package:mime/mime.dart';
 import 'package:intl/intl.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:path_provider/path_provider.dart';
@@ -26,81 +27,50 @@ mixin FilePickerMixin {
       onFileLoading: (status) {
         return const Center(child: CircularProgressIndicator());
       },
+      // type: FileType.any
       type: type,
       allowedExtensions: type == FileType.custom
-          ? ['doc', 'pdf', 'docx', 'xlsx', 'mp4', 'mp3']
+          ? ['doc', 'pdf', 'docx', 'xslx', 'docx', 'mp4', 'mp3', 'xlsx']
           : null,
     );
-
+    List<File> files = [];
     if (result != null) {
-      List<File> files = [];
-      int fileCount = result.count;
+      for (var e in result.paths) {
+        final file = File(e!);
+        if (await file.length() > 25000 * 1000) {
+          Fluttertoast.showToast(
+              msg: "The file may not be greater than 25 MB.",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0);
+        } else {
+          if (isImage(path: e)) {
+            final heicFormat = e.split('.').last.toLowerCase();
 
-      if (fileCount > 5) {
-        Fluttertoast.showToast(
-          msg: "You can only upload 5 files at a time.",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: Colors.red,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        // Process only the first 5 files
-        for (int i = 0; i < 5; i++) {
-          final filePath = result.paths[i];
-          if (filePath != null) {
-            final file = File(filePath);
-            if (await file.length() > 25 * 1024 * 1024) {
-              // 25 MB
-              Fluttertoast.showToast(
-                msg: "The file may not be greater than 25 MB.",
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0,
-              );
+            if (heicFormat == 'heic' || heicFormat == 'hevc') {
+              File compressedFile = await compressImage(e);
+              files.add(compressedFile);
             } else {
               files.add(file);
             }
-          }
-        }
-      } else {
-        for (var filePath in result.paths) {
-          if (filePath != null) {
-            final file = File(filePath);
-            if (await file.length() > 25 * 1024 * 1024) {
-              // 25 MB
-              Fluttertoast.showToast(
-                msg: "The file may not be greater than 25 MB.",
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.CENTER,
-                timeInSecForIosWeb: 1,
-                backgroundColor: Colors.red,
-                textColor: Colors.white,
-                fontSize: 16.0,
-              );
-            } else {
-              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
-                  file.path.split('.').last.toLowerCase() == 'heic' ||
-                  file.path.split('.').last.toLowerCase() == 'hevc') {
-                File compressedFile =
-                    await compressImage(file.path, quality: 10);
-                files.add(compressedFile);
-              } else {
-                files.add(file);
-              }
-            }
+          } else {
+            files.add(file);
           }
         }
       }
-
       return files;
     } else {
-      return null;
+      throw Exception('Failed to process image');
     }
+  }
+
+  bool isImage({required String path}) {
+    final mimeType = lookupMimeType(path) ?? '';
+
+    return mimeType.startsWith('image/');
   }
 
   // checks permission, file size, converts heic & hevc and gets the image file
@@ -195,13 +165,8 @@ mixin FilePickerMixin {
   }
 
   static Future<File> compressImage(String path, {int quality = 10}) async {
-    // var dir = Platform.isAndroid
-    //     ? (await DownloadsPathProvider.downloadsDirectory ??
-    //         await getApplicationSupportDirectory())
-    //     : await getApplicationSupportDirectory();
     try {
       var dir = await getApplicationSupportDirectory();
-
       final target =
           '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
       XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
@@ -215,7 +180,6 @@ mixin FilePickerMixin {
       return File(path);
     }
   }
-
   //convert Uint8List to File
   Future<File> convertUint8ListToFile(Uint8List uint8List) async {
     // Save the edited image to a new file
