@@ -63,7 +63,7 @@ mixin FilePickerMixin {
       }
       return files;
     } else {
-      throw Exception('Failed to process image');
+      return null ;
     }
   }
 
