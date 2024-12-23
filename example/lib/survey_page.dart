@@ -79,7 +79,6 @@ class _SurveyPageState extends State<SurveyPage> {
         hasGeolocation: false,
         hasAutoSave: true,
         autoSave: (formValue) {
-          log('yaha aayo but print vayena');
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
@@ -127,18 +126,17 @@ class _SurveyPageState extends State<SurveyPage> {
             }
             return e;
           }).toList();
-          log(jsonEncode(valueList).toString());
         },
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
-          // log('Defore' + jsonEncode(formValue).toString());
+          log('Defore' + jsonEncode(formValue).toString());
 
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);
 
           final valueList = elements.map((e) {
-            if (e['type'] == 'table') {
+            if (e['type'] == 'table' || e['type'] == 'advtable') {
               // Update table structure before applying answers
               e['contents'] = formValue[e['id']];
             }
@@ -276,7 +274,7 @@ class _SurveyPageState extends State<SurveyPage> {
           );
         },
         onFileClicked: (String stringURl) {},
-        customPainter: (data){
+        customPainter: (data) {
           return Container();
         },
         locationData: '',

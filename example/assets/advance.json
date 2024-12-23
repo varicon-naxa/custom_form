@@ -2,63 +2,27 @@
     "title": "Linked to list test is a type of list where we can add list here",
     "elements": [
         {
-            "id": "item-af251d12-b924-4f06-95ba-c74d743fe111",
+            "id": "item-eef4d38e-e657-4f82-86ac-173dfb1fa039",
             "name": "Advanced Table",
             "type": "advtable",
-            "isRow": true,
-            "label": "Advanced Table",
-            "headers": [
-                "Column 1",
-                "Column 2",
-                "Column 3"
-            ],
+            "label": "qustion one",
             "contents": [
                 [
                     {
-                        "id": "item-be3c4c27-df11-42e5-b832-abdc12262bc6",
-                        "name": "Image Upload",
-                        "type": "images",
-                        "label": "Column 1",
-                        "answer": [],
-                        "isMultiple": true,
-                        "isRequired": false,
-                        "initialAnswer": []
-                    },
-                    {
-                        "id": "item-ec975261-abce-4813-840e-8bf03043ac33",
-                        "name": "Time",
-                        "type": "time",
-                        "label": "Column 2",
-                        "answer": "",
-                        "isRequired": false,
-                        "initialAnswer": ""
-                    },
-                    {
-                        "id": "item-303d4a01-ade1-4af5-ba2b-d2fff2f08d94",
-                        "name": "Signature",
-                        "type": "signature",
-                        "label": "Column 3",
-                        "answer": {},
-                        "isRequired": false,
-                        "initialAnswer": {}
-                    }
-                ],
-                [
-                    {
-                        "id": "item-919d258b-c792-41b9-838c-8c3baae55b77",
+                        "id": "item-b288c75a-8faa-496d-9cf1-68aa714d809d",
                         "name": "Yes/No",
                         "type": "yesno",
-                        "label": "Column 1",
+                        "label": "yes no question",
                         "answer": "",
                         "choice": [
                             {
-                                "id": "item-8f524e74-b2e8-4158-8a4a-bd13250a8edc",
+                                "id": "item-e42f9f1c-6540-4557-90e3-7d8ef4ecdad9",
                                 "label": "Yes",
                                 "action": false,
                                 "notify_To": []
                             },
                             {
-                                "id": "item-39a9649f-2f2a-4fc2-ba2a-44ecf06205aa",
+                                "id": "item-bf450b59-6637-41bd-878c-c47b67cb1b5b",
                                 "label": "No",
                                 "action": false,
                                 "notify_To": []
@@ -66,33 +30,22 @@
                         ],
                         "isRequired": false,
                         "actionMessage": "",
-                        "initialAnswer": "",
                         "isConditional": false,
                         "fromManualList": true
-                    },
+                    }
+                ],
+                [
                     {
-                        "id": "item-a489674b-fc68-40ef-ae9f-6370bf5f907c",
-                        "name": "Date Time",
-                        "type": "datetimelocal",
-                        "label": "Column 2",
-                        "answer": "",
-                        "isRequired": false,
-                        "initialAnswer": ""
-                    },
-                    {
-                        "id": "item-cf75b07c-4358-4fd7-8d0e-fefcc4349c8c",
-                        "name": "Image Upload",
-                        "type": "images",
-                        "label": "Column 3",
-                        "answer": [],
-                        "isMultiple": true,
-                        "isRequired": false,
-                        "initialAnswer": []
+                        "id": "item-c39b17c1-ade1-40b1-9d33-c828705bb5cf",
+                        "name": "Signature",
+                        "type": "signature",
+                        "label": "Column 10",
+                        "answer": {},
+                        "isRequired": false
                     }
                 ]
             ],
-            "isRequired": false,
-            "selectedLinkListLabel": ""
+            "isRequired": false
         }
     ],
     "description": "Description is the describing method which describes the title in various way"

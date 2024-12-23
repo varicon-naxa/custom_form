@@ -17,6 +17,7 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 import '../../scroll/src/scroll_to_id.dart';
 import '../models/form_value.dart';
 import 'form_fields/date_time_form_field.dart';
+import 'form_fields/table_field.dart';
 import 'widgets/checkbox_input_widget.dart';
 import 'widgets/custom_location.dart';
 import 'widgets/datetime_input_widget.dart';
@@ -76,6 +77,9 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   final Map<GlobalKey<FormFieldState<dynamic>>, String> _fieldKeyToIdMap = {};
   bool isScrolled = false;
 
+  // Add a map to store table widget keys
+  final Map<String, GlobalKey<TableInputWidgetState>> _tableKeys = {};
+
   ScrollToId? scrollToId;
   final ScrollController scrollControllerId = ScrollController();
 
@@ -101,12 +105,13 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   void initState() {
     super.initState();
     _tableManager = TableStateManager(widget.formValue);
-    
+
     // Initialize form field keys and table states
     for (var field in widget.surveyForm.inputFields) {
       _formFieldKeys[field.id] = GlobalKey<FormFieldState>();
       if (field is TableField) {
         _tableManager.initializeTable(field);
+        _tableKeys[field.id] = GlobalKey<TableInputWidgetState>();
       }
     }
 
@@ -170,13 +175,10 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   ///method to add new row in simple table field
   void addNewRow(TableField field) {
     if ((field.inputFields ?? []).isNotEmpty) {
-
       /// Removes all the answers from the element and adds new id for each elements in the row
       List<InputField> newRow = (field.inputFields ?? [])[0].map((field) {
         return generateNewIdForField(field);
       }).toList();
-
-
 
       setState(() {
         List<List<InputField>>? updatedTableField =
@@ -195,32 +197,59 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     }
   }
 
-  void scrollToFirstInvalidField() {
-    // Form is invalid, find the first invalid field and scroll to it
-    FocusScope.of(context).requestFocus(FocusNode()); // Unfocus current field
-
-    // item-9304eeab-4bd9-4010-a332-86ce9e2ddf43
-    for (var entry in _fieldKeyToIdMap.entries) {
-      var fieldKey = entry.key;
-      var fieldId = entry.value;
-      log('fieldId: $fieldId');
-      log('fieldkey: $fieldKey');
-
-      if (fieldKey.currentState != null) {
-        if (!fieldKey.currentState!.validate()) {
-          scrollToId?.animateTo(fieldId,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeIn);
-          break;
-        } else {
-          log('fieldKey.currentState!.validate()2 ${fieldKey.currentState?.value}');
+String? _findParentTableId(String fieldId) {
+  // Iterate through all form fields
+  for (var field in widget.surveyForm.inputFields) {
+    // Check if the field is a table
+    if (field is TableField) {
+      // Check each row in the table's inputFields
+      for (var row in (field.inputFields ?? [])) {
+        // Check each field in the row
+        for (var inputField in row) {
+          // If we find the field ID we're looking for
+          if (inputField.id == fieldId) {
+            // Return the table's ID
+            return field.id;
+          }
         }
-      } else {
-        log('fieldKey.currentState!.validate()1 ${fieldKey.currentState?.value}');
       }
     }
   }
+  // Return null if field is not found in any table
+  return null;
+}
 
+  void scrollToFirstInvalidField() {
+    for (var entry in _fieldKeyToIdMap.entries) {
+      var fieldKey = entry.key;
+      var fieldId = entry.value;
+
+      if (fieldKey.currentState != null && !fieldKey.currentState!.validate()) {
+        // Find parent table ID if field is in a table
+        String? tableId = _findParentTableId(fieldId);
+
+        if (tableId != null && _tableKeys[tableId]?.currentState != null) {
+          // First scroll to the table
+          scrollToId?.animateTo(
+            tableId,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn,
+          );
+
+          // Then scroll to the specific field within the table
+          _tableKeys[tableId]?.currentState?.scrollToField(fieldId);
+        } else {
+          // Normal scroll for non-table elements
+          scrollToId?.animateTo(
+            fieldId,
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeIn,
+          );
+        }
+        break;
+      }
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return InteractiveScrollViewer(
@@ -1148,12 +1177,14 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     return ScrollContent(
       id: field.id,
       child: TableInputWidget(
+        key: _tableKeys[field.id], // Add the key here
+
         field: field,
         labelText: labelText,
         isRequired: field.isRequired,
         tableManager: _tableManager,
         inputBuilder: (field, context, {haslabel = true}) {
-          return _buildInputField(field, context, haslabel: haslabel) ?? 
+          return _buildInputField(field, context, haslabel: haslabel) ??
               const SizedBox.shrink();
         },
       ),
@@ -1496,13 +1527,13 @@ class Debouncer {
 }
 
 /// A manager class that handles the state and operations for dynamic tables in forms.
-/// 
+///
 /// This class manages:
 /// - Table states and their modifications
 /// - Row visibility
 /// - Form value updates
 /// - Row addition and generation
-/// 
+///
 /// It extends [ChangeNotifier] to provide state change notifications to listeners.
 class TableStateManager extends ChangeNotifier {
   /// Internal storage for table states indexed by table ID
@@ -1515,29 +1546,29 @@ class TableStateManager extends ChangeNotifier {
   final FormValue formValue;
 
   /// Creates a new TableStateManager instance.
-  /// 
+  ///
   /// [formValue] is required to persist table state changes to the form.
   TableStateManager(this.formValue);
 
   /// Initializes a table's state with the provided field configuration.
-  /// 
+  ///
   /// This method:
   /// - Sets up the initial table state
   /// - Initializes row visibility
   /// - Saves the initial state to form value
   /// - Notifies listeners of the initialization
-  /// 
+  ///
   /// [field] The table field configuration to initialize
   void initializeTable(TableField field) {
     _tableStates[field.id] = field;
-    _visibleRows[field.id] = 
+    _visibleRows[field.id] =
         List.generate((field.inputFields ?? []).length, (_) => true);
     formValue.saveTableField(field.id, field);
     notifyListeners();
   }
 
   /// Adds a new row to the specified table.
-  /// 
+  ///
   /// This method:
   /// - Creates a new row based on the first row's template
   /// - Generates new unique IDs for all fields in the new row
@@ -1545,7 +1576,7 @@ class TableStateManager extends ChangeNotifier {
   /// - Updates row visibility
   /// - Persists changes to form value
   /// - Notifies listeners of the change
-  /// 
+  ///
   /// [field] The table field to add a row to
   Future<void> addRow(TableField field) async {
     if ((field.inputFields ?? []).isEmpty) return;
@@ -1554,9 +1585,9 @@ class TableStateManager extends ChangeNotifier {
       return _generateNewFieldId(field);
     }).toList();
 
-    List<List<InputField>> updatedRows = 
-        List.from(field.inputFields ?? [])..add(newRow);
-    
+    List<List<InputField>> updatedRows = List.from(field.inputFields ?? [])
+      ..add(newRow);
+
     TableField updatedField = field.copyWith(
       inputFields: updatedRows,
       id: field.id,
@@ -1569,32 +1600,32 @@ class TableStateManager extends ChangeNotifier {
   }
 
   /// Retrieves the current state of a table by its ID.
-  /// 
+  ///
   /// Returns null if the table state doesn't exist.
-  /// 
+  ///
   /// [id] The ID of the table to retrieve
   TableField? getTableState(String id) => _tableStates[id];
 
   /// Gets the visibility state of rows for a specific table.
-  /// 
+  ///
   /// Returns an empty list if no visibility state exists.
-  /// 
+  ///
   /// [id] The ID of the table to get row visibility for
   List<bool> getVisibleRows(String id) => _visibleRows[id] ?? [];
 
   /// Generates a new unique ID for a field and its nested components.
-  /// 
+  ///
   /// This method:
   /// - Creates a deep copy of the field
   /// - Generates new UUIDs for all field IDs
   /// - Clears any existing answers or keys
   /// - Maintains other field properties
-  /// 
+  ///
   /// [field] The field to generate new IDs for
   /// Returns a new [InputField] with updated IDs
   InputField _generateNewFieldId(InputField field) {
     var uuid = const Uuid();
-    
+
     Map<String, dynamic> updateId(Map<String, dynamic> item) {
       return Map.from(item).map((key, value) {
         if (key == 'id' && value is String) {
@@ -1609,8 +1640,9 @@ class TableStateManager extends ChangeNotifier {
         if (value is List) {
           return MapEntry(
               key,
-              value.map((e) => 
-                  e is Map<String, dynamic> ? updateId(e) : e).toList());
+              value
+                  .map((e) => e is Map<String, dynamic> ? updateId(e) : e)
+                  .toList());
         }
         return MapEntry(key, value);
       });
@@ -1619,178 +1651,6 @@ class TableStateManager extends ChangeNotifier {
     return InputField.fromJson(updateId(field.toJson()));
   }
 }
-
-/// Table input widget that handles both row and column based layouts
-class TableInputWidget extends StatefulWidget {
-  final TableField field;
-  final String labelText;
-  final bool isRequired;
-  final TableStateManager tableManager;
-  final Widget Function(InputField, BuildContext, {bool haslabel}) inputBuilder;
-
-  const TableInputWidget({
-    super.key,
-    required this.field,
-    required this.labelText,
-    required this.isRequired,
-    required this.tableManager,
-    required this.inputBuilder,
-  });
-
-  @override
-  State<TableInputWidget> createState() => _TableInputWidgetState();
-}
-
-class _TableInputWidgetState extends State<TableInputWidget> {
-  late TableField currentField;
-
-  @override
-  void initState() {
-    super.initState();
-    currentField = widget.tableManager.getTableState(widget.field.id) ?? widget.field;
-    widget.tableManager.addListener(_onTableStateChanged);
-  }
-
-  @override
-  void dispose() {
-    widget.tableManager.removeListener(_onTableStateChanged);
-    super.dispose();
-  }
-
-  void _onTableStateChanged() {
-    setState(() {
-      currentField = widget.tableManager.getTableState(widget.field.id) ?? widget.field;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return LabeledWidget(
-      labelText: widget.labelText,
-      isRequired: widget.isRequired,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (currentField.isRow)
-            _buildRowBasedTable(context)
-          else
-            _buildColumnBasedTable(context),
-          
-          const SizedBox(height: 8),
-          
-          OutlinedButton.icon(
-            style: OutlinedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-              ),
-              side: const BorderSide(color: Colors.grey),
-            ),
-            onPressed: () async {
-              await widget.tableManager.addRow(currentField);
-            },
-            icon: const Icon(Icons.add),
-            label: const Text('Add Row'),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget _buildRowBasedTable(BuildContext context) {
-    return Column(
-      children: [
-        for (int index = 0; index < (currentField.inputFields?.length ?? 0); index++)
-          _buildTableRow(context, index),
-      ],
-    );
-  }
-
-  Widget _buildTableRow(BuildContext context, int index) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8),
-      child: ExpandableWidget(
-        key: ValueKey('table_row_${currentField.id}_$index'),
-        expandableHeader: TableExpandableHeaderWidget(
-          index: index,
-          field: currentField,
-        ),
-        expandedHeader: TableExpandableHeaderWidget(
-          index: index,
-          field: currentField,
-          isExpanded: true,
-        ),
-        expandableChild: Container(
-          color: Colors.grey.shade200,
-          child: Column(
-            children: (currentField.inputFields?[index] ?? []).map<Widget>((item) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: widget.inputBuilder(item, context, haslabel: true),
-              );
-            }).toList(),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildColumnBasedTable(BuildContext context) {
-    return Column(
-      children: [
-        for (int columnIndex = 0; 
-             columnIndex < ((currentField.inputFields ?? [])[0]).length; 
-             columnIndex++)
-          _buildColumnSection(context, columnIndex),
-      ],
-    );
-  }
-
-  Widget _buildColumnSection(BuildContext context, int columnIndex) {
-    return Container(
-      decoration: BoxDecoration(
-        color: const Color(0xffF5F5F5),
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      padding: const EdgeInsets.all(8),
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ExpandableWidget(
-        initialExpanded: true,
-        expandableHeader: _buildColumnHeader(columnIndex, false),
-        expandedHeader: _buildColumnHeader(columnIndex, true),
-        expandableChild: Column(
-          children: (currentField.inputFields ?? []).asMap().entries.map((entry) {
-            final rowIndex = entry.key;
-            final row = entry.value;
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: widget.inputBuilder(
-                row[columnIndex], 
-                context,
-                haslabel: rowIndex <= 0,
-              ),
-            );
-          }).toList(),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildColumnHeader(int columnIndex, bool isExpanded) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: isExpanded ? 8 : 0),
-      child: Row(
-        children: [
-          Text('Column ${columnIndex + 1}'),
-          const Spacer(),
-          Icon(isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down)
-        ],
-      ),
-    );
-  }
-}
-
-
-
 
 // import 'package:flutter/material.dart';
 // import 'package:uuid/uuid.dart';
@@ -1832,8 +1692,6 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //     widget.tableManager.addListener(_onTableStateChanged);
 //   }
 
-  
-
 //   @override
 //   void dispose() {
 //     widget.tableManager.removeListener(_onTableStateChanged);
@@ -1858,9 +1716,9 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //             _buildRowBasedTable(context)
 //           else
 //             _buildColumnBasedTable(context),
-          
+
 //           const SizedBox(height: 8),
-          
+
 //           OutlinedButton.icon(
 //             style: OutlinedButton.styleFrom(
 //               shape: RoundedRectangleBorder(
@@ -1920,8 +1778,8 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //   Widget _buildColumnBasedTable(BuildContext context) {
 //     return Column(
 //       children: [
-//         for (int columnIndex = 0; 
-//              columnIndex < ((currentField.inputFields ?? [])[0]).length; 
+//         for (int columnIndex = 0;
+//              columnIndex < ((currentField.inputFields ?? [])[0]).length;
 //              columnIndex++)
 //           _buildColumnSection(context, columnIndex),
 //       ],
@@ -1947,7 +1805,7 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //             return Padding(
 //               padding: const EdgeInsets.symmetric(horizontal: 8),
 //               child: widget.inputBuilder(
-//                 row[columnIndex], 
+//                 row[columnIndex],
 //                 context,
 //                 haslabel: rowIndex <= 0,
 //               ),
@@ -1972,15 +1830,14 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //   }
 // }
 
-
 // /// A manager class that handles the state and operations for dynamic tables in forms.
-// /// 
+// ///
 // /// This class manages:
 // /// - Table states and their modifications
 // /// - Row visibility
 // /// - Form value updates
 // /// - Row addition and generation
-// /// 
+// ///
 // /// It extends [ChangeNotifier] to provide state change notifications to listeners.
 // class TableStateManager extends ChangeNotifier {
 //   /// Internal storage for table states indexed by table ID
@@ -1993,29 +1850,29 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //   final FormValue formValue;
 
 //   /// Creates a new TableStateManager instance.
-//   /// 
+//   ///
 //   /// [formValue] is required to persist table state changes to the form.
 //   TableStateManager(this.formValue);
 
 //   /// Initializes a table's state with the provided field configuration.
-//   /// 
+//   ///
 //   /// This method:
 //   /// - Sets up the initial table state
 //   /// - Initializes row visibility
 //   /// - Saves the initial state to form value
 //   /// - Notifies listeners of the initialization
-//   /// 
+//   ///
 //   /// [field] The table field configuration to initialize
 //   void initializeTable(TableField field) {
 //     _tableStates[field.id] = field;
-//     _visibleRows[field.id] = 
+//     _visibleRows[field.id] =
 //         List.generate((field.inputFields ?? []).length, (_) => true);
 //     formValue.saveTableField(field.id, field);
 //     notifyListeners();
 //   }
 
 //   /// Adds a new row to the specified table.
-//   /// 
+//   ///
 //   /// This method:
 //   /// - Creates a new row based on the first row's template
 //   /// - Generates new unique IDs for all fields in the new row
@@ -2023,7 +1880,7 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //   /// - Updates row visibility
 //   /// - Persists changes to form value
 //   /// - Notifies listeners of the change
-//   /// 
+//   ///
 //   /// [field] The table field to add a row to
 //   Future<void> addRow(TableField field) async {
 //     if ((field.inputFields ?? []).isEmpty) return;
@@ -2032,9 +1889,9 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //       return _generateNewFieldId(field);
 //     }).toList();
 
-//     List<List<InputField>> updatedRows = 
+//     List<List<InputField>> updatedRows =
 //         List.from(field.inputFields ?? [])..add(newRow);
-    
+
 //     TableField updatedField = field.copyWith(
 //       inputFields: updatedRows,
 //       id: field.id,
@@ -2047,32 +1904,32 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //   }
 
 //   /// Retrieves the current state of a table by its ID.
-//   /// 
+//   ///
 //   /// Returns null if the table state doesn't exist.
-//   /// 
+//   ///
 //   /// [id] The ID of the table to retrieve
 //   TableField? getTableState(String id) => _tableStates[id];
 
 //   /// Gets the visibility state of rows for a specific table.
-//   /// 
+//   ///
 //   /// Returns an empty list if no visibility state exists.
-//   /// 
+//   ///
 //   /// [id] The ID of the table to get row visibility for
 //   List<bool> getVisibleRows(String id) => _visibleRows[id] ?? [];
 
 //   /// Generates a new unique ID for a field and its nested components.
-//   /// 
+//   ///
 //   /// This method:
 //   /// - Creates a deep copy of the field
 //   /// - Generates new UUIDs for all field IDs
 //   /// - Clears any existing answers or keys
 //   /// - Maintains other field properties
-//   /// 
+//   ///
 //   /// [field] The field to generate new IDs for
 //   /// Returns a new [InputField] with updated IDs
 //   InputField _generateNewFieldId(InputField field) {
 //     var uuid = const Uuid();
-    
+
 //     Map<String, dynamic> updateId(Map<String, dynamic> item) {
 //       return Map.from(item).map((key, value) {
 //         if (key == 'id' && value is String) {
@@ -2087,7 +1944,7 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //         if (value is List) {
 //           return MapEntry(
 //               key,
-//               value.map((e) => 
+//               value.map((e) =>
 //                   e is Map<String, dynamic> ? updateId(e) : e).toList());
 //         }
 //         return MapEntry(key, value);
@@ -2097,6 +1954,3 @@ class _TableInputWidgetState extends State<TableInputWidget> {
 //     return InputField.fromJson(updateId(field.toJson()));
 //   }
 // }
-
-
-
