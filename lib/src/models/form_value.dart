@@ -141,4 +141,13 @@ class FormValue {
     }).toList();
     _onSaveCallback?.call(_savedValue);
   }
+  void saveAdvTableField(String id, AdvTableField table) {
+    _value[id] = table.inputFields?.map((row) {
+      return row.map((e) => e.toJson()).toList();
+    }).toList();
+    _savedValue[id] = table.inputFields?.map((row) {
+      return row.map((e) => e.toJson()).toList();
+    }).toList();
+    _onSaveCallback?.call(_savedValue);
+  }
 }

@@ -16,6 +16,7 @@ import 'package:varicon_form_builder/src/form_builder/widgets/phone_number_widge
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import '../../scroll/src/scroll_to_id.dart';
 import '../models/form_value.dart';
+import 'form_fields/adv_table_field.dart';
 import 'form_fields/date_time_form_field.dart';
 import 'form_fields/table_field.dart';
 import 'widgets/checkbox_input_widget.dart';
@@ -73,6 +74,7 @@ class FormInputWidgets extends StatefulWidget {
 
 class FormInputWidgetsState extends State<FormInputWidgets> {
   late final TableStateManager _tableManager;
+  late final TableStateManager _advtableManager;
   final Map<String, GlobalKey<FormFieldState>> _formFieldKeys = {};
   final Map<GlobalKey<FormFieldState<dynamic>>, String> _fieldKeyToIdMap = {};
   bool isScrolled = false;
@@ -88,6 +90,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   // Add this map to store table states
   final Map<String, TableField> _tableState = {};
+  // Add this map to store advtable states
+  final Map<String, AdvTableField> _advtableState = {};
 
   // Add this map to store visible rows for each table
   final Map<String, List<bool>> _visibleRows = {};
@@ -105,7 +109,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   void initState() {
     super.initState();
     _tableManager = TableStateManager(widget.formValue);
-
+    _advtableManager = TableStateManager(widget.formValue);
     // Initialize form field keys and table states
     for (var field in widget.surveyForm.inputFields) {
       _formFieldKeys[field.id] = GlobalKey<FormFieldState>();
@@ -130,6 +134,17 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
         widget.formValue.saveTableField(
           field.id,
           _tableState[field.id]!,
+        );
+      }
+      if (field is AdvTableField) {
+        _advtableState[field.id] = field;
+
+        _visibleRows[field.id] =
+            List.generate((field.inputFields ?? []).length, (_) => true);
+
+        widget.formValue.saveAdvTableField(
+          field.id,
+          _advtableState[field.id]!,
         );
       }
     }
@@ -197,27 +212,27 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     }
   }
 
-String? _findParentTableId(String fieldId) {
-  // Iterate through all form fields
-  for (var field in widget.surveyForm.inputFields) {
-    // Check if the field is a table
-    if (field is TableField) {
-      // Check each row in the table's inputFields
-      for (var row in (field.inputFields ?? [])) {
-        // Check each field in the row
-        for (var inputField in row) {
-          // If we find the field ID we're looking for
-          if (inputField.id == fieldId) {
-            // Return the table's ID
-            return field.id;
+  String? _findParentTableId(String fieldId) {
+    // Iterate through all form fields
+    for (var field in widget.surveyForm.inputFields) {
+      // Check if the field is a table
+      if (field is TableField) {
+        // Check each row in the table's inputFields
+        for (var row in (field.inputFields ?? [])) {
+          // Check each field in the row
+          for (var inputField in row) {
+            // If we find the field ID we're looking for
+            if (inputField.id == fieldId) {
+              // Return the table's ID
+              return field.id;
+            }
           }
         }
       }
     }
+    // Return null if field is not found in any table
+    return null;
   }
-  // Return null if field is not found in any table
-  return null;
-}
 
   void scrollToFirstInvalidField() {
     for (var entry in _fieldKeyToIdMap.entries) {
@@ -250,6 +265,7 @@ String? _findParentTableId(String fieldId) {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return InteractiveScrollViewer(
@@ -1197,127 +1213,18 @@ String? _findParentTableId(String fieldId) {
     String labelText,
     BuildContext context,
   ) {
-    AdvTableField field = currentTableField;
-
-    List<List<InputField>> modifiedInputField =
-        (field.inputFields ?? []).map((row) {
-      return row.map((field) {
-        return field.copyWith(
-          isRequired: field.isRequired ? field.isRequired : false,
-        );
-      }).toList();
-    }).toList();
-    setState(() {
-      //updating the newly added input fields
-      field = field.copyWith(inputFields: modifiedInputField);
-    });
     return ScrollContent(
-      id: field.id,
-      child: LabeledWidget(
-          labelText: labelText,
-          isRequired: field.isRequired,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              field.isRow
-                  ? ListView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: field.inputFields?.length,
-                      itemBuilder: (context, index) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 8),
-                          child: ExpandableWidget(
-                            expandableHeader: TableExpandableHeaderWidget(
-                              index: index,
-                              field: field,
-                            ),
-                            expandedHeader: TableExpandableHeaderWidget(
-                              index: index,
-                              field: field,
-                              isExpanded: true,
-                            ),
-                            expandableChild: Container(
-                              color: Colors.grey.shade200,
-                              child: Column(
-                                children: field.inputFields![index]
-                                    .map<Widget>((item) {
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                    ),
-                                    child: _buildInputField(item, context) ??
-                                        const SizedBox.shrink(),
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                          ),
-                        );
-                      },
-                    )
-                  : Column(
-                      children: [
-                        for (int columnIndex = 0;
-                            columnIndex < (field.inputFields ?? [])[0].length;
-                            columnIndex++)
-                          Container(
-                            decoration: BoxDecoration(
-                              color: const Color(0xffF5F5F5),
-                              borderRadius: BorderRadius.circular(8.0),
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            margin: const EdgeInsets.only(bottom: 12),
-                            child: ExpandableWidget(
-                              initialExpanded: true,
-                              expandableHeader: Row(
-                                children: [
-                                  Text(
-                                    'Column ${columnIndex + 1} ',
-                                  ),
-                                  const Spacer(),
-                                  const Icon(Icons.keyboard_arrow_up)
-                                ],
-                              ),
-                              expandedHeader: Padding(
-                                padding: const EdgeInsets.only(
-                                  bottom: 8,
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Column ${columnIndex + 1}',
-                                    ),
-                                    const Spacer(),
-                                    const Icon(Icons.keyboard_arrow_down)
-                                  ],
-                                ),
-                              ),
-                              expandableChild: Column(
-                                children: (field.inputFields ?? [])
-                                    .asMap()
-                                    .entries
-                                    .map((entry) {
-                                  final rowIndex = entry.key;
-                                  final row = entry.value;
-
-                                  return Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 8,
-                                    ),
-                                    child: _buildInputField(
-                                            row[columnIndex], context,
-                                            haslabel: rowIndex <= 0) ??
-                                        const SizedBox.shrink(),
-                                  );
-                                }).toList(),
-                              ),
-                            ),
-                          ),
-                      ],
-                    ),
-            ],
-          )),
+      id: currentTableField.id,
+      child: AdvTableInputWidget(
+        field: currentTableField,
+        labelText: labelText,
+        isRequired: currentTableField.isRequired,
+        tableManager: _advtableManager,
+        inputBuilder: (field, context, {haslabel = true}) {
+          return _buildInputField(field, context, haslabel: haslabel) ??
+              const SizedBox.shrink();
+        },
+      ),
     );
   }
 }
@@ -1538,7 +1445,7 @@ class Debouncer {
 class TableStateManager extends ChangeNotifier {
   /// Internal storage for table states indexed by table ID
   final Map<String, TableField> _tableStates = {};
-
+  final Map<String, AdvTableField> _advTableStates = {};
   /// Tracks visibility of rows for each table
   final Map<String, List<bool>> _visibleRows = {};
 
@@ -1564,6 +1471,13 @@ class TableStateManager extends ChangeNotifier {
     _visibleRows[field.id] =
         List.generate((field.inputFields ?? []).length, (_) => true);
     formValue.saveTableField(field.id, field);
+    notifyListeners();
+  }
+  void initializeAdvanceTable(AdvTableField field) {
+    _advTableStates[field.id] = field;
+    _visibleRows[field.id] =
+        List.generate((field.inputFields ?? []).length, (_) => true);
+    formValue.saveAdvTableField(field.id, field);
     notifyListeners();
   }
 
@@ -1605,7 +1519,7 @@ class TableStateManager extends ChangeNotifier {
   ///
   /// [id] The ID of the table to retrieve
   TableField? getTableState(String id) => _tableStates[id];
-
+  AdvTableField? getAdvTableState(String id) => _advTableStates[id];
   /// Gets the visibility state of rows for a specific table.
   ///
   /// Returns an empty list if no visibility state exists.
