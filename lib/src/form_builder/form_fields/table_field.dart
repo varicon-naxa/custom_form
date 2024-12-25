@@ -49,35 +49,7 @@ class TableInputWidgetState extends State<TableInputWidget> {
     }
   }
 
- // Add this method to handle scrolling to specific fields
-  void scrollToField(String fieldId) {
-    setState(() {
-      // Find which row contains this field
-      int? rowIndex;
-      for (int i = 0; i < (widget.field.inputFields?.length ?? 0); i++) {
-        if (widget.field.inputFields![i].any((field) => field.id == fieldId)) {
-          rowIndex = i;
-          break;
-        }
-      }
-
-      if (rowIndex != null) {
-        // Ensure the row is expanded
-        // You might need to modify this based on your ExpandableWidget implementation
-        // This is just a conceptual example
-        Future.delayed(const Duration(milliseconds: 100), () {
-          final context = this.context;
-          if (context.mounted) {
-            Scrollable.ensureVisible(
-              context,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-            );
-          }
-        });
-      }
-    });
-  }
+  
   void _onTableStateChanged() {
     setState(() {
       currentField =

@@ -23,7 +23,6 @@ import 'widgets/checkbox_input_widget.dart';
 import 'widgets/custom_location.dart';
 import 'widgets/datetime_input_widget.dart';
 import 'widgets/dropdown_input_widget.dart';
-import 'widgets/expandable_widget.dart';
 import 'widgets/file_input_widget.dart';
 import 'widgets/instruction_widget.dart';
 import 'widgets/labeled_widget.dart';
@@ -97,6 +96,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   final Map<String, List<bool>> _visibleRows = {};
 
   // Initialize the keys and mapping
+  // Initialize the keys and mapping
   void _initializeKeys(List<InputField> inputFields) {
     for (var field in inputFields) {
       final key = GlobalKey<FormFieldState<dynamic>>();
@@ -108,18 +108,12 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   @override
   void initState() {
     super.initState();
+
+    _initializeKeys(widget.surveyForm.inputFields);
+    scrollToId = ScrollToId(scrollController: scrollControllerId);
     _tableManager = TableStateManager(widget.formValue);
     _advtableManager = TableStateManager(widget.formValue);
     // Initialize form field keys and table states
-    for (var field in widget.surveyForm.inputFields) {
-      _formFieldKeys[field.id] = GlobalKey<FormFieldState>();
-      if (field is TableField) {
-        _tableManager.initializeTable(field);
-        _tableKeys[field.id] = GlobalKey<TableInputWidgetState>();
-      }
-    }
-
-    scrollToId = ScrollToId(scrollController: scrollControllerId);
 
     // // scrollControllerId.addListener(() => detectScroll());
 
@@ -212,56 +206,24 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     }
   }
 
-  String? _findParentTableId(String fieldId) {
-    // Iterate through all form fields
-    for (var field in widget.surveyForm.inputFields) {
-      // Check if the field is a table
-      if (field is TableField) {
-        // Check each row in the table's inputFields
-        for (var row in (field.inputFields ?? [])) {
-          // Check each field in the row
-          for (var inputField in row) {
-            // If we find the field ID we're looking for
-            if (inputField.id == fieldId) {
-              // Return the table's ID
-              return field.id;
-            }
-          }
-        }
-      }
-    }
-    // Return null if field is not found in any table
-    return null;
-  }
-
   void scrollToFirstInvalidField() {
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
+      log('fieldId: $fieldId');
+      log('fieldkey: $fieldKey');
 
-      if (fieldKey.currentState != null && !fieldKey.currentState!.validate()) {
-        // Find parent table ID if field is in a table
-        String? tableId = _findParentTableId(fieldId);
-
-        if (tableId != null && _tableKeys[tableId]?.currentState != null) {
-          // First scroll to the table
-          scrollToId?.animateTo(
-            tableId,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeIn,
-          );
-
-          // Then scroll to the specific field within the table
-          _tableKeys[tableId]?.currentState?.scrollToField(fieldId);
+      if (fieldKey.currentState != null) {
+        if (!fieldKey.currentState!.validate()) {
+          scrollToId?.animateTo(fieldId,
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeIn);
+          break;
         } else {
-          // Normal scroll for non-table elements
-          scrollToId?.animateTo(
-            fieldId,
-            duration: const Duration(milliseconds: 500),
-            curve: Curves.easeIn,
-          );
+          log('fieldKey.currentState!.validate()2 ${fieldKey.currentState?.value}');
         }
-        break;
+      } else {
+        log('fieldKey.currentState!.validate()1 ${fieldKey.currentState?.value}');
       }
     }
   }
@@ -1446,6 +1408,7 @@ class TableStateManager extends ChangeNotifier {
   /// Internal storage for table states indexed by table ID
   final Map<String, TableField> _tableStates = {};
   final Map<String, AdvTableField> _advTableStates = {};
+
   /// Tracks visibility of rows for each table
   final Map<String, List<bool>> _visibleRows = {};
 
@@ -1473,6 +1436,7 @@ class TableStateManager extends ChangeNotifier {
     formValue.saveTableField(field.id, field);
     notifyListeners();
   }
+
   void initializeAdvanceTable(AdvTableField field) {
     _advTableStates[field.id] = field;
     _visibleRows[field.id] =
@@ -1520,6 +1484,7 @@ class TableStateManager extends ChangeNotifier {
   /// [id] The ID of the table to retrieve
   TableField? getTableState(String id) => _tableStates[id];
   AdvTableField? getAdvTableState(String id) => _advTableStates[id];
+
   /// Gets the visibility state of rows for a specific table.
   ///
   /// Returns an empty list if no visibility state exists.

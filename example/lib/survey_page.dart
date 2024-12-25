@@ -129,7 +129,6 @@ class _SurveyPageState extends State<SurveyPage> {
         },
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
-          log('Defore' + jsonEncode(formValue).toString());
 
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =

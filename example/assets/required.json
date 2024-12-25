@@ -1,0 +1,234 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "hasLocation": true,
+    "elements": [
+        {
+            "type": "number",
+            "name": "experience",
+            "id": "experience123123",
+            "title": "Total experience test",
+            "isRequired": true,
+            "requiredErrorText": "Total exprerjsaklfjaslkd fis requreid",
+            "minErrorText": "The value should not be less than {5}",
+            "maxErrorText": "The value should not be greater than {10}"
+        },
+        {
+            "type": "dropdown",
+            "name": "select1",
+            "id": "select1",
+            "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+            "isRequired": true,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "fromManualList": true,
+            "whichList": 1,
+            "isConditional": true,
+            "actionMessage": "This is the action message ",
+            "requiredErrorText": "Drop down is required",
+            "commentPlaceholder": "comment are place",
+            "answer": "item1",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1.",
+                    "action": true
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2.",
+                    "action": false
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3.",
+                    "action": false
+                }
+            ],
+            "showOtherItem": false,
+            "showNoneItem": false,
+            "otherErrorText": "Empty comment required",
+            "placeholder": "Select...OKkk"
+        },
+        {
+            "type": "checkbox",
+            "name": "checkbox1",
+            "id": "checkbox1",
+            "fromManualList": true,
+            "isConditional": true,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "answer": "item1,item2",
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1.",
+                    "action": true
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2.",
+                    "action": false
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3.",
+                    "action": true
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4.",
+                    "action": false
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "action": true
+                }
+            ],
+            "otherErrorText": "Other field comment is required."
+        },
+        {
+            "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc67",
+            "name": "Multiple Choice",
+            "type": "multipleselect",
+            "label": "Biget item",
+            "answer": "12345",
+            "isConditional": false,
+            "actionMessage": "",
+            "fromManualList": false,
+            "isRequired": false,
+            "choice": []
+        },
+        {
+            "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc6",
+            "name": "Multiple Choice",
+            "type": "multipleselect",
+            "label": "Biget item",
+            "answer": "item-200e3185-3906-4d91-a03f-62f35e8547de",
+            "isConditional": false,
+            "actionMessage": "",
+            "fromManualList": true,
+            "isRequired": false,
+            "choice": [
+                {
+                    "id": "item-200e3185-3906-4d91-a03f-62f35e8547de",
+                    "type": "option",
+                    "label": "Resource and supplier",
+                    "notify_To": []
+                },
+                {
+                    "id": "item-ae9b0672-16eb-44d5-b5c7-a3412ffadb09",
+                    "type": "option",
+                    "label": "Custom Forms"
+                },
+                {
+                    "id": "item-29580bec-3511-478c-bd55-cd0a84a65ed5",
+                    "type": "option",
+                    "label": "Subcontract"
+                }
+            ]
+        },
+        {
+            "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",
+            "name": "This is question ",
+            "type": "radiogroup",
+            "label": "Did you work remotely",
+            "actionMessage": "Better to work from home.",
+            "answer": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
+            "isRequired": true,
+            "isConditional": true,
+            "showOtherItem": true,
+            "choice": [
+                {
+                    "id": "item-395f1c4e-974c-486e-8647-8445819b0030",
+                    "label": "Yes Ans",
+                    "action": false,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
+                    "label": "No Ans",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 346,
+                            "email": "amulya@varicon.com.au",
+                            "username": "amulya@varicon.com.au"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-422d0002-df53-4e86-a995-466da7ab33ee",
+                    "label": "NA ans",
+                    "action": false,
+                    "notify_To": []
+                }
+            ]
+        },
+        {
+            "id": "item-cc4c729d-6f89-4539-aa89-a38345df865d",
+            "label": "This is question ",
+            "name": "This is question ",
+            "isRequired": false,
+            "answer": "",
+            "type": "yesnona",
+            "isConditional": true,
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1a",
+                    "text": "Yes",
+                    "action": true,
+                    "isConditional": true,
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-a9de0318-6218-4e02-98e3-4d81ad273279",
+                    "text": "No",
+                    "action": false,
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        },
+                        {
+                            "id": 1005,
+                            "email": "anil.shrestha+1@varicon.com.au",
+                            "username": "Anil Shrestha"
+                        },
+                        {
+                            "id": 501,
+                            "email": "anu.prajapati@varicon.com.au",
+                            "username": "Anu Prajapati"
+                        }
+                    ]
+                },
+                {
+                    "value": "item-621e1064-1171-4933-b456-4a12ca011b1aa",
+                    "text": "N/A",
+                    "notify_To": [
+                        {
+                            "id": 724,
+                            "email": "ss@gmail.com",
+                            "username": "Aayush User"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
