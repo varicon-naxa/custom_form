@@ -4,10 +4,57 @@
         {
             "id": "item-eef4d38e-e657-4f82-86ac-173dfb1fa039",
             "name": "Advanced Table",
-            "type": "advtable",
+            "type": "table",
             "label": "qustion one",
             "contents": [
                 [
+                    {
+                        "type": "number",
+                        "name": "experience",
+                        "id": "experience123123",
+                        "title": "Total experience test",
+                        "isRequired": true,
+                        "requiredErrorText": "Total exprerjsaklfjaslkd fis requreid",
+                        "minErrorText": "The value should not be less than {5}",
+                        "maxErrorText": "The value should not be greater than {10}"
+                    },
+                    {
+                        "type": "dropdown",
+                        "name": "select1",
+                        "id": "select1",
+                        "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+                        "isRequired": true,
+                        "islinked": true,
+                        "islinked_query": "equipment",
+                        "fromManualList": true,
+                        "whichList": 1,
+                        "isConditional": true,
+                        "actionMessage": "This is the action message ",
+                        "requiredErrorText": "Drop down is required",
+                        "commentPlaceholder": "comment are place",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "value": "item1",
+                                "text": "This is item 1.",
+                                "action": true
+                            },
+                            {
+                                "value": "item2",
+                                "text": "This is item 2.",
+                                "action": false
+                            },
+                            {
+                                "value": "item3",
+                                "text": "This is item 3.",
+                                "action": false
+                            }
+                        ],
+                        "showOtherItem": false,
+                        "showNoneItem": false,
+                        "otherErrorText": "Empty comment required",
+                        "placeholder": "Select...OKkk"
+                    },
                     {
                         "id": "item-b288c75a-8faa-496d-9cf1-68aa714d809d",
                         "name": "Yes/No",
@@ -32,18 +79,16 @@
                         "actionMessage": "",
                         "isConditional": false,
                         "fromManualList": true
-                    }
-                ],
-                [
-                    {
+                    }, {
                         "id": "item-c39b17c1-ade1-40b1-9d33-c828705bb5cf",
                         "name": "Signature",
                         "type": "signature",
                         "label": "Column 10",
                         "answer": {},
-                        "isRequired": false
+                        "isRequired": true
                     }
                 ]
+              
             ],
             "isRequired": false
         }

@@ -102,6 +102,14 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
       final key = GlobalKey<FormFieldState<dynamic>>();
       _formFieldKeys[field.id] = key;
       _fieldKeyToIdMap[key] = field.id;
+      if (field is TableField) {
+        _tableKeys[field.id] = GlobalKey<TableInputWidgetState>();
+        for (var field1 in field.inputFields ?? []) {
+          for (var field2 in field1) {
+            _formFieldKeys[field2.id] = GlobalKey<FormFieldState<dynamic>>();
+          }
+        }
+      }
     }
   }
 
@@ -210,8 +218,6 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
-      log('fieldId: $fieldId');
-      log('fieldkey: $fieldKey');
 
       if (fieldKey.currentState != null) {
         if (!fieldKey.currentState!.validate()) {
@@ -225,6 +231,24 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
       } else {
         log('fieldKey.currentState!.validate()1 ${fieldKey.currentState?.value}');
       }
+
+      // Check for invalid fields within tables
+      for (var tableKey in _tableKeys.values) {
+        for (var row in tableKey.currentState!.currentField.inputFields ?? []) {
+          for (var field1 in row) {
+            var fieldKey2 = _formFieldKeys[field1.id];
+            if (fieldKey2 != null &&
+                fieldKey2.currentState != null &&
+                !fieldKey2.currentState!.validate()) {
+              final position = ScrollContentPosition.getPosition(field1.id);
+              scrollControllerId.animateTo(position?.dy ?? 0,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn);
+              break;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -234,7 +258,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
       scrollToId: scrollToId,
       scrollDirection: Axis.vertical,
       children: widget.surveyForm.inputFields
-          .map<ScrollContent?>((e) => _buildInputField(e, context))
+          .map<ScrollContent?>(
+              (e) => _buildInputField(e, context, isNested: true))
           .whereType<ScrollContent>()
           .toList(),
     );
@@ -242,57 +267,66 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///builds all forem input field
   ScrollContent? _buildInputField(InputField field, BuildContext context,
-      {bool haslabel = true}) {
+      {bool haslabel = true, bool isNested = false}) {
     final labelText = haslabel ? '${field.label ?? ''} ' : '';
     return field.maybeMap(
-      text: (field) => _buildTextInput(
-        field,
-        labelText,
-        context,
-      ),
-      number: (field) => _buildNumberInput(field, labelText, context),
-      phone: (field) => _buildPhoneInput(field, labelText, context),
-      email: (field) => _buildEmailInput(field, labelText, context),
-      url: (field) => _buildUrlInput(field, labelText, context),
-      date: (field) => _buildDateInput(field, labelText),
-      time: (field) => _buildTimeInput(field, labelText),
-      datetimelocal: (field) => _buildDateTimeInput(field, labelText),
-      comment: (field) => _buildCommentInput(field, labelText, context),
-      dropdown: (field) => _buildDropdownInput(field, labelText),
-      yesno: (field) => _buildYesNoInput(field, labelText),
-      radiogroup: (field) => _buildRadioGroupInput(field, labelText),
-      yesnona: (field) => _buildYesNoNaInput(field, labelText),
-      checkbox: (field) => _buildCheckboxInput(field, labelText),
-      multipleselect: (field) => _buildMultipleSelectInput(field, labelText),
-      files: (field) => _buildFilesInput(
-        field,
-        labelText,
-        locationData: widget.locationData,
-        customPainter: widget.customPainter,
-      ),
-      images: (field) => _buildImagesInput(
-        field,
-        labelText,
-        locationData: widget.locationData,
-        customPainter: widget.customPainter,
-      ),
-      signature: (field) => _buildSignatureInput(field, labelText),
-      multisignature: (field) => _buildMultiSignatureInput(field, labelText),
-      instruction: (field) => _buildInstructionInput(field, labelText),
-      section: (field) => _buildSectionInput(field, context),
-      geolocation: (field) => _buildGeolocationInput(field, labelText, context),
-      table: (field) => _buildTableInput(field, labelText, context),
-      advtable: (field) => _buildAdvTableInput(field, labelText, context),
+      text: (field) =>
+          _buildTextInput(field, labelText, context, isNested: isNested),
+      number: (field) =>
+          _buildNumberInput(field, labelText, context, isNested: isNested),
+      phone: (field) =>
+          _buildPhoneInput(field, labelText, context, isNested: isNested),
+      email: (field) =>
+          _buildEmailInput(field, labelText, context, isNested: isNested),
+      url: (field) =>
+          _buildUrlInput(field, labelText, context, isNested: isNested),
+      date: (field) => _buildDateInput(field, labelText, isNested: isNested),
+      time: (field) => _buildTimeInput(field, labelText, isNested: isNested),
+      datetimelocal: (field) =>
+          _buildDateTimeInput(field, labelText, isNested: isNested),
+      comment: (field) =>
+          _buildCommentInput(field, labelText, context, isNested: isNested),
+      dropdown: (field) =>
+          _buildDropdownInput(field, labelText, isNested: isNested),
+      yesno: (field) => _buildYesNoInput(field, labelText, isNested: isNested),
+      radiogroup: (field) =>
+          _buildRadioGroupInput(field, labelText, isNested: isNested),
+      yesnona: (field) =>
+          _buildYesNoNaInput(field, labelText, isNested: isNested),
+      checkbox: (field) =>
+          _buildCheckboxInput(field, labelText, isNested: isNested),
+      multipleselect: (field) =>
+          _buildMultipleSelectInput(field, labelText, isNested: isNested),
+      files: (field) => _buildFilesInput(field, labelText,
+          locationData: widget.locationData,
+          customPainter: widget.customPainter,
+          isNested: isNested),
+      images: (field) => _buildImagesInput(field, labelText,
+          locationData: widget.locationData,
+          customPainter: widget.customPainter,
+          isNested: isNested),
+      signature: (field) =>
+          _buildSignatureInput(field, labelText, isNested: isNested),
+      multisignature: (field) =>
+          _buildMultiSignatureInput(field, labelText, isNested: isNested),
+      instruction: (field) =>
+          _buildInstructionInput(field, labelText, isNested: isNested),
+      section: (field) =>
+          _buildSectionInput(field, context, isNested: isNested),
+      geolocation: (field) =>
+          _buildGeolocationInput(field, labelText, context, isNested: isNested),
+      table: (field) =>
+          _buildTableInput(field, labelText, context, isNested: isNested),
+      advtable: (field) =>
+          _buildAdvTableInput(field, labelText, context, isNested: isNested),
       orElse: () => null,
     );
   }
 
   /// text input field build method
   ScrollContent _buildTextInput(
-    TextInputField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      TextInputField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     final HtmlEditorController htmlEditorController = HtmlEditorController();
     final TextEditingController formCon = TextEditingController();
     HtmlEditorOptions editorOptions = const HtmlEditorOptions();
@@ -306,6 +340,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -377,16 +412,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Number input field build method
   ScrollContent _buildNumberInput(
-    NumberInputField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      NumberInputField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -448,10 +482,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Phone input field build method
   ScrollContent _buildPhoneInput(
-    PhoneInputField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      PhoneInputField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
@@ -462,6 +494,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -501,16 +534,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Email input field build method
   ScrollContent _buildEmailInput(
-    EmailInputField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      EmailInputField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -556,16 +588,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///URL input field build method
   ScrollContent _buildUrlInput(
-    UrlInputField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      UrlInputField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -613,16 +644,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///Date input field build method
-  ScrollContent _buildDateInput(
-    DateInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildDateInput(DateInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -638,16 +668,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///Time input field build method
-  ScrollContent _buildTimeInput(
-    TimeInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildTimeInput(TimeInputField field, String labelText,
+      {bool isNested = false}) {
     // widget.formValue.saveString(
     //   field.id,
     //   field.answer,
     // );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -663,16 +692,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///Date time input field build method
-  ScrollContent _buildDateTimeInput(
-    DateTimeInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildDateTimeInput(DateTimeInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -689,12 +717,11 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Comment input field build method
   ScrollContent _buildCommentInput(
-    CommentInputField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      CommentInputField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -743,16 +770,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///Dropdown input field build method
-  ScrollContent _buildDropdownInput(
-    DropdownInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildDropdownInput(DropdownInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -768,16 +794,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///YesNo input field build method
-  ScrollContent _buildYesNoInput(
-    YesNoInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildYesNoInput(YesNoInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -792,16 +817,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///Radio group field build method
-  ScrollContent _buildRadioGroupInput(
-    RadioInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildRadioGroupInput(RadioInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -816,16 +840,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///YesNoNa input field build method
-  ScrollContent _buildYesNoNaInput(
-    YesNoNaInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildYesNoNaInput(YesNoNaInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -840,16 +863,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   ///Checkbox input field build method
-  ScrollContent _buildCheckboxInput(
-    CheckboxInputField field,
-    String labelText,
-  ) {
+  ScrollContent _buildCheckboxInput(CheckboxInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -866,15 +888,15 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Multi-select build mehod
   ScrollContent _buildMultipleSelectInput(
-    MultipleInputField field,
-    String labelText,
-  ) {
+      MultipleInputField field, String labelText,
+      {bool isNested = false}) {
     widget.formValue.saveString(
       field.id,
       field.answer,
     );
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -892,7 +914,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   ///Files input field build method
   ScrollContent _buildFilesInput(FileInputField field, String labelText,
       {required String locationData,
-      required Widget Function(File imageFile) customPainter}) {
+      required Widget Function(File imageFile) customPainter,
+      bool isNested = false}) {
     TextEditingController formCon = TextEditingController();
     if (field.answer != null && (field.answer ?? []).isNotEmpty) {
       widget.formValue.saveList(
@@ -903,6 +926,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -935,7 +959,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   ///Images input field build method
   ScrollContent _buildImagesInput(ImageInputField field, String labelText,
       {required String locationData,
-      required Widget Function(File imageFile) customPainter}) {
+      required Widget Function(File imageFile) customPainter,
+      bool isNested = false}) {
     TextEditingController formCon = TextEditingController();
 
     if (field.answer != null && (field.answer ?? []).isNotEmpty) {
@@ -946,6 +971,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     }
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -977,9 +1003,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Signature input field build method
   ScrollContent _buildSignatureInput(
-    SignatureInputField field,
-    String labelText,
-  ) {
+      SignatureInputField field, String labelText,
+      {bool isNested = false}) {
     if (field.answer != null &&
         field.answer != {} &&
         field.answer.toString() != '{}') {
@@ -990,6 +1015,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     }
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -1015,9 +1041,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Multi-signature input field build method
   ScrollContent _buildMultiSignatureInput(
-    MultiSignatureInputField field,
-    String labelText,
-  ) {
+      MultiSignatureInputField field, String labelText,
+      {bool isNested = false}) {
     if (field.answer != null && (field.answer ?? []).isNotEmpty) {
       widget.formValue.saveList(
         field.id,
@@ -1026,6 +1051,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     }
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
         labelText: labelText,
         isRequired: field.isRequired,
@@ -1047,11 +1073,11 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Instruction input field build method
   ScrollContent _buildInstructionInput(
-    InstructionInputField field,
-    String labelText,
-  ) {
+      InstructionInputField field, String labelText,
+      {bool isNested = false}) {
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: LabeledWidget(
           labelText: field.label,
           isRequired: field.isRequired,
@@ -1068,11 +1094,11 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Section input field build method
   ScrollContent _buildSectionInput(
-    SectionInputField field,
-    BuildContext context,
-  ) {
+      SectionInputField field, BuildContext context,
+      {bool isNested = false}) {
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 16.0),
         child: Column(
@@ -1106,14 +1132,13 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Geolocation input field build method
   ScrollContent _buildGeolocationInput(
-    GeolocationField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      GeolocationField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     return (widget.hasGeolocation)
         ? ScrollContent(id: field.id, child: const SizedBox.shrink())
         : ScrollContent(
             id: field.id,
+            isNested: isNested,
             child: LabeledWidget(
               labelText: labelText,
               isRequired: false,
@@ -1148,21 +1173,20 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Table input field build method
   ScrollContent _buildTableInput(
-    TableField field,
-    String labelText,
-    BuildContext context,
-  ) {
+      TableField field, String labelText, BuildContext context,
+      {bool isNested = false}) {
     return ScrollContent(
       id: field.id,
+      isNested: isNested,
       child: TableInputWidget(
-        key: _tableKeys[field.id], // Add the key here
-
+        key: _tableKeys[field.id],
         field: field,
         labelText: labelText,
         isRequired: field.isRequired,
         tableManager: _tableManager,
         inputBuilder: (field, context, {haslabel = true}) {
-          return _buildInputField(field, context, haslabel: haslabel) ??
+          return _buildInputField(field, context,
+                  haslabel: haslabel, isNested: true) ??
               const SizedBox.shrink();
         },
       ),
@@ -1171,19 +1195,19 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Advance Table input field build method
   ScrollContent _buildAdvTableInput(
-    AdvTableField currentTableField,
-    String labelText,
-    BuildContext context,
-  ) {
+      AdvTableField currentTableField, String labelText, BuildContext context,
+      {bool isNested = false}) {
     return ScrollContent(
       id: currentTableField.id,
+      isNested: isNested,
       child: AdvTableInputWidget(
         field: currentTableField,
         labelText: labelText,
         isRequired: currentTableField.isRequired,
         tableManager: _advtableManager,
         inputBuilder: (field, context, {haslabel = true}) {
-          return _buildInputField(field, context, haslabel: haslabel) ??
+          return _buildInputField(field, context,
+                  haslabel: haslabel, isNested: true) ??
               const SizedBox.shrink();
         },
       ),
@@ -1530,306 +1554,3 @@ class TableStateManager extends ChangeNotifier {
     return InputField.fromJson(updateId(field.toJson()));
   }
 }
-
-// import 'package:flutter/material.dart';
-// import 'package:uuid/uuid.dart';
-// import 'package:varicon_form_builder/varicon_form_builder.dart';
-
-// import '../../models/form_value.dart';
-// import '../form_elements.dart';
-// import 'expandable_widget.dart';
-// import 'labeled_widget.dart';
-
-// /// Table input widget that handles both row and column based layouts
-// class TableInputWidget extends StatefulWidget {
-//   final TableField field;
-//   final String labelText;
-//   final bool isRequired;
-//   final TableStateManager tableManager;
-//   final Widget Function(InputField, BuildContext, {bool haslabel}) inputBuilder;
-
-//   const TableInputWidget({
-//     super.key,
-//     required this.field,
-//     required this.labelText,
-//     required this.isRequired,
-//     required this.tableManager,
-//     required this.inputBuilder,
-//   });
-
-//   @override
-//   State<TableInputWidget> createState() => _TableInputWidgetState();
-// }
-
-// class _TableInputWidgetState extends State<TableInputWidget> {
-//   late TableField currentField;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     currentField = widget.tableManager.getTableState(widget.field.id) ?? widget.field;
-//     widget.tableManager.addListener(_onTableStateChanged);
-//   }
-
-//   @override
-//   void dispose() {
-//     widget.tableManager.removeListener(_onTableStateChanged);
-//     super.dispose();
-//   }
-
-//   void _onTableStateChanged() {
-//     setState(() {
-//       currentField = widget.tableManager.getTableState(widget.field.id) ?? widget.field;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return LabeledWidget(
-//       labelText: widget.labelText,
-//       isRequired: widget.isRequired,
-//       child: Column(
-//         crossAxisAlignment: CrossAxisAlignment.start,
-//         children: [
-//           if (currentField.isRow)
-//             _buildRowBasedTable(context)
-//           else
-//             _buildColumnBasedTable(context),
-
-//           const SizedBox(height: 8),
-
-//           OutlinedButton.icon(
-//             style: OutlinedButton.styleFrom(
-//               shape: RoundedRectangleBorder(
-//                 borderRadius: BorderRadius.circular(5),
-//               ),
-//               side: const BorderSide(color: Colors.grey),
-//             ),
-//             onPressed: () async {
-//               await widget.tableManager.addRow(currentField);
-//             },
-//             icon: const Icon(Icons.add),
-//             label: const Text('Add Row'),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-
-//   Widget _buildRowBasedTable(BuildContext context) {
-//     return Column(
-//       children: [
-//         for (int index = 0; index < (currentField.inputFields?.length ?? 0); index++)
-//           _buildTableRow(context, index),
-//       ],
-//     );
-//   }
-
-//   Widget _buildTableRow(BuildContext context, int index) {
-//     return Padding(
-//       padding: const EdgeInsets.only(bottom: 8),
-//       child: ExpandableWidget(
-//         key: ValueKey('table_row_${currentField.id}_$index'),
-//         expandableHeader: TableExpandableHeaderWidget(
-//           index: index,
-//           field: currentField,
-//         ),
-//         expandedHeader: TableExpandableHeaderWidget(
-//           index: index,
-//           field: currentField,
-//           isExpanded: true,
-//         ),
-//         expandableChild: Container(
-//           color: Colors.grey.shade200,
-//           child: Column(
-//             children: (currentField.inputFields?[index] ?? []).map<Widget>((item) {
-//               return Padding(
-//                 padding: const EdgeInsets.symmetric(horizontal: 8),
-//                 child: widget.inputBuilder(item, context, haslabel: true),
-//               );
-//             }).toList(),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildColumnBasedTable(BuildContext context) {
-//     return Column(
-//       children: [
-//         for (int columnIndex = 0;
-//              columnIndex < ((currentField.inputFields ?? [])[0]).length;
-//              columnIndex++)
-//           _buildColumnSection(context, columnIndex),
-//       ],
-//     );
-//   }
-
-//   Widget _buildColumnSection(BuildContext context, int columnIndex) {
-//     return Container(
-//       decoration: BoxDecoration(
-//         color: const Color(0xffF5F5F5),
-//         borderRadius: BorderRadius.circular(8.0),
-//       ),
-//       padding: const EdgeInsets.all(8),
-//       margin: const EdgeInsets.only(bottom: 12),
-//       child: ExpandableWidget(
-//         initialExpanded: true,
-//         expandableHeader: _buildColumnHeader(columnIndex, false),
-//         expandedHeader: _buildColumnHeader(columnIndex, true),
-//         expandableChild: Column(
-//           children: (currentField.inputFields ?? []).asMap().entries.map((entry) {
-//             final rowIndex = entry.key;
-//             final row = entry.value;
-//             return Padding(
-//               padding: const EdgeInsets.symmetric(horizontal: 8),
-//               child: widget.inputBuilder(
-//                 row[columnIndex],
-//                 context,
-//                 haslabel: rowIndex <= 0,
-//               ),
-//             );
-//           }).toList(),
-//         ),
-//       ),
-//     );
-//   }
-
-//   Widget _buildColumnHeader(int columnIndex, bool isExpanded) {
-//     return Padding(
-//       padding: EdgeInsets.only(bottom: isExpanded ? 8 : 0),
-//       child: Row(
-//         children: [
-//           Text('Column ${columnIndex + 1}'),
-//           const Spacer(),
-//           Icon(isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down)
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// /// A manager class that handles the state and operations for dynamic tables in forms.
-// ///
-// /// This class manages:
-// /// - Table states and their modifications
-// /// - Row visibility
-// /// - Form value updates
-// /// - Row addition and generation
-// ///
-// /// It extends [ChangeNotifier] to provide state change notifications to listeners.
-// class TableStateManager extends ChangeNotifier {
-//   /// Internal storage for table states indexed by table ID
-//   final Map<String, TableField> _tableStates = {};
-
-//   /// Tracks visibility of rows for each table
-//   final Map<String, List<bool>> _visibleRows = {};
-
-//   /// Reference to the form value object for persisting changes
-//   final FormValue formValue;
-
-//   /// Creates a new TableStateManager instance.
-//   ///
-//   /// [formValue] is required to persist table state changes to the form.
-//   TableStateManager(this.formValue);
-
-//   /// Initializes a table's state with the provided field configuration.
-//   ///
-//   /// This method:
-//   /// - Sets up the initial table state
-//   /// - Initializes row visibility
-//   /// - Saves the initial state to form value
-//   /// - Notifies listeners of the initialization
-//   ///
-//   /// [field] The table field configuration to initialize
-//   void initializeTable(TableField field) {
-//     _tableStates[field.id] = field;
-//     _visibleRows[field.id] =
-//         List.generate((field.inputFields ?? []).length, (_) => true);
-//     formValue.saveTableField(field.id, field);
-//     notifyListeners();
-//   }
-
-//   /// Adds a new row to the specified table.
-//   ///
-//   /// This method:
-//   /// - Creates a new row based on the first row's template
-//   /// - Generates new unique IDs for all fields in the new row
-//   /// - Updates the table state with the new row
-//   /// - Updates row visibility
-//   /// - Persists changes to form value
-//   /// - Notifies listeners of the change
-//   ///
-//   /// [field] The table field to add a row to
-//   Future<void> addRow(TableField field) async {
-//     if ((field.inputFields ?? []).isEmpty) return;
-
-//     List<InputField> newRow = (field.inputFields ?? [])[0].map((field) {
-//       return _generateNewFieldId(field);
-//     }).toList();
-
-//     List<List<InputField>> updatedRows =
-//         List.from(field.inputFields ?? [])..add(newRow);
-
-//     TableField updatedField = field.copyWith(
-//       inputFields: updatedRows,
-//       id: field.id,
-//     );
-
-//     _tableStates[field.id] = updatedField;
-//     _visibleRows[field.id] = List.from(_visibleRows[field.id] ?? [])..add(true);
-//     formValue.saveTableField(field.id, updatedField);
-//     notifyListeners();
-//   }
-
-//   /// Retrieves the current state of a table by its ID.
-//   ///
-//   /// Returns null if the table state doesn't exist.
-//   ///
-//   /// [id] The ID of the table to retrieve
-//   TableField? getTableState(String id) => _tableStates[id];
-
-//   /// Gets the visibility state of rows for a specific table.
-//   ///
-//   /// Returns an empty list if no visibility state exists.
-//   ///
-//   /// [id] The ID of the table to get row visibility for
-//   List<bool> getVisibleRows(String id) => _visibleRows[id] ?? [];
-
-//   /// Generates a new unique ID for a field and its nested components.
-//   ///
-//   /// This method:
-//   /// - Creates a deep copy of the field
-//   /// - Generates new UUIDs for all field IDs
-//   /// - Clears any existing answers or keys
-//   /// - Maintains other field properties
-//   ///
-//   /// [field] The field to generate new IDs for
-//   /// Returns a new [InputField] with updated IDs
-//   InputField _generateNewFieldId(InputField field) {
-//     var uuid = const Uuid();
-
-//     Map<String, dynamic> updateId(Map<String, dynamic> item) {
-//       return Map.from(item).map((key, value) {
-//         if (key == 'id' && value is String) {
-//           return MapEntry(key, 'item-${uuid.v4()}');
-//         }
-//         if (key == 'key' || key == 'answer') {
-//           return MapEntry(key, null);
-//         }
-//         if (value is Map<String, dynamic>) {
-//           return MapEntry(key, updateId(value));
-//         }
-//         if (value is List) {
-//           return MapEntry(
-//               key,
-//               value.map((e) =>
-//                   e is Map<String, dynamic> ? updateId(e) : e).toList());
-//         }
-//         return MapEntry(key, value);
-//       });
-//     }
-
-//     return InputField.fromJson(updateId(field.toJson()));
-//   }
-// }
