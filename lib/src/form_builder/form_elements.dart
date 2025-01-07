@@ -123,7 +123,6 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
 // Add this method to handle new row initialization
   void _initializeRowKeys(List<InputField> rowFields) {
-
     for (var field in rowFields) {
       _formFieldKeys[field.id] = GlobalKey<FormFieldState<dynamic>>();
       _fieldKeyToIdMap[_formFieldKeys[field.id]!] = field.id;
@@ -1572,5 +1571,45 @@ class TableStateManager extends ChangeNotifier {
     }
 
     return InputField.fromJson(updateId(field.toJson()));
+  }
+
+  void deleteRow(TableField field, int index) {
+    print('Deleting row at index: $index');
+
+    if (index <= 0 || index >= (field.inputFields?.length ?? 0)) {
+      print('Invalid row index for deletion');
+      return;
+    }
+
+    // First update the input fields
+    List<List<InputField>> updatedRows = List.from(field.inputFields ?? []);
+    updatedRows.removeAt(index);
+
+    TableField updatedField = field.copyWith(
+      inputFields: updatedRows,
+      id: field.id,
+    );
+
+    _tableStates[field.id] = updatedField;
+
+    // Only update visible rows if they exist and have valid length
+    if (_visibleRows.containsKey(field.id) &&
+        _visibleRows[field.id]!.length > index) {
+      _visibleRows[field.id] = List.from(_visibleRows[field.id] ?? [])
+        ..removeAt(index);
+    } else {
+      // Reset visible rows to match new row count
+      _visibleRows[field.id] = List.generate(updatedRows.length, (_) => true);
+    }
+
+    formValue.saveTableField(field.id, updatedField);
+
+    // Notify listeners to rebuild
+    notifyListeners();
+
+    // Wait for rebuild and update positions
+    Future.delayed(const Duration(milliseconds: 100), () {
+      notifyListeners();
+    });
   }
 }

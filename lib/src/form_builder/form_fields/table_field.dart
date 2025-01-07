@@ -103,32 +103,89 @@ class TableInputWidgetState extends State<TableInputWidget> {
   }
 
   Widget _buildTableRow(BuildContext context, int index) {
+    // Don't allow swipe delete for first row
+    if (index == 0) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: _buildRowContent(context, index),
+      );
+    }
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
-      child: ExpandableWidget(
-        expandableHeader: TableExpandableHeaderWidget(
-          index: index,
-          field: currentField,
-        ),
-        expandedHeader: TableExpandableHeaderWidget(
-          index: index,
-          field: currentField,
-          isExpanded: true,
-        ),
-        expandableChild: Container(
-          color: Colors.grey.shade200,
-          child: Column(
-            children:
-                (currentField.inputFields?[index] ?? []).map<Widget>((item) {
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: KeyedSubtree(
-                  key: _fieldKeys[item.id],
-                  child: widget.inputBuilder(item, context, haslabel: true),
-                ),
-              );
-            }).toList(),
+      child: Dismissible(
+        key: ValueKey('row_$index'),
+        direction: DismissDirection.endToStart,
+        background: Container(
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(right: 16),
+          color: Colors.red,
+          child: const Icon(
+            Icons.delete,
+            color: Colors.white,
           ),
+        ),
+        confirmDismiss: (direction) async {
+          // Show confirmation dialog
+          return await showDialog<bool>(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Delete Row'),
+                content:
+                    const Text('Are you sure you want to delete this row?'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(false),
+                    child: const Text('CANCEL'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.of(context).pop(true),
+                    child: const Text(
+                      'DELETE',
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        onDismissed: (direction) {
+          // Call delete row on table manager
+          widget.tableManager.deleteRow(currentField, index);
+        },
+        child: _buildRowContent(context, index),
+      ),
+    );
+  }
+
+  // Extract row content to separate method
+  Widget _buildRowContent(BuildContext context, int index) {
+    return ExpandableWidget(
+      initialExpanded: true,
+      expandableHeader: TableExpandableHeaderWidget(
+        index: index,
+        field: currentField,
+      ),
+      expandedHeader: TableExpandableHeaderWidget(
+        index: index,
+        field: currentField,
+        isExpanded: true,
+      ),
+      expandableChild: Container(
+        color: Colors.grey.shade200,
+        child: Column(
+          children:
+              (currentField.inputFields?[index] ?? []).map<Widget>((item) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: KeyedSubtree(
+                key: _fieldKeys[item.id],
+                child: widget.inputBuilder(item, context, haslabel: true),
+              ),
+            );
+          }).toList(),
         ),
       ),
     );
@@ -192,6 +249,7 @@ class TableInputWidgetState extends State<TableInputWidget> {
       ),
     );
   }
+
   @override
   void dispose() {
     _fieldKeys.clear();
