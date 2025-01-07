@@ -33,8 +33,8 @@ class InstructionWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        HtmlWidget(field.description ?? ''),
-        if ((field.description ?? '').isNotEmpty) AppSpacing.sizedBoxH_06(),
+        HtmlWidget(field.description ?? field.instruction ?? ''),
+        if ((field.description ?? field.instruction??  '').isNotEmpty) AppSpacing.sizedBoxH_06(),
         Wrap(
           children: (field.attachments ?? []).map((e) {
             if (e['mime_type'] == 'png' ||

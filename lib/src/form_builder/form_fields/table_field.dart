@@ -29,6 +29,9 @@ class TableInputWidget extends StatefulWidget {
 class TableInputWidgetState extends State<TableInputWidget> {
   late TableField currentField;
   final Map<String, GlobalKey> _fieldKeys = {};
+  final Map<int, bool> _expandedRows = {};
+  // Track which rows have validation errors
+  final Map<int, bool> _rowValidationErrors = {};
 
   @override
   void initState() {
@@ -37,6 +40,7 @@ class TableInputWidgetState extends State<TableInputWidget> {
         widget.tableManager.getTableState(widget.field.id) ?? widget.field;
     widget.tableManager.addListener(_onTableStateChanged);
     _initializeFieldKeys();
+    _initializeExpandedState();
   }
 
   void _initializeFieldKeys() {
@@ -56,8 +60,16 @@ class TableInputWidgetState extends State<TableInputWidget> {
     setState(() {
       currentField =
           widget.tableManager.getTableState(widget.field.id) ?? widget.field;
-      _initializeFieldKeys(); // Reinitialize keys when state changes
+      _initializeFieldKeys();
+      // Clear validation errors when data changes
+      _rowValidationErrors.clear();
     });
+  }
+
+  void _initializeExpandedState() {
+    for (int i = 0; i < (currentField.inputFields?.length ?? 0); i++) {
+      _expandedRows[i] = true;
+    }
   }
 
   @override
@@ -162,33 +174,109 @@ class TableInputWidgetState extends State<TableInputWidget> {
 
   // Extract row content to separate method
   Widget _buildRowContent(BuildContext context, int index) {
-    return ExpandableWidget(
-      initialExpanded: true,
-      expandableHeader: TableExpandableHeaderWidget(
-        index: index,
-        field: currentField,
-      ),
-      expandedHeader: TableExpandableHeaderWidget(
-        index: index,
-        field: currentField,
-        isExpanded: true,
-      ),
-      expandableChild: Container(
-        color: Colors.grey.shade200,
-        child: Column(
-          children:
-              (currentField.inputFields?[index] ?? []).map<Widget>((item) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: KeyedSubtree(
-                key: _fieldKeys[item.id],
-                child: widget.inputBuilder(item, context, haslabel: true),
-              ),
-            );
-          }).toList(),
+    final isExpanded = isRowExpanded(index);
+    print('Building row $index with expanded state: $isExpanded'); // Debug
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        ExpandableWidget(
+          initialExpanded: isExpanded,
+          expandableHeader: TableExpandableHeaderWidget(
+            index: index,
+            field: currentField,
+            hasError: hasRequiredFieldErrors(index),
+          ),
+          expandedHeader: TableExpandableHeaderWidget(
+            index: index,
+            field: currentField,
+            isExpanded: true,
+            hasError: hasRequiredFieldErrors(index),
+          ),
+          expandableChild: Container(
+            color: Colors.grey.shade200,
+            child: Column(
+              children:
+                  (currentField.inputFields?[index] ?? []).map<Widget>((item) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: KeyedSubtree(
+                    key: _fieldKeys[item.id],
+                    child: widget.inputBuilder(item, context, haslabel: true),
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+          onExpandChanged: (expanded) {
+            print('Row $index expansion changed to: $expanded'); // Debug
+            setRowExpanded(index, expanded);
+          },
         ),
-      ),
+        if (hasRequiredFieldErrors(index))
+          Padding(
+            padding: const EdgeInsets.only(top: 4, left: 16),
+            child: Text(
+              'This row contains required fields',
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.error,
+                fontSize: 12,
+              ),
+            ),
+          ),
+      ],
     );
+  }
+
+  // Method to check if a row has required field errors
+  bool hasRequiredFieldErrors(int index) {
+    return _rowValidationErrors[index] ?? false;
+  }
+
+  // Method to be called during form validation
+  void validateRow(int index) {
+    bool hasError = false;
+    for (var field in currentField.inputFields![index]) {
+      var fieldKey = _fieldKeys[field.id];
+      if (fieldKey?.currentContext != null) {
+        final formState = Form.of(fieldKey!.currentContext!);
+        if (formState != null) {
+          if (!formState.validate()) {
+            hasError = true;
+          }
+        }
+      }
+    }
+
+    if (mounted) {
+      setState(() {
+        if (hasError) {
+          _rowValidationErrors[index] = true;
+        } else {
+          _rowValidationErrors.remove(index); // Remove error state if valid
+        }
+      });
+    }
+  }
+
+  // Method to validate all rows
+  void validateAllRows() {
+    for (int i = 0; i < (currentField.inputFields?.length ?? 0); i++) {
+      validateRow(i);
+    }
+  }
+
+  bool isRowExpanded(int index) {
+    return _expandedRows[index] ?? true;
+  }
+
+  void setRowExpanded(int index, bool expanded) {
+    print('Setting row $index expanded state to: $expanded'); // Debug
+    if (mounted) {
+      setState(() {
+        _expandedRows[index] = expanded;
+      });
+    }
   }
 
   Widget _buildColumnBasedTable(BuildContext context) {
@@ -248,6 +336,12 @@ class TableInputWidgetState extends State<TableInputWidget> {
         ],
       ),
     );
+  }
+
+  // Method to get row context
+  BuildContext? getRowContext(int index) {
+    return _fieldKeys[currentField.inputFields![index].first.id]
+        ?.currentContext;
   }
 
   @override

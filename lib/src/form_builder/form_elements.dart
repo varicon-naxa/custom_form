@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:math' as math;
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -207,56 +208,77 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   }
 
   void scrollToFirstInvalidField() {
+    print('Starting validation...');
+
+    // Check table fields first
+    for (var tableKey in _tableKeys.values) {
+      if (tableKey.currentState != null) {
+        final tableState = tableKey.currentState!;
+
+        for (var rowIndex = 0;
+            rowIndex < (tableState.currentField.inputFields?.length ?? 0);
+            rowIndex++) {
+          final row = tableState.currentField.inputFields![rowIndex];
+          bool hasInvalidField = false;
+          String? firstInvalidFieldId;
+
+          // Check each field in the row
+          for (var field in row) {
+            var fieldKey = _formFieldKeys[field.id];
+            if (fieldKey?.currentState != null &&
+                !fieldKey!.currentState!.validate()) {
+              hasInvalidField = true;
+              firstInvalidFieldId = field.id;
+              break;
+            }
+          }
+
+          if (hasInvalidField) {
+            // Mark row as having errors
+            tableState.validateRow(rowIndex);
+
+            // Schedule scroll after build
+            WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (!tableState.isRowExpanded(rowIndex)) {
+                // For collapsed rows, scroll to row header
+                final rowContext = tableState.getRowContext(rowIndex);
+                if (rowContext != null) {
+                  Scrollable.ensureVisible(
+                    rowContext,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeIn,
+                    alignment: 0.1, // Align towards top
+                  );
+                }
+              } else {
+                // For expanded rows, scroll to invalid field
+                final fieldContext =
+                    _formFieldKeys[firstInvalidFieldId]?.currentContext;
+                if (fieldContext != null) {
+                  Scrollable.ensureVisible(
+                    fieldContext,
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeIn,
+                    alignment: 0.1, // Align towards top
+                  );
+                }
+              }
+            });
+            return;
+          }
+        }
+      }
+    }
+
+    // Then check regular form fields
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
 
-      if (fieldKey.currentState != null) {
-        if (!fieldKey.currentState!.validate()) {
-          scrollToId?.animateTo(fieldId,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeIn);
-          break;
-        } else {
-          // log('fieldKey.currentState!.validate()2 ${fieldKey.currentState?.value}');
-        }
-      } else {
-        // log('fieldKey.currentState!.validate()1 ${fieldKey.currentState?.value}');
-      }
-
-      // Check for invalid fields within tables
-      for (var tableKey in _tableKeys.values) {
-        for (var row in tableKey.currentState!.currentField.inputFields ?? []) {
-          for (var field1 in row) {
-            var fieldKey2 = _formFieldKeys[field1.id];
-            if (fieldKey2 != null &&
-                fieldKey2.currentState != null &&
-                !fieldKey2.currentState!.validate()) {
-              final position = ScrollContentPosition.getPosition(field1.id);
-              scrollControllerId.animateTo(position?.dy ?? 0,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeIn);
-              break;
-            }
-          }
-        }
-      }
-      // Check for invalid fields within tables
-      for (var tableKey in _advtableKeys.values) {
-        for (var row in tableKey.currentState!.currentField.inputFields ?? []) {
-          for (var field1 in row) {
-            var fieldKey2 = _formFieldKeys[field1.id];
-            if (fieldKey2 != null &&
-                fieldKey2.currentState != null &&
-                !fieldKey2.currentState!.validate()) {
-              final position = ScrollContentPosition.getPosition(field1.id);
-              scrollControllerId.animateTo(position?.dy ?? 0,
-                  duration: const Duration(milliseconds: 500),
-                  curve: Curves.easeIn);
-              break;
-            }
-          }
-        }
+      if (fieldKey.currentState != null && !fieldKey.currentState!.validate()) {
+        scrollToId?.animateTo(fieldId,
+            duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
+        return;
       }
     }
   }
@@ -1227,45 +1249,57 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
 ///Table expandable header info and count widget
 class TableExpandableHeaderWidget extends StatelessWidget {
+  final int index;
+  final dynamic field;
+  final bool isExpanded;
+  final bool hasError;
+
   const TableExpandableHeaderWidget({
     super.key,
     required this.index,
     required this.field,
     this.isExpanded = false,
+    this.hasError = false,
   });
-
-  final bool? isExpanded;
-  final int index;
-  final dynamic field;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 45,
-      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: BoxDecoration(
-        color: Colors.grey.shade200,
-        borderRadius: BorderRadius.circular(
-          5,
+        color: Colors.white,
+        border: Border.all(
+          color: hasError
+              ? Theme.of(context).colorScheme.error
+              : Colors.grey.shade300,
+          width: 1,
         ),
+        borderRadius: BorderRadius.circular(4),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              'Row ${index + 1} (${field.inputFields?[index].length} Questions)',
+      child: Row(
+        children: [
+          Text(
+            'Row ${index + 1}',
+            style: TextStyle(
+              color: hasError ? Theme.of(context).colorScheme.error : null,
+              fontWeight: hasError ? FontWeight.bold : null,
             ),
-            Icon(
-              isExpanded == true
-                  ? Icons.keyboard_arrow_up
-                  : Icons.keyboard_arrow_down,
+          ),
+          const Spacer(),
+          if (hasError)
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: Icon(
+                Icons.error_outline,
+                color: Theme.of(context).colorScheme.error,
+                size: 18,
+              ),
             ),
-          ],
-        ),
+          Icon(
+            isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+            color: hasError ? Theme.of(context).colorScheme.error : null,
+          ),
+        ],
       ),
     );
   }

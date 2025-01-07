@@ -10,6 +10,7 @@
             "name": "Simple Table",
             "type": "table",
             "label": "Simple Table",
+            "isRow": false,
             "contents": [
                 [
                     {
