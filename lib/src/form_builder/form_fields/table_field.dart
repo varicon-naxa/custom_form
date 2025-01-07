@@ -40,20 +40,23 @@ class TableInputWidgetState extends State<TableInputWidget> {
   }
 
   void _initializeFieldKeys() {
+    _fieldKeys.clear();
     if (currentField.inputFields != null) {
       for (var row in currentField.inputFields!) {
         for (var field in row) {
-          _fieldKeys[field.id] = GlobalKey();
+          if (!_fieldKeys.containsKey(field.id)) {
+            _fieldKeys[field.id] = GlobalKey();
+          }
         }
       }
     }
   }
 
-  
   void _onTableStateChanged() {
     setState(() {
       currentField =
           widget.tableManager.getTableState(widget.field.id) ?? widget.field;
+      _initializeFieldKeys(); // Reinitialize keys when state changes
     });
   }
 
@@ -189,7 +192,6 @@ class TableInputWidgetState extends State<TableInputWidget> {
       ),
     );
   }
-
   @override
   void dispose() {
     _fieldKeys.clear();

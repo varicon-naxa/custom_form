@@ -14,6 +14,30 @@
             "selectedLinkListLabel": ""
         },
         {
+            "id": "item-f23108cb-f910-4c10-abb1-9ead57e89685",
+            "name": "Date Time",
+            "type": "datetimelocal",
+            "label": "Date Time",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f23108cb-f910-4c10-abb1-9ead57e89686",
+            "name": " Time",
+            "type": "time",
+            "label": "Date Time",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f23108cb-f910-4c10-abb1-9ead57e89687",
+            "name": "Date ",
+            "type": "date",
+            "label": "Date Time",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-124bf961-c2ff-4a44-b4f8-dad21aa5bd9a",
             "name": "Multi Select Dropdown",
             "type": "multipleselect",

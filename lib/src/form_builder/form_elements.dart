@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
@@ -80,7 +79,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   // Add a map to store table widget keys
   final Map<String, GlobalKey<TableInputWidgetState>> _tableKeys = {};
-
+  final Map<String, GlobalKey<AdvTableInputWidgetState>> _advtableKeys = {};
   ScrollToId? scrollToId;
   final ScrollController scrollControllerId = ScrollController();
 
@@ -110,6 +109,24 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
           }
         }
       }
+
+      if (field is AdvTableField) {
+        _advtableKeys[field.id] = GlobalKey<AdvTableInputWidgetState>();
+        for (var field1 in field.inputFields ?? []) {
+          for (var field2 in field1) {
+            _formFieldKeys[field2.id] = GlobalKey<FormFieldState<dynamic>>();
+          }
+        }
+      }
+    }
+  }
+
+// Add this method to handle new row initialization
+  void _initializeRowKeys(List<InputField> rowFields) {
+
+    for (var field in rowFields) {
+      _formFieldKeys[field.id] = GlobalKey<FormFieldState<dynamic>>();
+      _fieldKeyToIdMap[_formFieldKeys[field.id]!] = field.id;
     }
   }
 
@@ -119,7 +136,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
     _initializeKeys(widget.surveyForm.inputFields);
     scrollToId = ScrollToId(scrollController: scrollControllerId);
-    _tableManager = TableStateManager(widget.formValue);
+    _tableManager = TableStateManager(widget.formValue)
+      ..onRowAdded = _initializeRowKeys;
     _advtableManager = TableStateManager(widget.formValue);
     // Initialize form field keys and table states
 
@@ -189,31 +207,6 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     return InputField.fromJson(updateId(field.toJson()));
   }
 
-  ///method to add new row in simple table field
-  void addNewRow(TableField field) {
-    if ((field.inputFields ?? []).isNotEmpty) {
-      /// Removes all the answers from the element and adds new id for each elements in the row
-      List<InputField> newRow = (field.inputFields ?? [])[0].map((field) {
-        return generateNewIdForField(field);
-      }).toList();
-
-      setState(() {
-        List<List<InputField>>? updatedTableField =
-            List.from(field.inputFields ?? [])..add(newRow);
-
-        _tableState[field.id] = field.copyWith(inputFields: updatedTableField);
-
-        _visibleRows[field.id] = List.from(_visibleRows[field.id] ?? [])
-          ..add(true);
-      });
-
-      widget.formValue.saveTableField(
-        field.id,
-        _tableState[field.id]!,
-      );
-    }
-  }
-
   void scrollToFirstInvalidField() {
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
@@ -226,14 +219,31 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
               curve: Curves.easeIn);
           break;
         } else {
-          log('fieldKey.currentState!.validate()2 ${fieldKey.currentState?.value}');
+          // log('fieldKey.currentState!.validate()2 ${fieldKey.currentState?.value}');
         }
       } else {
-        log('fieldKey.currentState!.validate()1 ${fieldKey.currentState?.value}');
+        // log('fieldKey.currentState!.validate()1 ${fieldKey.currentState?.value}');
       }
 
       // Check for invalid fields within tables
       for (var tableKey in _tableKeys.values) {
+        for (var row in tableKey.currentState!.currentField.inputFields ?? []) {
+          for (var field1 in row) {
+            var fieldKey2 = _formFieldKeys[field1.id];
+            if (fieldKey2 != null &&
+                fieldKey2.currentState != null &&
+                !fieldKey2.currentState!.validate()) {
+              final position = ScrollContentPosition.getPosition(field1.id);
+              scrollControllerId.animateTo(position?.dy ?? 0,
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn);
+              break;
+            }
+          }
+        }
+      }
+      // Check for invalid fields within tables
+      for (var tableKey in _advtableKeys.values) {
         for (var row in tableKey.currentState!.currentField.inputFields ?? []) {
           for (var field1 in row) {
             var fieldKey2 = _formFieldKeys[field1.id];
@@ -1201,6 +1211,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
       id: currentTableField.id,
       isNested: isNested,
       child: AdvTableInputWidget(
+        key: _advtableKeys[currentTableField.id],
         field: currentTableField,
         labelText: labelText,
         isRequired: currentTableField.isRequired,
@@ -1433,6 +1444,9 @@ class TableStateManager extends ChangeNotifier {
   final Map<String, TableField> _tableStates = {};
   final Map<String, AdvTableField> _advTableStates = {};
 
+  // Add callback for key initialization
+  Function(List<InputField>)? onRowAdded;
+
   /// Tracks visibility of rows for each table
   final Map<String, List<bool>> _visibleRows = {};
 
@@ -1499,6 +1513,12 @@ class TableStateManager extends ChangeNotifier {
     _visibleRows[field.id] = List.from(_visibleRows[field.id] ?? [])..add(true);
     formValue.saveTableField(field.id, updatedField);
     notifyListeners();
+
+    // Call the key initialization callback if provided
+    // Then wait for next frame and update positions
+    if (onRowAdded != null) {
+      onRowAdded!(newRow);
+    }
   }
 
   /// Retrieves the current state of a table by its ID.

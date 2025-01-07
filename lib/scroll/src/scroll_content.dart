@@ -31,24 +31,44 @@ class _ScrollContentState extends State<ScrollContent> {
     final RenderBox? renderBox =
         _key.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox != null) {
-      // Get position relative to the viewport instead of global position
+      // print('Updating position for: ${widget.id}');
+
+      // Get position relative to the viewport
       final Offset localPosition = renderBox.localToGlobal(Offset.zero);
       final Size size = renderBox.size;
-      final ScrollPosition scrollPosition = Scrollable.of(context).position;
-      final double scrollOffset = scrollPosition.pixels;
 
-      // Calculate the top position by subtracting the scroll offset
-      final Offset adjustedPosition = Offset(
+      try {
+        final ScrollPosition scrollPosition = Scrollable.of(context).position;
+        final double scrollOffset = scrollPosition.pixels;
+        // final double viewportHeight = scrollPosition.viewportDimension;
+
+        // Calculate padding to show full field
+        final double fieldPadding =
+            size.height + 16.0; // Add some extra padding
+
+        // Calculate absolute position with field-aware adjustment
+        final double absoluteDy =
+            localPosition.dy + scrollOffset - fieldPadding;
+
+        // print('Position calculation for ${widget.id}:');
+        // print('localPosition.dy: ${localPosition.dy}');
+        // print('scrollOffset: $scrollOffset');
+        // print('viewportHeight: $viewportHeight');
+        // print('fieldHeight: ${size.height}');
+        // print('absoluteDy: $absoluteDy');
+
+        final Offset adjustedPosition = Offset(
           localPosition.dx,
-          localPosition.dy -
-              scrollOffset -
-              size.height // Subtract height to get starting position
-          );
+          absoluteDy,
+        );
 
-      if (widget.isNested) {
-        ScrollContentPosition.addNestedPosition(widget.id, adjustedPosition);
-      } else {
-        ScrollContentPosition.positions[widget.id] = adjustedPosition;
+        if (widget.isNested) {
+          ScrollContentPosition.addNestedPosition(widget.id, adjustedPosition);
+        } else {
+          ScrollContentPosition.positions[widget.id] = adjustedPosition;
+        }
+      } catch (e) {
+        print('Error updating position: $e');
       }
     }
   }
