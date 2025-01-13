@@ -85,6 +85,8 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
         } else {
           formCon.text = (widget.field.answerList ?? '');
         }
+      } else {
+        formCon.text = 'Select the item from list';
       }
     });
   }
@@ -119,6 +121,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
               requiredErrorText: widget.field.requiredErrorText,
             ),
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.all(8.0),
               suffixIcon: Icon(
                 Icons.arrow_drop_down,
               ),
@@ -160,6 +163,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   requiredErrorText: widget.field.requiredErrorText,
                 ),
                 decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.all(8.0),
                   suffixIcon: Icon(
                     Icons.arrow_drop_down,
                   ),

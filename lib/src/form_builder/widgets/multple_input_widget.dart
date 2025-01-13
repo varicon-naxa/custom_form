@@ -160,6 +160,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
         },
         style: Theme.of(context).textTheme.bodyMedium,
         decoration: const InputDecoration(
+          contentPadding: EdgeInsets.all(8.0),
           suffixIcon: Icon(
             Icons.arrow_drop_down,
           ),
@@ -289,6 +290,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
           decoration: InputDecoration(
             hintText: widget.field.otherPlaceholder,
             labelText: widget.field.otherText,
+            contentPadding: const EdgeInsets.all(8.0),
           ),
         ),
       ],

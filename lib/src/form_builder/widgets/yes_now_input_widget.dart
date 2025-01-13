@@ -187,6 +187,7 @@ class _YesNoInputWidgetState extends State<YesNoInputWidget> {
             decoration: InputDecoration(
               hintText: widget.field.otherPlaceholder,
               labelText: widget.field.otherText,
+              contentPadding: const EdgeInsets.all(8.0),
             ),
           ),
         ],

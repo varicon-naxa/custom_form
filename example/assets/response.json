@@ -43,577 +43,1306 @@
     },
     "elements": [
         {
-            "id": "item-3780bb2a-a78a-45a1-bc44-d97d97c8c529",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "Section Heading",
+            "id": "item-9ef0380f-1b98-41a8-bd88-e57f347cc0d0",
+            "name": "Date",
+            "type": "date",
+            "label": "Date",
+            "answer": "2025-01-13",
             "isRequired": false,
-            "description": "",
-            "selectedLinkListLabel": ""
+            "initialAnswer": ""
         },
         {
-            "id": "item-9c8af1f0-9e21-45b6-a38b-988a62924c86",
-            "name": "Instruction",
-            "type": "instruction",
-            "label": "Instruction",
-            "isRequired": false,
-            "attachments": [],
-            "description": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-b26d4346-4537-40f4-9f08-d1c8d873f139",
-            "name": "Full Name",
-            "type": "text",
-            "label": "Full Name",
-            "answer": "prabin",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-7d5dded3-b893-4099-bf80-1c0fdb2a7927",
-            "name": "Full Name",
-            "type": "text",
-            "label": "Full Name",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-55cbd6ef-c26b-48d7-87b7-f8d6561da1c2",
-            "name": "Address",
-            "type": "text",
-            "label": "Primary",
-            "answer": "bardiya",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-972be852-1b93-44ce-be87-8665122ed336",
-            "name": "Address",
-            "type": "text",
-            "label": "Secondary",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-5a8ae635-ae20-4fdb-9253-76c1500f2763",
-            "name": "Email",
-            "type": "email",
-            "label": "Email",
-            "answer": "",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-88a55bc9-7f7e-41cd-b56c-92a1d2448dbd",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Yes/No",
-            "answer": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
-            "choice": [
-                {
-                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-56e2e742-6dfb-4615-a883-e454f6869ca9",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Optional",
-            "answer": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
-            "choice": [
-                {
-                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
-                    "label": "No"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-fd62a25b-5273-4bd7-b6ce-1b5e54cad110",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Required",
-            "answer": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
-            "choice": [
-                {
-                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-79e42570-21c4-4d33-9d6f-afa5742dc53e",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Conditional Required",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-4ae796f0-9fb6-4df1-bfa3-b6261778f326",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-8f70f5d4-95c5-4340-8bae-dae70f64bfa0",
-                    "label": "No"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-5a422d4f-8179-422e-b083-c9eb40d3cf65",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "optional",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
-                    "label": "No"
-                },
-                {
-                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
-                    "label": "NA"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-34576fc0-1f6b-4033-9834-ed5702795fbe",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "Required ",
-            "answer": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
-            "choice": [
-                {
-                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
-                    "label": "No"
-                },
-                {
-                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
-                    "label": "NA"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-88d6b74d-7100-48b6-899e-606715c998c4",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "Yes/No/NA",
-            "answer": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
-            "choice": [
-                {
-                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
-                    "label": "No"
-                },
-                {
-                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
-                    "label": "NA"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-5d685af2-ba74-48fd-9e50-765aa74df9b5",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "Yes/No/NA",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-9b580f55-2e34-4cc5-8387-8420f066aaf1",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-92d00aa4-8af2-4805-b52d-1ea5db20fd44",
-                    "label": "No"
-                },
-                {
-                    "id": "item-ba5dfd57-c611-4175-92eb-dedc04549b7f",
-                    "label": "NA"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-8eade404-0c44-4983-811a-b3a0b317bd51",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Radio",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-615c68ba-8e38-40b0-bea1-327709540c50",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Radio",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-cf4e5adb-e0f8-4662-8ac2-bbb41dbb1b51",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Radio",
-            "answer": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
-            "choice": [
-                {
-                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-34618764-2963-4b3f-824d-c25dba127385",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Radio",
-            "answer": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
-            "choice": [
-                {
-                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-269e30b8-db5b-4c07-8c83-1ac7cb984cbe",
-            "name": "Checkboxes",
-            "type": "checkbox",
-            "label": "Checkboxes",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-afc5db40-8a80-495c-ac78-f052786f8e14",
-                    "label": "Option 2"
-                },
-                {
-                    "id": "item-cbd26744-b333-483f-b213-1e848f6788c6",
-                    "label": "Option 3"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-489cc0ad-30a9-4226-965c-1724f7f27e50",
-            "name": "Checkboxes",
-            "type": "checkbox",
-            "label": "Checkboxes",
-            "answer": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90,item-d97f08b8-c9d2-44fe-a2a1-bc81a3371f97",
-            "choice": [
-                {
-                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-d97f08b8-c9d2-44fe-a2a1-bc81a3371f97",
-                    "label": "Option 2"
-                },
-                {
-                    "id": "item-94afa1df-91ae-44f3-8979-d61dd61cf187",
-                    "label": "Option 3"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-94a8a39e-c4bd-4f43-a8cc-9eecc69f15de",
-            "name": "Checkboxes",
-            "type": "checkbox",
-            "label": "Checkboxes",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-4186bbee-5e79-4208-8ac5-3077242951b6",
-                    "label": "Option 2"
-                },
-                {
-                    "id": "item-fa59ad57-3965-4e95-ab07-f93be6376761",
-                    "label": "Option 3"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-8adff798-034b-4af4-93c2-92aa4eee8b48",
-            "name": "Checkboxes",
-            "type": "checkbox",
-            "label": "Checkboxes",
-            "answer": "item-0f9dbaa8-6d45-4c70-9f74-85c33b447570,item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
-            "choice": [
-                {
-                    "id": "item-43f4be61-b1f9-43dc-93fc-41cd22d6bc90",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-0f9dbaa8-6d45-4c70-9f74-85c33b447570",
-                    "label": "Option 2"
-                },
-                {
-                    "id": "item-31ff5f81-d4c7-40e6-910d-139ff54e20f3",
-                    "label": "Option 3"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-d75f109d-72bb-4e8d-893a-2639e3144db9",
+            "id": "item-2e1c680a-62af-4938-a111-0ecd6100243b",
             "name": "Single Select Dropdown",
             "type": "dropdown",
             "label": "Single Select Dropdown",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-6b2a4812-6176-4272-80fb-d98da29f76c0",
-                    "label": "Option 2"
-                },
-                {
-                    "id": "item-d0b12e45-5d03-44dd-a451-b712d2c597a8",
-                    "label": "Option 3"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-c59f7fed-a5a0-4372-b3e7-622160c74ed0",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Single Select Dropdown",
-            "answer": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
-            "choice": [
-                {
-                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-243651fa-a97e-405e-8d34-db55bf9dab29",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Single Select Dropdown",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-c3f99f94-6d46-4371-9379-b17ee4a367db",
-                    "label": "Option 1"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-124bf961-c2ff-4a44-b4f8-dad21aa5bd0a",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Single Select Dropdown",
-            "answer": "",
+            "answer": "01329e2e-5a8e-4517-8fe9-a8aadb5146ef",
             "choice": [],
-            "isRequired": true,
+            "isRequired": false,
+            "initialAnswer": "",
             "isConditional": false,
             "fromManualList": false,
             "islinked_query": "project",
-            "selectedLinkListLabel": ""
+            "selectedLinkListLabel": "(MDB-Canal Prabin)MDB-Canal Prabin"
         },
         {
-            "id": "item-8166ec96-fa58-41a0-b704-4973b0235492",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
-            "answer": "",
+            "id": "item-5cf715e1-9c03-4c81-bf9e-1072cf9db0b1",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Project Description / Nature of Work",
+            "answer": "This is test work",
+            "isRequired": false,
+            "initialAnswer": ""
+        },
+        {
+            "id": "item-a745a09b-7783-44ae-b695-62d5d71b1bdb",
+            "name": "Address",
+            "type": "text",
+            "label": "Address",
+            "answer": "QH7M+5G Fullerton NSW, Australia",
+            "isRequired": false,
+            "initialAnswer": ""
+        },
+        {
+            "id": "item-348f3d58-ad92-4fa7-a8c9-7278498476d7",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Employee Name",
+                "Date of Birth",
+                "Contact No.",
+                "Address",
+                "Employer",
+                "Employer Contact No.",
+                "Emergency Contact",
+                "Emergency Contact No."
+            ],
+            "maxRows": "0",
+            "contents": [
+                [
+                    {
+                        "id": "item-754ae420-09b6-48e7-80c3-1ccb976256ba",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 196,
+                        "answer": "28ed21ae-848a-4589-85f4-c6b6814c86ba",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": "(AKR-1)Aadesk Kumar Thakur"
+                    },
+                    {
+                        "id": "item-cedf2b23-270c-49a2-9f33-eddd7dfa1504",
+                        "name": "Date",
+                        "type": "date",
+                        "label": "Date of Birth",
+                        "width": 162,
+                        "answer": "2025-01-14",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-02975a62-15ca-4dfc-8415-c316308a40e2",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Contact No.",
+                        "answer": "+61987612345",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-defc54aa-1a23-4b89-866d-e2ac3256eac0",
+                        "name": "Address",
+                        "type": "text",
+                        "label": "Address",
+                        "answer": "P9JJ+34 Wattle Ridge NSW, Australia",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-e7165d51-a8e9-4206-8ebc-cdd6b793b4c7",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employer",
+                        "width": 189,
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "client",
+                        "selectedLinkListLabel": "Ashimlk"
+                    },
+                    {
+                        "id": "item-15419c08-63c7-4f88-96ee-d363355d88b2",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Employer Contact No.",
+                        "answer": "+619860624231",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-2c191490-74f7-4c69-b16f-0bf1525b0b96",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Emergency Contact",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-06392ad8-1892-494b-b13b-945fc79de4ba",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Emergency Contact No.",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    }
+                ],
+                [
+                    {
+                        "id": "item-a0464934-f639-48f5-bfa9-928a7932e5f5",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 196,
+                        "answer": "00e0e9f9-0216-4a5d-8a48-01ce88065454",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": "(adars_224)Adarsha Kafle"
+                    },
+                    {
+                        "id": "item-8315814c-7f5a-4f83-918f-fa7cd77e2ee4",
+                        "name": "Date",
+                        "type": "date",
+                        "label": "Date of Birth",
+                        "width": 162,
+                        "answer": "2025-01-13",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-52b918a6-b2ef-4daf-9e6b-dd60b28dfe2f",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Contact No.",
+                        "answer": "+6112345",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-693bdd9f-7126-4e95-96f2-e2f7079b2fcc",
+                        "name": "Address",
+                        "type": "text",
+                        "label": "Address",
+                        "answer": "HWQ2+RX Bannaby NSW, Australia",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-6d1676d1-f621-4692-94dc-c284977b19ff",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employer",
+                        "width": 189,
+                        "answer": "543b9c82-c82e-4893-8df3-3eaae9664ee4",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "client",
+                        "selectedLinkListLabel": "City of Melbourne"
+                    },
+                    {
+                        "id": "item-6d434a1e-9c88-40eb-8af2-02f2b5ced77d",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Employer Contact No.",
+                        "answer": "+61123409876",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-ef1f33de-b26f-4224-9ffb-42c159ebbe6d",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Emergency Contact",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-f779d4bd-7be8-440a-a6d4-0f2eef24f02a",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Emergency Contact No.",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    }
+                ]
+            ],
+            "isRequired": false
+        },
+        {
+            "id": "item-fa0e416f-778b-4b2b-9f81-858e719b2efe",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Employee Name",
+                "Safe Work Orientation",
+                "Equipment Training",
+                "PPE",
+                "Photo of Valid ID",
+                "Work Permit / License",
+                "Training / Qualification Certificate",
+                "Medical Certificate"
+            ],
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-29638a46-262e-41c4-838a-28abcd37ec6b",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 230,
+                        "answer": "a4936ed8-1476-4ea0-a90d-d7c92cb35503",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": "(Emp-ap)A P"
+                    },
+                    {
+                        "id": "item-6c8d5509-42cb-4832-887d-e037a698301a",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Safe Work Orientation",
+                        "width": 164,
+                        "answer": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Not yet Completed",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-1b966782-063b-4f6c-822f-333f8e0e7221",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Equipment Training",
+                        "answer": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Not yet Completed",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-a15c6a1f-76cd-4d98-9879-8b42c3400c96",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "PPE",
+                        "answer": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Incomplete",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-d1607ed6-e695-497a-899a-3790e2628b52",
+                        "name": "Image Upload",
+                        "type": "images",
+                        "label": "Photo of Valid ID",
+                        "answer": [
+                            {
+                                "id": "c3595a4c-ca56-4d69-84b0-c804fddbaa2b",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/a7c7500f-0869-4cd1-aa97-abb6e27a6172.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085607Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=8a52784373fce37110e0812883b1911f7c60fbca4f8d1ab8286c0c2ff3279a5a",
+                                "name": "WhatsApp Image 2025-01-03 at 22.22.01.jpeg",
+                                "mime_type": "jpeg",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/a7c7500f-0869-4cd1-aa97-abb6e27a6172_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085607Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=4261393a67c16c60e7e847923fe4401762603b1f57c78aebb4bc881b40376284"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-7df33249-eb58-4db8-801f-9e0fadc08d02",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Work Permit / License",
+                        "answer": [
+                            {
+                                "id": "36ed686c-2436-449f-9b38-8ef38fe7ec59",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/6e74ea94-767d-48fa-92c8-ebae96596e56.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085610Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a6656871dccb5ef935571abd39be6bd9c1dd4d84286b2dc7af2c2b4abfcf794f",
+                                "name": "WhatsApp Image 2025-01-03 at 22.20.01.jpeg",
+                                "mime_type": "jpeg",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/6e74ea94-767d-48fa-92c8-ebae96596e56_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085610Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=c89e6989271835f9b6f5df855d9da8f637832ca3c542b44ba9afaec1346c25c9"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-f1f642f8-0ddc-488b-87a3-839e26391827",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Training / Qualification Certificate",
+                        "answer": [
+                            {
+                                "id": "f748cd39-16f7-4d8a-93c7-1e0397a2a292",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/8d51a07f-580e-4de2-9cb5-45c8b3a8ad02.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085620Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=60158e3577eb8ee52261b896b9d9fbd93e851674320f365292f52c9f235ef5fe",
+                                "name": "WhatsApp Image 2025-01-03 at 22.22.01.jpeg",
+                                "mime_type": "jpeg",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/8d51a07f-580e-4de2-9cb5-45c8b3a8ad02_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085620Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=801e52b2a7b7adbe71f3fd97b30621cb8c73fbad07e5f706829b8c616d3c317c"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-63834c20-af35-4e0b-9dff-6871b209c3fd",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Medical Certificate",
+                        "answer": [
+                            {
+                                "id": "6c9c6783-9475-457e-9a64-d5fb3273bc92",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/72168865-cc4c-473e-989d-ff1d920af45f.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085641Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=bccf0388521e4ff2231c18665218f1562db9d0308fee2704dac43a87af9fe5be",
+                                "name": "WhatsApp Image 2025-01-03 at 22.20.01.jpeg",
+                                "mime_type": "jpeg",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/72168865-cc4c-473e-989d-ff1d920af45f_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085641Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a0ed4f1a29f854abea26aadf5b84f09bbf5e022ea9f49b7d82b027780ddbdd2f"
+                            },
+                            {
+                                "id": "10f29795-937e-4f75-ac58-2f7e431ca0db",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/f1c1a478-7116-4d2b-a6a5-f2952b977273.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085641Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=49d12db5b1703034e041d39a0ff85de91e3c2feb96617b85aece492cae0360ab",
+                                "name": "WhatsApp Image 2025-01-03 at 22.22.01.jpeg",
+                                "mime_type": "jpeg",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/f1c1a478-7116-4d2b-a6a5-f2952b977273_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085641Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=4c327a21a3b8542ce06ec3cec512e0c24f69123865be5db4a1fb4d589401c07d"
+                            },
+                            {
+                                "id": "8e589931-e113-401c-ace0-856ab937aa89",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/a8a15189-39c8-4338-81b0-2ab7590cc5ce.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085641Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=953c6ec040a6a0f68f084f7b46b34bd88dba841039b0810198a4fdecdc161aa1",
+                                "name": "WhatsApp Image 2025-01-03 at 22.22.12.jpeg",
+                                "mime_type": "jpeg",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/a8a15189-39c8-4338-81b0-2ab7590cc5ce_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085641Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=46aa315a92298b00cff1e2f44f0486d5e8eff1a729af7c001c0a824d2c0d6c66"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    }
+                ],
+                [
+                    {
+                        "id": "item-3c291d95-ee81-45fd-a22b-961ccade89df",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 230,
+                        "answer": "abe8c820-6d4e-4910-8de8-a82b803bcc6e",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": "(JR-3)Anga Bohora"
+                    },
+                    {
+                        "id": "item-cc606b4b-6c85-4169-a132-d34feeac44ea",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Safe Work Orientation",
+                        "width": 164,
+                        "answer": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Not yet Completed",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-6f82ad39-0d60-42ba-ba87-9a9ee326bfef",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Equipment Training",
+                        "answer": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Not yet Completed",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-0be484c7-3045-471a-a7d3-54d2bd6cd4ed",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "PPE",
+                        "answer": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Incomplete",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-c803316a-f49f-4829-988b-9b10e89727b5",
+                        "name": "Image Upload",
+                        "type": "images",
+                        "label": "Photo of Valid ID",
+                        "answer": [
+                            {
+                                "id": "32bfc8cf-4b22-4080-b8af-82b4e6b7a3ae",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/b5edd4d8-21ec-475a-aa1e-ac14834e60f3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085709Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=c122e9a7ee1c314e527e0f220664946544ba1e87a038c0ff797e77f5d5e9950b",
+                                "name": "01-appstore-timesheet.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/b5edd4d8-21ec-475a-aa1e-ac14834e60f3_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085709Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=f9d24e0e063d73770e9042869d4df5c1dc4446742dec155a11f35235fc9a9b4e"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-919b6e8e-88c5-40a3-bc42-b4f2e0d3dbaf",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Work Permit / License",
+                        "answer": [
+                            {
+                                "id": "3989f949-9009-4f9e-bc8d-d882d13aa8e5",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/569b8abb-c29e-4df9-bee3-f49d8afa26c0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085711Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=3d7210b73e8f2d1314f3a45905cfbf60527b1675d7a6c019fa08a3369a848521",
+                                "name": "01-appstore-T-timesheet.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/569b8abb-c29e-4df9-bee3-f49d8afa26c0_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085711Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=d2ba599bcd2010e14faed47181c4860cd2be9f7cf74521969a278c6efdb6eed2"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-f05427c2-b075-4224-94af-549ba7862d38",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Training / Qualification Certificate",
+                        "answer": [
+                            {
+                                "id": "4e66e376-c7a0-4e3e-8318-d0cb0187de24",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/b4af44f3-5e85-4324-975e-763efabc43ed.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085717Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=a14dcc4cbea42cc31affa34acc2092e5c18b802071ff4e71f9a6c6574ad01ee0",
+                                "name": "02-appstore-forms.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/b4af44f3-5e85-4324-975e-763efabc43ed_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085717Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=8d545c5b83629b31cfd9b79128d7df1ec6e2da38be4200ef2d80b88d8026b21c"
+                            },
+                            {
+                                "id": "50743ab7-e936-4d3b-ac8d-f94b87c9eb05",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/73a64043-e2a7-4269-95bc-3f76f2f12f77.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085717Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=cc5981063e63334042492f28684cef39631c360352e67737d47b433827f930d5",
+                                "name": "02-appstore-T-forms.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/73a64043-e2a7-4269-95bc-3f76f2f12f77_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085717Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=8cc6ea90c12b46d1a2c456f127541fb8f816ef263d3de6a444103cf3fb100b14"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-2ce49d44-0320-4708-9a53-90414a47caa5",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Medical Certificate",
+                        "answer": [
+                            {
+                                "id": "866795e6-4078-4eb3-982c-e01a4924d132",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/96f761f2-ed2d-4b68-8171-76e3df463718.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=363fc00815f282045850a33057579913bc778be012d15ff980cdc0de04b10fbb",
+                                "name": "01-appstore-timesheet.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/96f761f2-ed2d-4b68-8171-76e3df463718_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=5b3a675512028b95c81d9f488a8591458e6a6ee8bf21374c23be26295027436d"
+                            },
+                            {
+                                "id": "0c00c788-f756-4243-b7f8-11947ead2805",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/05e5a133-ac34-4f39-8f5e-fe29918327e3.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=c95159ae06151c33615d469b089fc0a52a1267ed6da4158686bb625966a51f1c",
+                                "name": "01-appstore-T-timesheet.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/05e5a133-ac34-4f39-8f5e-fe29918327e3_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=fabda53e284aaf717d48c7674abb22661e591ccd7efec194200c6dbde10052b5"
+                            },
+                            {
+                                "id": "f57901a8-8d96-43d9-82a4-682092dd71be",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/19c5b24c-385d-4493-9f41-1aed4e62d195.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=7581f6d8b367e83b8eb4ff28b85ec7597bafe698feb34f7d2fb2ad14d3d9ce67",
+                                "name": "02-appstore-forms.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/19c5b24c-385d-4493-9f41-1aed4e62d195_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=7681adba78a0c2283b8998142c9be82f437f89dc89fc314c57c6d08ca6a12da9"
+                            },
+                            {
+                                "id": "51caa850-0152-4725-9dc7-5d505ec7fc49",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/7a46c2fd-013c-4570-977a-0f8753ef403e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=08bf2481f702606186c5f483fb980b7bd90853597be276423e2db4252e515217",
+                                "name": "02-appstore-T-forms.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/7a46c2fd-013c-4570-977a-0f8753ef403e_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=5dd0e46a50e20e802251dd22fe98cbc687db984eeb0e57d7116f980d3b6d0b58"
+                            },
+                            {
+                                "id": "37c967b9-d0fd-4eb4-8f37-18a520ba5062",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/191445ce-90bf-444c-b0f3-c6b57450a349.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=4dbdda77e5e3043f77e411ea2ca4c5338e53d87a2f821da3d111511154df69f7",
+                                "name": "03-appstore-dayworks.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/191445ce-90bf-444c-b0f3-c6b57450a349_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=b27ca66a4d2ed209d7e46c4185ffaaa2d4661f59189c70f600931a38ba098536"
+                            },
+                            {
+                                "id": "18072b50-a4a7-416a-9378-1406a6106c38",
+                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/6aaf794f-84bd-490e-aea6-8c72bd354fca.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=9849d9399bee98659d7a6343cca0754493746c1f18730884d57fa8be818a2c3d",
+                                "name": "03-appstore-T-dayworks.png",
+                                "mime_type": "png",
+                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/6aaf794f-84bd-490e-aea6-8c72bd354fca_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085723Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=250bea0e7c0b5a2ce136a4cad82b1c1e7aae6f1f43ae1b8550cc6a5c8ea00162"
+                            }
+                        ],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    }
+                ]
+            ],
+            "isRequired": false
+        },
+        {
+            "id": "item-e01d5ee2-5554-4ab1-bc00-5320e9e9d806",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "OHS Induction Checklist",
+            "isRequired": false,
+            "instruction": ""
+        },
+        {
+            "id": "item-51767853-bca8-40a0-b64c-24336ec392e2",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you checked the competencies and qualifications of inductees?",
+            "answer": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
             "choice": [
                 {
-                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
-                    "label": "Optional1",
-                    "action": true,
-                    "notify_To": [
-                        {
-                            "id": 25,
-                            "email": "prabin@varicon.com.au",
-                            "label": "Prabin Tharu"
-                        }
-                    ]
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
                 },
                 {
-                    "id": "item-8fc125c2-a1dd-4560-a46b-27cb9244816b",
-                    "label": "Option 2"
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
                 }
             ],
             "isRequired": false,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": ""
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
         },
         {
-            "id": "item-23516b19-ebe1-4e5f-89e8-93cdd9cb8d5c",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
-            "answer": "",
+            "id": "item-4978a67b-a24a-4cba-919a-11a5af7083ce",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have inductees signed on and added proof or permits and qualifications?",
+            "answer": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
             "choice": [
                 {
-                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
-                    "label": "Option 1"
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
                 },
                 {
-                    "id": "item-e7d739ee-9de6-4f33-a3a2-d04bc8c11b65",
-                    "label": "Option 2"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": true,
-            "fromManualList": true,
-            "islinked_query": "",
-            "selectedLinkListLabel": "Option 1"
-        },
-        {
-            "id": "item-e40bde85-bd42-40d0-93ec-da5fb49879c1",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Multi-Select Dropdown",
-            "answer": "",
-            "choice": [],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": false,
-            "islinked_query": "employee",
-            "selectedLinkListLabel": "(PT9-001)VPrabin Tharu,(PT9-001)VPrabin Tharu"
-        },
-        {
-            "id": "item-60b0dc71-16b0-4806-97da-80d541b00a84",
-            "name": "Multiple Signature",
-            "type": "multisignature",
-            "label": "Multiple Signature",
-            "answer": [
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
                 {
-                    "id": "item-481b10ad-18f6-40b3-a00d-5459d8c7c9b7",
-                    "file": "https://staging-server-varicon-backend.s3.amazonaws.com/attachments/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K3XNFPLN4%2F20240412%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240412T014430Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEBkaCXVzLWVhc3QtMiJGMEQCIEbw7ODh7umuIzHlDd8VZV%2FuJUvaDj31Cj%2Ba%2BR9nOmE0AiAKYpuJbIyxX5XaLJpJd%2FCJb0bIdthRDhLFIqxKE%2FNXSiq7BQhSEAEaDDQxODU0MDgxNjAyMSIMll26IGV%2Fqb3GNbDFKpgFkoyoOrstY6nEI4axbs43QCLqHB0pWO3F6emtHlE6%2B96l24XVhu9%2BZGGYGbLSGO3HEm1ymQGpL68XEMFhJjz8f1ZFB%2FyCouDP3x%2FesACMdQ%2BMhjxoGCC4GZZKc0UvB%2FU95%2B8ZQT6cLlCfnIze3LHe0abe6ga73UkZpbZM6CdDjDVEDEj%2FaJ7i%2Fy7M20u50FvwamlQTEvrfY0CO%2FF7Brfe2Jr43bK2jPGFI27Rzo%2FGUxqSyA4GFl9FJTwDq4Ra12xGVObGyZcNCcHOb1id%2BtOEYCqr9wyxbiXfpkuwwuItH6Xew07AcOnQaKQJYTHkYPLM952IThrQeVpuooySOYgWiKfztpOvuDuuYF6x3lwUq%2FPtmliqq%2FW68l3TnWVtidafkSpR1vqcmKR0dq7Sk1Yfu%2BHIww8np1ON9N89hVwXGiV%2BnjlRhhRrwq77EUvSCUIySJIxW07gld1MphcqG3gJASVQJS7Kz5oBcuPb2iCh70w0Y9QYA522TqmIoxJZoJTpnTWBqpv1Ry%2Filj4wgKA%2F0mICXOukkd8WKMUueqsjBaxCxr5pElHIiVhFyRSXIGvDabyfcJrrNlMTFRouowF7wy%2BeFl%2F%2F69N7Sb1RildJKGdMzYcXI4zcMZyo39PUzG0am9V5I8Sg53kDcZzi1133Hd3WUDAbxMAN5xl0jULi%2BI4ayaPjbJb8HRJ4mtmekoPfhHYh1ozjybt3lhXBd6bbRnXJAufIlsyjFomRdlqfShHjKg8z33xmI0raYctjrvvVxjCRdfB6ScGe5OvgmP9FeCVwi0f8Z6sQ9Wl6zOGL9YVtpPVqoJ4xWFn8Nmku%2BsyoOq33fMJb1frvCY2G8ISONYarRb86XBGHUTyfgQkQ0nBLPMQmJzGjmTCzguKwBjqyAROyQfGxp1FAjCV84TkcUtkjAsfCT3HJqYPnDvZo3vMfGTqTo6Sdh8lb9KFTJFmrQpgT%2ByOYEh8cFQhcFv8yyKBwapItPgPD81sAxqmPwyjK%2BG85Lw9k1NZRhFLlP%2Fn4zN9E%2F4q7H1HaBBvyEnWsfSrH3F%2BInoRPTjEBziVERXxar4Tq9d4z5OmmwrN4PviXgsk6yITNbwy45DCLpAmb8HRb%2BljNyq6YK%2FJ95Od0axvYnK8%3D&X-Amz-Signature=c8daae8def493ac3aeb2b31d79fe7a88419bb7904ce27758f0bd93f9a596ec37",
-                    "name": "prabin",
-                    "isLoading": false,
-                    "attachmentId": "1309"
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
                 }
             ],
-            "isRequired": true,
-            "selectedLinkListLabel": ""
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-5a4758a6-0a4c-4cab-95d2-3973bdaf5eca",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you discussed and clearly stated the procedures for reporting incidents, injuries and hazards?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-6eaa67d3-d299-4c6a-be3e-bc37200255e5",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you discussed the workplace safety rules?",
+            "answer": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-ffb37e09-34d1-4d12-86a1-091d53f9d955",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Has the person been taken through relevant safe work method statements for the tasks to be performed?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-11089886-5e59-477e-a44b-afa42878d125",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Is specialised equipment required and have they been trained to use the equipment?",
+            "answer": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-41f68d5f-c7ee-4ac4-854e-b2f47ae57bb4",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Do people have the correct PPE available e.g. hard hat, safety glasses, safety boots, long sleeve shirt, and high visibility vest?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-3a53c815-b6ad-4145-aad3-16a8e25d7fce",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you shown the person what to do in an emergency and identified the location of the assembly point and evacuation route?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-af0ed887-86d0-4c58-8bbc-23fabe068104",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you shown the person what to do in an emergency and identified the location of the closest medical facility?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-0d4533ca-ce16-4e3f-bf0c-93b56eff448a",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you shown the person what to do in an emergency and identified the location of the contact details of emergency services?",
+            "answer": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-797f0db9-4792-401a-89d2-da631aa6d268",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you shown the person what to do in an emergency and identified the location of the provisions for emergency communications?",
+            "answer": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-777e29e7-ee2e-42cb-9617-7d7a78008e12",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you shown the person where all relevant firefighting equipment is located, for example fire extinguishers and hose reels?",
+            "answer": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-a3578073-dd6d-4450-9cbe-d52df193f579",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you shown the person the location of the first aid facilities and kits, and who the first aiders are and how to obtain treatment?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-2ca2a3b5-eef0-4d29-9078-51cac67ee69c",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you shown the person where all the facilities are located including crib shed, toilets, and drinking water?",
+            "answer": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-200f0a30-f1f6-449a-aabb-54c79dc4100d",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you explained the workplace security procedures?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-91dc570b-7032-4065-b1b8-7db6056e2ce0",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have you introduced the person to the Health and Safety Representative?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-0b7dc98a-0a27-4e1b-987b-7a63e7427c44",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Do they have any further questions or need clarification on any points or topics?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-0bb83197-2961-4db4-947f-37a6e6f36d4a",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Do they have any further questions or need clarification on any points or topics?",
+            "answer": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+            "choice": [
+                {
+                    "id": "item-4625cebf-88b5-40c1-a27c-702c03065ac5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-788bb30f-ff73-4bd9-9732-e607d1b5a599",
+                    "label": "No"
+                },
+                {
+                    "id": "item-0a50ef9e-edd7-4cc1-ba76-4999b53c5c9c",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "initialAnswer": "",
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true
+        },
+        {
+            "id": "item-c20e92db-1dc9-4445-925b-4e325583b46b",
+            "name": "Instruction",
+            "type": "instruction",
+            "label": "Inductee Acknowledgement",
+            "isRequired": false,
+            "attachments": [],
+            "instruction": "<p>I confirm that I have completed the OHS Induction process, provided relevant pertinent documents, been informed of the rules and regulations, and commit to strictly adhering to the health and safety protocols during my engagement.</p>"
+        },
+        {
+            "id": "item-394e9ec0-67cc-47e1-b95b-3927ddf00a7b",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Name",
+                "Company",
+                "Signature"
+            ],
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-1b00a032-72fa-4737-b38c-344d6ad7d395",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Name",
+                        "width": 214,
+                        "answer": "Susan",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-4f5d7ccf-30a7-4039-a9d1-88caedbb9f8a",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Company",
+                        "answer": "Varicon",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-dfff233c-3303-4bad-bd82-8c4038858f76",
+                        "name": "Signature",
+                        "type": "signature",
+                        "label": "Signature",
+                        "width": 247,
+                        "answer": {
+                            "id": "df343281-4496-4c7e-8313-3cb2223d2bc3",
+                            "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/3961269c-7e19-424b-9a51-8919c6aba4ad?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085826Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=dacbb580db9b7b7d94b44f6c7ce0643676729faf6960cd416a1d849c04ee13a1",
+                            "name": "blob",
+                            "mime_type": "blob",
+                            "tenant_id": "bf8dae02-d55d-448f-b1ed-feddd60c9f1d",
+                            "thumbnail": null,
+                            "created_at": "2025-01-13T08:58:26.697033Z",
+                            "created_by": {
+                                "id": "646d39e1-f245-405e-bc0c-2e6ee2412040",
+                                "email": "susan.timilsina@varicon.com.au",
+                                "last_name": "Timilsina",
+                                "first_name": "Susan",
+                                "is_archived": false
+                            },
+                            "updated_at": "2025-01-13T08:58:26.697048Z"
+                        },
+                        "isRequired": true,
+                        "initialAnswer": {}
+                    }
+                ],
+                [
+                    {
+                        "id": "item-721b5b1a-2a1c-442e-b967-878d5e24bbcd",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Name",
+                        "width": 214,
+                        "answer": "Anu",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-8f1ca46c-8419-4ddf-b3fb-20de72b5062a",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Company",
+                        "answer": "Varicon",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-71dc8f8d-9618-49c1-8d67-9de315e2f919",
+                        "name": "Signature",
+                        "type": "signature",
+                        "label": "Signature",
+                        "width": 247,
+                        "answer": {
+                            "id": "2bc13469-a4f3-4007-8258-7971ad0aa9a6",
+                            "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/7446ea21-dfa3-4631-a460-8defd6bc2ddf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085840Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=5ad6e8b58374406430bb1a83505c50747156cbc7e769f5706c4af9b735856577",
+                            "name": "blob",
+                            "mime_type": "blob",
+                            "tenant_id": "bf8dae02-d55d-448f-b1ed-feddd60c9f1d",
+                            "thumbnail": null,
+                            "created_at": "2025-01-13T08:58:40.504977Z",
+                            "created_by": {
+                                "id": "646d39e1-f245-405e-bc0c-2e6ee2412040",
+                                "email": "susan.timilsina@varicon.com.au",
+                                "last_name": "Timilsina",
+                                "first_name": "Susan",
+                                "is_archived": false
+                            },
+                            "updated_at": "2025-01-13T08:58:40.504991Z"
+                        },
+                        "isRequired": true,
+                        "initialAnswer": {}
+                    }
+                ],
+                [
+                    {
+                        "id": "item-0118b974-a550-459d-bf61-696cca92bd5f",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Name",
+                        "width": 214,
+                        "answer": "Ashish",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-34a59f54-4c1e-429b-9255-fdaad8807835",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Company",
+                        "answer": "Varicon",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-354f4f99-01f2-4105-ba3b-da8317a6f960",
+                        "name": "Signature",
+                        "type": "signature",
+                        "label": "Signature",
+                        "width": 247,
+                        "answer": {
+                            "id": "0fcde11b-dc48-4195-8575-283e18112761",
+                            "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/c15256d4-2558-4be3-92e5-071a57e8b749?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250113%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250113T085854Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=492fca98fe5bda594658128dcc6f93da20673f180217e9034b0d45ddfce6a096",
+                            "name": "blob",
+                            "mime_type": "blob",
+                            "tenant_id": "bf8dae02-d55d-448f-b1ed-feddd60c9f1d",
+                            "thumbnail": null,
+                            "created_at": "2025-01-13T08:58:54.749766Z",
+                            "created_by": {
+                                "id": "646d39e1-f245-405e-bc0c-2e6ee2412040",
+                                "email": "susan.timilsina@varicon.com.au",
+                                "last_name": "Timilsina",
+                                "first_name": "Susan",
+                                "is_archived": false
+                            },
+                            "updated_at": "2025-01-13T08:58:54.749783Z"
+                        },
+                        "isRequired": true,
+                        "initialAnswer": {}
+                    }
+                ]
+            ],
+            "isRequired": false
         }
     ],
     "description": "Description"

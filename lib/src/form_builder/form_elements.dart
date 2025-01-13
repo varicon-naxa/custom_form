@@ -435,9 +435,10 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
                       );
                     },
                     decoration: InputDecoration(
-                      hintText: field.hintText,
-                      // labelText: labelText,
-                    ),
+                        hintText: field.hintText,
+                        contentPadding: const EdgeInsets.all(8.0)
+                        // labelText: labelText,
+                        ),
                   ),
       ),
     );
@@ -505,9 +506,11 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
             );
           },
           decoration: InputDecoration(
-            hintText: field.hintText,
-            // labelText: labelText,
-          ),
+              hintText: field.hintText,
+              contentPadding: const EdgeInsets.all(8.0)
+
+              // labelText: labelText,
+              ),
         ),
       ),
     );
@@ -558,8 +561,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
             }
           },
           decoration: InputDecoration(
-            hintText: field.hintText,
-          ),
+              hintText: field.hintText,
+              contentPadding: const EdgeInsets.all(8.0)),
         ),
       ),
     );
@@ -614,6 +617,9 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
               requiredErrorText: field.requiredErrorText,
             );
           },
+          decoration: InputDecoration(
+              hintText: field.hintText,
+              contentPadding: const EdgeInsets.all(8.0)),
         ),
       ),
     );
@@ -668,9 +674,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
             );
           },
           decoration: InputDecoration(
-            hintText: field.hintText,
-            // labelText: labelText,
-          ),
+              hintText: field.hintText,
+              contentPadding: const EdgeInsets.all(8.0)),
         ),
       ),
     );
@@ -791,9 +796,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
                 );
               },
               decoration: InputDecoration(
-                hintText: field.hintText,
-                // labelText: labelText,
-              ),
+                  hintText: field.hintText,
+                  contentPadding: const EdgeInsets.all(8.0)),
             ),
           ),
           AppSpacing.sizedBoxH_12(),

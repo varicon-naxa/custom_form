@@ -250,7 +250,7 @@ class TableInputWidgetState extends State<TableInputWidget> {
         // Use Form.of() to get the form state
         final formState = Form.of(fieldKey!.currentContext!);
         // Validate the specific field
-        if (!formState.validate()) {
+        if (field.isRequired && !formState.validate()) {
           hasError = true;
           break;
         }
@@ -288,7 +288,6 @@ class TableInputWidgetState extends State<TableInputWidget> {
   }
 
   void setRowExpanded(int index, bool expanded) {
-    print('Setting row $index expanded state to: $expanded'); // Debug
     if (mounted) {
       setState(() {
         _expandedRows[index] = expanded;
@@ -393,7 +392,7 @@ class TableInputWidgetState extends State<TableInputWidget> {
       var fieldKey = _fieldKeys[field.id];
       if (fieldKey?.currentContext != null) {
         final formState = Form.of(fieldKey!.currentContext!);
-        if (!formState.validate()) {
+        if (field.isRequired && !formState.validate()) {
           hasError = true;
           break;
         }

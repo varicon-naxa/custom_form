@@ -88,6 +88,7 @@ class _DateTimeInputWidgetState extends State<DateTimeInputWidget> {
       type: datePickerType,
       firstDate: firstDate,
       lastDate: lastDate,
+      
       isRequired: widget.field.isRequired,
       onSaved: (newValue) {
         if (newValue == null) return;

@@ -118,13 +118,14 @@ class DateTimeFormField extends FormField<DateTime> {
             child: TextFormField(
               key: fieldKey,
               readOnly: true,
-              
+
               enabled: false,
               autovalidateMode: AutovalidateMode.onUserInteraction,
+
               decoration: InputDecoration(
-                errorText: state.errorText,
-                hintText: _getHintText(type).toUpperCase(),
-              ),
+                  errorText: state.errorText,
+                  hintText: _getHintText(type).toUpperCase(),
+                  contentPadding: const EdgeInsets.all(8.0)),
               validator: (data) {
                 if ((data == null || data.isEmpty) && isRequired == true) {
                   return 'This field is required';

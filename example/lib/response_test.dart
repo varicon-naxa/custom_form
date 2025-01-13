@@ -38,12 +38,12 @@ class _SurveyPageState extends State<ResponseTest> {
         },
         imageBuild: (Map<String, dynamic> data) {
           return CachedNetworkImage(
-            fit: BoxFit.cover,
+            fit: BoxFit.fitHeight,
             placeholderFadeInDuration: const Duration(seconds: 3),
             placeholder: (context, url) => const Icon(Icons.image),
             imageUrl: data['image'],
-            height: 120,
-            width: 120,
+            height: data['height'],
+            width: data['width'],
             // height: data['height'] == null
             //     ? null
             //     : double.parse(data['height'].toString()),

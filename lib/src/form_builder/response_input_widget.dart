@@ -141,6 +141,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8),
                       child: ExpandableWidget(
+                        initialExpanded: true,
                         expandableHeader: TableExpandableHeaderWidget(
                           index: index,
                           field: field,
@@ -701,20 +702,16 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       crossAxisCount: isTablet ? 5 : 3,
                       mainAxisSpacing: 6,
                       crossAxisSpacing: 6,
-                      childAspectRatio: 0.87,
+                      childAspectRatio: 0.75,
                     ),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: answer.length,
                     itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: 120,
-                        width: 120,
-                        child: _AnswerDesign(
-                          answer: answer[index]['file'],
-                          isImage: true,
-                          imageBuild: widget.imageBuild,
-                        ),
+                      return _AnswerDesign(
+                        answer: answer[index]['file'],
+                        isImage: true,
+                        imageBuild: widget.imageBuild,
                       );
                     })
                 // Wrap(
@@ -912,13 +909,13 @@ class _AnswerDesign extends StatelessWidget {
                 ? imageBuild!({
                     'image': answer,
                     'height': 120.0,
-                    'width': isSignature ? 200.0 : 120,
+                    'width': isSignature ? 200.0 : 150.0,
                   })
                 : CachedNetworkImage(
                     imageUrl: answer,
-                    height: isSignature ? 150 : 200,
+                    height: 250.0,
                     width: double.infinity,
-                    fit: BoxFit.contain,
+                    fit: BoxFit.cover,
                     placeholderFadeInDuration: const Duration(seconds: 1),
                     placeholder: (context, url) => const Icon(Icons.image),
                     errorWidget: (context, error, stackTrace) => const SizedBox(
