@@ -32,6 +32,8 @@ class TableInputWidgetState extends State<TableInputWidget> {
   final Map<int, bool> _expandedRows = {};
   // Track which rows have validation errors
   final Map<int, bool> _rowValidationErrors = {};
+  // Add new map to track column validation errors
+  final Map<int, bool> _columnValidationErrors = {};
 
   @override
   void initState() {
@@ -61,8 +63,9 @@ class TableInputWidgetState extends State<TableInputWidget> {
       currentField =
           widget.tableManager.getTableState(widget.field.id) ?? widget.field;
       _initializeFieldKeys();
-      // Clear validation errors when data changes
+      // Clear both row and column validation errors when data changes
       _rowValidationErrors.clear();
+      _columnValidationErrors.clear();
     });
   }
 
@@ -93,7 +96,12 @@ class TableInputWidgetState extends State<TableInputWidget> {
               side: const BorderSide(color: Colors.grey),
             ),
             onPressed: () async {
-              await widget.tableManager.addRow(currentField);
+              // Get the latest state from the table manager before adding a row
+              final latestField =
+                  widget.tableManager.getTableState(widget.field.id) ??
+                      currentField;
+              await widget.tableManager.addRow(latestField);
+              // await widget.tableManager.addRow(currentField);
             },
             icon: const Icon(Icons.add),
             label: const Text('Add Row'),
@@ -175,7 +183,6 @@ class TableInputWidgetState extends State<TableInputWidget> {
   // Extract row content to separate method
   Widget _buildRowContent(BuildContext context, int index) {
     final isExpanded = isRowExpanded(index);
-    print('Building row $index with expanded state: $isExpanded'); // Debug
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -209,8 +216,9 @@ class TableInputWidgetState extends State<TableInputWidget> {
             ),
           ),
           onExpandChanged: (expanded) {
-            print('Row $index expansion changed to: $expanded'); // Debug
             setRowExpanded(index, expanded);
+            // Recheck validation when expanding
+            validateRow(index);
           },
         ),
         if (hasRequiredFieldErrors(index))
@@ -239,11 +247,12 @@ class TableInputWidgetState extends State<TableInputWidget> {
     for (var field in currentField.inputFields![index]) {
       var fieldKey = _fieldKeys[field.id];
       if (fieldKey?.currentContext != null) {
+        // Use Form.of() to get the form state
         final formState = Form.of(fieldKey!.currentContext!);
-        if (formState != null) {
-          if (!formState.validate()) {
-            hasError = true;
-          }
+        // Validate the specific field
+        if (!formState.validate()) {
+          hasError = true;
+          break;
         }
       }
     }
@@ -253,9 +262,17 @@ class TableInputWidgetState extends State<TableInputWidget> {
         if (hasError) {
           _rowValidationErrors[index] = true;
         } else {
-          _rowValidationErrors.remove(index); // Remove error state if valid
+          // Remove the error state when all required fields are filled
+          _rowValidationErrors.remove(index);
         }
       });
+    }
+  }
+
+  // Add this method to validate all rows and clear resolved errors
+  void validateAndClearErrors() {
+    for (int i = 0; i < (currentField.inputFields?.length ?? 0); i++) {
+      validateRow(i);
     }
   }
 
@@ -298,44 +315,108 @@ class TableInputWidgetState extends State<TableInputWidget> {
       ),
       padding: const EdgeInsets.all(8),
       margin: const EdgeInsets.only(bottom: 12),
-      child: ExpandableWidget(
-        initialExpanded: true,
-        expandableHeader: _buildColumnHeader(columnIndex, false),
-        expandedHeader: _buildColumnHeader(columnIndex, true),
-        expandableChild: Column(
-          children:
-              (currentField.inputFields ?? []).asMap().entries.map((entry) {
-            final rowIndex = entry.key;
-            final row = entry.value;
-            final field = row[columnIndex];
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: KeyedSubtree(
-                key: _fieldKeys[field.id],
-                child: widget.inputBuilder(
-                  field,
-                  context,
-                  haslabel: rowIndex <= 0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ExpandableWidget(
+            initialExpanded: true,
+            expandableHeader: _buildColumnHeader(columnIndex, false),
+            expandedHeader: _buildColumnHeader(columnIndex, true),
+            expandableChild: Column(
+              children:
+                  (currentField.inputFields ?? []).asMap().entries.map((entry) {
+                final rowIndex = entry.key;
+                final row = entry.value;
+                final field = row[columnIndex];
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: KeyedSubtree(
+                    key: _fieldKeys[field.id],
+                    child: widget.inputBuilder(
+                      field,
+                      context,
+                      haslabel: rowIndex <= 0,
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            onExpandChanged: (expanded) {
+              // Validate column when expanding/collapsing
+              validateColumn(columnIndex);
+            },
+          ),
+          if (hasColumnErrors(columnIndex))
+            Padding(
+              padding: const EdgeInsets.only(top: 4, left: 16),
+              child: Text(
+                'This column contains required fields',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.error,
+                  fontSize: 12,
                 ),
               ),
-            );
-          }).toList(),
-        ),
+            ),
+        ],
       ),
     );
   }
 
   Widget _buildColumnHeader(int columnIndex, bool isExpanded) {
-    return Padding(
+    return Container(
       padding: EdgeInsets.only(bottom: isExpanded ? 8 : 0),
       child: Row(
         children: [
           Text('Column ${columnIndex + 1}'),
           const Spacer(),
+          if (hasColumnErrors(columnIndex))
+            Icon(
+              Icons.error_outline,
+              color: Theme.of(context).colorScheme.error,
+              size: 18,
+            ),
           Icon(isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down)
         ],
       ),
     );
+  }
+
+  // Add new methods for column validation
+  bool hasColumnErrors(int columnIndex) {
+    return _columnValidationErrors[columnIndex] ?? false;
+  }
+
+  void validateColumn(int columnIndex) {
+    bool hasError = false;
+    for (var row in currentField.inputFields!) {
+      var field = row[columnIndex];
+      var fieldKey = _fieldKeys[field.id];
+      if (fieldKey?.currentContext != null) {
+        final formState = Form.of(fieldKey!.currentContext!);
+        if (!formState.validate()) {
+          hasError = true;
+          break;
+        }
+      }
+    }
+
+    if (mounted) {
+      setState(() {
+        if (hasError) {
+          _columnValidationErrors[columnIndex] = true;
+        } else {
+          _columnValidationErrors.remove(columnIndex);
+        }
+      });
+    }
+  }
+
+  void validateAllColumns() {
+    if (currentField.inputFields?.isNotEmpty ?? false) {
+      for (int i = 0; i < currentField.inputFields![0].length; i++) {
+        validateColumn(i);
+      }
+    }
   }
 
   // Method to get row context

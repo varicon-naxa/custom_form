@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
 
@@ -1267,11 +1269,13 @@ class TableExpandableHeaderWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.grey.shade200,
         border: Border.all(
           color: hasError
               ? Theme.of(context).colorScheme.error
-              : Colors.grey.shade300,
+              : isExpanded
+                  ? Colors.transparent
+                  : Colors.grey.shade300,
           width: 1,
         ),
         borderRadius: BorderRadius.circular(4),
@@ -1534,8 +1538,9 @@ class TableStateManager extends ChangeNotifier {
       return _generateNewFieldId(field);
     }).toList();
 
-    List<List<InputField>> updatedRows = List.from(field.inputFields ?? [])
-      ..add(newRow);
+    List<List<InputField>> tableData = formValue.getTableData(field.id);
+
+    List<List<InputField>> updatedRows = [...tableData, newRow];
 
     TableField updatedField = field.copyWith(
       inputFields: updatedRows,
@@ -1544,7 +1549,7 @@ class TableStateManager extends ChangeNotifier {
 
     _tableStates[field.id] = updatedField;
     _visibleRows[field.id] = List.from(_visibleRows[field.id] ?? [])..add(true);
-    formValue.saveTableField(field.id, updatedField);
+    formValue.saveTableFieldWithNewRow(newRow, field);
     notifyListeners();
 
     // Call the key initialization callback if provided

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 /// {@template FormValue}
@@ -132,6 +135,43 @@ class FormValue {
     throw const FormatException('Value is not neither String nor num.');
   }
 
+  List<List<InputField>> getTableData(String tableId) {
+    // Retrieve existing rows from _savedValue
+    final existingRows =
+        _savedValue[tableId] as List<List<Map<String, dynamic>>>;
+
+    // Convert existing rows to List<List<InputField>>
+    List<List<InputField>> inputFields = existingRows.map((row) {
+      return row.map((e) => InputField.fromJson(e)).toList();
+    }).toList();
+    return inputFields;
+  }
+
+  void saveTableFieldWithNewRow(List<InputField> newRow, TableField table) {
+    String tableId = table.id;
+    // Retrieve existing rows from _savedValue
+    final existingRows =
+        _savedValue[tableId] as List<List<Map<String, dynamic>>>;
+
+    // Convert existing rows to List<List<InputField>>
+    List<List<InputField>> inputFields = existingRows.map((row) {
+      return row.map((e) => InputField.fromJson(e)).toList();
+    }).toList();
+
+    // Add the new row to the existing rows
+    final updatedInputFields = [...inputFields, newRow];
+
+    _value[tableId] = updatedInputFields.map((row) {
+      return row.map((e) => e.toJson()).toList();
+    }).toList();
+
+    _savedValue[tableId] = updatedInputFields.map((row) {
+      return row.map((e) => e.toJson()).toList();
+    }).toList();
+
+    _onSaveCallback?.call(_savedValue);
+  }
+
   void saveTableField(String id, TableField table) {
     _value[id] = table.inputFields?.map((row) {
       return row.map((e) => e.toJson()).toList();
@@ -141,6 +181,7 @@ class FormValue {
     }).toList();
     _onSaveCallback?.call(_savedValue);
   }
+
   void saveAdvTableField(String id, AdvTableField table) {
     _value[id] = table.inputFields?.map((row) {
       return row.map((e) => e.toJson()).toList();
