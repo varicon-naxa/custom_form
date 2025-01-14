@@ -15,8 +15,7 @@ class DateTimeInputWidget extends StatefulWidget {
     required this.formValue,
     required this.dateTime,
     this.labelText,
-        this.fieldKey,
-
+    this.fieldKey,
   });
 
   ///Dynmaic field model [date, time, datetime]
@@ -84,11 +83,27 @@ class _DateTimeInputWidgetState extends State<DateTimeInputWidget> {
         widget.field.answer,
         datePickerType,
       ),
-      
       type: datePickerType,
       firstDate: firstDate,
       lastDate: lastDate,
-      
+      onChanged: (newValue) {
+        if (newValue == null) return;
+
+        late final String value;
+        switch (datePickerType) {
+          case DatePickerType.date:
+            value = DateFormat('yyyy-MM-dd').format(newValue);
+          case DatePickerType.time:
+            value = DateFormat(DateFormat.HOUR24_MINUTE).format(newValue);
+          case DatePickerType.dateTime:
+            value =
+                '${DateFormat('yyyy-MM-dd').format(newValue)}T${DateFormat(DateFormat.HOUR24_MINUTE).format(newValue)}';
+        }
+        widget.formValue.saveString(
+          widget.field.id,
+          value,
+        );
+      },
       isRequired: widget.field.isRequired,
       onSaved: (newValue) {
         if (newValue == null) return;

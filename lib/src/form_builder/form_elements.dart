@@ -1613,6 +1613,14 @@ class TableStateManager extends ChangeNotifier {
       });
     }
 
+    // Preserve attachments for instruction fields
+    if (field is InstructionInputField) {
+      return InstructionInputField.fromJson({
+        ...updateId(field.toJson()),
+        'attachments': field.attachments, // Keep existing attachments
+      });
+    }
+
     return InputField.fromJson(updateId(field.toJson()));
   }
 

@@ -30,6 +30,8 @@ class DateTimeFormField extends FormField<DateTime> {
     ///Form field enabled boolean
     super.enabled,
 
+    /// Form Field on changed
+
     ///Form field initial value
     super.initialValue,
 
@@ -41,6 +43,7 @@ class DateTimeFormField extends FormField<DateTime> {
 
     ///Form field reqyured
     bool? isRequired,
+    final Function(DateTime?)? onChanged,
     final GlobalKey<FormFieldState<dynamic>>? fieldKey,
 
     ///Form field autovalidate mode default to [AutovalidateMode.onUserInteraction]
@@ -107,12 +110,14 @@ class DateTimeFormField extends FormField<DateTime> {
                 final dateTime = _combine(date, time);
 
                 final value = state.value;
+                onChanged?.call(dateTime);
                 // ... and new value is not the same as was before...
                 if (value == null || dateTime.compareTo(value) != 0) {
                   // ... this means that cancel was not pressed at any moment
                   // so we can update the field
                   state.didChange(_combine(date, time));
                 }
+
               }
             },
             child: TextFormField(
