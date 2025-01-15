@@ -190,8 +190,8 @@ _$InstructionInputFieldImpl _$$InstructionInputFieldImplFromJson(
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
+      instruction: readInstruction(json, 'instruction') as String?,
       description: json['description'] as String?,
-      instruction: json['instruction'] as String?,
       attachments: (json['attachments'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
@@ -214,8 +214,8 @@ Map<String, dynamic> _$$InstructionInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
-      'description': instance.description,
       'instruction': instance.instruction,
+      'description': instance.description,
       'attachments': instance.attachments,
       'visible': instance.visible,
       'isRequired': instance.isRequired,

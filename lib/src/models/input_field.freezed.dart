@@ -165,8 +165,8 @@ mixin _$InputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -605,8 +605,8 @@ mixin _$InputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -1045,8 +1045,8 @@ mixin _$InputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -1823,8 +1823,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -2267,8 +2267,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -2711,8 +2711,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -3578,8 +3578,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -4036,8 +4036,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -4494,8 +4494,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -5393,8 +5393,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -5850,8 +5850,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -6307,8 +6307,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -7125,8 +7125,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -7569,8 +7569,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -8013,8 +8013,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -8868,8 +8868,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -9325,8 +9325,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -9782,8 +9782,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -10357,8 +10357,8 @@ abstract class _$$InstructionInputFieldImplCopyWith<$Res>
       {@JsonKey(name: 'id') String id,
       @JsonKey(name: 'label') String? label,
       @JsonKey(name: 'answer') String? answer,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'instruction') String? instruction,
+      @JsonKey(readValue: readInstruction) String? instruction,
+      String? description,
       @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
       @JsonKey(name: 'visible') bool visible,
       @JsonKey(name: 'isRequired') bool isRequired,
@@ -10388,8 +10388,8 @@ class __$$InstructionInputFieldImplCopyWithImpl<$Res>
     Object? id = null,
     Object? label = freezed,
     Object? answer = freezed,
-    Object? description = freezed,
     Object? instruction = freezed,
+    Object? description = freezed,
     Object? attachments = freezed,
     Object? visible = null,
     Object? isRequired = null,
@@ -10415,13 +10415,13 @@ class __$$InstructionInputFieldImplCopyWithImpl<$Res>
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
       instruction: freezed == instruction
           ? _value.instruction
           : instruction // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String?,
       attachments: freezed == attachments
           ? _value._attachments
@@ -10478,8 +10478,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
       {@JsonKey(name: 'id') required this.id,
       @JsonKey(name: 'label') this.label,
       @JsonKey(name: 'answer') this.answer,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'instruction') this.instruction,
+      @JsonKey(readValue: readInstruction) this.instruction,
+      this.description,
       @JsonKey(name: 'attachments')
       final List<Map<String, dynamic>>? attachments,
       @JsonKey(name: 'visible') this.visible = true,
@@ -10509,11 +10509,10 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
   @JsonKey(name: 'answer')
   final String? answer;
   @override
-  @JsonKey(name: 'description')
-  final String? description;
-  @override
-  @JsonKey(name: 'instruction')
+  @JsonKey(readValue: readInstruction)
   final String? instruction;
+  @override
+  final String? description;
   final List<Map<String, dynamic>>? _attachments;
   @override
   @JsonKey(name: 'attachments')
@@ -10563,7 +10562,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
 
   @override
   String toString() {
-    return 'InputField.instruction(id: $id, label: $label, answer: $answer, description: $description, instruction: $instruction, attachments: $attachments, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, hintText: $hintText, maxLength: $maxLength, min: $min, minErrorText: $minErrorText, max: $max, maxErrorText: $maxErrorText)';
+    return 'InputField.instruction(id: $id, label: $label, answer: $answer, instruction: $instruction, description: $description, attachments: $attachments, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, hintText: $hintText, maxLength: $maxLength, min: $min, minErrorText: $minErrorText, max: $max, maxErrorText: $maxErrorText)';
   }
 
   @override
@@ -10574,10 +10573,10 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.label, label) || other.label == label) &&
             (identical(other.answer, answer) || other.answer == answer) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
             (identical(other.instruction, instruction) ||
                 other.instruction == instruction) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
             const DeepCollectionEquality()
                 .equals(other._attachments, _attachments) &&
             (identical(other.visible, visible) || other.visible == visible) &&
@@ -10606,8 +10605,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
       id,
       label,
       answer,
-      description,
       instruction,
+      description,
       const DeepCollectionEquality().hash(_attachments),
       visible,
       isRequired,
@@ -10705,8 +10704,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -11073,8 +11072,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
         id,
         label,
         answer,
-        description,
         this.instruction,
+        description,
         attachments,
         visible,
         isRequired,
@@ -11164,8 +11163,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -11532,8 +11531,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
         id,
         label,
         answer,
-        description,
         this.instruction,
+        description,
         attachments,
         visible,
         isRequired,
@@ -11623,8 +11622,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -11993,8 +11992,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
           id,
           label,
           answer,
-          description,
           this.instruction,
+          description,
           attachments,
           visible,
           isRequired,
@@ -12126,8 +12125,8 @@ abstract class InstructionInputField implements InputField {
           {@JsonKey(name: 'id') required final String id,
           @JsonKey(name: 'label') final String? label,
           @JsonKey(name: 'answer') final String? answer,
-          @JsonKey(name: 'description') final String? description,
-          @JsonKey(name: 'instruction') final String? instruction,
+          @JsonKey(readValue: readInstruction) final String? instruction,
+          final String? description,
           @JsonKey(name: 'attachments')
           final List<Map<String, dynamic>>? attachments,
           @JsonKey(name: 'visible') final bool visible,
@@ -12154,11 +12153,10 @@ abstract class InstructionInputField implements InputField {
   @override
   @JsonKey(name: 'answer')
   String? get answer;
-  @override
-  @JsonKey(name: 'description')
-  String? get description;
-  @JsonKey(name: 'instruction')
+  @JsonKey(readValue: readInstruction)
   String? get instruction;
+  @override
+  String? get description;
   @JsonKey(name: 'attachments')
   List<Map<String, dynamic>>? get attachments;
   @override
@@ -12531,8 +12529,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -12989,8 +12987,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -13447,8 +13445,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -14337,8 +14335,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -14794,8 +14792,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -15251,8 +15249,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -16136,8 +16134,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -16593,8 +16591,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -17050,8 +17048,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -17936,8 +17934,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -18393,8 +18391,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -18850,8 +18848,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -19736,8 +19734,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -20193,8 +20191,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -20650,8 +20648,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -21536,8 +21534,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -21993,8 +21991,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -22450,8 +22448,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -23336,8 +23334,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -23793,8 +23791,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -24250,8 +24248,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -25075,8 +25073,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -25519,8 +25517,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -25963,8 +25961,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -26941,8 +26939,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -27406,8 +27404,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -27871,8 +27869,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -28911,8 +28909,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -29376,8 +29374,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -29841,8 +29839,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -30881,8 +30879,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -31346,8 +31344,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -31811,8 +31809,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -32812,8 +32810,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -33274,8 +33272,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -33736,8 +33734,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -34711,8 +34709,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -35172,8 +35170,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -35633,8 +35631,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -36604,8 +36602,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -37065,8 +37063,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -37526,8 +37524,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -38375,8 +38373,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -38819,8 +38817,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -39263,8 +39261,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -40065,8 +40063,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -40509,8 +40507,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -40953,8 +40951,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -41742,8 +41740,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -42186,8 +42184,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -42630,8 +42628,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -43421,8 +43419,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -43865,8 +43863,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -44309,8 +44307,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -45173,8 +45171,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -45629,8 +45627,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -46085,8 +46083,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -46971,8 +46969,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -47427,8 +47425,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,
@@ -47883,8 +47881,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'label') String? label,
             @JsonKey(name: 'answer') String? answer,
-            @JsonKey(name: 'description') String? description,
-            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'visible') bool visible,

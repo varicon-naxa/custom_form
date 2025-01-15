@@ -96,12 +96,12 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = DateInputField;
 
-  const factory InputField.instruction({
+   const factory InputField.instruction({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'instruction') String? instruction,
+    @JsonKey(readValue: readInstruction)  String? instruction,
+     String? description,
     @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
@@ -117,6 +117,8 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'max') dynamic max,
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = InstructionInputField;
+
+
 
   const factory InputField.section({
     @JsonKey(name: 'id') required String id,
@@ -580,3 +582,7 @@ abstract class BasicInputField {
   final bool? readOnly;
   final String? requiredErrorText;
 }
+  String? readInstruction(Map map, String key) => map[key] ?? map['description'];
+
+
+
