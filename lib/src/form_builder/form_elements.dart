@@ -1350,6 +1350,17 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
     return text.replaceAll(RegExp(r"<[^>]*>"), ' ');
   }
 
+  void _onHtmlEditorLoaded() {
+    // Insert text after the editor is loaded
+    widget.htmlEditorController.insertText(widget.field.answer ?? '');
+    widget.formCon.text = widget.field.answer ?? '';
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -1364,6 +1375,7 @@ class _HtmlEditorWidgetState extends State<HtmlEditorWidget> {
                 borderRadius: BorderRadius.circular(4.0)),
             child: HtmlEditor(
               callbacks: Callbacks(
+                onInit: _onHtmlEditorLoaded,
                 onFocus: () {
                   saveLongText();
                 },
