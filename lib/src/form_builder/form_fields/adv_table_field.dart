@@ -115,6 +115,7 @@ class AdvTableInputWidgetState extends State<AdvTableInputWidget> {
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: ExpandableWidget(
+        initialExpanded: true,
         expandableHeader: TableExpandableHeaderWidget(
           index: index,
           field: currentField,
