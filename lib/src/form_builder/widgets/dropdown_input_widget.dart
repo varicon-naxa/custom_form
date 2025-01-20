@@ -115,10 +115,12 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
             controller: formCon,
             key: widget.fieldKey,
             validator: (values) => textValidator(
-              value: values,
+              value: values == 'Select the item from list' ? '' : values,
               inputType: "text",
-              isRequired: widget.field.isRequired,
-              requiredErrorText: widget.field.requiredErrorText,
+              isRequired: (widget.field.isRequired &&
+                  formCon.text == 'Select the item from list'),
+              requiredErrorText: widget.field.requiredErrorText ??
+                  'No any Selection in required field  ',
             ),
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.all(8.0),
@@ -159,8 +161,10 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                 validator: (values) => textValidator(
                   value: values,
                   inputType: "text",
-                  isRequired: widget.field.isRequired,
-                  requiredErrorText: widget.field.requiredErrorText,
+                  isRequired: (widget.field.isRequired &&
+                      formCon.text == 'Select the item from list'),
+                  requiredErrorText: widget.field.requiredErrorText ??
+                      'No any Selection in required field  ',
                 ),
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(8.0),

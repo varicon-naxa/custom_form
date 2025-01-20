@@ -11,6 +11,7 @@ _$ValueTextImpl _$$ValueTextImplFromJson(Map<String, dynamic> json) =>
       isOtherField: json['isOtherField'] as bool?,
       action: json['action'] as bool?,
       value: readValue(json, 'value') as String,
+      notifyTo: json['notify_To'] as List<dynamic>?,
       text: readText(json, 'text') as String,
       $type: json['runtimeType'] as String?,
     );
@@ -20,6 +21,7 @@ Map<String, dynamic> _$$ValueTextImplToJson(_$ValueTextImpl instance) =>
       'isOtherField': instance.isOtherField,
       'action': instance.action,
       'value': instance.value,
+      'notify_To': instance.notifyTo,
       'text': instance.text,
       'runtimeType': instance.$type,
     };
@@ -30,6 +32,7 @@ _$NoneValueTextImpl _$$NoneValueTextImplFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String,
       action: json['action'] as bool?,
       isOtherField: json['isOtherField'] as bool?,
+      notifyTo: json['notify_To'] as List<dynamic>?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -39,6 +42,7 @@ Map<String, dynamic> _$$NoneValueTextImplToJson(_$NoneValueTextImpl instance) =>
       'text': instance.text,
       'action': instance.action,
       'isOtherField': instance.isOtherField,
+      'notify_To': instance.notifyTo,
       'runtimeType': instance.$type,
     };
 
@@ -48,6 +52,7 @@ _$OtherValueTextImpl _$$OtherValueTextImplFromJson(Map<String, dynamic> json) =>
       text: json['text'] as String,
       action: json['action'] as bool?,
       isOtherField: json['isOtherField'] as bool?,
+      notifyTo: json['notify_To'] as List<dynamic>?,
       $type: json['runtimeType'] as String?,
     );
 
@@ -58,5 +63,6 @@ Map<String, dynamic> _$$OtherValueTextImplToJson(
       'text': instance.text,
       'action': instance.action,
       'isOtherField': instance.isOtherField,
+      'notify_To': instance.notifyTo,
       'runtimeType': instance.$type,
     };

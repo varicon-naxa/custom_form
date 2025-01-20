@@ -3,54 +3,33 @@
     "description": "Dynamic form generator is a form of the things in the line",
     "name": "",
     "version": "1.0.0",
-    "elements": [
-        {
-            "id": "item-c36c2cba-95f6-433c-b95f-bed271fad435",
-            "name": "Simple Table",
-            "type": "table",
-            "label": "RowWise ",
-            "answer": "",
-            "contents": [
-                [
-                    {
-                        "id": "item-a99b3a06-c383-491b-b541-42990b6b291d",
-                        "max": null,
-                        "min": null,
-                        "type": "instruction",
-                        "label": "Filled Text",
-                        "answer": null,
-                        "visible": true,
-                        "readOnly": false,
-                        "maxLength": null,
-                        "isRequired": false,
-                        "attachments": [
-                            {
-                                "id": "2b588ed3-281d-4abb-bc51-009f288551c0",
-                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/7b0a4bfa-bdec-4f72-b00e-c90f0492dd9e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250114%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250114T075051Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=9864b91a630af0570c5220c40c765464e56459e8c578579c92ce70fde410afd2",
-                                "name": "Screenshot from 2025-01-14 12-04-07.png",
-                                "mime_type": "png",
-                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/7b0a4bfa-bdec-4f72-b00e-c90f0492dd9e_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250114%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250114T075051Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=8dbeaa8b030773c2399dac0d23e36b95ab5c79655bc0c55e064fee51c1f9a787",
-                                "attach_to_pdf": false
-                            },
-                            {
-                                "id": "97afc3d0-4d68-43b2-b394-31211a64c60a",
-                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/dd4c634c-c265-4fd6-94e6-e061f5bc1549.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250114%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250114T075051Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=2b1840533366b70f020ed94fb70324326f6afbc40b4d64bf3a29783b4a4aed28",
-                                "name": "Screenshot from 2025-01-08 07-50-32.png",
-                                "mime_type": "png",
-                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/dd4c634c-c265-4fd6-94e6-e061f5bc1549_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250114%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250114T075051Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=268a1373eda3401036976b27e25a47e49033d7a3823a0516c2119944452b30f7",
-                                "attach_to_pdf": false
-                            }
-                        ],
-                        "description": "<p>Instruction</p>",
-                        "instruction": null,
-                        "placeholder": null,
-                        "maxErrorText": null,
-                        "minErrorText": null,
-                        "requiredErrorText": null
-                    }
-                ]
-            ],
-            "isRequired": false
-        }
-    ]
+    "elements": 
+        [
+            {
+                "id": "item-707cb1e3-405a-4d06-be97fdf-202363fa3195",
+                "type": "dropdown",
+                "label": "Name*",
+                "answer": "54123",
+                "choice": [],
+                "visible": true,
+                "noneText": null,
+                "readOnly": false,
+                "otherText": null,
+                "allowClear": true,
+                "isRequired": true,
+                "description": "",
+                "placeholder": null,
+                "showNoneItem": false,
+                "actionMessage": "",
+                "isConditional": false,
+                "showOtherItem": false,
+                "fromManualList": false,
+                "islinked_query": "employee",
+                "otherErrorText": null,
+                "otherPlaceholder": null,
+                "requiredErrorText": null,
+                "selectedLinkListLabel": "equipment2"
+            }
+        ]
+    
 }
