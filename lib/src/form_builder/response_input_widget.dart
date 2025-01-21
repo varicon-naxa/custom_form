@@ -116,11 +116,11 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
     if (value == null) return '';
     switch (type) {
       case DatePickerType.date:
-        return DateFormat.yMd().format(value);
+        return DateFormat('dd/MM/yyyy').format(value);
       case DatePickerType.time:
         return DateFormat(DateFormat.HOUR_MINUTE).format(value);
       case DatePickerType.dateTime:
-        return '${DateFormat.yMd().format(value)}, ${DateFormat(DateFormat.HOUR_MINUTE).format(value)}';
+        return '${DateFormat('dd/MM/yyyy').format(value)}, ${DateFormat(DateFormat.HOUR_MINUTE).format(value)}';
     }
   }
 

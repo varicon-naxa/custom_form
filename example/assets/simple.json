@@ -6,6 +6,22 @@
     "elements": 
         [
             {
+                "id": "item-53d1fef8-de81-4e8e-8781-c1c34d79b2c3",
+                "name": "Date Time",
+                "type": "date",
+                "label": "Date Time",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
+                "id": "item-53d1fef8-de81-4e8e-8781-c1c34d79b2csa3",
+                "name": "Date Time",
+                "type": "datetimelocal",
+                "label": "Date Time",
+                "isRequired": false,
+                "selectedLinkListLabel": ""
+            },
+            {
                 "id": "item-707cb1e3-405a-4d06-be97fdf-202363fa3195",
                 "type": "dropdown",
                 "label": "Name*",

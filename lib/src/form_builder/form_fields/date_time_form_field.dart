@@ -117,7 +117,6 @@ class DateTimeFormField extends FormField<DateTime> {
                   // so we can update the field
                   state.didChange(_combine(date, time));
                 }
-
               }
             },
             child: TextFormField(
@@ -192,11 +191,11 @@ class DateTimeFormField extends FormField<DateTime> {
   static String _getHintText(DatePickerType type) {
     switch (type) {
       case DatePickerType.date:
-        return 'mm/dd/yyyy';
+        return 'dd/mm/yyyy';
       case DatePickerType.time:
         return 'hh:mm';
       case DatePickerType.dateTime:
-        return 'mm/dd/yyyy, hh:mm';
+        return 'dd/mm/yyyy, hh:mm';
     }
   }
 
@@ -209,11 +208,11 @@ class DateTimeFormField extends FormField<DateTime> {
     if (value == null) return '';
     switch (type) {
       case DatePickerType.date:
-        return DateFormat.yMd().format(value);
+        return DateFormat('dd/MM/yyyy').format(value);
       case DatePickerType.time:
         return DateFormat(DateFormat.HOUR_MINUTE).format(value);
       case DatePickerType.dateTime:
-        return '${DateFormat.yMd().format(value)}, ${DateFormat(DateFormat.HOUR_MINUTE).format(value)}';
+        return '${DateFormat('dd/MM/yyyy').format(value)}, ${DateFormat(DateFormat.HOUR_MINUTE).format(value)}';
     }
   }
 }
