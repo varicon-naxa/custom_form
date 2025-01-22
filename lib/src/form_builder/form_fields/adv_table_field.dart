@@ -29,7 +29,14 @@ class AdvTableInputWidget extends StatefulWidget {
 
 class AdvTableInputWidgetState extends State<AdvTableInputWidget> {
   late AdvTableField currentField;
+
   final Map<String, GlobalKey> _fieldKeys = {};
+
+  final Map<int, bool> _expandedRows = {};
+  // Track which rows have validation errors
+  final Map<int, bool> _rowValidationErrors = {};
+  // Add new map to track column validation errors
+  final Map<int, bool> _columnValidationErrors = {};
 
   @override
   void initState() {
@@ -41,38 +48,16 @@ class AdvTableInputWidgetState extends State<AdvTableInputWidget> {
   }
 
   void _initializeFieldKeys() {
+    _fieldKeys.clear();
     if (currentField.inputFields != null) {
       for (var row in currentField.inputFields!) {
         for (var field in row) {
-          _fieldKeys[field.id] = GlobalKey();
+          if (!_fieldKeys.containsKey(field.id)) {
+            _fieldKeys[field.id] = GlobalKey();
+          }
         }
       }
     }
-  }
-
-  void scrollToField(String fieldId) {
-    setState(() {
-      int? rowIndex;
-      for (int i = 0; i < (widget.field.inputFields?.length ?? 0); i++) {
-        if (widget.field.inputFields![i].any((field) => field.id == fieldId)) {
-          rowIndex = i;
-          break;
-        }
-      }
-
-      if (rowIndex != null) {
-        Future.delayed(const Duration(milliseconds: 100), () {
-          final context = this.context;
-          if (context.mounted) {
-            Scrollable.ensureVisible(
-              context,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut,
-            );
-          }
-        });
-      }
-    });
   }
 
   void _onTableStateChanged() {
@@ -201,6 +186,82 @@ class AdvTableInputWidgetState extends State<AdvTableInputWidget> {
         ],
       ),
     );
+  }
+
+  // Method to validate all rows and clear resolved errors
+  void validateAndClearErrors() {
+    for (int i = 0; i < (currentField.inputFields?.length ?? 0); i++) {
+      validateAdvTableRow(i); // Validate each row
+    }
+    // Clear any rows that are valid
+    setState(() {
+      _rowValidationErrors
+          .removeWhere((key, value) => !value); // Remove valid rows
+    });
+  }
+
+  // Method to validate all rows
+  void validateAllRows() {
+    for (int i = 0; i < (currentField.inputFields?.length ?? 0); i++) {
+      validateAdvTableRow(i); // Validate each row
+    }
+  }
+
+  // Method to validate a specific row
+  void validateAdvTableRow(int index) {
+  bool hasError = false;
+    for (var field in currentField.inputFields![index]) {
+      var fieldKey = _fieldKeys[field.id];
+      if (fieldKey?.currentContext != null) {
+        // Use Form.of() to get the form state
+        final formState = Form.of(fieldKey!.currentContext!);
+        // Validate the specific field
+        if (field.isRequired && !formState.validate()) {
+          hasError = true;
+          break;
+        }
+      }
+    }
+
+    if (mounted) {
+      setState(() {
+        if (hasError) {
+          _rowValidationErrors[index] = true;
+        } else {
+          // Remove the error state when all required fields are filled
+          _rowValidationErrors.remove(index);
+        }
+      });
+    }
+  }
+
+  // Call validateAndClearErrors when the user submits the form
+  void onSubmit() {
+    validateAndClearErrors(); // Validate and clear errors
+    // Additional submission logic...
+  }
+
+  // Call validateAllRows when needed, e.g., on a button press
+  void onValidateAll() {
+    validateAllRows(); // Validate all rows
+  }
+
+  bool isRowExpanded(int index) {
+    return _expandedRows[index] ?? true;
+  }
+
+  void setRowExpanded(int index, bool expanded) {
+    if (mounted) {
+      setState(() {
+        _expandedRows[index] = expanded;
+      });
+    }
+  }
+
+    // Method to get row context
+  BuildContext? getRowContext(int index) {
+    return _fieldKeys[currentField.inputFields![index].first.id]
+        ?.currentContext;
   }
 
   @override

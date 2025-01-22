@@ -295,9 +295,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FormTitleInfoWidget(
-                hasGeolocation: widget.hasGeolocation,
                 surveyForm: widget.surveyForm,
-                currentPosition: _currentPosition,
               ),
               Expanded(
                 child: FormInputWidgets(
@@ -337,8 +335,8 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
                     widget.onSave(formValue.value);
                   }),
                 ),
-                ScrollContent(
-                    id: 'spacing_2', child: AppSpacing.sizedBoxH_12()),
+                // ScrollContent(
+                //     id: 'spacing_2', child: AppSpacing.sizedBoxH_12()),
               ],
             ],
           ),

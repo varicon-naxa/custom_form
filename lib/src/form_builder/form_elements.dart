@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
@@ -213,71 +212,187 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     print('Starting validation...');
 
     // Check table fields first
-    for (var tableKey in _tableKeys.values) {
-      if (tableKey.currentState != null) {
-        final tableState = tableKey.currentState!;
+    // for (var tableKey in _tableKeys.values) {
+    //   if (tableKey.currentState != null) {
+    //     final tableState = tableKey.currentState!;
 
-        for (var rowIndex = 0;
-            rowIndex < (tableState.currentField.inputFields?.length ?? 0);
-            rowIndex++) {
-          final row = tableState.currentField.inputFields![rowIndex];
-          bool hasInvalidField = false;
-          String? firstInvalidFieldId;
+    //     for (var rowIndex = 0;
+    //         rowIndex < (tableState.currentField.inputFields?.length ?? 0);
+    //         rowIndex++) {
+    //       final row = tableState.currentField.inputFields![rowIndex];
+    //       bool hasInvalidField = false;
+    //       String? firstInvalidFieldId;
 
-          // Check each field in the row
-          for (var field in row) {
-            var fieldKey = _formFieldKeys[field.id];
-            if (fieldKey?.currentState != null &&
-                !fieldKey!.currentState!.validate()) {
-              hasInvalidField = true;
-              firstInvalidFieldId = field.id;
-              break;
-            }
-          }
+    //       // Check each field in the row
+    //       for (var field in row) {
+    //         var fieldKey = _formFieldKeys[field.id];
+    //         if (fieldKey?.currentState != null &&
+    //             !fieldKey!.currentState!.validate()) {
+    //           hasInvalidField = true;
+    //           firstInvalidFieldId = field.id;
+    //           break;
+    //         }
+    //       }
 
-          if (hasInvalidField) {
-            // Mark row as having errors
-            tableState.validateRow(rowIndex);
+    //       if (hasInvalidField) {
+    //         // Mark row as having errors
+    //         tableState.validateRow(rowIndex);
 
-            // Schedule scroll after build
-            WidgetsBinding.instance.addPostFrameCallback((_) {
-              if (!tableState.isRowExpanded(rowIndex)) {
-                // For collapsed rows, scroll to row header
-                final rowContext = tableState.getRowContext(rowIndex);
-                if (rowContext != null) {
-                  Scrollable.ensureVisible(
-                    rowContext,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn,
-                    alignment: 0.1, // Align towards top
-                  );
-                }
-              } else {
-                // For expanded rows, scroll to invalid field
-                final fieldContext =
-                    _formFieldKeys[firstInvalidFieldId]?.currentContext;
-                if (fieldContext != null) {
-                  Scrollable.ensureVisible(
-                    fieldContext,
-                    duration: const Duration(milliseconds: 500),
-                    curve: Curves.easeIn,
-                    alignment: 0.1, // Align towards top
-                  );
-                }
-              }
-            });
-            return;
-          }
-        }
-      }
-    }
+    //         // Schedule scroll after build
+    //         WidgetsBinding.instance.addPostFrameCallback((_) {
+    //           if (!tableState.isRowExpanded(rowIndex)) {
+    //             // For collapsed rows, scroll to row header
+    //             final rowContext = tableState.getRowContext(rowIndex);
+    //             if (rowContext != null) {
+    //               Scrollable.ensureVisible(
+    //                 rowContext,
+    //                 duration: const Duration(milliseconds: 500),
+    //                 curve: Curves.easeIn,
+    //                 alignment: 0.1, // Align towards top
+    //               );
+    //             }
+    //           } else {
+    //             // For expanded rows, scroll to invalid field
+    //             final fieldContext =
+    //                 _formFieldKeys[firstInvalidFieldId]?.currentContext;
+    //             if (fieldContext != null) {
+    //               Scrollable.ensureVisible(
+    //                 fieldContext,
+    //                 duration: const Duration(milliseconds: 500),
+    //                 curve: Curves.easeIn,
+    //                 alignment: 0.1, // Align towards top
+    //               );
+    //             }
+    //           }
+    //         });
+    //         return;
+    //       }
+    //     }
+    //   }
+    // }
 
     // Then check regular form fields
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
+      log('Validating field $fieldId');
+      log('Validating fieldkey $fieldKey');
 
-      if (fieldKey.currentState != null && !fieldKey.currentState!.validate()) {
+      if (_tableKeys.containsKey(fieldId)) {
+        var tableState = _tableKeys[fieldId]?.currentState;
+
+        if (tableState != null) {
+          for (var rowIndex = 0;
+              rowIndex < (tableState.currentField.inputFields?.length ?? 0);
+              rowIndex++) {
+            final row = tableState.currentField.inputFields![rowIndex];
+            bool hasInvalidField = false;
+            String? firstInvalidFieldId;
+
+            // Check each field in the row
+            for (var field in row) {
+              var fieldKey = _formFieldKeys[field.id];
+              if (fieldKey?.currentState != null &&
+                  !fieldKey!.currentState!.validate()) {
+                hasInvalidField = true;
+                firstInvalidFieldId = field.id;
+                break;
+              }
+            }
+
+            if (hasInvalidField) {
+              // Mark row as having errors
+              tableState.validateRow(rowIndex);
+
+              // Schedule scroll after build
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!tableState.isRowExpanded(rowIndex)) {
+                  // For collapsed rows, scroll to row header
+                  final rowContext = tableState.getRowContext(rowIndex);
+                  if (rowContext != null) {
+                    Scrollable.ensureVisible(
+                      rowContext,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                      alignment: 0.1, // Align towards top
+                    );
+                  }
+                } else {
+                  // For expanded rows, scroll to invalid field
+                  final fieldContext =
+                      _formFieldKeys[firstInvalidFieldId]?.currentContext;
+                  if (fieldContext != null) {
+                    Scrollable.ensureVisible(
+                      fieldContext,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                      alignment: 0.1, // Align towards top
+                    );
+                  }
+                }
+              });
+              return;
+            }
+          }
+        }
+      } else if (_advtableKeys.containsKey(fieldId)) {
+        var tableState = _advtableKeys[fieldId]?.currentState;
+        if (tableState != null) {
+          for (var rowIndex = 0;
+              rowIndex < (tableState.currentField.inputFields?.length ?? 0);
+              rowIndex++) {
+            final row = tableState.currentField.inputFields![rowIndex];
+            bool hasInvalidField = false;
+            String? firstInvalidFieldId;
+
+            // Check each field in the row
+            for (var field in row) {
+              var fieldKey = _formFieldKeys[field.id];
+              if (fieldKey?.currentState != null &&
+                  !fieldKey!.currentState!.validate()) {
+                hasInvalidField = true;
+                firstInvalidFieldId = field.id;
+                break;
+              }
+            }
+
+            if (hasInvalidField) {
+              // Mark row as having errors
+              tableState.validateAdvTableRow(rowIndex);
+
+              // Schedule scroll after build
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                if (!tableState.isRowExpanded(rowIndex)) {
+                  // For collapsed rows, scroll to row header
+                  final rowContext = tableState.getRowContext(rowIndex);
+                  if (rowContext != null) {
+                    Scrollable.ensureVisible(
+                      rowContext,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                      alignment: 0.1, // Align towards top
+                    );
+                  }
+                } else {
+                  // For expanded rows, scroll to invalid field
+                  final fieldContext =
+                      _formFieldKeys[firstInvalidFieldId]?.currentContext;
+                  if (fieldContext != null) {
+                    Scrollable.ensureVisible(
+                      fieldContext,
+                      duration: const Duration(milliseconds: 500),
+                      curve: Curves.easeIn,
+                      alignment: 0.1, // Align towards top
+                    );
+                  }
+                }
+              });
+              return;
+            }
+          }
+        }
+      } else if (fieldKey.currentState != null &&
+          !fieldKey.currentState!.validate()) {
         scrollToId?.animateTo(fieldId,
             duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
         return;
@@ -290,11 +405,38 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
     return InteractiveScrollViewer(
       scrollToId: scrollToId,
       scrollDirection: Axis.vertical,
-      children: widget.surveyForm.inputFields
-          .map<ScrollContent?>(
-              (e) => _buildInputField(e, context, isNested: true))
-          .whereType<ScrollContent>()
-          .toList(),
+      children: [
+        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
+        ScrollContent(id: 'Spaceing1', child: AppSpacing.sizedBoxH_08()),
+        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
+        ScrollContent(
+          id: 'geolocation',
+          child: Container(
+            decoration: BoxDecoration(
+              // ignore: deprecated_member_use
+              color: Colors.orange.withOpacity(0.1),
+              border: Border.all(color: Colors.orange),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: TextButton.icon(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.info_outline,
+                  color: Colors.orange,
+                ),
+                label: Text(
+                  'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
+                  style: Theme.of(context).textTheme.bodySmall,
+                )),
+          ),
+        ),
+        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
+        ScrollContent(id: 'Spaceing2', child: AppSpacing.sizedBoxH_08()),
+        ...widget.surveyForm.inputFields
+            .map<ScrollContent?>(
+                (e) => _buildInputField(e, context, isNested: true))
+            .whereType<ScrollContent>()
+      ],
     );
   }
 
@@ -1222,8 +1364,12 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
         isRequired: field.isRequired,
         tableManager: _tableManager,
         inputBuilder: (field, context, {haslabel = true}) {
-          return _buildInputField(field, context,
-                  haslabel: haslabel, isNested: true) ??
+          return _buildInputField(
+                field,
+                context,
+                haslabel: haslabel,
+                isNested: true,
+              ) ??
               const SizedBox.shrink();
         },
       ),

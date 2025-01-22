@@ -76,7 +76,7 @@ class _SurveyPageState extends State<SurveyPage> {
         buttonText: 'SUBMIT',
         isCarousel: false,
         surveyForm: widget.form,
-        hasGeolocation: false,
+        hasGeolocation: true,
         hasAutoSave: true,
         autoSave: (formValue) {
           Map<String, dynamic> data = widget.formData;

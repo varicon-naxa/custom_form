@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 ///CF form title description and location info widget
@@ -8,14 +7,10 @@ import 'package:varicon_form_builder/varicon_form_builder.dart';
 class FormTitleInfoWidget extends StatefulWidget {
   const FormTitleInfoWidget({
     super.key,
-    required this.hasGeolocation,
     required this.surveyForm,
-    this.currentPosition,
   });
 
-  final bool hasGeolocation;
   final SurveyPageForm surveyForm;
-  final Position? currentPosition;
 
   @override
   State<FormTitleInfoWidget> createState() => _FormTitleInfoWidgetState();
@@ -41,25 +36,7 @@ class _FormTitleInfoWidgetState extends State<FormTitleInfoWidget> {
                 color: const Color(0xff6A737B),
               ),
         ),
-        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.orange.withOpacity(0.1),
-              border: Border.all(color: Colors.orange),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: TextButton.icon(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.info_outline,
-                  color: Colors.orange,
-                ),
-                label: Text(
-                  'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
-                  style: Theme.of(context).textTheme.bodySmall,
-                )),
-          ),
-      ],
+   ],
     );
   }
 }
