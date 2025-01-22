@@ -154,7 +154,10 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
           countries: widget.countries,
           textInputAction: TextInputAction.next,
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          onChanged: (phoneNumber) => field.didChange(phoneNumber),
+          onChanged: (phoneNumber) {
+            field.didChange(phoneNumber);
+            widget.onSaved(phoneNumber.completeNumber);
+          },
           onSaved: (phoneNumber) {
             field.didChange(phoneNumber);
 
