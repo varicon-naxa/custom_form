@@ -7,6 +7,15 @@
     "elements": 
         [
             {
+                "id": "item-6f135ffa-f3a7-4da8-9f98-e349asd20e26b45",
+                "name": "Short Text",
+                "type": "text",
+                "label": "SN",
+                "answer": "",
+                "isRequired": false,
+                "instruction": ""
+            },
+            {
                 "id": "item-096a0ea7-796c-4f2c-8164-46e346acdad9",
                 "name": "Advanced Table",
                 "type": "advtable",

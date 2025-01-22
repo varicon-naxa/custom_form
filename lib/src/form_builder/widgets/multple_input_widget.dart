@@ -153,7 +153,7 @@ class _MultipleInputWidgetState extends State<MultipleInputWidget> {
               isRequired: (widget.field.isRequired &&
                   formCon.text == 'Select the item from list'),
               requiredErrorText: widget.field.requiredErrorText ??
-                  'No any Selection in required field  ',
+                  'Required field  ',
             );
           }
           return null;

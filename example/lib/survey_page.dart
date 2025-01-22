@@ -22,7 +22,7 @@ class _SurveyPageState extends State<SurveyPage> {
 
   onBackPressed(bool backPressed) {
     // Check if the form is filled but not saved
-    if (!backPressed) {
+    if (backPressed) {
       showDialog(
         context: context,
         builder: (context) {
@@ -64,8 +64,48 @@ class _SurveyPageState extends State<SurveyPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
-              bool? value = childKey.currentState?.popInvoke();
-              onBackPressed(value ?? true);
+              var valueAns = childKey.currentState?.formValue.savedValue;
+
+              if (valueAns == null) {
+                // return false;
+                onBackPressed(false);
+              } else {
+                List<bool> isStructuredDataFilled =
+                    valueAns.entries.map((entry) {
+                  if (entry.value is List) {
+                    if (entry.value is List<List>) {
+                      return false;
+                    } else {
+                      if (entry.value is List && entry.value.isEmpty) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    }
+                  } else {
+                    if (entry.value is Map) {
+                      if (entry.value.isEmpty) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    } else if (entry.value is String) {
+                      if (entry.value.isEmpty ||
+                          entry.value == "null" ||
+                          entry.value == null) {
+                        return false;
+                      } else {
+                        return true;
+                      }
+                    } else {
+                      return false;
+                    }
+                  }
+                }).toList();
+                bool data =
+                    isStructuredDataFilled.contains(true) ? true : false;
+                onBackPressed(data);
+              }
             },
           )),
       // understand this full code and have a condition in here where if the form is filled but bot saved and back button is pressed then alert dialog should appear
@@ -129,7 +169,6 @@ class _SurveyPageState extends State<SurveyPage> {
         },
         separatorBuilder: () => const SizedBox(height: 10),
         onSubmit: (formValue) {
-
           Map<String, dynamic> data = widget.formData;
           List<Map<String, dynamic>> elements =
               List<Map<String, dynamic>>.from(data['elements']);

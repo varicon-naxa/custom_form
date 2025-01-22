@@ -95,12 +95,13 @@ class _ResponseFormBuilderState extends State<ResponseFormBuilder> {
                       ),
                 ),
                 AppSpacing.sizedBoxH_08(),
-                Text(
-                  widget.surveyForm.description.toString(),
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: const Color(0xff6A737B),
-                      ),
-                ),
+                if ((widget.surveyForm.description ?? '').isNotEmpty)
+                  Text(
+                    widget.surveyForm.description.toString(),
+                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                          color: const Color(0xff6A737B),
+                        ),
+                  ),
                 AppSpacing.sizedBoxH_08(),
               ],
             ),

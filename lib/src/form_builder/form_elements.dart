@@ -25,6 +25,7 @@ import 'widgets/custom_location.dart';
 import 'widgets/datetime_input_widget.dart';
 import 'widgets/dropdown_input_widget.dart';
 import 'widgets/file_input_widget.dart';
+import 'widgets/form_title_info_widget.dart';
 import 'widgets/instruction_widget.dart';
 import 'widgets/labeled_widget.dart';
 import 'widgets/map_field_widget.dart';
@@ -211,72 +212,10 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
   void scrollToFirstInvalidField() {
     print('Starting validation...');
 
-    // Check table fields first
-    // for (var tableKey in _tableKeys.values) {
-    //   if (tableKey.currentState != null) {
-    //     final tableState = tableKey.currentState!;
-
-    //     for (var rowIndex = 0;
-    //         rowIndex < (tableState.currentField.inputFields?.length ?? 0);
-    //         rowIndex++) {
-    //       final row = tableState.currentField.inputFields![rowIndex];
-    //       bool hasInvalidField = false;
-    //       String? firstInvalidFieldId;
-
-    //       // Check each field in the row
-    //       for (var field in row) {
-    //         var fieldKey = _formFieldKeys[field.id];
-    //         if (fieldKey?.currentState != null &&
-    //             !fieldKey!.currentState!.validate()) {
-    //           hasInvalidField = true;
-    //           firstInvalidFieldId = field.id;
-    //           break;
-    //         }
-    //       }
-
-    //       if (hasInvalidField) {
-    //         // Mark row as having errors
-    //         tableState.validateRow(rowIndex);
-
-    //         // Schedule scroll after build
-    //         WidgetsBinding.instance.addPostFrameCallback((_) {
-    //           if (!tableState.isRowExpanded(rowIndex)) {
-    //             // For collapsed rows, scroll to row header
-    //             final rowContext = tableState.getRowContext(rowIndex);
-    //             if (rowContext != null) {
-    //               Scrollable.ensureVisible(
-    //                 rowContext,
-    //                 duration: const Duration(milliseconds: 500),
-    //                 curve: Curves.easeIn,
-    //                 alignment: 0.1, // Align towards top
-    //               );
-    //             }
-    //           } else {
-    //             // For expanded rows, scroll to invalid field
-    //             final fieldContext =
-    //                 _formFieldKeys[firstInvalidFieldId]?.currentContext;
-    //             if (fieldContext != null) {
-    //               Scrollable.ensureVisible(
-    //                 fieldContext,
-    //                 duration: const Duration(milliseconds: 500),
-    //                 curve: Curves.easeIn,
-    //                 alignment: 0.1, // Align towards top
-    //               );
-    //             }
-    //           }
-    //         });
-    //         return;
-    //       }
-    //     }
-    //   }
-    // }
-
     // Then check regular form fields
     for (var entry in _fieldKeyToIdMap.entries) {
       var fieldKey = entry.key;
       var fieldId = entry.value;
-      log('Validating field $fieldId');
-      log('Validating fieldkey $fieldKey');
 
       if (_tableKeys.containsKey(fieldId)) {
         var tableState = _tableKeys[fieldId]?.currentState;
@@ -406,32 +345,38 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
       scrollToId: scrollToId,
       scrollDirection: Axis.vertical,
       children: [
-        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
-        ScrollContent(id: 'Spaceing1', child: AppSpacing.sizedBoxH_08()),
-        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
         ScrollContent(
-          id: 'geolocation',
-          child: Container(
-            decoration: BoxDecoration(
-              // ignore: deprecated_member_use
-              color: Colors.orange.withOpacity(0.1),
-              border: Border.all(color: Colors.orange),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: TextButton.icon(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.info_outline,
-                  color: Colors.orange,
-                ),
-                label: Text(
-                  'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
-                  style: Theme.of(context).textTheme.bodySmall,
-                )),
+          id: 'title',
+          child: FormTitleInfoWidget(
+            surveyForm: widget.surveyForm,
           ),
         ),
         if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
-        ScrollContent(id: 'Spaceing2', child: AppSpacing.sizedBoxH_08()),
+          ScrollContent(id: 'Spaceing1', child: AppSpacing.sizedBoxH_08()),
+        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
+          ScrollContent(
+            id: 'geolocation',
+            child: Container(
+              decoration: BoxDecoration(
+                // ignore: deprecated_member_use
+                color: Colors.orange.withOpacity(0.1),
+                border: Border.all(color: Colors.orange),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: TextButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(
+                    Icons.info_outline,
+                    color: Colors.orange,
+                  ),
+                  label: Text(
+                    'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  )),
+            ),
+          ),
+        if (widget.hasGeolocation && widget.currentPosition?.latitude != null)
+          ScrollContent(id: 'Spaceing2', child: AppSpacing.sizedBoxH_08()),
         ...widget.surveyForm.inputFields
             .map<ScrollContent?>(
                 (e) => _buildInputField(e, context, isNested: true))

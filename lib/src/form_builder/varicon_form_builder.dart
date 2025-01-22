@@ -294,9 +294,7 @@ class VariconFormBuilderState extends State<VariconFormBuilder> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              FormTitleInfoWidget(
-                surveyForm: widget.surveyForm,
-              ),
+            
               Expanded(
                 child: FormInputWidgets(
                   key: formInputWidgetsKey,

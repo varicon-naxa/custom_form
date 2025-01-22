@@ -120,7 +120,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
               isRequired: (widget.field.isRequired &&
                   formCon.text == 'Select the item from list'),
               requiredErrorText: widget.field.requiredErrorText ??
-                  'No any Selection in required field  ',
+                  'Required field  ',
             ),
             decoration: const InputDecoration(
               contentPadding: EdgeInsets.all(8.0),
@@ -164,7 +164,7 @@ class _DropdownInputWidgetState extends State<DropdownInputWidget> {
                   isRequired: (widget.field.isRequired &&
                       formCon.text == 'Select the item from list'),
                   requiredErrorText: widget.field.requiredErrorText ??
-                      'No any Selection in required field  ',
+                      'Required field ',
                 ),
                 decoration: const InputDecoration(
                   contentPadding: EdgeInsets.all(8.0),
