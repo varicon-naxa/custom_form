@@ -5,239 +5,84 @@
     "version": "1.0.0",
     "collect_geolocation": false,
     "elements": 
-        [
-            {
-                "id": "item-6f135ffa-f3a7-4da8-9f98-e349asd20e26b45",
-                "name": "Short Text",
-                "type": "text",
-                "label": "SN",
-                "answer": "",
-                "isRequired": false,
-                "instruction": ""
-            },
-            {
-                "id": "item-096a0ea7-796c-4f2c-8164-46e346acdad9",
-                "name": "Advanced Table",
-                "type": "advtable",
-                "isRow": true,
-                "label": "Advanced Table",
-                "headers": [
-                    "SN",
-                    "Name",
-                    "Phone",
-                    "Email",
-                    "Position"
-                ],
-                "contents": [
-                    [
-                        {
-                            "id": "item-6f135ffa-f3a7-4da8-9f98-e34920e26b45",
-                            "name": "Short Text",
-                            "type": "text",
-                            "label": "SN",
-                            "answer": "",
-                            "isRequired": false,
-                            "instruction": ""
-                        },
-                        {
-                            "id": "item-ddf0e61b-339e-4184-9b34-0bdd171067da",
-                            "name": "Short Text",
-                            "type": "text",
-                            "label": "Name",
-                            "answer": "",
-                            "isRequired": true,
-                            "instruction": ""
-                        },
-                        {
-                            "id": "item-ef984f8a-076f-4d38-b552-0c502f6af804",
-                            "name": "Short Text",
-                            "type": "text",
-                            "label": "Phone",
-                            "answer": "",
-                            "isRequired": false,
-                            "instruction": ""
-                        },
-                        {
-                            "id": "item-dfc3ac65-bbfb-42b7-a323-9358e1074b37",
-                            "name": "Short Text",
-                            "type": "text",
-                            "label": "Email",
-                            "answer": "",
-                            "isRequired": false,
-                            "instruction": ""
-                        },
-                        {
-                            "id": "item-fb69b0a0-9f82-4238-a43c-6b61d9b0fa1c",
-                            "name": "Short Text",
-                            "type": "text",
-                            "label": "Position",
-                            "answer": "",
-                            "isRequired": true,
-                            "instruction": ""
-                        }
-                    ]
-                ],
-                "isRequired": false
-            },
-            {
-                "id": "item-1dd4bd9b-a66c-4259-829b-27fb3257e2ba",
-                "name": "Advanced Table",
-                "type": "advtable",
-                "isRow": true,
-                "label": "Advanced Table",
-                "headers": [
-                    "Equipment",
-                    "Oil Leakage",
-                    "Good to Go"
-                ],
-                "contents": [
-                    [
-                        {
-                            "id": "item-aafd7cfd-faa0-4bae-9e25-0ef4c8b3b2d8",
-                            "name": "Single Select Dropdown",
-                            "type": "dropdown",
-                            "label": "Equipment",
-                            "answer": "",
-                            "choice": [],
-                            "isRequired": true,
-                            "instruction": "",
-                            "actionMessage": "",
-                            "isConditional": false,
-                            "fromManualList": false,
-                            "islinked_query": "equipment",
-                            "selectedLinkListLabel": ""
-                        },
-                        {
-                            "id": "item-beddafd7-5c5c-47a0-a4d2-0b965570849b",
-                            "name": "Yes/No/NA",
-                            "type": "yesnona",
-                            "label": "Oil Leakage",
-                            "answer": "",
-                            "choice": [
-                                {
-                                    "id": "item-786503de-c6bd-4678-b19e-43e6c98ae227",
-                                    "label": "Yes",
-                                    "action": true,
-                                    "notify_To": [
-                                        {
-                                            "id": "cd90a222-2790-4ad8-862e-1db28b50f4c5",
-                                            "email": "prabin@varicon.com.au",
-                                            "label": "Prabin Tharu"
-                                        }
-                                    ]
-                                },
-                                {
-                                    "id": "item-e5a0c3df-ab4f-43b0-86ad-44effb254172",
-                                    "label": "No",
-                                    "action": false,
-                                    "notify_To": []
-                                },
-                                {
-                                    "id": "item-12dba341-8049-4c56-8db4-dcea2bc14016",
-                                    "label": "NA",
-                                    "action": false,
-                                    "notify_To": []
-                                }
-                            ],
-                            "isRequired": false,
-                            "instruction": "",
-                            "actionMessage": "",
-                            "isConditional": true,
-                            "showOtherItem": false,
-                            "fromManualList": true
-                        },
-                        {
-                            "id": "item-03e019c9-7968-4a5c-8bd1-ad3ea32a84c6",
-                            "name": "Yes/No",
-                            "type": "yesno",
-                            "label": "Good to Go",
-                            "answer": "",
-                            "choice": [
-                                {
-                                    "id": "item-f44667d6-1e7e-4536-9e12-9d75850db1d3",
-                                    "label": "Yes",
-                                    "action": true,
-                                    "notify_To": []
-                                },
-                                {
-                                    "id": "item-fa6ef2b0-75bf-4b58-98ba-240fd4975361",
-                                    "label": "No",
-                                    "action": false,
-                                    "notify_To": [
-                                        {
-                                            "id": "a0683d54-24bc-493d-9c15-e96a4c15eaf0",
-                                            "email": "tharuprabin22@gmail.com",
-                                            "label": "PMPrabin Tharu"
-                                        }
-                                    ]
-                                }
-                            ],
-                            "isRequired": true,
-                            "instruction": "",
-                            "actionMessage": "",
-                            "isConditional": true,
-                            "showOtherItem": false,
-                            "fromManualList": true
-                        }
-                    ]
-                ],
-                "isRequired": false
-            },
-            {
-                "id": "item-ddc7d585-d83d-4c2a-a080-c3c83126dbd6",
-                "name": "Simple Table",
-                "type": "table",
-                "isRow": true,
-                "label": "Simple Table",
-                "headers": [
-                    "Project",
-                    "Employee"
-                ],
-                "maxRows": "",
-                "contents": [
-                    [
-                        {
-                            "id": "item-c3752204-bad3-45ac-b9bd-14c711215abd",
-                            "name": "Single Select Dropdown",
-                            "type": "dropdown",
-                            "label": "Project",
-                            "answer": "",
-                            "choice": [],
-                            "isRequired": true,
-                            "instruction": "",
-                            "actionMessage": "",
-                            "isConditional": false,
-                            "fromManualList": false,
-                            "islinked_query": "project",
-                            "selectedLinkListLabel": ""
-                        },
-                        {
-                            "id": "item-59f7d8ff-0b5b-45d4-8b23-3fb13c96b1a0",
-                            "name": "Multi-Select Dropdown",
-                            "type": "multipleselect",
-                            "label": "Employee",
-                            "answer": "",
-                            "choice": [],
-                            "isRequired": true,
-                            "instruction": "",
-                            "actionMessage": "",
-                            "isConditional": false,
-                            "fromManualList": false,
-                            "islinked_query": "employee",
-                            "selectedLinkListLabel": ""
-                        }
-                    ]
-                ],
-                "isRequired": false
-            },
-            {
-                "id": "item-0701a54b-e458-4412-9847-e5319d8fccaa",
-                "name": "Signature",
-                "type": "signature",
-                "label": "Signature",
-                "answer": {},
-                "isRequired": false
-            }
-        ]
+    [ 
+        {
+            "id": "item-348f3d58-ad92-4fa7-a8c9-7278498476d7",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Employee Name",
+                "Date of Birth"
+            ],
+            "maxRows": "0",
+            "contents": [
+                [
+                    {
+                        "id": "item-754ae420-09b6-48e7-80c3-1ccb976256ba",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 196,
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-cedf2b23-270c-49a2-9f33-eddd7dfa1504",
+                        "name": "Date",
+                        "type": "date",
+                        "label": "Date of Birth",
+                        "width": 162,
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": "",
+                        "initialAnswer": ""
+                    }
+                ]
+            ],
+            "isRequired": false
+        },
+        {
+            "id": "item-fa0e416f-778b-4b2b-9f81-858e719b2efe",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Employee Name"
+            ],
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-29638a46-262e-41c4-838a-28abcd37ec6b",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 230,
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": ""
+                    }
+                ]
+            ],
+            "isRequired": false
+        }
+    ]
     
 }

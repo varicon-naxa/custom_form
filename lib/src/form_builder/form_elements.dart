@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as math;
 
@@ -435,8 +434,9 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
           _buildSectionInput(field, context, isNested: isNested),
       geolocation: (field) =>
           _buildGeolocationInput(field, labelText, context, isNested: isNested),
-      table: (field) =>
-          _buildTableInput(field, labelText, context, isNested: isNested),
+      table: (field) => _buildTableInput(
+          field, labelText, widget.formValue, context,
+          isNested: isNested),
       advtable: (field) =>
           _buildAdvTableInput(field, labelText, context, isNested: isNested),
       orElse: () => null,
@@ -1297,7 +1297,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
 
   ///Table input field build method
   ScrollContent _buildTableInput(
-      TableField field, String labelText, BuildContext context,
+      TableField field, String labelText, FormValue value, BuildContext context,
       {bool isNested = false}) {
     return ScrollContent(
       id: field.id,
@@ -1306,6 +1306,7 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
         key: _tableKeys[field.id],
         field: field,
         labelText: labelText,
+        formValue: value,
         isRequired: field.isRequired,
         tableManager: _tableManager,
         inputBuilder: (field, context, {haslabel = true}) {
@@ -1656,7 +1657,17 @@ class TableStateManager extends ChangeNotifier {
 
     _tableStates[field.id] = updatedField;
     _visibleRows[field.id] = List.from(_visibleRows[field.id] ?? [])..add(true);
+
     formValue.saveTableFieldWithNewRow(newRow, field);
+
+    Map<String, TableField> data = {};
+    data.addAll(_tableStates);
+    data.map((key, value) {
+      _tableStates[key] = value.copyWith(
+        inputFields: formValue.getTableData(key),
+      );
+      return MapEntry(key, value.toJson());
+    });
     notifyListeners();
 
     // Call the key initialization callback if provided
@@ -1671,7 +1682,10 @@ class TableStateManager extends ChangeNotifier {
   /// Returns null if the table state doesn't exist.
   ///
   /// [id] The ID of the table to retrieve
-  TableField? getTableState(String id) => _tableStates[id];
+  TableField? getTableState(String id) {
+    return _tableStates[id];
+  }
+
   AdvTableField? getAdvTableState(String id) => _advTableStates[id];
 
   /// Gets the visibility state of rows for a specific table.

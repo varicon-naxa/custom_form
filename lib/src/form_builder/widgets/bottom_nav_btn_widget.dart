@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
@@ -122,6 +123,8 @@ class _SubmitUpdateButtonWidgetState extends State<SubmitUpdateButtonWidget> {
                               : widget.surveyForm.setting?['location']
                     });
                   }
+                  log('catch bhitra ' + jsonEncode(widget.formValue.value));
+
                   widget.onSubmit(widget.formValue.value);
                 } catch (e) {
                   log('catch bhitra' + e.toString());

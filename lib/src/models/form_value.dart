@@ -144,6 +144,53 @@ class FormValue {
     return inputFields;
   }
 
+  Map<String, dynamic> _transformFormValue(
+      Map<String, dynamic> originalValue, bool fromSaved) {
+    // Create a copy of the original value to avoid modifying it directly
+    Map<String, dynamic> transformedValue = Map.from(originalValue);
+
+    // Iterate through the original value to find table entries
+    originalValue.forEach((key, value) {
+      if (value is List && value.isNotEmpty && value[0] is List) {
+        // This is a table entry
+        List<List<Map<String, dynamic>>> tableData =
+            (value as List).map<List<Map<String, dynamic>>>((row) {
+          return (row as List).map<Map<String, dynamic>>((field) {
+            if (field is Map<String, dynamic>) {
+              String fieldId = field['id'];
+              // Update the answer if it exists in the root level
+              if (originalValue.containsKey(fieldId)) {
+                return {
+                  ...field,
+                  'answer': originalValue[fieldId],
+                };
+              }
+              if (originalValue
+                  .containsKey(fieldId.substring(5, fieldId.length))) {
+                return {
+                  ...field,
+                  'selectedLinkListLabel':
+                      originalValue[fieldId.substring(5, fieldId.length)],
+                };
+              }
+            }
+            return field;
+          }).toList();
+        }).toList();
+
+        transformedValue[key] = tableData;
+        if (fromSaved) {
+          _savedValue[key] = tableData;
+        }
+        if (!fromSaved) {
+          _value[key] = tableData;
+        }
+      }
+    });
+
+    return transformedValue;
+  }
+
   void saveTableFieldWithNewRow(List<InputField> newRow, TableField table) {
     String tableId = table.id;
     // Retrieve existing rows from _savedValue
@@ -165,6 +212,9 @@ class FormValue {
     _savedValue[tableId] = updatedInputFields.map((row) {
       return row.map((e) => e.toJson()).toList();
     }).toList();
+
+    _transformFormValue(_value, false);
+    _transformFormValue(_savedValue, true);
 
     _onSaveCallback?.call(_savedValue);
   }

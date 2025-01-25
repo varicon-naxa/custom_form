@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:varicon_form_builder/src/models/form_value.dart';
 
 import '../../../varicon_form_builder.dart';
 import '../form_elements.dart';
@@ -11,6 +13,7 @@ class TableInputWidget extends StatefulWidget {
   final String labelText;
   final bool isRequired;
   final TableStateManager tableManager;
+  final FormValue formValue;
   final Widget Function(InputField, BuildContext, {bool haslabel}) inputBuilder;
 
   const TableInputWidget({
@@ -19,6 +22,7 @@ class TableInputWidget extends StatefulWidget {
     required this.labelText,
     required this.isRequired,
     required this.tableManager,
+    required this.formValue,
     required this.inputBuilder,
   });
 
