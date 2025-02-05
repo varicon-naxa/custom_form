@@ -33,37 +33,83 @@ mixin FilePickerMixin {
           ? ['doc', 'pdf', 'docx', 'xslx', 'docx', 'mp4', 'mp3', 'xlsx']
           : null,
     );
-    List<File> files = [];
     if (result != null) {
-      for (var e in result.paths) {
-        final file = File(e!);
-        if (await file.length() > 25000 * 1000) {
-          Fluttertoast.showToast(
-              msg: "The file may not be greater than 25 MB.",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.CENTER,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
-        } else {
-          if (isImage(path: e)) {
-            final heicFormat = e.split('.').last.toLowerCase();
+      List<File> files = [];
+      int fileCount = result.count;
 
-            if (heicFormat == 'heic' || heicFormat == 'hevc') {
-              File compressedFile = await compressImage(e);
-              files.add(compressedFile);
+      if (fileCount > 5) {
+        Fluttertoast.showToast(
+          msg: "You can only upload 5 files at a time.",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+        // Process only the first 5 files
+        for (int i = 0; i < 5; i++) {
+          final filePath = result.paths[i];
+          if (filePath != null) {
+            final file = File(filePath);
+            if (await file.length() > 25 * 1024 * 1024) {
+              // 25 MB
+              Fluttertoast.showToast(
+                msg: "The file may not be greater than 25 MB.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
             } else {
-              files.add(file);
+              if (((file.lengthSync()) / (1024 * 1024) > 2.0 &&
+                      type == FileType.image) ||
+                  file.path.split('.').last.toLowerCase() == 'heic' ||
+                  file.path.split('.').last.toLowerCase() == 'hevc') {
+                File compressedFile =
+                    await compressImage(file.path, quality: 10);
+                files.add(compressedFile);
+              } else {
+                files.add(file);
+              }
             }
-          } else {
-            files.add(file);
+          }
+        }
+      } else {
+        for (var filePath in result.paths) {
+          if (filePath != null) {
+            final file = File(filePath);
+            if (await file.length() > 25 * 1024 * 1024) {
+              // 25 MB
+              Fluttertoast.showToast(
+                msg: "The file may not be greater than 25 MB.",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.CENTER,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0,
+              );
+            } else {
+              if ((file.lengthSync()) / (1024 * 1024) > 2.0 ||
+                  file.path.split('.').last.toLowerCase() == 'heic' ||
+                  file.path.split('.').last.toLowerCase() == 'hevc') {
+                File compressedFile =
+                    await compressImage(file.path, quality: 10);
+                files.add(compressedFile);
+              } else {
+                files.add(file);
+              }
+            }
           }
         }
       }
+
       return files;
     } else {
-      return null ;
+      return null;
     }
   }
 
@@ -180,6 +226,7 @@ mixin FilePickerMixin {
       return File(path);
     }
   }
+
   //convert Uint8List to File
   Future<File> convertUint8ListToFile(Uint8List uint8List) async {
     // Save the edited image to a new file
