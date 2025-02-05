@@ -733,6 +733,7 @@ _$RadioInputFieldImpl _$$RadioInputFieldImplFromJson(
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
+      selectedLinkListLabel: json['selectedLinkListLabel'] as String?,
       isConditional: json['isConditional'] as bool? ?? false,
       choices: (json['choice'] as List<dynamic>?)
               ?.map(const ValueTextConverter().fromJson)
@@ -761,6 +762,7 @@ Map<String, dynamic> _$$RadioInputFieldImplToJson(
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
+      'selectedLinkListLabel': instance.selectedLinkListLabel,
       'isConditional': instance.isConditional,
       'choice':
           instance.choices.map(const ValueTextConverter().toJson).toList(),

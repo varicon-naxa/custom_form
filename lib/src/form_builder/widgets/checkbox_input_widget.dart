@@ -43,6 +43,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
   late final List<ValueText> choices;
   late final String otherFieldKey;
   late final bool showSelectAllOption;
+  bool showTextField = false;
 
   bool showMessage = false;
   TextEditingController formCon = TextEditingController();
@@ -50,6 +51,39 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
   TextEditingController otherFieldController = TextEditingController();
   List<String> selectedIds = [];
   List<ValueText> searchedChoices = [];
+
+  List<ValueText> getSelectedChoicesFromIndices() {
+    List<ValueText> selectedValueTexts = [];
+    for (int i = 0; i < selectedChoices.length; i++) {
+      if (selectedChoices[i] == true) {
+        selectedValueTexts.add(choices[i]);
+      }
+    }
+    return selectedValueTexts;
+  }
+
+  bool checkIfAnyOtherFieldSelected() {
+    List<ValueText> selectedChoices = getSelectedChoicesFromIndices();
+    bool isOtherFieldSelected = selectedChoices.any(
+      (choice) => ((choice.isOtherField ?? false) == true),
+    );
+    return isOtherFieldSelected;
+  }
+
+  checkListField({bool fromInit = false}) {
+    if (checkIfAnyOtherFieldSelected()) {
+      // Handle the case where an "other" field is selected
+      showTextField = true;
+      if (fromInit) {
+        otherFieldController.text = widget.field.answerList ?? '';
+      }
+    } else {
+      showTextField = false;
+      widget.formValue.remove(
+        widget.field.id.substring(5, widget.field.id.toString().length),
+      );
+    }
+  }
 
   @override
   void initState() {
@@ -65,8 +99,8 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
       ...widget.field.choices,
       if (widget.field.showNoneItem)
         ValueText.none(text: widget.field.noneText ?? 'None'),
-      if (widget.field.showOtherItem)
-        ValueText.other(text: widget.field.otherText ?? 'Other (describe)'),
+      // if (widget.field.showOtherItem)
+      //   ValueText.other(text: widget.field.otherText ?? 'Other (describe)'),
     ];
     setState(() {
       searchedChoices = choices;
@@ -116,6 +150,8 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
         }
       }
     });
+
+    checkListField(fromInit: true);
   }
 
   bool checkMatchingActions() {
@@ -247,15 +283,15 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                     widget.field.id,
                     keys.join(','),
                   );
+
+                  checkListField();
                 },
                 onSaved: (newValue) {
-                  var a = newValue;
                   final keys = newValue!.indexed
                       .map((e) {
                         final (i, v) = e;
                         if (v ?? false) {
                           if (choices[i].value == 'other') {
-                            var b = otherFieldController.text;
                             widget.formValue.saveString(
                               widget.field.id,
                               otherFieldController.text,
@@ -281,6 +317,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                     widget.field.id,
                     keys.join(','),
                   );
+                  checkListField();
                 },
                 hasMessage: (value) {
                   setState(() {
@@ -381,7 +418,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   ),
                 ),
 
-              if (widget.field.showOtherItem && isOtherSelected()) ...[
+              if (showTextField) ...[
                 const SizedBox(
                   height: 12,
                 ),
@@ -394,6 +431,14 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   //   otherFieldKey,
                   //   newValue,
                   // ),
+
+                  onChanged: (value) {
+                    widget.formValue.saveString(
+                      widget.field.id
+                          .substring(5, widget.field.id.toString().length),
+                      value,
+                    );
+                  },
                   validator: (value) => textValidator(
                     value: value,
                     inputType: "text",

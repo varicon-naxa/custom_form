@@ -29,8 +29,12 @@ mixin _$SingleSignature {
   String? get signatoryName => throw _privateConstructorUsedError;
   bool? get isLoading => throw _privateConstructorUsedError;
 
+  /// Serializes this SingleSignature to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SingleSignatureCopyWith<SingleSignature> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -60,6 +64,8 @@ class _$SingleSignatureCopyWithImpl<$Res, $Val extends SingleSignature>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -124,6 +130,8 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
       _$SingleSignatureImpl _value, $Res Function(_$SingleSignatureImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -213,12 +221,14 @@ class _$SingleSignatureImpl implements _SingleSignature {
                 other.isLoading == isLoading));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType, id, attachmentId, file, name, signatoryName, isLoading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SingleSignatureImplCopyWith<_$SingleSignatureImpl> get copyWith =>
@@ -245,9 +255,8 @@ abstract class _SingleSignature implements SingleSignature {
   factory _SingleSignature.fromJson(Map<String, dynamic> json) =
       _$SingleSignatureImpl.fromJson;
 
-  @override
-
   /// Option Action to have color
+  @override
   String? get id;
   @override
   String? get attachmentId;
@@ -260,8 +269,11 @@ abstract class _SingleSignature implements SingleSignature {
   String? get signatoryName;
   @override
   bool? get isLoading;
+
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SingleSignatureImplCopyWith<_$SingleSignatureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

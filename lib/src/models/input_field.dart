@@ -96,12 +96,12 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = DateInputField;
 
-   const factory InputField.instruction({
+  const factory InputField.instruction({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
-    @JsonKey(readValue: readInstruction)  String? instruction,
-     String? description,
+    @JsonKey(readValue: readInstruction) String? instruction,
+    String? description,
     @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
@@ -117,8 +117,6 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'max') dynamic max,
     @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = InstructionInputField;
-
-
 
   const factory InputField.section({
     @JsonKey(name: 'id') required String id,
@@ -396,6 +394,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
+    @JsonKey(name: 'selectedLinkListLabel') String? selectedLinkListLabel,
     @JsonKey(name: 'isConditional') @Default(false) bool isConditional,
 
     // Fields.
@@ -542,7 +541,7 @@ class InputField with _$InputField implements BasicInputField {
   }) = TableField;
   const factory InputField.advtable({
     @JsonKey(name: 'id') required String id,
-        List<String>? headers,
+    List<String>? headers,
     @JsonKey(name: 'tableId') String? tableId,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'name') String? name,
@@ -582,7 +581,5 @@ abstract class BasicInputField {
   final bool? readOnly;
   final String? requiredErrorText;
 }
-  String? readInstruction(Map map, String key) => map[key] ?? map['description'];
 
-
-
+String? readInstruction(Map map, String key) => map[key] ?? map['description'];
