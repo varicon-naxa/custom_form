@@ -43,6 +43,8 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
   late final List<ValueText> choices;
   late final String otherFieldKey;
   late final bool showSelectAllOption;
+  final FocusNode _textFieldFocusNode = FocusNode();
+
   bool showTextField = false;
 
   bool showMessage = false;
@@ -176,6 +178,12 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
   }
 
   @override
+  void dispose() {
+    _textFieldFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     List<bool> actionList = choices.map((e) => e.action ?? false).toList();
     return !(widget.field.fromManualList)
@@ -277,7 +285,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   // other
                   if (!isOtherSelected()) {
                     widget.formValue.autoremove(otherFieldKey);
-                  }
+                  } 
                   keys.sort();
                   widget.formValue.autosaveString(
                     widget.field.id,
@@ -424,8 +432,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                 ),
                 TextFormField(
                   controller: otherFieldController,
-                  maxLength: 80,
-                  maxLines: 4,
+                  focusNode: _textFieldFocusNode,
                   // initialValue: widget.formValue.getStringValue(otherFieldKey),
                   // onSaved: (newValue) => widget.formValue.saveString(
                   //   otherFieldKey,

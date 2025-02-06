@@ -43,6 +43,7 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
 
   late final String otherFieldKey;
   TextEditingController otherFieldController = TextEditingController();
+  final FocusNode _textFieldFocusNode = FocusNode();
 
   ValueText? getValueText(String value) {
     for (var choice in choices) {
@@ -92,6 +93,12 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
   }
 
   @override
+  void dispose() {
+    _textFieldFocusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
@@ -135,11 +142,13 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
             if (selectedValueText != null) {
               setState(() {
                 showTextField = selectedValueText.isOtherField ?? false;
-                if (selectedValueText.isOtherField ?? false == false) {
+                if ((selectedValueText.isOtherField ?? false )== false) {
                   widget.formValue.remove(
                     widget.field.id
                         .substring(5, widget.field.id.toString().length),
                   );
+                } else {
+                  _textFieldFocusNode.requestFocus();
                 }
               });
             }
@@ -216,8 +225,7 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
           ),
           TextFormField(
             controller: otherFieldController,
-            maxLength: 80,
-            maxLines: 4,
+            focusNode: _textFieldFocusNode,
             onSaved: (newValue) {
               widget.formValue.saveString(
                 widget.field.id.substring(5, widget.field.id.toString().length),
