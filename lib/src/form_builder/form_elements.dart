@@ -334,6 +334,8 @@ class FormInputWidgetsState extends State<FormInputWidgets> {
         scrollToId?.animateTo(fieldId,
             duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
         return;
+      }else{
+        
       }
     }
   }

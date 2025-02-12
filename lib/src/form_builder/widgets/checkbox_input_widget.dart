@@ -285,7 +285,7 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                   // other
                   if (!isOtherSelected()) {
                     widget.formValue.autoremove(otherFieldKey);
-                  } 
+                  }
                   keys.sort();
                   widget.formValue.autosaveString(
                     widget.field.id,
@@ -370,7 +370,9 @@ class _CheckboxInputWidgetState extends State<CheckboxInputWidget> {
                     hasAction: widget.field.fromManualList ? v.action : null,
                     enabled: enabled(),
                     title: Text(
-                      v.text,
+                      v.isOtherField ?? false
+                          ? widget.field.otherText ?? 'Other (please specify)'
+                          : v.text,
                     ),
                     isThreeLine: false,
                     visualDensity: VisualDensity.compact,

@@ -127,7 +127,9 @@ class _RadioInputWidgetState extends State<RadioInputWidget> {
                   visualDensity: const VisualDensity(
                       horizontal: VisualDensity.minimumDensity,
                       vertical: VisualDensity.minimumDensity),
-                  title: Text(e.text),
+                  title: Text(e.isOtherField ?? false
+                      ? widget.field.otherText ?? 'Other (please specify)'
+                      : e.text),
                   hasAction: e.action,
                   hasCondition: widget.field.isConditional);
             }).toList();

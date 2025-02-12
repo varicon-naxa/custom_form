@@ -4,7 +4,7 @@
     "name": "",
     "version": "1.0.0",
     "elements": [
-        
+   
             {
                 "id": "item-443e5536-26bb-4c6a-ab21-19b9bb72407d",
                 "name": "Radio",
@@ -32,16 +32,13 @@
                 "isRequired": false,
                 "isConditional": false,
                 "showOtherItem": true,
-                "fromManualList": true,
-                "answer": "item-9e00c553-2e36-4f14-8748-fae28e4111dc",
-                "selectedLinkListLabel": "rt"
+                "fromManualList": true
             },
             {
                 "id": "item-8a8f1e35-4b97-423c-a881-fd3a11bab5c1",
                 "name": "Checkboxes",
                 "type": "checkbox",
                 "label": "Checkboxes",
-                "answer": "item-a0adf772-0865-40dd-81ba-da873ee02ebd,item-de954863-f776-4f60-8527-1975c8101afc",
                 "choice": [
                     {
                         "id": "item-1741937f-6ee6-43e4-bfb1-d818ac7091a1",
@@ -61,11 +58,9 @@
                         "isOtherField": true
                     }
                 ],
-                "isRequired": true,
+                "isRequired": false,
                 "isConditional": false,
-                "fromManualList": true,
-                "selectedLinkListLabel": "fhf"
-            }
+                "fromManualList": true            }
         
        ]
 }
