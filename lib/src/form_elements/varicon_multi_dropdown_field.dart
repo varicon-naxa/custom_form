@@ -7,6 +7,8 @@ import '../../varicon_form_builder.dart';
 import '../custom_element/custom_form_builder_multi_dropdown.dart';
 import '../custom_element/custom_form_builder_query_multi_dropdown.dart';
 import '../helpers/validators.dart';
+import '../state/current_form_provider.dart';
+import '../state/link_label_provider.dart';
 import '../widget/scroll_bottomsheet.dart';
 
 class VariconMultiDropdownField extends StatefulHookConsumerWidget {
@@ -83,14 +85,28 @@ class _VariconMultiDropdownFieldState
                   choices: widget.field.choices,
                   actionMessage: widget.field.actionMessage,
                   onChanged: (data) {
-                    setState(() {
-                      selectedValue = data;
-                    });
+                    selectedValue = data;
+
                     if (data.isNotEmpty) {
                       dropdownController.text = '${data.length} items selected';
+                      ref
+                          .read(currentStateNotifierProvider.notifier)
+                          .saveString(widget.field.id,
+                              data.map((e) => e.value).join(','));
+                      ref.read(linklabelProvider.notifier).saveString(
+                            widget.field.id,
+                            data.map((e) => e.text).join(','),
+                          );
                     } else {
+                      ref
+                          .read(currentStateNotifierProvider.notifier)
+                          .remove(widget.field.id);
+                      ref.read(linklabelProvider.notifier).remove(
+                            widget.field.id,
+                          );
                       dropdownController.text = '';
                     }
+                    setState(() {});
                   },
                   initialValue: selectedValue,
                 ),
@@ -105,6 +121,22 @@ class _VariconMultiDropdownFieldState
                     linkedSelectedIds = data;
                     if (data.isNotEmpty) {
                       dropdownController.text = '${data.length} items selected';
+                      // ref
+                      //     .read(currentStateNotifierProvider.notifier)
+                      //     .saveString(widget.field.id,
+                      //         data.map((e) => e.value).join(','));
+                      // ref.read(linklabelProvider.notifier).saveString(
+                      //       widget.field.id,
+                      //       data.map((e) => e.text).join(','),
+                      //     );
+                    } else {
+                      ref
+                          .read(currentStateNotifierProvider.notifier)
+                          .remove(widget.field.id);
+                      ref.read(linklabelProvider.notifier).remove(
+                            widget.field.id,
+                          );
+                      dropdownController.text = '';
                     }
                     setState(() {});
                   },
@@ -117,9 +149,10 @@ class _VariconMultiDropdownFieldState
           name: widget.field.id,
           onChanged: (value) {},
           decoration: const InputDecoration(
-              hintText: 'Please select an item from the list',
-              suffixIcon: Icon(Icons.arrow_drop_down),
-              contentPadding: EdgeInsets.all(8.0)),
+            hintText: 'Please select an item from the list',
+            suffixIcon: Icon(Icons.arrow_drop_down),
+            contentPadding: EdgeInsets.all(8.0),
+          ),
         ),
         if (selectedValue.any((element) => element.action == true) &&
             (widget.field.actionMessage ?? '').isNotEmpty)

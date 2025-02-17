@@ -271,6 +271,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                   focusNode: otherFieldFocusNode,
                   decoration: const InputDecoration(
                     labelText: 'Other (please specify)',
+                    contentPadding: EdgeInsets.all(8.0),
                   ),
                   onChanged: (data) {
                     widget.onOtherSelectedValue!(true, data ?? '');
@@ -351,12 +352,13 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
 
     Widget compositeItem = Container(
       width: double.infinity,
+      margin: const EdgeInsets.only(bottom: 8.0),
       decoration: BoxDecoration(
         border: Border.all(
           color: isSelected
               ? currentOption?.action == true
                   ? Colors.red
-                  : Colors.grey.shade600
+                  : Colors.grey.shade400
               : Colors.transparent,
         ),
         color: (isSelected && currentOption?.action == true)
@@ -364,27 +366,21 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
             : Colors.transparent,
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
+      child: IntrinsicHeight(
+        child: SizedBox(
+          height: 40,
+          child: Row(
             children: [
               if (widget.controlAffinity == ControlAffinity.leading) control,
               Flexible(child: label),
-              if (widget.controlAffinity == ControlAffinity.trailing) control,
-              if (widget.orientation != OptionsOrientation.vertical &&
-                  widget.separator != null &&
-                  index != widget.options.length - 1)
-                widget.separator!,
+              // if (widget.controlAffinity == ControlAffinity.trailing) control,
+              // if (widget.orientation != OptionsOrientation.vertical &&
+              //     widget.separator != null &&
+              //     index != widget.options.length - 1)
+              //   widget.separator!,
             ],
           ),
-          if (widget.orientation == OptionsOrientation.vertical &&
-              widget.separator != null &&
-              index != widget.options.length - 1)
-            widget.separator!,
-        ],
+        ),
       ),
     );
 

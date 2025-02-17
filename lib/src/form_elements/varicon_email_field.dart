@@ -28,6 +28,7 @@ class VariconEmailField extends ConsumerWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelText: labelText,
+        contentPadding: const EdgeInsets.all(8.0),
       ),
       validator: (value) {
         return textValidator(

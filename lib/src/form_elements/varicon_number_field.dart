@@ -30,6 +30,7 @@ class VariconNumberField extends ConsumerWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         labelText: labelText,
+        contentPadding: const EdgeInsets.all(8.0),
       ),
       inputFormatters: [
         FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),

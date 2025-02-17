@@ -68,7 +68,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
       ),
       width: double.infinity,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      initialWidget: widget.field.answer != null
+      initialWidget: (widget.field.answer ?? {}).isNotEmpty
           ? widget.imageBuild({
               'image': widget.field.answer?['file'],
               'height': 200.0,

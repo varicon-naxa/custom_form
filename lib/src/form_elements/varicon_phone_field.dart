@@ -46,7 +46,9 @@ class VariconPhoneField extends ConsumerWidget {
         }
       },
       decoration: InputDecoration(
-          hintText: field.hintText, contentPadding: const EdgeInsets.all(8.0)),
+        hintText: field.hintText,
+        contentPadding: const EdgeInsets.all(8.0),
+      ),
     );
   }
 }

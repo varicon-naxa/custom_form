@@ -249,6 +249,11 @@
                 {
                     "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
                     "label": "Option 1"
+                },
+                {
+                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c9",
+                    "label": "Option 2",
+                    "isOtherField": true
                 }
             ],
             "isRequired": false,
@@ -345,6 +350,12 @@
                 {
                     "id": "item-94afa1df-91ae-44f3-8979-d61dd61cf187",
                     "label": "Option 3"
+                },
+                {
+                    "id": "item-94afa1df-91ae-44f3-8979-d61dd61cf189",
+                    "label": "Option 4",
+                    "isOtherField": true
+
                 }
             ],
             "isRequired": true,

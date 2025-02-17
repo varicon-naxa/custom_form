@@ -26,7 +26,9 @@ import '../form_elements/varicon_multi_signature_field.dart';
 import '../form_elements/varicon_number_field.dart';
 import '../form_elements/varicon_other_radio_field.dart';
 import '../form_elements/varicon_phone_field.dart';
+import '../form_elements/varicon_section_field.dart';
 import '../state/current_form_provider.dart';
+import '../state/link_label_provider.dart';
 import '../state/required_id_provider.dart';
 import '../widget/navigation_button.dart';
 
@@ -45,6 +47,8 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
     required this.autoSave,
     required this.customPainter,
     required this.locationData,
+    required this.onBackPressed,
+    required this.formtitle,
     this.apiCall,
     this.padding,
     this.hasSave = false,
@@ -119,6 +123,8 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
   ///
   ///Returns the file path for form contents like images, files, instructions
   final void Function(String stringURl) onFileClicked;
+  final void Function(bool stringURl) onBackPressed;
+  final String formtitle;
 
   @override
   ConsumerState<VariconFormBuilder> createState() => VariconFormBuilderState();
@@ -136,6 +142,9 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
       ref
           .read(requiredNotifierProvider.notifier)
           .initialList(widget.surveyForm.inputFields);
+      ref
+          .read(currentStateNotifierProvider.notifier)
+          .saveinitialAnswer(widget.surveyForm.inputFields);
     });
   }
 
@@ -144,12 +153,34 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
     super.dispose();
   }
 
+  void onBackPressed() {
+    bool isSame = ref
+        .read(currentStateNotifierProvider.notifier)
+        .checkInitialFinalAnswerIdentical();
+    log('Is Same: $isSame');
+
+    widget.onBackPressed(isSame);
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.watch(currentStateNotifierProvider);
     ref.watch(requiredNotifierProvider);
+    ref.watch(linklabelProvider);
     return Scaffold(
       backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 1,
+        title: Text(
+          widget.formtitle,
+          style: Theme.of(context).textTheme.titleMedium,
+        ),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: onBackPressed,
+        ),
+      ),
       body: Padding(
         padding: widget.padding ?? const EdgeInsets.all(16.0),
         child: Column(
@@ -172,7 +203,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
             ),
             Row(
               children: [
-                if (widget.hasAutoSave) ...[
+                if (widget.hasAutoSave)
                   Expanded(
                     child: NavigationButton(
                       buttonText: 'SUBMIT LATER',
@@ -211,14 +242,12 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                               ],
                             );
                           },
-                        ).then((data) {
-                          Navigator.of(context).pop();
-                        });
+                        );
                       },
                       isAutoSave: true,
                     ),
                   ),
-                ],
+                if (widget.hasAutoSave) const SizedBox(width: 12.0),
                 Expanded(
                   child: NavigationButton(
                     buttonText: widget.buttonText,
@@ -450,6 +479,11 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
           labelText: labelText,
           apiCall: widget.apiCall,
         ),
+      );
+    }, section: (value) {
+      return VariconSectionField(
+        field: value,
+        labelText: labelText,
       );
     }, orElse: () {
       return const SizedBox.shrink();

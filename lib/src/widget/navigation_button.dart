@@ -19,7 +19,7 @@ class NavigationButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 50,
+      height: 40,
       child: ElevatedButton(
         onPressed: onComplete,
         style: ButtonStyle(

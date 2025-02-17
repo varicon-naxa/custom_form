@@ -218,6 +218,7 @@ class _VariconMultiSignatureFieldState
             padding: const EdgeInsets.only(bottom: 8.0),
             margin: const EdgeInsets.only(bottom: 12.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Dismissible(
                   key: Key(e.attachmentId ?? e.id ?? ''),

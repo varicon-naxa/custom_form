@@ -132,8 +132,9 @@ class FormBuilderMultiSignaturePad
                         FocusManager.instance.primaryFocus?.unfocus(),
                     controller: state.signatoryNameController,
                     decoration: const InputDecoration(
-                        labelText: 'Signatory Name',
-                        contentPadding: EdgeInsets.all(8.0)),
+                      labelText: 'Signatory Name',
+                      contentPadding: EdgeInsets.all(8.0),
+                    ),
                     onChanged: (value) {
                       state.value?.name = value;
                       state.didChange(state.value);

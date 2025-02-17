@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:varicon_form_builder/src/state/current_form_provider.dart';
+import 'package:varicon_form_builder/src/state/link_label_provider.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/custom_form_builder_radio_group.dart';
 import '../helpers/debouncer.dart';
@@ -39,6 +41,14 @@ class VariconRadioField extends ConsumerWidget {
         }
         return null;
       },
+      onChanged: (value) {
+        if (value != null) {
+          ref
+              .read(currentStateNotifierProvider.notifier)
+              .saveString(field.id, value.value);
+          ref.read(linklabelProvider.notifier).saveString(field.id, value.text);
+        }
+      },
       onOtherSelectedValue: (isSelected, text) {
         if (isSelected && field.isRequired == false) {
           ref
@@ -47,12 +57,13 @@ class VariconRadioField extends ConsumerWidget {
         } else if (isSelected == false && field.isRequired == false) {
           ref.read(requiredNotifierProvider.notifier).remove(field.id);
         }
-        debouncer.run(() {
-          ref.read(radiotherFieldValue.notifier).state =
-              ValueText(isOtherField: isSelected, value: text, text: '');
-        });
-
-        log('Selected: $isSelected, Text: $text');
+        if (isSelected == true) {
+          debouncer.run(() {
+            ref.read(linklabelProvider.notifier).saveString(field.id, text);
+            ref.read(radiotherFieldValue.notifier).state =
+                ValueText(isOtherField: isSelected, value: text, text: '');
+          });
+        }
       },
       options: field.choices
           .map((lang) => FormBuilderFieldOption(

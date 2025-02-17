@@ -7,6 +7,8 @@ import '../../varicon_form_builder.dart';
 import '../custom_element/custom_form_builder_dropdown.dart';
 import '../custom_element/custom_form_builder_query_dropdown.dart';
 import '../helpers/validators.dart';
+import '../state/current_form_provider.dart';
+import '../state/link_label_provider.dart';
 import '../widget/scroll_bottomsheet.dart';
 
 class VariconDropdownField extends StatefulHookConsumerWidget {
@@ -82,6 +84,12 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
                       selectedValue = data;
                     });
                     dropdownController.text = data!.text;
+                    ref
+                        .read(currentStateNotifierProvider.notifier)
+                        .saveString(widget.field.id, data.value);
+                    ref
+                        .read(linklabelProvider.notifier)
+                        .saveString(widget.field.id, data.text);
                     Navigator.pop(context);
                   },
                 ),
@@ -97,6 +105,12 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
                       selectedValue = data;
                     });
                     dropdownController.text = data.text;
+                    ref
+                        .read(currentStateNotifierProvider.notifier)
+                        .saveString(widget.field.id, data.value);
+                    ref
+                        .read(linklabelProvider.notifier)
+                        .saveString(widget.field.id, data.text);
                     Navigator.pop(context);
                   },
                 ),
@@ -107,9 +121,10 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
           name: widget.field.id,
           onChanged: (value) {},
           decoration: const InputDecoration(
-              hintText: 'Please select an item from the list',
-              suffixIcon: Icon(Icons.arrow_drop_down),
-              contentPadding: EdgeInsets.all(8.0)),
+            hintText: 'Please select an item from the list',
+            suffixIcon: Icon(Icons.arrow_drop_down),
+            contentPadding: EdgeInsets.all(8.0),
+          ),
         ),
         if (selectedValue?.action == true &&
             (widget.field.actionMessage ?? '').isNotEmpty)

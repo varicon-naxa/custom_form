@@ -285,6 +285,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                 focusNode: otherFieldFocusNode,
                 decoration: const InputDecoration(
                   labelText: 'Other (please specify)',
+                  contentPadding: EdgeInsets.all(8.0),
                 ),
                 onChanged: (data) {
                   widget.onOtherSelectedValue!(true, data ?? '');
