@@ -137,23 +137,24 @@
         },
         {
             "id": "item-7f774f5b-dc78-4c98-99a0-b3fbb61b76b4",
-            "name": "Yes/No/NA",
+            "name": "This is question ",
             "type": "radiogroup",
             "label": "Did you work remotely",
             "actionMessage": "Better to work from home.",
             "answer": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
             "isRequired": true,
             "isConditional": true,
+            "showOtherItem": true,
             "choice": [
                 {
                     "id": "item-395f1c4e-974c-486e-8647-8445819b0030",
-                    "label": "Yes",
+                    "label": "Yes Ans",
                     "action": false,
                     "notify_To": []
                 },
                 {
                     "id": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
-                    "label": "No",
+                    "label": "No Ans",
                     "action": true,
                     "notify_To": [
                         {
@@ -165,7 +166,7 @@
                 },
                 {
                     "id": "item-422d0002-df53-4e86-a995-466da7ab33ee",
-                    "label": "NA",
+                    "label": "NA ans",
                     "action": false,
                     "notify_To": []
                 }

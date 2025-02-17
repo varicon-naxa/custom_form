@@ -15,11 +15,20 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
       return ValueText(
           value: json['value'] ?? json['id'],
           text: json['text'] ?? json['label'],
+          isOtherField: json['isOtherField'],
+          notifyTo: json['notify_To'],
           action: json['action']);
+          
+          
     }
   }
 
   @override
-  Map<String, dynamic> toJson(ValueText object) =>
-      {'value': object.value, 'text': object.text, 'action': object.action};
+  Map<String, dynamic> toJson(ValueText object) => {
+        'id': object.value,
+        'label': object.text,
+        'action': object.action,
+        'isOtherField': object.isOtherField,
+        'notify_To': object.notifyTo,
+      };
 }

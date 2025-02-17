@@ -5,34 +5,14 @@
     "version": "1.0.0",
     "elements": [
         {
+            "id": "item-9e123a57-e45e-4fff-9e6f-c6d548f7c71e",
+            "name": "Image Upload",
             "type": "images",
-            "id": "image1",
-            "label": "Attach covver letter",
+            "label": "Image Upload",
+            "answer": [],
             "isMultiple": true,
             "isRequired": false,
-            "answer": [
-                {
-                    "id": 12345,
-                    "name": "adasd",
-                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
-                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
-                }
-            ]
-        },
-        {
-            "type": "files",
-            "id": "file",
-            "label": "Attach files letter",
-            "isMultiple": true,
-            "isRequired": false,
-            "answer": [
-                {
-                    "id": 12345,
-                    "name": "adasd-adaasd-13123-qeqweqewqwe123123-1313123123-131312312312313123",
-                    "file": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps",
-                    "thumbnail": "https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps, name: 300.jpg"
-                }
-            ]
+            "selectedLinkListLabel": ""
         }
-  ]
+    ]
 }

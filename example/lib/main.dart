@@ -2,6 +2,7 @@ import 'package:example/button_page.dart';
 import 'package:example/theme/app_theme.dart';
 import 'package:example/theme/palette.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,23 +19,25 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: AppTheme.defaultTheme.copyWith(
-          // bottomSheetTheme: AppTheme.defaultTheme.bottomSheetTheme
-          //     .copyWith(backgroundColor: Colors.white),
-          dialogTheme: AppTheme.defaultTheme.dialogTheme.copyWith(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
+    return ProviderScope(
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: AppTheme.defaultTheme.copyWith(
+            // bottomSheetTheme: AppTheme.defaultTheme.bottomSheetTheme
+            //     .copyWith(backgroundColor: Colors.white),
+            dialogTheme: AppTheme.defaultTheme.dialogTheme.copyWith(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
             ),
-          ),
-          textSelectionTheme: const TextSelectionThemeData(
-            selectionColor: Palette.primary,
-            cursorColor: Palette.primary,
-            selectionHandleColor: Palette.primary,
-          ),
-          visualDensity: VisualDensity.adaptivePlatformDensity),
-      home: const ButtonPage(),
+            textSelectionTheme: const TextSelectionThemeData(
+              selectionColor: Palette.primary,
+              cursorColor: Palette.primary,
+              selectionHandleColor: Palette.primary,
+            ),
+            visualDensity: VisualDensity.adaptivePlatformDensity),
+        home: const ButtonPage(),
+      ),
     );
   }
 }

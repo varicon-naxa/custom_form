@@ -55,14 +55,20 @@ mixin _$SurveyPageForm {
   String? get equipmentName => throw _privateConstructorUsedError;
   @JsonKey(name: 'project')
   String? get project => throw _privateConstructorUsedError;
+  @JsonKey(name: 'job_number')
+  String? get jobNumber => throw _privateConstructorUsedError;
   Map<String, dynamic>? get setting => throw _privateConstructorUsedError;
   Map<String, dynamic>? get status => throw _privateConstructorUsedError;
   @JsonKey(name: 'elements')
   @InputFieldConverter()
   List<InputField> get inputFields => throw _privateConstructorUsedError;
 
+  /// Serializes this SurveyPageForm to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SurveyPageFormCopyWith<SurveyPageForm> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -92,6 +98,7 @@ abstract class $SurveyPageFormCopyWith<$Res> {
       @JsonKey(name: 'equipment_code') String? equipmentCode,
       @JsonKey(name: 'equipment_name') String? equipmentName,
       @JsonKey(name: 'project') String? project,
+      @JsonKey(name: 'job_number') String? jobNumber,
       Map<String, dynamic>? setting,
       Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -109,6 +116,8 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -130,6 +139,7 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
     Object? equipmentCode = freezed,
     Object? equipmentName = freezed,
     Object? project = freezed,
+    Object? jobNumber = freezed,
     Object? setting = freezed,
     Object? status = freezed,
     Object? inputFields = null,
@@ -207,6 +217,10 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as String?,
+      jobNumber: freezed == jobNumber
+          ? _value.jobNumber
+          : jobNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       setting: freezed == setting
           ? _value.setting
           : setting // ignore: cast_nullable_to_non_nullable
@@ -250,6 +264,7 @@ abstract class _$$SurveyPageFormImplCopyWith<$Res>
       @JsonKey(name: 'equipment_code') String? equipmentCode,
       @JsonKey(name: 'equipment_name') String? equipmentName,
       @JsonKey(name: 'project') String? project,
+      @JsonKey(name: 'job_number') String? jobNumber,
       Map<String, dynamic>? setting,
       Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -265,6 +280,8 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
       _$SurveyPageFormImpl _value, $Res Function(_$SurveyPageFormImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -286,6 +303,7 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
     Object? equipmentCode = freezed,
     Object? equipmentName = freezed,
     Object? project = freezed,
+    Object? jobNumber = freezed,
     Object? setting = freezed,
     Object? status = freezed,
     Object? inputFields = null,
@@ -363,6 +381,10 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
           ? _value.project
           : project // ignore: cast_nullable_to_non_nullable
               as String?,
+      jobNumber: freezed == jobNumber
+          ? _value.jobNumber
+          : jobNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       setting: freezed == setting
           ? _value._setting
           : setting // ignore: cast_nullable_to_non_nullable
@@ -401,6 +423,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
       @JsonKey(name: 'equipment_code') this.equipmentCode,
       @JsonKey(name: 'equipment_name') this.equipmentName,
       @JsonKey(name: 'project') this.project,
+      @JsonKey(name: 'job_number') this.jobNumber,
       final Map<String, dynamic>? setting,
       final Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -475,6 +498,9 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
   @override
   @JsonKey(name: 'project')
   final String? project;
+  @override
+  @JsonKey(name: 'job_number')
+  final String? jobNumber;
   final Map<String, dynamic>? _setting;
   @override
   Map<String, dynamic>? get setting {
@@ -507,7 +533,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
 
   @override
   String toString() {
-    return 'SurveyPageForm(name: $name, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, timesheetNumber: $timesheetNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, setting: $setting, status: $status, inputFields: $inputFields)';
+    return 'SurveyPageForm(name: $name, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, timesheetNumber: $timesheetNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, jobNumber: $jobNumber, setting: $setting, status: $status, inputFields: $inputFields)';
   }
 
   @override
@@ -548,13 +574,15 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
             (identical(other.equipmentName, equipmentName) ||
                 other.equipmentName == equipmentName) &&
             (identical(other.project, project) || other.project == project) &&
+            (identical(other.jobNumber, jobNumber) ||
+                other.jobNumber == jobNumber) &&
             const DeepCollectionEquality().equals(other._setting, _setting) &&
             const DeepCollectionEquality().equals(other._status, _status) &&
             const DeepCollectionEquality()
                 .equals(other._inputFields, _inputFields));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -576,12 +604,15 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
         equipmentCode,
         equipmentName,
         project,
+        jobNumber,
         const DeepCollectionEquality().hash(_setting),
         const DeepCollectionEquality().hash(_status),
         const DeepCollectionEquality().hash(_inputFields)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SurveyPageFormImplCopyWith<_$SurveyPageFormImpl> get copyWith =>
@@ -616,6 +647,7 @@ abstract class _SurveyPageForm implements SurveyPageForm {
       @JsonKey(name: 'equipment_code') final String? equipmentCode,
       @JsonKey(name: 'equipment_name') final String? equipmentName,
       @JsonKey(name: 'project') final String? project,
+      @JsonKey(name: 'job_number') final String? jobNumber,
       final Map<String, dynamic>? setting,
       final Map<String, dynamic>? status,
       @JsonKey(name: 'elements')
@@ -679,6 +711,9 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @JsonKey(name: 'project')
   String? get project;
   @override
+  @JsonKey(name: 'job_number')
+  String? get jobNumber;
+  @override
   Map<String, dynamic>? get setting;
   @override
   Map<String, dynamic>? get status;
@@ -686,8 +721,11 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @JsonKey(name: 'elements')
   @InputFieldConverter()
   List<InputField> get inputFields;
+
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SurveyPageFormImplCopyWith<_$SurveyPageFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

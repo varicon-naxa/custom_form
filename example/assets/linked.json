@@ -1,11 +1,11 @@
- {
+{
     "title": "Linked to list test is a type of list where we can add list here",
     "elements": [
         {
             "type": "dropdown",
             "id": "select1",
             "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
-            "isRequired": false,
+            "isRequired": true,
             "requiredErrorText": "Drop down is required",
             "commentPlaceholder": "comment are place",
             "fromManualList": false,
@@ -41,7 +41,7 @@
             "type": "images",
             "id": "image1",
             "label": "Attach covver letter",
-            "isMultiple": false,
+            "isMultiple": true,
             "isRequired": false
         },
         {
@@ -114,7 +114,7 @@
             "name": "long",
             "id": "longeteteasedasdast",
             "title": "Please provide your first namePlease provide your first namePlease provide your first namePlease provide your first name",
-            "isRequired": false,
+            "isRequired": true,
             "requiredErrorText": "First name is required",
             "autocomplete": "name",
             "maxLength": 30,
@@ -207,16 +207,67 @@
             ],
             "otherErrorText": "Other field comment is required."
         },
-
         {
-            "id": "item-94df5d01-232b-4c1d-a6fb-bfdd8c094f6a",
-            "name": "Multiple Signature",
-            "type": "multisignature",
-            "label": "Multiple Signature",
-            "isRequired": true
+            "id": "item-8166ec96-fa58-41a0-b704-4973b0235492",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi-Select Dropdown",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-0e4174d6-aca7-47da-8585-ae1c775348ee",
+                    "label": "Optional1",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": 25,
+                            "email": "prabin@varicon.com.au",
+                            "label": "Prabin Tharu"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-8fc125c2-a1dd-4560-a46b-27cb9244816b",
+                    "label": "Option 2"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-000f6fa2-e85a-4059-b41c-89298747f032",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of back fill. Min 4 photos, one from each side",
+            "isMultiple": false,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a17763",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        
+        {
+            "id": "item-da202d83-cb65-4b93-8251-8786f8a17764",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "Description is the describing method which describes the title in various way"
 }
-
 

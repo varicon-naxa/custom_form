@@ -2,40 +2,485 @@
     "title": "Frame QA Inspection ",
     "elements": [
         {
-            "id": "item-84a54420-a1a8-4925-a152-cef8294422cd",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "General",
-            "isRequired": false,
-            "instruction": "",
+            "id": "item-fe5c7466-3191-4e16-8388-c89555fdec3e",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Project",
+            "choice": [],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "project",
+            "selectedLinkListLabel": "(NN-123)NN Nepal"
+        },
+        {
+            "id": "item-fe0364e4-3151-46e9-b98d-527fe443c0c5",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Employer",
+            "answer": "anil",
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-a33155d8-8b9d-422e-ba13-a84133bc95ac",
-            "name": "Number Input",
-            "type": "number",
-            "label": "Job Number",
-            "isRequired": false,
+            "id": "item-5f6c350f-1d8b-4057-93f1-2ba2c349a799",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Job Title",
+            "answer": "jon-123",
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-29c80cc5-d976-4361-95ca-bcfadf3f86a7",
+            "id": "item-644f3a8e-8688-47bf-a211-7b098bc9833b",
             "name": "Full Name",
             "type": "text",
-            "label": "Site Managers Name:",
-            "isRequired": false,
+            "label": "Employee Name",
+            "answer": "Rajesh Hamal",
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-e3302519-a4d7-4e2b-a568-5dba2f7b5eaf",
-            "name": "Address",
+            "id": "item-0ef42a9c-d614-42cb-bb8b-826c73547388",
+            "name": "Phone Number",
+            "type": "phone",
+            "label": "Employee Phone",
+            "answer": "+61123123",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-72fcf761-ff4f-4a86-913b-22eecc977e2a",
+            "name": "Email",
+            "type": "email",
+            "label": "Employee Email",
+            "answer": "anil@gmail.com",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8d13344e-ff8b-465b-aaab-70c86ffb8357",
+            "name": "Date",
+            "type": "date",
+            "label": "Date of Birth",
+            "answer": "2024-07-25",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7ea585de-dc6f-428d-9050-ad6b10369c55",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Are you an Apprentice or Trainee?",
+            "answer": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+            "choice": [
+                {
+                    "id": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92657aca-9286-4943-9957-997ac018e77d",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-32c6d084-bbd3-4d73-b1ce-f30f87cb14e5",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Do you identify as Aboriginal and or Torres Strait Islander?",
+            "answer": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+            "choice": [
+                {
+                    "id": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92657aca-9286-4943-9957-997ac018e77d",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-cb3c7539-f04f-49e0-979e-b7022c9be11f",
+            "name": "Full Name",
             "type": "text",
-            "label": "Site Address:",
+            "label": "Emergency contact name",
+            "answer": "SAa",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-2d33e3c9-9184-4daf-a48e-a1284d0d3cfc",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Emergency Phone No",
+            "answer": "123123",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-71936128-f253-40e2-bb3a-33147cc72660",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": " Relationship of Emergency Contact",
+            "choice": [
+                {
+                    "id": "item-2a7a53ae-21b9-4375-98fe-3e72e83c9670",
+                    "label": "Partner"
+                },
+                {
+                    "id": "item-5caa4e09-099a-44e8-9069-aad22be20bee",
+                    "label": "Parent"
+                },
+                {
+                    "id": "item-fa9570f7-60f7-49b7-b584-0088d0f2bc9b",
+                    "label": "Sibling"
+                },
+                {
+                    "id": "item-42e113f9-d3bd-4e53-90bb-daabd120fba1",
+                    "label": "Friend"
+                },
+                {
+                    "id": "item-660470b8-30c5-43fb-9bc1-b98181dfe4bb",
+                    "label": "Child"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "islinked_query": "",
+            "selectedLinkListLabel": "Parent"
+        },
+        {
+            "id": "item-9d13f874-238b-4485-a071-d8393a92aec7",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Allergies",
+            "answer": "none",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-5745bab1-0bfa-4417-8192-47d73b971c4b",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Driver Licence / ID",
+            "answer": [
+                {
+                    "id": "2cc04896-544b-4675-a174-4d090c244169",
+                    "file": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/attachments/b171a44a-671b-484a-9bdc-e51e4f2ee8de.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072710Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=0f49e6d4093d1980aff4b4f346658ab46e2d19fa5323df4ce95b0cb695a7de35",
+                    "name": "4b708450-4a57-11ef-af83-2b6f673697d3..png",
+                    "mime_type": "png",
+                    "thumbnail": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/thumbnails/b171a44a-671b-484a-9bdc-e51e4f2ee8de_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072710Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=7b1de1ef13de6e2fd19d95497907b7eafb3d855ede833205ebfa6fd77eca7dd7",
+                    "created_by": {
+                        "id": "b761c037-1db2-4096-9460-487f512b0c7f",
+                        "email": "anil.shrestha@varicon.com.au",
+                        "last_name": "Shrestha",
+                        "first_name": "Anil",
+                        "is_archived": false
+                    }
+                }
+            ],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-baf3d8fe-98e2-4d22-9082-b38e7a4d00f9",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Construction - White Card",
+            "answer": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+            "choice": [
+                {
+                    "id": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92657aca-9286-4943-9957-997ac018e77d",
+                    "label": "No",
+                    "action": true
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "Do not start work without Document",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ca72614d-9aaf-45ec-9723-81832b19a123",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "answer": [
+                {
+                    "id": "ba524f7c-144f-4a3c-9b7e-d78d2a3d5811",
+                    "file": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/attachments/ac319688-3baf-47b5-8ac0-3f2456ba3f40.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072652Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=651683c3689e745d7e6b252fdcaf4fee572dcdfe6fa89968ee6663393bb79c34",
+                    "name": "40644ce0-4a57-11ef-af83-2b6f673697d3..png",
+                    "mime_type": "png",
+                    "thumbnail": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/thumbnails/ac319688-3baf-47b5-8ac0-3f2456ba3f40_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072652Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=fabeeb381821af70234954c68f35513661e7662d250c68fc8191da9540d3fc7a",
+                    "created_by": {
+                        "id": "b761c037-1db2-4096-9460-487f512b0c7f",
+                        "email": "anil.shrestha@varicon.com.au",
+                        "last_name": "Shrestha",
+                        "first_name": "Anil",
+                        "is_archived": false
+                    }
+                }
+            ],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a049512e-19d5-4ee6-a2ef-7b2c1828012b",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Asbestos Awareness",
+            "answer": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+            "choice": [
+                {
+                    "id": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92657aca-9286-4943-9957-997ac018e77d",
+                    "label": "No",
+                    "action": true
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "Do not start work without Document",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-02359764-e6cd-4316-bf85-6c8c3d24aabd",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "answer": [
+                {
+                    "id": "fa605fb0-9f3b-43d2-8fe2-3967b2646068",
+                    "file": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/attachments/6c5ce14b-9653-49f1-937c-8b0f48d108d6.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KZ6HKYIPS%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072538Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQDR5ST%2FCZfY0tQvtHPeBMocvSl8d%2BRxqptZu1sPnwA8FAIgUNoeIy47Q8ZRrbk8BKM2QtmfVBGphfYDhjSzQykyvZEq%2FgMIs%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDBHvtofJBxo9kqLKHCrSA7HebbL0kAmhuqltJpjCvKDy6uXMpl4dq%2Bmc6o9SM0AuOlMN%2FmIgbBiCqryAHvOFo16T43IyPFS4Uv%2BClOhPXgmheYSjzRYx%2Bbiiq1viXuKEKCPwKf%2BnJVT8XDVfVigKRKctSN9q6t%2BMi47oy63tqXkk37qgQXeWPZe6VghCJ5ecyld5ChLRMGWIAg2vJHoxKS%2BEiLNAu8X9dniA86wW6PnGVwlgRVzWWRA56qi0jCM%2BeT9MJ0W6zHrwBvzYlMgBuiA9tcn6GCV1cm5xCFS12tlFz9qBDnLvXzFI9I2%2FnjGoSNWvYBvu7p19LUqOiwXTN7dFk2v1tQKfTKAC1vrKI2%2B61%2FqKXWYY9jkNBMPQOonIjBTFpFyYBSPhLDfUayhVilPtyQJ9zDA%2BzLy4ypjWSFDgT5qLaU0q7v%2F%2FgiVFdW1yDGdBkNusIXxpwlZ%2BGitL6mOm2Nh9Sa%2F5RaaNz1SSDU2dmKYOCFiA4MepIAlmlOD0ymEMv0T68v0IRtE9X7nEdwjnfF2dvrdubo902GFjSqRGVsUfm36yTftiHwMPyu6LoevgNzbvo4UGndxqDCxKElTozwkCNg2diHsC5Aw4xb4K7eu0d8MiQE5d4tbApHQ2kBkw096GtQY6pQFeonsAHhkJtkAY65N2LkR1RC11ZTQpNO88acdOe32PrNAvlJeFF%2BgpAaMb0T4Ue3n48gtxyP1WSokBR4LeyYe%2FMMNNI615bKaeIm5YlAe4o1PNxz1taaK9aVs8B7D9IzLGwZmaONXx%2FADictfHvKBtiFYsRdnA9RQUgIJgZXrfYSpicwNvnwO%2BWmv7lep%2BxO5G67rHqj2%2F72XLUpwBNM%2BPDIQZueI%3D&X-Amz-Signature=c644adf11709170c0d546e2f1d8ca7e4433f5af6df8806de43aa088348cf2127",
+                    "name": "13c03af0-4a57-11ef-af83-2b6f673697d3..png",
+                    "mime_type": "png",
+                    "thumbnail": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/thumbnails/6c5ce14b-9653-49f1-937c-8b0f48d108d6_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KZ6HKYIPS%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072538Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQDR5ST%2FCZfY0tQvtHPeBMocvSl8d%2BRxqptZu1sPnwA8FAIgUNoeIy47Q8ZRrbk8BKM2QtmfVBGphfYDhjSzQykyvZEq%2FgMIs%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDBHvtofJBxo9kqLKHCrSA7HebbL0kAmhuqltJpjCvKDy6uXMpl4dq%2Bmc6o9SM0AuOlMN%2FmIgbBiCqryAHvOFo16T43IyPFS4Uv%2BClOhPXgmheYSjzRYx%2Bbiiq1viXuKEKCPwKf%2BnJVT8XDVfVigKRKctSN9q6t%2BMi47oy63tqXkk37qgQXeWPZe6VghCJ5ecyld5ChLRMGWIAg2vJHoxKS%2BEiLNAu8X9dniA86wW6PnGVwlgRVzWWRA56qi0jCM%2BeT9MJ0W6zHrwBvzYlMgBuiA9tcn6GCV1cm5xCFS12tlFz9qBDnLvXzFI9I2%2FnjGoSNWvYBvu7p19LUqOiwXTN7dFk2v1tQKfTKAC1vrKI2%2B61%2FqKXWYY9jkNBMPQOonIjBTFpFyYBSPhLDfUayhVilPtyQJ9zDA%2BzLy4ypjWSFDgT5qLaU0q7v%2F%2FgiVFdW1yDGdBkNusIXxpwlZ%2BGitL6mOm2Nh9Sa%2F5RaaNz1SSDU2dmKYOCFiA4MepIAlmlOD0ymEMv0T68v0IRtE9X7nEdwjnfF2dvrdubo902GFjSqRGVsUfm36yTftiHwMPyu6LoevgNzbvo4UGndxqDCxKElTozwkCNg2diHsC5Aw4xb4K7eu0d8MiQE5d4tbApHQ2kBkw096GtQY6pQFeonsAHhkJtkAY65N2LkR1RC11ZTQpNO88acdOe32PrNAvlJeFF%2BgpAaMb0T4Ue3n48gtxyP1WSokBR4LeyYe%2FMMNNI615bKaeIm5YlAe4o1PNxz1taaK9aVs8B7D9IzLGwZmaONXx%2FADictfHvKBtiFYsRdnA9RQUgIJgZXrfYSpicwNvnwO%2BWmv7lep%2BxO5G67rHqj2%2F72XLUpwBNM%2BPDIQZueI%3D&X-Amz-Signature=34488e4f0a074f4ed35a475316fcdfda44272f917b6d4ed5b11e7fdda9cc7a4c",
+                    "created_by": {
+                        "id": "b761c037-1db2-4096-9460-487f512b0c7f",
+                        "email": "anil.shrestha@varicon.com.au",
+                        "last_name": "Shrestha",
+                        "first_name": "Anil",
+                        "is_archived": false
+                    }
+                }
+            ],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-be653201-f200-4135-b14c-8ef3aeb8b147",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Silica Awareness",
+            "answer": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+            "choice": [
+                {
+                    "id": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92657aca-9286-4943-9957-997ac018e77d",
+                    "label": "No",
+                    "action": true
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "Do not start work without Document",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-6b166d15-75da-43c1-af5a-ede9fd39c8a9",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "answer": [
+                {
+                    "id": "65b88d06-8b6f-4312-ba12-c689b5ed9f6d",
+                    "file": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/attachments/085a77b1-ad9f-46b3-bce5-6f5bc0f365c8.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072618Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=b3944bd62b0a13fcdebf48c4681eb19c2ab5da0ec2122939f3e9a0692924a2ea",
+                    "name": "2a1d2ce0-4a57-11ef-af83-2b6f673697d3..png",
+                    "mime_type": "png",
+                    "thumbnail": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/thumbnails/085a77b1-ad9f-46b3-bce5-6f5bc0f365c8_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072618Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=6b623ef90e1f3076f2eca2afa20d9b67d32319c091fc44ee34a867afa73a7e01",
+                    "created_by": {
+                        "id": "b761c037-1db2-4096-9460-487f512b0c7f",
+                        "email": "anil.shrestha@varicon.com.au",
+                        "last_name": "Shrestha",
+                        "first_name": "Anil",
+                        "is_archived": false
+                    }
+                }
+            ],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-faccc0c0-3c13-4e9b-b9e1-9511cf0b963b",
+            "name": "Long Text",
+            "type": "text",
+            "label": "License Type & Number",
             "isRequired": false,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-3fa450d4-211c-4b3e-927b-f0ec28ce0205",
+            "id": "item-0d5f068f-29fe-4c46-b8b5-7db3aff0f001",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Expiry Date of Licence",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-76e0e799-51b3-4f1b-baeb-3a8e2ac01763",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of Licence",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-734a1dd7-a5eb-4c39-8882-a73959c89b7f",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Tickets",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-42bf512e-3349-4bb1-89e3-7443b2502f2d",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photo of Tickets",
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-9ba83ec6-b120-4e98-95ca-cf752f2aa68e",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "SWMS Reviewed / SWMS Supplied",
+            "answer": "item-783ccfd0-dacc-4f3a-b00f-7a47a25392be",
+            "choice": [
+                {
+                    "id": "item-783ccfd0-dacc-4f3a-b00f-7a47a25392be",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f89a26b6-df75-4443-8223-fef81b6b1c72",
+                    "label": "No",
+                    "action": true
+                },
+                {
+                    "id": "item-da3df59c-463d-4d31-b3a7-3d9ddacfab4d",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "Review if not applicable / If applicable review ",
+            "isConditional": true,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3b3119c4-ce9a-461e-a3b8-3131d511a42f",
+            "name": "Long Text",
+            "type": "text",
+            "label": "If applicable list SWMS",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-b26b97bf-c327-4c51-ae30-2ec6b8b65ff4",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Have you completed the Principle's / Client's Induction?",
+            "answer": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+            "choice": [
+                {
+                    "id": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92657aca-9286-4943-9957-997ac018e77d",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-91d3a84d-3e8c-4214-8091-939a85196299",
+            "name": "Yes/No",
+            "type": "yesno",
+            "label": "Has The Daily Sign On Process Been Explained To You?",
+            "answer": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+            "choice": [
+                {
+                    "id": "item-e82f4811-65ec-49a2-9df3-983d5d070e4d",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-92657aca-9286-4943-9957-997ac018e77d",
+                    "label": "No"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e5607b64-b9c8-4208-80de-f339ae4284c4",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Employee Sign off",
+            "answer": {
+                "id": "36c1286b-ae21-432e-a948-415a07365d03",
+                "file": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/attachments/4044ba39-5835-4017-80f0-1ce4bcd45f1f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KZ6HKYIPS%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072419Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQDR5ST%2FCZfY0tQvtHPeBMocvSl8d%2BRxqptZu1sPnwA8FAIgUNoeIy47Q8ZRrbk8BKM2QtmfVBGphfYDhjSzQykyvZEq%2FgMIs%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDBHvtofJBxo9kqLKHCrSA7HebbL0kAmhuqltJpjCvKDy6uXMpl4dq%2Bmc6o9SM0AuOlMN%2FmIgbBiCqryAHvOFo16T43IyPFS4Uv%2BClOhPXgmheYSjzRYx%2Bbiiq1viXuKEKCPwKf%2BnJVT8XDVfVigKRKctSN9q6t%2BMi47oy63tqXkk37qgQXeWPZe6VghCJ5ecyld5ChLRMGWIAg2vJHoxKS%2BEiLNAu8X9dniA86wW6PnGVwlgRVzWWRA56qi0jCM%2BeT9MJ0W6zHrwBvzYlMgBuiA9tcn6GCV1cm5xCFS12tlFz9qBDnLvXzFI9I2%2FnjGoSNWvYBvu7p19LUqOiwXTN7dFk2v1tQKfTKAC1vrKI2%2B61%2FqKXWYY9jkNBMPQOonIjBTFpFyYBSPhLDfUayhVilPtyQJ9zDA%2BzLy4ypjWSFDgT5qLaU0q7v%2F%2FgiVFdW1yDGdBkNusIXxpwlZ%2BGitL6mOm2Nh9Sa%2F5RaaNz1SSDU2dmKYOCFiA4MepIAlmlOD0ymEMv0T68v0IRtE9X7nEdwjnfF2dvrdubo902GFjSqRGVsUfm36yTftiHwMPyu6LoevgNzbvo4UGndxqDCxKElTozwkCNg2diHsC5Aw4xb4K7eu0d8MiQE5d4tbApHQ2kBkw096GtQY6pQFeonsAHhkJtkAY65N2LkR1RC11ZTQpNO88acdOe32PrNAvlJeFF%2BgpAaMb0T4Ue3n48gtxyP1WSokBR4LeyYe%2FMMNNI615bKaeIm5YlAe4o1PNxz1taaK9aVs8B7D9IzLGwZmaONXx%2FADictfHvKBtiFYsRdnA9RQUgIJgZXrfYSpicwNvnwO%2BWmv7lep%2BxO5G67rHqj2%2F72XLUpwBNM%2BPDIQZueI%3D&X-Amz-Signature=af01746c6ff2c55db25d669f043ec53a2f0d4bec1bdcdbb6589937690d1715a5",
+                "name": "e7b5a9e0-4a56-11ef-af83-2b6f673697d3..png",
+                "mime_type": "png",
+                "thumbnail": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/thumbnails/4044ba39-5835-4017-80f0-1ce4bcd45f1f_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KZ6HKYIPS%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072419Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjENr%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQDR5ST%2FCZfY0tQvtHPeBMocvSl8d%2BRxqptZu1sPnwA8FAIgUNoeIy47Q8ZRrbk8BKM2QtmfVBGphfYDhjSzQykyvZEq%2FgMIs%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDBHvtofJBxo9kqLKHCrSA7HebbL0kAmhuqltJpjCvKDy6uXMpl4dq%2Bmc6o9SM0AuOlMN%2FmIgbBiCqryAHvOFo16T43IyPFS4Uv%2BClOhPXgmheYSjzRYx%2Bbiiq1viXuKEKCPwKf%2BnJVT8XDVfVigKRKctSN9q6t%2BMi47oy63tqXkk37qgQXeWPZe6VghCJ5ecyld5ChLRMGWIAg2vJHoxKS%2BEiLNAu8X9dniA86wW6PnGVwlgRVzWWRA56qi0jCM%2BeT9MJ0W6zHrwBvzYlMgBuiA9tcn6GCV1cm5xCFS12tlFz9qBDnLvXzFI9I2%2FnjGoSNWvYBvu7p19LUqOiwXTN7dFk2v1tQKfTKAC1vrKI2%2B61%2FqKXWYY9jkNBMPQOonIjBTFpFyYBSPhLDfUayhVilPtyQJ9zDA%2BzLy4ypjWSFDgT5qLaU0q7v%2F%2FgiVFdW1yDGdBkNusIXxpwlZ%2BGitL6mOm2Nh9Sa%2F5RaaNz1SSDU2dmKYOCFiA4MepIAlmlOD0ymEMv0T68v0IRtE9X7nEdwjnfF2dvrdubo902GFjSqRGVsUfm36yTftiHwMPyu6LoevgNzbvo4UGndxqDCxKElTozwkCNg2diHsC5Aw4xb4K7eu0d8MiQE5d4tbApHQ2kBkw096GtQY6pQFeonsAHhkJtkAY65N2LkR1RC11ZTQpNO88acdOe32PrNAvlJeFF%2BgpAaMb0T4Ue3n48gtxyP1WSokBR4LeyYe%2FMMNNI615bKaeIm5YlAe4o1PNxz1taaK9aVs8B7D9IzLGwZmaONXx%2FADictfHvKBtiFYsRdnA9RQUgIJgZXrfYSpicwNvnwO%2BWmv7lep%2BxO5G67rHqj2%2F72XLUpwBNM%2BPDIQZueI%3D&X-Amz-Signature=b5635fb52b813fc66bd19e7bc9b4caeb81971d0e10da33634e5ac1586d949515",
+                "created_by": {
+                    "id": "b761c037-1db2-4096-9460-487f512b0c7f",
+                    "email": "anil.shrestha@varicon.com.au",
+                    "last_name": "Shrestha",
+                    "first_name": "Anil",
+                    "is_archived": false
+                }
+            },
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-53d1fef8-de81-4e8e-8781-c1c34d79b2c3",
             "name": "Date Time",
             "type": "datetimelocal",
             "label": "Date Time",
@@ -43,758 +488,32 @@
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-32d4625d-4ac2-46b7-b6ba-49182e00d83b",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "OHS FRAME INSPECTION",
-            "isRequired": false,
-            "instruction": "Please complete the following questions to ensure site is prepared safe for further works",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-77d5ce7e-4489-4a5b-8242-209faa9476f0",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Is the Site Sign filled in correctly and readable? ",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No",
-                    "action": true,
-                    "notify_To": [
-                        {
-                            "id": 25,
-                            "email": "prabin@varicon.com.au",
-                            "label": "Prabin Tharu"
-                        }
-                    ]
+            "id": "item-e7c78636-de37-4ff8-a09c-adc738a163a5",
+            "name": "Signature",
+            "type": "signature",
+            "label": "G&H Supervisor Approval",
+            "answer": {
+                "id": "18efffc3-b57d-4d83-b2ed-834aa90e9f08",
+                "file": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/attachments/6386b8de-adc6-417a-8e79-c010f50f601a.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072407Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=c0a49a7ce88f527852ef173b09c9430326255fb395bea5aedefef3ee2f0ab41a",
+                "name": "dee5f4f0-4a56-11ef-af83-2b6f673697d3..png",
+                "mime_type": "png",
+                "thumbnail": "https://apptest-varicon.s3.amazonaws.com/a7c80e71-a482-4759-a829-9bcfdf024ecf/thumbnails/6386b8de-adc6-417a-8e79-c010f50f601a_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KWECGRMU3%2F20240725%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240725T072407Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEN7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIHtup%2FWuzypVZuQR%2ByqyveiYmw4ExLpMFh0SiY7PKxzvAiEApHkQ0dKT9%2FCwsCtiX7rfgEn1BvJnY1cMF92M%2FU3hqDkq%2FgMIt%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDPQa2Li5pDRpqDJFjyrSA6pylOPuEEE%2FbQfKffMfPMvw3Gqw1EuTA7Pvkxo9eM1X2fz3ttnTtcCEIHEqHA3Oz3r53qyDRmfVlAsK%2BG5pWY4ZonuCt9YG%2B2%2FTm%2Bbf3S65MULKJNmO0Ty6MgwlNBM8SXnEu5LKJPOjZ8oNZ5kIsZhUrRkAD69RIWmO4WsF2Tofd3JHWK4PoOdZhO5WmxPnO7tgheLkF%2FWdnOlkpbwBr71mHP%2FY4BiZRZl0EcY5nQqGfId8jWpFreVh9maNCl%2Fo1pey9cZNExuMtn2ky%2BKNJfePwn70zHUnSXHbqSUwZJeWnxqOBqPtYUc935HUYUKjxL4luFzZfqfULlI2%2BuXggjJjt2UmAgwj4fZzxiPKakBYF4zhvhwgqKQU6k6qZR%2FSw5%2BFdB54Hu3T8RvkTaUMko7TApE4t7up7XXoTYyl85jZMX9mpGVrYwC7YP7QXwAndcMPdxjY%2BpK4KKhiqLmjU2f5LXEfO%2FhpHGMbBf8TRjMU0%2BSJ7ybJaHIgIP%2FUL2eIqx5RvviZvQi%2BaLN0BLQE%2FRtvMY6JRewQP8%2BE5I4H62kWKiiOxGZI0UyVLpnlmofxCAaacbTJ3%2FG3Ib0Adl1udXpCgkeLYK6bnGHzVsgUccNG1Fwwi9GHtQY6pQGsUe4QaHnzzhRIYGXpIg%2FuloKDIk1FEHm1BV4eOgT4WMhenxKa4RaQwNrZp%2BDxzVBq4%2FPrYJyP8FI80siUrMPc7cTs45sqEpEwptbvHC5cnelZ3Wzvkd91UK%2FsYUzsiA7ilT9e52layj4h6NfbP7KjSYWBfXCtXLsHTuzaRHwRLYXaiJyZgR73lvvLoRrKIBJYZjrNydGEI%2BkmRy4%2F6WHmFzJpoTE%3D&X-Amz-Signature=28ff482b4eeb37230f08a57851071a083f44ed9a9ec56ca802d542647ef25520",
+                "created_by": {
+                    "id": "b761c037-1db2-4096-9460-487f512b0c7f",
+                    "email": "anil.shrestha@varicon.com.au",
+                    "last_name": "Shrestha",
+                    "first_name": "Anil",
+                    "is_archived": false
                 }
-            ],
-            "isRequired": true,
-            "actionMessage": "If not, please complete asap and supply new photo.",
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-51c68909-5344-44be-80a6-bb377d7c56d1",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of Site Sign ",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-cfdd587b-22cd-425f-abfa-e68032c4e6fd",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Is the slab backfilled Completed? Ensuring there is no large steps down from slab or tripping hazards?",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No",
-                    "action": true,
-                    "notify_To": [
-                        {
-                            "id": 25,
-                            "email": "prabin@varicon.com.au",
-                            "label": "Prabin Tharu"
-                        }
-                    ]
-                }
-            ],
-            "isRequired": true,
-            "actionMessage": "Please book asap to be completed",
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-000f6fa2-e85a-4059-b41c-89298747f032",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of back fill. Min 4 photos, one from each side",
-            "isMultiple": true,
+            },
             "isRequired": true,
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-57e5f07e-0cae-4bb4-8092-e2b737ae34cb",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Is there a Cage or Bin on site for rubbish? ",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No",
-                    "action": true,
-                    "notify_To": [
-                        {
-                            "id": 16,
-                            "email": "susan.timilsina@varicon.com.au",
-                            "label": "Susan Timilsina"
-                        }
-                    ]
-                }
-            ],
-            "isRequired": true,
-            "actionMessage": "Please organise a Cage or bin to be dropped off asap",
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-5ee843cd-c244-49bc-beca-06960c69377a",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of Bin ",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-71bebeb7-b266-45ef-90f9-e33d94bfe67c",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Is the house swept or blown out on completion of frame?",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No",
-                    "action": true,
-                    "notify_To": [
-                        {
-                            "id": 21,
-                            "email": "nam@varicon.com.au",
-                            "label": "Nam Kirat"
-                        }
-                    ]
-                }
-            ],
-            "isRequired": true,
-            "actionMessage": "Contact framer to return and complete",
-            "isConditional": true,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-80d2a2d4-84a7-482e-bd90-c0debd47b0da",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Is the metre box installed and secure?  If power is connected, is the metre box tagged?",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-bca50a0b-2bf6-4f7f-b3ed-2074c3770331",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of inside of metre box.",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-ca9e5c6d-1bf4-4e2d-9710-e4db4f3f3c32",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all timber temp bracing removed including blocks off floor with all timber stacked neatly with nails removed or bent over?",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-805839a5-c33a-4ab3-9473-db1d1e63134d",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of timber neatly stacked ",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-c30091ff-2f1a-4547-9b15-62b9e645e8c2",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "SLAB AND WALL INSPECTION",
-            "isRequired": false,
-            "instruction": "Please complete the following questions. \nDO NOT SPRAY PAINT FINAL FINISHED CONCRETE",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-89cb5339-dc2e-42a0-8ea1-c9dd104d56e8",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Yes/No",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-c92700c3-b143-4f74-86d4-493720e251a0",
-            "name": "Number Input",
-            "type": "number",
-            "label": "Does the overall height of walls match the plan? Please enter height below",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-bbf9fe5c-15d8-405b-9fef-ae104b730a46",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are room dimensions correct? ",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-cb90b027-f99a-4480-ae64-c147443498d7",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are walls Plumb with in 3mm over 2m ? If out, spray arrow to location with label OOP (Out of Plumb)",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-ed9b0aeb-e191-4e7c-895d-eeef1b48fb52",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of location of OOP with room name",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-99894e7d-c363-433a-aa26-282d5995bdf1",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Do bottom plate fully site on the slab? Spray any over hang more than 10mm  that may need repair. Refer to engineering plan to repair detail. ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-a37b4b25-8ca5-4520-94a2-cfaffc9b79e1",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Supply photo of location of overhang and a photo with tape/ruler showing over hang amount. ",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-7cc21488-209f-4788-9ee8-71070c09301d",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Long Text",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-a816ab1b-c75f-4213-8258-0028d70b712a",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are Shower/ Ensuite concrete step downs correct for room size and depth. ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-c087b0f4-bc16-41f3-8e92-c2c5a69c18b9",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of each Ens/ bathroom or shower with step down",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-b55571f5-91d1-443a-828d-118a12872827",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are the bottom plates secure correctly to slab? Nails spaced no more than 900mm away from each other. Dyna Bolts installed as per engineering report. Ensure all little nibs are secure ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-72e38943-7bc2-41a3-97ea-ded27bae7427",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Spray location and take photo. ",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-4ee5318e-a162-4448-ac2c-2069f20efd4d",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all Windows and External door frames installed Level, Plumb, correct height and Orientation. Windows should be Packed and installed with 70mm 2.8mm gal nails or 8g screws. ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-802633c7-5a5d-4e6b-81b9-9a52d7f5178f",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Do all doors have DPC flashing installed under before insulation? ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-f7079880-4baa-470f-a795-8bfcff89c65e",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of DPC Installed",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-8172aa25-3c76-4f04-af47-8b9ba263779f",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Is the Sliding door tracks and door treads level with slab ready for Vinyl install? ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-3f59090c-07be-4baa-8abe-c4d4176edb46",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of door bottoms",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-9c144281-6cf2-424e-b1f9-90139627fc73",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Are all wall noggins installed and nailed securely?",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-90785b12-75b8-4be1-bd11-4cc776b290cf",
-            "name": "Yes/No",
-            "type": "yesno",
-            "label": "Are all door ways cut out? eg material removed along the bottom of opening",
-            "choice": [
-                {
-                    "id": "item-046388a8-fae1-4e38-a145-12729a2254dc",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f8e5b08d-6a1d-432a-862e-67aac2d686bc",
-                    "label": "No"
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-ecaf78c1-b874-44f5-bffb-689e4a097c3f",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all Internal door openings correct size, height and width?  Mark orientation on slab. Width and height should be 60mm more then size of door. eg 920 door is a 980 opening.",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-0f9d7e7e-4bc0-418f-92d9-ca911d0071aa",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all Cavity sliding openings correct orientation , with openings double the door size plus 60 and plus 100 to door height?",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-fe108f0f-8ec9-42c8-ab7a-eefdee39f142",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photos of incorrect Door / Cavity sliding openings ",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-18a075ac-2e5c-4188-909c-08c119fb06c2",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all Bulkheads installed as per plan? Check level and size",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-03f9e68a-5687-4166-9e1d-7976a3c026d0",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all external wall junctions shot off with Min 6 Nails?",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-e11c46b0-325b-4528-917c-af28547d7816",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Has ply brace been installed as per plan? Nailed 50mm spacing top and bottom, 100mm sides and 200mm through the middle of sheet?",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-5df5c094-eb2e-4295-85c3-820b7c7db726",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are Double studs installed under each Girder truss? ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-acfd4ac9-56d1-4832-9126-866777b951a7",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of Double studs",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-afa4dd7d-4e00-4875-9de7-a4d1d8306c00",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are required Post installed and connected to beams with Min 2 bolts into each beam and into slab with post stirrup and dyna bolts? ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-cd574f90-2ade-4227-9be5-51dac7935476",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of Post Installed.",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-07eda574-8f02-4b34-89e7-b435ad2b0f44",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Spray paint notes of important items such as Shower Niche and shaving cabinets on floor to inform trades of locations. ",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-1bd05727-2c47-458a-a3f5-63c1ad2927bb",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "TRUSS INSPECTION",
-            "isRequired": false,
-            "instruction": "Inspection is based on a timber frame and may differ when completing for steel. \nATTACHED LINK TO HELP WITH TRUSS INSPECTION https://pryda.com.au/wp-content/uploads/Pryda-Roof-Truss-Installation-Guide.pdf",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-87ca4b0e-f6e0-4ee5-aab8-a5089e59aa23",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of truss layout",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-a7982e49-fe91-4400-b272-b3cfb7449c0e",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all trusses installed as per truss layout?",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-e60c4237-f8a6-4c6f-989a-d0fc00ff4af5",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all trusses installed as per truss layout?",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-297eafe5-a34f-4686-b9b0-9b6a580ab626",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are trusses plumb within reason? 30mm over 2m ",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-7a9dd934-0ac3-48e3-935a-76498cab64df",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all tie downs completed as per truss layout?",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-1c4b3472-20c2-4420-a721-18dc9f294c24",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all Plaster nogs above walls and for change of direction installed and flush with bottom?  Nogs above walls to be max every 600mm and change of direction should be every bay. ",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-8fe1a8fb-714f-431d-92a6-ecf3f0b49f95",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are L Brackets installed max every 1800 or middle of walls? L Bracket nails into noggin or truss should centre of grooves and not nailed down to allow for movement.  A quick test would be shake the wall looking for minimal movement. Double check nib walls like fridge space for completion.",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-1e198393-e635-41d6-bc39-bfcd1f28df71",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Image Upload",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-a56b2c68-c1ea-4f41-91f2-c11b8bc37d74",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are Man hole Nogs installed? Please note nogs are to stick down the thickness of plaster batten if plaster battens are being installed. Spray location of manhole on floor.",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-fc94ba01-d82c-47d5-87d9-22a2ab4ae069",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photos of Shear Blocks",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-429783b1-dc28-405d-92dd-a7177f68a717",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are Box gutters installed as per plan? Non treated timber on base with adequate fall and up stand?",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-fbd2647b-a3c0-44f8-bc2a-1c3f9cf8b87e",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Location and photo of man hole",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-4f68a73c-d51c-4e87-9a79-0a9962566c1c",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "PLUMBING INSPECTION",
-            "isRequired": false,
-            "instruction": "",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-752b26a2-33de-4611-8e72-6bd7ce9132a0",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Long Text",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-94bf5a79-52ee-4f5e-bb23-6f8195f7e5da",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Image Upload",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-9effa9f5-4e0e-4cb6-9ac4-cc1036c4718c",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Long Text",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-7b4746cc-b13d-4aa9-a653-57abd96118fa",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Image Upload",
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-8fb15093-1f3e-432c-baa1-c0008d7405c2",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are plumbing pipes for vanities and sinks  in their correct location? Inside the wall cavity where required?",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-b0cac46f-7a0c-41cf-a56a-2bbcb9f1328c",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are plumbing pipes for vanities and sinks  in their correct location? Inside the wall cavity where required?",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-97850d10-6fb9-4d64-89c9-004bbaf808bd",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of each toilet pipe location",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-6c658737-b4d3-42b4-aa1f-4b236a4fb802",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all toilet pipes in correct location? As per measurements on slab plan and product details? ",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-d0b816d0-5d03-471b-a3b9-e01ecf75e169",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of floor wastes",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-7eff2adf-cfc0-4d58-9cf4-de2a52757c26",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are floor waste installed in correct location for showers or general use in the room?",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-c3e36a16-cf2c-4669-976e-9bd475ba0db6",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Are all storm water rises installed as per plan, capped and showing no damage? Make sure each down pipe has a riser as well as fire access point and any strip drains .",
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-e26d304f-5277-4c17-8b2a-9439c42ed622",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "PHOTO RECORDS",
-            "isRequired": false,
-            "instruction": "Please supply clear, wide photos of frame for record keeping. if using a iPhone Zoom out showing more of the site.",
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-a0b0148d-35d7-415c-9b98-e53a5e033c48",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of site from across the road - min 2 photos",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-fb84f6f3-abd9-48c3-ba96-f0adc9072bc2",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of nature strip and footpath - min 3 photos",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-4edee752-5fe2-4352-a971-eaf5f74fdb54",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of frame from all 4 corners of project - min 4 photos",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-b80fd6ad-2200-4180-800e-a4bf3541eb4f",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of internals - min 6 photos",
-            "isMultiple": true,
-            "isRequired": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-f9a1a827-3c10-4569-9c05-b6ace63574d1",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photo of any defect not captured above. ",
-            "isMultiple": true,
+            "id": "item-f23108cb-f910-4c10-abb1-9ead57e89685",
+            "name": "Date Time",
+            "type": "datetimelocal",
+            "label": "Date Time",
             "isRequired": false,
             "selectedLinkListLabel": ""
         }

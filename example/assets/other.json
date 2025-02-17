@@ -1,0 +1,66 @@
+{
+    "title": "Other test",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "elements": [
+   
+            {
+                "id": "item-443e5536-26bb-4c6a-ab21-19b9bb72407d",
+                "name": "Radio",
+                "type": "radiogroup",
+                "label": "Radio",
+                "choice": [
+                    {
+                        "id": "item-0cb4f19c-c772-417a-ae98-0ed9f126fbfc",
+                        "label": "Option 1"
+                    },
+                    {
+                        "id": "item-935413fa-92cb-47cf-b99e-3c7592bb3567",
+                        "label": "Option 2"
+                    },
+                    {
+                        "id": "item-0a85fbb0-5011-4a57-963d-78bf6b463989",
+                        "label": "Option 3"
+                    },
+                    {
+                        "id": "item-9e00c553-2e36-4f14-8748-fae28e4111dc",
+                        "label": "Other",
+                        "isOtherField": true
+                    }
+                ],
+                "isRequired": false,
+                "isConditional": false,
+                "showOtherItem": true,
+                "fromManualList": true
+            },
+            {
+                "id": "item-8a8f1e35-4b97-423c-a881-fd3a11bab5c1",
+                "name": "Checkboxes",
+                "type": "checkbox",
+                "label": "Checkboxes",
+                "choice": [
+                    {
+                        "id": "item-1741937f-6ee6-43e4-bfb1-d818ac7091a1",
+                        "label": "Option 1"
+                    },
+                    {
+                        "id": "item-de954863-f776-4f60-8527-1975c8101afc",
+                        "label": "Option 2"
+                    },
+                    {
+                        "id": "item-7643c1f1-6dd1-43fa-b984-dc20eb4a9a56",
+                        "label": "Option 3"
+                    },
+                    {
+                        "id": "item-a0adf772-0865-40dd-81ba-da873ee02ebd",
+                        "label": "Other",
+                        "isOtherField": true
+                    }
+                ],
+                "isRequired": false,
+                "isConditional": false,
+                "fromManualList": true            }
+        
+       ]
+}

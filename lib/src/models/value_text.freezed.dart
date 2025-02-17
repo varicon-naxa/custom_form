@@ -32,12 +32,16 @@ ValueText _$ValueTextFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ValueText {
   /// Option Action to have color
+  @JsonKey(name: 'isOtherField')
+  bool? get isOtherField => throw _privateConstructorUsedError;
   @JsonKey(name: 'action')
   bool? get action => throw _privateConstructorUsedError;
 
   /// Value that is used for remote API consumption.
   @JsonKey(readValue: readValue)
   String get value => throw _privateConstructorUsedError;
+  @JsonKey(name: 'notify_To')
+  List<dynamic>? get notifyTo => throw _privateConstructorUsedError;
 
   /// Text that is displayed to the frontend.
   @JsonKey(readValue: readText)
@@ -45,34 +49,76 @@ mixin _$ValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        none,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        other,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -98,8 +144,13 @@ mixin _$ValueText {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this ValueText to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ValueTextCopyWith<ValueText> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -110,8 +161,10 @@ abstract class $ValueTextCopyWith<$Res> {
       _$ValueTextCopyWithImpl<$Res, ValueText>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'action') bool? action,
+      {@JsonKey(name: 'isOtherField') bool? isOtherField,
+      @JsonKey(name: 'action') bool? action,
       @JsonKey(readValue: readValue) String value,
+      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
       @JsonKey(readValue: readText) String text});
 }
 
@@ -125,14 +178,22 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isOtherField = freezed,
     Object? action = freezed,
     Object? value = null,
+    Object? notifyTo = freezed,
     Object? text = null,
   }) {
     return _then(_value.copyWith(
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
       action: freezed == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -141,6 +202,10 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      notifyTo: freezed == notifyTo
+          ? _value.notifyTo
+          : notifyTo // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -158,8 +223,10 @@ abstract class _$$ValueTextImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'action') bool? action,
+      {@JsonKey(name: 'isOtherField') bool? isOtherField,
+      @JsonKey(name: 'action') bool? action,
       @JsonKey(readValue: readValue) String value,
+      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
       @JsonKey(readValue: readText) String text});
 }
 
@@ -171,14 +238,22 @@ class __$$ValueTextImplCopyWithImpl<$Res>
       _$ValueTextImpl _value, $Res Function(_$ValueTextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? isOtherField = freezed,
     Object? action = freezed,
     Object? value = null,
+    Object? notifyTo = freezed,
     Object? text = null,
   }) {
     return _then(_$ValueTextImpl(
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
       action: freezed == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -187,6 +262,10 @@ class __$$ValueTextImplCopyWithImpl<$Res>
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as String,
+      notifyTo: freezed == notifyTo
+          ? _value._notifyTo
+          : notifyTo // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -199,16 +278,22 @@ class __$$ValueTextImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ValueTextImpl implements _ValueText {
   const _$ValueTextImpl(
-      {@JsonKey(name: 'action') this.action,
+      {@JsonKey(name: 'isOtherField') this.isOtherField,
+      @JsonKey(name: 'action') this.action,
       @JsonKey(readValue: readValue) required this.value,
+      @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
       @JsonKey(readValue: readText) required this.text,
       final String? $type})
-      : $type = $type ?? 'default';
+      : _notifyTo = notifyTo,
+        $type = $type ?? 'default';
 
   factory _$ValueTextImpl.fromJson(Map<String, dynamic> json) =>
       _$$ValueTextImplFromJson(json);
 
   /// Option Action to have color
+  @override
+  @JsonKey(name: 'isOtherField')
+  final bool? isOtherField;
   @override
   @JsonKey(name: 'action')
   final bool? action;
@@ -217,6 +302,16 @@ class _$ValueTextImpl implements _ValueText {
   @override
   @JsonKey(readValue: readValue)
   final String value;
+  final List<dynamic>? _notifyTo;
+  @override
+  @JsonKey(name: 'notify_To')
+  List<dynamic>? get notifyTo {
+    final value = _notifyTo;
+    if (value == null) return null;
+    if (_notifyTo is EqualUnmodifiableListView) return _notifyTo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   /// Text that is displayed to the frontend.
   @override
@@ -228,7 +323,7 @@ class _$ValueTextImpl implements _ValueText {
 
   @override
   String toString() {
-    return 'ValueText(action: $action, value: $value, text: $text)';
+    return 'ValueText(isOtherField: $isOtherField, action: $action, value: $value, notifyTo: $notifyTo, text: $text)';
   }
 
   @override
@@ -236,16 +331,22 @@ class _$ValueTextImpl implements _ValueText {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ValueTextImpl &&
+            (identical(other.isOtherField, isOtherField) ||
+                other.isOtherField == isOtherField) &&
             (identical(other.action, action) || other.action == action) &&
             (identical(other.value, value) || other.value == value) &&
+            const DeepCollectionEquality().equals(other._notifyTo, _notifyTo) &&
             (identical(other.text, text) || other.text == text));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, action, value, text);
+  int get hashCode => Object.hash(runtimeType, isOtherField, action, value,
+      const DeepCollectionEquality().hash(_notifyTo), text);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ValueTextImplCopyWith<_$ValueTextImpl> get copyWith =>
@@ -255,44 +356,86 @@ class _$ValueTextImpl implements _ValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        none,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        other,
   }) {
-    return $default(action, value, text);
+    return $default(isOtherField, action, value, notifyTo, text);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
   }) {
-    return $default?.call(action, value, text);
+    return $default?.call(isOtherField, action, value, notifyTo, text);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(action, value, text);
+      return $default(isOtherField, action, value, notifyTo, text);
     }
     return orElse();
   }
@@ -341,31 +484,41 @@ class _$ValueTextImpl implements _ValueText {
 
 abstract class _ValueText implements ValueText {
   const factory _ValueText(
-          {@JsonKey(name: 'action') final bool? action,
+          {@JsonKey(name: 'isOtherField') final bool? isOtherField,
+          @JsonKey(name: 'action') final bool? action,
           @JsonKey(readValue: readValue) required final String value,
+          @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
           @JsonKey(readValue: readText) required final String text}) =
       _$ValueTextImpl;
 
   factory _ValueText.fromJson(Map<String, dynamic> json) =
       _$ValueTextImpl.fromJson;
 
-  @override
-
   /// Option Action to have color
+  @override
+  @JsonKey(name: 'isOtherField')
+  bool? get isOtherField;
+  @override
   @JsonKey(name: 'action')
   bool? get action;
-  @override
 
   /// Value that is used for remote API consumption.
+  @override
   @JsonKey(readValue: readValue)
   String get value;
   @override
+  @JsonKey(name: 'notify_To')
+  List<dynamic>? get notifyTo;
 
   /// Text that is displayed to the frontend.
+  @override
   @JsonKey(readValue: readText)
   String get text;
+
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ValueTextImplCopyWith<_$ValueTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -378,7 +531,12 @@ abstract class _$$NoneValueTextImplCopyWith<$Res>
       __$$NoneValueTextImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String text, bool? action});
+  $Res call(
+      {String value,
+      String text,
+      bool? action,
+      bool? isOtherField,
+      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo});
 }
 
 /// @nodoc
@@ -389,12 +547,16 @@ class __$$NoneValueTextImplCopyWithImpl<$Res>
       _$NoneValueTextImpl _value, $Res Function(_$NoneValueTextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = null,
     Object? text = null,
     Object? action = freezed,
+    Object? isOtherField = freezed,
+    Object? notifyTo = freezed,
   }) {
     return _then(_$NoneValueTextImpl(
       value: null == value
@@ -409,6 +571,14 @@ class __$$NoneValueTextImplCopyWithImpl<$Res>
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      notifyTo: freezed == notifyTo
+          ? _value._notifyTo
+          : notifyTo // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ));
   }
 }
@@ -420,8 +590,11 @@ class _$NoneValueTextImpl implements NoneValueText {
       {this.value = 'none',
       required this.text,
       this.action,
+      this.isOtherField,
+      @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
       final String? $type})
-      : $type = $type ?? 'none';
+      : _notifyTo = notifyTo,
+        $type = $type ?? 'none';
 
   factory _$NoneValueTextImpl.fromJson(Map<String, dynamic> json) =>
       _$$NoneValueTextImplFromJson(json);
@@ -433,13 +606,25 @@ class _$NoneValueTextImpl implements NoneValueText {
   final String text;
   @override
   final bool? action;
+  @override
+  final bool? isOtherField;
+  final List<dynamic>? _notifyTo;
+  @override
+  @JsonKey(name: 'notify_To')
+  List<dynamic>? get notifyTo {
+    final value = _notifyTo;
+    if (value == null) return null;
+    if (_notifyTo is EqualUnmodifiableListView) return _notifyTo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ValueText.none(value: $value, text: $text, action: $action)';
+    return 'ValueText.none(value: $value, text: $text, action: $action, isOtherField: $isOtherField, notifyTo: $notifyTo)';
   }
 
   @override
@@ -449,14 +634,20 @@ class _$NoneValueTextImpl implements NoneValueText {
             other is _$NoneValueTextImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.action, action) || other.action == action));
+            (identical(other.action, action) || other.action == action) &&
+            (identical(other.isOtherField, isOtherField) ||
+                other.isOtherField == isOtherField) &&
+            const DeepCollectionEquality().equals(other._notifyTo, _notifyTo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, value, text, action);
+  int get hashCode => Object.hash(runtimeType, value, text, action,
+      isOtherField, const DeepCollectionEquality().hash(_notifyTo));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NoneValueTextImplCopyWith<_$NoneValueTextImpl> get copyWith =>
@@ -466,44 +657,86 @@ class _$NoneValueTextImpl implements NoneValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        none,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        other,
   }) {
-    return none(value, text, action);
+    return none(value, text, action, isOtherField, notifyTo);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
   }) {
-    return none?.call(value, text, action);
+    return none?.call(value, text, action, isOtherField, notifyTo);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
     required TResult orElse(),
   }) {
     if (none != null) {
-      return none(value, text, action);
+      return none(value, text, action, isOtherField, notifyTo);
     }
     return orElse();
   }
@@ -552,9 +785,12 @@ class _$NoneValueTextImpl implements NoneValueText {
 
 abstract class NoneValueText implements ValueText {
   const factory NoneValueText(
-      {final String value,
-      required final String text,
-      final bool? action}) = _$NoneValueTextImpl;
+          {final String value,
+          required final String text,
+          final bool? action,
+          final bool? isOtherField,
+          @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo}) =
+      _$NoneValueTextImpl;
 
   factory NoneValueText.fromJson(Map<String, dynamic> json) =
       _$NoneValueTextImpl.fromJson;
@@ -566,7 +802,15 @@ abstract class NoneValueText implements ValueText {
   @override
   bool? get action;
   @override
-  @JsonKey(ignore: true)
+  bool? get isOtherField;
+  @override
+  @JsonKey(name: 'notify_To')
+  List<dynamic>? get notifyTo;
+
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NoneValueTextImplCopyWith<_$NoneValueTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -579,7 +823,12 @@ abstract class _$$OtherValueTextImplCopyWith<$Res>
       __$$OtherValueTextImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String value, String text, bool? action});
+  $Res call(
+      {String value,
+      String text,
+      bool? action,
+      bool? isOtherField,
+      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo});
 }
 
 /// @nodoc
@@ -590,12 +839,16 @@ class __$$OtherValueTextImplCopyWithImpl<$Res>
       _$OtherValueTextImpl _value, $Res Function(_$OtherValueTextImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? value = null,
     Object? text = null,
     Object? action = freezed,
+    Object? isOtherField = freezed,
+    Object? notifyTo = freezed,
   }) {
     return _then(_$OtherValueTextImpl(
       value: null == value
@@ -610,6 +863,14 @@ class __$$OtherValueTextImplCopyWithImpl<$Res>
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
               as bool?,
+      isOtherField: freezed == isOtherField
+          ? _value.isOtherField
+          : isOtherField // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      notifyTo: freezed == notifyTo
+          ? _value._notifyTo
+          : notifyTo // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>?,
     ));
   }
 }
@@ -621,8 +882,11 @@ class _$OtherValueTextImpl implements OtherValueText {
       {this.value = 'other',
       required this.text,
       this.action,
+      this.isOtherField,
+      @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
       final String? $type})
-      : $type = $type ?? 'other';
+      : _notifyTo = notifyTo,
+        $type = $type ?? 'other';
 
   factory _$OtherValueTextImpl.fromJson(Map<String, dynamic> json) =>
       _$$OtherValueTextImplFromJson(json);
@@ -634,13 +898,25 @@ class _$OtherValueTextImpl implements OtherValueText {
   final String text;
   @override
   final bool? action;
+  @override
+  final bool? isOtherField;
+  final List<dynamic>? _notifyTo;
+  @override
+  @JsonKey(name: 'notify_To')
+  List<dynamic>? get notifyTo {
+    final value = _notifyTo;
+    if (value == null) return null;
+    if (_notifyTo is EqualUnmodifiableListView) return _notifyTo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ValueText.other(value: $value, text: $text, action: $action)';
+    return 'ValueText.other(value: $value, text: $text, action: $action, isOtherField: $isOtherField, notifyTo: $notifyTo)';
   }
 
   @override
@@ -650,14 +926,20 @@ class _$OtherValueTextImpl implements OtherValueText {
             other is _$OtherValueTextImpl &&
             (identical(other.value, value) || other.value == value) &&
             (identical(other.text, text) || other.text == text) &&
-            (identical(other.action, action) || other.action == action));
+            (identical(other.action, action) || other.action == action) &&
+            (identical(other.isOtherField, isOtherField) ||
+                other.isOtherField == isOtherField) &&
+            const DeepCollectionEquality().equals(other._notifyTo, _notifyTo));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, value, text, action);
+  int get hashCode => Object.hash(runtimeType, value, text, action,
+      isOtherField, const DeepCollectionEquality().hash(_notifyTo));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$OtherValueTextImplCopyWith<_$OtherValueTextImpl> get copyWith =>
@@ -668,44 +950,86 @@ class _$OtherValueTextImpl implements OtherValueText {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)
         $default, {
-    required TResult Function(String value, String text, bool? action) none,
-    required TResult Function(String value, String text, bool? action) other,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        none,
+    required TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+        other,
   }) {
-    return other(value, text, action);
+    return other(value, text, action, isOtherField, notifyTo);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
     TResult? Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult? Function(String value, String text, bool? action)? none,
-    TResult? Function(String value, String text, bool? action)? other,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult? Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
   }) {
-    return other?.call(value, text, action);
+    return other?.call(value, text, action, isOtherField, notifyTo);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
     TResult Function(
+            @JsonKey(name: 'isOtherField') bool? isOtherField,
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(readValue: readText) String text)?
         $default, {
-    TResult Function(String value, String text, bool? action)? none,
-    TResult Function(String value, String text, bool? action)? other,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        none,
+    TResult Function(
+            String value,
+            String text,
+            bool? action,
+            bool? isOtherField,
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+        other,
     required TResult orElse(),
   }) {
     if (other != null) {
-      return other(value, text, action);
+      return other(value, text, action, isOtherField, notifyTo);
     }
     return orElse();
   }
@@ -754,9 +1078,12 @@ class _$OtherValueTextImpl implements OtherValueText {
 
 abstract class OtherValueText implements ValueText {
   const factory OtherValueText(
-      {final String value,
-      required final String text,
-      final bool? action}) = _$OtherValueTextImpl;
+          {final String value,
+          required final String text,
+          final bool? action,
+          final bool? isOtherField,
+          @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo}) =
+      _$OtherValueTextImpl;
 
   factory OtherValueText.fromJson(Map<String, dynamic> json) =
       _$OtherValueTextImpl.fromJson;
@@ -768,7 +1095,15 @@ abstract class OtherValueText implements ValueText {
   @override
   bool? get action;
   @override
-  @JsonKey(ignore: true)
+  bool? get isOtherField;
+  @override
+  @JsonKey(name: 'notify_To')
+  List<dynamic>? get notifyTo;
+
+  /// Create a copy of ValueText
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$OtherValueTextImplCopyWith<_$OtherValueTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

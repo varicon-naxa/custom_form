@@ -190,8 +190,8 @@ _$InstructionInputFieldImpl _$$InstructionInputFieldImplFromJson(
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
+      instruction: readInstruction(json, 'instruction') as String?,
       description: json['description'] as String?,
-      instruction: json['instruction'] as String?,
       attachments: (json['attachments'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
@@ -214,8 +214,8 @@ Map<String, dynamic> _$$InstructionInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
-      'description': instance.description,
       'instruction': instance.instruction,
+      'description': instance.description,
       'attachments': instance.attachments,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
@@ -733,6 +733,7 @@ _$RadioInputFieldImpl _$$RadioInputFieldImplFromJson(
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
+      selectedLinkListLabel: json['selectedLinkListLabel'] as String?,
       isConditional: json['isConditional'] as bool? ?? false,
       choices: (json['choice'] as List<dynamic>?)
               ?.map(const ValueTextConverter().fromJson)
@@ -741,6 +742,7 @@ _$RadioInputFieldImpl _$$RadioInputFieldImplFromJson(
       showNoneItem: json['showNoneItem'] as bool? ?? false,
       noneText: json['noneText'] as String?,
       showOtherItem: json['showOtherItem'] as bool? ?? false,
+      otherAnswer: json['otherAnswer'] as String?,
       otherText: json['otherText'] as String?,
       otherErrorText: json['otherErrorText'] as String?,
       otherPlaceholder: json['otherPlaceholder'] as String?,
@@ -760,12 +762,14 @@ Map<String, dynamic> _$$RadioInputFieldImplToJson(
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
+      'selectedLinkListLabel': instance.selectedLinkListLabel,
       'isConditional': instance.isConditional,
       'choice':
           instance.choices.map(const ValueTextConverter().toJson).toList(),
       'showNoneItem': instance.showNoneItem,
       'noneText': instance.noneText,
       'showOtherItem': instance.showOtherItem,
+      'otherAnswer': instance.otherAnswer,
       'otherText': instance.otherText,
       'otherErrorText': instance.otherErrorText,
       'otherPlaceholder': instance.otherPlaceholder,
@@ -995,5 +999,93 @@ Map<String, dynamic> _$$MapFieldImplToJson(_$MapFieldImpl instance) =>
       'requiredErrorText': instance.requiredErrorText,
       'visible': instance.visible,
       'description': instance.description,
+      'type': instance.$type,
+    };
+
+_$TableFieldImpl _$$TableFieldImplFromJson(Map<String, dynamic> json) =>
+    _$TableFieldImpl(
+      id: json['id'] as String,
+      tableId: json['tableId'] as String?,
+      headers:
+          (json['headers'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      label: json['label'] as String?,
+      name: json['name'] as String?,
+      isRequired: json['isRequired'] as bool? ?? false,
+      requiredErrorText: json['requiredErrorText'] as String?,
+      description: json['description'] as String?,
+      visible: json['visible'] as bool? ?? true,
+      readOnly: json['readOnly'] as bool? ?? false,
+      answer: json['answer'],
+      isRow: json['isRow'] as bool? ?? true,
+      inputFields: (json['contents'] as List<dynamic>?)
+          ?.map((e) => (e as List<dynamic>)
+              .map((e) => const InputFieldConverter()
+                  .fromJson(e as Map<String, dynamic>))
+              .toList())
+          .toList(),
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$TableFieldImplToJson(_$TableFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'tableId': instance.tableId,
+      'headers': instance.headers,
+      'label': instance.label,
+      'name': instance.name,
+      'isRequired': instance.isRequired,
+      'requiredErrorText': instance.requiredErrorText,
+      'description': instance.description,
+      'visible': instance.visible,
+      'readOnly': instance.readOnly,
+      'answer': instance.answer,
+      'isRow': instance.isRow,
+      'contents': instance.inputFields
+          ?.map((e) => e.map(const InputFieldConverter().toJson).toList())
+          .toList(),
+      'type': instance.$type,
+    };
+
+_$AdvTableFieldImpl _$$AdvTableFieldImplFromJson(Map<String, dynamic> json) =>
+    _$AdvTableFieldImpl(
+      id: json['id'] as String,
+      headers:
+          (json['headers'] as List<dynamic>?)?.map((e) => e as String).toList(),
+      tableId: json['tableId'] as String?,
+      label: json['label'] as String?,
+      name: json['name'] as String?,
+      isRequired: json['isRequired'] as bool? ?? false,
+      requiredErrorText: json['requiredErrorText'] as String?,
+      description: json['description'] as String?,
+      visible: json['visible'] as bool? ?? true,
+      readOnly: json['readOnly'] as bool? ?? false,
+      answer: json['answer'],
+      isRow: json['isRow'] as bool? ?? true,
+      inputFields: (json['contents'] as List<dynamic>?)
+          ?.map((e) => (e as List<dynamic>)
+              .map((e) => const InputFieldConverter()
+                  .fromJson(e as Map<String, dynamic>))
+              .toList())
+          .toList(),
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$AdvTableFieldImplToJson(_$AdvTableFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'headers': instance.headers,
+      'tableId': instance.tableId,
+      'label': instance.label,
+      'name': instance.name,
+      'isRequired': instance.isRequired,
+      'requiredErrorText': instance.requiredErrorText,
+      'description': instance.description,
+      'visible': instance.visible,
+      'readOnly': instance.readOnly,
+      'answer': instance.answer,
+      'isRow': instance.isRow,
+      'contents': instance.inputFields
+          ?.map((e) => e.map(const InputFieldConverter().toJson).toList())
+          .toList(),
       'type': instance.$type,
     };

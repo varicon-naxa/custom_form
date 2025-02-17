@@ -5,12 +5,14 @@
     "version": "1.0.0",
     "elements": [
         {
-            "id": "item-3b3cec1e-9c6f-471d-a533-e0da6aa11434",
-            "name": "Phone Number",
-            "type": "phone",
-            "label": "Primary Phone number",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
+            "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56f652",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": true,
+            "selectedLinkListLabel": "",
+            "answer":""
+            
         }
     ]
 }
