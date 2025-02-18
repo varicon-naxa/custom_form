@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/build/ios/Debug-iphoneos/pointer_interceptor_ios/pointer_interceptor_ios.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/build/ios/Debug-iphoneos/pointer_interceptor_ios/pointer_interceptor_ios.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "pointer_interceptor_ios-Swift.h",
+      'external-contents': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/unextended-interface-header.h",
+    }]
+    }]
+}

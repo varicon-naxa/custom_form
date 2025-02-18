@@ -13,14 +13,16 @@ class CustomFormBuilderQueryMultiDropdown extends StatefulWidget {
     required this.onChanged,
     required this.linkedQuery,
     required this.initialItems,
+    required this.linkedInitialItems,
   });
 
   ///Api call function to get data
   final Future<List<dynamic>> Function(Map<String, dynamic>) apiCall;
 
   ///Function to call on clicked item
-  final Function(List<String>) onChanged;
+  final Function(List<String>, List<String>) onChanged;
   final List<String> initialItems;
+  final List<String> linkedInitialItems;
 
   ///Linked query to get data
   final String linkedQuery;
@@ -34,6 +36,7 @@ class _CustomFormBuilderQueryMultiDropdownState
     extends State<CustomFormBuilderQueryMultiDropdown> {
   TextEditingController searchCon = TextEditingController();
   List<String> selectedItems = [];
+  List<String> linkedSelectedText = [];
 
   final ScrollController _scrollController = ScrollController();
   int page = 1;
@@ -99,6 +102,7 @@ class _CustomFormBuilderQueryMultiDropdownState
     ///Hit api to get data on page scroll end
     super.initState();
     selectedItems = widget.initialItems;
+    linkedSelectedText = widget.linkedInitialItems;
     setState(() {});
     hitApi('');
     _scrollController.addListener(_loadMoreData);
@@ -110,13 +114,15 @@ class _CustomFormBuilderQueryMultiDropdownState
     super.dispose();
   }
 
-  void onItemTap(String id) {
+  void onItemTap(String id, String value) {
     if (selectedItems.contains(id)) {
       selectedItems.remove(id);
+      linkedSelectedText.remove(value);
     } else {
       selectedItems.add(id);
+      linkedSelectedText.add(value);
     }
-    widget.onChanged(selectedItems);
+    widget.onChanged(selectedItems, linkedSelectedText);
     setState(() {});
   }
 
@@ -192,7 +198,7 @@ class _CustomFormBuilderQueryMultiDropdownState
                                   value: selectedItems
                                       .contains(searchedChoice[i].value),
                                   onChanged: (val) {
-                                    onItemTap(item.value);
+                                    onItemTap(item.value, item.text);
                                   },
                                   controlAffinity:
                                       ListTileControlAffinity.leading,

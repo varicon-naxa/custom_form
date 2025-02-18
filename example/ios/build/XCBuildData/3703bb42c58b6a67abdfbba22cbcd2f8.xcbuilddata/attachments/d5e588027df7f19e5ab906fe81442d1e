@@ -1,0 +1,38 @@
+{
+  "" : {
+    "diagnostics" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/pointer_interceptor_ios-master.dia",
+    "emit-module-dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/pointer_interceptor_ios-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/pointer_interceptor_ios-master-emit-module.dia",
+    "swift-dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/pointer_interceptor_ios-master.swiftdeps"
+  },
+  "/Users/susantimilsina/.pub-cache/hosted/pub.dev/pointer_interceptor_ios-0.10.1/ios/pointer_interceptor_ios/Sources/pointer_interceptor_ios/PointerInterceptorFactory.swift" : {
+    "const-values" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory.swiftconstvalues",
+    "dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory.d",
+    "diagnostics" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory.o",
+    "llvm-bc" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory.bc",
+    "object" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory.o",
+    "swift-dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory.swiftdeps",
+    "swiftmodule" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorFactory~partial.swiftmodule"
+  },
+  "/Users/susantimilsina/.pub-cache/hosted/pub.dev/pointer_interceptor_ios-0.10.1/ios/pointer_interceptor_ios/Sources/pointer_interceptor_ios/PointerInterceptorIosPlugin.swift" : {
+    "const-values" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin.swiftconstvalues",
+    "dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin.d",
+    "diagnostics" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin.o",
+    "llvm-bc" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin.bc",
+    "object" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin.o",
+    "swift-dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin.swiftdeps",
+    "swiftmodule" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorIosPlugin~partial.swiftmodule"
+  },
+  "/Users/susantimilsina/.pub-cache/hosted/pub.dev/pointer_interceptor_ios-0.10.1/ios/pointer_interceptor_ios/Sources/pointer_interceptor_ios/PointerInterceptorView.swift" : {
+    "const-values" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView.swiftconstvalues",
+    "dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView.d",
+    "diagnostics" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView.dia",
+    "index-unit-output-path" : "/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView.o",
+    "llvm-bc" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView.bc",
+    "object" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView.o",
+    "swift-dependencies" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView.swiftdeps",
+    "swiftmodule" : "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/pointer_interceptor_ios.build/Objects-normal/arm64/PointerInterceptorView~partial.swiftmodule"
+  }
+}

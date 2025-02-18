@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/build/ios/Debug-iphoneos/flutter_inappwebview_ios/flutter_inappwebview_ios.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview_ios.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/build/ios/Debug-iphoneos/flutter_inappwebview_ios/flutter_inappwebview_ios.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "flutter_inappwebview_ios-Swift.h",
+      'external-contents': "/Users/susantimilsina/StudioProjects/packaging/varicon_form_builder/example/ios/build/Pods.build/Debug-iphoneos/flutter_inappwebview_ios.build/unextended-interface-header.h",
+    }]
+    }]
+}

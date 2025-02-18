@@ -6,6 +6,21 @@
     "hasLocation": true,
     "elements":[
         {
+            "id": "item-edf83096-c8e5-44e2-ac3b-85a098e79ba5",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Multi select dropdown linked list",
+            "answer": "12345,54123",
+            "choice": [],
+            "selectedLinkListLabel": "equipment1,equipment2",
+            "isRequired": false,
+            "actionMessage": "",
+            "initialAnswer": "",
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "project"
+        },
+        {
             "id": "item-8eade404-0c44-4983-811a-b3a0b317bd51",
             "name": "Radio",
             "type": "radiogroup",
@@ -30,22 +45,34 @@
             "fromManualList": true,
             "selectedLinkListLabel": ""
         },
-     
         {
-            "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43fcf",
-            "name": "Siasdasgnature",
-            "type": "multisignature",
-            "label": "Signature",
+            "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc6",
+            "name": "Multiple Choice",
+            "type": "multipleselect",
+            "label": "Biget item",
+            "isConditional": false,
+            "actionMessage": "",
+            "fromManualList": false,
             "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-68fbb667-b16e-4639-a65d-c991b77ab43fcg",
-            "name": "asdadadad",
-            "type": "multisignature",
-            "label": "Signature",
-            "isRequired": false,
-            "selectedLinkListLabel": ""
+            "choice": [
+                {
+                    "id": "item-200e3185-3906-4d91-a03f-62f35e8547de",
+                    "type": "option",
+                    "label": "Resource and supplier",
+                    "notify_To": []
+                },
+                {
+                    "id": "item-ae9b0672-16eb-44d5-b5c7-a3412ffadb09",
+                    "type": "option",
+                    "label": "Custom Forms"
+                },
+                {
+                    "id": "item-29580bec-3511-478c-bd55-cd0a84a65ed5",
+                    "type": "option",
+                    "label": "Subcontract"
+                }
+            ]
         }
+     
       ]
 }

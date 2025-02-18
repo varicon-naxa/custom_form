@@ -34,6 +34,7 @@ class _VariconMultiDropdownFieldState
   TextEditingController dropdownController = TextEditingController();
   List<ValueText> selectedValue = [];
   List<String> linkedSelectedIds = [];
+  List<String> linkedSelectedText = [];
 
   @override
   void initState() {
@@ -54,9 +55,12 @@ class _VariconMultiDropdownFieldState
         widget.field.answer != '') {
       String selectedAnswer = widget.field.answer ?? '';
       List<String> selectedAnswers = selectedAnswer.split(',');
+      List<String> selectedAnswersText =
+          (widget.field.answerList ?? '').split(',');
       if (selectedAnswers.isNotEmpty) {
         dropdownController.text = '${selectedAnswers.length} items selected';
         linkedSelectedIds = selectedAnswers;
+        linkedSelectedText = selectedAnswersText;
         setState(() {});
       }
     }
@@ -117,18 +121,18 @@ class _VariconMultiDropdownFieldState
                 child: CustomFormBuilderQueryMultiDropdown(
                   apiCall: widget.apiCall!,
                   linkedQuery: widget.field.linkedQuery ?? '',
-                  onChanged: (List<String> data) {
-                    linkedSelectedIds = data;
-                    if (data.isNotEmpty) {
-                      dropdownController.text = '${data.length} items selected';
-                      // ref
-                      //     .read(currentStateNotifierProvider.notifier)
-                      //     .saveString(widget.field.id,
-                      //         data.map((e) => e.value).join(','));
-                      // ref.read(linklabelProvider.notifier).saveString(
-                      //       widget.field.id,
-                      //       data.map((e) => e.text).join(','),
-                      //     );
+                  onChanged: (List<String> id, List<String> text) {
+                    linkedSelectedIds = id;
+                    linkedSelectedText = text;
+                    if (id.isNotEmpty) {
+                      dropdownController.text = '${id.length} items selected';
+                      ref
+                          .read(currentStateNotifierProvider.notifier)
+                          .saveString(widget.field.id, id.join(','));
+                      ref.read(linklabelProvider.notifier).saveString(
+                            widget.field.id,
+                            text.join(','),
+                          );
                     } else {
                       ref
                           .read(currentStateNotifierProvider.notifier)
@@ -141,6 +145,7 @@ class _VariconMultiDropdownFieldState
                     setState(() {});
                   },
                   initialItems: linkedSelectedIds,
+                  linkedInitialItems: linkedSelectedText,
                 ),
               );
             }

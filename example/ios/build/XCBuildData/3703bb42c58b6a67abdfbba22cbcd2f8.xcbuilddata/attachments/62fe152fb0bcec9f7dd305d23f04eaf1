@@ -1,0 +1,11 @@
+framework module pointer_interceptor_ios {
+  umbrella header "pointer_interceptor_ios-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module pointer_interceptor_ios.Swift {
+  header "pointer_interceptor_ios-Swift.h"
+  requires objc
+}
