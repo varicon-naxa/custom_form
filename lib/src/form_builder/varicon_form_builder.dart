@@ -16,6 +16,7 @@ import 'package:varicon_form_builder/src/widget/label_widget.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_text_field.dart';
 
 import '../custom_element/date_time_form_field.dart';
+import '../form_elements/varicon_address_field.dart';
 import '../form_elements/varicon_checkbox_field.dart';
 import '../form_elements/varicon_dropdown_field.dart';
 import '../form_elements/varicon_email_field.dart';
@@ -70,7 +71,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
   ///Form save callback
   ///
   ///Required to save the form data
-  final void Function(Map<String, dynamic> formValue) onSave;
+  final void Function(List<Map<String, dynamic>> formValue) onSave;
 
   ///Required to save the form data
   final void Function() onPopPressed;
@@ -78,7 +79,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
   ///Form submit callback
   ///
   ///Submit data with filled values
-  final void Function(Map<String, dynamic> formValue) onSubmit;
+  final void Function(List<Map<String, dynamic>> formValue) onSubmit;
 
   ///Widget for custom image painter
   final Widget Function(File imageFile) customPainter;
@@ -344,11 +345,17 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                 field: value,
                 formCon: TextEditingController(),
               )
-            : VariconTextField(
-                field: value,
-                labelText: labelText,
-                isNested: isNested,
-              ),
+            : (value.name ?? '').toLowerCase().contains('address')
+                ? VariconAddressField(
+                    field: value,
+                    labelText: labelText,
+                    isNested: isNested,
+                  )
+                : VariconTextField(
+                    field: value,
+                    labelText: labelText,
+                    isNested: isNested,
+                  ),
       );
     }, number: (value) {
       return LabelWidget(

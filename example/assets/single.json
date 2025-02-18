@@ -7,11 +7,10 @@
     "hasLocation": true,
     "elements":[
         {
-            "id": "item-3a4c87db-86b5-4712-a450-5966eacebebb",
-            "name": "Signature",
-            "type": "signature",
-            "label": "Signature",
-            "answer": {},
+            "id": "item-55cbd6ef-c26b-48d7-87b7-f8d6561da1c2",
+            "name": "Address",
+            "type": "text",
+            "label": "Address",
             "isRequired": true,
             "selectedLinkListLabel": ""
         },

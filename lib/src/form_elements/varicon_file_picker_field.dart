@@ -128,6 +128,7 @@ class _VariconFilePickerFieldState
               )
               .toList();
         }
+        saveFileToServer(values);
       },
       validator: (value) {
         if (widget.field.isRequired &&

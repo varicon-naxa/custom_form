@@ -26,10 +26,9 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     return deepEq(state, initialAnswer);
   }
 
-  Map<String, dynamic> getFinalAnswer(
+  List<Map<String, dynamic>> getFinalAnswer(
     List<InputField> initialValue,
   ) {
-    Map<String, dynamic> finalAnswerData = {};
     List<InputField> finalAnswer = [];
     finalAnswer.addAll(initialValue);
     final selectedListLabel = ref.read(linklabelProvider);
@@ -139,7 +138,7 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       finalAnswer[i] =
           field; // Update the finalAnswer list with the modified field
     }
-    return finalAnswerData;
+    return finalAnswer.map((e)=> e.toJson()).toList();
   }
 
   void saveinitialAnswer(List<InputField> inputFields) {
