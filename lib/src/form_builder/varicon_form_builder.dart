@@ -200,6 +200,8 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                   child: FormBuilder(
                     key: _formKey,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
