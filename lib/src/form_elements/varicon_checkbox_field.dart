@@ -45,7 +45,6 @@ class VariconCheckboxField extends ConsumerWidget {
                   ))
               .toList(growable: false),
           onChanged: (value) {
-            print(value);
           },
           onOtherSelectedValue: (isSelected, text) {
             if (isSelected && field.isRequired == false) {

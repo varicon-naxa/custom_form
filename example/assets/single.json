@@ -7,6 +7,15 @@
     "hasLocation": true,
     "elements":[
         {
+            "id": "item-3a4c87db-86b5-4712-a450-5966eacebebb",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Signature",
+            "answer": {},
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
             "id": "item-edf83096-c8e5-44e2-ac3b-85a098e79ba5",
             "name": "Multi-Select Dropdown",
             "type": "multipleselect",
@@ -20,60 +29,6 @@
             "isConditional": false,
             "fromManualList": false,
             "islinked_query": "project"
-        },
-        {
-            "id": "item-8eade404-0c44-4983-811a-b3a0b317bd51",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Radio",
-            "choice": [
-                {
-                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c8",
-                    "label": "Option 1"
-                },
-                {
-                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c1",
-                    "label": "Option 2"
-                },
-                {
-                    "id": "item-4b2885bc-e4f7-4766-98bb-00602e0ff0c9",
-                    "label": "Option 3",
-                    "isOtherField": true
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc6",
-            "name": "Multiple Choice",
-            "type": "multipleselect",
-            "label": "Biget item",
-            "isConditional": false,
-            "actionMessage": "",
-            "fromManualList": false,
-            "isRequired": false,
-            "choice": [
-                {
-                    "id": "item-200e3185-3906-4d91-a03f-62f35e8547de",
-                    "type": "option",
-                    "label": "Resource and supplier",
-                    "notify_To": []
-                },
-                {
-                    "id": "item-ae9b0672-16eb-44d5-b5c7-a3412ffadb09",
-                    "type": "option",
-                    "label": "Custom Forms"
-                },
-                {
-                    "id": "item-29580bec-3511-478c-bd55-cd0a84a65ed5",
-                    "type": "option",
-                    "label": "Subcontract"
-                }
-            ]
         }
-     
       ]
 }

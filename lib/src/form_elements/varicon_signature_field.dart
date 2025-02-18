@@ -4,7 +4,9 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:signature/signature.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
+import 'package:varicon_form_builder/src/widget/scroll_bottomsheet.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_signature_pad.dart';
 import '../state/current_form_provider.dart';
@@ -37,6 +39,7 @@ class VariconSignatureField extends StatefulHookConsumerWidget {
 
 class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   Map<String, dynamic> _signature = {};
+  SignatureController controller = SignatureController();
 
   @override
   void initState() {
@@ -49,7 +52,6 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   Widget build(BuildContext context) {
     Future modifyAnswer(Uint8List data) async {
       Map<String, dynamic> answer = {};
-      answer.addAll({'date': DateTime.now()});
 
       File singleFile = await Utils.getConvertToFile(data);
 
@@ -57,7 +59,8 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         [singleFile.path],
       );
       answer.addAll(attachments.first);
-
+      answer.addAll({'date': DateTime.now()});
+      controller.clear();
       ref
           .read(currentStateNotifierProvider.notifier)
           .saveMap(widget.field.id, answer);
@@ -67,63 +70,206 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
       ref.read(currentStateNotifierProvider.notifier).remove(widget.field.id);
     }
 
-    return FormBuilderSignaturePad(
-      decoration: const InputDecoration(
-        labelText: 'Signature Pad',
-      ),
-      width: double.infinity,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      initialWidget: (widget.field.answer ?? {}).isNotEmpty
-          ? Column(
-              children: [
-                widget.imageBuild({
-                  'image': widget.field.answer?['file'],
-                  'height': 200.0,
-                  'width': double.infinity
-                }),
-                if (widget.field.answer?['date'] != null)
-                  Text(
-                    'Signed On: ${DateFormat('dd MMM yyyy').format(widget.field.answer?['date'])}',
+    void signatureDialog() {
+      scrollBottomSheet(
+        context,
+        child: Scaffold(
+          backgroundColor: Colors.white,
+          appBar: AppBar(
+            backgroundColor: Colors.white,
+            elevation: 0,
+            title: Text(
+              'Add Signature Details',
+              style: Theme.of(context).textTheme.labelLarge,
+            ),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: FormBuilderSignaturePad(
+              controller: controller,
+              hasAction: true,
+              decoration: const InputDecoration(
+                labelText: 'Signature Pad',
+              ),
+              width: double.infinity,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              initialWidget: null,
+              name: 'signature',
+              onSavedClicked: (data) {
+                _signature = {'value': data, 'date': DateTime.now()};
+                modifyAnswer(data!);
+                setState(() {});
+                Navigator.pop(context);
+              },
+              onDeletedPressed: () {
+                _signature = {};
+                deleteAnswer();
+              },
+              onChanged: (value) {},
+              validator: (data) {
+                if (widget.field.isRequired) {
+                  if ((widget.field.answer ?? {}).isNotEmpty) {
+                    String? answer;
+                    if (_signature.isEmpty && data == null) {
+                      answer = 'This field is required';
+                    } else if (_signature.isEmpty && data != null) {
+                      answer = 'Please Save the Signature';
+                    } else if (_signature.isNotEmpty && data == null) {
+                      answer = null;
+                    } else if (_signature.isNotEmpty && data != null) {
+                      answer = null;
+                    }
+                    return answer;
+                  } else {
+                    if (data == null) {
+                      return 'This field is required';
+                    }
+                  }
+                  // if (data == null || _signature.isEmpty) {
+                  //   return 'This field is required';
+                  // }
+                }
+                return null;
+              },
+              border: Border.all(color: Colors.green),
+            ),
+          ),
+        ),
+      );
+    }
+
+    return (widget.field.answer ?? {}).isNotEmpty
+        ? Column(
+            children: [
+              widget.imageBuild({
+                'image': widget.field.answer?['file'],
+                'height': 200.0,
+                'width': double.infinity
+              }),
+              if (widget.field.answer?['date'] != null)
+                Text(
+                  'Signed On: ${DateFormat('dd MMM yyyy').format(widget.field.answer?['date'])}',
+                ),
+            ],
+          )
+        : GestureDetector(
+            onTap: () {
+              if (_signature.isEmpty) {
+                Future.microtask(
+                  () {
+                    controller = SignatureController();
+
+                    signatureDialog();
+                  },
+                );
+              }
+            },
+            child: _signature.isNotEmpty
+                ? Container(
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
+                      ),
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                            height: 200,
+                            child: Image.memory(_signature['value'])),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'Signed On: ${DateFormat('dd MMM yyyy').format(_signature['date'])}',
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  _signature = {};
+                                  deleteAnswer();
+                                  setState(() {});
+                                },
+                                icon: const Icon(
+                                  Icons.delete,
+                                  color: Colors.red,
+                                ))
+                          ],
+                        ),
+                      ],
+                    ),
+                  )
+                : FormBuilderSignaturePad(
+                    hasAction: false,
+                    controller: controller,
+                    decoration: const InputDecoration(
+                        labelText: 'Signature Pad',
+                        border: null,
+                        errorBorder: null,
+                        enabledBorder: null,
+                        focusedBorder: null,
+                        disabledBorder: null,
+                        focusedErrorBorder: null),
+                    width: double.infinity,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    initialWidget: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.grey,
+                        ),
+                        borderRadius: BorderRadius.circular(
+                          8.0,
+                        ),
+                      ),
+                      height: 200,
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: Image.asset(
+                              'assets/image/signature.png',
+                              package: 'varicon_form_builder',
+                            ),
+                          ),
+                          Text(
+                            'Click here to add signature',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                    ),
+                    name: 'signature',
+                    onSavedClicked: (data) {},
+                    onDeletedPressed: () {},
+                    onChanged: (value) {},
+                    validator: (data) {
+                      if (widget.field.isRequired) {
+                        if ((widget.field.answer ?? {}).isEmpty) {
+                          String? answer;
+                          if (_signature.isEmpty && data == null) {
+                            answer = 'This field is required';
+                          } else if (_signature.isEmpty && data != null) {
+                            answer = 'Please Save the Signature';
+                          } else if (_signature.isNotEmpty && data == null) {
+                            answer = null;
+                          } else if (_signature.isNotEmpty && data != null) {
+                            answer = null;
+                          }
+                          return answer;
+                        }
+                        // if (data == null || _signature.isEmpty) {
+                        //   return 'This field is required';
+                        // }
+                      }
+                      return null;
+                    },
                   ),
-              ],
-            )
-          : null,
-      name: 'signature',
-      onSavedClicked: (data) {
-        _signature = {'value': data};
-        modifyAnswer(data!);
-      },
-      onDeletedPressed: () {
-        _signature = {};
-        deleteAnswer();
-      },
-      onChanged: (value) {},
-      validator: (data) {
-        if (widget.field.isRequired) {
-          if ((widget.field.answer ?? {}).isNotEmpty) {
-            String? answer;
-            if (_signature.isEmpty && data == null) {
-              answer = 'This field is required';
-            } else if (_signature.isEmpty && data != null) {
-              answer = 'Please Save the Signature';
-            } else if (_signature.isNotEmpty && data == null) {
-              answer = null;
-            } else if (_signature.isNotEmpty && data != null) {
-              answer = null;
-            }
-            return answer;
-          } else {
-            if (data == null) {
-              return 'This field is required';
-            }
-          }
-          // if (data == null || _signature.isEmpty) {
-          //   return 'This field is required';
-          // }
-        }
-        return null;
-      },
-      border: Border.all(color: Colors.green),
-    );
+          );
   }
 }

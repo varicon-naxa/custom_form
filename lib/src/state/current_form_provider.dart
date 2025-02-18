@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:collection/collection.dart';
 import 'package:riverpod/riverpod.dart';
 
@@ -251,8 +253,8 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
         state[k] = v;
       }
     } catch (e) {
-      print('Error: $e');
+      log('Error: $e');
     }
-    print('IMAGE VALUES: \n\n KEy=$k');
+    log('IMAGE VALUES: \n\n KEy=$k');
   }
 }

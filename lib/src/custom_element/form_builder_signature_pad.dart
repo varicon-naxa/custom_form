@@ -35,6 +35,7 @@ class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
 
   /// Styles the canvas border
   final Border? border;
+  final bool hasAction;
 
   /// Callback when the save button is clicked with Function(Uint8List) as the parameter
   final void Function(Uint8List?) onSavedClicked;
@@ -62,6 +63,7 @@ class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
       this.controller,
       this.border,
       required this.onDeletedPressed,
+      required this.hasAction,
       required this.onSavedClicked})
       : super(
           builder: (FormFieldState<Uint8List?> field) {
@@ -105,50 +107,53 @@ class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  Text(
-                    'By signing above, I certify that this signature is authentic and represents my genuine consent and agreement.',
-                    style: Theme.of(state.context).textTheme.bodySmall,
-                  ),
-                  Row(
-                    children: <Widget>[
-                      const Expanded(child: SizedBox()),
-                      if (state.effectiveController.isNotEmpty &&
-                          isEditable == false)
+                  if (hasAction)
+                    Text(
+                      'By signing above, I certify that this signature is authentic and represents my genuine consent and agreement.',
+                      style: Theme.of(state.context).textTheme.bodySmall,
+                    ),
+                  if (hasAction)
+                    Row(
+                      children: <Widget>[
+                        const Expanded(child: SizedBox()),
+                        if (state.effectiveController.isNotEmpty &&
+                            isEditable == false)
+                          TextButton.icon(
+                            onPressed: state.enabled
+                                ? () {
+                                    state.changeState(true);
+                                    onSavedClicked(state.value);
+                                  }
+                                : null,
+                            label: Text(
+                              'Save',
+                              style:
+                                  TextStyle(color: theme.colorScheme.primary),
+                            ),
+                            icon: Icon(Icons.save,
+                                color: theme.colorScheme.primary),
+                          ),
                         TextButton.icon(
                           onPressed: state.enabled
                               ? () {
-                                  state.changeState(true);
-                                  onSavedClicked(state.value);
+                                  if (state.initialSignatureWidget != null) {
+                                    onDeletedPressed();
+                                    state.removeInitialWidget();
+                                  } else {
+                                    state.effectiveController.clear();
+                                    state.changeState(false);
+                                  }
+                                  field.didChange(null);
                                 }
                               : null,
                           label: Text(
-                            'Save',
-                            style: TextStyle(color: theme.colorScheme.primary),
+                            clearButtonText ?? localizations.cancelButtonLabel,
+                            style: TextStyle(color: cancelButtonColor),
                           ),
-                          icon: Icon(Icons.save,
-                              color: theme.colorScheme.primary),
+                          icon: Icon(Icons.clear, color: cancelButtonColor),
                         ),
-                      TextButton.icon(
-                        onPressed: state.enabled
-                            ? () {
-                                if (state.initialSignatureWidget != null) {
-                                  onDeletedPressed();
-                                  state.removeInitialWidget();
-                                } else {
-                                  state.effectiveController.clear();
-                                  state.changeState(false);
-                                }
-                                field.didChange(null);
-                              }
-                            : null,
-                        label: Text(
-                          clearButtonText ?? localizations.cancelButtonLabel,
-                          style: TextStyle(color: cancelButtonColor),
-                        ),
-                        icon: Icon(Icons.clear, color: cancelButtonColor),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
                 ],
               ),
             );

@@ -48,6 +48,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
     required this.locationData,
     required this.onBackPressed,
     required this.formtitle,
+    required this.onPopPressed,
     this.apiCall,
     this.padding,
     this.hasSave = false,
@@ -70,6 +71,9 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
   ///
   ///Required to save the form data
   final void Function(Map<String, dynamic> formValue) onSave;
+
+  ///Required to save the form data
+  final void Function() onPopPressed;
 
   ///Form submit callback
   ///
@@ -164,137 +168,160 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
     ref.watch(currentStateNotifierProvider);
     ref.watch(requiredNotifierProvider);
     ref.watch(linklabelProvider);
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        widget.onPopPressed();
+        onBackPressed();
+      },
+      child: Scaffold(
         backgroundColor: Colors.white,
-        elevation: 1,
-        title: Text(
-          widget.formtitle,
-          style: Theme.of(context).textTheme.titleMedium,
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          elevation: 1,
+          title: Text(
+            widget.formtitle,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: onBackPressed,
+          ),
         ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: onBackPressed,
-        ),
-      ),
-      body: Padding(
-        padding: widget.padding ?? const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                physics: const AlwaysScrollableScrollPhysics(),
-                child: FormBuilder(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      ...widget.surveyForm.inputFields.map<Widget?>((e) {
-                        return _buildInputField(e, context, isNested: true);
-                      }).whereType<Widget>(),
-                    ],
+        body: Padding(
+          padding: widget.padding ?? const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Expanded(
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.vertical,
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: FormBuilder(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.surveyForm.title.toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(
+                                    height: 1.2,
+                                  ),
+                            ),
+                            const SizedBox(
+                              height: 8.0,
+                            ),
+                            Text(
+                              widget.surveyForm.description.toString(),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                    color: const Color(0xff6A737B),
+                                  ),
+                            ),
+                          ],
+                        ),
+                        ...widget.surveyForm.inputFields.map<Widget?>((e) {
+                          return _buildInputField(e, context, isNested: true);
+                        }).whereType<Widget>(),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Row(
-              children: [
-                if (widget.hasAutoSave)
+              Row(
+                children: [
+                  if (widget.hasAutoSave)
+                    Expanded(
+                      child: NavigationButton(
+                        buttonText: 'SUBMIT LATER',
+                        onComplete: () {
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Column(
+                                  children: [
+                                    Icon(
+                                      Icons.info,
+                                      size: 60,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
+                                    Text(
+                                      'The submission will be saved to draft.',
+                                      textAlign: TextAlign.center,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleMedium,
+                                    ),
+                                  ],
+                                ),
+                                content: const Text(
+                                  'Please note clocking out from Varicon will remove these draft submissions.',
+                                  textAlign: TextAlign.center,
+                                ),
+                                actions: <Widget>[
+                                  NavigationButton(
+                                    buttonText: 'OKAY',
+                                    onComplete: () async {
+                                      Navigator.of(context).pop();
+                                    },
+                                  )
+                                ],
+                              );
+                            },
+                          );
+                        },
+                        isAutoSave: true,
+                      ),
+                    ),
+                  if (widget.hasAutoSave) const SizedBox(width: 12.0),
                   Expanded(
                     child: NavigationButton(
-                      buttonText: 'SUBMIT LATER',
-                      onComplete: () {
-                        showDialog(
-                          context: context,
-                          barrierDismissible: false,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Column(
-                                children: [
-                                  Icon(
-                                    Icons.info,
-                                    size: 60,
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                                  Text(
-                                    'The submission will be saved to draft.',
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                ],
-                              ),
-                              content: const Text(
-                                'Please note clocking out from Varicon will remove these draft submissions.',
-                                textAlign: TextAlign.center,
-                              ),
-                              actions: <Widget>[
-                                NavigationButton(
-                                  buttonText: 'OKAY',
-                                  onComplete: () async {
-                                    Navigator.of(context).pop();
-                                  },
-                                )
-                              ],
-                            );
-                          },
-                        );
+                      buttonText: widget.buttonText,
+                      onComplete: () async {
+                        try {
+                          if (_formKey.currentState == null) return;
+                          // return if form is not valid.
+                          if (!_formKey.currentState!.validate()) {
+                            if (ref
+                                    .read(requiredNotifierProvider.notifier)
+                                    .getInitialRequiredContext() !=
+                                null) {
+                              Scrollable.ensureVisible(
+                                  (ref
+                                      .read(requiredNotifierProvider.notifier)
+                                      .getInitialRequiredContext())!,
+                                  duration: const Duration(milliseconds: 500),
+                                  curve: Curves.bounceIn);
+                            }
+                            return;
+                          } else {
+                            final formValue = ref
+                                .read(currentStateNotifierProvider.notifier)
+                                .getFinalAnswer(
+                                  widget.surveyForm.inputFields,
+                                );
+                            widget.onSubmit(formValue);
+                          }
+                        } catch (e) {
+                          log('Error: $e');
+                        }
                       },
-                      isAutoSave: true,
                     ),
                   ),
-                if (widget.hasAutoSave) const SizedBox(width: 12.0),
-                Expanded(
-                  child: NavigationButton(
-                    buttonText: widget.buttonText,
-                    onComplete: () async {
-                      try {
-                        if (_formKey.currentState == null) return;
-                        // return if form is not valid.
-                        if (!_formKey.currentState!.validate()) {
-                          if (ref
-                                  .read(requiredNotifierProvider.notifier)
-                                  .getInitialRequiredContext() !=
-                              null) {
-                            Scrollable.ensureVisible(
-                                (ref
-                                    .read(requiredNotifierProvider.notifier)
-                                    .getInitialRequiredContext())!,
-                                duration: const Duration(milliseconds: 500),
-                                curve: Curves.bounceIn);
-                          }
-                          return;
-                        } else {
-                          Map<String, dynamic> finalAnswer = {};
-                          Map<String, dynamic> formAnswer = {};
-                          final formValue = ref
-                              .read(currentStateNotifierProvider.notifier)
-                              .getFinalAnswer(
-                                widget.surveyForm.inputFields,
-                              );
-                          formAnswer.addAll(formValue);
-                          formAnswer.addAll({
-                            "title": widget.surveyForm.title,
-                            "description": widget.surveyForm.description,
-                            "setting": widget.surveyForm.setting,
-                          });
-                          finalAnswer.addAll({
-                            "form_answer": formAnswer,
-                            "user_form_status": "Submitted",
-                            "form": widget.surveyForm.id,
-                          });
-                          widget.onSubmit(finalAnswer);
-                        }
-                      } catch (e) {
-                        log('Error: $e');
-                      }
-                    },
-                  ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
