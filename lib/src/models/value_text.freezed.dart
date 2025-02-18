@@ -144,13 +144,8 @@ mixin _$ValueText {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Serializes this ValueText to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ValueTextCopyWith<ValueText> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -178,8 +173,6 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -238,8 +231,6 @@ class __$$ValueTextImplCopyWithImpl<$Res>
       _$ValueTextImpl _value, $Res Function(_$ValueTextImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -339,14 +330,12 @@ class _$ValueTextImpl implements _ValueText {
             (identical(other.text, text) || other.text == text));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, isOtherField, action, value,
       const DeepCollectionEquality().hash(_notifyTo), text);
 
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ValueTextImplCopyWith<_$ValueTextImpl> get copyWith =>
@@ -494,31 +483,29 @@ abstract class _ValueText implements ValueText {
   factory _ValueText.fromJson(Map<String, dynamic> json) =
       _$ValueTextImpl.fromJson;
 
-  /// Option Action to have color
   @override
+
+  /// Option Action to have color
   @JsonKey(name: 'isOtherField')
   bool? get isOtherField;
   @override
   @JsonKey(name: 'action')
   bool? get action;
+  @override
 
   /// Value that is used for remote API consumption.
-  @override
   @JsonKey(readValue: readValue)
   String get value;
   @override
   @JsonKey(name: 'notify_To')
   List<dynamic>? get notifyTo;
+  @override
 
   /// Text that is displayed to the frontend.
-  @override
   @JsonKey(readValue: readText)
   String get text;
-
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ValueTextImplCopyWith<_$ValueTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -547,8 +534,6 @@ class __$$NoneValueTextImplCopyWithImpl<$Res>
       _$NoneValueTextImpl _value, $Res Function(_$NoneValueTextImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -640,14 +625,12 @@ class _$NoneValueTextImpl implements NoneValueText {
             const DeepCollectionEquality().equals(other._notifyTo, _notifyTo));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, value, text, action,
       isOtherField, const DeepCollectionEquality().hash(_notifyTo));
 
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NoneValueTextImplCopyWith<_$NoneValueTextImpl> get copyWith =>
@@ -806,11 +789,8 @@ abstract class NoneValueText implements ValueText {
   @override
   @JsonKey(name: 'notify_To')
   List<dynamic>? get notifyTo;
-
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$NoneValueTextImplCopyWith<_$NoneValueTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -839,8 +819,6 @@ class __$$OtherValueTextImplCopyWithImpl<$Res>
       _$OtherValueTextImpl _value, $Res Function(_$OtherValueTextImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -932,14 +910,12 @@ class _$OtherValueTextImpl implements OtherValueText {
             const DeepCollectionEquality().equals(other._notifyTo, _notifyTo));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, value, text, action,
       isOtherField, const DeepCollectionEquality().hash(_notifyTo));
 
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OtherValueTextImplCopyWith<_$OtherValueTextImpl> get copyWith =>
@@ -1099,11 +1075,8 @@ abstract class OtherValueText implements ValueText {
   @override
   @JsonKey(name: 'notify_To')
   List<dynamic>? get notifyTo;
-
-  /// Create a copy of ValueText
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OtherValueTextImplCopyWith<_$OtherValueTextImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

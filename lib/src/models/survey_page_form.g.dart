@@ -9,6 +9,7 @@ part of 'survey_page_form.dart';
 _$SurveyPageFormImpl _$$SurveyPageFormImplFromJson(Map<String, dynamic> json) =>
     _$SurveyPageFormImpl(
       name: json['name'] as String?,
+      id: json['id'] as String?,
       timesheet: json['timesheet'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -46,6 +47,7 @@ Map<String, dynamic> _$$SurveyPageFormImplToJson(
         _$SurveyPageFormImpl instance) =>
     <String, dynamic>{
       'name': instance.name,
+      'id': instance.id,
       'timesheet': instance.timesheet,
       'title': instance.title,
       'description': instance.description,

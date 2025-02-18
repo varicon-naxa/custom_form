@@ -12,6 +12,7 @@ part 'survey_page_form.g.dart';
 class SurveyPageForm with _$SurveyPageForm {
   const factory SurveyPageForm({
     @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'id') String? id,
     String? timesheet,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'description') String? description,

@@ -22,6 +22,8 @@ SurveyPageForm _$SurveyPageFormFromJson(Map<String, dynamic> json) {
 mixin _$SurveyPageForm {
   @JsonKey(name: 'name')
   String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'id')
+  String? get id => throw _privateConstructorUsedError;
   String? get timesheet => throw _privateConstructorUsedError;
   @JsonKey(name: 'title')
   String? get title => throw _privateConstructorUsedError;
@@ -63,12 +65,8 @@ mixin _$SurveyPageForm {
   @InputFieldConverter()
   List<InputField> get inputFields => throw _privateConstructorUsedError;
 
-  /// Serializes this SurveyPageForm to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SurveyPageForm
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SurveyPageFormCopyWith<SurveyPageForm> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -81,6 +79,7 @@ abstract class $SurveyPageFormCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'id') String? id,
       String? timesheet,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
@@ -116,12 +115,11 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SurveyPageForm
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = freezed,
+    Object? id = freezed,
     Object? timesheet = freezed,
     Object? title = freezed,
     Object? description = freezed,
@@ -148,6 +146,10 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       timesheet: freezed == timesheet
           ? _value.timesheet
@@ -247,6 +249,7 @@ abstract class _$$SurveyPageFormImplCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'id') String? id,
       String? timesheet,
       @JsonKey(name: 'title') String? title,
       @JsonKey(name: 'description') String? description,
@@ -280,12 +283,11 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
       _$SurveyPageFormImpl _value, $Res Function(_$SurveyPageFormImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SurveyPageForm
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = freezed,
+    Object? id = freezed,
     Object? timesheet = freezed,
     Object? title = freezed,
     Object? description = freezed,
@@ -312,6 +314,10 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
               as String?,
       timesheet: freezed == timesheet
           ? _value.timesheet
@@ -406,6 +412,7 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
 class _$SurveyPageFormImpl implements _SurveyPageForm {
   const _$SurveyPageFormImpl(
       {@JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'id') this.id,
       this.timesheet,
       @JsonKey(name: 'title') this.title,
       @JsonKey(name: 'description') this.description,
@@ -440,6 +447,9 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
   @override
   @JsonKey(name: 'name')
   final String? name;
+  @override
+  @JsonKey(name: 'id')
+  final String? id;
   @override
   final String? timesheet;
   @override
@@ -533,7 +543,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
 
   @override
   String toString() {
-    return 'SurveyPageForm(name: $name, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, timesheetNumber: $timesheetNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, jobNumber: $jobNumber, setting: $setting, status: $status, inputFields: $inputFields)';
+    return 'SurveyPageForm(name: $name, id: $id, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, timesheetNumber: $timesheetNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, jobNumber: $jobNumber, setting: $setting, status: $status, inputFields: $inputFields)';
   }
 
   @override
@@ -542,6 +552,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
         (other.runtimeType == runtimeType &&
             other is _$SurveyPageFormImpl &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.timesheet, timesheet) ||
                 other.timesheet == timesheet) &&
             (identical(other.title, title) || other.title == title) &&
@@ -582,11 +593,12 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
                 .equals(other._inputFields, _inputFields));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
         name,
+        id,
         timesheet,
         title,
         description,
@@ -610,9 +622,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
         const DeepCollectionEquality().hash(_inputFields)
       ]);
 
-  /// Create a copy of SurveyPageForm
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SurveyPageFormImplCopyWith<_$SurveyPageFormImpl> get copyWith =>
@@ -630,6 +640,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
 abstract class _SurveyPageForm implements SurveyPageForm {
   const factory _SurveyPageForm(
       {@JsonKey(name: 'name') final String? name,
+      @JsonKey(name: 'id') final String? id,
       final String? timesheet,
       @JsonKey(name: 'title') final String? title,
       @JsonKey(name: 'description') final String? description,
@@ -660,6 +671,9 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @override
   @JsonKey(name: 'name')
   String? get name;
+  @override
+  @JsonKey(name: 'id')
+  String? get id;
   @override
   String? get timesheet;
   @override
@@ -721,11 +735,8 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @JsonKey(name: 'elements')
   @InputFieldConverter()
   List<InputField> get inputFields;
-
-  /// Create a copy of SurveyPageForm
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SurveyPageFormImplCopyWith<_$SurveyPageFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

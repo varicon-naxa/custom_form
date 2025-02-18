@@ -1508,13 +1508,8 @@ mixin _$InputField {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
-  /// Serializes this InputField to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $InputFieldCopyWith<InputField> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1545,8 +1540,6 @@ class _$InputFieldCopyWithImpl<$Res, $Val extends InputField>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1618,8 +1611,6 @@ class __$$FallbackInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$FallbackInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1739,14 +1730,12 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
                 other.requiredErrorText == requiredErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, label, answer, description,
       visible, isRequired, readOnly, requiredErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FallbackInputFieldImplCopyWith<_$FallbackInputFieldImpl> get copyWith =>
@@ -3245,11 +3234,8 @@ abstract class _FallbackInputField implements InputField {
   @override
   @JsonKey(name: 'requiredErrorText')
   String? get requiredErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FallbackInputFieldImplCopyWith<_$FallbackInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3288,8 +3274,6 @@ class __$$TextInputFieldImplCopyWithImpl<$Res>
       _$TextInputFieldImpl _value, $Res Function(_$TextInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3485,7 +3469,7 @@ class _$TextInputFieldImpl implements TextInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -3505,9 +3489,7 @@ class _$TextInputFieldImpl implements TextInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TextInputFieldImplCopyWith<_$TextInputFieldImpl> get copyWith =>
@@ -5069,11 +5051,8 @@ abstract class TextInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TextInputFieldImplCopyWith<_$TextInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5111,8 +5090,6 @@ class __$$SignatureInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$SignatureInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5307,7 +5284,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -5326,9 +5303,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SignatureInputFieldImplCopyWith<_$SignatureInputFieldImpl> get copyWith =>
@@ -6884,11 +6859,8 @@ abstract class SignatureInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SignatureInputFieldImplCopyWith<_$SignatureInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -6922,8 +6894,6 @@ class __$$MultiSignatureInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$MultiSignatureInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -7051,7 +7021,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             const DeepCollectionEquality().equals(other._answer, _answer));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -7064,9 +7034,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
       requiredErrorText,
       const DeepCollectionEquality().hash(_answer));
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MultiSignatureInputFieldImplCopyWith<_$MultiSignatureInputFieldImpl>
@@ -8565,11 +8533,8 @@ abstract class MultiSignatureInputField implements InputField {
   @override
   @JsonKey(name: 'answer')
   List<SingleSignature>? get answer;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MultiSignatureInputFieldImplCopyWith<_$MultiSignatureInputFieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -8607,8 +8572,6 @@ class __$$DateInputFieldImplCopyWithImpl<$Res>
       _$DateInputFieldImpl _value, $Res Function(_$DateInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -8794,7 +8757,7 @@ class _$DateInputFieldImpl implements DateInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -8813,9 +8776,7 @@ class _$DateInputFieldImpl implements DateInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DateInputFieldImplCopyWith<_$DateInputFieldImpl> get copyWith =>
@@ -10371,11 +10332,8 @@ abstract class DateInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DateInputFieldImplCopyWith<_$DateInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -10416,8 +10374,6 @@ class __$$InstructionInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$InstructionInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -10634,7 +10590,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -10655,9 +10611,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$InstructionInputFieldImplCopyWith<_$InstructionInputFieldImpl>
@@ -12225,11 +12179,8 @@ abstract class InstructionInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$InstructionInputFieldImplCopyWith<_$InstructionInputFieldImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -12268,8 +12219,6 @@ class __$$SectionInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$SectionInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -12466,7 +12415,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -12486,9 +12435,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SectionInputFieldImplCopyWith<_$SectionInputFieldImpl> get copyWith =>
@@ -14050,11 +13997,8 @@ abstract class SectionInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SectionInputFieldImplCopyWith<_$SectionInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -14092,8 +14036,6 @@ class __$$TimeInputFieldImplCopyWithImpl<$Res>
       _$TimeInputFieldImpl _value, $Res Function(_$TimeInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -14279,7 +14221,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -14298,9 +14240,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TimeInputFieldImplCopyWith<_$TimeInputFieldImpl> get copyWith =>
@@ -15856,11 +15796,8 @@ abstract class TimeInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TimeInputFieldImplCopyWith<_$TimeInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -15898,8 +15835,6 @@ class __$$UrlInputFieldImplCopyWithImpl<$Res>
       _$UrlInputFieldImpl _value, $Res Function(_$UrlInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -16085,7 +16020,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -16104,9 +16039,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$UrlInputFieldImplCopyWith<_$UrlInputFieldImpl> get copyWith =>
@@ -17661,11 +17594,8 @@ abstract class UrlInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$UrlInputFieldImplCopyWith<_$UrlInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -17703,8 +17633,6 @@ class __$$NumberInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$NumberInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -17890,7 +17818,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -17909,9 +17837,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$NumberInputFieldImplCopyWith<_$NumberInputFieldImpl> get copyWith =>
@@ -19467,11 +19393,8 @@ abstract class NumberInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$NumberInputFieldImplCopyWith<_$NumberInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -19509,8 +19432,6 @@ class __$$PhoneInputFieldImplCopyWithImpl<$Res>
       _$PhoneInputFieldImpl _value, $Res Function(_$PhoneInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -19696,7 +19617,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -19715,9 +19636,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$PhoneInputFieldImplCopyWith<_$PhoneInputFieldImpl> get copyWith =>
@@ -21273,11 +21192,8 @@ abstract class PhoneInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$PhoneInputFieldImplCopyWith<_$PhoneInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -21315,8 +21231,6 @@ class __$$EmailInputFieldImplCopyWithImpl<$Res>
       _$EmailInputFieldImpl _value, $Res Function(_$EmailInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -21502,7 +21416,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -21521,9 +21435,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$EmailInputFieldImplCopyWith<_$EmailInputFieldImpl> get copyWith =>
@@ -23079,11 +22991,8 @@ abstract class EmailInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$EmailInputFieldImplCopyWith<_$EmailInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -23121,8 +23030,6 @@ class __$$DateTimeInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$DateTimeInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -23308,7 +23215,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
                 other.maxErrorText == maxErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -23327,9 +23234,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
       const DeepCollectionEquality().hash(max),
       maxErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DateTimeInputFieldImplCopyWith<_$DateTimeInputFieldImpl> get copyWith =>
@@ -24885,11 +24790,8 @@ abstract class DateTimeInputField implements InputField {
   dynamic get max;
   @JsonKey(name: 'maxErrorText')
   String? get maxErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DateTimeInputFieldImplCopyWith<_$DateTimeInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -24923,8 +24825,6 @@ class __$$CommentInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$CommentInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -25067,14 +24967,12 @@ class _$CommentInputFieldImpl implements CommentInputField {
                 other.maxLength == maxLength));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, label, answer, description,
       visible, isRequired, readOnly, requiredErrorText, hintText, maxLength);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CommentInputFieldImplCopyWith<_$CommentInputFieldImpl> get copyWith =>
@@ -26579,11 +26477,8 @@ abstract class CommentInputField implements InputField {
   String? get hintText;
   @JsonKey(name: 'maxLength')
   int? get maxLength;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CommentInputFieldImplCopyWith<_$CommentInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -26629,8 +26524,6 @@ class __$$DropdownInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$DropdownInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -26916,7 +26809,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
                 other.otherPlaceholder == otherPlaceholder));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -26944,9 +26837,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
         otherPlaceholder
       ]);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$DropdownInputFieldImplCopyWith<_$DropdownInputFieldImpl> get copyWith =>
@@ -28553,11 +28444,8 @@ abstract class DropdownInputField implements InputField {
   String? get otherErrorText;
   @JsonKey(name: 'otherPlaceholder')
   String? get otherPlaceholder;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$DropdownInputFieldImplCopyWith<_$DropdownInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -28603,8 +28491,6 @@ class __$$MultipleInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$MultipleInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -28892,7 +28778,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
                 other.showSelectAllItem == showSelectAllItem));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -28920,9 +28806,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
         showSelectAllItem
       ]);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MultipleInputFieldImplCopyWith<_$MultipleInputFieldImpl> get copyWith =>
@@ -30529,11 +30413,8 @@ abstract class MultipleInputField implements InputField {
   String? get otherPlaceholder; // Select All
   @JsonKey(name: 'showSelectAllItem')
   bool get showSelectAllItem;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MultipleInputFieldImplCopyWith<_$MultipleInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -30579,8 +30460,6 @@ class __$$CheckboxInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$CheckboxInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -30868,7 +30747,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
                 other.showSelectAllItem == showSelectAllItem));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -30896,9 +30775,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
         showSelectAllItem
       ]);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$CheckboxInputFieldImplCopyWith<_$CheckboxInputFieldImpl> get copyWith =>
@@ -32505,11 +32382,8 @@ abstract class CheckboxInputField implements InputField {
   String? get otherPlaceholder; // Select All
   @JsonKey(name: 'showSelectAllItem')
   bool get showSelectAllItem;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$CheckboxInputFieldImplCopyWith<_$CheckboxInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -32553,8 +32427,6 @@ class __$$RadioInputFieldImplCopyWithImpl<$Res>
       _$RadioInputFieldImpl _value, $Res Function(_$RadioInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -32820,7 +32692,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
                 other.showClearButton == showClearButton));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -32846,9 +32718,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
         showClearButton
       ]);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$RadioInputFieldImplCopyWith<_$RadioInputFieldImpl> get copyWith =>
@@ -34444,11 +34314,8 @@ abstract class RadioInputField implements InputField {
   String? get otherPlaceholder; // Show clear
   @JsonKey(name: 'showClearButton')
   bool get showClearButton;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$RadioInputFieldImplCopyWith<_$RadioInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -34490,8 +34357,6 @@ class __$$YesNoInputFieldImplCopyWithImpl<$Res>
       _$YesNoInputFieldImpl _value, $Res Function(_$YesNoInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -34735,7 +34600,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
                 other.showClearButton == showClearButton));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -34758,9 +34623,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
       otherPlaceholder,
       showClearButton);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$YesNoInputFieldImplCopyWith<_$YesNoInputFieldImpl> get copyWith =>
@@ -36343,11 +36206,8 @@ abstract class YesNoInputField implements InputField {
   String? get otherPlaceholder; // Show clear
   @JsonKey(name: 'showClearButton')
   bool get showClearButton;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$YesNoInputFieldImplCopyWith<_$YesNoInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -36389,8 +36249,6 @@ class __$$YesNoNaInputFieldImplCopyWithImpl<$Res>
       $Res Function(_$YesNoNaInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -36634,7 +36492,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
                 other.showClearButton == showClearButton));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -36657,9 +36515,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
       otherPlaceholder,
       showClearButton);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$YesNoNaInputFieldImplCopyWith<_$YesNoNaInputFieldImpl> get copyWith =>
@@ -38242,11 +38098,8 @@ abstract class YesNoNaInputField implements InputField {
   String? get otherPlaceholder; // Show clear
   @JsonKey(name: 'showClearButton')
   bool get showClearButton;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$YesNoNaInputFieldImplCopyWith<_$YesNoNaInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -38279,8 +38132,6 @@ class __$$FileInputFieldImplCopyWithImpl<$Res>
       _$FileInputFieldImpl _value, $Res Function(_$FileInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -38420,7 +38271,7 @@ class _$FileInputFieldImpl implements FileInputField {
                 other.requiredErrorText == requiredErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -38434,9 +38285,7 @@ class _$FileInputFieldImpl implements FileInputField {
       readOnly,
       requiredErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$FileInputFieldImplCopyWith<_$FileInputFieldImpl> get copyWith =>
@@ -39938,11 +39787,8 @@ abstract class FileInputField implements InputField {
   @override
   @JsonKey(name: 'requiredErrorText')
   String? get requiredErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$FileInputFieldImplCopyWith<_$FileInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -39975,8 +39821,6 @@ class __$$ImageInputFieldImplCopyWithImpl<$Res>
       _$ImageInputFieldImpl _value, $Res Function(_$ImageInputFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -40116,7 +39960,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
                 other.requiredErrorText == requiredErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -40130,9 +39974,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
       readOnly,
       requiredErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ImageInputFieldImplCopyWith<_$ImageInputFieldImpl> get copyWith =>
@@ -41634,11 +41476,8 @@ abstract class ImageInputField implements InputField {
   @override
   @JsonKey(name: 'requiredErrorText')
   String? get requiredErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ImageInputFieldImplCopyWith<_$ImageInputFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -41670,8 +41509,6 @@ class __$$GeolocationFieldImplCopyWithImpl<$Res>
       $Res Function(_$GeolocationFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -41800,7 +41637,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
                 other.requiredErrorText == requiredErrorText));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -41813,9 +41650,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
       readOnly,
       requiredErrorText);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$GeolocationFieldImplCopyWith<_$GeolocationFieldImpl> get copyWith =>
@@ -43314,11 +43149,8 @@ abstract class GeolocationField implements InputField {
   @override
   @JsonKey(name: 'requiredErrorText')
   String? get requiredErrorText;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$GeolocationFieldImplCopyWith<_$GeolocationFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -43352,8 +43184,6 @@ class __$$MapFieldImplCopyWithImpl<$Res>
       _$MapFieldImpl _value, $Res Function(_$MapFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -43494,14 +43324,12 @@ class _$MapFieldImpl implements MapField {
                 other.description == description));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, label, name, isRequired,
       addressLine, answer, readOnly, requiredErrorText, visible, description);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$MapFieldImplCopyWith<_$MapFieldImpl> get copyWith =>
@@ -45005,11 +44833,8 @@ abstract class MapField implements InputField {
   @override
   @JsonKey(name: 'description')
   String? get description;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$MapFieldImplCopyWith<_$MapFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45048,8 +44873,6 @@ class __$$TableFieldImplCopyWithImpl<$Res>
       _$TableFieldImpl _value, $Res Function(_$TableFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -45239,7 +45062,7 @@ class _$TableFieldImpl implements TableField {
                 .equals(other._inputFields, _inputFields));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -45257,9 +45080,7 @@ class _$TableFieldImpl implements TableField {
       isRow,
       const DeepCollectionEquality().hash(_inputFields));
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$TableFieldImplCopyWith<_$TableFieldImpl> get copyWith =>
@@ -46809,11 +46630,8 @@ abstract class TableField implements InputField {
   @JsonKey(name: 'contents')
   @InputFieldConverter()
   List<List<InputField>>? get inputFields;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$TableFieldImplCopyWith<_$TableFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46852,8 +46670,6 @@ class __$$AdvTableFieldImplCopyWithImpl<$Res>
       _$AdvTableFieldImpl _value, $Res Function(_$AdvTableFieldImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -47043,7 +46859,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
                 .equals(other._inputFields, _inputFields));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -47061,9 +46877,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
       isRow,
       const DeepCollectionEquality().hash(_inputFields));
 
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$AdvTableFieldImplCopyWith<_$AdvTableFieldImpl> get copyWith =>
@@ -48613,11 +48427,8 @@ abstract class AdvTableField implements InputField {
   @JsonKey(name: 'contents')
   @InputFieldConverter()
   List<List<InputField>>? get inputFields;
-
-  /// Create a copy of InputField
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$AdvTableFieldImplCopyWith<_$AdvTableFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

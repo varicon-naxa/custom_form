@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -157,8 +156,6 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
     bool isSame = ref
         .read(currentStateNotifierProvider.notifier)
         .checkInitialFinalAnswerIdentical();
-    log('Is Same: $isSame');
-
     widget.onBackPressed(isSame);
   }
 
@@ -268,10 +265,27 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                                 curve: Curves.bounceIn);
                           }
                           return;
+                        } else {
+                          Map<String, dynamic> finalAnswer = {};
+                          Map<String, dynamic> formAnswer = {};
+                          final formValue = ref
+                              .read(currentStateNotifierProvider.notifier)
+                              .getFinalAnswer(
+                                widget.surveyForm.inputFields,
+                              );
+                          formAnswer.addAll(formValue);
+                          formAnswer.addAll({
+                            "title": widget.surveyForm.title,
+                            "description": widget.surveyForm.description,
+                            "setting": widget.surveyForm.setting,
+                          });
+                          finalAnswer.addAll({
+                            "form_answer": formAnswer,
+                            "user_form_status": "Submitted",
+                            "form": widget.surveyForm.id,
+                          });
+                          widget.onSubmit(finalAnswer);
                         }
-                        final formValue =
-                            ref.read(currentStateNotifierProvider);
-                        log(jsonEncode(formValue));
                       } catch (e) {
                         log('Error: $e');
                       }

@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_signature_pad.dart';
@@ -47,15 +48,19 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   @override
   Widget build(BuildContext context) {
     Future modifyAnswer(Uint8List data) async {
+      Map<String, dynamic> answer = {};
+      answer.addAll({'date': DateTime.now()});
+
       File singleFile = await Utils.getConvertToFile(data);
 
       List<Map<String, dynamic>> attachments = await widget.attachmentSave(
         [singleFile.path],
       );
+      answer.addAll(attachments.first);
 
       ref
           .read(currentStateNotifierProvider.notifier)
-          .saveMap(widget.field.id, attachments.first);
+          .saveMap(widget.field.id, answer);
     }
 
     deleteAnswer() {
@@ -69,11 +74,19 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
       width: double.infinity,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       initialWidget: (widget.field.answer ?? {}).isNotEmpty
-          ? widget.imageBuild({
-              'image': widget.field.answer?['file'],
-              'height': 200.0,
-              'width': double.infinity
-            })
+          ? Column(
+              children: [
+                widget.imageBuild({
+                  'image': widget.field.answer?['file'],
+                  'height': 200.0,
+                  'width': double.infinity
+                }),
+                if (widget.field.answer?['date'] != null)
+                  Text(
+                    'Signed On: ${DateFormat('dd MMM yyyy').format(widget.field.answer?['date'])}',
+                  ),
+              ],
+            )
           : null,
       name: 'signature',
       onSavedClicked: (data) {
