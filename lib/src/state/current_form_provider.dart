@@ -32,7 +32,8 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     finalAnswer.addAll(initialValue);
     final selectedListLabel = ref.read(linklabelProvider);
 
-    for (var field in finalAnswer) {
+    for (int i = 0; i < finalAnswer.length; i++) {
+      var field = finalAnswer[i];
       if (field is TableField || field is AdvTableField) {
       } else if (field is TextInputField) {
         if (state.containsKey(field.id)) {
@@ -78,42 +79,45 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
         if (state.containsKey(field.id)) {
           field = field.copyWith(answer: state[field.id]);
           if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answer: selectedListLabel[field.id]);
+            field = field.copyWith(answerList: selectedListLabel[field.id]);
           }
         }
       } else if (field is MultipleInputField) {
         if (state.containsKey(field.id)) {
           field = field.copyWith(answer: state[field.id]);
           if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answer: selectedListLabel[field.id]);
+            field = field.copyWith(answerList: selectedListLabel[field.id]);
           }
         }
       } else if (field is CheckboxInputField) {
         if (state.containsKey(field.id)) {
           field = field.copyWith(answer: state[field.id]);
           if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answer: selectedListLabel[field.id]);
+            field = field.copyWith(answerList: selectedListLabel[field.id]);
           }
         }
       } else if (field is RadioInputField) {
         if (state.containsKey(field.id)) {
           field = field.copyWith(answer: state[field.id]);
           if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answer: selectedListLabel[field.id]);
+            field = field.copyWith(
+                selectedLinkListLabel: selectedListLabel[field.id]);
           }
         }
       } else if (field is YesNoInputField) {
         if (state.containsKey(field.id)) {
           field = field.copyWith(answer: state[field.id]);
           if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answer: selectedListLabel[field.id]);
+            field = field.copyWith(
+                selectedLinkListLabel: selectedListLabel[field.id]);
           }
         }
       } else if (field is YesNoNaInputField) {
         if (state.containsKey(field.id)) {
           field = field.copyWith(answer: state[field.id]);
           if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answer: selectedListLabel[field.id]);
+            field = field.copyWith(
+                selectedLinkListLabel: selectedListLabel[field.id]);
           }
         }
       } else if (field is FileInputField) {
@@ -129,6 +133,9 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
           field = field.copyWith(answer: state[field.id]);
         }
       } else {}
+
+      finalAnswer[i] =
+          field; // Update the finalAnswer list with the modified field
     }
 
     finalAnswerData.addAll({

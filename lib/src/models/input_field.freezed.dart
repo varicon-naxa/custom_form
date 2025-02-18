@@ -418,6 +418,8 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -441,6 +443,8 @@ mixin _$InputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -860,6 +864,8 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -883,6 +889,8 @@ mixin _$InputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -1302,6 +1310,8 @@ mixin _$InputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -1325,6 +1335,8 @@ mixin _$InputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -2071,6 +2083,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -2094,6 +2108,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -2517,6 +2533,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -2540,6 +2558,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -2963,6 +2983,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -2986,6 +3008,8 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -3825,6 +3849,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -3848,6 +3874,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -4285,6 +4313,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -4308,6 +4338,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -4745,6 +4777,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -4768,6 +4802,8 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -5639,6 +5675,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -5662,6 +5700,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -6098,6 +6138,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -6121,6 +6163,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -6557,6 +6601,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -6580,6 +6626,8 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -7370,6 +7418,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -7393,6 +7443,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -7816,6 +7868,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -7839,6 +7893,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -8262,6 +8318,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -8285,6 +8343,8 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -9112,6 +9172,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -9135,6 +9197,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -9571,6 +9635,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -9594,6 +9660,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -10030,6 +10098,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -10053,6 +10123,8 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -10947,6 +11019,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -10970,6 +11044,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -11408,6 +11484,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -11431,6 +11509,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -11869,6 +11949,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -11892,6 +11974,8 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -12771,6 +12855,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -12794,6 +12880,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -13231,6 +13319,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -13254,6 +13344,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -13691,6 +13783,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -13714,6 +13808,8 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -14576,6 +14672,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -14599,6 +14697,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -15035,6 +15135,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -15058,6 +15160,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -15494,6 +15598,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -15517,6 +15623,8 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -16374,6 +16482,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -16397,6 +16507,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -16833,6 +16945,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -16856,6 +16970,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -17292,6 +17408,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -17315,6 +17433,8 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -18173,6 +18293,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -18196,6 +18318,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -18632,6 +18756,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -18655,6 +18781,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -19091,6 +19219,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -19114,6 +19244,8 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -19972,6 +20104,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -19995,6 +20129,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -20431,6 +20567,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -20454,6 +20592,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -20890,6 +21030,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -20913,6 +21055,8 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -21771,6 +21915,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -21794,6 +21940,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -22230,6 +22378,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -22253,6 +22403,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -22689,6 +22841,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -22712,6 +22866,8 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -23570,6 +23726,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -23593,6 +23751,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -24029,6 +24189,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -24052,6 +24214,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -24488,6 +24652,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -24511,6 +24677,8 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -25308,6 +25476,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -25331,6 +25501,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -25754,6 +25926,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -25777,6 +25951,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -26200,6 +26376,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -26223,6 +26401,8 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -27173,6 +27353,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -27196,6 +27378,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -27640,6 +27824,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -27663,6 +27849,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -28107,6 +28295,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -28130,6 +28320,8 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -29142,6 +29334,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -29165,6 +29359,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -29609,6 +29805,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -29632,6 +29830,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -30076,6 +30276,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -30099,6 +30301,8 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -31111,6 +31315,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -31134,6 +31340,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -31578,6 +31786,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -31601,6 +31811,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -32045,6 +32257,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -32068,6 +32282,8 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -33054,6 +33270,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -33077,6 +33295,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -33519,6 +33739,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -33542,6 +33764,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -33984,6 +34208,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -34007,6 +34233,8 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -34338,6 +34566,7 @@ abstract class _$$YesNoInputFieldImplCopyWith<$Res>
       @JsonKey(name: 'readOnly') bool readOnly,
       @JsonKey(name: 'isConditional') bool isConditional,
       @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+      @JsonKey(name: 'selectedLinkListLabel') String? selectedLinkListLabel,
       @JsonKey(name: 'actionMessage') String? actionMessage,
       @JsonKey(name: 'choice') @ValueTextConverter() List<ValueText> choices,
       @JsonKey(name: 'showNoneItem') bool showNoneItem,
@@ -34369,6 +34598,7 @@ class __$$YesNoInputFieldImplCopyWithImpl<$Res>
     Object? readOnly = null,
     Object? isConditional = null,
     Object? requiredErrorText = freezed,
+    Object? selectedLinkListLabel = freezed,
     Object? actionMessage = freezed,
     Object? choices = null,
     Object? showNoneItem = null,
@@ -34415,6 +34645,10 @@ class __$$YesNoInputFieldImplCopyWithImpl<$Res>
       requiredErrorText: freezed == requiredErrorText
           ? _value.requiredErrorText
           : requiredErrorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      selectedLinkListLabel: freezed == selectedLinkListLabel
+          ? _value.selectedLinkListLabel
+          : selectedLinkListLabel // ignore: cast_nullable_to_non_nullable
               as String?,
       actionMessage: freezed == actionMessage
           ? _value.actionMessage
@@ -34469,6 +34703,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
       @JsonKey(name: 'readOnly') this.readOnly = false,
       @JsonKey(name: 'isConditional') this.isConditional = false,
       @JsonKey(name: 'requiredErrorText') this.requiredErrorText,
+      @JsonKey(name: 'selectedLinkListLabel') this.selectedLinkListLabel,
       @JsonKey(name: 'actionMessage') this.actionMessage,
       @JsonKey(name: 'choice')
       @ValueTextConverter()
@@ -34515,6 +34750,9 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
   @JsonKey(name: 'requiredErrorText')
   final String? requiredErrorText;
   @override
+  @JsonKey(name: 'selectedLinkListLabel')
+  final String? selectedLinkListLabel;
+  @override
   @JsonKey(name: 'actionMessage')
   final String? actionMessage;
 // Fields.
@@ -34559,7 +34797,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
 
   @override
   String toString() {
-    return 'InputField.yesno(id: $id, label: $label, answer: $answer, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, isConditional: $isConditional, requiredErrorText: $requiredErrorText, actionMessage: $actionMessage, choices: $choices, showNoneItem: $showNoneItem, noneText: $noneText, showOtherItem: $showOtherItem, otherText: $otherText, otherErrorText: $otherErrorText, otherPlaceholder: $otherPlaceholder, showClearButton: $showClearButton)';
+    return 'InputField.yesno(id: $id, label: $label, answer: $answer, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, isConditional: $isConditional, requiredErrorText: $requiredErrorText, selectedLinkListLabel: $selectedLinkListLabel, actionMessage: $actionMessage, choices: $choices, showNoneItem: $showNoneItem, noneText: $noneText, showOtherItem: $showOtherItem, otherText: $otherText, otherErrorText: $otherErrorText, otherPlaceholder: $otherPlaceholder, showClearButton: $showClearButton)';
   }
 
   @override
@@ -34581,6 +34819,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
                 other.isConditional == isConditional) &&
             (identical(other.requiredErrorText, requiredErrorText) ||
                 other.requiredErrorText == requiredErrorText) &&
+            (identical(other.selectedLinkListLabel, selectedLinkListLabel) ||
+                other.selectedLinkListLabel == selectedLinkListLabel) &&
             (identical(other.actionMessage, actionMessage) ||
                 other.actionMessage == actionMessage) &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
@@ -34602,26 +34842,28 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      label,
-      answer,
-      description,
-      visible,
-      isRequired,
-      readOnly,
-      isConditional,
-      requiredErrorText,
-      actionMessage,
-      const DeepCollectionEquality().hash(_choices),
-      showNoneItem,
-      noneText,
-      showOtherItem,
-      otherText,
-      otherErrorText,
-      otherPlaceholder,
-      showClearButton);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        label,
+        answer,
+        description,
+        visible,
+        isRequired,
+        readOnly,
+        isConditional,
+        requiredErrorText,
+        selectedLinkListLabel,
+        actionMessage,
+        const DeepCollectionEquality().hash(_choices),
+        showNoneItem,
+        noneText,
+        showOtherItem,
+        otherText,
+        otherErrorText,
+        otherPlaceholder,
+        showClearButton
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -34959,6 +35201,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -34982,6 +35226,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -35082,6 +35328,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
         readOnly,
         isConditional,
         requiredErrorText,
+        selectedLinkListLabel,
         actionMessage,
         choices,
         showNoneItem,
@@ -35422,6 +35669,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -35445,6 +35694,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -35545,6 +35796,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
         readOnly,
         isConditional,
         requiredErrorText,
+        selectedLinkListLabel,
         actionMessage,
         choices,
         showNoneItem,
@@ -35885,6 +36137,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -35908,6 +36162,8 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -36010,6 +36266,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
           readOnly,
           isConditional,
           requiredErrorText,
+          selectedLinkListLabel,
           actionMessage,
           choices,
           showNoneItem,
@@ -36145,6 +36402,8 @@ abstract class YesNoInputField implements InputField {
           @JsonKey(name: 'readOnly') final bool readOnly,
           @JsonKey(name: 'isConditional') final bool isConditional,
           @JsonKey(name: 'requiredErrorText') final String? requiredErrorText,
+          @JsonKey(name: 'selectedLinkListLabel')
+          final String? selectedLinkListLabel,
           @JsonKey(name: 'actionMessage') final String? actionMessage,
           @JsonKey(name: 'choice')
           @ValueTextConverter()
@@ -36187,6 +36446,8 @@ abstract class YesNoInputField implements InputField {
   @override
   @JsonKey(name: 'requiredErrorText')
   String? get requiredErrorText;
+  @JsonKey(name: 'selectedLinkListLabel')
+  String? get selectedLinkListLabel;
   @JsonKey(name: 'actionMessage')
   String? get actionMessage; // Fields.
   @JsonKey(name: 'choice')
@@ -36231,6 +36492,7 @@ abstract class _$$YesNoNaInputFieldImplCopyWith<$Res>
       @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
       @JsonKey(name: 'actionMessage') String? actionMessage,
       @JsonKey(name: 'isConditional') bool isConditional,
+      @JsonKey(name: 'selectedLinkListLabel') String? selectedLinkListLabel,
       @JsonKey(name: 'choice') @ValueTextConverter() List<ValueText> choices,
       @JsonKey(name: 'showNoneItem') bool showNoneItem,
       @JsonKey(name: 'noneText') String? noneText,
@@ -36262,6 +36524,7 @@ class __$$YesNoNaInputFieldImplCopyWithImpl<$Res>
     Object? requiredErrorText = freezed,
     Object? actionMessage = freezed,
     Object? isConditional = null,
+    Object? selectedLinkListLabel = freezed,
     Object? choices = null,
     Object? showNoneItem = null,
     Object? noneText = freezed,
@@ -36312,6 +36575,10 @@ class __$$YesNoNaInputFieldImplCopyWithImpl<$Res>
           ? _value.isConditional
           : isConditional // ignore: cast_nullable_to_non_nullable
               as bool,
+      selectedLinkListLabel: freezed == selectedLinkListLabel
+          ? _value.selectedLinkListLabel
+          : selectedLinkListLabel // ignore: cast_nullable_to_non_nullable
+              as String?,
       choices: null == choices
           ? _value._choices
           : choices // ignore: cast_nullable_to_non_nullable
@@ -36362,6 +36629,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
       @JsonKey(name: 'requiredErrorText') this.requiredErrorText,
       @JsonKey(name: 'actionMessage') this.actionMessage,
       @JsonKey(name: 'isConditional') this.isConditional = false,
+      @JsonKey(name: 'selectedLinkListLabel') this.selectedLinkListLabel,
       @JsonKey(name: 'choice')
       @ValueTextConverter()
       final List<ValueText> choices = const [],
@@ -36409,6 +36677,9 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
   @override
   @JsonKey(name: 'isConditional')
   final bool isConditional;
+  @override
+  @JsonKey(name: 'selectedLinkListLabel')
+  final String? selectedLinkListLabel;
 // Fields.
   final List<ValueText> _choices;
 // Fields.
@@ -36451,7 +36722,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
 
   @override
   String toString() {
-    return 'InputField.yesnona(id: $id, label: $label, answer: $answer, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, actionMessage: $actionMessage, isConditional: $isConditional, choices: $choices, showNoneItem: $showNoneItem, noneText: $noneText, showOtherItem: $showOtherItem, otherText: $otherText, otherErrorText: $otherErrorText, otherPlaceholder: $otherPlaceholder, showClearButton: $showClearButton)';
+    return 'InputField.yesnona(id: $id, label: $label, answer: $answer, description: $description, visible: $visible, isRequired: $isRequired, readOnly: $readOnly, requiredErrorText: $requiredErrorText, actionMessage: $actionMessage, isConditional: $isConditional, selectedLinkListLabel: $selectedLinkListLabel, choices: $choices, showNoneItem: $showNoneItem, noneText: $noneText, showOtherItem: $showOtherItem, otherText: $otherText, otherErrorText: $otherErrorText, otherPlaceholder: $otherPlaceholder, showClearButton: $showClearButton)';
   }
 
   @override
@@ -36475,6 +36746,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
                 other.actionMessage == actionMessage) &&
             (identical(other.isConditional, isConditional) ||
                 other.isConditional == isConditional) &&
+            (identical(other.selectedLinkListLabel, selectedLinkListLabel) ||
+                other.selectedLinkListLabel == selectedLinkListLabel) &&
             const DeepCollectionEquality().equals(other._choices, _choices) &&
             (identical(other.showNoneItem, showNoneItem) ||
                 other.showNoneItem == showNoneItem) &&
@@ -36494,26 +36767,28 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      label,
-      answer,
-      description,
-      visible,
-      isRequired,
-      readOnly,
-      requiredErrorText,
-      actionMessage,
-      isConditional,
-      const DeepCollectionEquality().hash(_choices),
-      showNoneItem,
-      noneText,
-      showOtherItem,
-      otherText,
-      otherErrorText,
-      otherPlaceholder,
-      showClearButton);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        label,
+        answer,
+        description,
+        visible,
+        isRequired,
+        readOnly,
+        requiredErrorText,
+        actionMessage,
+        isConditional,
+        selectedLinkListLabel,
+        const DeepCollectionEquality().hash(_choices),
+        showNoneItem,
+        noneText,
+        showOtherItem,
+        otherText,
+        otherErrorText,
+        otherPlaceholder,
+        showClearButton
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -36851,6 +37126,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -36874,6 +37151,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -36975,6 +37254,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
         requiredErrorText,
         actionMessage,
         isConditional,
+        selectedLinkListLabel,
         choices,
         showNoneItem,
         noneText,
@@ -37314,6 +37594,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -37337,6 +37619,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -37438,6 +37722,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
         requiredErrorText,
         actionMessage,
         isConditional,
+        selectedLinkListLabel,
         choices,
         showNoneItem,
         noneText,
@@ -37777,6 +38062,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -37800,6 +38087,8 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -37903,6 +38192,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
           requiredErrorText,
           actionMessage,
           isConditional,
+          selectedLinkListLabel,
           choices,
           showNoneItem,
           noneText,
@@ -38038,6 +38328,8 @@ abstract class YesNoNaInputField implements InputField {
           @JsonKey(name: 'requiredErrorText') final String? requiredErrorText,
           @JsonKey(name: 'actionMessage') final String? actionMessage,
           @JsonKey(name: 'isConditional') final bool isConditional,
+          @JsonKey(name: 'selectedLinkListLabel')
+          final String? selectedLinkListLabel,
           @JsonKey(name: 'choice')
           @ValueTextConverter()
           final List<ValueText> choices,
@@ -38080,7 +38372,9 @@ abstract class YesNoNaInputField implements InputField {
   @JsonKey(name: 'actionMessage')
   String? get actionMessage;
   @JsonKey(name: 'isConditional')
-  bool get isConditional; // Fields.
+  bool get isConditional;
+  @JsonKey(name: 'selectedLinkListLabel')
+  String? get selectedLinkListLabel; // Fields.
   @JsonKey(name: 'choice')
   @ValueTextConverter()
   List<ValueText> get choices; // None
@@ -38621,6 +38915,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -38644,6 +38940,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -39067,6 +39365,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -39090,6 +39390,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -39513,6 +39815,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -39536,6 +39840,8 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -40310,6 +40616,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -40333,6 +40641,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -40756,6 +41066,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -40779,6 +41091,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -41202,6 +41516,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -41225,6 +41541,8 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -41986,6 +42304,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -42009,6 +42329,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -42432,6 +42754,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -42455,6 +42779,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -42878,6 +43204,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -42901,6 +43229,8 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -43664,6 +43994,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -43687,6 +44019,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -44110,6 +44444,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -44133,6 +44469,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -44556,6 +44894,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -44579,6 +44919,8 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -45415,6 +45757,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -45438,6 +45782,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -45873,6 +46219,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -45896,6 +46244,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -46331,6 +46681,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -46354,6 +46706,8 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -47212,6 +47566,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -47235,6 +47591,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -47670,6 +48028,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -47693,6 +48053,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,
@@ -48128,6 +48490,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'readOnly') bool readOnly,
             @JsonKey(name: 'isConditional') bool isConditional,
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
@@ -48151,6 +48515,8 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
             @JsonKey(name: 'actionMessage') String? actionMessage,
             @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
             @JsonKey(name: 'choice')
             @ValueTextConverter()
             List<ValueText> choices,

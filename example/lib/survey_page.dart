@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:math' as Rand;
 import 'package:flutter/material.dart';
@@ -63,7 +64,9 @@ class _SurveyPageState extends State<SurveyPage> {
       autoSave: (formValue) {},
       onBackPressed: onBackPressed,
       separatorBuilder: () => const SizedBox(height: 10),
-      onSubmit: (formValue) {},
+      onSubmit: (formValue) {
+        log(jsonEncode(formValue));
+      },
       onSave: (formValue) {
         Map<String, dynamic> data = widget.formData;
         List<Map<String, dynamic>> elements =

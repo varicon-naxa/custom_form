@@ -789,6 +789,7 @@ _$YesNoInputFieldImpl _$$YesNoInputFieldImplFromJson(
       readOnly: json['readOnly'] as bool? ?? false,
       isConditional: json['isConditional'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
+      selectedLinkListLabel: json['selectedLinkListLabel'] as String?,
       actionMessage: json['actionMessage'] as String?,
       choices: (json['choice'] as List<dynamic>?)
               ?.map(const ValueTextConverter().fromJson)
@@ -816,6 +817,7 @@ Map<String, dynamic> _$$YesNoInputFieldImplToJson(
       'readOnly': instance.readOnly,
       'isConditional': instance.isConditional,
       'requiredErrorText': instance.requiredErrorText,
+      'selectedLinkListLabel': instance.selectedLinkListLabel,
       'actionMessage': instance.actionMessage,
       'choice':
           instance.choices.map(const ValueTextConverter().toJson).toList(),
@@ -842,6 +844,7 @@ _$YesNoNaInputFieldImpl _$$YesNoNaInputFieldImplFromJson(
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
       isConditional: json['isConditional'] as bool? ?? false,
+      selectedLinkListLabel: json['selectedLinkListLabel'] as String?,
       choices: (json['choice'] as List<dynamic>?)
               ?.map(const ValueTextConverter().fromJson)
               .toList() ??
@@ -869,6 +872,7 @@ Map<String, dynamic> _$$YesNoNaInputFieldImplToJson(
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
       'isConditional': instance.isConditional,
+      'selectedLinkListLabel': instance.selectedLinkListLabel,
       'choice':
           instance.choices.map(const ValueTextConverter().toJson).toList(),
       'showNoneItem': instance.showNoneItem,
