@@ -139,11 +139,6 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       finalAnswer[i] =
           field; // Update the finalAnswer list with the modified field
     }
-
-    finalAnswerData.addAll({
-      'elements': finalAnswer,
-    });
-
     return finalAnswerData;
   }
 
