@@ -39,6 +39,7 @@
 .pub-cache/
 .pub/
 /build/
+/example/
 
 # Web related
 lib/generated_plugin_registrant.dart
@@ -62,6 +63,9 @@ app.*.map.json
 
 # iOS/XCode related
 **/ios/**/*.mode1v3
+**/ios/build/
+**/ios/Pods/
+**/ios/.symlinks/
 **/ios/**/*.mode2v3
 **/ios/**/*.moved-aside
 **/ios/**/*.pbxuser
