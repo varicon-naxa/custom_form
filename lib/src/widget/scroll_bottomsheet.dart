@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 scrollBottomSheet(BuildContext context,
     {required Widget child,
     bool hasBack = true,
+    double? height,
     String closeText = 'Back',
     bool hasSpace = true}) {
   return showModalBottomSheet(
@@ -19,7 +20,7 @@ scrollBottomSheet(BuildContext context,
     builder: (context) => Container(
       color: Colors.white,
       width: double.infinity,
-      height: MediaQuery.of(context).size.height - 100,
+      height: height ?? MediaQuery.of(context).size.height - 100,
       child: child,
     ),
     shape: const RoundedRectangleBorder(

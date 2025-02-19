@@ -95,7 +95,9 @@ class _VariconMultiSignatureFieldState
     final key = GlobalKey<FormBuilderFieldState>();
 
     scrollBottomSheet(context,
+        height: 550,
         child: Scaffold(
+          resizeToAvoidBottomInset: true,
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
@@ -158,34 +160,36 @@ class _VariconMultiSignatureFieldState
               ),
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: FormBuilderMultiSignaturePad(
-              key: key,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              name: 'signature_${const Uuid().v4()}',
-              onChanged: (value) {},
-              validator: (data) {
-                if (widget.field.isRequired) {
-                  if (data == null) {
-                    return 'This field is required';
-                  } else if (data.image == null && data.name == null) {
-                    return 'This field is required';
-                  } else {
-                    if (data.image == null && (data.name ?? '').isNotEmpty) {
-                      return 'Signature is required';
-                    } else if ((data.name == null ||
-                            (data.name ?? '').isEmpty) &&
-                        (data.image != null)) {
-                      return 'Signatory Name is required';
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: FormBuilderMultiSignaturePad(
+                key: key,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                name: 'signature_${const Uuid().v4()}',
+                onChanged: (value) {},
+                validator: (data) {
+                  if (widget.field.isRequired) {
+                    if (data == null) {
+                      return 'This field is required';
+                    } else if (data.image == null && data.name == null) {
+                      return 'This field is required';
                     } else {
-                      return null;
+                      if (data.image == null && (data.name ?? '').isNotEmpty) {
+                        return 'Signature is required';
+                      } else if ((data.name == null ||
+                              (data.name ?? '').isEmpty) &&
+                          (data.image != null)) {
+                        return 'Signatory Name is required';
+                      } else {
+                        return null;
+                      }
                     }
                   }
-                }
-                return null;
-              },
-              border: Border.all(color: Colors.green),
+                  return null;
+                },
+                border: Border.all(color: Colors.green),
+              ),
             ),
           ),
         ));

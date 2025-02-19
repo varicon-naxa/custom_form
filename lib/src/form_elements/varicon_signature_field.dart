@@ -59,7 +59,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         [singleFile.path],
       );
       answer.addAll(attachments.first);
-      answer.addAll({'date': DateTime.now()});
+      answer.addAll({'date': DateTime.now().toString()});
       controller.clear();
       ref
           .read(currentStateNotifierProvider.notifier)
@@ -73,6 +73,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
     void signatureDialog() {
       scrollBottomSheet(
         context,
+        height: 450,
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -138,33 +139,11 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
       );
     }
 
-    return (widget.field.answer ?? {}).isNotEmpty
-        ? Column(
-            children: [
-              widget.imageBuild({
-                'image': widget.field.answer?['file'],
-                'height': 200.0,
-                'width': double.infinity
-              }),
-              if (widget.field.answer?['date'] != null)
-                Text(
-                  'Signed On: ${DateFormat('dd MMM yyyy').format(widget.field.answer?['date'])}',
-                ),
-            ],
-          )
-        : GestureDetector(
-            onTap: () {
-              if (_signature.isEmpty) {
-                Future.microtask(
-                  () {
-                    controller = SignatureController();
-
-                    signatureDialog();
-                  },
-                );
-              }
-            },
-            child: _signature.isNotEmpty
+    return _signature.isNotEmpty
+        ? Dismissible(
+            key: Key(widget.field.answer?['id'] ?? ''),
+            onDismissed: (direction) {},
+            child: _signature['id'] == null
                 ? Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -186,90 +165,148 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                               'Signed On: ${DateFormat('dd MMM yyyy').format(_signature['date'])}',
                             ),
                             IconButton(
-                                onPressed: () {
-                                  _signature = {};
-                                  deleteAnswer();
-                                  setState(() {});
-                                },
-                                icon: const Icon(
-                                  Icons.delete,
-                                  color: Colors.red,
-                                ))
+                              onPressed: () {
+                                _signature = {};
+                                deleteAnswer();
+                                setState(() {});
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            )
                           ],
                         ),
                       ],
                     ),
                   )
-                : FormBuilderSignaturePad(
-                    hasAction: false,
-                    controller: controller,
-                    decoration: const InputDecoration(
-                        labelText: 'Signature Pad',
-                        border: null,
-                        errorBorder: null,
-                        enabledBorder: null,
-                        focusedBorder: null,
-                        disabledBorder: null,
-                        focusedErrorBorder: null),
+                : Container(
                     width: double.infinity,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    initialWidget: Container(
-                      padding: const EdgeInsets.all(16.0),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.grey,
-                        ),
-                        borderRadius: BorderRadius.circular(
-                          8.0,
-                        ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.grey,
                       ),
-                      height: 200,
-                      width: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: 50,
-                            width: 50,
-                            child: Image.asset(
-                              'assets/image/signature.png',
-                              package: 'varicon_form_builder',
-                            ),
-                          ),
-                          Text(
-                            'Click here to add signature',
-                            style: Theme.of(context).textTheme.bodyMedium,
-                          ),
-                        ],
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        widget.imageBuild({
+                          'image': widget.field.answer?['file'],
+                          'height': 175.0,
+                          'width': double.infinity
+                        }),
+                        Row(
+                          mainAxisAlignment:
+                              (widget.field.answer?['date'] == null)
+                                  ? MainAxisAlignment.end
+                                  : MainAxisAlignment.start,
+                          children: [
+                            if (widget.field.answer?['date'] != null)
+                              Expanded(
+                                child: Text(
+                                  'Signed On: ${DateFormat('dd MMM yyyy').format(DateTime.parse(widget.field.answer?['date']))}',
+                                ),
+                              ),
+                            IconButton(
+                              onPressed: () {
+                                _signature = {};
+                                deleteAnswer();
+                                setState(() {});
+                              },
+                              icon: const Icon(
+                                Icons.delete,
+                                color: Colors.red,
+                              ),
+                            )
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+          )
+        : GestureDetector(
+            onTap: () {
+              if (_signature.isEmpty) {
+                Future.microtask(
+                  () {
+                    controller = SignatureController();
+
+                    signatureDialog();
+                  },
+                );
+              }
+            },
+            child: FormBuilderSignaturePad(
+              hasAction: false,
+              controller: controller,
+              decoration: const InputDecoration(
+                  labelText: 'Signature Pad',
+                  border: null,
+                  errorBorder: null,
+                  enabledBorder: null,
+                  focusedBorder: null,
+                  disabledBorder: null,
+                  focusedErrorBorder: null),
+              width: double.infinity,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              initialWidget: Container(
+                padding: const EdgeInsets.all(16.0),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(
+                    8.0,
+                  ),
+                ),
+                height: 200,
+                width: double.infinity,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset(
+                        'assets/image/signature.png',
+                        package: 'varicon_form_builder',
                       ),
                     ),
-                    name: 'signature',
-                    onSavedClicked: (data) {},
-                    onDeletedPressed: () {},
-                    onChanged: (value) {},
-                    validator: (data) {
-                      if (widget.field.isRequired) {
-                        if ((widget.field.answer ?? {}).isEmpty) {
-                          String? answer;
-                          if (_signature.isEmpty && data == null) {
-                            answer = 'This field is required';
-                          } else if (_signature.isEmpty && data != null) {
-                            answer = 'Please Save the Signature';
-                          } else if (_signature.isNotEmpty && data == null) {
-                            answer = null;
-                          } else if (_signature.isNotEmpty && data != null) {
-                            answer = null;
-                          }
-                          return answer;
-                        }
-                        // if (data == null || _signature.isEmpty) {
-                        //   return 'This field is required';
-                        // }
-                      }
-                      return null;
-                    },
-                  ),
+                    Text(
+                      'Click here to add signature',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
+              ),
+              name: 'signature',
+              onSavedClicked: (data) {},
+              onDeletedPressed: () {},
+              onChanged: (value) {},
+              validator: (data) {
+                if (widget.field.isRequired) {
+                  if ((widget.field.answer ?? {}).isEmpty) {
+                    String? answer;
+                    if (_signature.isEmpty && data == null) {
+                      answer = 'This field is required';
+                    } else if (_signature.isEmpty && data != null) {
+                      answer = 'Please Save the Signature';
+                    } else if (_signature.isNotEmpty && data == null) {
+                      answer = null;
+                    } else if (_signature.isNotEmpty && data != null) {
+                      answer = null;
+                    }
+                    return answer;
+                  }
+                  // if (data == null || _signature.isEmpty) {
+                  //   return 'This field is required';
+                  // }
+                }
+                return null;
+              },
+            ),
           );
   }
 }
