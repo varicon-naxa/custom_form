@@ -9,7 +9,10 @@ environment:
 
 dependencies:
   async: ^2.11.0
+  cached_network_image: ^3.4.1
   collection: ^1.19.0
+  dotted_line: ^3.2.3
+  expandable: ^5.0.1
   file_picker: ^8.3.5
   flutter:
     sdk: flutter
