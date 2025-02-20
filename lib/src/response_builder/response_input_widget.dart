@@ -825,6 +825,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
 ///Widget that represents forms answer design
 ///
 ///soley for singular form items like text, titles, single image,files
+// ignore: must_be_immutable
 class _AnswerDesign extends StatelessWidget {
   _AnswerDesign({
     required this.answer,
