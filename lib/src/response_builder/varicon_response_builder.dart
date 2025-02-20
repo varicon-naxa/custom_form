@@ -7,8 +7,8 @@ import '../ext/color_extension.dart';
 import 'response_input_widget.dart';
 
 ///Main container for the form builder
-class VariconFormBuilder extends StatelessWidget {
-  const VariconFormBuilder({
+class VariconResponseBuilder extends StatelessWidget {
+  const VariconResponseBuilder({
     super.key,
     required this.surveyForm,
     required this.imageBuild,
