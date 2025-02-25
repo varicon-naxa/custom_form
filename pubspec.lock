@@ -362,10 +362,10 @@ packages:
     dependency: "direct main"
     description:
       name: flutter_form_builder
-      sha256: "60237a24a4da373218eb77b0ef1a3c64ca17ff6c42250e149987755735cbd67c"
+      sha256: "375da52998c72f80dec9187bd93afa7ab202b89d5d066699368ff96d39fd4876"
       url: "https://pub.dev"
     source: hosted
-    version: "10.0.0"
+    version: "9.7.0"
   flutter_image_compress:
     dependency: "direct main"
     description:
@@ -1572,4 +1572,4 @@ packages:
     version: "3.1.3"
 sdks:
   dart: ">=3.7.0 <4.0.0"
-  flutter: ">=3.29.0"
+  flutter: ">=3.27.0"
