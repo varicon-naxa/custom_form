@@ -12,12 +12,10 @@ class VariconFilePickerField extends StatefulHookConsumerWidget {
     required this.field,
     required this.labelText,
     required this.attachmentSave,
-    this.isNested = false,
   });
 
   final FileInputField field;
   final String labelText;
-  final bool isNested;
 
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)

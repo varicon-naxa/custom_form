@@ -16,12 +16,10 @@ class VariconDropdownField extends StatefulHookConsumerWidget {
       {super.key,
       required this.field,
       required this.labelText,
-      this.isNested = false,
       this.apiCall});
 
   final DropdownInputField field;
   final String labelText;
-  final bool isNested;
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
 
   @override

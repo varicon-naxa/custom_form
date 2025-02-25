@@ -11,12 +11,10 @@ class VariconPhoneField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
   });
 
   final PhoneInputField field;
   final String labelText;
-  final bool isNested;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     PhoneNumber? phoneNumber;

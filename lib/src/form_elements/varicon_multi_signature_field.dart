@@ -18,14 +18,12 @@ class VariconMultiSignatureField extends StatefulHookConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
     required this.imageBuild,
     required this.attachmentSave,
   });
 
   final MultiSignatureInputField field;
   final String labelText;
-  final bool isNested;
 
   ///Image build function for signature view
   final Widget Function(Map<String, dynamic>) imageBuild;

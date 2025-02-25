@@ -11,13 +11,11 @@ class VariconYesNoRadioField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
   });
 
   final YesNoInputField field;
   final String labelText;
 
-  final bool isNested;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomFromBuilderRadioGroup(
@@ -55,13 +53,11 @@ class VariconYesNoNaRadioField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
   });
 
   final YesNoNaInputField field;
   final String labelText;
 
-  final bool isNested;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomFromBuilderRadioGroup(

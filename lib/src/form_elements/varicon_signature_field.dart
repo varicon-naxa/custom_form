@@ -16,14 +16,12 @@ class VariconSignatureField extends StatefulHookConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
     required this.imageBuild,
     required this.attachmentSave,
   });
 
   final SignatureInputField field;
   final String labelText;
-  final bool isNested;
 
   ///Function to build image values
   final Widget Function(Map<String, dynamic>) imageBuild;

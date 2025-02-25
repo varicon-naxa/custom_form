@@ -8,14 +8,12 @@ class VariconInstructionField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
     required this.onTap,
     required this.imageBuild,
   });
 
   final InstructionInputField field;
   final String labelText;
-  final bool isNested;
 
   ///Function to build image
   final Widget Function(Map<String, dynamic>) imageBuild;

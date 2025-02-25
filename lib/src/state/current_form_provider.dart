@@ -138,68 +138,72 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       finalAnswer[i] =
           field; // Update the finalAnswer list with the modified field
     }
-    return finalAnswer.map((e)=> e.toJson()).toList();
+    return finalAnswer.map((e) => e.toJson()).toList();
   }
 
   void saveinitialAnswer(List<InputField> inputFields) {
-    // Clear the current state
-    state = {};
-    initialAnswer = {};
+    try {
+      // Clear the current state
+      state = {};
+      initialAnswer = {};
 
-    // Iterate over each input field
-    for (var field in inputFields) {
-      // Check if the field is required
+      // Iterate over each input field
+      for (var field in inputFields) {
+        // Check if the field is required
 
-      // Check if the field is a TableField or AdvTableField
-      if (field is TableField || field is AdvTableField) {
-        List<List<InputField>> tableList = [];
-        if (field is TableField) {
-          tableList.addAll(field.inputFields ?? []);
-        } else if (field is AdvTableField) {
-          tableList.addAll(field.inputFields ?? []);
-        }
-        // Iterate over each row in the table
-        for (var row in tableList) {
-          // Iterate over each field in the row
-          for (var subField in row) {
-            if (subField.answer != null) {
-              if (subField.answer is Map<String, dynamic>) {
-                if (subField.answer.isNotEmpty) {
-                  state.addAll({subField.id: subField.answer});
-                  initialAnswer.addAll({subField.id: subField.answer});
-                }
-              } else if (subField.answer is List) {
-                if (subField.answer.isNotEmpty) {
-                  state.addAll({subField.id: subField.answer});
-                  initialAnswer.addAll({subField.id: subField.answer});
-                }
-              } else if (subField.answer is String) {
-                if (subField.answer != '') {
-                  state.addAll({subField.id: subField.answer});
-                  initialAnswer.addAll({subField.id: subField.answer});
+        // Check if the field is a TableField or AdvTableField
+        if (field is TableField || field is AdvTableField) {
+          List<List<InputField>> tableList = [];
+          if (field is TableField) {
+            tableList.addAll(field.inputFields ?? []);
+          } else if (field is AdvTableField) {
+            tableList.addAll(field.inputFields ?? []);
+          }
+          // Iterate over each row in the table
+          for (var row in tableList) {
+            // Iterate over each field in the row
+            for (var subField in row) {
+              if (subField.answer != null) {
+                if (subField.answer is Map<String, dynamic>) {
+                  if (subField.answer.isNotEmpty) {
+                    state.addAll({subField.id: subField.answer});
+                    initialAnswer.addAll({subField.id: subField.answer});
+                  }
+                } else if (subField.answer is List) {
+                  if (subField.answer.isNotEmpty) {
+                    state.addAll({subField.id: subField.answer});
+                    initialAnswer.addAll({subField.id: subField.answer});
+                  }
+                } else if (subField.answer is String) {
+                  if (subField.answer != '') {
+                    state.addAll({subField.id: subField.answer});
+                    initialAnswer.addAll({subField.id: subField.answer});
+                  }
                 }
               }
             }
           }
-        }
-      } else {
-        if (field.answer is Map<String, dynamic>) {
-          if (field.answer.isNotEmpty) {
-            state.addAll({field.id: field.answer});
-            initialAnswer.addAll({field.id: field.answer});
-          }
-        } else if (field.answer is List) {
-          if (field.answer.isNotEmpty) {
-            state.addAll({field.id: field.answer});
-            initialAnswer.addAll({field.id: field.answer});
-          }
-        } else if (field.answer is String) {
-          if (field.answer != '') {
-            state.addAll({field.id: field.answer});
-            initialAnswer.addAll({field.id: field.answer});
+        } else {
+          if (field.answer is Map<String, dynamic>) {
+            if (field.answer.isNotEmpty) {
+              state.addAll({field.id: field.answer});
+              initialAnswer.addAll({field.id: field.answer});
+            }
+          } else if (field.answer is List) {
+            if (field.answer.isNotEmpty) {
+              state.addAll({field.id: field.answer});
+              initialAnswer.addAll({field.id: field.answer});
+            }
+          } else if (field.answer is String) {
+            if (field.answer != '') {
+              state.addAll({field.id: field.answer});
+              initialAnswer.addAll({field.id: field.answer});
+            }
           }
         }
       }
+    } catch (e) {
+      log('Error: $e');
     }
   }
 

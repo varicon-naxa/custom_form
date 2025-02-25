@@ -1,8 +1,12 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 import 'current_form_provider.dart';
+import 'table_row_expanded_provider.dart';
+import 'table_row_provider.dart';
 
 final requiredNotifierProvider =
     StateNotifierProvider<RequiredIdNotifier, Map<String, dynamic>>((ref) {
@@ -25,7 +29,6 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
 
   void initialList(List<InputField> inputFields) {
     // Clear the current state
-    state = {};
 
     // Iterate over each input field
     for (var field in inputFields) {
@@ -38,6 +41,7 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
 
       // Check if the field is a TableField or AdvTableField
       if (field is TableField || field is AdvTableField) {
+        String id = field.id;
         List<List<InputField>> tableList = [];
         if (field is TableField) {
           tableList.addAll(field.inputFields ?? []);
@@ -45,16 +49,54 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
           tableList.addAll(field.inputFields ?? []);
         }
         // Iterate over each row in the table
-        for (var row in tableList) {
+        for (var rowEntry in tableList.asMap().entries) {
+          int rowIndex = rowEntry.key;
+
           // Iterate over each field in the row
-          for (var subField in row) {
+          for (var subField in rowEntry.value) {
             // Check if the subField is required
             if (subField.isRequired) {
+              ref.read(tableRowKeyProvider.notifier).addNewId(
+                    '$id-$rowIndex',
+                    subField.id,
+                  );
               // Add the subField to the state
-              state.addAll({field.id: GlobalObjectKey(field.id)});
+              state.addAll({subField.id: GlobalObjectKey(subField.id)});
+
+              log('Required id in table' + subField.id);
             }
           }
         }
+      }
+    }
+  }
+
+  void addRequiredForEachTableRow(List<InputField> inputFields) {
+    String id = ref.read(tableRowKeyProvider.notifier).getLastId();
+    // Iterate over each input field
+    for (var field in inputFields) {
+      // Check if the field is required
+      if (field.isRequired) {
+        ref.read(tableRowKeyProvider.notifier).addNewId(
+              id,
+              field.id,
+            );
+        // Add the field to the state
+        // state = [...state, field.id];
+        state.addAll({field.id: GlobalObjectKey(field.id)});
+      }
+    }
+  }
+
+  void deleteRow(List<InputField> inputFields) {
+    Map<String, dynamic> answer = state;
+    // Iterate over each input field
+    for (var field in inputFields) {
+      // Check if the field is required
+      if (field.isRequired) {
+        // Remove the field to the state
+        // state = [...state, field.id];
+        answer.remove(field.id);
       }
     }
   }
@@ -64,6 +106,16 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
     for (var key in state.keys) {
       if (!answer.containsKey(key)) {
         return state[key].currentContext;
+      }
+    }
+    return null;
+  }
+
+  String? getInitialRequiredContextId() {
+    Map<String, dynamic> answer = ref.read(currentStateNotifierProvider);
+    for (var key in state.keys) {
+      if (!answer.containsKey(key)) {
+        return key;
       }
     }
     return null;

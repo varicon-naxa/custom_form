@@ -14,12 +14,10 @@ class VariconCheckboxField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
   });
 
   final CheckboxInputField field;
   final String labelText;
-  final bool isNested;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Debouncer debouncer = Debouncer(milliseconds: 500);

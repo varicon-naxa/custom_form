@@ -14,12 +14,10 @@ class VariconAddressField extends StatefulHookConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
   });
 
   final TextInputField field;
   final String labelText;
-  final bool isNested;
 
   @override
   ConsumerState<VariconAddressField> createState() =>

@@ -14,14 +14,12 @@ class VariconImageField extends StatefulHookConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
     required this.attachmentSave,
     required this.imageBuild,
   });
 
   final ImageInputField field;
   final String labelText;
-  final bool isNested;
 
   final Widget Function(Map<String, dynamic>) imageBuild;
 

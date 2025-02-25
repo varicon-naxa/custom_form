@@ -1,35 +1,20 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_date_field.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_file_picker_field.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_image_field.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_radio_field.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_signature_field.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
-import 'package:varicon_form_builder/src/widget/label_widget.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_text_field.dart';
-import '../custom_element/date_time_form_field.dart';
-import '../form_elements/varicon_address_field.dart';
-import '../form_elements/varicon_checkbox_field.dart';
-import '../form_elements/varicon_dropdown_field.dart';
-import '../form_elements/varicon_email_field.dart';
-import '../form_elements/varicon_long_text.dart';
-import '../form_elements/varicon_multi_dropdown_field.dart';
-import '../form_elements/varicon_multi_signature_field.dart';
-import '../form_elements/varicon_number_field.dart';
-import '../form_elements/varicon_other_radio_field.dart';
-import '../form_elements/varicon_phone_field.dart';
-import '../form_elements/varicon_section_field.dart';
 import '../state/current_form_provider.dart';
 import '../state/link_label_provider.dart';
 import '../state/required_id_provider.dart';
+import '../state/table_row_expanded_provider.dart';
+import '../state/table_row_provider.dart';
 import '../widget/navigation_button.dart';
+import 'varicon_input_fields.dart';
 
 ///Main container for the form builder
 class VariconFormBuilder extends StatefulHookConsumerWidget {
@@ -100,7 +85,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
 
   ///Used to store image paths and file paths
   ///With height and width
-  final void Function(Map<String, dynamic>) autoSave;
+  final void Function(List<Map<String, dynamic>>) autoSave;
 
   ///API call function
   ///
@@ -137,6 +122,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
 
 class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   final _formKey = GlobalKey<FormBuilderState>();
+  Timer? _autoSaveTimer;
 
   @override
   void initState() {
@@ -149,10 +135,20 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
           .read(currentStateNotifierProvider.notifier)
           .saveinitialAnswer(widget.surveyForm.inputFields);
     });
+    if (widget.hasAutoSave) {
+      _autoSaveTimer = Timer.periodic(const Duration(seconds: 45), (timer) {
+        final formValue = ref
+            .read(currentStateNotifierProvider.notifier)
+            .getFinalAnswer(widget.surveyForm.inputFields);
+        widget.autoSave(formValue);
+      });
+    }
   }
 
   @override
   void dispose() {
+    _autoSaveTimer?.cancel();
+
     super.dispose();
   }
 
@@ -167,6 +163,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   Widget build(BuildContext context) {
     ref.watch(currentStateNotifierProvider);
     ref.watch(requiredNotifierProvider);
+    // ref.watch(currentTableRowProvider);
     ref.watch(linklabelProvider);
     return PopScope(
       canPop: false,
@@ -233,7 +230,12 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                           ],
                         ),
                         ...widget.surveyForm.inputFields.map<Widget?>((e) {
-                          return _buildInputField(e, context, isNested: true);
+                          return VariconInputFields(
+                            field: e,
+                            apiCall: widget.apiCall,
+                            imageBuild: widget.imageBuild,
+                            attachmentSave: widget.attachmentSave,
+                          );
                         }).whereType<Widget>(),
                       ],
                     ),
@@ -306,6 +308,83 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                                       .getInitialRequiredContext())!,
                                   duration: const Duration(milliseconds: 500),
                                   curve: Curves.bounceIn);
+                              // String? id = ref
+                              //     .read(requiredNotifierProvider.notifier)
+                              //     .getInitialRequiredContextId();
+                              // if (id != null) {
+                              //   final tablesDatat =
+                              //       ref.read(tableRowKeyProvider);
+
+                              //   /// Prvoide Rows ID
+                              //   final expandedData = ref.read(
+                              //       currentTableRowProvider); // Procide Rows expansion bool
+
+                              //   final indexIdData = ref
+                              //       .read(tableRowKeyProvider.notifier)
+                              //       .getIndex(id);
+                              //   log('Index in Rows ${indexIdData.$1} key ${indexIdData.$2}');
+
+                              //   ///id of the key of provided row
+                              //   if (indexIdData.$1 != -1) {
+                              //     if (expandedData[indexIdData.$2] != null) {
+                              //       if (expandedData[indexIdData.$2] == false) {
+                              //         ref
+                              //             .read(
+                              //                 currentTableRowProvider.notifier)
+                              //             .setCurrentExpandedson(
+                              //               indexIdData.$2,
+                              //             );
+
+                              //         Scrollable.ensureVisible(
+                              //             (ref
+                              //                 .read(requiredNotifierProvider
+                              //                     .notifier)
+                              //                 .getInitialRequiredContext())!,
+                              //             duration:
+                              //                 const Duration(milliseconds: 500),
+                              //             curve: Curves.bounceIn);
+                              //       } else {
+                              //         Scrollable.ensureVisible(
+                              //             (ref
+                              //                 .read(requiredNotifierProvider
+                              //                     .notifier)
+                              //                 .getInitialRequiredContext())!,
+                              //             duration:
+                              //                 const Duration(milliseconds: 500),
+                              //             curve: Curves.bounceIn);
+                              //       }
+                              //     } else {
+                              //       Scrollable.ensureVisible(
+                              //           (ref
+                              //               .read(requiredNotifierProvider
+                              //                   .notifier)
+                              //               .getInitialRequiredContext())!,
+                              //           duration:
+                              //               const Duration(milliseconds: 500),
+                              //           curve: Curves.bounceIn);
+                              //     }
+                              //   } else {
+                              //     Scrollable.ensureVisible(
+                              //         (ref
+                              //             .read(
+                              //                 requiredNotifierProvider.notifier)
+                              //             .getInitialRequiredContext())!,
+                              //         duration:
+                              //             const Duration(milliseconds: 500),
+                              //         curve: Curves.bounceIn);
+                              //   }
+
+                              //   log('Table Data' + jsonEncode(tablesDatat));
+                              //   log('Table Data EXPANDED' +
+                              //       jsonEncode(expandedData));
+                              // } else {
+                              //   Scrollable.ensureVisible(
+                              //       (ref
+                              //           .read(requiredNotifierProvider.notifier)
+                              //           .getInitialRequiredContext())!,
+                              //       duration: const Duration(milliseconds: 500),
+                              //       curve: Curves.bounceIn);
+                              // }
                             }
                             return;
                           } else {
@@ -329,215 +408,5 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
         ),
       ),
     );
-  }
-
-  Widget? _buildInputField(InputField field, BuildContext context,
-      {bool haslabel = true, bool isNested = false}) {
-    final labelText = haslabel ? '${field.label ?? ''} ' : '';
-    return field.maybeMap(text: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: (value.name ?? '').toLowerCase().contains('long')
-            ? VariconLongText(
-                field: value,
-                formCon: TextEditingController(),
-              )
-            : (value.name ?? '').toLowerCase().contains('address')
-                ? VariconAddressField(
-                    field: value,
-                    labelText: labelText,
-                    isNested: isNested,
-                  )
-                : VariconTextField(
-                    field: value,
-                    labelText: labelText,
-                    isNested: isNested,
-                  ),
-      );
-    }, number: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconNumberField(
-          field: value,
-          labelText: labelText,
-          isNested: isNested,
-        ),
-      );
-    }, email: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconEmailField(
-          field: value,
-          labelText: labelText,
-          isNested: isNested,
-        ),
-      );
-    }, phone: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconPhoneField(
-          field: value,
-          labelText: labelText,
-          isNested: isNested,
-        ),
-      );
-    }, date: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconDateField(
-          field: value,
-          dateTime: DatePickerType.date,
-          labelText: labelText,
-        ),
-      );
-    }, time: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconDateField(
-          field: value,
-          dateTime: DatePickerType.time,
-          labelText: labelText,
-        ),
-      );
-    }, datetimelocal: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconDateField(
-          dateTime: DatePickerType.dateTime,
-          field: value,
-          labelText: labelText,
-        ),
-      );
-    }, signature: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconSignatureField(
-          field: value,
-          labelText: labelText,
-          imageBuild: widget.imageBuild,
-          attachmentSave: widget.attachmentSave,
-        ),
-      );
-    }, multisignature: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconMultiSignatureField(
-          field: value,
-          labelText: labelText,
-          imageBuild: widget.imageBuild,
-          attachmentSave: widget.attachmentSave,
-        ),
-      );
-    }, files: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconFilePickerField(
-          field: value,
-          attachmentSave: widget.attachmentSave,
-          labelText: labelText,
-        ),
-      );
-    }, images: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconImageField(
-          field: value,
-          labelText: labelText,
-          imageBuild: widget.imageBuild,
-          attachmentSave: widget.attachmentSave,
-        ),
-      );
-    }, radiogroup: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconRadioField(
-          field: value,
-          labelText: labelText,
-        ),
-      );
-    }, yesno: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconYesNoRadioField(
-          field: value,
-          labelText: labelText,
-        ),
-      );
-    }, yesnona: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconYesNoNaRadioField(
-          field: value,
-          labelText: labelText,
-        ),
-      );
-    }, checkbox: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconCheckboxField(
-          field: value,
-          labelText: labelText,
-        ),
-      );
-    }, dropdown: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconDropdownField(
-          field: value,
-          labelText: labelText,
-          apiCall: widget.apiCall,
-        ),
-      );
-    }, multipleselect: (value) {
-      return LabelWidget(
-        key: GlobalObjectKey(value.id),
-        isRequired: value.isRequired,
-        labelText: labelText,
-        child: VariconMultiDropdownField(
-          field: value,
-          labelText: labelText,
-          apiCall: widget.apiCall,
-        ),
-      );
-    }, section: (value) {
-      return VariconSectionField(
-        field: value,
-        labelText: labelText,
-      );
-    }, orElse: () {
-      return const SizedBox.shrink();
-    });
   }
 }

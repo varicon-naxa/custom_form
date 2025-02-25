@@ -7,12 +7,10 @@ class VariconSectionField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    this.isNested = false,
   });
 
   final SectionInputField field;
   final String labelText;
-  final bool isNested;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Padding(
