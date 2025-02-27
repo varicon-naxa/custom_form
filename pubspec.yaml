@@ -17,6 +17,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_form_builder: ^9.7.0
+  flutter_riverpod: ^2.6.1
   flutter_widget_from_html_core: ^0.15.2
   fluttertoast: ^8.2.12
   form_builder_validators: ^11.1.1

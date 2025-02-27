@@ -6,13 +6,16 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
+import '../location/current_location_controller_provider.dart';
 import '../state/current_form_provider.dart';
 import '../state/custom_advance_table_row_provider.dart';
 import '../state/custom_simple_table_row_provider.dart';
 import '../state/link_label_provider.dart';
 import '../state/required_id_provider.dart';
+import '../widget/custom_location.dart';
 import '../widget/navigation_button.dart';
 import 'varicon_input_fields.dart';
 
@@ -161,6 +164,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
 
   @override
   Widget build(BuildContext context) {
+    final currentyCity = ref.watch(currentLocationControllerProvider);
     ref.watch(currentStateNotifierProvider);
     ref.watch(requiredNotifierProvider);
     ref.watch(customSimpleRowProvider);
@@ -230,6 +234,36 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                             ),
                           ],
                         ),
+                        const SizedBox(
+                          height: 16.0,
+                        ),
+                        if (widget.surveyForm.collectGeolocation == true)
+                          currentyCity.when(data: (data) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                // ignore: deprecated_member_use
+                                color: Colors.orange.withOpacity(0.1),
+                                border: Border.all(color: Colors.orange),
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: TextButton.icon(
+                                  onPressed: () {},
+                                  icon: const Icon(
+                                    Icons.info_outline,
+                                    color: Colors.orange,
+                                  ),
+                                  label: Text(
+                                    'Geolocation tracking is enabled in this form. This form will capture approximate location from where the form is being submitted.',
+                                    style:
+                                        Theme.of(context).textTheme.bodySmall,
+                                  )),
+                            );
+                          }, error: (e, _) {
+                            return Text(
+                                'Error in fetching location ::: ${e.toString()} ');
+                          }, loading: () {
+                            return const SizedBox.shrink();
+                          }),
                         ...widget.surveyForm.inputFields.map<Widget?>((e) {
                           return VariconInputFields(
                             field: e,
@@ -238,6 +272,19 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                             attachmentSave: widget.attachmentSave,
                           );
                         }).whereType<Widget>(),
+                        if (widget.surveyForm.collectGeolocation == true)
+                          currentyCity.when(data: (data) {
+                            return CustomLocation(
+                              postition: data,
+                            );
+                          }, error: (e, _) {
+                            return const SizedBox.shrink();
+                          }, loading: () {
+                            return const SizedBox.shrink();
+                          }),
+                        const SizedBox(
+                          height: 20,
+                        ),
                       ],
                     ),
                   ),

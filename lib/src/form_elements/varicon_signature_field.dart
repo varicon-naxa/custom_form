@@ -57,7 +57,6 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         [singleFile.path],
       );
       answer.addAll(attachments.first);
-      answer.addAll({'date': DateTime.now().toString()});
       controller.clear();
       ref
           .read(currentStateNotifierProvider.notifier)
@@ -203,7 +202,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                             if (widget.field.answer?['date'] != null)
                               Expanded(
                                 child: Text(
-                                  'Signed On: ${DateFormat('dd MMM yyyy').format(DateTime.parse(widget.field.answer?['date']))}',
+                                  'Signed On: ${DateFormat('dd MMM yyyy').format(DateTime.parse(widget.field.answer?['created_at']))}',
                                 ),
                               ),
                             IconButton(

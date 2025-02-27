@@ -3,7 +3,7 @@
     "description": "Dynamic form generator is a form of the things in the line",
     "name": "",
     "version": "1.0.0",
-    "hasLocation": true,
+    "collect_geolocation": true,
     "elements":[
         {
             "id": "item-3780bb2a-a78a-45a1-bc44-d97d97c8c529",

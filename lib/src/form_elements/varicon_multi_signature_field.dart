@@ -57,7 +57,7 @@ class _VariconMultiSignatureFieldState
           id: element.id,
           signatoryName: element.signatoryName,
           file: element.file,
-          date: element.date,
+          createdAt: element.createdAt,
         ),
       );
     }
@@ -89,6 +89,7 @@ class _VariconMultiSignatureFieldState
       signaturePads[index] = signaturePads[index].copyWith(
         file: attachments.first['file'],
         id: attachments.first['id'],
+        createdAt: attachments.first['created_at'],
       );
     }
     setState(() {});
@@ -144,7 +145,7 @@ class _VariconMultiSignatureFieldState
                             attachmentId: '${value.name}-${const Uuid().v4()}',
                             signatoryName: value.name,
                             uniImage: value.image,
-                            date: DateTime.now(),
+                            createdAt: DateTime.now(),
                           );
                           addSignature(singleSignature);
                           Navigator.pop(context);
@@ -214,8 +215,9 @@ class _VariconMultiSignatureFieldState
     return Column(
       children: [
         ...signaturePads.map((e) {
-          String dateFormat =
-              e.date == null ? '' : DateFormat('dd MMM yyyy').format(e.date!);
+          String dateFormat = e.createdAt == null
+              ? ''
+              : DateFormat('dd MMM yyyy').format(e.createdAt!);
           String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
           String signatoryNameDetail = 'Signed By ${e.signatoryName} $dateText';
           return Container(
