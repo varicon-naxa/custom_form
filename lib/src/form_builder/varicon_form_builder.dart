@@ -6,7 +6,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
 import '../location/current_location_controller_provider.dart';
@@ -326,6 +325,13 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                                   NavigationButton(
                                     buttonText: 'OKAY',
                                     onComplete: () async {
+                                      final formValue = ref
+                                          .read(currentStateNotifierProvider
+                                              .notifier)
+                                          .getFinalAnswer(
+                                              widget.surveyForm.inputFields);
+                                      widget.autoSave(formValue);
+                                      Navigator.of(context).pop();
                                       Navigator.of(context).pop();
                                     },
                                   )
