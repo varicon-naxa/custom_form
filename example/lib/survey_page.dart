@@ -128,7 +128,7 @@ class _SurveyPageState extends State<SurveyPage> {
         log('dpme');
         return [
           {
-            'id': Rand.Random().nextDouble() * 10000,
+            'id': '${Rand.Random().nextDouble() * 10000}',
             'file':
                 'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
             'thumbnail':

@@ -14,13 +14,7 @@
             "label": "Simple Table",
             "headers": [
                 "Employee Name",
-                "Date of Birth",
-                "Contact No.",
-                "Address",
-                "Employer",
-                "Employer Contact No.",
-                "Emergency Contact",
-                "Emergency Contact No."
+                "Address"
             ],
             "maxRows": "0",
             "contents": [
@@ -43,80 +37,12 @@
                         "selectedLinkListLabel": ""
                     },
                     {
-                        "id": "item-cedf2b23-270c-49a2-9f33-eddd7dfa1504",
-                        "name": "Date",
-                        "type": "date",
-                        "label": "Date of Birth",
-                        "width": 162,
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": "",
-                        "initialAnswer": ""
-                    },
-                    {
-                        "id": "item-02975a62-15ca-4dfc-8415-c316308a40e2",
-                        "name": "Phone Number",
-                        "type": "phone",
-                        "label": "Contact No.",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": "",
-                        "initialAnswer": ""
-                    },
-                    {
                         "id": "item-defc54aa-1a23-4b89-866d-e2ac3256eac0",
                         "name": "Address",
                         "type": "text",
                         "label": "Address",
                         "answer": "",
                         "isRequired": true,
-                        "instruction": "",
-                        "initialAnswer": ""
-                    },
-                    {
-                        "id": "item-e7165d51-a8e9-4206-8ebc-cdd6b793b4c7",
-                        "name": "Single Select Dropdown",
-                        "type": "dropdown",
-                        "label": "Employer",
-                        "width": 189,
-                        "answer": "",
-                        "choice": [],
-                        "isRequired": false,
-                        "instruction": "",
-                        "actionMessage": "",
-                        "initialAnswer": "",
-                        "isConditional": false,
-                        "fromManualList": false,
-                        "islinked_query": "client",
-                        "selectedLinkListLabel": ""
-                    },
-                    {
-                        "id": "item-15419c08-63c7-4f88-96ee-d363355d88b2",
-                        "name": "Phone Number",
-                        "type": "phone",
-                        "label": "Employer Contact No.",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": "",
-                        "initialAnswer": ""
-                    },
-                    {
-                        "id": "item-2c191490-74f7-4c69-b16f-0bf1525b0b96",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Emergency Contact",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": "",
-                        "initialAnswer": ""
-                    },
-                    {
-                        "id": "item-06392ad8-1892-494b-b13b-945fc79de4ba",
-                        "name": "Phone Number",
-                        "type": "phone",
-                        "label": "Emergency Contact No.",
-                        "answer": "",
-                        "isRequired": false,
                         "instruction": "",
                         "initialAnswer": ""
                     }

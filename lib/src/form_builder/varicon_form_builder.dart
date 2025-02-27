@@ -1,18 +1,18 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
 import 'dart:async';
-import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
 import '../state/current_form_provider.dart';
+import '../state/custom_advance_table_row_provider.dart';
+import '../state/custom_simple_table_row_provider.dart';
 import '../state/link_label_provider.dart';
 import '../state/required_id_provider.dart';
-import '../state/table_row_expanded_provider.dart';
-import '../state/table_row_provider.dart';
 import '../widget/navigation_button.dart';
 import 'varicon_input_fields.dart';
 
@@ -163,7 +163,8 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   Widget build(BuildContext context) {
     ref.watch(currentStateNotifierProvider);
     ref.watch(requiredNotifierProvider);
-    // ref.watch(currentTableRowProvider);
+    ref.watch(customSimpleRowProvider);
+    ref.watch(customAdvanceRowProvider);
     ref.watch(linklabelProvider);
     return PopScope(
       canPop: false,
@@ -302,89 +303,53 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                                     .read(requiredNotifierProvider.notifier)
                                     .getInitialRequiredContext() !=
                                 null) {
-                              Scrollable.ensureVisible(
-                                  (ref
+                              if (ref
                                       .read(requiredNotifierProvider.notifier)
-                                      .getInitialRequiredContext())!,
-                                  duration: const Duration(milliseconds: 500),
-                                  curve: Curves.bounceIn);
-                              // String? id = ref
-                              //     .read(requiredNotifierProvider.notifier)
-                              //     .getInitialRequiredContextId();
-                              // if (id != null) {
-                              //   final tablesDatat =
-                              //       ref.read(tableRowKeyProvider);
-
-                              //   /// Prvoide Rows ID
-                              //   final expandedData = ref.read(
-                              //       currentTableRowProvider); // Procide Rows expansion bool
-
-                              //   final indexIdData = ref
-                              //       .read(tableRowKeyProvider.notifier)
-                              //       .getIndex(id);
-                              //   log('Index in Rows ${indexIdData.$1} key ${indexIdData.$2}');
-
-                              //   ///id of the key of provided row
-                              //   if (indexIdData.$1 != -1) {
-                              //     if (expandedData[indexIdData.$2] != null) {
-                              //       if (expandedData[indexIdData.$2] == false) {
-                              //         ref
-                              //             .read(
-                              //                 currentTableRowProvider.notifier)
-                              //             .setCurrentExpandedson(
-                              //               indexIdData.$2,
-                              //             );
-
-                              //         Scrollable.ensureVisible(
-                              //             (ref
-                              //                 .read(requiredNotifierProvider
-                              //                     .notifier)
-                              //                 .getInitialRequiredContext())!,
-                              //             duration:
-                              //                 const Duration(milliseconds: 500),
-                              //             curve: Curves.bounceIn);
-                              //       } else {
-                              //         Scrollable.ensureVisible(
-                              //             (ref
-                              //                 .read(requiredNotifierProvider
-                              //                     .notifier)
-                              //                 .getInitialRequiredContext())!,
-                              //             duration:
-                              //                 const Duration(milliseconds: 500),
-                              //             curve: Curves.bounceIn);
-                              //       }
-                              //     } else {
-                              //       Scrollable.ensureVisible(
-                              //           (ref
-                              //               .read(requiredNotifierProvider
-                              //                   .notifier)
-                              //               .getInitialRequiredContext())!,
-                              //           duration:
-                              //               const Duration(milliseconds: 500),
-                              //           curve: Curves.bounceIn);
-                              //     }
-                              //   } else {
-                              //     Scrollable.ensureVisible(
-                              //         (ref
-                              //             .read(
-                              //                 requiredNotifierProvider.notifier)
-                              //             .getInitialRequiredContext())!,
-                              //         duration:
-                              //             const Duration(milliseconds: 500),
-                              //         curve: Curves.bounceIn);
-                              //   }
-
-                              //   log('Table Data' + jsonEncode(tablesDatat));
-                              //   log('Table Data EXPANDED' +
-                              //       jsonEncode(expandedData));
-                              // } else {
-                              //   Scrollable.ensureVisible(
-                              //       (ref
-                              //           .read(requiredNotifierProvider.notifier)
-                              //           .getInitialRequiredContext())!,
-                              //       duration: const Duration(milliseconds: 500),
-                              //       curve: Curves.bounceIn);
-                              // }
+                                      .getInitialRequiredContextId() !=
+                                  null) {
+                                String id = (ref
+                                    .read(requiredNotifierProvider.notifier)
+                                    .getInitialRequiredContextId())!;
+                                final data = ref
+                                    .read(customSimpleRowProvider.notifier)
+                                    .findTableAndRowId(id);
+                                String? tableId = data.$1;
+                                String? rowId = data.$2;
+                                bool isExpanded = data.$3;
+                                if (tableId != null &&
+                                    rowId != null &&
+                                    isExpanded == false) {
+                                  ref
+                                      .read(customSimpleRowProvider.notifier)
+                                      .changeExpansion(tableId, rowId, true);
+                                } else {
+                                  final data = ref
+                                      .read(customAdvanceRowProvider.notifier)
+                                      .findTableAndRowId(id);
+                                  String? tableId = data.$1;
+                                  String? rowId = data.$2;
+                                  bool isExpanded = data.$3;
+                                  if (tableId != null &&
+                                      rowId != null &&
+                                      isExpanded == false) {
+                                    ref
+                                        .read(customAdvanceRowProvider.notifier)
+                                        .changeExpansion(tableId, rowId, true);
+                                  }
+                                }
+                              }
+                              Fluttertoast.showToast(
+                                msg:
+                                    'There are some required fields that are not filled',
+                              );
+                              await Future.delayed(const Duration(seconds: 1));
+                              Scrollable.ensureVisible(
+                                (ref
+                                    .read(requiredNotifierProvider.notifier)
+                                    .getInitialRequiredContext())!,
+                                duration: const Duration(milliseconds: 500),
+                                curve: Curves.linear,
+                              );
                             }
                             return;
                           } else {

@@ -49,24 +49,29 @@ class _VariconMultiSignatureFieldState
     }
   }
 
-  void modifyanswer() {
+  void modifyAnswerinList() {
+    List<SingleSignature> answer = [];
+    for (var element in signaturePads) {
+      answer.add(
+        SingleSignature(
+          id: element.id,
+          signatoryName: element.signatoryName,
+          file: element.file,
+          date: element.date,
+        ),
+      );
+    }
     ref.read(currentStateNotifierProvider.notifier).saveList(
           widget.field.id,
-          signaturePads.map((e) {
-            return {
-              'id': e.id,
-              'signatoryName': e.signatoryName,
-              'file': e.file,
-              'date': e.date,
-            };
-          }).toList(),
+          answer,
         );
   }
 
-  void addSignature(SingleSignature signature) {
+  Future<void> addSignature(SingleSignature signature) async {
     signaturePads.add(signature);
     setState(() {});
-    modifyAnswer(signature);
+    await modifyAnswer(signature);
+    modifyAnswerinList();
   }
 
   Future<void> modifyAnswer(SingleSignature file) async {
@@ -123,8 +128,7 @@ class _VariconMultiSignatureFieldState
                       borderColor: Colors.black,
                       verticalPadding: 8.0,
                       onPressed: () {
-                        if (key.currentState?.value != null) {
-                        } else {}
+                        Navigator.pop(context);
                       },
                     ),
                   ),
@@ -135,16 +139,14 @@ class _VariconMultiSignatureFieldState
                       onPressed: () {
                         if (_validateCurrentSignaturePad(key)) {
                           MultiSignature value = key.currentState!.value;
-                          signaturePads.add(
-                            SingleSignature(
-                              attachmentId:
-                                  '${value.name}-${const Uuid().v4()}',
-                              signatoryName: value.name,
-                              uniImage: value.image,
-                              date: DateTime.now(),
-                            ),
+
+                          SingleSignature singleSignature = SingleSignature(
+                            attachmentId: '${value.name}-${const Uuid().v4()}',
+                            signatoryName: value.name,
+                            uniImage: value.image,
+                            date: DateTime.now(),
                           );
-                          setState(() {});
+                          addSignature(singleSignature);
                           Navigator.pop(context);
                         } else {
                           Fluttertoast.showToast(

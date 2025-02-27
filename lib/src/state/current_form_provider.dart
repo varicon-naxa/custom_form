@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:collection/collection.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:varicon_form_builder/src/state/custom_simple_table_row_provider.dart';
 
 import '../../varicon_form_builder.dart';
 import 'link_label_provider.dart';
@@ -26,114 +27,145 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     return deepEq(state, initialAnswer);
   }
 
+  InputField singlefieldAnswer(
+      InputField currentField, Map<String, dynamic> selectedListLabel) {
+    InputField field = currentField;
+    if (field is TextInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is SignatureInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is MultiSignatureInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is DateInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is TimeInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is UrlInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is NumberInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is PhoneInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is EmailInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is DateTimeInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is DropdownInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+        if (selectedListLabel.containsKey(field.id)) {
+          field = field.copyWith(answerList: selectedListLabel[field.id]);
+        }
+      }
+    } else if (field is MultipleInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+        if (selectedListLabel.containsKey(field.id)) {
+          field = field.copyWith(answerList: selectedListLabel[field.id]);
+        }
+      }
+    } else if (field is CheckboxInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+        if (selectedListLabel.containsKey(field.id)) {
+          field = field.copyWith(answerList: selectedListLabel[field.id]);
+        }
+      }
+    } else if (field is RadioInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+        if (selectedListLabel.containsKey(field.id)) {
+          field = field.copyWith(
+              selectedLinkListLabel: selectedListLabel[field.id]);
+        }
+      }
+    } else if (field is YesNoInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+        if (selectedListLabel.containsKey(field.id)) {
+          field = field.copyWith(
+              selectedLinkListLabel: selectedListLabel[field.id]);
+        }
+      }
+    } else if (field is YesNoNaInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+        if (selectedListLabel.containsKey(field.id)) {
+          field = field.copyWith(
+              selectedLinkListLabel: selectedListLabel[field.id]);
+        }
+      }
+    } else if (field is FileInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is ImageInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is MapField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else {}
+    return field;
+  }
+
   List<Map<String, dynamic>> getFinalAnswer(
     List<InputField> initialValue,
   ) {
     List<InputField> finalAnswer = [];
     finalAnswer.addAll(initialValue);
+
     final selectedListLabel = ref.read(linklabelProvider);
 
     for (int i = 0; i < finalAnswer.length; i++) {
       var field = finalAnswer[i];
       if (field is TableField || field is AdvTableField) {
-      } else if (field is TextInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is SignatureInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is MultiSignatureInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is DateInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is TimeInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is UrlInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is NumberInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is PhoneInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is EmailInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is DateTimeInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is DropdownInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-          if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answerList: selectedListLabel[field.id]);
+        if (field is TableField) {
+          final cuurentTableField = ref
+              .read(customSimpleRowProvider.notifier)
+              .convertIdinTableField(field);
+          List<List<InputField>> tableList = [];
+          for (var row in cuurentTableField.inputFields ?? []) {
+            for (int j = 0; j < row.length; j++) {
+              row[j] = singlefieldAnswer(row[j], selectedListLabel);
+            }
+            tableList.add(row);
           }
-        }
-      } else if (field is MultipleInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-          if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answerList: selectedListLabel[field.id]);
+          field = field.copyWith(inputFields: tableList);
+        } else if (field is AdvTableField) {
+          List<List<InputField>> tableList = [];
+          for (var row in tableList) {
+            for (int j = 0; j < row.length; j++) {
+              row[j] = singlefieldAnswer(row[j], selectedListLabel);
+            }
           }
+          field = field.copyWith(inputFields: tableList);
         }
-      } else if (field is CheckboxInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-          if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(answerList: selectedListLabel[field.id]);
-          }
-        }
-      } else if (field is RadioInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-          if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(
-                selectedLinkListLabel: selectedListLabel[field.id]);
-          }
-        }
-      } else if (field is YesNoInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-          if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(
-                selectedLinkListLabel: selectedListLabel[field.id]);
-          }
-        }
-      } else if (field is YesNoNaInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-          if (selectedListLabel.containsKey(field.id)) {
-            field = field.copyWith(
-                selectedLinkListLabel: selectedListLabel[field.id]);
-          }
-        }
-      } else if (field is FileInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is ImageInputField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else if (field is MapField) {
-        if (state.containsKey(field.id)) {
-          field = field.copyWith(answer: state[field.id]);
-        }
-      } else {}
+      } else {
+        field = singlefieldAnswer(field, selectedListLabel);
+      }
 
       finalAnswer[i] =
           field; // Update the finalAnswer list with the modified field

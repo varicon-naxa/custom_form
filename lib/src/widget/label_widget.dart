@@ -8,6 +8,7 @@ class LabelWidget extends StatelessWidget {
     required this.labelText,
     required this.child,
     required this.isRequired,
+    this.hasSpacing = true,
   });
   String? labelText;
 
@@ -16,6 +17,7 @@ class LabelWidget extends StatelessWidget {
 
   ///Field child widget
   Widget child;
+  bool hasSpacing;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,9 @@ class LabelWidget extends StatelessWidget {
       elevation: 0,
       color: Colors.white,
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: EdgeInsets.all(
+          hasSpacing ? 12.0 : 0,
+        ),
         child: Column(
           spacing: 6.0,
           mainAxisAlignment: MainAxisAlignment.start,

@@ -17,6 +17,7 @@ import 'package:varicon_form_builder/src/form_elements/varicon_multi_dropdown_fi
 import 'package:varicon_form_builder/src/form_elements/varicon_section_field.dart';
 import '../custom_element/date_time_form_field.dart';
 import '../form_elements/varicon_address_field.dart';
+import '../form_elements/varicon_advance_table_field.dart';
 import '../form_elements/varicon_long_text.dart';
 import '../form_elements/varicon_other_radio_field.dart';
 import '../form_elements/varicon_simple_table_field.dart';
@@ -259,10 +260,24 @@ class VariconInputFields extends StatelessWidget {
       },
       table: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
+          hasSpacing: false,
           child: VariconSimpleTableField(
+            field: value,
+            labelText: '',
+            imageBuild: imageBuild,
+            apiCall: apiCall,
+            attachmentSave: attachmentSave,
+          ),
+        );
+      },
+      advtable: (value) {
+        return LabelWidget(
+          isRequired: value.isRequired,
+          labelText: labelText,
+          hasSpacing: false,
+          child: VariconAdvanceTableField(
             field: value,
             labelText: '',
             imageBuild: imageBuild,

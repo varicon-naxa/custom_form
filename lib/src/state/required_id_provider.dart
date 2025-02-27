@@ -1,12 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:varicon_form_builder/src/state/custom_advance_table_row_provider.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 import 'current_form_provider.dart';
-import 'table_row_expanded_provider.dart';
-import 'table_row_provider.dart';
+import 'custom_simple_table_row_provider.dart';
 
 final requiredNotifierProvider =
     StateNotifierProvider<RequiredIdNotifier, Map<String, dynamic>>((ref) {
@@ -41,29 +39,26 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
 
       // Check if the field is a TableField or AdvTableField
       if (field is TableField || field is AdvTableField) {
-        String id = field.id;
+        // String id = field.id;
         List<List<InputField>> tableList = [];
         if (field is TableField) {
+          ref.read(customSimpleRowProvider.notifier).addInitialTableList(field);
           tableList.addAll(field.inputFields ?? []);
         } else if (field is AdvTableField) {
+          ref
+              .read(customAdvanceRowProvider.notifier)
+              .addInitialTableList(field);
+
           tableList.addAll(field.inputFields ?? []);
         }
         // Iterate over each row in the table
         for (var rowEntry in tableList.asMap().entries) {
-          int rowIndex = rowEntry.key;
-
           // Iterate over each field in the row
           for (var subField in rowEntry.value) {
             // Check if the subField is required
             if (subField.isRequired) {
-              ref.read(tableRowKeyProvider.notifier).addNewId(
-                    '$id-$rowIndex',
-                    subField.id,
-                  );
               // Add the subField to the state
               state.addAll({subField.id: GlobalObjectKey(subField.id)});
-
-              log('Required id in table' + subField.id);
             }
           }
         }
@@ -72,15 +67,10 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
   }
 
   void addRequiredForEachTableRow(List<InputField> inputFields) {
-    String id = ref.read(tableRowKeyProvider.notifier).getLastId();
     // Iterate over each input field
     for (var field in inputFields) {
       // Check if the field is required
       if (field.isRequired) {
-        ref.read(tableRowKeyProvider.notifier).addNewId(
-              id,
-              field.id,
-            );
         // Add the field to the state
         // state = [...state, field.id];
         state.addAll({field.id: GlobalObjectKey(field.id)});

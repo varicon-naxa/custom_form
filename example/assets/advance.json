@@ -4,7 +4,7 @@
         {
             "id": "item-eef4d38e-e657-4f82-86ac-173dfb1fa039",
             "name": "Advanced Table",
-            "type": "table",
+            "type": "advtable",
             "label": "qustion one",
             "contents": [
                 [
