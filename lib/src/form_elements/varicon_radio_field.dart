@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/state/link_label_provider.dart';
 import '../../varicon_form_builder.dart';
@@ -24,22 +23,12 @@ class VariconRadioField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Debouncer debouncer = Debouncer(milliseconds: 500);
 
-    final otherValue = ref.watch(radiotherFieldValue);
     return CustomFromBuilderRadioGroup(
-      name: '',
+      name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
-        // log((value ?? ValueText(value: '', text: '')).toJson().toString());
-        // log('value' + otherValue);
-        // log(('isrequired' + (field.isRequired == false).toString()));
-        // log(('otherfield' +
-        //     ((otherValue?.isOtherField ?? false) == false).toString()));
-        // if (field.isRequired == false &&
-        //     ((value?.isOtherField ?? false) == false)) {
-        //   return null;
-        // }
         if (field.isRequired && value == null) {
           return 'This field is required';
         } else if (value?.isOtherField == true &&
