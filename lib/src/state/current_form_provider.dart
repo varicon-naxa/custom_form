@@ -155,7 +155,7 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
           }
           field = field.copyWith(inputFields: tableList);
         } else if (field is AdvTableField) {
-          List<List<InputField>> tableList = [];
+          List<List<InputField>> tableList = field.inputFields ?? [];
           for (var row in tableList) {
             for (int j = 0; j < row.length; j++) {
               row[j] = singlefieldAnswer(row[j], selectedListLabel);

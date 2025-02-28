@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/debouncer.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import '../../varicon_form_builder.dart';
@@ -31,8 +32,7 @@ class VariconCheckboxField extends ConsumerWidget {
         CustomFormBuilderCheckboxGroup<ValueText>(
           autovalidateMode: AutovalidateMode.onUserInteraction,
           // decoration: const InputDecoration(labelText: 'The language of my people'),
-          name: field.id,
-
+          name: const Uuid().v4(),
           // initialValue: const ['Dart'],
           options: field.choices
               .map((lang) => FormBuilderFieldOption(
@@ -42,8 +42,7 @@ class VariconCheckboxField extends ConsumerWidget {
                         : lang.text),
                   ))
               .toList(growable: false),
-          onChanged: (value) {
-          },
+          onChanged: (value) {},
           onOtherSelectedValue: (isSelected, text) {
             if (isSelected && field.isRequired == false) {
               ref

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:uuid/uuid.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/custom_form_builder_radio_group.dart';
 import '../state/current_form_provider.dart';
@@ -19,7 +20,7 @@ class VariconYesNoRadioField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomFromBuilderRadioGroup(
-      name: field.id,
+      name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -61,7 +62,7 @@ class VariconYesNoNaRadioField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return CustomFromBuilderRadioGroup(
-      name: field.id,
+      name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       onOtherSelectedValue: (isSelected, text) {},
       orientation: OptionsOrientation.vertical,
