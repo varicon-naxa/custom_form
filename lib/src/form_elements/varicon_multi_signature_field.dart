@@ -288,16 +288,22 @@ class _VariconMultiSignatureFieldState
           );
         }),
         SizedBox(
-          height: 25,
+          height: 20,
           child: TextFormField(
             controller: _editingController,
+            readOnly: true,
+            enabled: false,
             onTapOutside: (event) =>
                 FocusManager.instance.primaryFocus?.unfocus(),
-            style: Theme.of(context).textTheme.bodyLarge,
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge
+                ?.copyWith(color: Colors.transparent, fontSize: 5),
             autovalidateMode: AutovalidateMode.onUserInteraction,
             maxLines: null,
             minLines: null,
             decoration: const InputDecoration(
+              contentPadding: EdgeInsets.zero,
               border: InputBorder.none,
               errorBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
