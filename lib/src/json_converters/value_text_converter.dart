@@ -32,3 +32,4 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
         'notify_To': object.notifyTo,
       };
 }
+

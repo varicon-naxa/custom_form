@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,10 +31,19 @@ class VariconRadioField extends ConsumerWidget {
       orientation: OptionsOrientation.vertical,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
+        // log((value ?? ValueText(value: '', text: '')).toJson().toString());
+        // log('value' + otherValue);
+        // log(('isrequired' + (field.isRequired == false).toString()));
+        // log(('otherfield' +
+        //     ((otherValue?.isOtherField ?? false) == false).toString()));
+        // if (field.isRequired == false &&
+        //     ((value?.isOtherField ?? false) == false)) {
+        //   return null;
+        // }
         if (field.isRequired && value == null) {
           return 'This field is required';
-        } else if (otherValue?.isOtherField == true &&
-            (otherValue?.value ?? '').isEmpty) {
+        } else if (value?.isOtherField == true &&
+            (value?.value ?? '').isEmpty) {
           return 'Please specify other in textbox';
         }
         return null;
