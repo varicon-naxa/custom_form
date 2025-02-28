@@ -7,6 +7,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
+import 'package:varicon_form_builder/src/helpers/validators.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/widget/action_button.dart';
 import '../../varicon_form_builder.dart';
@@ -40,12 +41,15 @@ class VariconMultiSignatureField extends StatefulHookConsumerWidget {
 class _VariconMultiSignatureFieldState
     extends ConsumerState<VariconMultiSignatureField> {
   List<SingleSignature> signaturePads = [];
+  TextEditingController _editingController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     if ((widget.field.answer ?? []).isNotEmpty) {
       signaturePads.addAll(widget.field.answer ?? []);
+      _editingController.text =
+          (signaturePads.isNotEmpty) ? signaturePads.length.toString() : '';
     }
   }
 
@@ -69,6 +73,8 @@ class _VariconMultiSignatureFieldState
 
   Future<void> addSignature(SingleSignature signature) async {
     signaturePads.add(signature);
+    _editingController.text =
+        (signaturePads.isNotEmpty) ? signaturePads.length.toString() : '';
     setState(() {});
     await modifyAnswer(signature);
     modifyAnswerinList();
@@ -213,6 +219,8 @@ class _VariconMultiSignatureFieldState
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ...signaturePads.map((e) {
           String dateFormat = e.createdAt == null
@@ -234,6 +242,9 @@ class _VariconMultiSignatureFieldState
                       if (e.uniImage != null) {
                         signaturePads.removeWhere((element) =>
                             element.attachmentId == e.attachmentId);
+                        _editingController.text = (signaturePads.isNotEmpty)
+                            ? signaturePads.length.toString()
+                            : '';
                       } else {
                         signaturePads
                             .removeWhere((element) => element.id == e.id);
@@ -276,6 +287,36 @@ class _VariconMultiSignatureFieldState
             ),
           );
         }),
+        SizedBox(
+          height: 25,
+          child: TextFormField(
+            controller: _editingController,
+            onTapOutside: (event) =>
+                FocusManager.instance.primaryFocus?.unfocus(),
+            style: Theme.of(context).textTheme.bodyLarge,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            maxLines: null,
+            minLines: null,
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              errorBorder: InputBorder.none,
+              enabledBorder: InputBorder.none,
+              focusedBorder: InputBorder.none,
+              disabledBorder: InputBorder.none,
+              focusedErrorBorder: InputBorder.none,
+            ),
+            validator: (value) {
+              return textValidator(
+                value: value,
+                inputType: "text",
+                isRequired: widget.field.isRequired,
+                requiredErrorText: widget.field.requiredErrorText,
+              );
+            },
+            onChanged: (value) {},
+          ),
+        ),
+        const SizedBox(height: 8),
         ActionButton(
           verticalPadding: 8,
           onPressed: () {
