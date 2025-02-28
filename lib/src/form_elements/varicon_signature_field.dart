@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:signature/signature.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/src/widget/scroll_bottomsheet.dart';
 import '../../varicon_form_builder.dart';
@@ -92,7 +93,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
               width: double.infinity,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               initialWidget: null,
-              name: 'signature',
+              name: const Uuid().v4(),
               onSavedClicked: (data) {
                 _signature = {'value': data, 'date': DateTime.now()};
                 modifyAnswer(data!);

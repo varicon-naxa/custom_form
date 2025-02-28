@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_image_picker.dart';
@@ -67,7 +68,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   @override
   Widget build(BuildContext context) {
     return FormBuilderImagePicker(
-      name: 'photos',
+      name: const Uuid().v4(),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       availableImageSources: const [
         ImageSourceOption.gallery,

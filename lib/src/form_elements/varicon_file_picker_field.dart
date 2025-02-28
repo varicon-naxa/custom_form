@@ -1,6 +1,7 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import '../../varicon_form_builder.dart';
@@ -53,7 +54,7 @@ class _VariconFilePickerFieldState
   @override
   Widget build(BuildContext context) {
     return FormBuilderFilePicker(
-      name: "attachments",
+      name: const Uuid().v4(),
       previewImages: true,
       allowMultiple: true,
       allowCompression: true,

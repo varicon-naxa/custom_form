@@ -5,6 +5,7 @@ import 'package:intl_phone_field/countries.dart';
 import 'package:intl_phone_field/helpers.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:intl_phone_field/phone_number.dart';
+import 'package:uuid/uuid.dart';
 
 /// International phone field form component
 ///
@@ -119,7 +120,7 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
   @override
   Widget build(BuildContext context) {
     return FormBuilderField<PhoneNumber>(
-      name: widget.name,
+      name: const Uuid().v4(),
       initialValue: phoneNumber,
       validator: (phoneNumber) {
         if (!_isValidIsRequired(phoneNumber)) {

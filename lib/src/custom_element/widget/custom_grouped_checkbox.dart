@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 
 class CustomGroupedCheckbox<T> extends StatefulWidget {
@@ -276,7 +277,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                   .where((element) => element.isOtherField == true)
                   .isNotEmpty,
               child: FormBuilderTextField(
-                name: 'name',
+                name: const Uuid().v4(),
                 autofocus: true,
                 onTapOutside: (val) {
                   otherFieldFocusNode.unfocus();

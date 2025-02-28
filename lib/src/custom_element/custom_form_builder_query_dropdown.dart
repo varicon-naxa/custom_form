@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
@@ -110,7 +111,7 @@ class _CustomFormBuilderQueryDropdownState
     return Column(
       children: [
         FormBuilderTextField(
-            name: '',
+            name: const Uuid().v4(),
             decoration: InputDecoration(
               hintText: 'Search ...',
               border: OutlineInputBorder(
