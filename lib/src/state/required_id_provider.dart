@@ -34,7 +34,9 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
       if (field.isRequired) {
         // Add the field to the state
         // state = [...state, field.id];
-        state.addAll({field.id: GlobalObjectKey(field.id)});
+        addKey(field);
+
+        // state.addAll({field.id: GlobalObjectKey(field.id)});
       }
 
       // Check if the field is a TableField or AdvTableField
@@ -58,11 +60,55 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
             // Check if the subField is required
             if (subField.isRequired) {
               // Add the subField to the state
-              state.addAll({subField.id: GlobalObjectKey(subField.id)});
+              addKey(subField);
+
+              // state.addAll({subField.id: GlobalObjectKey(subField.id)});
             }
           }
         }
       }
+    }
+  }
+
+  addKey(InputField field) {
+    if (field is TextInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_text')});
+    } else if (field is NumberInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_number')});
+    } else if (field is EmailInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_email')});
+    } else if (field is PhoneInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_phone')});
+    } else if (field is DateInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_date')});
+    } else if (field is TimeInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_time')});
+    } else if (field is DateTimeInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_datetime')});
+    } else if (field is SignatureInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_signature')});
+    } else if (field is MultiSignatureInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_multi_signature')});
+    } else if (field is ImageInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_image')});
+    } else if (field is FileInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_file')});
+    } else if (field is RadioInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_radio')});
+    } else if (field is YesNoInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_yesno')});
+    } else if (field is YesNoNaInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_yesnona')});
+    } else if (field is CheckboxInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_checkbox')});
+    } else if (field is DropdownInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_dropdown')});
+    } else if (field is MultipleInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_multiple')});
+    } else if (field is SectionInputField) {
+      state.addAll({field.id: GlobalObjectKey('${field.id}_section')});
+    } else {
+      state.addAll({field.id: GlobalObjectKey(field.id)});
     }
   }
 
@@ -73,7 +119,9 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
       if (field.isRequired) {
         // Add the field to the state
         // state = [...state, field.id];
-        state.addAll({field.id: GlobalObjectKey(field.id)});
+        addKey(field);
+
+        // state.addAll({field.id: GlobalObjectKey(field.id)});
       }
     }
   }

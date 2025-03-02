@@ -45,7 +45,7 @@ class VariconInputFields extends StatelessWidget {
     return field.maybeMap(
       text: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_text'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: (value.name ?? '').toLowerCase().contains('long')
@@ -66,7 +66,7 @@ class VariconInputFields extends StatelessWidget {
       },
       number: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_number'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconNumberField(
@@ -77,7 +77,7 @@ class VariconInputFields extends StatelessWidget {
       },
       email: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_email'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconEmailField(
@@ -88,7 +88,7 @@ class VariconInputFields extends StatelessWidget {
       },
       phone: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_phone'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconPhoneField(
@@ -99,7 +99,7 @@ class VariconInputFields extends StatelessWidget {
       },
       date: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_date'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconDateField(
@@ -111,7 +111,7 @@ class VariconInputFields extends StatelessWidget {
       },
       time: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_time'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconDateField(
@@ -123,7 +123,7 @@ class VariconInputFields extends StatelessWidget {
       },
       datetimelocal: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_datetime'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconDateField(
@@ -135,7 +135,7 @@ class VariconInputFields extends StatelessWidget {
       },
       signature: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_signature'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconSignatureField(
@@ -148,7 +148,7 @@ class VariconInputFields extends StatelessWidget {
       },
       multisignature: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_multi_signature'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconMultiSignatureField(
@@ -161,7 +161,7 @@ class VariconInputFields extends StatelessWidget {
       },
       files: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_file'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconFilePickerField(
@@ -173,7 +173,7 @@ class VariconInputFields extends StatelessWidget {
       },
       images: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_image'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconImageField(
@@ -186,7 +186,7 @@ class VariconInputFields extends StatelessWidget {
       },
       radiogroup: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_radio'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconRadioField(
@@ -197,7 +197,7 @@ class VariconInputFields extends StatelessWidget {
       },
       yesno: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_yesno'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconYesNoRadioField(
@@ -208,7 +208,7 @@ class VariconInputFields extends StatelessWidget {
       },
       yesnona: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_yesnona'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconYesNoNaRadioField(
@@ -219,7 +219,7 @@ class VariconInputFields extends StatelessWidget {
       },
       checkbox: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_checkbox'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconCheckboxField(
@@ -230,7 +230,7 @@ class VariconInputFields extends StatelessWidget {
       },
       dropdown: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_dropdown'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconDropdownField(
@@ -242,7 +242,7 @@ class VariconInputFields extends StatelessWidget {
       },
       multipleselect: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
+          key: GlobalObjectKey('${field.id}_multiple'),
           isRequired: value.isRequired,
           labelText: labelText,
           child: VariconMultiDropdownField(
@@ -254,6 +254,7 @@ class VariconInputFields extends StatelessWidget {
       },
       section: (value) {
         return VariconSectionField(
+          key: GlobalObjectKey('${field.id}_section'),
           field: value,
           labelText: labelText,
         );
