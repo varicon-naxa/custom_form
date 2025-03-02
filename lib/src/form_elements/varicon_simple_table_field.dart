@@ -99,92 +99,90 @@ class VariconSimpleTableField extends ConsumerWidget {
 
     return Column(
       children: currentTableState.map((singleData) {
-        if (singleData.id == field.id) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                  children:
-                      (singleData.rowList ?? []).mapIndexed((index, model) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child:
-                      // index == 0
-                      //     ? _buildTableRowContent(context, index, model)
-                      //     :
-                      Dismissible(
-                    key: ValueKey(const Uuid().v4),
-                    direction: DismissDirection.endToStart,
-                    background: Container(
-                      alignment: Alignment.centerRight,
-                      padding: const EdgeInsets.only(right: 16),
-                      color: Colors.red,
-                      child: const Icon(
-                        Icons.delete,
-                        color: Colors.white,
-                      ),
+        // if (singleData.id == field.id) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Column(
+                children: (singleData.rowList ?? []).mapIndexed((index, model) {
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child:
+                    // index == 0
+                    //     ? _buildTableRowContent(context, index, model)
+                    //     :
+                    Dismissible(
+                  key: ValueKey(const Uuid().v4),
+                  direction: DismissDirection.endToStart,
+                  background: Container(
+                    alignment: Alignment.centerRight,
+                    padding: const EdgeInsets.only(right: 16),
+                    color: Colors.red,
+                    child: const Icon(
+                      Icons.delete,
+                      color: Colors.white,
                     ),
-                    confirmDismiss: (direction) async {
-                      // Show confirmation dialog
-                      return await showDialog<bool>(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return AlertDialog(
-                            title: const Text('Delete Row'),
-                            content: const Text(
-                                'Are you sure you want to delete this row?'),
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.of(context).pop(false),
-                                child: const Text('CANCEL'),
+                  ),
+                  confirmDismiss: (direction) async {
+                    // Show confirmation dialog
+                    return await showDialog<bool>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text('Delete Row'),
+                          content: const Text(
+                              'Are you sure you want to delete this row?'),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: const Text('CANCEL'),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                // Call delete row on table manager
+                                Navigator.of(context).pop(true);
+                              },
+                              child: const Text(
+                                'DELETE',
+                                style: TextStyle(color: Colors.red),
                               ),
-                              TextButton(
-                                onPressed: () {
-                                  // Call delete row on table manager
-                                  Navigator.of(context).pop(true);
-                                },
-                                child: const Text(
-                                  'DELETE',
-                                  style: TextStyle(color: Colors.red),
-                                ),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    },
-                    onDismissed: (direction) {
-                      // Call delete row on table manager
-                      ref.read(requiredNotifierProvider.notifier).deleteRow(
-                          model.inputFields ??
-                              []); // Call delete row on table manager
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  onDismissed: (direction) {
+                    // Call delete row on table manager
+                    ref.read(requiredNotifierProvider.notifier).deleteRow(
+                        model.inputFields ??
+                            []); // Call delete row on table manager
 
-                      ref
-                          .read(customSimpleRowProvider.notifier)
-                          .deleteRow(field.id, model.id ?? '');
-                    },
-                    child: _buildTableRowContent(context, index, model, ref),
-                  ),
-                );
-              }).toList()),
-              OutlinedButton.icon(
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(5),
-                  ),
-                  side: const BorderSide(color: Colors.grey),
+                    ref
+                        .read(customSimpleRowProvider.notifier)
+                        .deleteRow(field.id, model.id ?? '');
+                  },
+                  child: _buildTableRowContent(context, index, model, ref),
                 ),
-                onPressed: () {
-                  addNewRow();
-                },
-                icon: const Icon(Icons.add),
-                label: const Text('Add Row'),
-              )
-            ],
-          );
-        }
-        return const SizedBox.shrink();
+              );
+            }).toList()),
+            OutlinedButton.icon(
+              style: OutlinedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                side: const BorderSide(color: Colors.grey),
+              ),
+              onPressed: () {
+                addNewRow();
+              },
+              icon: const Icon(Icons.add),
+              label: const Text('Add Row'),
+            )
+          ],
+        );
+        // }
+        // return const SizedBox.shrink();
       }).toList(),
     );
   }
@@ -215,6 +213,7 @@ class VariconSimpleTableField extends ConsumerWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: VariconInputFields(
+                  key: ValueKey(item.id), // Ensure unique key for each field
                   field: item,
                   apiCall: apiCall,
                   imageBuild: imageBuild,
