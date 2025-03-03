@@ -1,0 +1,335 @@
+{
+    "title": "Phone",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "collect_geolocation": false,
+    "elements": [
+        {
+            "id": "item-348f3d58-ad92-4fa7-a8c9-7278498476d7",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Employee Name",
+                "Date of Birth",
+                "Contact No.",
+                "Address",
+                "Employer",
+                "Employer Contact No.",
+                "Emergency Contact",
+                "Emergency Contact No."
+            ],
+            "maxRows": "0",
+            "contents": [
+                [
+                    {
+                        "id": "item-754ae420-09b6-48e7-80c3-1ccb976256ba",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 196,
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-cedf2b23-270c-49a2-9f33-eddd7dfa1504",
+                        "name": "Date",
+                        "type": "date",
+                        "label": "Date of Birth",
+                        "width": 162,
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": "",
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-02975a62-15ca-4dfc-8415-c316308a40e2",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Contact No.",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": "",
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-defc54aa-1a23-4b89-866d-e2ac3256eac0",
+                        "name": "Address",
+                        "type": "text",
+                        "label": "Address",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": "",
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-e7165d51-a8e9-4206-8ebc-cdd6b793b4c7",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employer",
+                        "width": 189,
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "client",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-15419c08-63c7-4f88-96ee-d363355d88b2",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Employer Contact No.",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": "",
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-2c191490-74f7-4c69-b16f-0bf1525b0b96",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Emergency Contact",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": "",
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-06392ad8-1892-494b-b13b-945fc79de4ba",
+                        "name": "Phone Number",
+                        "type": "phone",
+                        "label": "Emergency Contact No.",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": "",
+                        "initialAnswer": ""
+                    }
+                ]
+            ],
+            "isRequired": false
+        },
+        {
+            "id": "item-fa0e416f-778b-4b2b-9f81-858e719b2efe",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Employee Name",
+                "Safe Work Orientation",
+                "Equipment Training",
+                "PPE",
+                "Photo of Valid ID",
+                "Work Permit / License",
+                "Training / Qualification Certificate",
+                "Medical Certificate"
+            ],
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-29638a46-262e-41c4-838a-28abcd37ec6b",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Employee Name",
+                        "width": 230,
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "employee",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-6c8d5509-42cb-4832-887d-e037a698301a",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Safe Work Orientation",
+                        "width": 164,
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Not yet Completed",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-1b966782-063b-4f6c-822f-333f8e0e7221",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Equipment Training",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Not yet Completed",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-a15c6a1f-76cd-4d98-9879-8b42c3400c96",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "PPE",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-9659c5f4-06d0-4efe-b7fb-38161c5eda57",
+                                "label": "Completed",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-435075d6-dde0-4526-804d-a5cc9594e4f7",
+                                "label": "Incomplete",
+                                "action": true,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "actionMessage": "",
+                        "initialAnswer": "",
+                        "isConditional": true,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-d1607ed6-e695-497a-899a-3790e2628b52",
+                        "name": "Image Upload",
+                        "type": "images",
+                        "label": "Photo of Valid ID",
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-7df33249-eb58-4db8-801f-9e0fadc08d02",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Work Permit / License",
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-f1f642f8-0ddc-488b-87a3-839e26391827",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Training / Qualification Certificate",
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    },
+                    {
+                        "id": "item-63834c20-af35-4e0b-9dff-6871b209c3fd",
+                        "name": "File Upload",
+                        "type": "files",
+                        "label": "Medical Certificate",
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "initialAnswer": []
+                    }
+                ]
+            ],
+            "isRequired": false
+        },
+        {
+            "id": "item-394e9ec0-67cc-47e1-b95b-3927ddf00a7b",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Simple Table",
+            "headers": [
+                "Name",
+                "Company",
+                "Signature"
+            ],
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-1b00a032-72fa-4737-b38c-344d6ad7d395",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Name",
+                        "width": 214,
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-4f5d7ccf-30a7-4039-a9d1-88caedbb9f8a",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Company",
+                        "answer": "",
+                        "isRequired": false,
+                        "initialAnswer": ""
+                    },
+                    {
+                        "id": "item-dfff233c-3303-4bad-bd82-8c4038858f76",
+                        "name": "Signature",
+                        "type": "signature",
+                        "label": "Signature",
+                        "width": 247,
+                        "answer": {},
+                        "isRequired": true,
+                        "initialAnswer": {}
+                    }
+                ]
+            ],
+            "isRequired": false
+        }
+    ]
+}

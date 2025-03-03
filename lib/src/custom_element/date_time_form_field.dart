@@ -58,7 +58,6 @@ class DateTimeFormField extends FormField<DateTime> {
           TextEditingController controller = TextEditingController(
               text: dateBuilder?.call(state.value, type) ??
                   getFormattedText(state.value, type));
-          log('key $fieldKey');
 
           return GestureDetector(
             onTap: () async {
@@ -120,7 +119,7 @@ class DateTimeFormField extends FormField<DateTime> {
               }
             },
             child: TextFormField(
-              key: fieldKey,
+              key: fieldKey ?? UniqueKey(),
               readOnly: true,
 
               enabled: false,

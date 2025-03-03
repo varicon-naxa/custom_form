@@ -31,7 +31,8 @@ class _SurveyPageState extends State<SurveyPage> {
           return AlertDialog(
             title: const Text('Unsaved Changes'),
             content: const Text(
-                'You have unsaved changes. Are you sure you want to leave?'),
+              'You have unsaved changes. Are you sure you want to leave?',
+            ),
             actions: <Widget>[
               TextButton(
                 onPressed: () {
@@ -69,15 +70,17 @@ class _SurveyPageState extends State<SurveyPage> {
       },
       onSave: (formValue) {
         Map<String, dynamic> data = widget.formData;
-        List<Map<String, dynamic>> elements =
-            List<Map<String, dynamic>>.from(data['elements']);
-        final valueList = elements.map((e) {
-          final key = formValue[e['id']];
-          if (key != null) {
-            e.addAll({'answer': key});
-          }
-          return e;
-        }).toList();
+        List<Map<String, dynamic>> elements = List<Map<String, dynamic>>.from(
+          data['elements'],
+        );
+        final valueList =
+            elements.map((e) {
+              final key = formValue[e['id']];
+              if (key != null) {
+                e.addAll({'answer': key});
+              }
+              return e;
+            }).toList();
         log(valueList.toString());
       },
       apiCall: (mapData) async {

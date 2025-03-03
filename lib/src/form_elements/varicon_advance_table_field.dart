@@ -58,21 +58,16 @@ class VariconAdvanceTableField extends ConsumerWidget {
 
   Widget _buildTableRowContent(
       BuildContext context, int index, CustomRowModel model, WidgetRef ref) {
-    var table = ref
-        .read(customAdvanceRowProvider.notifier)
-        .convertIdinTableField(field);
     return KeyedSubtree(
       key: ValueKey(const Uuid().v4()),
       child: ExpandableWidget(
         initialExpanded: model.isExpanded,
         expandableHeader: TableExpandableHeaderWidget(
           index: index,
-          field: table,
           hasError: false,
         ),
         expandedHeader: TableExpandableHeaderWidget(
           index: index,
-          field: table,
           isExpanded: true,
           hasError: false,
         ),

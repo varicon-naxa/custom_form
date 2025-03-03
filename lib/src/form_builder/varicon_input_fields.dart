@@ -260,6 +260,7 @@ class VariconInputFields extends StatelessWidget {
       },
       table: (value) {
         return LabelWidget(
+          key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
           hasSpacing: false,

@@ -1,16 +1,13 @@
-
 import 'package:flutter/material.dart';
 
 class TableExpandableHeaderWidget extends StatelessWidget {
   final int index;
-  final dynamic field;
   final bool isExpanded;
   final bool hasError;
 
   const TableExpandableHeaderWidget({
     super.key,
     required this.index,
-    required this.field,
     this.isExpanded = false,
     this.hasError = false,
   });

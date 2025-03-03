@@ -177,7 +177,7 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
   void saveinitialAnswer(List<InputField> inputFields) {
     try {
       // Clear the current state
-      state = {};
+      // state = {};
       initialAnswer = {};
 
       // Iterate over each input field

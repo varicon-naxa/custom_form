@@ -130,6 +130,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   void initState() {
     super.initState();
     Future.microtask(() {
+      ref.read(customAdvanceRowProvider.notifier).initState();
       ref
           .read(requiredNotifierProvider.notifier)
           .initialList(widget.surveyForm.inputFields);
@@ -164,11 +165,17 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   @override
   Widget build(BuildContext context) {
     final currentyCity = ref.watch(currentLocationControllerProvider);
-    ref.watch(currentStateNotifierProvider);
-    ref.watch(requiredNotifierProvider);
-    ref.watch(customSimpleRowProvider);
-    ref.watch(customAdvanceRowProvider);
-    ref.watch(linklabelProvider);
+    ref.read(currentStateNotifierProvider);
+
+    ref.read(requiredNotifierProvider);
+    ref.read(customSimpleRowProvider);
+    ref.read(customAdvanceRowProvider);
+    ref.read(linklabelProvider);
+
+    ref.listen(requiredNotifierProvider, (_, __) {});
+    ref.listen(customSimpleRowProvider, (_, __) {});
+    ref.listen(customAdvanceRowProvider, (_, __) {});
+    ref.listen(linklabelProvider, (_, __) {});
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
@@ -263,14 +270,16 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                           }, loading: () {
                             return const SizedBox.shrink();
                           }),
-                        ...widget.surveyForm.inputFields.map<Widget?>((e) {
-                          return VariconInputFields(
-                            field: e,
-                            apiCall: widget.apiCall,
-                            imageBuild: widget.imageBuild,
-                            attachmentSave: widget.attachmentSave,
-                          );
-                        }).whereType<Widget>(),
+                        ...widget.surveyForm.inputFields
+                            .toSet()
+                            .toList()
+                            .map<Widget?>((e) => VariconInputFields(
+                                  field: e,
+                                  apiCall: widget.apiCall,
+                                  imageBuild: widget.imageBuild,
+                                  attachmentSave: widget.attachmentSave,
+                                ))
+                            .whereType<Widget>(),
                         if (widget.surveyForm.collectGeolocation == true)
                           currentyCity.when(data: (data) {
                             return CustomLocation(

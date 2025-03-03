@@ -24,8 +24,7 @@ class CurrentLocationController extends StateNotifier<AsyncValue<Position>> {
   void updateLocation(Position location) => state = AsyncValue.data(location);
 }
 
-final currentLocationControllerProvider =
-    StateNotifierProvider<CurrentLocationController, AsyncValue<Position>>(
-        (ref) {
+final currentLocationControllerProvider = StateNotifierProvider.autoDispose<
+    CurrentLocationController, AsyncValue<Position>>((ref) {
   return CurrentLocationController(ref);
 });

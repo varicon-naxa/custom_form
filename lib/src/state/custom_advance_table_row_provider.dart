@@ -3,9 +3,8 @@ import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/models/custom_table_model.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
-final customAdvanceRowProvider =
-    StateNotifierProvider<CustomAdvanceTableRowProvider, List<CustomTableModel>>(
-        (ref) {
+final customAdvanceRowProvider = StateNotifierProvider<
+    CustomAdvanceTableRowProvider, List<CustomTableModel>>((ref) {
   return CustomAdvanceTableRowProvider(ref);
 });
 
@@ -13,6 +12,9 @@ class CustomAdvanceTableRowProvider
     extends StateNotifier<List<CustomTableModel>> {
   CustomAdvanceTableRowProvider(this.ref) : super([]);
   Ref ref;
+  void initState() {
+    state = [];
+  }
 
   void addNewField(String elementId, CustomRowModel newElement) {
     if (state.isNotEmpty) {
@@ -44,7 +46,6 @@ class CustomAdvanceTableRowProvider
       addNewField(field.id, model);
     }
   }
-
 
   void changeExpansion(String tableId, String rowId, bool value) {
     List<CustomTableModel> newList = state.map((tableModel) {

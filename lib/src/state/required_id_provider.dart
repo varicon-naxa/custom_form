@@ -36,7 +36,6 @@ class RequiredIdNotifier extends StateNotifier<Map<String, dynamic>> {
         // state = [...state, field.id];
         state.addAll({field.id: GlobalObjectKey(field.id)});
       }
-
       // Check if the field is a TableField or AdvTableField
       if (field is TableField || field is AdvTableField) {
         // String id = field.id;
