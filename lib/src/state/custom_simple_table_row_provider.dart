@@ -34,14 +34,25 @@ class CustomSimpleTableRowNotifer
   }
 
   void addInitialTableList(TableField field) {
-    state = [];
+    List<CustomRowModel> rowList = [];
     for (List<InputField> element in (field.inputFields ?? [])) {
       CustomRowModel model = CustomRowModel(
         id: const Uuid().v4(),
         inputFields: element,
         isExpanded: true,
       );
-      addNewField(field.id, model);
+
+      rowList.add(model);
+    }
+    if (!state.any((element) => element.id == field.id)) {
+      state = [...state, CustomTableModel(id: field.id, rowList: rowList)];
+    } else {
+      state = state.map((element) {
+        if (element.id == field.id) {
+          return element.copyWith(rowList: rowList);
+        }
+        return element;
+      }).toList();
     }
   }
 

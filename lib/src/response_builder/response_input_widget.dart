@@ -139,11 +139,9 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                         initialExpanded: true,
                         expandableHeader: TableExpandableHeaderWidget(
                           index: index,
-                          field: field,
                         ),
                         expandedHeader: TableExpandableHeaderWidget(
                           index: index,
-                          field: field,
                           isExpanded: true,
                         ),
                         expandableChild: Container(
@@ -278,11 +276,9 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                         initialExpanded: true,
                         expandableHeader: TableExpandableHeaderWidget(
                           index: index,
-                          field: field,
                         ),
                         expandedHeader: TableExpandableHeaderWidget(
                           index: index,
-                          field: field,
                           isExpanded: true,
                         ),
                         expandableChild: Container(
