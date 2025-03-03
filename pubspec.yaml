@@ -8,20 +8,19 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  async: ^2.11.0
   cached_network_image: ^3.4.1
   collection: ^1.19.0
-  dotted_line: ^3.2.3
+  dotted_line: ^3.2.2
   expandable: ^5.0.1
-  file_picker: ^8.3.5
+  file_picker: ^8.1.4
   flutter:
     sdk: flutter
-  flutter_form_builder: ^9.7.0
+  flutter_form_builder: ^9.3.0
   flutter_riverpod: ^2.6.1
-  flutter_widget_from_html_core: ^0.15.2
-  fluttertoast: ^8.2.12
-  form_builder_validators: ^11.1.1
-  freezed_annotation: ^2.2.0
+  flutter_widget_from_html_core: ^0.16.0
+  fluttertoast: ^8.2.2
+  form_builder_validators: ^11.0.0
+  freezed_annotation: ^2.4.4
   geocoding: ^3.0.0
   geolocator: ^13.0.2
   google_maps_flutter: ^2.10.0
@@ -30,7 +29,7 @@ dependencies:
   image_picker: ^1.1.2
   intl: ^0.19.0
   intl_phone_field: ^3.2.0
-  json_annotation: ^4.8.1
+  json_annotation: ^4.9.0
   path_provider: ^2.1.5
   riverpod: ^2.6.1
   signature: ^5.5.0
@@ -41,9 +40,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-  freezed: ^2.4.0
-  build_runner: ^2.4.15
-  json_serializable: ^6.7.1
+  freezed: ^2.5.7
+  build_runner: ^2.4.13
+  json_serializable: ^6.9.4
 
 
 # For information on the generic Dart part of this file, see the
