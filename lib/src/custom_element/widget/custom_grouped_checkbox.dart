@@ -181,6 +181,7 @@ class CustomGroupedCheckbox<T> extends StatefulWidget {
 
   final Widget? separator;
   final String? actionMessage;
+  final String? otherText;
 
   final ControlAffinity controlAffinity;
 
@@ -205,6 +206,7 @@ class CustomGroupedCheckbox<T> extends StatefulWidget {
     this.activeColor,
     this.checkColor,
     this.focusColor,
+    this.otherText,
     this.hoverColor,
     this.materialTapTargetSize,
     this.tristate = false,
@@ -231,6 +233,13 @@ class CustomGroupedCheckbox<T> extends StatefulWidget {
 class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
   TextEditingController otherFieldController = TextEditingController();
   FocusNode otherFieldFocusNode = FocusNode();
+
+  @override
+  void initState() {
+    super.initState();
+    otherFieldController.text = widget.otherText ?? '';
+  }
+
   @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
@@ -361,7 +370,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                 widget.onOtherSelectedValue!(false, '');
                 otherFieldController.clear();
               } else {
-                otherFieldFocusNode.requestFocus();
+                // otherFieldFocusNode.requestFocus();
               }
               widget.onChanged(selectedListItems);
             },
@@ -389,7 +398,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                 widget.onOtherSelectedValue!(false, '');
                 otherFieldController.clear();
               } else {
-                otherFieldFocusNode.requestFocus();
+                // otherFieldFocusNode.requestFocus();
               }
               widget.onChanged(selectedListItems);
             },

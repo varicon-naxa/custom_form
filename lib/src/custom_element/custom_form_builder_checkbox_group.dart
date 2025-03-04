@@ -25,6 +25,7 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
   final Widget? separator;
   final ControlAffinity controlAffinity;
   final OptionsOrientation orientation;
+  final String? otherText;
   final Function(bool isSelected, String text)? onOtherSelectedValue;
 
   /// Added to each item if provided.
@@ -54,6 +55,7 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
     this.focusColor,
     this.hoverColor,
     this.disabled,
+    this.otherText,
     this.materialTapTargetSize,
     this.tristate = false,
     this.wrapDirection = Axis.horizontal,

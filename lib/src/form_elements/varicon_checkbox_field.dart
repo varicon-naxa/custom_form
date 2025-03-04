@@ -4,8 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
+import 'package:varicon_form_builder/src/form_elements/varicon_radio_field.dart';
 import 'package:varicon_form_builder/src/helpers/debouncer.dart';
 import 'package:varicon_form_builder/src/models/value_text.dart';
+import 'package:varicon_form_builder/src/state/current_form_provider.dart';
+import 'package:varicon_form_builder/src/state/link_label_provider.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/custom_form_builder_checkbox_group.dart';
 import '../state/required_id_provider.dart';
@@ -24,6 +27,9 @@ class VariconCheckboxField extends ConsumerWidget {
     Debouncer debouncer = Debouncer(milliseconds: 500);
 
     final otherValue = ref.watch(otherFieldValue);
+    List<String> data = (field.answer ?? '').split(',');
+    List<ValueText> filteredData =
+        field.choices.where((item) => data.contains(item.value)).toList();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,8 +37,9 @@ class VariconCheckboxField extends ConsumerWidget {
       children: [
         CustomFormBuilderCheckboxGroup<ValueText>(
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          // decoration: const InputDecoration(labelText: 'The language of my people'),
           name: const Uuid().v4(),
+          otherText: field.answerList,
+          initialValue: filteredData,
           // initialValue: const ['Dart'],
           options: field.choices
               .map((lang) => FormBuilderFieldOption(
@@ -42,7 +49,10 @@ class VariconCheckboxField extends ConsumerWidget {
                         : lang.text),
                   ))
               .toList(growable: false),
-          onChanged: (value) {},
+          onChanged: (data) {
+            ref.read(currentStateNotifierProvider.notifier).saveString(
+                field.id, (data ?? []).map((e) => e.value).join(','));
+          },
           onOtherSelectedValue: (isSelected, text) {
             if (isSelected && field.isRequired == false) {
               ref
@@ -51,10 +61,15 @@ class VariconCheckboxField extends ConsumerWidget {
             } else if (isSelected == false && field.isRequired == false) {
               ref.read(requiredNotifierProvider.notifier).remove(field.id);
             }
-            debouncer.run(() {
-              ref.read(otherFieldValue.notifier).state =
-                  ValueText(isOtherField: isSelected, value: text, text: '');
-            });
+            if (isSelected == true) {
+              debouncer.run(() {
+                ref.read(linklabelProvider.notifier).saveString(field.id, text);
+                ref.read(radiotherFieldValue.notifier).state =
+                    ValueText(isOtherField: isSelected, value: text, text: '');
+              });
+            } else {
+              ref.read(linklabelProvider.notifier).remove(field.id);
+            }
 
             log('Selected: $isSelected, Text: $text');
           },

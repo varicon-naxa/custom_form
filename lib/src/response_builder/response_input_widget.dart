@@ -578,24 +578,21 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
       checkbox: (field) {
         List<ValueText> valueAnswer = [];
 
-        if (!(field.fromManualList)) {
-          List<String> answers = field.answerList.toString().split(',');
-          answers.map((e) {
-            valueAnswer.add(ValueText(
-                value: DateTime.now().microsecond.toString(), text: e));
-          }).toList();
-        }
+        List<String> answers = field.answerList.toString().split(',');
+        answers.map((e) {
+          valueAnswer.add(
+              ValueText(value: DateTime.now().microsecond.toString(), text: e));
+        }).toList();
+
         return IgnorePointer(
           ignoring: true,
           child: LabelWidget(
             labelText: labelText,
             isRequired: e.isRequired,
-            child: (!(field.fromManualList))
-                ? _MultiAnswerDesign(answer: valueAnswer)
-                : VariconCheckboxField(
-                    field: field,
-                    labelText: labelText,
-                  ),
+            child: VariconCheckboxField(
+              field: field,
+              labelText: labelText,
+            ),
           ),
         );
       },

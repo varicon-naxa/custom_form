@@ -70,6 +70,8 @@ class VariconRadioField extends ConsumerWidget {
             ref.read(radiotherFieldValue.notifier).state =
                 ValueText(isOtherField: isSelected, value: text, text: '');
           });
+        } else {
+          ref.read(linklabelProvider.notifier).remove(field.id);
         }
       },
       options: field.choices
