@@ -65,6 +65,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: widget.surveyForm.inputFields
           .map<Widget?>((e) => _buildInputField(
                 e,
@@ -132,6 +133,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: field.inputFields?.length,
+                  padding: EdgeInsets.zero,
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.only(bottom: 8),
@@ -149,7 +151,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                           child: Column(
                             children: (field.inputFields ?? [])[index]
                                 .map<Widget>((item) {
-                              return Padding(
+                              return Container(
+                                  width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 8,
                                   ),
@@ -162,11 +165,13 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                   },
                 )
               : Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     for (int columnIndex = 0;
                         columnIndex < (field.inputFields?.length ?? 0);
                         columnIndex++)
                       Container(
+                        width: double.infinity,
                         decoration: BoxDecoration(
                           color: const Color(0xffF5F5F5),
                           borderRadius: BorderRadius.circular(8.0),
@@ -234,12 +239,14 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                             ),
                           ),
                           expandableChild: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: (field.inputFields ?? [])
                                 .asMap()
                                 .entries
                                 .map((entry) {
                               final row = entry.value;
-                              return Padding(
+                              return Container(
+                                  width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 8,
                                   ),
@@ -251,13 +258,6 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       ),
                   ],
                 ),
-
-          //  TableInputWidget(
-          //   field: field,
-          //   fieldKey: _formFieldKeys[field.id],
-          //   formValue: formValue,
-          //   labelText: labelText,
-          // ),
         );
       },
       advtable: (field) {
@@ -267,6 +267,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
           child: field.isRow
               ? ListView.builder(
                   shrinkWrap: true,
+                  padding: EdgeInsets.zero,
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: field.inputFields?.length,
                   itemBuilder: (context, index) {
@@ -286,7 +287,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                           child: Column(
                             children: (field.inputFields ?? [])[index]
                                 .map<Widget>((item) {
-                              return Padding(
+                              return Container(
+                                  width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 8,
                                   ),
@@ -304,6 +306,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                         columnIndex < (field.inputFields?.length ?? 0);
                         columnIndex++)
                       Container(
+                        width: double.infinity,
                         decoration: BoxDecoration(
                           color: const Color(0xffF5F5F5),
                           borderRadius: BorderRadius.circular(8.0),
@@ -341,7 +344,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                                 .entries
                                 .map((entry) {
                               final row = entry.value;
-                              return Padding(
+                              return Container(
+                                  width: double.infinity,
                                   padding: const EdgeInsets.symmetric(
                                     horizontal: 8,
                                   ),

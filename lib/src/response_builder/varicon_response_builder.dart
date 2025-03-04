@@ -35,8 +35,7 @@ class VariconResponseBuilder extends StatelessWidget {
 
   final Function(Map<String, dynamic> url) fileClick;
 
-
-    ///Check if a form has geolocation
+  ///Check if a form has geolocation
   ///
   ///If true, it will capture the approximate location from where the form is being submitted
   final bool hasGeolocation;
@@ -54,20 +53,20 @@ class VariconResponseBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 1,
-        title: Text(
-          formtitle,
-          style: Theme.of(context).textTheme.titleMedium,
-        ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   elevation: 1,
+      //   title: Text(
+      //     formtitle,
+      //     style: Theme.of(context).textTheme.titleMedium,
+      //   ),
+      //   leading: IconButton(
+      //     icon: const Icon(Icons.arrow_back),
+      //     onPressed: () {
+      //       Navigator.of(context).pop();
+      //     },
+      //   ),
+      // ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -327,15 +326,13 @@ class VariconResponseBuilder extends StatelessWidget {
                   ],
                 ),
               ),
-              ...surveyForm.inputFields.map<Widget?>((e) {
-                return ResponseInputWidget(
-                  imageBuild: imageBuild,
-                  fileClick: fileClick,
-                  surveyForm: surveyForm,
-                  hasGeolocation: hasGeolocation,
-                  timesheetClick: timesheetClick,
-                );
-              }).whereType<Widget>(),
+              ResponseInputWidget(
+                imageBuild: imageBuild,
+                fileClick: fileClick,
+                surveyForm: surveyForm,
+                hasGeolocation: hasGeolocation,
+                timesheetClick: timesheetClick,
+              )
             ],
           ),
         ),
