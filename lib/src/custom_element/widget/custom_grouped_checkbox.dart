@@ -269,9 +269,6 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 12.0,
-            ),
             Visibility(
               visible: ((widget.value ?? []) as List<ValueText>)
                   .where((element) => element.isOtherField == true)

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,6 +24,10 @@ class VariconYesNoRadioField extends ConsumerWidget {
       name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
+      initialValue: (field.answer ?? '').isEmpty
+          ? null
+          : field.choices
+              .firstWhereOrNull((element) => element.value == field.answer),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onOtherSelectedValue: (isSelected, text) {},
       onChanged: (value) {
@@ -66,6 +71,10 @@ class VariconYesNoNaRadioField extends ConsumerWidget {
       actionMessage: field.actionMessage,
       onOtherSelectedValue: (isSelected, text) {},
       orientation: OptionsOrientation.vertical,
+      initialValue: (field.answer ?? '').isEmpty
+          ? null
+          : field.choices
+              .firstWhereOrNull((element) => element.value == field.answer),
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: (value) {
         if (value != null) {

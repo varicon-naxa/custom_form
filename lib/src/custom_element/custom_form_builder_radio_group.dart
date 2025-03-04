@@ -24,12 +24,15 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
   final WrapAlignment wrapRunAlignment;
   final WrapCrossAlignment wrapCrossAxisAlignment;
   final String? actionMessage;
+  final String? otherText;
 
   /// Added to each item if provided.
   /// [GroupedRadio] applies the [itemDecorator] to each Radio
   final BoxDecoration? itemDecoration;
 
   final Function(bool isSelected, String text)? onOtherSelectedValue;
+
+
 
   /// Creates field to select one value from a list of Radio Widgets
   CustomFromBuilderRadioGroup(
@@ -65,6 +68,7 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
       super.onReset,
       super.restorationId,
       this.itemDecoration,
+      this.otherText,
       this.onOtherSelectedValue})
       : super(
           builder: (FormFieldState<T?> field) {
@@ -76,6 +80,7 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                 activeColor: activeColor,
                 actionMessage: actionMessage,
                 controlAffinity: controlAffinity,
+                otherText: otherText,
                 disabled: state.enabled
                     ? disabled
                     : options.map((option) => option.value).toList(),

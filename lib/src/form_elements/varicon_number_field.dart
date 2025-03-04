@@ -27,7 +27,7 @@ class VariconNumberField extends ConsumerWidget {
       textInputAction: TextInputAction.next,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-        labelText: labelText,
+        hintText: labelText,
         contentPadding: const EdgeInsets.all(8.0),
       ),
       inputFormatters: [

@@ -138,93 +138,88 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
     }
 
     return _signature.isNotEmpty
-        ? Dismissible(
-            key: Key(widget.field.answer?['id'] ?? ''),
-            onDismissed: (direction) {},
-            child: _signature['id'] == null
-                ? Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                            height: 200,
-                            child: Image.memory(_signature['value'])),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Signed On: ${DateFormat('dd MMM yyyy').format(_signature['date'])}',
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                _signature = {};
-                                deleteAnswer();
-                                setState(() {});
-                              },
-                              icon: const Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
-                  )
-                : Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        widget.imageBuild({
-                          'image': widget.field.answer?['file'],
-                          'height': 175.0,
-                          'width': double.infinity
-                        }),
-                        Row(
-                          mainAxisAlignment:
-                              (widget.field.answer?['date'] == null)
-                                  ? MainAxisAlignment.end
-                                  : MainAxisAlignment.start,
-                          children: [
-                            if (widget.field.answer?['date'] != null)
-                              Expanded(
-                                child: Text(
-                                  'Signed On: ${DateFormat('dd MMM yyyy').format(DateTime.parse(widget.field.answer?['created_at']))}',
-                                ),
-                              ),
-                            IconButton(
-                              onPressed: () {
-                                _signature = {};
-                                deleteAnswer();
-                                setState(() {});
-                              },
-                              icon: const Icon(
-                                Icons.delete,
-                                color: Colors.red,
-                              ),
-                            )
-                          ],
-                        ),
-                      ],
-                    ),
+        ? _signature['id'] == null
+            ? Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
                   ),
-          )
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    SizedBox(
+                        height: 200, child: Image.memory(_signature['value'])),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Signed On: ${DateFormat('dd MMM yyyy').format(_signature['date'])}',
+                        ),
+                        IconButton(
+                          onPressed: () {
+                            _signature = {};
+                            deleteAnswer();
+                            setState(() {});
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.grey,
+                  ),
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    widget.imageBuild({
+                      'image': widget.field.answer?['file'],
+                      'height': 175.0,
+                      'width': double.infinity
+                    }),
+                    Row(
+                      mainAxisAlignment: (widget.field.answer?['date'] == null)
+                          ? MainAxisAlignment.end
+                          : MainAxisAlignment.start,
+                      children: [
+                        if (widget.field.answer?['date'] != null)
+                          Expanded(
+                            child: Text(
+                              'Signed On: ${DateFormat('dd MMM yyyy').format(DateTime.parse(widget.field.answer?['created_at']))}',
+                            ),
+                          ),
+                        IconButton(
+                          onPressed: () {
+                            _signature = {};
+                            deleteAnswer();
+                            setState(() {});
+                          },
+                          icon: const Icon(
+                            Icons.delete,
+                            color: Colors.red,
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )
         : GestureDetector(
             onTap: () {
+              FocusManager.instance.primaryFocus?.unfocus();
               if (_signature.isEmpty) {
                 Future.microtask(
                   () {

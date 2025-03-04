@@ -18,6 +18,7 @@ import 'package:varicon_form_builder/src/form_elements/varicon_section_field.dar
 import '../custom_element/date_time_form_field.dart';
 import '../form_elements/varicon_address_field.dart';
 import '../form_elements/varicon_advance_table_field.dart';
+import '../form_elements/varicon_instruction_field.dart';
 import '../form_elements/varicon_long_text.dart';
 import '../form_elements/varicon_other_radio_field.dart';
 import '../form_elements/varicon_simple_table_field.dart';
@@ -43,6 +44,17 @@ class VariconInputFields extends StatelessWidget {
   Widget build(BuildContext context) {
     final labelText = hasLabel ? '${field.label ?? ''} ' : '';
     return field.maybeMap(
+      instruction: (data) {
+        return LabelWidget(
+            labelText: labelText,
+            isRequired: false,
+            child: VariconInstructionField(
+              field: data,
+              labelText: labelText,
+              onTap: (data) {},
+              imageBuild: imageBuild,
+            ));
+      },
       text: (value) {
         return LabelWidget(
           key: GlobalObjectKey(value.id),

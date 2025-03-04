@@ -222,19 +222,18 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                             const SizedBox(
                               height: 8.0,
                             ),
-                            Text(
-                              widget.surveyForm.description.toString(),
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color: const Color(0xff6A737B),
-                                  ),
-                            ),
+                            if ((widget.surveyForm.description ?? '')
+                                .isNotEmpty)
+                              Text(
+                                widget.surveyForm.description.toString(),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      color: const Color(0xff6A737B),
+                                    ),
+                              ),
                           ],
-                        ),
-                        const SizedBox(
-                          height: 16.0,
                         ),
                         if (widget.surveyForm.collectGeolocation == true)
                           currentyCity.when(data: (data) {

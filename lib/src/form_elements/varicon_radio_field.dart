@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -23,10 +24,20 @@ class VariconRadioField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     Debouncer debouncer = Debouncer(milliseconds: 500);
 
+    ValueText? initialValue = (field.answer ?? '').isEmpty
+        ? null
+        : field.choices
+            .firstWhereOrNull((element) => element.value == field.answer);
+
     return CustomFromBuilderRadioGroup(
       name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
+      otherText: (initialValue?.isOtherField == true &&
+              field.selectedLinkListLabel != null)
+          ? field.selectedLinkListLabel
+          : null,
+      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (value) {
         if (field.isRequired && value == null) {

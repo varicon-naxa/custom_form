@@ -185,6 +185,7 @@ class CustomGroupedRadio<T> extends StatefulWidget {
   /// If the [orientation] is set to [OptionsOrientation.horizontal] then
   /// [wrapSpacing] is used as inter-item right margin
   final BoxDecoration? itemDecoration;
+  final String? otherText;
 
   final Function(bool isSelected, String text)? onOtherSelectedValue;
 
@@ -198,6 +199,7 @@ class CustomGroupedRadio<T> extends StatefulWidget {
       this.activeColor,
       this.focusColor,
       this.hoverColor,
+      this.otherText,
       this.actionMessage,
       this.materialTapTargetSize,
       this.wrapDirection = Axis.horizontal,
@@ -222,6 +224,15 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
   FocusNode otherFieldFocusNode = FocusNode();
 
   @override
+  void initState() {
+    super.initState();
+    ValueText? text = widget.value as ValueText?;
+    if (text != null && text.isOtherField == true) {
+      otherFieldController.text = widget.otherText ?? '';
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     final widgetList = <Widget>[];
     for (int i = 0; i < widget.options.length; i++) {
@@ -241,7 +252,6 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ...widgetList,
-              const SizedBox(height: 8.0),
               Visibility(
                 visible: (widget.value as ValueText?)?.action == true &&
                     (widget.actionMessage ?? '').isNotEmpty,
@@ -259,7 +269,6 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                   ),
                 ),
               ),
-              const SizedBox(height: 8.0),
               Visibility(
                 visible: (widget.value as ValueText?)?.isOtherField == true,
                 child: FormBuilderTextField(
@@ -335,21 +344,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
             },
     );
 
-    final label = GestureDetector(
-      onTap: isOptionDisabled
-          ? null
-          : () {
-              ValueText? selectedOption = optionValue as ValueText?;
-              if (selectedOption?.isOtherField == true) {
-                widget.onOtherSelectedValue!(true, '');
-              } else {
-                otherFieldController.clear();
-                widget.onOtherSelectedValue!(false, '');
-              }
-              widget.onChanged(optionValue);
-            },
-      child: option,
-    );
+    final label = option;
 
     Widget compositeItem = Container(
       width: double.infinity,
@@ -367,19 +362,33 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
             : Colors.transparent,
         borderRadius: BorderRadius.circular(8.0),
       ),
-      child: IntrinsicHeight(
-        child: SizedBox(
-          height: 40,
-          child: Row(
-            children: [
-              if (widget.controlAffinity == ControlAffinity.leading) control,
-              Flexible(child: label),
-              // if (widget.controlAffinity == ControlAffinity.trailing) control,
-              // if (widget.orientation != OptionsOrientation.vertical &&
-              //     widget.separator != null &&
-              //     index != widget.options.length - 1)
-              //   widget.separator!,
-            ],
+      child: GestureDetector(
+        onTap: isOptionDisabled
+            ? null
+            : () {
+                ValueText? selectedOption = optionValue as ValueText?;
+                if (selectedOption?.isOtherField == true) {
+                  widget.onOtherSelectedValue!(true, '');
+                } else {
+                  otherFieldController.clear();
+                  widget.onOtherSelectedValue!(false, '');
+                }
+                widget.onChanged(optionValue);
+              },
+        child: IntrinsicHeight(
+          child: SizedBox(
+            height: 40,
+            child: Row(
+              children: [
+                control,
+                Flexible(child: label),
+                // if (widget.controlAffinity == ControlAffinity.trailing) control,
+                // if (widget.orientation != OptionsOrientation.vertical &&
+                //     widget.separator != null &&
+                //     index != widget.options.length - 1)
+                //   widget.separator!,
+              ],
+            ),
           ),
         ),
       ),

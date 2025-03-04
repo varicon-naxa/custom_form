@@ -122,6 +122,8 @@ class DateTimeFormField extends FormField<DateTime> {
             child: TextFormField(
               key: fieldKey,
               readOnly: true,
+              onTapOutside: (event) =>
+                  FocusManager.instance.primaryFocus?.unfocus(),
 
               enabled: false,
               autovalidateMode: AutovalidateMode.onUserInteraction,

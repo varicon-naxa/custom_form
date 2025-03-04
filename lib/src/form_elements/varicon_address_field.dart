@@ -87,7 +87,7 @@ class _VariconAddressFieldState extends ConsumerState<VariconAddressField> {
           : TextInputAction.next,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
-        labelText: widget.labelText,
+        hintText: widget.labelText,
         contentPadding: const EdgeInsets.all(8.0),
         suffixIcon: IconButton(
           padding: EdgeInsets.zero,
