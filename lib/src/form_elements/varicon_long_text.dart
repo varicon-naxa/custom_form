@@ -4,88 +4,87 @@ import 'package:flutter/material.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
-import '../helpers/validators.dart';
-
-class VariconLongText extends StatefulWidget {
+class VariconLongText extends FormField<String> {
   final TextInputField field;
-  final GlobalKey<FormFieldState<dynamic>>? fieldKey;
-  final TextEditingController formCon;
 
-  const VariconLongText({
+  VariconLongText({
     super.key,
     required this.field,
-    this.fieldKey,
-    required this.formCon,
+    String? initialValue,
+    super.validator,
+    super.onSaved,
+  }) : super(
+          initialValue: initialValue ?? field.answer ?? '',
+          builder: (FormFieldState<String> state) {
+            return _VariconLongTextContent(
+              field: field,
+              state: state,
+            );
+          },
+        );
+}
+
+class _VariconLongTextContent extends StatefulWidget {
+  final TextInputField field;
+  final FormFieldState<String> state;
+
+  const _VariconLongTextContent({
+    required this.field,
+    required this.state,
   });
 
   @override
-  State<VariconLongText> createState() => _VariconLongTextState();
+  State<_VariconLongTextContent> createState() =>
+      _VariconLongTextContentState();
 }
 
-class _VariconLongTextState extends State<VariconLongText> {
+class _VariconLongTextContentState extends State<_VariconLongTextContent> {
   bool empty = false;
   final HtmlEditorController htmlEditorController = HtmlEditorController();
-  HtmlEditorOptions editorOptions = const HtmlEditorOptions();
-
-  void saveLongText() {
-    log(widget.formCon.text);
-    // widget.formValue.saveString(
-    //   widget.field.id,
-    //   widget.formCon.text,
-    // );
-  }
+  late HtmlEditorOptions editorOptions;
 
   static String stripHtml(String text) {
     return text.replaceAll(RegExp(r"<[^>]*>"), ' ');
   }
 
-
   @override
   void initState() {
     super.initState();
-    editorOptions =  HtmlEditorOptions(
+    editorOptions = HtmlEditorOptions(
       adjustHeightForKeyboard: false,
-      initialText: widget.field.answer ?? ''
+      initialText: widget.state.value ?? '',
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SizedBox(
           height: 300,
           child: Container(
             decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.grey.shade300,
-                ),
-                borderRadius: BorderRadius.circular(4.0)),
+              border: Border.all(
+                color:
+                    widget.state.hasError ? Colors.red : Colors.grey.shade300,
+              ),
+              borderRadius: BorderRadius.circular(4.0),
+            ),
             child: HtmlEditor(
               callbacks: Callbacks(
-                onFocus: () {
-                  saveLongText();
-                },
-                onBlur: () {
-                  saveLongText();
-                },
                 onChangeContent: (code) {
-                  if (code.toString().isNotEmpty &&
-                      empty == true &&
-                      stripHtml(code.toString()).isNotEmpty) {
-                    widget.formCon.text = code.toString().trim();
-                    saveLongText();
-                  } else {
-                    widget.formCon.text = code.toString().trim();
-                    widget.formCon.clear();
-                    saveLongText();
+                  final strippedCode = stripHtml(code.toString()).trim();
+                  widget.state.didChange(code.toString().trim());
+
+                  if (strippedCode.isEmpty) {
                     setState(() {
                       empty = true;
                     });
                   }
                 },
               ),
-              controller: htmlEditorController, //required
+              controller: htmlEditorController,
               plugins: const [],
               htmlEditorOptions: editorOptions,
               htmlToolbarOptions: const HtmlToolbarOptions(
@@ -109,46 +108,14 @@ class _VariconLongTextState extends State<VariconLongText> {
             ),
           ),
         ),
-        SizedBox(
-          height: 20,
-          child: Visibility(
-            visible: true,
-            child: TextFormField(
-              style: const TextStyle(color: Colors.white),
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-                errorBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                enabled: false,
-                labelStyle: TextStyle(color: Colors.white),
-                disabledBorder: InputBorder.none,
-                contentPadding: EdgeInsets.zero,
-              ),
-              controller: widget.formCon,
-              key: widget.fieldKey,
-              readOnly: true,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              validator: (value) {
-                setState(() {
-                  empty = true;
-                });
-                if (empty == true) {
-                  if ((value ?? '').isNotEmpty) {
-                    saveLongText();
-                  }
-                  return textValidator(
-                    value: stripHtml((value ?? '').toString().trim()),
-                    inputType: "text",
-                    isRequired: (widget.field.isRequired),
-                    requiredErrorText: 'Long text is required',
-                  );
-                } else {
-                  return null;
-                }
-              },
+        if (widget.state.hasError)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Text(
+              widget.state.errorText ?? '',
+              style: const TextStyle(color: Colors.red, fontSize: 12),
             ),
           ),
-        ),
       ],
     );
   }

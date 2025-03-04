@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:varicon_form_builder/src/helpers/validators.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
 import 'package:varicon_form_builder/src/widget/label_widget.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_text_field.dart';
@@ -42,6 +43,10 @@ class VariconInputFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String stripHtml(String text) {
+      return text.replaceAll(RegExp(r"<[^>]*>"), ' ');
+    }
+
     final labelText = hasLabel ? '${field.label ?? ''} ' : '';
     return field.maybeMap(
       instruction: (data) {
@@ -63,7 +68,18 @@ class VariconInputFields extends StatelessWidget {
           child: (value.name ?? '').toLowerCase().contains('long')
               ? VariconLongText(
                   field: value,
-                  formCon: TextEditingController(),
+                  validator: (value) {
+                    final strippedValue = stripHtml(value ?? '');
+                    return textValidator(
+                      value: strippedValue,
+                      inputType: "text",
+                      isRequired: field.isRequired,
+                      requiredErrorText: 'Long text is required',
+                    );
+                  },
+                  onSaved: (value) {
+                    // Handle saved value
+                  },
                 )
               : (value.name ?? '').toLowerCase().contains('address')
                   ? VariconAddressField(
