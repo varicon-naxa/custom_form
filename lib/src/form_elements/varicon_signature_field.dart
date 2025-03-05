@@ -57,12 +57,20 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
       List<Map<String, dynamic>> attachments = await widget.attachmentSave(
         [singleFile.path],
       );
-      answer.addAll(attachments.first);
+      answer.addAll({
+        'id': attachments.first['id'],
+        'attachmentId': attachments.first['id'],
+        'file': attachments.first['file'],
+        'created_at': attachments.first['created_at'],
+      });
+
       controller.clear();
       ref
           .read(currentStateNotifierProvider.notifier)
           .saveMap(widget.field.id, answer);
     }
+
+
 
     deleteAnswer() {
       ref.read(currentStateNotifierProvider.notifier).remove(widget.field.id);

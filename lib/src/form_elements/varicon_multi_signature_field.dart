@@ -96,6 +96,7 @@ class _VariconMultiSignatureFieldState
         file: attachments.first['file'],
         id: attachments.first['id'],
         createdAt: attachments.first['created_at'],
+        attachmentId: attachments.first['id'],
       );
     }
     setState(() {});

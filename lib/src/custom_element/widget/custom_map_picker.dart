@@ -5,6 +5,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:varicon_form_builder/src/widget/navigation_button.dart';
 
 ///Widget for custom map field widget
 ///
@@ -140,23 +141,27 @@ class _CustomMapPickerState extends State<CustomMapPicker> {
             ),
           ),
           if (widget.forMapField == true)
-            SizedBox(
+            Container(
               height: 70,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
               child: Row(
                 children: [
                   Expanded(
-                    child: ElevatedButtonWidget(
-                      text: 'Cancel',
-                      bgColor: Colors.white,
-                      onPressed: () {
+                    child: NavigationButton(
+                      buttonText: 'Cancel',
+                      isAutoSave: true,
+                      onComplete: () {
                         Navigator.pop(context);
                       },
                     ),
                   ),
+                  const SizedBox(
+                    width: 12,
+                  ),
                   Expanded(
-                    child: ElevatedButtonWidget(
-                      text: 'Submit',
-                      onPressed: () {
+                    child: NavigationButton(
+                      buttonText: 'Submit',
+                      onComplete: () {
                         if (context.mounted) {
                           Navigator.pop(context, widget.value);
                         }

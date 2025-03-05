@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously, unnecessary_to_list_in_spreads, unrelated_type_equality_checks
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
 import '../ext/color_extension.dart';
@@ -332,7 +333,43 @@ class VariconResponseBuilder extends StatelessWidget {
                 surveyForm: surveyForm,
                 hasGeolocation: hasGeolocation,
                 timesheetClick: timesheetClick,
-              )
+              ),
+              if (surveyForm.setting?['location'] != null &&
+                  surveyForm.setting?['location']['lat'] != null) ...[
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  height: 250,
+                  child: GoogleMap(
+                    initialCameraPosition: CameraPosition(
+                      target: LatLng((surveyForm.setting?['location']['lat']),
+                          (surveyForm.setting?['location']['long'])),
+                      zoom: 12,
+                    ),
+                    onMapCreated: (GoogleMapController controller) {},
+                    onCameraMove: (CameraPosition newPosition) {},
+                    mapType: MapType.normal,
+                    zoomGesturesEnabled: true,
+                    markers: {
+                      Marker(
+                        markerId: const MarkerId('Sydney'),
+                        position: LatLng(
+                            (surveyForm.setting?['location']['lat']),
+                            (surveyForm.setting?['location']['long'])),
+                      )
+                    },
+                    padding: const EdgeInsets.all(0),
+                    cameraTargetBounds: CameraTargetBounds.unbounded,
+                    minMaxZoomPreference: MinMaxZoomPreference.unbounded,
+                    onTap: (LatLng curentLatlng) {},
+                  ),
+                ),
+                if (surveyForm.setting?['location'] != null &&
+                    surveyForm.setting?['location']['address'] != null)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(surveyForm.setting?['location']['address']),
+                  )
+              ]
             ],
           ),
         ),
