@@ -701,7 +701,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                     ),
                     if (answer['created_at'] != null)
                       Text(
-                        'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(answer['created_at'])}',
+                        'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(answer['date'].toString()))}',
                       ),
                   ],
                 ),

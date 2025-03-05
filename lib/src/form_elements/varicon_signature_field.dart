@@ -78,7 +78,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
     void signatureDialog() {
       scrollBottomSheet(
         context,
-        height: 450,
+        height: 460,
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: AppBar(
@@ -162,8 +162,10 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
-                          'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(_signature['date'])}',
+                        Expanded(
+                          child: Text(
+                            'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(_signature['date'].toString()))}',
+                          ),
                         ),
                         IconButton(
                           onPressed: () {
