@@ -200,11 +200,13 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                       'width': 100
                     }),
                     Row(
-                      mainAxisAlignment: (widget.field.answer?['created_at'] == null)
-                          ? MainAxisAlignment.end
-                          : MainAxisAlignment.start,
+                      mainAxisAlignment:
+                          (widget.field.answer?['created_at'] == null)
+                              ? MainAxisAlignment.end
+                              : MainAxisAlignment.start,
                       children: [
-                        if (widget.field.answer?['created_at'] != null)
+                        if (widget.field.answer?['created_at'] != null &&
+                            widget.field.answer?['created_at'].isNotEmpty)
                           Expanded(
                             child: Text(
                               'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(widget.field.answer?['created_at']))}',

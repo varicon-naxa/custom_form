@@ -699,7 +699,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       imageBuild: widget.imageBuild,
                       isImage: true,
                     ),
-                    if (answer['created_at'] != null)
+                    if (answer['created_at'] != null && answer['created_at'].isNotEmpty)
                       Text(
                         'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(answer['created_at'].toString()))}',
                       ),
