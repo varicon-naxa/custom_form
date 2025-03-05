@@ -196,8 +196,8 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                   children: [
                     widget.imageBuild({
                       'image': widget.field.answer?['file'],
-                      'height': 175.0,
-                      'width': double.infinity
+                      'height': 100.0,
+                      'width': 100
                     }),
                     Row(
                       mainAxisAlignment: (widget.field.answer?['date'] == null)

@@ -869,8 +869,8 @@ class _AnswerDesign extends StatelessWidget {
             ? imageBuild != null
                 ? imageBuild!({
                     'image': answer,
-                    'height': 120.0,
-                    'width': isSignature ? 200.0 : 150.0,
+                    'height': isSignature ? 100 : 120.0,
+                    'width': isSignature ? 100.0 : 150.0,
                   })
                 : CachedNetworkImage(
                     imageUrl: answer,
@@ -1060,12 +1060,12 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                 imageBuild != null
                     ? imageBuild!({
                         'image': e.file ?? '',
-                        'height': 200.0,
-                        'width': 200.0,
+                        'height': 75.0,
+                        'width': 75.0,
                       })
                     : CachedNetworkImage(
                         imageUrl: e.file ?? '',
-                        height: 150,
+                        height: 75,
                         width: double.infinity,
                         placeholderFadeInDuration: const Duration(seconds: 1),
                         placeholder: (context, url) => const Icon(Icons.image),
