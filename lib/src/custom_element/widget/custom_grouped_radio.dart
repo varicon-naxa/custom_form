@@ -176,6 +176,7 @@ class CustomGroupedRadio<T> extends StatefulWidget {
   final ControlAffinity controlAffinity;
 
   final String? actionMessage;
+  final bool? isResponse;
 
   /// Applied to a [Container] wrapping each item if provided
   ///
@@ -195,6 +196,7 @@ class CustomGroupedRadio<T> extends StatefulWidget {
       required this.orientation,
       required this.onChanged,
       this.value,
+      this.isResponse,
       this.disabled,
       this.activeColor,
       this.focusColor,
@@ -273,7 +275,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                 visible: (widget.value as ValueText?)?.isOtherField == true,
                 child: FormBuilderTextField(
                   name: const Uuid().v4(),
-                  autofocus: true,
+                  autofocus: (widget.isResponse == true) ? false : true,
                   onTapOutside: (val) {
                     otherFieldFocusNode.unfocus();
                   },

@@ -31,6 +31,7 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
   /// Added to each item if provided.
   /// [GroupedCheckbox] applies the [itemDecorator] to each Checkbox
   final BoxDecoration? itemDecoration;
+  final bool? isResponse;
 
   /// Creates a list of Checkboxes for selecting multiple options
   CustomFormBuilderCheckboxGroup({
@@ -49,6 +50,7 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
     super.focusNode,
     super.restorationId,
     required this.options,
+    this.isResponse,
     this.actionMessage,
     this.activeColor,
     this.checkColor,
@@ -82,6 +84,7 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
                     actionMessage: actionMessage,
                     orientation: orientation,
                     value: state.value,
+                    isResponse: isResponse,
                     options: options,
                     onChanged: (val) {
                       field.didChange(val);                    

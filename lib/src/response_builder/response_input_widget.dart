@@ -126,238 +126,244 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
     return e.maybeMap(
       table: (field) {
         return LabelWidget(
-          labelText: labelText,
-          isRequired: e.isRequired,
-          child: field.isRow
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: field.inputFields?.length,
-                  padding: EdgeInsets.zero,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: ExpandableWidget(
-                        initialExpanded: true,
-                        expandableHeader: TableExpandableHeaderWidget(
-                          index: index,
-                        ),
-                        expandedHeader: TableExpandableHeaderWidget(
-                          index: index,
-                          isExpanded: true,
-                        ),
-                        expandableChild: Container(
-                          color: Colors.grey.shade200,
-                          child: Column(
-                            children: (field.inputFields ?? [])[index]
-                                .map<Widget>((item) {
-                              return Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                  ),
-                                  child: _buildInputField(item));
-                            }).toList(),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              : Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    for (int columnIndex = 0;
-                        columnIndex < (field.inputFields?.length ?? 0);
-                        columnIndex++)
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffF5F5F5),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.only(bottom: 12),
-                        child: ExpandableWidget(
-                          initialExpanded: true,
-                          expandableHeader: Row(
-                            children: [
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Column ${columnIndex + 1} ',
-                                    ),
-                                    Text(
-                                      '${field.headers?[columnIndex]}',
-                                      maxLines: 1,
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyMedium
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                  ],
-                                ),
+            labelText: labelText,
+            isRequired: e.isRequired,
+            child:
+                // field.isRow
+                //     ?
+                ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: field.inputFields?.length,
+              padding: EdgeInsets.zero,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: ExpandableWidget(
+                    initialExpanded: true,
+                    expandableHeader: TableExpandableHeaderWidget(
+                      index: index,
+                    ),
+                    expandedHeader: TableExpandableHeaderWidget(
+                      index: index,
+                      isExpanded: true,
+                    ),
+                    expandableChild: Container(
+                      color: Colors.grey.shade200,
+                      child: Column(
+                        children: (field.inputFields ?? [])[index]
+                            .map<Widget>((item) {
+                          return Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
                               ),
-                              const Icon(Icons.keyboard_arrow_up)
-                            ],
-                          ),
-                          expandedHeader: Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 8,
-                            ),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Column ${columnIndex + 1} ',
-                                      ),
-                                      Text(
-                                        '${field.headers?[columnIndex]}',
-                                        // maxLines: 2,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                const Icon(Icons.keyboard_arrow_down)
-                              ],
-                            ),
-                          ),
-                          expandableChild: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: (field.inputFields ?? [])
-                                .asMap()
-                                .entries
-                                .map((entry) {
-                              final row = entry.value;
-                              return Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                  ),
-                                  child: _buildInputField(row[columnIndex],
-                                      haslabel: false));
-                            }).toList(),
-                          ),
-                        ),
+                              child: _buildInputField(item));
+                        }).toList(),
                       ),
-                  ],
-                ),
-        );
+                    ),
+                  ),
+                );
+              },
+            )
+            // : Column(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       for (int columnIndex = 0;
+            //           columnIndex < (field.inputFields?.length ?? 0);
+            //           columnIndex++)
+            //         Container(
+            //           width: double.infinity,
+            //           decoration: BoxDecoration(
+            //             color: const Color(0xffF5F5F5),
+            //             borderRadius: BorderRadius.circular(8.0),
+            //           ),
+            //           padding: const EdgeInsets.all(8),
+            //           margin: const EdgeInsets.only(bottom: 12),
+            //           child: ExpandableWidget(
+            //             initialExpanded: true,
+            //             expandableHeader: Row(
+            //               children: [
+            //                 Expanded(
+            //                   child: Column(
+            //                     crossAxisAlignment: CrossAxisAlignment.start,
+            //                     mainAxisAlignment: MainAxisAlignment.start,
+            //                     children: [
+            //                       Text(
+            //                         'Column ${columnIndex + 1} ',
+            //                       ),
+            //                       Text(
+            //                         '${field.headers?[columnIndex]}',
+            //                         maxLines: 1,
+            //                         style: Theme.of(context)
+            //                             .textTheme
+            //                             .bodyMedium
+            //                             ?.copyWith(
+            //                               fontWeight: FontWeight.bold,
+            //                             ),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //                 const Icon(Icons.keyboard_arrow_up)
+            //               ],
+            //             ),
+            //             expandedHeader: Padding(
+            //               padding: const EdgeInsets.only(
+            //                 bottom: 8,
+            //               ),
+            //               child: Row(
+            //                 children: [
+            //                   Expanded(
+            //                     child: Column(
+            //                       crossAxisAlignment:
+            //                           CrossAxisAlignment.start,
+            //                       mainAxisAlignment: MainAxisAlignment.start,
+            //                       children: [
+            //                         Text(
+            //                           'Column ${columnIndex + 1} ',
+            //                         ),
+            //                         Text(
+            //                           '${field.headers?[columnIndex]}',
+            //                           // maxLines: 2,
+            //                           style: Theme.of(context)
+            //                               .textTheme
+            //                               .bodyMedium
+            //                               ?.copyWith(
+            //                                 fontWeight: FontWeight.bold,
+            //                               ),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                   const Icon(Icons.keyboard_arrow_down)
+            //                 ],
+            //               ),
+            //             ),
+            //             expandableChild: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: (field.inputFields ?? [])
+            //                   .asMap()
+            //                   .entries
+            //                   .map((entry) {
+            //                 final row = entry.value;
+            //                 return Container(
+            //                     width: double.infinity,
+            //                     padding: const EdgeInsets.symmetric(
+            //                       horizontal: 8,
+            //                     ),
+            //                     child: _buildInputField(row[columnIndex],
+            //                         haslabel: false));
+            //               }).toList(),
+            //             ),
+            //           ),
+            //         ),
+            //     ],
+            //   ),
+
+            );
       },
       advtable: (field) {
         return LabelWidget(
-          labelText: labelText,
-          isRequired: e.isRequired,
-          child: field.isRow
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.zero,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: field.inputFields?.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: ExpandableWidget(
-                        initialExpanded: true,
-                        expandableHeader: TableExpandableHeaderWidget(
-                          index: index,
-                        ),
-                        expandedHeader: TableExpandableHeaderWidget(
-                          index: index,
-                          isExpanded: true,
-                        ),
-                        expandableChild: Container(
-                          color: Colors.grey.shade200,
-                          child: Column(
-                            children: (field.inputFields ?? [])[index]
-                                .map<Widget>((item) {
-                              return Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                  ),
-                                  child: _buildInputField(item));
-                            }).toList(),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              : Column(
-                  children: [
-                    for (int columnIndex = 0;
-                        columnIndex < (field.inputFields?.length ?? 0);
-                        columnIndex++)
-                      Container(
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffF5F5F5),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        padding: const EdgeInsets.all(8),
-                        margin: const EdgeInsets.only(bottom: 12),
-                        child: ExpandableWidget(
-                          initialExpanded: true,
-                          expandableHeader: Row(
-                            children: [
-                              Text(
-                                'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
+            labelText: labelText,
+            isRequired: e.isRequired,
+            child:
+                // field.isRow
+                //     ?
+                ListView.builder(
+              shrinkWrap: true,
+              padding: EdgeInsets.zero,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: field.inputFields?.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 8),
+                  child: ExpandableWidget(
+                    initialExpanded: true,
+                    expandableHeader: TableExpandableHeaderWidget(
+                      index: index,
+                    ),
+                    expandedHeader: TableExpandableHeaderWidget(
+                      index: index,
+                      isExpanded: true,
+                    ),
+                    expandableChild: Container(
+                      color: Colors.grey.shade200,
+                      child: Column(
+                        children: (field.inputFields ?? [])[index]
+                            .map<Widget>((item) {
+                          return Container(
+                              width: double.infinity,
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
                               ),
-                              const Spacer(),
-                              const Icon(Icons.keyboard_arrow_down)
-                            ],
-                          ),
-                          expandedHeader: Padding(
-                            padding: const EdgeInsets.only(
-                              bottom: 8,
-                            ),
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
-                                ),
-                                const Spacer(),
-                                const Icon(Icons.keyboard_arrow_up)
-                              ],
-                            ),
-                          ),
-                          expandableChild: Column(
-                            children: (field.inputFields ?? [])
-                                .asMap()
-                                .entries
-                                .map((entry) {
-                              final row = entry.value;
-                              return Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 8,
-                                  ),
-                                  child: _buildInputField(row[columnIndex],
-                                      haslabel: true));
-                            }).toList(),
-                          ),
-                        ),
+                              child: _buildInputField(item));
+                        }).toList(),
                       ),
-                  ],
-                ),
-        );
+                    ),
+                  ),
+                );
+              },
+            )
+            // : Column(
+            //     children: [
+            //       for (int columnIndex = 0;
+            //           columnIndex < (field.inputFields?.length ?? 0);
+            //           columnIndex++)
+            //         Container(
+            //           width: double.infinity,
+            //           decoration: BoxDecoration(
+            //             color: const Color(0xffF5F5F5),
+            //             borderRadius: BorderRadius.circular(8.0),
+            //           ),
+            //           padding: const EdgeInsets.all(8),
+            //           margin: const EdgeInsets.only(bottom: 12),
+            //           child: ExpandableWidget(
+            //             initialExpanded: true,
+            //             expandableHeader: Row(
+            //               children: [
+            //                 Text(
+            //                   'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
+            //                 ),
+            //                 const Spacer(),
+            //                 const Icon(Icons.keyboard_arrow_down)
+            //               ],
+            //             ),
+            //             expandedHeader: Padding(
+            //               padding: const EdgeInsets.only(
+            //                 bottom: 8,
+            //               ),
+            //               child: Row(
+            //                 children: [
+            //                   Text(
+            //                     'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
+            //                   ),
+            //                   const Spacer(),
+            //                   const Icon(Icons.keyboard_arrow_up)
+            //                 ],
+            //               ),
+            //             ),
+            //             expandableChild: Column(
+            //               children: (field.inputFields ?? [])
+            //                   .asMap()
+            //                   .entries
+            //                   .map((entry) {
+            //                 final row = entry.value;
+            //                 return Container(
+            //                     width: double.infinity,
+            //                     padding: const EdgeInsets.symmetric(
+            //                       horizontal: 8,
+            //                     ),
+            //                     child: _buildInputField(row[columnIndex],
+            //                         haslabel: true));
+            //               }).toList(),
+            //             ),
+            //           ),
+            //         ),
+            //     ],
+            //   ),
+
+            );
       },
       text: (field) {
         return LabelWidget(
@@ -591,6 +597,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             isRequired: e.isRequired,
             child: VariconCheckboxField(
               field: field,
+              isResponse: true,
               labelText: labelText,
             ),
           ),
@@ -604,6 +611,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             isRequired: e.isRequired,
             child: VariconRadioField(
               field: field,
+              isResponse: true,
               labelText: labelText,
             ),
           ),
@@ -699,7 +707,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       imageBuild: widget.imageBuild,
                       isImage: true,
                     ),
-                    if (answer['created_at'] != null && answer['created_at'].isNotEmpty)
+                    if (answer['created_at'] != null &&
+                        answer['created_at'].isNotEmpty)
                       Text(
                         'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(answer['created_at'].toString()))}',
                       ),
@@ -869,7 +878,7 @@ class _AnswerDesign extends StatelessWidget {
             ? imageBuild != null
                 ? imageBuild!({
                     'image': answer,
-                    'height': isSignature ? 100 : 120.0,
+                    'height': isSignature ? 100.0 : 120.0,
                     'width': isSignature ? 100.0 : 150.0,
                   })
                 : CachedNetworkImage(

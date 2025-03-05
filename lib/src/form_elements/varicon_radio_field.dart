@@ -16,10 +16,12 @@ class VariconRadioField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
+    this.isResponse
   });
 
   final RadioInputField field;
   final String labelText;
+  final bool? isResponse;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Debouncer debouncer = Debouncer(milliseconds: 500);
@@ -31,6 +33,7 @@ class VariconRadioField extends ConsumerWidget {
 
     return CustomFromBuilderRadioGroup(
       name: const Uuid().v4(),
+      isResponse: isResponse,
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
       otherText: (initialValue?.isOtherField == true &&

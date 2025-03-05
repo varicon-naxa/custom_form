@@ -182,6 +182,7 @@ class CustomGroupedCheckbox<T> extends StatefulWidget {
   final Widget? separator;
   final String? actionMessage;
   final String? otherText;
+  final bool? isResponse;
 
   final ControlAffinity controlAffinity;
 
@@ -200,6 +201,7 @@ class CustomGroupedCheckbox<T> extends StatefulWidget {
     required this.options,
     required this.orientation,
     required this.onChanged,
+    this.isResponse,
     this.actionMessage,
     this.value,
     this.disabled,
@@ -284,7 +286,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                   .isNotEmpty,
               child: FormBuilderTextField(
                 name: const Uuid().v4(),
-                autofocus: true,
+                autofocus: (widget.isResponse == true) ? false : true,
                 onTapOutside: (val) {
                   otherFieldFocusNode.unfocus();
                 },

@@ -25,6 +25,7 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
   final WrapCrossAlignment wrapCrossAxisAlignment;
   final String? actionMessage;
   final String? otherText;
+  final bool? isResponse;
 
   /// Added to each item if provided.
   /// [GroupedRadio] applies the [itemDecorator] to each Radio
@@ -53,6 +54,7 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
       this.focusColor,
       this.hoverColor,
       this.materialTapTargetSize,
+      this.isResponse,
       this.orientation = OptionsOrientation.wrap,
       this.separator,
       this.wrapAlignment = WrapAlignment.start,

@@ -18,10 +18,12 @@ class VariconCheckboxField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
+    this.isResponse
   });
 
   final CheckboxInputField field;
   final String labelText;
+  final bool? isResponse;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Debouncer debouncer = Debouncer(milliseconds: 500);
@@ -39,6 +41,7 @@ class VariconCheckboxField extends ConsumerWidget {
           autovalidateMode: AutovalidateMode.onUserInteraction,
           name: const Uuid().v4(),
           otherText: field.answerList,
+          isResponse: isResponse,
           initialValue: filteredData,
           // initialValue: const ['Dart'],
           options: field.choices
