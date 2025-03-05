@@ -61,7 +61,8 @@ class _VariconMultiSignatureFieldState
           id: element.id,
           signatoryName: element.signatoryName,
           file: element.file,
-          createdAt: element.createdAt,
+          createdAt: element.createdAt ?? DateTime.now(),
+          attachmentId: element.id,
         ),
       );
     }
@@ -77,7 +78,6 @@ class _VariconMultiSignatureFieldState
         (signaturePads.isNotEmpty) ? signaturePads.length.toString() : '';
     setState(() {});
     await modifyAnswer(signature);
-    modifyAnswerinList();
   }
 
   Future<void> modifyAnswer(SingleSignature file) async {
@@ -99,6 +99,8 @@ class _VariconMultiSignatureFieldState
         attachmentId: attachments.first['id'],
       );
     }
+    modifyAnswerinList();
+
     setState(() {});
   }
 
@@ -226,7 +228,7 @@ class _VariconMultiSignatureFieldState
         ...signaturePads.map((e) {
           String dateFormat = e.createdAt == null
               ? ''
-              : DateFormat('dd MMM yyyy').format(e.createdAt!);
+              : DateFormat('dd MMM yyyy hh:mm a').format(e.createdAt!);
           String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
           String signatoryNameDetail = 'Signed By ${e.signatoryName} $dateText';
           return Container(

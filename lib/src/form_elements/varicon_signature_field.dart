@@ -61,7 +61,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         'id': attachments.first['id'],
         'attachmentId': attachments.first['id'],
         'file': attachments.first['file'],
-        'created_at': attachments.first['created_at'],
+        'created_at': attachments.first['created_at'] ?? DateTime.now(),
       });
 
       controller.clear();
@@ -69,8 +69,6 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
           .read(currentStateNotifierProvider.notifier)
           .saveMap(widget.field.id, answer);
     }
-
-
 
     deleteAnswer() {
       ref.read(currentStateNotifierProvider.notifier).remove(widget.field.id);
@@ -164,7 +162,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Signed On: ${DateFormat('dd MMM yyyy').format(_signature['date'])}',
+                          'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(_signature['date'])}',
                         ),
                         IconButton(
                           onPressed: () {
@@ -206,7 +204,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                         if (widget.field.answer?['date'] != null)
                           Expanded(
                             child: Text(
-                              'Signed On: ${DateFormat('dd MMM yyyy').format(DateTime.parse(widget.field.answer?['created_at']))}',
+                              'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(widget.field.answer?['created_at']))}',
                             ),
                           ),
                         IconButton(

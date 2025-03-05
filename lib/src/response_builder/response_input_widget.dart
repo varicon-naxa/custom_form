@@ -690,11 +690,20 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             ? LabelWidget(
                 labelText: labelText,
                 isRequired: e.isRequired,
-                child: _AnswerDesign(
-                  answer: answer['file'],
-                  isSignature: true,
-                  imageBuild: widget.imageBuild,
-                  isImage: true,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _AnswerDesign(
+                      answer: answer['file'],
+                      isSignature: true,
+                      imageBuild: widget.imageBuild,
+                      isImage: true,
+                    ),
+                    if (answer['created_at'] != null)
+                      Text(
+                        'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(answer['created_at'])}',
+                      ),
+                  ],
                 ),
               )
             : LabelWidget(
@@ -1039,6 +1048,12 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: answer.map((e) {
+            String dateFormat = e.createdAt == null
+                ? ''
+                : DateFormat('dd MMM yyyy hh:mm a').format(e.createdAt!);
+            String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
+            String signatoryNameDetail =
+                'Signed By ${e.signatoryName} $dateText';
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -1065,7 +1080,7 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         ),
                       ),
                 Text(
-                  e.signatoryName ?? '',
+                  signatoryNameDetail,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                         color: answer.isEmpty ? Colors.grey : Colors.black,
                       ),
