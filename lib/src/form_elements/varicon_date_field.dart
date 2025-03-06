@@ -62,8 +62,8 @@ class _DateTimeInputWidgetState extends ConsumerState<VariconDateField> {
     ///Initial date time, min and max date time
     datePickerType = widget.dateTime;
 
-    min = _parseToDateTime(widget.field.min, datePickerType);
-    max = _parseToDateTime(widget.field.max, datePickerType);
+    min = _parseToDateTime(null, datePickerType);
+    max = _parseToDateTime(null, datePickerType);
 
     now = DateTime.now();
 
@@ -131,11 +131,10 @@ class _DateTimeInputWidgetState extends ConsumerState<VariconDateField> {
           isRequired: widget.field.isRequired,
           min: min,
           max: max,
-          requiredErrorText:
-              widget.field.requiredErrorText ?? 'Response required',
-          maxErrorText: widget.field.maxErrorText ??
+          requiredErrorText: 'Response required',
+          maxErrorText: 
               'The value should not be greater than ${maxFormattedText()}',
-          minErrorText: widget.field.minErrorText ??
+          minErrorText: 
               'The value should not be less than ${minFormattedText()}',
         );
       },
