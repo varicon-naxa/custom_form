@@ -67,8 +67,12 @@ mixin _$SurveyPageForm {
   @InputFieldConverter()
   List<InputField> get inputFields => throw _privateConstructorUsedError;
 
+  /// Serializes this SurveyPageForm to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SurveyPageFormCopyWith<SurveyPageForm> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -118,6 +122,8 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -292,6 +298,8 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
       _$SurveyPageFormImpl _value, $Res Function(_$SurveyPageFormImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -613,7 +621,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
                 .equals(other._inputFields, _inputFields));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
@@ -643,7 +651,9 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
         const DeepCollectionEquality().hash(_inputFields)
       ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SurveyPageFormImplCopyWith<_$SurveyPageFormImpl> get copyWith =>
@@ -760,8 +770,11 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @JsonKey(name: 'elements')
   @InputFieldConverter()
   List<InputField> get inputFields;
+
+  /// Create a copy of SurveyPageForm
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SurveyPageFormImplCopyWith<_$SurveyPageFormImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

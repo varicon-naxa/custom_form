@@ -33,7 +33,7 @@ class VariconEmailField extends ConsumerWidget {
           value: value,
           inputType: "email",
           isRequired: field.isRequired,
-          requiredErrorText: field.requiredErrorText,
+          requiredErrorText: null,
         );
       },
       onChanged: (value) {

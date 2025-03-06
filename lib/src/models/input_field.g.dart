@@ -13,10 +13,7 @@ _$FallbackInputFieldImpl _$$FallbackInputFieldImplFromJson(
       label: json['label'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -27,10 +24,7 @@ Map<String, dynamic> _$$FallbackInputFieldImplToJson(
       'label': instance.label,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
       'type': instance.$type,
     };
 
@@ -40,17 +34,8 @@ _$TextInputFieldImpl _$$TextInputFieldImplFromJson(Map<String, dynamic> json) =>
       label: json['label'] as String?,
       name: json['name'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
       answer: json['answer'] as String?,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -61,17 +46,8 @@ Map<String, dynamic> _$$TextInputFieldImplToJson(
       'label': instance.label,
       'name': instance.name,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
       'answer': instance.answer,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -80,18 +56,11 @@ _$SignatureInputFieldImpl _$$SignatureInputFieldImplFromJson(
     _$SignatureInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
       answer: json['answer'] as Map<String, dynamic>?,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -100,18 +69,11 @@ Map<String, dynamic> _$$SignatureInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'description': instance.description,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
       'answer': instance.answer,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -120,11 +82,9 @@ _$MultiSignatureInputFieldImpl _$$MultiSignatureInputFieldImplFromJson(
     _$MultiSignatureInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
       answer: (json['answer'] as List<dynamic>?)
           ?.map((e) => SingleSignature.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -136,11 +96,9 @@ Map<String, dynamic> _$$MultiSignatureInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
       'answer': instance.answer,
       'type': instance.$type,
     };
@@ -150,17 +108,9 @@ _$DateInputFieldImpl _$$DateInputFieldImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -170,17 +120,9 @@ Map<String, dynamic> _$$DateInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
+      'name': instance.name,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -190,21 +132,13 @@ _$InstructionInputFieldImpl _$$InstructionInputFieldImplFromJson(
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
+      name: json['name'] as String?,
       instruction: readInstruction(json, 'instruction') as String?,
       description: json['description'] as String?,
       attachments: (json['attachments'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -214,19 +148,11 @@ Map<String, dynamic> _$$InstructionInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
+      'name': instance.name,
       'instruction': instance.instruction,
       'description': instance.description,
       'attachments': instance.attachments,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -236,18 +162,10 @@ _$SectionInputFieldImpl _$$SectionInputFieldImplFromJson(
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
       instruction: json['instruction'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -257,18 +175,10 @@ Map<String, dynamic> _$$SectionInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
+      'name': instance.name,
       'description': instance.description,
       'instruction': instance.instruction,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -277,17 +187,9 @@ _$TimeInputFieldImpl _$$TimeInputFieldImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -297,17 +199,9 @@ Map<String, dynamic> _$$TimeInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
+      'name': instance.name,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -315,18 +209,10 @@ _$UrlInputFieldImpl _$$UrlInputFieldImplFromJson(Map<String, dynamic> json) =>
     _$UrlInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -334,18 +220,10 @@ Map<String, dynamic> _$$UrlInputFieldImplToJson(_$UrlInputFieldImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -354,18 +232,10 @@ _$NumberInputFieldImpl _$$NumberInputFieldImplFromJson(
     _$NumberInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -374,18 +244,10 @@ Map<String, dynamic> _$$NumberInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -394,18 +256,10 @@ _$PhoneInputFieldImpl _$$PhoneInputFieldImplFromJson(
     _$PhoneInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -414,18 +268,10 @@ Map<String, dynamic> _$$PhoneInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -434,18 +280,10 @@ _$EmailInputFieldImpl _$$EmailInputFieldImplFromJson(
     _$EmailInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -454,18 +292,10 @@ Map<String, dynamic> _$$EmailInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -475,17 +305,9 @@ _$DateTimeInputFieldImpl _$$DateTimeInputFieldImplFromJson(
       id: json['id'] as String,
       label: json['label'] as String?,
       answer: json['answer'] as String?,
+      name: json['name'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
-      min: json['min'],
-      minErrorText: json['minErrorText'] as String?,
-      max: json['max'],
-      maxErrorText: json['maxErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -495,17 +317,9 @@ Map<String, dynamic> _$$DateTimeInputFieldImplToJson(
       'id': instance.id,
       'label': instance.label,
       'answer': instance.answer,
+      'name': instance.name,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
-      'min': instance.min,
-      'minErrorText': instance.minErrorText,
-      'max': instance.max,
-      'maxErrorText': instance.maxErrorText,
       'type': instance.$type,
     };
 
@@ -514,14 +328,10 @@ _$CommentInputFieldImpl _$$CommentInputFieldImplFromJson(
     _$CommentInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      hintText: json['placeholder'] as String?,
-      maxLength: (json['maxLength'] as num?)?.toInt(),
       $type: json['type'] as String?,
     );
 
@@ -530,14 +340,10 @@ Map<String, dynamic> _$$CommentInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'placeholder': instance.hintText,
-      'maxLength': instance.maxLength,
       'type': instance.$type,
     };
 
@@ -546,12 +352,10 @@ _$DropdownInputFieldImpl _$$DropdownInputFieldImplFromJson(
     _$DropdownInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
       fromManualList: json['fromManualList'] as bool? ?? true,
       answerList: json['selectedLinkListLabel'] as String?,
       linkedQuery: json['islinked_query'] as String?,
@@ -567,7 +371,6 @@ _$DropdownInputFieldImpl _$$DropdownInputFieldImplFromJson(
       noneText: json['noneText'] as String?,
       showOtherItem: json['showOtherItem'] as bool? ?? false,
       otherText: json['otherText'] as String?,
-      otherErrorText: json['otherErrorText'] as String?,
       otherPlaceholder: json['otherPlaceholder'] as String?,
       $type: json['type'] as String?,
     );
@@ -577,12 +380,10 @@ Map<String, dynamic> _$$DropdownInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
       'fromManualList': instance.fromManualList,
       'selectedLinkListLabel': instance.answerList,
       'islinked_query': instance.linkedQuery,
@@ -596,7 +397,6 @@ Map<String, dynamic> _$$DropdownInputFieldImplToJson(
       'noneText': instance.noneText,
       'showOtherItem': instance.showOtherItem,
       'otherText': instance.otherText,
-      'otherErrorText': instance.otherErrorText,
       'otherPlaceholder': instance.otherPlaceholder,
       'type': instance.$type,
     };
@@ -606,6 +406,7 @@ _$MultipleInputFieldImpl _$$MultipleInputFieldImplFromJson(
     _$MultipleInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
@@ -637,6 +438,7 @@ Map<String, dynamic> _$$MultipleInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
       'visible': instance.visible,
@@ -666,6 +468,7 @@ _$CheckboxInputFieldImpl _$$CheckboxInputFieldImplFromJson(
     _$CheckboxInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
@@ -686,7 +489,6 @@ _$CheckboxInputFieldImpl _$$CheckboxInputFieldImplFromJson(
       noneText: json['noneText'] as String?,
       showOtherItem: json['showOtherItem'] as bool? ?? false,
       otherText: json['otherText'] as String?,
-      otherErrorText: json['otherErrorText'] as String?,
       otherPlaceholder: json['otherPlaceholder'] as String?,
       showSelectAllItem: json['showSelectAllItem'] as bool? ?? false,
       $type: json['type'] as String?,
@@ -697,6 +499,7 @@ Map<String, dynamic> _$$CheckboxInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
       'visible': instance.visible,
@@ -715,7 +518,6 @@ Map<String, dynamic> _$$CheckboxInputFieldImplToJson(
       'noneText': instance.noneText,
       'showOtherItem': instance.showOtherItem,
       'otherText': instance.otherText,
-      'otherErrorText': instance.otherErrorText,
       'otherPlaceholder': instance.otherPlaceholder,
       'showSelectAllItem': instance.showSelectAllItem,
       'type': instance.$type,
@@ -726,6 +528,7 @@ _$RadioInputFieldImpl _$$RadioInputFieldImplFromJson(
     _$RadioInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
@@ -755,6 +558,7 @@ Map<String, dynamic> _$$RadioInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
       'visible': instance.visible,
@@ -782,6 +586,7 @@ _$YesNoInputFieldImpl _$$YesNoInputFieldImplFromJson(
     _$YesNoInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
@@ -810,6 +615,7 @@ Map<String, dynamic> _$$YesNoInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
       'visible': instance.visible,
@@ -836,6 +642,7 @@ _$YesNoNaInputFieldImpl _$$YesNoNaInputFieldImplFromJson(
     _$YesNoNaInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
@@ -864,6 +671,7 @@ Map<String, dynamic> _$$YesNoNaInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
       'visible': instance.visible,
@@ -889,15 +697,13 @@ _$FileInputFieldImpl _$$FileInputFieldImplFromJson(Map<String, dynamic> json) =>
     _$FileInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: (json['answer'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isMultiple: json['isMultiple'] as bool? ?? false,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -906,13 +712,11 @@ Map<String, dynamic> _$$FileInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isMultiple': instance.isMultiple,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
       'type': instance.$type,
     };
 
@@ -921,15 +725,13 @@ _$ImageInputFieldImpl _$$ImageInputFieldImplFromJson(
     _$ImageInputFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: (json['answer'] as List<dynamic>?)
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isMultiple: json['isMultiple'] as bool? ?? false,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -938,13 +740,11 @@ Map<String, dynamic> _$$ImageInputFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isMultiple': instance.isMultiple,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
       'type': instance.$type,
     };
 
@@ -953,12 +753,10 @@ _$GeolocationFieldImpl _$$GeolocationFieldImplFromJson(
     _$GeolocationFieldImpl(
       id: json['id'] as String,
       label: json['label'] as String?,
+      name: json['name'] as String?,
       answer: json['answer'] as Map<String, dynamic>?,
       description: json['description'] as String?,
-      visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
       $type: json['type'] as String?,
     );
 
@@ -967,12 +765,10 @@ Map<String, dynamic> _$$GeolocationFieldImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'label': instance.label,
+      'name': instance.name,
       'answer': instance.answer,
       'description': instance.description,
-      'visible': instance.visible,
       'isRequired': instance.isRequired,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
       'type': instance.$type,
     };
 
@@ -984,9 +780,6 @@ _$MapFieldImpl _$$MapFieldImplFromJson(Map<String, dynamic> json) =>
       isRequired: json['isRequired'] as bool? ?? false,
       addressLine: json['addressLine'] as String?,
       answer: json['answer'] as String?,
-      readOnly: json['readOnly'] as bool? ?? false,
-      requiredErrorText: json['requiredErrorText'] as String?,
-      visible: json['visible'] as bool? ?? true,
       description: json['description'] as String?,
       $type: json['type'] as String?,
     );
@@ -999,9 +792,6 @@ Map<String, dynamic> _$$MapFieldImplToJson(_$MapFieldImpl instance) =>
       'isRequired': instance.isRequired,
       'addressLine': instance.addressLine,
       'answer': instance.answer,
-      'readOnly': instance.readOnly,
-      'requiredErrorText': instance.requiredErrorText,
-      'visible': instance.visible,
       'description': instance.description,
       'type': instance.$type,
     };

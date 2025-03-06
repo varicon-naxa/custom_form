@@ -47,7 +47,7 @@ class VariconNumberField extends ConsumerWidget {
               ? num.tryParse(value.toString())
               : null,
           isRequired: field.isRequired,
-          requiredErrorText: field.requiredErrorText,
+          requiredErrorText: null,
         );
       },
       onChanged: (value) {

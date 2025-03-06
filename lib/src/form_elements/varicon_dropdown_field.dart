@@ -13,10 +13,7 @@ import '../widget/scroll_bottomsheet.dart';
 
 class VariconDropdownField extends StatefulHookConsumerWidget {
   const VariconDropdownField(
-      {super.key,
-      required this.field,
-      required this.labelText,
-      this.apiCall});
+      {super.key, required this.field, required this.labelText, this.apiCall});
 
   final DropdownInputField field;
   final String labelText;
@@ -67,8 +64,7 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
             value: values == 'Select the item from list' ? '' : values,
             inputType: "text",
             isRequired: (widget.field.isRequired),
-            requiredErrorText:
-                widget.field.requiredErrorText ?? 'Required field  ',
+            requiredErrorText: 'Required field ',
           ),
           onTap: () {
             if (widget.field.fromManualList) {

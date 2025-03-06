@@ -37,7 +37,7 @@ class VariconTextField extends ConsumerWidget {
           value: value,
           inputType: "text",
           isRequired: field.isRequired,
-          requiredErrorText: field.requiredErrorText,
+          requiredErrorText: null,
         );
       },
       onChanged: (value) {

@@ -18,10 +18,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
   }) = _FallbackInputField;
 
   const factory InputField.text({
@@ -29,50 +26,26 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'answer') String? answer,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = TextInputField;
 
   const factory InputField.signature({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'answer') Map<String, dynamic>? answer,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = SignatureInputField;
 
   const factory InputField.multisignature(
           {@JsonKey(name: 'id') required String id,
           @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
           @JsonKey(name: 'description') String? description,
-          @JsonKey(name: 'visible') @Default(true) bool visible,
           @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-          @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-          @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
           @JsonKey(name: 'answer') List<SingleSignature>? answer}) =
       MultiSignatureInputField;
 
@@ -80,208 +53,114 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = DateInputField;
 
   const factory InputField.instruction({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
+        @JsonKey(name: 'name') String? name,
     @JsonKey(readValue: readInstruction) String? instruction,
     String? description,
     @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = InstructionInputField;
 
   const factory InputField.section({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'instruction') String? instruction,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = SectionInputField;
 
   const factory InputField.time({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = TimeInputField;
 
   const factory InputField.url({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = UrlInputField;
 
   const factory InputField.number({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = NumberInputField;
 
   const factory InputField.phone({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
+    // @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
+    // @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
+    // @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+    // // Fields.
+    // @JsonKey(name: 'placeholder') String? hintText,
+    // @JsonKey(name: 'maxLength') int? maxLength,
 
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
+    // // For number field validation.
+    // @JsonKey(name: 'min') dynamic min,
+    // @JsonKey(name: 'minErrorText') String? minErrorText,
+    // @JsonKey(name: 'max') dynamic max,
+    // @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = PhoneInputField;
 
   const factory InputField.email({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = EmailInputField;
 
   const factory InputField.datetimelocal({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
-
-    // For number field validation.
-    @JsonKey(name: 'min') dynamic min,
-    @JsonKey(name: 'minErrorText') String? minErrorText,
-    @JsonKey(name: 'max') dynamic max,
-    @JsonKey(name: 'maxErrorText') String? maxErrorText,
   }) = DateTimeInputField;
 
   const factory InputField.comment({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    // Fields.
-    @JsonKey(name: 'placeholder') String? hintText,
-    @JsonKey(name: 'maxLength') int? maxLength,
   }) = CommentInputField;
 
   const factory InputField.dropdown({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @Default(true) @JsonKey(name: 'fromManualList') bool fromManualList,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
     @JsonKey(name: 'islinked_query') String? linkedQuery,
@@ -300,7 +179,6 @@ class InputField with _$InputField implements BasicInputField {
     // Other
     @JsonKey(name: 'showOtherItem') @Default(false) bool showOtherItem,
     @JsonKey(name: 'otherText') String? otherText,
-    @JsonKey(name: 'otherErrorText') String? otherErrorText,
     @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
   }) = DropdownInputField;
   //
@@ -323,6 +201,7 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.multipleselect({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
@@ -355,6 +234,7 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.checkbox({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
@@ -378,7 +258,6 @@ class InputField with _$InputField implements BasicInputField {
     // Other
     @JsonKey(name: 'showOtherItem') @Default(false) bool showOtherItem,
     @JsonKey(name: 'otherText') String? otherText,
-    @JsonKey(name: 'otherErrorText') String? otherErrorText,
     @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
     // Select All
     @JsonKey(name: 'showSelectAllItem') @Default(false) bool showSelectAllItem,
@@ -387,6 +266,7 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.radiogroup({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
@@ -418,6 +298,7 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.yesno({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
@@ -448,6 +329,7 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.yesnona({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
@@ -478,36 +360,30 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.files({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isMultiple') @Default(false) bool isMultiple,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
   }) = FileInputField;
 
   const factory InputField.images({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isMultiple') @Default(false) bool isMultiple,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
   }) = ImageInputField;
 
   const factory InputField.geolocation({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'answer') Map<String, dynamic>? answer,
     @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
   }) = GeolocationField;
 
   const factory InputField.map({
@@ -517,9 +393,6 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
     @JsonKey(name: 'addressLine') String? addressLine,
     @JsonKey(name: 'answer') String? answer,
-    @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-    @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-    @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'description') String? description,
   }) = MapField;
 
@@ -569,19 +442,13 @@ abstract class BasicInputField {
     this.id,
     this.label,
     this.description,
-    this.visible,
     this.isRequired,
-    this.readOnly,
-    this.requiredErrorText,
   );
 
   final String id;
   final String? label;
   final String? description;
-  final bool? visible;
   final bool? isRequired;
-  final bool? readOnly;
-  final String? requiredErrorText;
 }
 
 String? readInstruction(Map map, String key) => map[key] ?? map['description'];

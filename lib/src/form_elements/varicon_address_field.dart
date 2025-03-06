@@ -124,7 +124,7 @@ class _VariconAddressFieldState extends ConsumerState<VariconAddressField> {
           value: value,
           inputType: "text",
           isRequired: widget.field.isRequired,
-          requiredErrorText: widget.field.requiredErrorText,
+          requiredErrorText: null,
         );
       },
       onChanged: (value) {

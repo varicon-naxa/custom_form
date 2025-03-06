@@ -319,7 +319,7 @@ class _VariconMultiSignatureFieldState
                 value: value,
                 inputType: "text",
                 isRequired: widget.field.isRequired,
-                requiredErrorText: widget.field.requiredErrorText,
+                requiredErrorText: null,
               );
             },
             onChanged: (value) {},

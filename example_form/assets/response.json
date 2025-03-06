@@ -40,252 +40,44 @@
     },
     "elements": [
         {
-            "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc6",
-            "name": "Multiple Choice",
-            "type": "multipleselect",
-            "label": "Biget item",
-            "isConditional": false,
-            "actionMessage": "",
-            "fromManualList": true,
-            "isRequired": false,
-            "choice": [
-                {
-                    "id": "item-200e3185-3906-4d91-a03f-62f35e8547de",
-                    "type": "option",
-                    "label": "Resource and supplier",
-                    "notify_To": []
-                },
-                {
-                    "id": "item-ae9b0672-16eb-44d5-b5c7-a3412ffadb09",
-                    "type": "option",
-                    "label": "Custom Forms"
-                },
-                {
-                    "id": "item-29580bec-3511-478c-bd55-cd0a84a65ed5",
-                    "type": "option",
-                    "label": "Subcontract"
-                }
-            ]
+            "id": "item-961bf20a-7dbc-4fed-8fd1-b2ad470940e7",
+            "name": "Date",
+            "type": "date",
+            "label": "Question 1 Date",
+            "answer": "",
+            "isRequired": false
         },
         {
-            "id": "item-7c5d0788-d8b2-401b-9d58-ca9d71915a48",
-            "name": "Dynamic Table",
-            "type": "table",
-            "isRow": true,
-            "label": "Dynamic Table Form",
-            "answer": null,
-            "headers": [
-                "Column 1",
-                "Long Text ",
-                "Column 3",
-                "Column 4"
-            ],
-            "tableId": null,
-            "visible": true,
-            "contents": [
-                [
-                    {
-                        "id": "item-85f0cfe8-93d4-4082-bd42-a89a396ca5cf",
-                        "max": null,
-                        "min": null,
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Column 1",
-                        "answer": "test form column",
-                        "visible": true,
-                        "readOnly": false,
-                        "maxLength": null,
-                        "isRequired": false,
-                        "description": "",
-                        "placeholder": null,
-                        "maxErrorText": null,
-                        "minErrorText": null,
-                        "requiredErrorText": null
-                    },
-                    {
-                        "id": "item-36579cbd-19b2-4f45-8dce-e8971421ab19",
-                        "max": null,
-                        "min": null,
-                        "name": "Long Text",
-                        "type": "text",
-                        "label": "Long Text ",
-                        "answer": "<p>asdasd</p>",
-                        "visible": true,
-                        "readOnly": false,
-                        "maxLength": null,
-                        "isRequired": true,
-                        "description": "",
-                        "placeholder": null,
-                        "maxErrorText": null,
-                        "minErrorText": null,
-                        "requiredErrorText": null
-                    },
-                    {
-                        "id": "item-fdc2d0cb-d3bd-4fe6-881d-1520b16fef43",
-                        "max": null,
-                        "min": null,
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Column 3",
-                        "answer": "jdjfh",
-                        "visible": true,
-                        "readOnly": false,
-                        "maxLength": null,
-                        "isRequired": false,
-                        "description": "",
-                        "placeholder": null,
-                        "maxErrorText": null,
-                        "minErrorText": null,
-                        "requiredErrorText": null
-                    },
-                    {
-                        "id": "item-548136b1-36c2-4a68-b0cf-d8ef6926fc56",
-                        "type": "radiogroup",
-                        "label": "Column 4",
-                        "answer": "item-144c7be2-c39e-4b09-9041-ded4213bc0b0",
-                        "choice": [
-                            {
-                                "id": "item-e9746dc8-10ce-43a6-bf01-fcdc09731ab5",
-                                "label": "Option 1",
-                                "action": false,
-                                "notify_To": [],
-                                "isOtherField": null
-                            },
-                            {
-                                "id": "item-144c7be2-c39e-4b09-9041-ded4213bc0b0",
-                                "label": "Other",
-                                "action": false,
-                                "notify_To": [],
-                                "isOtherField": true
-                            }
-                        ],
-                        "visible": true,
-                        "noneText": null,
-                        "readOnly": false,
-                        "otherText": null,
-                        "isRequired": false,
-                        "description": "",
-                        "otherAnswer": null,
-                        "showNoneItem": false,
-                        "actionMessage": "",
-                        "isConditional": false,
-                        "showOtherItem": false,
-                        "otherErrorText": null,
-                        "showClearButton": false,
-                        "otherPlaceholder": null,
-                        "requiredErrorText": null,
-                        "selectedLinkListLabel": "none"
-                    }
-                ]
-            ],
-            "readOnly": false,
-            "isRequired": false,
-            "description": null,
-            "requiredErrorText": null
+            "id": "item-4a093c7f-16ba-4604-b60f-aa5e8f271690",
+            "name": "Time",
+            "type": "time",
+            "label": "Question 2 Time",
+            "answer": "",
+            "isRequired": false
         },
         {
-            "id": "item-3614cb8d-2e66-426a-806f-06f397b40a58",
-            "name": "Predefined Table",
-            "type": "advtable",
-            "isRow": false,
-            "label": "Predefined table here",
-            "answer": null,
-            "headers": [
-                "Column 1",
-                "Column 2",
-                "Column 3",
-                "Column 4"
-            ],
-            "tableId": null,
-            "visible": true,
-            "contents": [
-                [
-                    {
-                        "id": "item-b50d9357-000c-4d93-93ba-2a0e6d281736",
-                        "max": null,
-                        "min": null,
-                        "name": "Address",
-                        "type": "text",
-                        "label": "Column 1",
-                        "answer": "asdasd",
-                        "visible": true,
-                        "readOnly": false,
-                        "maxLength": null,
-                        "isRequired": false,
-                        "description": "",
-                        "placeholder": null,
-                        "maxErrorText": null,
-                        "minErrorText": null,
-                        "requiredErrorText": null
-                    },
-                    {
-                        "id": "item-f8a15cf3-5caa-4b6b-a8bd-ec9b51a345dd",
-                        "max": null,
-                        "min": null,
-                        "type": "date",
-                        "label": "Column 2",
-                        "answer": "2025-03-05",
-                        "visible": true,
-                        "readOnly": false,
-                        "maxLength": null,
-                        "isRequired": false,
-                        "description": "",
-                        "placeholder": null,
-                        "maxErrorText": null,
-                        "minErrorText": null,
-                        "requiredErrorText": null
-                    },
-                    {
-                        "id": "item-c8fd45bb-476b-4600-b9a9-3172b465f1b6",
-                        "max": null,
-                        "min": null,
-                        "name": "Long Text",
-                        "type": "text",
-                        "label": "Column 3",
-                        "answer": "<p>asd</p>",
-                        "visible": true,
-                        "readOnly": false,
-                        "maxLength": null,
-                        "isRequired": true,
-                        "description": "",
-                        "placeholder": null,
-                        "maxErrorText": null,
-                        "minErrorText": null,
-                        "requiredErrorText": null
-                    },
-                    {
-                        "id": "item-ee7e34cd-21e6-491d-a8e4-70fbd2dde080",
-                        "type": "files",
-                        "label": "Column 4",
-                        "answer": [
-                            {
-                                "id": "8e157d03-3b9c-471c-af03-63eafe1079fe",
-                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/24a7f3a2-842b-43b9-81c9-bb29131d1664.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250305%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250305T094618Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=8fc052a7bb9665141cc1e223d82493b81d5b4fa7ad99a69b1e7dedfb3cafeac1",
-                                "name": "wp9081292-goku-4k-iphone-wallpapers.jpg",
-                                "mime_type": "jpg",
-                                "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/24a7f3a2-842b-43b9-81c9-bb29131d1664_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250305%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250305T094618Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=0f1368b7236b14358622917eac8a614aecec6e296aff0bc579639e91ff1dd78c",
-                                "created_by": {
-                                    "id": "597a4a92-56a6-4989-a5e9-269d6833ff09",
-                                    "email": "anil.shrestha@varicon.com.au",
-                                    "last_name": "Shrestha",
-                                    "first_name": "Anil",
-                                    "is_archived": false
-                                }
-                            }
-                        ],
-                        "visible": true,
-                        "readOnly": false,
-                        "isMultiple": true,
-                        "isRequired": true,
-                        "description": "",
-                        "requiredErrorText": null
-                    }
-                ]
-            ],
-            "readOnly": false,
-            "isRequired": false,
-            "description": null,
-            "requiredErrorText": null
+            "id": "item-86f4c2a6-2d9c-4f3d-8411-ae5fbf77980b",
+            "name": "Date Time",
+            "type": "datetimelocal",
+            "label": "Question 3 DateTime",
+            "answer": "",
+            "isRequired": false
+        },
+        {
+            "id": "item-8d44f88a-e2c0-4bd4-95cb-a3dcffe68dd8",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Signature",
+            "answer": {},
+            "isRequired": false
+        },
+        {
+            "id": "item-1447310d-06ea-4b13-91c3-8a95588db789",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [],
+            "isRequired": false
         }
     ],
     "description": ""
