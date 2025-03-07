@@ -40,30 +40,6 @@
     },
     "elements": [
         {
-            "id": "item-961bf20a-7dbc-4fed-8fd1-b2ad470940e7",
-            "name": "Date",
-            "type": "date",
-            "label": "Question 1 Date",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-4a093c7f-16ba-4604-b60f-aa5e8f271690",
-            "name": "Time",
-            "type": "time",
-            "label": "Question 2 Time",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-86f4c2a6-2d9c-4f3d-8411-ae5fbf77980b",
-            "name": "Date Time",
-            "type": "datetimelocal",
-            "label": "Question 3 DateTime",
-            "answer": "",
-            "isRequired": false
-        },
-        {
             "id": "item-8d44f88a-e2c0-4bd4-95cb-a3dcffe68dd8",
             "name": "Signature",
             "type": "signature",
