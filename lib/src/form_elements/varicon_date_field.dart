@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
-
 import '../custom_element/date_time_form_field.dart';
 import '../helpers/validators.dart';
 

@@ -61,10 +61,11 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         'id': attachments.first['id'],
         'attachmentId': attachments.first['id'],
         'file': attachments.first['file'],
-        'created_at': attachments.first['created_at'] ??
+        'created_at':
+            // attachments.first['created_at'] ??
             DateFormat("yyyy-MM-ddTHH:mm:ss").format(
-              DateTime.now(),
-            ),
+          DateTime.now(),
+        ),
       });
 
       controller.clear();
