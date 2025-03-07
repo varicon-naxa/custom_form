@@ -1059,7 +1059,7 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
           children: answer.map((e) {
             String dateFormat = e.createdAt == null
                 ? ''
-                : DateFormat('dd MMM yyyy hh:mm a').format(e.createdAt!);
+                : DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(e.createdAt!));
             String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
             String signatoryNameDetail =
                 'Signed By ${e.signatoryName} $dateText';

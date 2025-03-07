@@ -25,7 +25,7 @@ mixin _$SingleSignature {
   String? get attachmentId => throw _privateConstructorUsedError;
   String? get file => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
-  DateTime? get createdAt => throw _privateConstructorUsedError;
+  String? get createdAt => throw _privateConstructorUsedError;
   dynamic get uniImage => throw _privateConstructorUsedError;
   @JsonKey(name: 'signatory_name')
   String? get signatoryName => throw _privateConstructorUsedError;
@@ -51,7 +51,7 @@ abstract class $SingleSignatureCopyWith<$Res> {
       {String? id,
       String? attachmentId,
       String? file,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'created_at') String? createdAt,
       dynamic uniImage,
       @JsonKey(name: 'signatory_name') String? signatoryName,
       bool? changeToImage});
@@ -96,7 +96,7 @@ class _$SingleSignatureCopyWithImpl<$Res, $Val extends SingleSignature>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       uniImage: freezed == uniImage
           ? _value.uniImage
           : uniImage // ignore: cast_nullable_to_non_nullable
@@ -125,7 +125,7 @@ abstract class _$$SingleSignatureImplCopyWith<$Res>
       {String? id,
       String? attachmentId,
       String? file,
-      @JsonKey(name: 'created_at') DateTime? createdAt,
+      @JsonKey(name: 'created_at') String? createdAt,
       dynamic uniImage,
       @JsonKey(name: 'signatory_name') String? signatoryName,
       bool? changeToImage});
@@ -168,7 +168,7 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
       createdAt: freezed == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as String?,
       uniImage: freezed == uniImage
           ? _value.uniImage
           : uniImage // ignore: cast_nullable_to_non_nullable
@@ -211,7 +211,7 @@ class _$SingleSignatureImpl
   final String? file;
   @override
   @JsonKey(name: 'created_at')
-  final DateTime? createdAt;
+  final String? createdAt;
   @override
   final dynamic uniImage;
   @override
@@ -291,7 +291,7 @@ abstract class _SingleSignature implements SingleSignature {
       {final String? id,
       final String? attachmentId,
       final String? file,
-      @JsonKey(name: 'created_at') final DateTime? createdAt,
+      @JsonKey(name: 'created_at') final String? createdAt,
       final dynamic uniImage,
       @JsonKey(name: 'signatory_name') final String? signatoryName,
       final bool? changeToImage}) = _$SingleSignatureImpl;
@@ -308,7 +308,7 @@ abstract class _SingleSignature implements SingleSignature {
   String? get file;
   @override
   @JsonKey(name: 'created_at')
-  DateTime? get createdAt;
+  String? get createdAt;
   @override
   dynamic get uniImage;
   @override
