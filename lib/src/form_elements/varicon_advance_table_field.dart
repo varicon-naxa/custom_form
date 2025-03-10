@@ -33,32 +33,20 @@ class VariconAdvanceTableField extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTableState = ref.watch(customAdvanceRowProvider);
+    final singleData =
+        currentTableState.firstWhereOrNull((element) => element.id == field.id);
 
     return Column(
-      children: currentTableState.map((singleData) {
-        if (singleData.id == field.id) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Column(
-                  children:
-                      (singleData.rowList ?? []).mapIndexed((index, model) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 8),
-                  child: _buildTableRowContent(context, index, model, ref),
-                );
-              }).toList()),
-            ],
-          );
-        }
-        return const SizedBox.shrink();
-      }).toList(),
-    );
+        children: (singleData?.rowList ?? []).mapIndexed((index, model) {
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 8),
+        child: _buildTableRowContent(context, index, model, ref),
+      );
+    }).toList());
   }
 
   Widget _buildTableRowContent(
       BuildContext context, int index, CustomRowModel model, WidgetRef ref) {
-
     return KeyedSubtree(
       key: ValueKey(const Uuid().v4()),
       child: ExpandableWidget(
@@ -79,6 +67,7 @@ class VariconAdvanceTableField extends ConsumerWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: VariconInputFields(
+                  key: ValueKey(item.id), // Ensure unique key for each field
                   field: item,
                   apiCall: apiCall,
                   imageBuild: imageBuild,
