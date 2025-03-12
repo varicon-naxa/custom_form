@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:signature/signature.dart';
@@ -62,7 +63,6 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         'attachmentId': attachments.first['id'],
         'file': attachments.first['file'],
         'created_at': attachments.first['created_at'].toString()
-
       });
 
       controller.clear();
@@ -76,6 +76,10 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
     }
 
     void signatureDialog() {
+      // Force close keyboard using multiple methods
+      FocusManager.instance.primaryFocus?.unfocus();
+      FocusScope.of(context).unfocus();
+      SystemChannels.textInput.invokeMethod('TextInput.hide');
       scrollBottomSheet(
         context,
         height: 460,
@@ -89,55 +93,57 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
-          body: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: FormBuilderSignaturePad(
-              controller: controller,
-              hasAction: true,
-              decoration: const InputDecoration(
-                labelText: 'Signature Pad',
-              ),
-              width: double.infinity,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              initialWidget: null,
-              name: const Uuid().v4(),
-              onSavedClicked: (data) {
-                _signature = {'value': data, 'date': DateTime.now()};
-                modifyAnswer(data!);
-                setState(() {});
-                Navigator.pop(context);
-              },
-              onDeletedPressed: () {
-                _signature = {};
-                deleteAnswer();
-              },
-              onChanged: (value) {},
-              validator: (data) {
-                if (widget.field.isRequired) {
-                  if ((widget.field.answer ?? {}).isNotEmpty) {
-                    String? answer;
-                    if (_signature.isEmpty && data == null) {
-                      answer = 'This field is required';
-                    } else if (_signature.isEmpty && data != null) {
-                      answer = 'Please Save the Signature';
-                    } else if (_signature.isNotEmpty && data == null) {
-                      answer = null;
-                    } else if (_signature.isNotEmpty && data != null) {
-                      answer = null;
+          body: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: FormBuilderSignaturePad(
+                controller: controller,
+                hasAction: true,
+                decoration: const InputDecoration(
+                  labelText: 'Signature Pad',
+                ),
+                width: double.infinity,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                initialWidget: null,
+                name: const Uuid().v4(),
+                onSavedClicked: (data) {
+                  _signature = {'value': data, 'date': DateTime.now()};
+                  modifyAnswer(data!);
+                  setState(() {});
+                  Navigator.pop(context);
+                },
+                onDeletedPressed: () {
+                  _signature = {};
+                  deleteAnswer();
+                },
+                onChanged: (value) {},
+                validator: (data) {
+                  if (widget.field.isRequired) {
+                    if ((widget.field.answer ?? {}).isNotEmpty) {
+                      String? answer;
+                      if (_signature.isEmpty && data == null) {
+                        answer = 'This field is required';
+                      } else if (_signature.isEmpty && data != null) {
+                        answer = 'Please Save the Signature';
+                      } else if (_signature.isNotEmpty && data == null) {
+                        answer = null;
+                      } else if (_signature.isNotEmpty && data != null) {
+                        answer = null;
+                      }
+                      return answer;
+                    } else {
+                      if (data == null) {
+                        return 'This field is required';
+                      }
                     }
-                    return answer;
-                  } else {
-                    if (data == null) {
-                      return 'This field is required';
-                    }
+                    // if (data == null || _signature.isEmpty) {
+                    //   return 'This field is required';
+                    // }
                   }
-                  // if (data == null || _signature.isEmpty) {
-                  //   return 'This field is required';
-                  // }
-                }
-                return null;
-              },
-              border: Border.all(color: Colors.green),
+                  return null;
+                },
+                border: Border.all(color: Colors.green),
+              ),
             ),
           ),
         ),
@@ -230,7 +236,6 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
               )
         : GestureDetector(
             onTap: () {
-              FocusManager.instance.primaryFocus?.unfocus();
               if (_signature.isEmpty) {
                 Future.microtask(
                   () {

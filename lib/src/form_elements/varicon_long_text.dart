@@ -1,11 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 
 class VariconLongText extends FormField<String> {
   final TextInputField field;
+  final ValueChanged<String>? onChanged;
 
   VariconLongText({
     super.key,
@@ -13,12 +12,14 @@ class VariconLongText extends FormField<String> {
     String? initialValue,
     super.validator,
     super.onSaved,
+    this.onChanged,
   }) : super(
           initialValue: initialValue ?? field.answer ?? '',
           builder: (FormFieldState<String> state) {
             return _VariconLongTextContent(
               field: field,
               state: state,
+              onChanged: onChanged,
             );
           },
         );
@@ -27,11 +28,10 @@ class VariconLongText extends FormField<String> {
 class _VariconLongTextContent extends StatefulWidget {
   final TextInputField field;
   final FormFieldState<String> state;
+  final ValueChanged<String>? onChanged; // Add this line
 
-  const _VariconLongTextContent({
-    required this.field,
-    required this.state,
-  });
+  const _VariconLongTextContent(
+      {required this.field, required this.state, this.onChanged});
 
   @override
   State<_VariconLongTextContent> createState() =>
@@ -76,6 +76,7 @@ class _VariconLongTextContentState extends State<_VariconLongTextContent> {
                 onChangeContent: (code) {
                   final strippedCode = stripHtml(code.toString()).trim();
                   widget.state.didChange(code.toString().trim());
+                  widget.onChanged?.call(code.toString().trim());
 
                   if (strippedCode.isEmpty) {
                     setState(() {

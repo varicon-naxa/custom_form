@@ -933,7 +933,7 @@ class _AnswerDesign extends StatelessWidget {
                 : Text(
                     answer.isEmpty ? 'No Response' : answer,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: answer.isEmpty ? Colors.grey : Colors.black),
+                        color: Colors.grey),
                   ),
       ],
     );

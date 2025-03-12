@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:varicon_form_builder/src/helpers/debouncer.dart';
 import 'package:varicon_form_builder/src/helpers/validators.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
+import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/widget/label_widget.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_text_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_number_field.dart';
@@ -24,7 +27,7 @@ import '../form_elements/varicon_long_text.dart';
 import '../form_elements/varicon_other_radio_field.dart';
 import '../form_elements/varicon_simple_table_field.dart';
 
-class VariconInputFields extends StatelessWidget {
+class VariconInputFields extends ConsumerWidget {
   final InputField field;
   final bool hasLabel;
   final Widget Function(Map<String, dynamic>) imageBuild;
@@ -42,7 +45,9 @@ class VariconInputFields extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    Debouncer debouncer = Debouncer(milliseconds: 500);
+
     String stripHtml(String text) {
       return text.replaceAll(RegExp(r"<[^>]*>"), ' ');
     }
@@ -76,6 +81,13 @@ class VariconInputFields extends StatelessWidget {
                       isRequired: field.isRequired,
                       requiredErrorText: 'Long text is required',
                     );
+                  },
+                  onChanged: (data) {
+                    debouncer.run(() {
+                      ref
+                          .read(currentStateNotifierProvider.notifier)
+                          .saveString(value.id, data);
+                    });
                   },
                   onSaved: (value) {
                     // Handle saved value
