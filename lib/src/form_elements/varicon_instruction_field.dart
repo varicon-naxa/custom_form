@@ -22,8 +22,9 @@ class VariconInstructionField extends ConsumerWidget {
   final Function(String) onTap;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
+      width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

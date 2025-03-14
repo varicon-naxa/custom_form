@@ -14,12 +14,11 @@ import '../custom_element/custom_form_builder_checkbox_group.dart';
 import '../state/required_id_provider.dart';
 
 class VariconCheckboxField extends ConsumerWidget {
-  const VariconCheckboxField({
-    super.key,
-    required this.field,
-    required this.labelText,
-    this.isResponse
-  });
+  const VariconCheckboxField(
+      {super.key,
+      required this.field,
+      required this.labelText,
+      this.isResponse});
 
   final CheckboxInputField field;
   final String labelText;
@@ -43,6 +42,7 @@ class VariconCheckboxField extends ConsumerWidget {
           otherText: field.answerList,
           isResponse: isResponse,
           initialValue: filteredData,
+
           // initialValue: const ['Dart'],
           options: field.choices
               .map((lang) => FormBuilderFieldOption(

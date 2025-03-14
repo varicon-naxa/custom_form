@@ -231,6 +231,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
     ValueText? text = widget.value as ValueText?;
     if (text != null && text.isOtherField == true) {
       otherFieldController.text = widget.otherText ?? '';
+      otherFieldFocusNode.unfocus();
     }
   }
 
@@ -275,7 +276,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                 visible: (widget.value as ValueText?)?.isOtherField == true,
                 child: FormBuilderTextField(
                   name: const Uuid().v4(),
-                  autofocus: (widget.isResponse == true) ? false : true,
+                  autofocus: widget.isResponse == false, // Changed this line
                   onTapOutside: (val) {
                     otherFieldFocusNode.unfocus();
                   },

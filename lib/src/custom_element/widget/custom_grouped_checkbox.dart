@@ -286,7 +286,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                   .isNotEmpty,
               child: FormBuilderTextField(
                 name: const Uuid().v4(),
-                autofocus: (widget.isResponse == true) ? false : true,
+                autofocus: widget.isResponse == false, // Changed this line
                 onTapOutside: (val) {
                   otherFieldFocusNode.unfocus();
                 },

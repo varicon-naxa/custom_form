@@ -932,8 +932,10 @@ class _AnswerDesign extends StatelessWidget {
                   )
                 : Text(
                     answer.isEmpty ? 'No Response' : answer,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        color: Colors.grey),
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: Colors.black),
                   ),
       ],
     );
@@ -1059,7 +1061,8 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
           children: answer.map((e) {
             String dateFormat = e.createdAt == null
                 ? ''
-                : DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(e.createdAt!));
+                : DateFormat('dd MMM yyyy hh:mm a')
+                    .format(DateTime.parse(e.createdAt!));
             String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
             String signatoryNameDetail =
                 'Signed By ${e.signatoryName} $dateText';

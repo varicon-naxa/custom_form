@@ -40,80 +40,140 @@
     },
     "elements": [
         {
-            "type": "radiogroup",
-            "name": "Radioname",
-            "id": "checkbox1213123",
-            "fromManualList": true,
-            "isConditional": true,
-            "islinked": true,
-            "islinked_query": "equipment",
-            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
-            "isRequired": true,
-            "requiredErrorText": "At least one item must be selected",
-            "actionMessage": "This is the action message ",
-            "choice": [
-                {
-                    "value": "item1",
-                    "text": "This is item 1."
-                },
-                {
-                    "value": "item2",
-                    "text": "This is item 2."
-                },
-                {
-                    "value": "item3",
-                    "text": "This is item 3."
-                },
-                {
-                    "value": "item4",
-                    "text": "This is item 4.",
-                    "action": false
-                },
-                {
-                    "value": "item5",
-                    "text": "This is item 5.",
-                    "isOtherField": true,
-                    "action": true
-                }
-            ],
-            "otherErrorText": "Other field comment is required."
+            "id": "item-b762df80-0999-4802-8a13-9d780259da53",
+            "name": "Address",
+            "type": "text",
+            "label": "Address",
+            "answer": "38 York Street, Sydney New South Wales 2000 Australia",
+            "isRequired": false,
+            "description": null
         },
         {
-            "type": "checkbox",
-            "name": "checkbox1",
-            "id": "checkbox1",
-            "fromManualList": true,
-            "isConditional": false,
-            "islinked": true,
-            "islinked_query": "equipment",
-            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
-            "isRequired": true,
-            "requiredErrorText": "At least one item must be selected",
-            "actionMessage": "This is the action message ",
+            "id": "item-1c11b89c-2d8c-4cfa-b464-516aaa537db7",
+            "name": "Short Text",
+            "type": "text",
+            "label": "Short Text",
+            "answer": "fgff",
+            "isRequired": false,
+            "description": null
+        },
+        {
+            "id": "item-b587ccc2-a8ae-4e56-8c4b-5a2748de950b",
+            "name": "Radio",
+            "type": "radiogroup",
+            "label": "Radio",
+            "answer": "item-ab3209a8-2775-431a-9681-54ea050fdf17",
             "choice": [
                 {
-                    "value": "item1",
-                    "text": "This is item 1."
+                    "id": "item-97701a09-5d79-4ba8-9ab6-b8e557e20b55",
+                    "label": "Option 1",
+                    "action": null,
+                    "notify_To": null,
+                    "isOtherField": null
                 },
                 {
-                    "value": "item2",
-                    "text": "This is item 2."                },
-                {
-                    "value": "item3",
-                    "text": "This is item 3."
+                    "id": "item-d12e0a75-421e-4d39-83f1-f8325e770d97",
+                    "label": "Option 2",
+                    "action": null,
+                    "notify_To": null,
+                    "isOtherField": null
                 },
                 {
-                    "value": "item4",
-                    "text": "This is item 4."
-                },
-                {
-                    "value": "item5",
-                    "text": "This is item 5.",
-                    "isOtherField": true,
-                    "action": true
+                    "id": "item-ab3209a8-2775-431a-9681-54ea050fdf17",
+                    "label": "Other",
+                    "action": null,
+                    "notify_To": null,
+                    "isOtherField": true
                 }
             ],
-            "otherErrorText": "Other field comment is required."
+            "visible": true,
+            "noneText": null,
+            "readOnly": false,
+            "otherText": null,
+            "isRequired": false,
+            "description": null,
+            "otherAnswer": null,
+            "showNoneItem": false,
+            "actionMessage": null,
+            "isConditional": false,
+            "showOtherItem": false,
+            "otherErrorText": null,
+            "showClearButton": false,
+            "otherPlaceholder": null,
+            "requiredErrorText": null,
+            "selectedLinkListLabel": "dhhd"
+        },
+        {
+            "id": "item-c56460e0-209a-4679-8d86-c2f6d8b3b2d5",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "Checkboxes",
+            "answer": "item-a6219296-c5f7-4026-8b2e-6f522b031c98,item-1334f5a4-e814-4ee2-91d3-7dac6d7277f1",
+            "choice": [
+                {
+                    "id": "item-061c5e93-7d04-409d-83ad-55f95fa00bae",
+                    "label": "Option 1",
+                    "action": null,
+                    "notify_To": null,
+                    "isOtherField": null
+                },
+                {
+                    "id": "item-1d40fa24-e89c-433e-a792-b7de480c6c23",
+                    "label": "Option 2",
+                    "action": null,
+                    "notify_To": null,
+                    "isOtherField": null
+                },
+                {
+                    "id": "item-a6219296-c5f7-4026-8b2e-6f522b031c98",
+                    "label": "Option 3",
+                    "action": null,
+                    "notify_To": null,
+                    "isOtherField": null
+                },
+                {
+                    "id": "item-1334f5a4-e814-4ee2-91d3-7dac6d7277f1",
+                    "label": "Other",
+                    "action": null,
+                    "notify_To": null,
+                    "isOtherField": true
+                }
+            ],
+            "visible": true,
+            "noneText": null,
+            "readOnly": false,
+            "otherText": null,
+            "isRequired": false,
+            "description": null,
+            "showNoneItem": false,
+            "actionMessage": null,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "islinked_query": null,
+            "otherPlaceholder": null,
+            "requiredErrorText": null,
+            "showSelectAllItem": false,
+            "maxSelectedChoices": null,
+            "selectedLinkListLabel": "err"
+        },
+        {
+            "id": "item-96eee6ab-22ad-4f11-9e75-36750bda8554",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "answer": "Erxzz",
+            "isRequired": false,
+            "description": null
+        },
+        {
+            "id": "item-810322f7-22f9-42a0-be2d-924c59691abb",
+            "name": "Date Time",
+            "type": "datetimelocal",
+            "label": "Date Time",
+            "answer": "2025-03-26T01:00",
+            "isRequired": false,
+            "description": null
         }
     ],
     "description": ""

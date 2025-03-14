@@ -84,6 +84,7 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
                     actionMessage: actionMessage,
                     orientation: orientation,
                     value: state.value,
+                    otherText: otherText,
                     isResponse: isResponse,
                     options: options,
                     onChanged: (val) {
