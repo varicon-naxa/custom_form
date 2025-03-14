@@ -81,6 +81,7 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
               child: CustomGroupedRadio<T>(
                 activeColor: activeColor,
                 actionMessage: actionMessage,
+                isResponse: isResponse,
                 controlAffinity: controlAffinity,
                 otherText: otherText,
                 disabled: state.enabled

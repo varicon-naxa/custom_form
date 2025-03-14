@@ -40,162 +40,80 @@
     },
     "elements": [
         {
-            "id": "item-8987836b-e82b-4090-96b6-548939c3bf95",
-            "name": "Predefined Table",
-            "type": "advtable",
-            "isRow": true,
-            "label": "Predefined Table1",
-            "headers": [
-                "Skid Steer 1",
-                "Skid Steer 2",
-                "Excavator 1",
-                "Excavator 2",
-                "Loader",
-                "Side Tipper",
-                "Mulch Truck",
-                "Chipper"
+            "type": "radiogroup",
+            "name": "Radioname",
+            "id": "checkbox1213123",
+            "fromManualList": true,
+            "isConditional": true,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."
+                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4.",
+                    "action": false
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "isOtherField": true,
+                    "action": true
+                }
             ],
-            "contents": [
-                [
-                    {
-                        "id": "item-8bc20e01-c930-4c89-9376-71cde26e6ddf",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Skid Steer 1",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-469921c2-4493-4c5b-93ac-a0ab5502e697",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Skid Steer 2",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-642a4f2b-9bef-45c5-a1ae-caf531060ec8",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Excavator 1",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-30cbe02a-fd29-46c3-a5ae-e556fcd69d6d",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Excavator 2",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-9f2f950e-f6cc-42b9-85ab-7923bcec4675",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Loader",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-b0616706-91ac-4b16-967e-e31ff7e7dde4",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Side Tipper",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-d1ea3e3d-b83e-4144-b39b-ef4eb4b4cbb5",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Mulch Truck",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-183649c9-b7d5-4720-829d-2c4e9bbdb9d7",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Chipper",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    }
-                ]
-            ],
-            "isRequired": false
+            "otherErrorText": "Other field comment is required."
         },
         {
-            "id": "item-0ce74301-4bd2-4dc0-b554-c9e28ee0a19c",
-            "name": "Predefined Table",
-            "type": "advtable",
-            "isRow": true,
-            "label": "Predefined Table2",
-            "headers": [
-                "Chainsaws",
-                "Chainsaws",
-                "Others - Please state type and hours below",
-                "Others - Please state type and hours below",
-                "Others - Please state type and hours below"
+            "type": "checkbox",
+            "name": "checkbox1",
+            "id": "checkbox1",
+            "fromManualList": true,
+            "isConditional": false,
+            "islinked": true,
+            "islinked_query": "equipment",
+            "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+            "isRequired": true,
+            "requiredErrorText": "At least one item must be selected",
+            "actionMessage": "This is the action message ",
+            "choice": [
+                {
+                    "value": "item1",
+                    "text": "This is item 1."
+                },
+                {
+                    "value": "item2",
+                    "text": "This is item 2."                },
+                {
+                    "value": "item3",
+                    "text": "This is item 3."
+                },
+                {
+                    "value": "item4",
+                    "text": "This is item 4."
+                },
+                {
+                    "value": "item5",
+                    "text": "This is item 5.",
+                    "isOtherField": true,
+                    "action": true
+                }
             ],
-            "contents": [
-                [
-                    {
-                        "id": "item-adfb46d2-dd16-487e-b8ad-feb408f1e37b",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Chainsaws",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-24ad0379-1392-4bab-97bc-a770507b0958",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Chainsaws",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-98391cc5-047d-4fbf-acb3-9715812d31de",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Others - Please state type and hours below",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-50eadc1c-4dc5-4e3a-9b4f-e530d30b839d",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Others - Please state type and hours below",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    },
-                    {
-                        "id": "item-ea197324-6e6d-423c-a4ca-f5dc347ac796",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Others - Please state type and hours below",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    }
-                ]
-            ],
-            "isRequired": false
+            "otherErrorText": "Other field comment is required."
         }
     ],
     "description": ""
