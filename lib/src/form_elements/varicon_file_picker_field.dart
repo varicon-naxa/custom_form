@@ -1,3 +1,6 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -13,6 +16,7 @@ class VariconFilePickerField extends StatefulHookConsumerWidget {
     required this.field,
     required this.labelText,
     required this.attachmentSave,
+    required this.customPainter,
   });
 
   final FileInputField field;
@@ -22,6 +26,8 @@ class VariconFilePickerField extends StatefulHookConsumerWidget {
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
 
+  final Widget Function(File imageFile) customPainter;
+
   @override
   ConsumerState<VariconFilePickerField> createState() =>
       _VariconFilePickerFieldState();
@@ -29,25 +35,45 @@ class VariconFilePickerField extends StatefulHookConsumerWidget {
 
 class _VariconFilePickerFieldState
     extends ConsumerState<VariconFilePickerField> {
-  List<Map<String, dynamic>> attachments = [];
+  List<Map<String, dynamic>> initalAttachments = [];
+  List<Map<String, dynamic>> currentAttachments = [];
 
   @override
   void initState() {
     super.initState();
 
-    attachments.addAll(widget.field.answer ?? []);
+    initalAttachments.addAll(widget.field.answer ?? []);
     setState(() {});
   }
 
-  saveFileToServer(List<PlatformFile> files) async {
-    List<Map<String, dynamic>> attachments = [];
-    final data = await widget.attachmentSave(
-      files.map((e) => e.path.toString()).toList(),
-    );
-    attachments = [...attachments, ...data];
+  removeFileFromServer(Map<String, dynamic> file) {
+    initalAttachments.removeWhere((element) => element['id'] == file['id']);
+    List<Map<String, dynamic>> wholeAttachments = [
+      ...initalAttachments,
+      ...currentAttachments
+    ];
+    setState(() {});
+
     ref.read(currentStateNotifierProvider.notifier).saveList(
           widget.field.id,
-          attachments,
+          wholeAttachments,
+        );
+  }
+
+  saveFileToServer(List<PlatformFile> files) async {
+    List<String> filePath = files.map((e) => e.path.toString()).toList();
+    final data = await widget.attachmentSave(
+      filePath,
+    );
+    currentAttachments = data;
+    List<Map<String, dynamic>> wholeAttachments = [
+      ...initalAttachments,
+      ...data
+    ];
+
+    ref.read(currentStateNotifierProvider.notifier).saveList(
+          widget.field.id,
+          wholeAttachments,
         );
   }
 
@@ -55,13 +81,14 @@ class _VariconFilePickerFieldState
   Widget build(BuildContext context) {
     return FormBuilderFilePicker(
       name: const Uuid().v4(),
+      customPainter: widget.customPainter,
       previewImages: true,
       allowMultiple: true,
       allowCompression: true,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       withData: true,
       previousImage: Wrap(
-        children: attachments
+        children: initalAttachments
             .map(
               (attachment) => Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -91,9 +118,7 @@ class _VariconFilePickerFieldState
                     ),
                     InkWell(
                       onTap: () {
-                        attachments.remove(attachment);
-                        setState(() {});
-                        saveFileToServer([]);
+                        removeFileFromServer(attachment);
                       },
                       child: Container(
                         margin: const EdgeInsets.all(3),
@@ -119,19 +144,11 @@ class _VariconFilePickerFieldState
       ),
       onChanged: (value) {
         List<PlatformFile> values = value ?? [];
-        if (values.isNotEmpty) {
-          final Set<String> seenIdentifiers = {};
-          values = values
-              .where(
-                (file) => seenIdentifiers.add(file.identifier ?? ''),
-              )
-              .toList();
-        }
         saveFileToServer(values);
       },
       validator: (value) {
         if (widget.field.isRequired &&
-            ((value == null || value.isEmpty) && attachments.isEmpty)) {
+            ((value == null || value.isEmpty) && initalAttachments.isEmpty)) {
           return "This field is required";
         }
         return null;

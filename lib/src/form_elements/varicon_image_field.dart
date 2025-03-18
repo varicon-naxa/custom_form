@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -17,13 +18,16 @@ class VariconImageField extends StatefulHookConsumerWidget {
     required this.labelText,
     required this.attachmentSave,
     required this.imageBuild,
+    required this.customPainter,
+    required this.locationData,
   });
 
   final ImageInputField field;
   final String labelText;
+  final String locationData;
 
   final Widget Function(Map<String, dynamic>) imageBuild;
-
+  final Widget Function(File imageFile) customPainter;
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
@@ -33,13 +37,31 @@ class VariconImageField extends StatefulHookConsumerWidget {
 }
 
 class _VariconImageFieldState extends ConsumerState<VariconImageField> {
-  List<Map<String, dynamic>> attachments = [];
+  List<Map<String, dynamic>> currentAttachments = [];
 
   @override
   void initState() {
     super.initState();
-    attachments.addAll(widget.field.answer ?? []);
-    setState(() {});
+    Future.microtask(() {
+      ref.read(initialAttachmentsProvider.notifier).state =
+          widget.field.answer ?? [];
+    });
+  }
+
+  removeFileFromServer(Map<String, dynamic> file) {
+    List<Map<String, dynamic>> initalAttachments = [];
+
+    initalAttachments
+        .addAll(ref.read(initialAttachmentsProvider.notifier).state);
+    initalAttachments.removeWhere((element) => element['id'] == file['id']);
+    ref.read(initialAttachmentsProvider.notifier).state = initalAttachments;
+
+    final wholeAttachments = [...initalAttachments, ...currentAttachments];
+
+    ref.read(currentStateNotifierProvider.notifier).saveList(
+          widget.field.id,
+          wholeAttachments,
+        );
   }
 
   saveFileToServer(List<dynamic> files) async {
@@ -54,90 +76,110 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
       }
     }).toList());
 
-    List<Map<String, dynamic>> attachments = [];
     final data = await widget.attachmentSave(
       paths,
     );
-    attachments = [...attachments, ...data];
+    currentAttachments = data;
+    List<Map<String, dynamic>> wholeAttachments = [
+      ...ref.read(initialAttachmentsProvider.notifier).state,
+      ...data
+    ];
     ref.read(currentStateNotifierProvider.notifier).saveList(
           widget.field.id,
-          attachments,
+          wholeAttachments,
         );
   }
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderImagePicker(
-      name: const Uuid().v4(),
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      availableImageSources: const [
-        ImageSourceOption.gallery,
-        ImageSourceOption.camera
-      ],
-      initialWidget: Wrap(
-        children: [
-          ...attachments.map((e) {
-            return Stack(
-              key: ObjectKey(e),
-              children: <Widget>[
-                Container(
-                    height: 75,
-                    margin: const EdgeInsets.only(
-                      right: 8.0,
-                      bottom: 8.0,
-                    ),
-                    width: 75,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
+    return Column(
+      children: [
+        FormBuilderImagePicker(
+          customPainter: widget.customPainter,
+          locationData: widget.locationData,
+          name: const Uuid().v4(),
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          imageQuality: 40,
+          availableImageSources: const [
+            ImageSourceOption.gallery,
+            ImageSourceOption.camera
+          ],
+          initialWidget: Consumer(builder: (context, ref, child) {
+            final initialAttachments = ref.watch(initialAttachmentsProvider);
+            return Wrap(
+              children: [
+                ...initialAttachments.map((e) {
+                  return Stack(
+                    key: ObjectKey(e),
+                    children: <Widget>[
+                      Container(
+                          height: 75,
+                          margin: const EdgeInsets.only(
+                            right: 8.0,
+                            bottom: 8.0,
+                          ),
+                          width: 75,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: widget.imageBuild({
+                            'image': e['file'],
+                          })),
+                      PositionedDirectional(
+                        top: 0,
+                        end: 12,
+                        child: InkWell(
+                          onTap: () {
+                            removeFileFromServer(e);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(3),
+                            decoration: const BoxDecoration(
+                              color: Colors.red,
+                              shape: BoxShape.circle,
+                            ),
+                            alignment: Alignment.center,
+                            height: 18,
+                            width: 18,
+                            child: const Icon(
+                              Icons.close,
+                              size: 12,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: widget.imageBuild({
-                      'image': e['file'],
-                    })),
-                PositionedDirectional(
-                  top: 0,
-                  end: 12,
-                  child: InkWell(
-                    onTap: () {
-                      attachments.remove(e);
-                      setState(() {});
-                      saveFileToServer([]);
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.all(3),
-                      decoration: const BoxDecoration(
-                        color: Colors.red,
-                        shape: BoxShape.circle,
-                      ),
-                      alignment: Alignment.center,
-                      height: 18,
-                      width: 18,
-                      child: const Icon(
-                        Icons.close,
-                        size: 12,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
+                    ],
+                  );
+                }),
               ],
             );
           }),
-        ],
-      ),
-      onChanged: (value) {
-        saveFileToServer(value ?? []);
-      },
-      validator: (value) {
-        if (widget.field.isRequired &&
-            ((value == null || value.isEmpty) && attachments.isEmpty)) {
-          return "This field is required";
-        }
-        return null;
-      },
-      maxImages: 10,
+          onChanged: (value) {
+            saveFileToServer(value ?? []);
+          },
+          validator: (value) {
+            if (widget.field.isRequired &&
+                ((value == null || value.isEmpty) &&
+                    ref
+                        .read(initialAttachmentsProvider.notifier)
+                        .state
+                        .isEmpty)) {
+              return "This field is required";
+            }
+            return null;
+          },
+          maxImages: 10,
+        ),
+      ],
     );
   }
 }
+
+final initialAttachmentsProvider =
+    StateProvider<List<Map<String, dynamic>>>((ref) {
+  return [];
+});

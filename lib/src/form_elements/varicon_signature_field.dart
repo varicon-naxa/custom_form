@@ -250,7 +250,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
               hasAction: false,
               controller: controller,
               decoration: const InputDecoration(
-                  labelText: 'Signature Pad',
+                  hintText: 'Signature Pad',
                   border: null,
                   errorBorder: null,
                   enabledBorder: null,

@@ -1,6 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'dart:typed_data';
 
+import 'package:flutter/material.dart';
+import 'package:flutter_timezone/flutter_timezone.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:image_editor/image_editor.dart' as Editor;
+import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import '../form_builder_image_picker.dart';
 
 typedef FutureVoidCallBack = Future<void> Function();
@@ -38,6 +46,8 @@ class ImageSourceBottomSheet extends StatefulWidget {
   final Widget? galleryLabel;
   final EdgeInsets? bottomSheetPadding;
   final bool preventPop;
+  final Widget Function(File imageFile) customPainter;
+  final String locationData;
 
   final Widget Function(
           FutureVoidCallBack cameraPicker, FutureVoidCallBack galleryPicker)?
@@ -59,6 +69,8 @@ class ImageSourceBottomSheet extends StatefulWidget {
     this.bottomSheetPadding,
     this.optionsBuilder,
     required this.availableImageSources,
+    required this.customPainter,
+    required this.locationData,
   });
 
   @override
@@ -67,6 +79,84 @@ class ImageSourceBottomSheet extends StatefulWidget {
 
 class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
   bool _isPickingImage = false;
+
+  static Future<File> compressImage(String path, {int quality = 10}) async {
+    try {
+      var dir = await getApplicationSupportDirectory();
+      final target =
+          '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
+      XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
+          path, target,
+          quality: quality, keepExif: true);
+      File? compressedFile =
+          compressedXFile == null ? null : File(compressedXFile.path);
+
+      return compressedFile ?? File(path);
+    } catch (_) {
+      return File(path);
+    }
+  }
+
+  Future<String> getCurrentTimezone() async {
+    try {
+      final _timezone = await FlutterTimezone.getLocalTimezone();
+      return _timezone;
+    } catch (e) {
+      return '';
+    }
+  }
+
+  //convert Uint8List to File
+  Future<File> convertUint8ListToFile(Uint8List uint8List) async {
+    // Save the edited image to a new file
+    final directory = await getApplicationSupportDirectory();
+    final newImagePath =
+        '${directory.path}/IMG_${DateTime.now().millisecondsSinceEpoch}.png';
+    File file = File(newImagePath);
+    return await file.writeAsBytes(uint8List);
+  }
+
+  Future<File?> handleOption(
+      {required Uint8List currentImage, required String? address}) async {
+    final timestamp = DateTime.now();
+    String firstLine = DateFormat('dd MMM, yyyy hh:mm aa').format(timestamp);
+    String timeZone = await getCurrentTimezone();
+
+    String lines = '$firstLine $timeZone';
+
+    if (address != null) {
+      lines = '$firstLine $timeZone \n$address';
+    }
+    final Editor.ImageEditorOption option = Editor.ImageEditorOption();
+    final Editor.AddTextOption textOption = Editor.AddTextOption();
+
+    textOption.addText(
+      Editor.EditorText(
+          offset: const Offset(10, 10),
+          text: lines,
+          fontSizePx: 75,
+          textColor: Colors.red,
+          // fontName: fontName,
+          textAlign: TextAlign.left),
+    );
+    option.outputFormat = Editor.OutputFormat.jpeg(20);
+
+    option.addOption(textOption);
+
+    option.outputFormat = Editor.OutputFormat.jpeg(20);
+
+    final unifileImage = await Editor.ImageEditor.editImage(
+      image: currentImage,
+      imageEditorOption: option,
+    );
+    if (unifileImage == null) {
+      return null;
+    }
+    final fileImage = convertUint8ListToFile(unifileImage);
+
+    return fileImage;
+    // return fileImage;
+  }
 
   Future<void> _onPickImage(ImageSource source) async {
     if (_isPickingImage) return;
@@ -83,7 +173,35 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
         );
         _isPickingImage = false;
         if (pickedFile != null) {
-          widget.onImageSelected([pickedFile]);
+          File file = File(pickedFile.path);
+          if (await file.length() > 25 * 1024 * 1024) {
+            // 25 MB
+            Fluttertoast.showToast(
+              msg: "The file may not be greater than 25 MB.",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.CENTER,
+              timeInSecForIosWeb: 1,
+              backgroundColor: Colors.red,
+              textColor: Colors.white,
+              fontSize: 16.0,
+            );
+            return;
+          } else {
+            final editedImage = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => widget.customPainter(
+                  file,
+                ),
+              ),
+            );
+            File? fileCustomImage =
+                await handleOption(currentImage: editedImage, address: widget.locationData);
+            if (fileCustomImage != null) {
+              widget.onImageSelected([XFile(fileCustomImage.path)]);
+            }
+            widget.onImageSelected([pickedFile]);
+          }
         }
       } else {
         final pickedFiles = await imagePicker.pickMultiImage(

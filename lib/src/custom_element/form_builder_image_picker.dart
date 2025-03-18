@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:async/async.dart';
@@ -86,10 +87,13 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
 
   final WidgetBuilder? loadingWidget;
   final Widget? initialWidget;
+  final String locationData;
+  final Widget Function(File imageFile) customPainter;
 
   FormBuilderImagePicker(
       {super.key,
       required super.name,
+      required this.customPainter,
       super.validator,
       super.initialValue,
       super.decoration = const InputDecoration(),
@@ -117,6 +121,7 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
       this.bottomSheetPadding = EdgeInsets.zero,
       this.onTap,
       this.optionsBuilder,
+      required this.locationData,
       this.availableImageSources = const [
         ImageSourceOption.camera,
         ImageSourceOption.gallery,
@@ -133,7 +138,6 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
             // final primaryColor = theme.primaryColor;
             final value = state.effectiveValue;
             final canUpload = state.enabled && !state.hasMaxImages;
-
 
             Widget addButtonBuilder(
               BuildContext context,
@@ -159,6 +163,8 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
                         maxImages == null ? null : maxImages - value.length;
 
                     final imageSourceSheet = ImageSourceBottomSheet(
+                      customPainter: customPainter,
+                      locationData: locationData,
                       maxHeight: maxHeight,
                       maxWidth: maxWidth,
                       preventPop: preventPop,
@@ -304,7 +310,7 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
                     e,
                     value.indexOf(e),
                   ),
-                )
+                ),
               ],
             );
             return InputDecorator(

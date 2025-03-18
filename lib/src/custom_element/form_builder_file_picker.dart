@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
@@ -73,13 +74,15 @@ class FormBuilderFilePicker
   /// Allow to customise the view of the pickers.
   final Widget Function(List<Widget> types)? customTypeViewerBuilder;
   final Widget? previousImage;
+  final Widget Function(File imageFile) customPainter;
 
   /// Creates field for image(s) from user device storage
-  FormBuilderFilePicker(
+    FormBuilderFilePicker(
       {
       //From Super
       super.key,
       required super.name,
+      required this.customPainter,
       super.validator,
       super.initialValue,
       super.decoration,
@@ -118,10 +121,6 @@ class FormBuilderFilePicker
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  // customTypeViewerBuilder != null
-                  //     ? customTypeViewerBuilder(
-                  //         state.getTypeSelectorActions(typeSelectors, field))
-                  //     :
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:
@@ -276,81 +275,6 @@ class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
                   ],
                 ),
               );
-
-              // return Container(
-              //   height: itemSize,
-              //   width: itemSize,
-              //   margin: const EdgeInsets.only(right: 2),
-              //   child: Stack(
-              //     alignment: Alignment.bottomCenter,
-              //     children: <Widget>[
-              //       Container(
-              //         alignment: Alignment.center,
-              //         decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(5)
-
-              //         ),
-              //         child:
-
-              //         (imageFileExts.contains(
-              //                     files[index].extension!.toLowerCase()) &&
-              //                 widget.previewImages)
-              //             ? widget.withData
-              //                 ? Image.memory(files[index].bytes!,
-              //                     fit: BoxFit.contain)
-              //                 : Image.file(File(files[index].path!),
-              //                     fit: BoxFit.contain)
-              //             : Container(
-              //                 alignment: Alignment.center,
-              //                 color: theme.primaryColor,
-              //                 child: Icon(
-              //                   getIconData(files[index].extension!),
-              //                   color: Colors.white,
-              //                   size: 56,
-              //                 ),
-              //               ),
-              //       ),
-              //       Container(
-              //         padding: const EdgeInsets.symmetric(horizontal: 2),
-              //         width: double.infinity,
-              //         color: Colors.black.withValues(alpha: .8),
-              //         child: Text(
-              //           files[index].name,
-              //           style: theme.textTheme.bodySmall
-              //               ?.copyWith(color: Colors.white),
-              //           maxLines: 2,
-              //           overflow: TextOverflow.clip,
-              //         ),
-              //       ),
-              //       if (enabled)
-              //         Positioned(
-              //           top: 0,
-              //           right: 0,
-              //           child: InkWell(
-              //             onTap: () {
-              //               files.removeAt(index);
-              //               setter.call([...files]);
-              //             },
-              //             child: Container(
-              //               margin: const EdgeInsets.all(3),
-              //               decoration: BoxDecoration(
-              //                 color: Colors.grey.withValues(alpha: .7),
-              //                 shape: BoxShape.circle,
-              //               ),
-              //               alignment: Alignment.center,
-              //               height: 22,
-              //               width: 22,
-              //               child: const Icon(
-              //                 Icons.close,
-              //                 size: 18,
-              //                 color: Colors.white,
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //     ],
-              //   ),
-              // );
             },
           ),
         );

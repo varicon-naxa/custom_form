@@ -1,7 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
-import 'package:example_form/survery_response.dart';
 import 'package:example_form/survey_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -29,7 +28,7 @@ class _ButtonPageState extends State<ButtonPage> {
           children: [
             ElevatedButton(
               onPressed: () async {
-                const assetPath = 'assets/response.json';
+                const assetPath = 'assets/simple.json';
                 String currentValue = await rootBundle.loadString(assetPath);
                 Map<String, dynamic> currentData = jsonDecode(currentValue);
 
@@ -86,7 +85,7 @@ class _ButtonPageState extends State<ButtonPage> {
                   context,
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return SurveryResponse(form: form);
+                      return SurveyPage(form: form, formData: currentData);
                       // SurveyPage(form: form, formData: currentData);
                     },
                   ),

@@ -46,13 +46,20 @@ class Palette {
   static Color primarycolorLighterOrange = const Color(0xfffeebcc);
   static Color textLightGrey = const Color(0xffbababa);
   static Color primarycolorLighterGrey = const Color(0xffBDBDBD);
+  static Color primarycolorGrey = const Color(0xffdcdcdc).withOpacity(0.3);
   static const Color secondaryBackground = Color(0xffeaedf1);
   static const Color centerBorderColor = Color(0xfffbad33);
   static const Color defaultHintColor = Color(0xfff3f6fb);
   static const Color siteDiaryApprovedUserName = Color(0xff8DC641);
   static Color textGreySecondary = const Color(0xff6F7E94);
 
+  //note editor control boxshadows
+  static Color layer1 = Colors.black.withOpacity(0.19);
+  static Color layer2 = Colors.black.withOpacity(0.28);
+  static Color layer3 = Colors.black.withOpacity(0.35);
+
   //bordercolor
+  static Color vargrey30 = const Color(0xffced2d9).withOpacity(0.9);
   static const Color varlightgrey = Color(0x0fff5f67);
   static const Color quantityaddsubborder = Color(0xffc4c4c4);
   static const Color lightBackground = Color(0xffD3D7DD);

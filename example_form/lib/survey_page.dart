@@ -126,20 +126,22 @@ class _SurveyPageState extends State<SurveyPage> {
         }
       },
       formtitle: 'Submit Form',
-      attachmentSave: (data) async {
-        await Future.delayed(const Duration(seconds: 5));
+      attachmentSave: (List<String> data) async {
+        await Future.delayed(const Duration(seconds: 1));
         log('dpme');
-        return [
-          {
-            'id': '${Rand.Random().nextDouble() * 10000}',
-            'file':
-                'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-            'thumbnail':
-                'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-            'name': '300.jpg',
-            "created_at": "2025-03-05T05:05:54.835848Z",
-          },
-        ];
+        return data
+            .map(
+              (e) => {
+                'id': '${Rand.Random().nextDouble() * 10000}',
+                'file':
+                    'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+                'thumbnail':
+                    'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+                'name': '300.jpg',
+                "created_at": "2025-03-05T05:05:54.835848Z",
+              },
+            )
+            .toList();
       },
       imageBuild: (Map<String, dynamic> data) {
         return CachedNetworkImage(

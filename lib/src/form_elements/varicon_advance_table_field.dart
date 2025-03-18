@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -17,13 +19,17 @@ class VariconAdvanceTableField extends ConsumerWidget {
     required this.imageBuild,
     required this.apiCall,
     required this.attachmentSave,
+    required this.customPainter,
+    required this.locationData,
   });
 
   final AdvTableField field;
   final String labelText;
+  final String locationData;
 
   ///Function to build image
   final Widget Function(Map<String, dynamic>) imageBuild;
+  final Widget Function(File imageFile) customPainter;
 
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
@@ -67,9 +73,11 @@ class VariconAdvanceTableField extends ConsumerWidget {
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: VariconInputFields(
+                  locationData: locationData,
                   key: ValueKey(item.id), // Ensure unique key for each field
                   field: item,
                   apiCall: apiCall,
+                  customPainter: customPainter,
                   imageBuild: imageBuild,
                   attachmentSave: attachmentSave,
                 ),

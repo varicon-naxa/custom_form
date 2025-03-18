@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:varicon_form_builder/src/helpers/debouncer.dart';
@@ -34,6 +36,8 @@ class VariconInputFields extends ConsumerWidget {
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
+  final Widget Function(File imageFile) customPainter;
+  final String locationData;
 
   const VariconInputFields({
     super.key,
@@ -41,7 +45,9 @@ class VariconInputFields extends ConsumerWidget {
     this.hasLabel = true,
     required this.imageBuild,
     required this.attachmentSave,
+    required this.customPainter,
     this.apiCall,
+    required this.locationData,
   });
 
   @override
@@ -207,6 +213,7 @@ class VariconInputFields extends ConsumerWidget {
           child: VariconFilePickerField(
             field: value,
             attachmentSave: attachmentSave,
+            customPainter: customPainter,
             labelText: labelText,
           ),
         );
@@ -218,6 +225,8 @@ class VariconInputFields extends ConsumerWidget {
           labelText: labelText,
           child: VariconImageField(
             field: value,
+            locationData: locationData,
+            customPainter: customPainter,
             labelText: labelText,
             imageBuild: imageBuild,
             attachmentSave: attachmentSave,
@@ -305,9 +314,11 @@ class VariconInputFields extends ConsumerWidget {
           hasSpacing: false,
           child: VariconSimpleTableField(
             field: value,
+            customPainter: customPainter,
             labelText: '',
             imageBuild: imageBuild,
             apiCall: apiCall,
+            locationData: locationData,
             attachmentSave: attachmentSave,
           ),
         );
@@ -319,6 +330,8 @@ class VariconInputFields extends ConsumerWidget {
           hasSpacing: false,
           child: VariconAdvanceTableField(
             field: value,
+            locationData: locationData,
+            customPainter: customPainter,
             labelText: '',
             imageBuild: imageBuild,
             apiCall: apiCall,
