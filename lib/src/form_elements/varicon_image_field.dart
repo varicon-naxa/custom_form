@@ -28,6 +28,7 @@ class VariconImageField extends StatefulHookConsumerWidget {
 
   final Widget Function(Map<String, dynamic>) imageBuild;
   final Widget Function(File imageFile) customPainter;
+
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
@@ -81,7 +82,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
     );
     currentAttachments = data;
     List<Map<String, dynamic>> wholeAttachments = [
-      ...ref.read(initialAttachmentsProvider.notifier).state,
+      ...(ref.read(initialAttachmentsProvider.notifier).state),
       ...data
     ];
     ref.read(currentStateNotifierProvider.notifier).saveList(
@@ -97,6 +98,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
         FormBuilderImagePicker(
           customPainter: widget.customPainter,
           locationData: widget.locationData,
+          preventPop: true,
           name: const Uuid().v4(),
           autovalidateMode: AutovalidateMode.onUserInteraction,
           imageQuality: 40,

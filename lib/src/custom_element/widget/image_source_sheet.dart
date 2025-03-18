@@ -195,12 +195,14 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
                 ),
               ),
             );
-            File? fileCustomImage =
-                await handleOption(currentImage: editedImage, address: widget.locationData);
+            File? fileCustomImage = await handleOption(
+                currentImage: editedImage, address: widget.locationData);
             if (fileCustomImage != null) {
               widget.onImageSelected([XFile(fileCustomImage.path)]);
+              return;
             }
             widget.onImageSelected([pickedFile]);
+            return;
           }
         }
       } else {
@@ -212,6 +214,7 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
         _isPickingImage = false;
         if (pickedFiles.isNotEmpty) {
           widget.onImageSelected(pickedFiles);
+          return;
         }
       }
     } catch (e) {
