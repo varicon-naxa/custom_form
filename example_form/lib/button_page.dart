@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:convert';
+import 'package:example_form/response_test.dart';
 import 'package:example_form/survey_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -85,7 +86,7 @@ class _ButtonPageState extends State<ButtonPage> {
                   context,
                   MaterialPageRoute<void>(
                     builder: (BuildContext context) {
-                      return SurveyPage(form: form, formData: currentData);
+                      return ResponseTest(form: form, formData: currentData);
                       // SurveyPage(form: form, formData: currentData);
                     },
                   ),

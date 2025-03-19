@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -44,20 +43,18 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   void initState() {
     super.initState();
     Future.microtask(() {
-      ref.read(initialAttachmentsProvider.notifier).state =
-          widget.field.answer ?? [];
+      ref
+          .read(initialAttachmentsProvider(widget.field.id).notifier)
+          .setAttachments(widget.field.answer ?? []);
     });
   }
 
   removeFileFromServer(Map<String, dynamic> file) {
-    List<Map<String, dynamic>> initalAttachments = [];
+    final notifier =
+        ref.read(initialAttachmentsProvider(widget.field.id).notifier);
+    notifier.removeAttachment(file['id']);
 
-    initalAttachments
-        .addAll(ref.read(initialAttachmentsProvider.notifier).state);
-    initalAttachments.removeWhere((element) => element['id'] == file['id']);
-    ref.read(initialAttachmentsProvider.notifier).state = initalAttachments;
-
-    final wholeAttachments = [...initalAttachments, ...currentAttachments];
+    final wholeAttachments = [...notifier.state, ...currentAttachments];
 
     ref.read(currentStateNotifierProvider.notifier).saveList(
           widget.field.id,
@@ -82,7 +79,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
     );
     currentAttachments = data;
     List<Map<String, dynamic>> wholeAttachments = [
-      ...(ref.read(initialAttachmentsProvider.notifier).state),
+      ...(ref.read(initialAttachmentsProvider(widget.field.id).notifier).state),
       ...data
     ];
     ref.read(currentStateNotifierProvider.notifier).saveList(
@@ -96,6 +93,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
     return Column(
       children: [
         FormBuilderImagePicker(
+          key: Key(const Uuid().v4()),
           customPainter: widget.customPainter,
           locationData: widget.locationData,
           preventPop: true,
@@ -107,7 +105,8 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
             ImageSourceOption.camera
           ],
           initialWidget: Consumer(builder: (context, ref, child) {
-            final initialAttachments = ref.watch(initialAttachmentsProvider);
+            final initialAttachments =
+                ref.watch(initialAttachmentsProvider(widget.field.id));
             return Wrap(
               children: [
                 ...initialAttachments.map((e) {
@@ -167,7 +166,8 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
             if (widget.field.isRequired &&
                 ((value == null || value.isEmpty) &&
                     ref
-                        .read(initialAttachmentsProvider.notifier)
+                        .read(initialAttachmentsProvider(widget.field.id)
+                            .notifier)
                         .state
                         .isEmpty)) {
               return "This field is required";
@@ -181,7 +181,20 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   }
 }
 
-final initialAttachmentsProvider =
-    StateProvider<List<Map<String, dynamic>>>((ref) {
-  return [];
+final initialAttachmentsProvider = StateNotifierProvider.family<
+    InitialAttachmentsNotifier, List<Map<String, dynamic>>, String>((ref, id) {
+  return InitialAttachmentsNotifier();
 });
+
+class InitialAttachmentsNotifier
+    extends StateNotifier<List<Map<String, dynamic>>> {
+  InitialAttachmentsNotifier() : super([]);
+
+  void setAttachments(List<Map<String, dynamic>> attachments) {
+    state = attachments;
+  }
+
+  void removeAttachment(String id) {
+    state = state.where((element) => element['id'] != id).toList();
+  }
+}
