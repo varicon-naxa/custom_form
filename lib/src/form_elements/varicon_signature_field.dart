@@ -87,63 +87,60 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
           backgroundColor: Colors.white,
           appBar: AppBar(
             backgroundColor: Colors.white,
-            elevation: 0,
+            elevation: 1,
             title: Text(
               'Add Signature Details',
               style: Theme.of(context).textTheme.labelLarge,
             ),
           ),
           body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: FormBuilderSignaturePad(
-                controller: controller,
-                hasAction: true,
-                decoration: const InputDecoration(
-                  labelText: 'Signature Pad',
-                ),
-                width: double.infinity,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                initialWidget: null,
-                name: const Uuid().v4(),
-                onSavedClicked: (data) {
-                  _signature = {'value': data, 'date': DateTime.now()};
-                  modifyAnswer(data!);
-                  setState(() {});
-                  Navigator.pop(context);
-                },
-                onDeletedPressed: () {
-                  _signature = {};
-                  deleteAnswer();
-                },
-                onChanged: (value) {},
-                validator: (data) {
-                  if (widget.field.isRequired) {
-                    if ((widget.field.answer ?? {}).isNotEmpty) {
-                      String? answer;
-                      if (_signature.isEmpty && data == null) {
-                        answer = 'This field is required';
-                      } else if (_signature.isEmpty && data != null) {
-                        answer = 'Please Save the Signature';
-                      } else if (_signature.isNotEmpty && data == null) {
-                        answer = null;
-                      } else if (_signature.isNotEmpty && data != null) {
-                        answer = null;
-                      }
-                      return answer;
-                    } else {
-                      if (data == null) {
-                        return 'This field is required';
-                      }
-                    }
-                    // if (data == null || _signature.isEmpty) {
-                    //   return 'This field is required';
-                    // }
-                  }
-                  return null;
-                },
-                border: Border.all(color: Colors.green),
+            child: FormBuilderSignaturePad(
+              controller: controller,
+              hasAction: true,
+              decoration: const InputDecoration(
+                labelText: '',
               ),
+              width: double.infinity,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              initialWidget: null,
+              name: const Uuid().v4(),
+              onSavedClicked: (data) {
+                _signature = {'value': data, 'date': DateTime.now()};
+                modifyAnswer(data!);
+                setState(() {});
+                Navigator.pop(context);
+              },
+              onDeletedPressed: () {
+                _signature = {};
+                deleteAnswer();
+              },
+              onChanged: (value) {},
+              validator: (data) {
+                if (widget.field.isRequired) {
+                  if ((widget.field.answer ?? {}).isNotEmpty) {
+                    String? answer;
+                    if (_signature.isEmpty && data == null) {
+                      answer = 'This field is required';
+                    } else if (_signature.isEmpty && data != null) {
+                      answer = 'Please Save the Signature';
+                    } else if (_signature.isNotEmpty && data == null) {
+                      answer = null;
+                    } else if (_signature.isNotEmpty && data != null) {
+                      answer = null;
+                    }
+                    return answer;
+                  } else {
+                    if (data == null) {
+                      return 'This field is required';
+                    }
+                  }
+                  // if (data == null || _signature.isEmpty) {
+                  //   return 'This field is required';
+                  // }
+                }
+                return null;
+              },
+              border: Border.all(color: Colors.grey.shade300),
             ),
           ),
         ),
@@ -249,27 +246,22 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
             child: FormBuilderSignaturePad(
               hasAction: false,
               controller: controller,
+              height: 100,
               decoration: const InputDecoration(
-                  hintText: 'Signature Pad',
-                  border: null,
-                  errorBorder: null,
-                  enabledBorder: null,
-                  focusedBorder: null,
-                  disabledBorder: null,
-                  focusedErrorBorder: null),
+                hintText: 'Signature Pad',
+              ),
               width: double.infinity,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               initialWidget: Container(
-                padding: const EdgeInsets.all(16.0),
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.grey,
+                    color: Colors.transparent,
                   ),
                   borderRadius: BorderRadius.circular(
                     8.0,
                   ),
                 ),
-                height: 200,
+                height: 100,
                 width: double.infinity,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,

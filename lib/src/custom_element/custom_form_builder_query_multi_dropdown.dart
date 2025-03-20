@@ -144,6 +144,11 @@ class _CustomFormBuilderQueryMultiDropdownState
                   color: Colors.black,
                 ),
               ),
+              suffixIcon: TextButton.icon(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  label: const Text('OK')),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(5),
                 borderSide: const BorderSide(

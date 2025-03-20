@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -228,7 +227,8 @@ class _VariconMultiSignatureFieldState
         ...signaturePads.map((e) {
           String dateFormat = e.createdAt == null
               ? ''
-              : DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(e.createdAt!));
+              : DateFormat('dd MMM yyyy hh:mm a')
+                  .format(DateTime.parse(e.createdAt!));
           String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
           String signatoryNameDetail = 'Signed By ${e.signatoryName} $dateText';
           return Container(
@@ -327,11 +327,13 @@ class _VariconMultiSignatureFieldState
         ),
         const SizedBox(height: 8),
         ActionButton(
-          verticalPadding: 8,
+          verticalPadding: 12,
+          buttonColor: Colors.white,
+          borderColor: Colors.grey.shade400,
           onPressed: () {
             signatureDialog();
           },
-          buttonText: 'Add',
+          buttonText: 'Add Signature',
         ),
       ],
     );

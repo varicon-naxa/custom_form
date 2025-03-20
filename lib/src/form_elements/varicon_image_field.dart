@@ -117,7 +117,6 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
                           height: 75,
                           margin: const EdgeInsets.only(
                             right: 8.0,
-                            bottom: 8.0,
                           ),
                           width: 75,
                           decoration: BoxDecoration(

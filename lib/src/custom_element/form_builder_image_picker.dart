@@ -149,12 +149,12 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
                     width: width,
                     decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.grey,
+                          color: Colors.grey.shade500,
                         ),
                         borderRadius: BorderRadius.circular(8.0)),
-                    child: const Icon(
-                      Icons.image,
-                      color: Colors.black,
+                    child: Icon(
+                      Icons.add_photo_alternate_outlined,
+                      color: Colors.grey.shade500,
                       size: 28,
                     ),
                   ),
@@ -220,9 +220,15 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
               final displayWidget = displayItem is Widget
                   ? displayItem
                   : displayItem is ImageProvider
-                      ? Image(image: displayItem, fit: fit)
+                      ? Image(
+                          image: displayItem,
+                          fit: fit,
+                        )
                       : displayItem is Uint8List
-                          ? Image.memory(displayItem, fit: fit)
+                          ? Image.memory(
+                              displayItem,
+                              fit: fit,
+                            )
                           : displayItem is String
                               ? Image.network(
                                   displayItem,
@@ -240,7 +246,7 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
                     height: height,
                     margin: const EdgeInsets.only(
                       right: 8.0,
-                      bottom: 8.0,
+                      // bottom: 8.0,
                     ),
                     width: width,
                     decoration: BoxDecoration(
@@ -298,6 +304,7 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
             }
 
             final child = Wrap(
+              runSpacing: 8,
               children: [
                 canUpload ? addButtonBuilder(state.context) : const SizedBox(),
                 SizedBox(
@@ -314,7 +321,8 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
               ],
             );
             return InputDecorator(
-              decoration: state.decoration,
+              decoration:
+                  state.decoration.copyWith(contentPadding: EdgeInsets.all(10)),
               child: child,
             );
           },

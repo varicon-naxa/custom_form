@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:signature/signature.dart';
+import 'package:varicon_form_builder/src/widget/action_button.dart';
 
 /// Field with drawing pad on which user can doodle
 class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
@@ -77,6 +78,8 @@ class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
             return InputDecorator(
               decoration: state.decoration,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   IgnorePointer(
                     ignoring: isEditable,
@@ -85,6 +88,7 @@ class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
                       width: width,
                       decoration: BoxDecoration(
                         border: border,
+                        borderRadius: BorderRadius.circular(8),
                         image: null != initialValue &&
                                 initialValue == state.value
                             ? DecorationImage(image: MemoryImage(state.value!))
@@ -114,25 +118,8 @@ class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
                     ),
                   if (hasAction)
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        const Expanded(child: SizedBox()),
-                        if (state.effectiveController.isNotEmpty &&
-                            isEditable == false)
-                          TextButton.icon(
-                            onPressed: state.enabled
-                                ? () {
-                                    state.changeState(true);
-                                    onSavedClicked(state.value);
-                                  }
-                                : null,
-                            label: Text(
-                              'Save',
-                              style:
-                                  TextStyle(color: theme.colorScheme.primary),
-                            ),
-                            icon: Icon(Icons.save,
-                                color: theme.colorScheme.primary),
-                          ),
                         TextButton.icon(
                           onPressed: state.enabled
                               ? () {
@@ -152,6 +139,39 @@ class FormBuilderSignaturePad extends FormBuilderFieldDecoration<Uint8List> {
                           ),
                           icon: Icon(Icons.clear, color: cancelButtonColor),
                         ),
+
+                        const Spacer(),
+
+                        if (state.effectiveController.isNotEmpty &&
+                            isEditable == false)
+                          Expanded(
+                            child: ActionButton(
+                                verticalPadding: 8,
+                                buttonText: 'Save',
+                                onPressed: state.enabled
+                                    ? () {
+                                        state.changeState(true);
+                                        onSavedClicked(state.value);
+                                      }
+                                    : () {}),
+                          ),
+                        // if (state.effectiveController.isNotEmpty &&
+                        //     isEditable == false)
+                        //   TextButton.icon(
+                        //     onPressed: state.enabled
+                        //         ? () {
+                        //             state.changeState(true);
+                        //             onSavedClicked(state.value);
+                        //           }
+                        //         : null,
+                        //     label: Text(
+                        //       'Save',
+                        //       style:
+                        //           TextStyle(color: theme.colorScheme.primary),
+                        //     ),
+                        //     icon: Icon(Icons.save,
+                        //         color: theme.colorScheme.primary),
+                        //   ),
                       ],
                     ),
                 ],

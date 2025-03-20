@@ -366,6 +366,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
         borderRadius: BorderRadius.circular(8.0),
       ),
       child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
         onTap: isOptionDisabled
             ? null
             : () {
