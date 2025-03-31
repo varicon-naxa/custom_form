@@ -17,6 +17,7 @@ class _CustomFormBuilderDropdownState extends State<CustomFormBuilderDropdown> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
+      physics: AlwaysScrollableScrollPhysics(),
       child: Column(
         children: [
           ...widget.choices

@@ -94,31 +94,6 @@ class _ButtonPageState extends State<ButtonPage> {
               },
               child: const Text('Go Response Page of Single form Image'),
             ),
-            // ElevatedButton(
-            //   onPressed: () async {
-            //     const assetPath = 'assets/simple.json';
-            //     String currentValue = await rootBundle.loadString(assetPath);
-            //     Map<String, dynamic> currentData = jsonDecode(currentValue);
-
-            //     final SurveyPageForm form =
-            //         SurveyPageForm.fromJson(currentData);
-
-            //     ///Navigate on button click to SuveryPage
-            //     Navigator.push(
-            //       context,
-            //       MaterialPageRoute<void>(
-            //         builder: (BuildContext context) {
-            //           return ResponseTest(
-            //             form: form,
-            //             formData: currentData,
-            //           );
-            //           // SurveyPage(form: form, formData: currentData);
-            //         },
-            //       ),
-            //     );
-            //   },
-            //   child: const Text('Go Response Page of Bulk form Image'),
-            // ),
           ],
         ),
       ),

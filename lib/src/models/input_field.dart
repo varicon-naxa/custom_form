@@ -181,22 +181,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'otherText') String? otherText,
     @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
   }) = DropdownInputField;
-  //
-  // const factory InputField.rating({
-  //   @JsonKey(name: 'name') required String name,
-  //   @JsonKey(name: 'label') String? label,
-  //   @JsonKey(name: 'description') String? description,
-  //   @JsonKey(name: 'visible') @Default(true) bool visible,
-  //   @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-  //   @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
-  //   @JsonKey(name: 'inputType') @Default(InputType.text) InputType inputType,
-  //   @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
-  //   // Others.
-  //   @JsonKey(name: 'rateType') String? rateType,
-  //   @JsonKey(name: 'rateCount') @Default(5) int rateCount,
-  //   // rateMax = rateCount * rateStep.
-  //   @JsonKey(name: 'rateStep') @Default(1) int rateStep,
-  // }) = RatingInputField;
+
 
   const factory InputField.multipleselect({
     @JsonKey(name: 'id') required String id,
