@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -238,7 +239,9 @@ class _VariconMultiSignatureFieldState
               : DateFormat('dd MMM yyyy hh:mm a')
                   .format(DateTime.parse(e.createdAt!));
           String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
-          String signatoryNameDetail = 'Signed By ${e.signatoryName} $dateText';
+          String signatoryName =
+              (e.signatoryName == null) ? '' : 'By ${e.signatoryName}';
+          String signatoryNameDetail = 'Signed $signatoryName $dateText';
           return Container(
             padding: const EdgeInsets.only(bottom: 8.0),
             margin: const EdgeInsets.only(bottom: 12.0),
@@ -258,6 +261,7 @@ class _VariconMultiSignatureFieldState
                             .removeWhere((element) => element.id == e.id);
                       }
                     });
+                    modifyAnswerinList();
                     _editingController.text = (signaturePads.isNotEmpty)
                         ? signaturePads.length.toString()
                         : '';
@@ -286,10 +290,14 @@ class _VariconMultiSignatureFieldState
                         ? Image.memory(
                             e.uniImage,
                           )
-                        : widget.imageBuild({
-                            'image': e.file,
-                            'height': 100.0,
-                          }),
+                        : CachedNetworkImage(
+                            imageUrl: e.file ?? '',
+                            height: 100.0,
+                            placeholderFadeInDuration:
+                                const Duration(seconds: 1),
+                            placeholder: (context, url) =>
+                                const Icon(Icons.image),
+                          ),
                   ),
                 ),
                 Text(signatoryNameDetail,
