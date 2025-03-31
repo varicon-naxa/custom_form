@@ -668,6 +668,12 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       return _AnswerDesign(
                         answer: answer[index]['file'],
                         isImage: true,
+                        fileClick: () {
+                          widget.fileClick({
+                            'data': answer[index]['file'] ?? '',
+                            'title': answer[index]['name'] ?? ''
+                          });
+                        },
                         imageBuild: widget.imageBuild,
                       );
                     })
@@ -704,6 +710,10 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                     _AnswerDesign(
                       answer: answer['file'],
                       isSignature: true,
+                      fileClick: widget.fileClick({
+                        'data': answer['file'] ?? '',
+                        'title': answer['name'] ?? ''
+                      }),
                       imageBuild: widget.imageBuild,
                       isImage: true,
                     ),
@@ -728,10 +738,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             labelText: e.label,
             isRequired: e.isRequired,
             child: VariconInstructionField(
-              onTap: (String url) {
-                widget.fileClick(
-                  {'data': url, 'title': ''},
-                );
+              fileClick: (Map<String, dynamic> data) {
+                widget.fileClick(data);
               },
               field: field,
               imageBuild: widget.imageBuild,
@@ -806,6 +814,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               ? _MultiSignatureAnswerDesign(
                   answer: field.answer ?? [],
                   imageBuild: widget.imageBuild,
+                  
                 )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -21,6 +21,8 @@ class VariconAdvanceTableField extends ConsumerWidget {
     required this.attachmentSave,
     required this.customPainter,
     required this.locationData,
+    required this.fileClick,
+
   });
 
   final AdvTableField field;
@@ -35,6 +37,8 @@ class VariconAdvanceTableField extends ConsumerWidget {
       attachmentSave;
 
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
+  final Function(Map<String, dynamic> url) fileClick;
+
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -80,6 +84,7 @@ class VariconAdvanceTableField extends ConsumerWidget {
                   customPainter: customPainter,
                   imageBuild: imageBuild,
                   attachmentSave: attachmentSave,
+                  fileClick: fileClick,
                 ),
               );
             }).toList(),

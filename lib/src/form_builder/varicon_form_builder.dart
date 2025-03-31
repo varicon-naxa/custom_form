@@ -29,7 +29,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
     required this.onSubmit,
     required this.attachmentSave,
     required this.imageBuild,
-    required this.onFileClicked,
+    required this.fileClick,
     required this.autoSave,
     required this.customPainter,
     required this.locationData,
@@ -112,7 +112,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
   ///Function to handle file click
   ///
   ///Returns the file path for form contents like images, files, instructions
-  final void Function(String stringURl) onFileClicked;
+  final Function(Map<String, dynamic> url) fileClick;
   final void Function(bool stringURl) onBackPressed;
   final String formtitle;
 
@@ -270,6 +270,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                             imageBuild: widget.imageBuild,
                             customPainter: widget.customPainter,
                             attachmentSave: widget.attachmentSave,
+                            fileClick: widget.fileClick,
                           );
                         }).whereType<Widget>(),
                         if (widget.surveyForm.collectGeolocation == true)

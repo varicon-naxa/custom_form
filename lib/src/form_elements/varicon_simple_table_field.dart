@@ -20,8 +20,9 @@ class VariconSimpleTableField extends ConsumerWidget {
     required this.imageBuild,
     required this.apiCall,
     required this.attachmentSave,
-      required this.customPainter,
+    required this.customPainter,
     required this.locationData,
+    required this.fileClick,
   });
 
   final TableField field;
@@ -37,6 +38,7 @@ class VariconSimpleTableField extends ConsumerWidget {
 
   final Widget Function(File imageFile) customPainter;
   final String locationData;
+  final Function(Map<String, dynamic> url) fileClick;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -218,6 +220,7 @@ class VariconSimpleTableField extends ConsumerWidget {
                   customPainter: customPainter,
                   imageBuild: imageBuild,
                   attachmentSave: attachmentSave,
+                  fileClick: fileClick,
                 ),
               );
             }).toList(),

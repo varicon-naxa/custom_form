@@ -8,7 +8,7 @@ class VariconInstructionField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
-    required this.onTap,
+    required this.fileClick,
     required this.imageBuild,
   });
 
@@ -19,7 +19,7 @@ class VariconInstructionField extends ConsumerWidget {
   final Widget Function(Map<String, dynamic>) imageBuild;
 
   ///Function to call on tap o field
-  final Function(String) onTap;
+  final Function(Map<String, dynamic> url) fileClick;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Container(
@@ -41,7 +41,10 @@ class VariconInstructionField extends ConsumerWidget {
                   e['mime_type'] == 'gif') {
                 return GestureDetector(
                     onTap: () {
-                      onTap(e['file'].toString());
+                      fileClick({
+                        'data': e['file'].toString(),
+                        'title': e['name'].toString(),
+                      });
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(
@@ -65,7 +68,10 @@ class VariconInstructionField extends ConsumerWidget {
                 e['mime_type'] != 'gif') {
               return GestureDetector(
                 onTap: () {
-                  onTap(e['file'].toString());
+                  fileClick({
+                    'data': e['file'].toString(),
+                    'title': e['name'].toString(),
+                  });
                 },
                 behavior: HitTestBehavior.translucent,
                 child: Container(

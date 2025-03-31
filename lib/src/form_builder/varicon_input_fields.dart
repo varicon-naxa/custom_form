@@ -38,6 +38,7 @@ class VariconInputFields extends ConsumerWidget {
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
   final Widget Function(File imageFile) customPainter;
   final String locationData;
+  final Function(Map<String, dynamic> url) fileClick;
 
   const VariconInputFields({
     super.key,
@@ -48,6 +49,7 @@ class VariconInputFields extends ConsumerWidget {
     required this.customPainter,
     this.apiCall,
     required this.locationData,
+    required this.fileClick,
   });
 
   @override
@@ -67,7 +69,7 @@ class VariconInputFields extends ConsumerWidget {
             child: VariconInstructionField(
               field: data,
               labelText: labelText,
-              onTap: (data) {},
+              fileClick: fileClick,
               imageBuild: imageBuild,
             ));
       },
@@ -315,6 +317,7 @@ class VariconInputFields extends ConsumerWidget {
           child: VariconSimpleTableField(
             field: value,
             customPainter: customPainter,
+            fileClick: fileClick,
             labelText: '',
             imageBuild: imageBuild,
             apiCall: apiCall,
@@ -336,6 +339,7 @@ class VariconInputFields extends ConsumerWidget {
             imageBuild: imageBuild,
             apiCall: apiCall,
             attachmentSave: attachmentSave,
+            fileClick: fileClick,
           ),
         );
       },
