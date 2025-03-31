@@ -340,6 +340,34 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
     final option = widget.options[index];
     final optionValue = option.value;
     final isOptionDisabled = true == widget.disabled?.contains(optionValue);
+
+    // Move tap logic to a function for reuse
+    void handleTap() {
+      if (isOptionDisabled) return;
+
+      List<T> selectedListItems =
+          widget.value == null ? [] : List.of(widget.value!);
+      selectedListItems.contains(optionValue)
+          ? selectedListItems.remove(optionValue)
+          : selectedListItems.add(optionValue);
+
+      ValueText valueText = optionValue as ValueText;
+      if (valueText.isOtherField == true &&
+          selectedListItems.contains(optionValue) == false) {
+        widget.onOtherSelectedValue!(true, '');
+      }
+
+      List<ValueText> valueTextList = selectedListItems as List<ValueText>;
+      if (valueTextList
+          .where((element) => element.isOtherField == true)
+          .isEmpty) {
+        widget.onOtherSelectedValue!(false, '');
+        otherFieldController.clear();
+      }
+
+      widget.onChanged(selectedListItems);
+    }
+
     final control = Checkbox(
       visualDensity: widget.visualDensity,
       activeColor: widget.activeColor,
@@ -354,74 +382,29 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
       onChanged: isOptionDisabled
           ? null
           : (selected) {
-              List<T> selectedListItems =
-                  widget.value == null ? [] : List.of(widget.value!);
-              selected!
-                  ? selectedListItems.add(optionValue)
-                  : selectedListItems.remove(optionValue);
-
-              ValueText valueText = optionValue as ValueText;
-              if (valueText.isOtherField == true && selected == true) {
-                widget.onOtherSelectedValue!(true, '');
-              }
-              List<ValueText> valueTextList =
-                  selectedListItems as List<ValueText>;
-              if (valueTextList
-                  .where((element) => element.isOtherField == true)
-                  .isEmpty) {
-                widget.onOtherSelectedValue!(false, '');
-                otherFieldController.clear();
-              } else {
-                // otherFieldFocusNode.requestFocus();
-              }
-              widget.onChanged(selectedListItems);
+              handleTap();
             },
     );
-    final label = GestureDetector(
-      onTap: isOptionDisabled
-          ? null
-          : () {
-              List<T> selectedListItems =
-                  widget.value == null ? [] : List.of(widget.value!);
-              selectedListItems.contains(optionValue)
-                  ? selectedListItems.remove(optionValue)
-                  : selectedListItems.add(optionValue);
-              ValueText valueText = optionValue as ValueText;
-              if (valueText.isOtherField == true &&
-                  selectedListItems.contains(optionValue) == false) {
-                widget.onOtherSelectedValue!(true, '');
-              }
-              List<ValueText> valueTextList =
-                  selectedListItems as List<ValueText>;
 
-              if (valueTextList
-                  .where((element) => element.isOtherField == true)
-                  .isEmpty) {
-                widget.onOtherSelectedValue!(false, '');
-                otherFieldController.clear();
-              } else {
-                // otherFieldFocusNode.requestFocus();
-              }
-              widget.onChanged(selectedListItems);
-            },
-      child: option,
-    );
+    // Remove the GestureDetector from the label
+    final label = Flexible(flex: 1, child: option);
 
-    ValueText? valueText = optionValue as ValueText?;
     Widget compositeItem = Container(
       width: double.infinity,
       margin: const EdgeInsets.only(bottom: 8.0),
       decoration: BoxDecoration(
         border: Border.all(
           color: widget.value?.contains(optionValue) == true
-              ? valueText?.action == true
+              ? optionValue is ValueText &&
+                      (optionValue as ValueText).action == true
                   ? Colors.red
                   : Colors.grey.shade600
               : Colors.transparent,
           width: 1.0,
         ),
         color: (widget.value?.contains(optionValue) == true &&
-                valueText?.action == true)
+                optionValue is ValueText &&
+                (optionValue as ValueText).action == true)
             ? Colors.red.shade100
             : Colors.transparent,
         borderRadius: BorderRadius.circular(8.0),
@@ -434,7 +417,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               if (widget.controlAffinity == ControlAffinity.leading) control,
-              Flexible(flex: 1, child: label),
+              label,
               if (widget.controlAffinity == ControlAffinity.trailing) control,
               if (widget.orientation != OptionsOrientation.vertical &&
                   widget.separator != null &&
@@ -448,6 +431,13 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
             widget.separator!,
         ],
       ),
+    );
+
+    // Wrap the entire compositeItem with GestureDetector
+    compositeItem = GestureDetector(
+      behavior: HitTestBehavior.translucent,
+      onTap: handleTap,
+      child: compositeItem,
     );
 
     if (widget.itemDecoration != null) {

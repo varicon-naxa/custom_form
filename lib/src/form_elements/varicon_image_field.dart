@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
+import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_image_picker.dart';
@@ -63,29 +64,38 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   }
 
   saveFileToServer(List<dynamic> files) async {
-    List<String> paths = await Future.wait(files.map((e) async {
-      if (e is XFile) {
-        return e.path.toString();
-      } else if (e is Uint8List) {
-        File data = await Utils.getConvertToFile(e);
-        return data.path.toString();
-      } else {
-        return e.toString();
-      }
-    }).toList());
+    final loadingId = const Uuid().v4();
+    try {
+      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
-    final data = await widget.attachmentSave(
-      paths,
-    );
-    currentAttachments = data;
-    List<Map<String, dynamic>> wholeAttachments = [
-      ...(ref.read(initialAttachmentsProvider(widget.field.id).notifier).state),
-      ...data
-    ];
-    ref.read(currentStateNotifierProvider.notifier).saveList(
-          widget.field.id,
-          wholeAttachments,
-        );
+      List<String> paths = await Future.wait(files.map((e) async {
+        if (e is XFile) {
+          return e.path.toString();
+        } else if (e is Uint8List) {
+          File data = await Utils.getConvertToFile(e);
+          return data.path.toString();
+        } else {
+          return e.toString();
+        }
+      }).toList());
+
+      final data = await widget.attachmentSave(
+        paths,
+      );
+      currentAttachments = data;
+      List<Map<String, dynamic>> wholeAttachments = [
+        ...(ref
+            .read(initialAttachmentsProvider(widget.field.id).notifier)
+            .state),
+        ...data
+      ];
+      ref.read(currentStateNotifierProvider.notifier).saveList(
+            widget.field.id,
+            wholeAttachments,
+          );
+    } finally {
+      ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+    }
   }
 
   @override

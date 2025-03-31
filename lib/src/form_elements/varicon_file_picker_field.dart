@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
+import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_file_picker.dart';
@@ -60,20 +61,27 @@ class _VariconFilePickerFieldState
   }
 
   saveFileToServer(List<PlatformFile> files) async {
-    List<String> filePath = files.map((e) => e.path.toString()).toList();
-    final data = await widget.attachmentSave(
-      filePath,
-    );
-    currentAttachments = data;
-    List<Map<String, dynamic>> wholeAttachments = [
-      ...initalAttachments,
-      ...data
-    ];
+    final loadingId = const Uuid().v4();
+    try {
+      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
-    ref.read(currentStateNotifierProvider.notifier).saveList(
-          widget.field.id,
-          wholeAttachments,
-        );
+      List<String> filePath = files.map((e) => e.path.toString()).toList();
+      final data = await widget.attachmentSave(
+        filePath,
+      );
+      currentAttachments = data;
+      List<Map<String, dynamic>> wholeAttachments = [
+        ...initalAttachments,
+        ...data
+      ];
+
+      ref.read(currentStateNotifierProvider.notifier).saveList(
+            widget.field.id,
+            wholeAttachments,
+          );
+    } finally {
+      ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+    }
   }
 
   @override

@@ -8,6 +8,7 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
+import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import '../location/current_location_controller_provider.dart';
 import '../state/current_form_provider.dart';
 import '../state/custom_advance_table_row_provider.dart';
@@ -164,6 +165,9 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   @override
   Widget build(BuildContext context) {
     final currentyCity = ref.watch(currentLocationControllerProvider);
+    final hasLoadingAttachments =
+        ref.watch(attachmentLoadingProvider).isNotEmpty;
+
     ref.watch(currentStateNotifierProvider);
     ref.watch(requiredNotifierProvider);
     ref.watch(customSimpleRowProvider);
@@ -352,6 +356,16 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                       onComplete: () async {
                         try {
                           if (_formKey.currentState == null) return;
+                          // Check for loading attachments
+                          if (hasLoadingAttachments) {
+                            Fluttertoast.showToast(
+                              msg:
+                                  'Please wait while attachments are being saved',
+                              backgroundColor: Colors.orange,
+                              textColor: Colors.white,
+                            );
+                            return;
+                          }
                           // return if form is not valid.
                           if (!_formKey.currentState!.validate()) {
                             if (ref

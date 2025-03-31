@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/src/helpers/validators.dart';
+import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/widget/action_button.dart';
 import '../../varicon_form_builder.dart';
@@ -80,27 +81,34 @@ class _VariconMultiSignatureFieldState
   }
 
   Future<void> modifyAnswer(SingleSignature file) async {
-    File singleFile = await Utils.getConvertToFile(file.uniImage);
+    final loadingId = const Uuid().v4();
+    try {
+      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
-    List<Map<String, dynamic>> attachments = await widget.attachmentSave(
-      [singleFile.path],
-    );
+      File singleFile = await Utils.getConvertToFile(file.uniImage);
 
-    int index = signaturePads.indexWhere(
-      (element) => element.attachmentId == file.attachmentId,
-    );
-
-    if (index != -1) {
-      signaturePads[index] = signaturePads[index].copyWith(
-        file: attachments.first['file'],
-        id: attachments.first['id'],
-        createdAt: (attachments.first['created_at']),
-        attachmentId: attachments.first['id'],
+      List<Map<String, dynamic>> attachments = await widget.attachmentSave(
+        [singleFile.path],
       );
-    }
-    modifyAnswerinList();
 
-    setState(() {});
+      int index = signaturePads.indexWhere(
+        (element) => element.attachmentId == file.attachmentId,
+      );
+
+      if (index != -1) {
+        signaturePads[index] = signaturePads[index].copyWith(
+          file: attachments.first['file'],
+          id: attachments.first['id'],
+          createdAt: (attachments.first['created_at']),
+          attachmentId: attachments.first['id'],
+        );
+      }
+      modifyAnswerinList();
+
+      setState(() {});
+    } finally {
+      ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+    }
   }
 
   void signatureDialog() {

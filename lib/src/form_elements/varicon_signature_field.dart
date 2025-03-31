@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import 'package:signature/signature.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
+import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import 'package:varicon_form_builder/src/widget/scroll_bottomsheet.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_signature_pad.dart';
@@ -49,24 +50,32 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   @override
   Widget build(BuildContext context) {
     Future modifyAnswer(Uint8List data) async {
-      Map<String, dynamic> answer = {};
+      final loadingId = const Uuid().v4();
 
-      File singleFile = await Utils.getConvertToFile(data);
+      try {
+        ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
-      List<Map<String, dynamic>> attachments = await widget.attachmentSave(
-        [singleFile.path],
-      );
-      answer.addAll({
-        'id': attachments.first['id'],
-        'attachmentId': attachments.first['id'],
-        'file': attachments.first['file'],
-        'created_at': attachments.first['created_at'].toString()
-      });
+        Map<String, dynamic> answer = {};
 
-      controller.clear();
-      ref
-          .read(currentStateNotifierProvider.notifier)
-          .saveMap(widget.field.id, answer);
+        File singleFile = await Utils.getConvertToFile(data);
+
+        List<Map<String, dynamic>> attachments = await widget.attachmentSave(
+          [singleFile.path],
+        );
+        answer.addAll({
+          'id': attachments.first['id'],
+          'attachmentId': attachments.first['id'],
+          'file': attachments.first['file'],
+          'created_at': attachments.first['created_at'].toString()
+        });
+
+        controller.clear();
+        ref
+            .read(currentStateNotifierProvider.notifier)
+            .saveMap(widget.field.id, answer);
+      } finally {
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+      }
     }
 
     deleteAnswer() {
