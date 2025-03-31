@@ -6,7 +6,7 @@ class CustomFormBuilderMultiDropdown extends StatefulWidget {
       {super.key,
       required this.choices,
       required this.onChanged,
-     required  this.initialValue,
+      required this.initialValue,
       this.actionMessage});
   final List<ValueText> choices;
   final List<ValueText> initialValue;
@@ -26,7 +26,7 @@ class _CustomFormBuilderMultiDropdownState
   void initState() {
     super.initState();
 
-        if ((widget.initialValue).isNotEmpty) {
+    if ((widget.initialValue).isNotEmpty) {
       setState(() {
         selectedItems.addAll(widget.initialValue);
       });
@@ -45,14 +45,45 @@ class _CustomFormBuilderMultiDropdownState
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          ...widget.choices
-              .map((lang) => singleItem(lang))
-              .toList(growable: false),
-        ],
-      ),
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'List of Items',
+                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+              ),
+              IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Text(
+                  'OK',
+                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                        color: Colors.orange,
+                        fontWeight: FontWeight.w700,
+                      ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: SingleChildScrollView(
+            child: Column(
+              children: widget.choices
+                  .map((lang) => singleItem(lang))
+                  .toList(growable: false),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

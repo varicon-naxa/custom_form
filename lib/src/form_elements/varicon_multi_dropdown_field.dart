@@ -81,7 +81,7 @@ class _VariconMultiDropdownFieldState
           ),
           onTap: () {
             if (widget.field.fromManualList) {
-              normalBottomsheet(
+              scrollBottomSheet(
                 context,
                 child: CustomFormBuilderMultiDropdown(
                   choices: widget.field.choices,

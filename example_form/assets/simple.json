@@ -5,17 +5,24 @@
     "title": "City of Swan (ABM Sample)",
     "elements": [
         {
-            "id": "item-d006d2a5-5602-4060-940c-08930f014188",
-            "name": "Date",
-            "type": "date",
-            "label": "Please specify the date the work was completed",
-            "answer": "",
-            "isRequired": false
+            "id": "item-c22e591d-f5e8-45d7-99e3-f71026dedabb",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Signature",
+            "answer": {
+                "id": "b3bd75a0-12d9-47d5-b172-6d15106d958f",
+                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/e854d9bc-c0f3-4b89-a292-13de28647b10.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20250319%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250319T012546Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=7ec192304992f5597bf6a8f11e7aed8e922953bbff063a405741a7f9586d1a62",
+                "created_at": "2025-03-19T01:25:46.575902Z",
+                "attachmentId": "b3bd75a0-12d9-47d5-b172-6d15106d958f"
+            },
+            "visible": true,
+            "isRequired": true,
+            "description": null
         },
         {
             "id": "item-b33d795b-11dc-41d3-b222-93f51fbbbd7c",
             "name": "Single Select Dropdown",
-            "type": "dropdown",
+            "type": "multipleselect",
             "label": "Project Number (Select 6260 from drop down list)",
             "answer": "",
             "choice": [

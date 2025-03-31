@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -288,7 +286,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
               onChanged: (value) {},
               validator: (data) {
                 if (widget.field.isRequired) {
-                  if ((widget.field.answer ?? {}).isEmpty) {
+                  if ((_signature).isEmpty) {
                     String? answer;
                     if (_signature.isEmpty && data == null) {
                       answer = 'This field is required';

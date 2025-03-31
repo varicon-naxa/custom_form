@@ -153,7 +153,7 @@ class _SurveyPageState extends State<SurveyPage> {
           placeholder: (context, url) => const Icon(Icons.image),
         );
       },
-      onFileClicked: (String stringURl) {},
+      fileClick: (Map<String, dynamic> stringURl) {},
       customPainter: (data) {
         return Scaffold(
           appBar: AppBar(

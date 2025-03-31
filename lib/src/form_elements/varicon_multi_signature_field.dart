@@ -245,14 +245,14 @@ class _VariconMultiSignatureFieldState
                       if (e.uniImage != null) {
                         signaturePads.removeWhere((element) =>
                             element.attachmentId == e.attachmentId);
-                        _editingController.text = (signaturePads.isNotEmpty)
-                            ? signaturePads.length.toString()
-                            : '';
                       } else {
                         signaturePads
                             .removeWhere((element) => element.id == e.id);
                       }
                     });
+                    _editingController.text = (signaturePads.isNotEmpty)
+                        ? signaturePads.length.toString()
+                        : '';
                     Fluttertoast.showToast(
                         msg: 'Signature by ${e.signatoryName} deleted');
                   },
