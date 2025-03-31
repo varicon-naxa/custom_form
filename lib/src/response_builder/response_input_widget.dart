@@ -165,103 +165,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                   ),
                 );
               },
-            )
-            // : Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       for (int columnIndex = 0;
-            //           columnIndex < (field.inputFields?.length ?? 0);
-            //           columnIndex++)
-            //         Container(
-            //           width: double.infinity,
-            //           decoration: BoxDecoration(
-            //             color: const Color(0xffF5F5F5),
-            //             borderRadius: BorderRadius.circular(8.0),
-            //           ),
-            //           padding: const EdgeInsets.all(8),
-            //           margin: const EdgeInsets.only(bottom: 12),
-            //           child: ExpandableWidget(
-            //             initialExpanded: true,
-            //             expandableHeader: Row(
-            //               children: [
-            //                 Expanded(
-            //                   child: Column(
-            //                     crossAxisAlignment: CrossAxisAlignment.start,
-            //                     mainAxisAlignment: MainAxisAlignment.start,
-            //                     children: [
-            //                       Text(
-            //                         'Column ${columnIndex + 1} ',
-            //                       ),
-            //                       Text(
-            //                         '${field.headers?[columnIndex]}',
-            //                         maxLines: 1,
-            //                         style: Theme.of(context)
-            //                             .textTheme
-            //                             .bodyMedium
-            //                             ?.copyWith(
-            //                               fontWeight: FontWeight.bold,
-            //                             ),
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 ),
-            //                 const Icon(Icons.keyboard_arrow_up)
-            //               ],
-            //             ),
-            //             expandedHeader: Padding(
-            //               padding: const EdgeInsets.only(
-            //                 bottom: 8,
-            //               ),
-            //               child: Row(
-            //                 children: [
-            //                   Expanded(
-            //                     child: Column(
-            //                       crossAxisAlignment:
-            //                           CrossAxisAlignment.start,
-            //                       mainAxisAlignment: MainAxisAlignment.start,
-            //                       children: [
-            //                         Text(
-            //                           'Column ${columnIndex + 1} ',
-            //                         ),
-            //                         Text(
-            //                           '${field.headers?[columnIndex]}',
-            //                           // maxLines: 2,
-            //                           style: Theme.of(context)
-            //                               .textTheme
-            //                               .bodyMedium
-            //                               ?.copyWith(
-            //                                 fontWeight: FontWeight.bold,
-            //                               ),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                   ),
-            //                   const Icon(Icons.keyboard_arrow_down)
-            //                 ],
-            //               ),
-            //             ),
-            //             expandableChild: Column(
-            //               crossAxisAlignment: CrossAxisAlignment.start,
-            //               children: (field.inputFields ?? [])
-            //                   .asMap()
-            //                   .entries
-            //                   .map((entry) {
-            //                 final row = entry.value;
-            //                 return Container(
-            //                     width: double.infinity,
-            //                     padding: const EdgeInsets.symmetric(
-            //                       horizontal: 8,
-            //                     ),
-            //                     child: _buildInputField(row[columnIndex],
-            //                         haslabel: false));
-            //               }).toList(),
-            //             ),
-            //           ),
-            //         ),
-            //     ],
-            //   ),
-
-            );
+            ));
       },
       advtable: (field) {
         return LabelWidget(
@@ -710,10 +614,12 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                     _AnswerDesign(
                       answer: answer['file'],
                       isSignature: true,
-                      fileClick: widget.fileClick({
-                        'data': answer['file'] ?? '',
-                        'title': answer['name'] ?? ''
-                      }),
+                      fileClick: () {
+                        widget.fileClick({
+                          'data': answer['file'] ?? '',
+                          'title': answer['name'] ?? ''
+                        });
+                      },
                       imageBuild: widget.imageBuild,
                       isImage: true,
                     ),
@@ -814,7 +720,6 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               ? _MultiSignatureAnswerDesign(
                   answer: field.answer ?? [],
                   imageBuild: widget.imageBuild,
-                  
                 )
               : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
