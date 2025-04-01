@@ -77,7 +77,7 @@ class FormBuilderFilePicker
   final Widget Function(File imageFile) customPainter;
 
   /// Creates field for image(s) from user device storage
-    FormBuilderFilePicker(
+  FormBuilderFilePicker(
       {
       //From Super
       super.key,

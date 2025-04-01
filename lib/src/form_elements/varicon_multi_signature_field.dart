@@ -82,9 +82,9 @@ class _VariconMultiSignatureFieldState
   }
 
   Future<void> modifyAnswer(SingleSignature file) async {
-    final loadingId = const Uuid().v4();
+    // final loadingId = const Uuid().v4();
     try {
-      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
+      // ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
       File singleFile = await Utils.getConvertToFile(file.uniImage);
 
@@ -108,7 +108,7 @@ class _VariconMultiSignatureFieldState
 
       setState(() {});
     } finally {
-      ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+      // ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
     }
   }
 
