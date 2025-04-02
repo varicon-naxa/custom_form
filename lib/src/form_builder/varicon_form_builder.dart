@@ -168,14 +168,17 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
     ref.listen(attachmentLoadingProvider, (_, __) {});
     ref.listen(customSimpleRowProvider, (_, __) {});
     ref.listen(customAdvanceRowProvider, (_, __) {});
+    ref.listen(currentStateNotifierProvider, (_, __) {});
+    ref.listen(requiredNotifierProvider, (_, __) {});
+    ref.listen(linklabelProvider, (_, __) {});
     // final hasLoadingAttachments =
     ref.read(attachmentLoadingProvider);
     ref.read(customSimpleRowProvider);
     ref.read(customAdvanceRowProvider);
 
-    // ref.watch(currentStateNotifierProvider);
-    // ref.watch(requiredNotifierProvider);
-    // ref.watch(linklabelProvider);
+    ref.read(currentStateNotifierProvider);
+    ref.read(requiredNotifierProvider);
+    ref.read(linklabelProvider);
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
