@@ -285,4 +285,86 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     }
     log('IMAGE VALUES: \n\n KEy=$k');
   }
+
+  InputField getFieldWithAnswer(InputField singleField) {
+    InputField field = singleField;
+    if (field is TextInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is SignatureInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is MultiSignatureInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is DateInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is TimeInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is UrlInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is NumberInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is PhoneInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is EmailInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is DateTimeInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is DropdownInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is MultipleInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is CheckboxInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is RadioInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is YesNoInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is YesNoNaInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is FileInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is ImageInputField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else if (field is MapField) {
+      if (state.containsKey(field.id)) {
+        field = field.copyWith(answer: state[field.id]);
+      }
+    } else {}
+    return field;
+  }
 }

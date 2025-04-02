@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/models/custom_table_model.dart';
+import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/state/custom_simple_table_row_provider.dart';
 import 'package:varicon_form_builder/src/widget/expandable_widget.dart';
 import '../../varicon_form_builder.dart';
@@ -210,11 +211,14 @@ class VariconSimpleTableField extends ConsumerWidget {
           color: Colors.grey.shade200,
           child: Column(
             children: (model.inputFields ?? []).map<Widget>((item) {
+              final singleField = ref
+                  .read(currentStateNotifierProvider.notifier)
+                  .getFieldWithAnswer(item);
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: VariconInputFields(
                   key: ValueKey(item.id), // Ensure unique key for each field
-                  field: item,
+                  field: singleField,
                   locationData: locationData,
                   apiCall: apiCall,
                   customPainter: customPainter,

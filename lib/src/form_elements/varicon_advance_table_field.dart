@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/models/custom_table_model.dart';
+import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/widget/expandable_widget.dart';
 import '../../varicon_form_builder.dart';
 import '../form_builder/varicon_input_fields.dart';
@@ -22,7 +23,6 @@ class VariconAdvanceTableField extends ConsumerWidget {
     required this.customPainter,
     required this.locationData,
     required this.fileClick,
-
   });
 
   final AdvTableField field;
@@ -38,7 +38,6 @@ class VariconAdvanceTableField extends ConsumerWidget {
 
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
   final Function(Map<String, dynamic> url) fileClick;
-
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -74,12 +73,15 @@ class VariconAdvanceTableField extends ConsumerWidget {
           color: Colors.grey.shade200,
           child: Column(
             children: (model.inputFields ?? []).map<Widget>((item) {
+              final singleField = ref
+                  .read(currentStateNotifierProvider.notifier)
+                  .getFieldWithAnswer(item);
               return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: VariconInputFields(
                   locationData: locationData,
                   key: ValueKey(item.id), // Ensure unique key for each field
-                  field: item,
+                  field: singleField,
                   apiCall: apiCall,
                   customPainter: customPainter,
                   imageBuild: imageBuild,
