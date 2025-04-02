@@ -165,8 +165,9 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   @override
   Widget build(BuildContext context) {
     final currentyCity = ref.watch(currentLocationControllerProvider);
+    ref.listen(attachmentLoadingProvider, (_, __) {});
     // final hasLoadingAttachments =
-    //     ref.watch(attachmentLoadingProvider).isNotEmpty;
+    ref.read(attachmentLoadingProvider);
 
     ref.watch(currentStateNotifierProvider);
     ref.watch(requiredNotifierProvider);
@@ -357,15 +358,15 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                         try {
                           if (_formKey.currentState == null) return;
                           // Check for loading attachments
-                          // if (hasLoadingAttachments) {
-                          //   Fluttertoast.showToast(
-                          //     msg:
-                          //         'Please wait while attachments are being saved',
-                          //     backgroundColor: Colors.orange,
-                          //     textColor: Colors.white,
-                          //   );
-                          //   return;
-                          // }
+                          if (ref.read(attachmentLoadingProvider).isNotEmpty) {
+                            Fluttertoast.showToast(
+                              msg:
+                                  'Please wait while attachments are being saved',
+                              backgroundColor: Colors.orange,
+                              textColor: Colors.white,
+                            );
+                            return;
+                          }
                           // return if form is not valid.
                           if (!_formKey.currentState!.validate()) {
                             if (ref

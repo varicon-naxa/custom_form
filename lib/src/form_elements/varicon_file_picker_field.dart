@@ -61,9 +61,9 @@ class _VariconFilePickerFieldState
   }
 
   saveFileToServer(List<PlatformFile> files) async {
-    // final loadingId = const Uuid().v4();
+    final loadingId = const Uuid().v4();
     try {
-      // ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
+      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
       List<String> filePath = files.map((e) => e.path.toString()).toList();
       final data = await widget.attachmentSave(
@@ -80,7 +80,7 @@ class _VariconFilePickerFieldState
             wholeAttachments,
           );
     } finally {
-      // ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+      ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
     }
   }
 

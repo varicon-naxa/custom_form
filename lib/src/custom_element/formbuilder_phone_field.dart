@@ -123,28 +123,29 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
       name: const Uuid().v4(),
       initialValue: phoneNumber,
       validator: (phoneNumber) {
-        if (!_isValidIsRequired(phoneNumber)) {
-          setState(() =>
-              _error = FormBuilderLocalizations.of(context).requiredErrorText);
-          return _error;
-        } else {
-          setState(() => _error = null);
+        if (widget.isRequired) {
+          // Check if phone number is null or empty
+          if (phoneNumber == null || phoneNumber.number.trim().isEmpty) {
+            setState(() {
+              _error = FormBuilderLocalizations.of(context).requiredErrorText;
+            });
+            return FormBuilderLocalizations.of(context).requiredErrorText;
+          }
+          // Check if only country code exists without actual number
+          if (!isNumeric(phoneNumber.number.trim())) {
+            setState(() {
+              _error = FormBuilderLocalizations.of(context).requiredErrorText;
+            });
+            return FormBuilderLocalizations.of(context).requiredErrorText;
+          }
         }
-
+        setState(() {
+          _error = null;
+        });
         return null;
       },
       builder: (FormFieldState<PhoneNumber> field) {
         return IntlPhoneField(
-          validator: (phoneNumber) {
-            if (!_isValidIsRequired(phoneNumber)) {
-              setState(() => _error =
-                  FormBuilderLocalizations.of(context).requiredErrorText);
-              return _error;
-            } else {
-              setState(() => _error = null);
-            }
-            return null;
-          },
           decoration: widget.decoration.copyWith(
             errorText: _error,
           ),

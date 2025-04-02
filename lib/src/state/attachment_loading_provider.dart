@@ -16,6 +16,6 @@ class AttachmentLoadingNotifier extends StateNotifier<Set<String>> {
   }
 }
 
-// final attachmentLoadingProvider = StateNotifierProvider<AttachmentLoadingNotifier, Set<String>>((ref) {
-//   return AttachmentLoadingNotifier();
-// });
+final attachmentLoadingProvider = StateNotifierProvider<AttachmentLoadingNotifier, Set<String>>((ref) {
+  return AttachmentLoadingNotifier();
+});

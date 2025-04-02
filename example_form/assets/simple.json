@@ -5,114 +5,109 @@
     "title": "City of Swan (ABM Sample)",
     "elements": [
         {
-            "id": "item-7456f2e6-2e61-4193-b5cc-425520ffbe49",
-            "name": "Checkboxes",
-            "type": "checkbox",
-            "label": "What type(s) of work are being performed today? Select all that apply.",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-bac580dd-bdea-4366-a81f-69d4d9fa4295",
-                    "label": "General"
-                },
-                {
-                    "id": "item-ba5607b0-85fc-486d-81e4-0de06afb5e51",
-                    "label": "Abatement"
-                },
-                {
-                    "id": "item-32feafa1-360a-4ba8-bf36-71640c5dafe7",
-                    "label": "Demolition"
-                },
-                {
-                    "id": "item-6fe3f018-3a60-492e-8d78-33f1666bdc02",
-                    "label": "Earthwork"
-                },
-                {
-                    "id": "item-0f8e8613-6651-4510-b15d-74eaa856f239",
-                    "label": "Pile Driving"
-                },
-                {
-                    "id": "item-69b3cdce-35d3-439d-bcf8-3506e3604440",
-                    "label": "Formwork"
-                },
-                {
-                    "id": "item-b8a6c33e-0a52-4376-9a41-168234dbda37",
-                    "label": "Mechanical"
-                },
-                {
-                    "id": "item-7016f12c-90b3-4825-9c12-dd5fd7ad2b52",
-                    "label": "Electrical"
-                }
+            "id": "item-0ad0387b-0c8a-431a-9485-9f4f73a0e6c7",
+            "name": "Simple Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Required question, without required column",
+            "headers": [
+                "Column 1",
+                "Column 2",
+                "Column 3"
             ],
-            "isRequired": true,
-            "isConditional": false,
-            "showOtherItem": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-   
-        {
-            "id": "item-a8498cbc-0949-4252-aa4a-77e49e8f1c97",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "Have all crew members performed daily stretch and flex activities?",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-c8f367f2-7ecf-4533-99f2-d892d75cbfc5",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f54d39b6-fa50-41cd-a6f8-85d1cb146619",
-                    "label": "No"
-                },
-                {
-                    "id": "item-b345c41b-f41e-4b01-9b3f-5634b3f49868",
-                    "label": "NA"
-                }
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "type": "checkbox",
+                        "name": "checkbox1",
+                        "id": "checkbox1",
+                        "fromManualList": false,
+                        "isConditional": true,
+                        "islinked": true,
+                        "islinked_query": "equipment",
+                        "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
+                        "isRequired": true,
+                        "requiredErrorText": "At least one item must be selected",
+                        "actionMessage": "This is the action message ",
+                        "choice": [
+                            {
+                                "value": "item1",
+                                "text": "This is item 1.",
+                                "action": true
+                            },
+                            {
+                                "value": "item2",
+                                "text": "This is item 2.",
+                                "action": false
+                            },
+                            {
+                                "value": "item3",
+                                "text": "This is item 3.",
+                                "action": true
+                            },
+                            {
+                                "value": "item4",
+                                "text": "This is item 4.",
+                                "action": false
+                            },
+                            {
+                                "value": "item5",
+                                "text": "This is item 5.",
+                                "action": true
+                            }
+                        ],
+                        "otherErrorText": "Other field comment is required."
+                    },
+                    {
+                        "type": "dropdown",
+                        "name": "select1",
+                        "id": "select1",
+                        "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
+                        "isRequired": true,
+                        "islinked": true,
+                        "islinked_query": "equipment",
+                        "fromManualList": false,
+                        "isConditional": true,
+                        "actionMessage": "This is the action message ",
+                        "requiredErrorText": "Drop down is required",
+                        "commentPlaceholder": "comment are place",
+                        "choice": [
+                            {
+                                "value": "item1",
+                                "text": "This is item 1.",
+                                "action": true
+                            },
+                            {
+                                "value": "item2",
+                                "text": "This is item 2.",
+                                "action": false
+                            },
+                            {
+                                "value": "item3",
+                                "text": "This is item 3.",
+                                "action": false
+                            }
+                        ],
+                        "showOtherItem": false,
+                        "showNoneItem": false,
+                        "otherErrorText": "Empty comment required",
+                        "placeholder": "Select...OKkk"
+                    },
+                    {
+                        "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc67",
+                        "name": "Multiple Choice",
+                        "type": "multipleselect",
+                        "label": "Biget item",
+                        "isConditional": false,
+                        "actionMessage": "",
+                        "fromManualList": false,
+                        "isRequired": true,
+                        "choice": []
+                    }
+                ]
             ],
-            "isRequired": false,
-            "isConditional": false,
-            "showOtherItem": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
-        },
-  
-        {
-            "id": "item-68553de3-eb78-43ca-b28f-8d552a25fb79",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Any images you want to add",
-            "answer": [],
-            "isMultiple": true,
-            "isRequired": false,
-            "selectedLinkListLabel": ""
-        },
-        {
-            "id": "item-d7d4b5d0-a714-4c1e-b771-53161fdb3a41",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": " Does every member of the on-duty crew have adequate and appropriate PPE for today's work tasks?",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-c8f367f2-7ecf-4533-99f2-d892d75cbfc5",
-                    "label": "Yes"
-                },
-                {
-                    "id": "item-f54d39b6-fa50-41cd-a6f8-85d1cb146619",
-                    "label": "No"
-                },
-                {
-                    "id": "item-b345c41b-f41e-4b01-9b3f-5634b3f49868",
-                    "label": "NA"
-                }
-            ],
-            "isRequired": false,
-            "isConditional": false,
-            "showOtherItem": false,
-            "fromManualList": true,
-            "selectedLinkListLabel": ""
+            "isRequired": false
         }
     ],
     "description": "Record of works completed"

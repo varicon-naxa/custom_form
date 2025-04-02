@@ -51,10 +51,10 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   @override
   Widget build(BuildContext context) {
     Future modifyAnswer(Uint8List data) async {
-      // final loadingId = const Uuid().v4();
+      final loadingId = const Uuid().v4();
 
       try {
-        // ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
+        ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
         Map<String, dynamic> answer = {};
 
@@ -75,7 +75,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
             .read(currentStateNotifierProvider.notifier)
             .saveMap(widget.field.id, answer);
       } finally {
-        // ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
       }
     }
 
