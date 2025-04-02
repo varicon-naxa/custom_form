@@ -166,14 +166,16 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
   Widget build(BuildContext context) {
     final currentyCity = ref.watch(currentLocationControllerProvider);
     ref.listen(attachmentLoadingProvider, (_, __) {});
+    ref.listen(customSimpleRowProvider, (_, __) {});
+    ref.listen(customAdvanceRowProvider, (_, __) {});
     // final hasLoadingAttachments =
     ref.read(attachmentLoadingProvider);
+    ref.read(customSimpleRowProvider);
+    ref.read(customAdvanceRowProvider);
 
-    ref.watch(currentStateNotifierProvider);
-    ref.watch(requiredNotifierProvider);
-    ref.watch(customSimpleRowProvider);
-    ref.watch(customAdvanceRowProvider);
-    ref.watch(linklabelProvider);
+    // ref.watch(currentStateNotifierProvider);
+    // ref.watch(requiredNotifierProvider);
+    // ref.watch(linklabelProvider);
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) {
