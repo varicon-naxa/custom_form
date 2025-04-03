@@ -187,20 +187,20 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
             );
             return;
           } else {
-            final editedImage = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => widget.customPainter(
-                  file,
-                ),
-              ),
-            );
-            File? fileCustomImage = await handleOption(
-                currentImage: editedImage, address: widget.locationData);
-            if (fileCustomImage != null) {
-              widget.onImageSelected([XFile(fileCustomImage.path)]);
-              return;
-            }
+            // final editedImage = await Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) => widget.customPainter(
+            //       file,
+            //     ),
+            //   ),
+            // );
+            // File? fileCustomImage = await handleOption(
+            //     currentImage: editedImage, address: widget.locationData);
+            // if (fileCustomImage != null) {
+            //   widget.onImageSelected([XFile(fileCustomImage.path)]);
+            //   return;
+            // }
             widget.onImageSelected([pickedFile]);
             return;
           }

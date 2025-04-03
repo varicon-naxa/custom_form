@@ -5,109 +5,21 @@
     "title": "City of Swan (ABM Sample)",
     "elements": [
         {
-            "id": "item-0ad0387b-0c8a-431a-9485-9f4f73a0e6c7",
-            "name": "Simple Table",
-            "type": "table",
-            "isRow": true,
-            "label": "Required question, without required column",
-            "headers": [
-                "Column 1",
-                "Column 2",
-                "Column 3"
-            ],
-            "maxRows": "",
-            "contents": [
-                [
-                    {
-                        "type": "checkbox",
-                        "name": "checkbox1",
-                        "id": "checkbox1",
-                        "fromManualList": false,
-                        "isConditional": true,
-                        "islinked": true,
-                        "islinked_query": "equipment",
-                        "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
-                        "isRequired": true,
-                        "requiredErrorText": "At least one item must be selected",
-                        "actionMessage": "This is the action message ",
-                        "choice": [
-                            {
-                                "value": "item1",
-                                "text": "This is item 1.",
-                                "action": true
-                            },
-                            {
-                                "value": "item2",
-                                "text": "This is item 2.",
-                                "action": false
-                            },
-                            {
-                                "value": "item3",
-                                "text": "This is item 3.",
-                                "action": true
-                            },
-                            {
-                                "value": "item4",
-                                "text": "This is item 4.",
-                                "action": false
-                            },
-                            {
-                                "value": "item5",
-                                "text": "This is item 5.",
-                                "action": true
-                            }
-                        ],
-                        "otherErrorText": "Other field comment is required."
-                    },
-                    {
-                        "type": "dropdown",
-                        "name": "select1",
-                        "id": "select1",
-                        "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
-                        "isRequired": true,
-                        "islinked": true,
-                        "islinked_query": "equipment",
-                        "fromManualList": false,
-                        "isConditional": true,
-                        "actionMessage": "This is the action message ",
-                        "requiredErrorText": "Drop down is required",
-                        "commentPlaceholder": "comment are place",
-                        "choice": [
-                            {
-                                "value": "item1",
-                                "text": "This is item 1.",
-                                "action": true
-                            },
-                            {
-                                "value": "item2",
-                                "text": "This is item 2.",
-                                "action": false
-                            },
-                            {
-                                "value": "item3",
-                                "text": "This is item 3.",
-                                "action": false
-                            }
-                        ],
-                        "showOtherItem": false,
-                        "showNoneItem": false,
-                        "otherErrorText": "Empty comment required",
-                        "placeholder": "Select...OKkk"
-                    },
-                    {
-                        "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc67",
-                        "name": "Multiple Choice",
-                        "type": "multipleselect",
-                        "label": "Biget item",
-                        "isConditional": false,
-                        "actionMessage": "",
-                        "fromManualList": false,
-                        "isRequired": true,
-                        "choice": []
-                    }
-                ]
-            ],
-            "isRequired": false
+            "id": "item-15419c08-63c7-4f88-96ee-d363355d88b2",
+            "max": null,
+            "min": null,
+            "type": "phone",
+            "label": "Employer Contact No.",
+            "answer": "",
+            "visible": true,
+            "readOnly": false,
+            "maxLength": null,
+            "isRequired": true,
+            "description": null,
+            "placeholder": null,
+            "maxErrorText": null,
+            "minErrorText": null,
+            "requiredErrorText": null
         }
     ],
     "description": "Record of works completed"
