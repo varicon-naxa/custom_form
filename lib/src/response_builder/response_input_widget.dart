@@ -668,7 +668,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               const SizedBox(
                 height: 8,
               ),
-              (field.description ?? '').isEmpty
+              (field.description ?? '').trim().isEmpty
                   ? const SizedBox.shrink()
                   : Text(
                       field.description ?? '',
@@ -845,7 +845,7 @@ class _AnswerDesign extends StatelessWidget {
                     ),
                   )
                 : Text(
-                    answer.isEmpty ? 'No Response' : answer,
+                    answer.trim().isEmpty ? 'No Response' : answer,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium
@@ -875,9 +875,9 @@ class _AnswerMapDesign extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                (answer).isEmpty ? 'No Response' : answer,
+                (answer).trim().isEmpty ? 'No Response' : answer,
                 style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    color: answer.isEmpty ? Colors.grey : Colors.black),
+                    color: answer.trim().isEmpty ? Colors.grey : Colors.black),
               ),
             ),
             IconButton(

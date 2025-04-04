@@ -24,7 +24,7 @@ class VariconYesNoRadioField extends ConsumerWidget {
       name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
-      initialValue: (field.answer ?? '').isEmpty
+      initialValue: (field.answer ?? '').trim().isEmpty
           ? null
           : field.choices
               .firstWhereOrNull((element) => element.value == field.answer),
@@ -71,7 +71,7 @@ class VariconYesNoNaRadioField extends ConsumerWidget {
       actionMessage: field.actionMessage,
       onOtherSelectedValue: (isSelected, text) {},
       orientation: OptionsOrientation.vertical,
-      initialValue: (field.answer ?? '').isEmpty
+      initialValue: (field.answer ?? '').trim().isEmpty
           ? null
           : field.choices
               .firstWhereOrNull((element) => element.value == field.answer),

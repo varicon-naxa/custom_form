@@ -81,7 +81,7 @@ class VariconCheckboxField extends ConsumerWidget {
             if (field.isRequired && (value ?? []).isEmpty) {
               return 'This field is required';
             } else if (otherValue?.isOtherField == true &&
-                (otherValue?.value ?? '').isEmpty) {
+                (otherValue?.value ?? '').trim().isEmpty) {
               return 'Please specify other in textbox';
             }
             return null;

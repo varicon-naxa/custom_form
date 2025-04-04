@@ -111,7 +111,7 @@ class _FormBuilderIntlPhoneFieldState extends State<FormBuilderIntlPhoneField> {
     }
 
     bool val = !(phoneNumber == null ||
-        phoneNumber.number.isEmpty ||
+        phoneNumber.number.trim().isEmpty ||
         !isNumeric(phoneNumber.number));
 
     return val;

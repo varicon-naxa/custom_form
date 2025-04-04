@@ -85,7 +85,7 @@ class _SurveyPageState extends State<SurveyPage> {
         log(valueList.toString());
       },
       apiCall: (mapData) async {
-        if (mapData['page'] == '1' && mapData['q'].toString().isEmpty) {
+        if (mapData['page'] == '1' && mapData['q'].toString().trim().isEmpty) {
           await Future.delayed(const Duration(seconds: 2));
           return [
             {"id": '12345', "label": 'equipment1'},

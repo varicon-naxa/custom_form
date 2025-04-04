@@ -190,13 +190,14 @@ class _VariconMultiSignatureFieldState
                   if (widget.field.isRequired) {
                     if (data == null) {
                       return 'This field is required';
-                    } else if (data.image == null && data.name == null) {
+                    } else if (data.image == null && data.name == null ||
+                        (data.name ?? '').toString().trim().isEmpty) {
                       return 'This field is required';
                     } else {
                       if (data.image == null && (data.name ?? '').isNotEmpty) {
                         return 'Signature is required';
                       } else if ((data.name == null ||
-                              (data.name ?? '').isEmpty) &&
+                              (data.name ?? '').trim().isEmpty) &&
                           (data.image != null)) {
                         return 'Signatory Name is required';
                       } else {
@@ -219,7 +220,9 @@ class _VariconMultiSignatureFieldState
       return false;
     } else {
       MultiSignature value = currentState;
-      if (value.image == null || value.name == null || value.name!.isEmpty) {
+      if (value.image == null ||
+          value.name == null ||
+          (value.name ?? '').trim().isEmpty) {
         return false;
       } else {
         return true;

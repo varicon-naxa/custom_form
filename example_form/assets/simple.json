@@ -2,113 +2,97 @@
     "name": "",
     "version": "1.0.0",
     "collect_geolocation": false,
-    "title": "City of Swan (ABM Sample)",
+    "title": "Form Bugas (ABM Sample)",
     "elements": [
-        {
-            "id": "item-0ad0387b-0c8a-431a-9485-9f4f73a0e6c7",
-            "name": "Simple Table",
-            "type": "table",
-            "isRow": true,
-            "label": "Required question, without required column",
-            "headers": [
-                "Column 1",
-                "Column 2",
-                "Column 3"
-            ],
-            "maxRows": "",
-            "contents": [
-                [
-                    {
-                        "type": "checkbox",
-                        "name": "checkbox1",
-                        "id": "checkbox1",
-                        "fromManualList": false,
-                        "isConditional": true,
-                        "islinked": true,
-                        "islinked_query": "equipment",
-                        "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
-                        "isRequired": true,
-                        "requiredErrorText": "At least one item must be selected",
-                        "actionMessage": "This is the action message ",
-                        "choice": [
+                {
+                    "id": "item-c119f911-ce15-481e-b5ab-b7135e1ce34a",
+                    "name": "Short Text",
+                    "type": "text",
+                    "label": "Custom Form Bugs Finding",
+                    "answer": "",
+                    "isRequired": true
+                },
+                {
+                    "id": "item-e3428265-1427-4c50-bc3d-817d1d14fb4e",
+                    "name": "Long Text",
+                    "type": "text",
+                    "label": "Custorm Form Bugs Finding",
+                    "answer": "",
+                    "isRequired": true
+                },
+                {
+                    "id": "item-6952c16a-c6dc-4894-a5b9-88bcd9f563e4",
+                    "name": "Dynamic Table",
+                    "type": "table",
+                    "isRow": true,
+                    "label": "Dynamic Table Form validatrion",
+                    "headers": [
+                        "Bug",
+                        "Fixes",
+                        "CF"
+                    ],
+                    "maxRows": "",
+                    "contents": [
+                        [
                             {
-                                "value": "item1",
-                                "text": "This is item 1.",
-                                "action": true
+                                "id": "item-36eb022a-7664-467f-af23-593a0eeeabac",
+                                "name": "Long Text",
+                                "type": "text",
+                                "label": "Bug",
+                                "answer": "",
+                                "isRequired": true,
+                                "instruction": ""
                             },
                             {
-                                "value": "item2",
-                                "text": "This is item 2.",
-                                "action": false
+                                "id": "item-1550568a-4243-41c5-88e6-e50592271905",
+                                "name": "Single Select Dropdown",
+                                "type": "dropdown",
+                                "label": "Fixes",
+                                "answer": "",
+                                "choice": [],
+                                "isRequired": true,
+                                "instruction": "",
+                                "actionMessage": "",
+                                "isConditional": false,
+                                "fromManualList": false,
+                                "islinked_query": "equipment",
+                                "selectedLinkListLabel": ""
                             },
                             {
-                                "value": "item3",
-                                "text": "This is item 3.",
-                                "action": true
-                            },
-                            {
-                                "value": "item4",
-                                "text": "This is item 4.",
-                                "action": false
-                            },
-                            {
-                                "value": "item5",
-                                "text": "This is item 5.",
-                                "action": true
+                                "id": "item-d5ecc43e-a030-49d1-8646-b2579476f073",
+                                "name": "Multi-Select Dropdown",
+                                "type": "multipleselect",
+                                "label": "CF",
+                                "answer": "",
+                                "choice": [],
+                                "isRequired": false,
+                                "instruction": "",
+                                "actionMessage": "",
+                                "isConditional": false,
+                                "fromManualList": false,
+                                "islinked_query": "supplier",
+                                "selectedLinkListLabel": ""
                             }
-                        ],
-                        "otherErrorText": "Other field comment is required."
-                    },
-                    {
-                        "type": "dropdown",
-                        "name": "select1",
-                        "id": "select1",
-                        "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
-                        "isRequired": true,
-                        "islinked": true,
-                        "islinked_query": "equipment",
-                        "fromManualList": false,
-                        "isConditional": true,
-                        "actionMessage": "This is the action message ",
-                        "requiredErrorText": "Drop down is required",
-                        "commentPlaceholder": "comment are place",
-                        "choice": [
-                            {
-                                "value": "item1",
-                                "text": "This is item 1.",
-                                "action": true
-                            },
-                            {
-                                "value": "item2",
-                                "text": "This is item 2.",
-                                "action": false
-                            },
-                            {
-                                "value": "item3",
-                                "text": "This is item 3.",
-                                "action": false
-                            }
-                        ],
-                        "showOtherItem": false,
-                        "showNoneItem": false,
-                        "otherErrorText": "Empty comment required",
-                        "placeholder": "Select...OKkk"
-                    },
-                    {
-                        "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc67",
-                        "name": "Multiple Choice",
-                        "type": "multipleselect",
-                        "label": "Biget item",
-                        "isConditional": false,
-                        "actionMessage": "",
-                        "fromManualList": false,
-                        "isRequired": true,
-                        "choice": []
-                    }
-                ]
+                        ]
+                    ],
+                    "isRequired": false
+                },
+                {
+                    "id": "item-a1d41b6e-984e-4d15-956d-6c18573e60ef",
+                    "name": "Signature",
+                    "type": "signature",
+                    "label": "Employee Sign",
+                    "answer": {},
+                    "isRequired": true
+                },
+                {
+                    "id": "item-d3cac46a-bc65-4d7f-883e-588bd701df37",
+                    "name": "Multiple Signature",
+                    "type": "multisignature",
+                    "label": "Group",
+                    "answer": [],
+                    "isRequired": true
+                }
             ],
-            "isRequired": false
-        }
-    ],
     "description": "Record of works completed"
 }

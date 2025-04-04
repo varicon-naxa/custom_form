@@ -12,12 +12,11 @@ import '../models/value_text.dart';
 import '../state/required_id_provider.dart';
 
 class VariconRadioField extends ConsumerWidget {
-  const VariconRadioField({
-    super.key,
-    required this.field,
-    required this.labelText,
-    this.isResponse
-  });
+  const VariconRadioField(
+      {super.key,
+      required this.field,
+      required this.labelText,
+      this.isResponse});
 
   final RadioInputField field;
   final String labelText;
@@ -46,7 +45,7 @@ class VariconRadioField extends ConsumerWidget {
         if (field.isRequired && value == null) {
           return 'This field is required';
         } else if (value?.isOtherField == true &&
-            (value?.value ?? '').isEmpty) {
+            (value?.value ?? '').trim().isEmpty) {
           return 'Please specify other in textbox';
         }
         return null;

@@ -65,7 +65,7 @@ class _VariconAddressFieldState extends ConsumerState<VariconAddressField> {
         '${address.first.subThoroughfare!.isEmpty ? '' : '${address.first.subThoroughfare}'} ${address.first.thoroughfare!.isEmpty ? '' : '${address.first.thoroughfare}, '}${address.first.locality} ${address.first.administrativeArea} ${address.first.postalCode} ${address.first.country}';
 
     //setting the address value to the map field controller
-    mapFieldController.text = addressText;
+    mapFieldController.text = addressText.trim();
     ref
         .read(currentStateNotifierProvider.notifier)
         .saveString(widget.field.id, addressText);

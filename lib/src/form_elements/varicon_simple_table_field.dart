@@ -12,7 +12,7 @@ import '../form_builder/varicon_input_fields.dart';
 import '../state/required_id_provider.dart';
 import '../widget/table_expandable_header_widget.dart';
 
-class VariconSimpleTableField extends ConsumerWidget {
+class VariconSimpleTableField extends HookConsumerWidget {
   const VariconSimpleTableField({
     super.key,
     required this.field,
@@ -42,9 +42,15 @@ class VariconSimpleTableField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final currentTableState = ref.watch(customSimpleRowProvider);
-    final singleData =
-        currentTableState.firstWhereOrNull((element) => element.id == field.id);
+    ref.read(customSimpleRowProvider);
+    final ValueNotifier<CustomTableModel?> singleDateNotifier =
+        ValueNotifier(null);
+    ref.listen(customSimpleRowProvider, (_, next) {
+      singleDateNotifier.value =
+          next.firstWhereOrNull((element) => element.id == field.id);
+    });
+    // final singleData =
+    //     currentTableState.firstWhereOrNull((element) => element.id == field.id);
 
     /// Generates a new unique ID for a field and its nested components.
     ///
@@ -111,69 +117,72 @@ class VariconSimpleTableField extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Column(
-            children: (singleData?.rowList ?? []).mapIndexed((index, model) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child:
-                // index == 0
-                //     ? _buildTableRowContent(context, index, model)
-                //     :
-                Dismissible(
-              key: ValueKey(const Uuid().v4),
-              direction: DismissDirection.endToStart,
-              background: Container(
-                alignment: Alignment.centerRight,
-                padding: const EdgeInsets.only(right: 16),
-                color: Colors.red,
-                child: const Icon(
-                  Icons.delete,
-                  color: Colors.white,
+        ValueListenableBuilder(
+          valueListenable: singleDateNotifier,
+          builder: (context, singleData, child) => Column(
+              children: (singleData?.rowList ?? []).mapIndexed((index, model) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child:
+                  // index == 0
+                  //     ? _buildTableRowContent(context, index, model)
+                  //     :
+                  Dismissible(
+                key: ValueKey(const Uuid().v4),
+                direction: DismissDirection.endToStart,
+                background: Container(
+                  alignment: Alignment.centerRight,
+                  padding: const EdgeInsets.only(right: 16),
+                  color: Colors.red,
+                  child: const Icon(
+                    Icons.delete,
+                    color: Colors.white,
+                  ),
                 ),
-              ),
-              confirmDismiss: (direction) async {
-                // Show confirmation dialog
-                return await showDialog<bool>(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Delete Row'),
-                      content: const Text(
-                          'Are you sure you want to delete this row?'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () => Navigator.of(context).pop(false),
-                          child: const Text('CANCEL'),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            // Call delete row on table manager
-                            Navigator.of(context).pop(true);
-                          },
-                          child: const Text(
-                            'DELETE',
-                            style: TextStyle(color: Colors.red),
+                confirmDismiss: (direction) async {
+                  // Show confirmation dialog
+                  return await showDialog<bool>(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: const Text('Delete Row'),
+                        content: const Text(
+                            'Are you sure you want to delete this row?'),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(false),
+                            child: const Text('CANCEL'),
                           ),
-                        ),
-                      ],
-                    );
-                  },
-                );
-              },
-              onDismissed: (direction) {
-                // Call delete row on table manager
-                ref.read(requiredNotifierProvider.notifier).deleteRow(
-                    model.inputFields ??
-                        []); // Call delete row on table manager
+                          TextButton(
+                            onPressed: () {
+                              // Call delete row on table manager
+                              Navigator.of(context).pop(true);
+                            },
+                            child: const Text(
+                              'DELETE',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
+                onDismissed: (direction) {
+                  // Call delete row on table manager
+                  ref.read(requiredNotifierProvider.notifier).deleteRow(
+                      model.inputFields ??
+                          []); // Call delete row on table manager
 
-                ref
-                    .read(customSimpleRowProvider.notifier)
-                    .deleteRow(field.id, model.id ?? '');
-              },
-              child: _buildTableRowContent(context, index, model, ref),
-            ),
-          );
-        }).toList()),
+                  ref
+                      .read(customSimpleRowProvider.notifier)
+                      .deleteRow(field.id, model.id ?? '');
+                },
+                child: _buildTableRowContent(context, index, model, ref),
+              ),
+            );
+          }).toList()),
+        ),
         OutlinedButton.icon(
           style: OutlinedButton.styleFrom(
             shape: RoundedRectangleBorder(
@@ -194,7 +203,7 @@ class VariconSimpleTableField extends ConsumerWidget {
   Widget _buildTableRowContent(
       BuildContext context, int index, CustomRowModel model, WidgetRef ref) {
     return KeyedSubtree(
-      key: ValueKey(const Uuid().v4()),
+      key: ValueKey(model.id ?? const Uuid().v4()),
       child: ExpandableWidget(
         initialExpanded: model.isExpanded,
         expandableHeader: TableExpandableHeaderWidget(

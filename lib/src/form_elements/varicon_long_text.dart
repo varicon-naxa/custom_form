@@ -78,7 +78,7 @@ class _VariconLongTextContentState extends State<_VariconLongTextContent> {
                   widget.state.didChange(code.toString().trim());
                   widget.onChanged?.call(code.toString().trim());
 
-                  if (strippedCode.isEmpty) {
+                  if (strippedCode.trim().isEmpty) {
                     setState(() {
                       empty = true;
                     });

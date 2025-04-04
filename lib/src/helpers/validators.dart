@@ -7,6 +7,7 @@ String? textValidator({
   bool isRequired = false,
   String? requiredErrorText,
 }) {
+  // Trim the input value
   if ((value ?? '').trim().isEmpty && isRequired) {
     return requiredErrorText ?? 'Response required.';
   }
@@ -46,7 +47,7 @@ String? uriValidator({
   bool isRequired = false,
   String? requiredErrorText,
 }) {
-  if (value == null || value.isEmpty) {
+  if (value == null || value.trim().isEmpty) {
     // if value is empty or null.
     if (isRequired) {
       return requiredErrorText ?? 'Response required.';

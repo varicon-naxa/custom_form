@@ -28,7 +28,7 @@ class VariconSectionField extends ConsumerWidget {
           const SizedBox(
             height: 8.0,
           ),
-          (field.description ?? '').isEmpty
+          (field.description ?? '').trim().isEmpty
               ? const SizedBox.shrink()
               : Text(
                   field.description ?? '',
