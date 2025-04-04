@@ -4,15 +4,63 @@
     "collect_geolocation": false,
     "title": "City of Swan (ABM Sample)",
     "elements": [
-            {
-                "id": "item-df686fd3-34e7-4437-8ae5-e26e422ca6e3",
-                "name": "Email",
-                "type": "email",
-                "label": "Column 2",
-                "answer": "",
-                "isRequired": true,
-                "instruction": ""
-            }
+        {
+            "id": "item-6952c16a-c6dc-4894-a5b9-88bcd9f563e4",
+            "name": "Dynamic Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Dynamic Table Form validatrion",
+            "headers": [
+                "Bug",
+                "Fixes",
+                "CF"
+            ],
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-36eb022a-7664-467f-af23-593a0eeeabac",
+                        "name": "Long Text",
+                        "type": "text",
+                        "label": "Bug",
+                        "answer": "",
+                        "isRequired": true,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-1550568a-4243-41c5-88e6-e50592271905",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Fixes",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": true,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "equipment",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-d5ecc43e-a030-49d1-8646-b2579476f073",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "CF",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "supplier",
+                        "selectedLinkListLabel": ""
+                    }
+                ]
+            ],
+            "isRequired": false
+        }
     ],
     "description": "Record of works completed"
 }

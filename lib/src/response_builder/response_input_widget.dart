@@ -974,10 +974,11 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: answer.map((e) {
-            String dateFormat = e.createdAt == null
-                ? ''
-                : DateFormat('dd MMM yyyy hh:mm a')
-                    .format(DateTime.parse(e.createdAt!));
+            String dateFormat =
+                (e.createdAt == null || e.createdAt.toString() == 'null')
+                    ? ''
+                    : DateFormat('dd MMM yyyy hh:mm a')
+                        .format(DateTime.parse(e.createdAt!));
             String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
             String signatoryNameDetail =
                 'Signed By ${e.signatoryName} $dateText';
