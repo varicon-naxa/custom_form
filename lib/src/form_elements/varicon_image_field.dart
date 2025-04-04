@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -51,7 +50,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
     });
   }
 
-  removeFileFromServer(Map<String, dynamic> file) {
+  clearPreviousAnswer(Map<String, dynamic> file) {
     final notifier =
         ref.read(initialAttachmentsProvider(widget.field.id).notifier);
     notifier.removeAttachment(file['id']);
@@ -64,15 +63,30 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
         );
   }
 
-  saveFileToServer(List<dynamic> files) async {
-       ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId!);
-        loadingId = const Uuid().v4();
-        ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId!);
-      }  try {
-      if (loadingId != null) {
-   
+  removeFileFromServer(List<Map<String, dynamic>> remainingFiles) async {
+    final loadingIds = remainingFiles.map((_) => const Uuid().v4()).toList();
+    for (var id in loadingIds) {
+      ref.read(attachmentLoadingProvider.notifier).addLoading(id);
+    }
 
-      List<String> paths = await Future.wait(files.map((e) async {
+    try {
+      await saveFileToServer(remainingFiles);
+    } finally {
+      for (var id in loadingIds) {
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
+      }
+    }
+  }
+
+  saveFileToServer(List<Map<String, dynamic>> files) async {
+    final loadingIds = files.map((_) => const Uuid().v4()).toList();
+    for (var id in loadingIds) {
+      ref.read(attachmentLoadingProvider.notifier).addLoading(id);
+    }
+
+    try {
+      List<String> paths = await Future.wait(files.map((element) async {
+        final e = element['data'];
         if (e is XFile) {
           return e.path.toString();
         } else if (e is Uint8List) {
@@ -98,9 +112,8 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
             wholeAttachments,
           );
     } finally {
-      if (loadingId != null) {
-        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId!);
-        loadingId = null;
+      for (var id in loadingIds) {
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
       }
     }
   }
@@ -124,9 +137,12 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
           initialWidget: Consumer(builder: (context, ref, child) {
             final initialAttachments =
                 ref.watch(initialAttachmentsProvider(widget.field.id));
+            final loadingStates = ref.watch(attachmentLoadingProvider);
+
             return Wrap(
               children: [
                 ...initialAttachments.map((e) {
+                  final isLoading = loadingStates.isNotEmpty;
                   return Stack(
                     key: ObjectKey(e),
                     children: <Widget>[
@@ -142,16 +158,40 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
-                          child: widget.imageBuild({
-                            'image': e['file'],
-                          })),
+                          child: Stack(
+                            children: [
+                              widget.imageBuild({
+                                'image': e['file'],
+                              }),
+                              if (isLoading)
+                                Positioned.fill(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: Colors.black.withOpacity(0.1),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: const Center(
+                                      child: SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          )),
                       PositionedDirectional(
                         top: 0,
                         end: 12,
                         child: InkWell(
-                          onTap: () {
-                            removeFileFromServer(e);
-                          },
+                          onTap: isLoading
+                              ? null
+                              : () {
+                                  clearPreviousAnswer(e);
+                                },
                           child: Container(
                             margin: const EdgeInsets.all(3),
                             decoration: const BoxDecoration(
@@ -175,8 +215,11 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
               ],
             );
           }),
-          onChanged: (value) {
-            saveFileToServer(value ?? []);
+          onAdd: (value) {
+            saveFileToServer(value);
+          },
+          onDelete: (deletedImage, updatedList) {
+            removeFileFromServer(updatedList);
           },
           validator: (value) {
             if (widget.field.isRequired &&

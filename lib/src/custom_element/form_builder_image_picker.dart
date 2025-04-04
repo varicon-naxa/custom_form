@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:uuid/uuid.dart';
 
 import 'widget/image_source_sheet.dart';
 
@@ -18,7 +18,8 @@ import 'widget/image_source_sheet.dart';
 ///
 /// if you want to use a different object (e.g. a class from the backend that has imageId and imageUrl)
 /// you need to implement [displayCustomType]
-class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
+class FormBuilderImagePicker
+    extends FormBuilderFieldDecoration<List<Map<String, dynamic>>> {
   /// set to true to insert an [InputDecorator] which displays labels, borders, etc...
 
   /// May be supplied for a fully custom display of the image preview
@@ -27,6 +28,13 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
     List<Widget> children,
     Widget? addButton,
   )? previewBuilder;
+
+  /// Callback when an image is added
+  final void Function(List<Map<String, dynamic>> newImages)? onAdd;
+
+  /// Callback when an image is deleted
+  final void Function(Map<String, dynamic> deletedImage,
+      List<Map<String, dynamic>> remainingImages)? onDelete;
 
   /// Optional maximum height of image; see [ImagePicker].
   final double? maxHeight;
@@ -99,6 +107,8 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
       super.initialValue,
       super.decoration = const InputDecoration(),
       super.onChanged,
+      this.onAdd,
+      this.onDelete,
       super.valueTransformer,
       super.enabled = true,
       super.onSaved,
@@ -130,7 +140,7 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
       this.initialWidget})
       : assert(maxImages == null || maxImages >= 0),
         super(
-          builder: (FormFieldState<List<dynamic>?> field) {
+          builder: (FormFieldState<List<Map<String, dynamic>>?> field) {
             final state = field as FormBuilderImagePickerState;
             double height = 75.0;
             double width = 75.0;
@@ -184,7 +194,11 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
                       availableImageSources: availableImageSources,
                       onImageSelected: (image) {
                         state.focus();
-                        field.didChange([...value, ...image]);
+                        final newImages =
+                            image.map((img) => createImageMap(img)).toList();
+                        final newValue = [...value, ...newImages];
+                        field.didChange(newValue);
+                        onAdd?.call(newImages);
                         Navigator.pop(state.context);
                       },
                     );
@@ -210,10 +224,12 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
                   e is ImageProvider ||
                   e is Widget);
 
-              final itemCustomType = checkIfItemIsCustomType(item);
-              var displayItem = item;
+              final itemData =
+                  item is Map<String, dynamic> ? item['data'] : item;
+              final itemCustomType = checkIfItemIsCustomType(itemData);
+              var displayItem = itemData;
               if (itemCustomType && displayCustomType != null) {
-                displayItem = displayCustomType(item);
+                displayItem = displayCustomType(itemData);
               }
               assert(
                 !checkIfItemIsCustomType(displayItem),
@@ -268,9 +284,10 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
                       child: InkWell(
                         onTap: () {
                           state.focus();
-                          field.didChange(
-                            value.toList()..removeAt(index),
-                          );
+                          final deletedImage = value[index];
+                          final newValue = value.toList()..removeAt(index);
+                          field.didChange(newValue);
+                          onDelete?.call(deletedImage, newValue);
                         },
                         child: Container(
                           margin: const EdgeInsets.all(3),
@@ -337,8 +354,8 @@ class FormBuilderImagePicker extends FormBuilderFieldDecoration<List<dynamic>> {
 }
 
 class FormBuilderImagePickerState extends FormBuilderFieldDecorationState<
-    FormBuilderImagePicker, List<dynamic>> {
-  List<dynamic> get effectiveValue =>
+    FormBuilderImagePicker, List<Map<String, dynamic>>> {
+  List<Map<String, dynamic>> get effectiveValue =>
       value?.where((element) => element != null).toList() ?? [];
 
   bool get hasMaxImages {
@@ -387,6 +404,14 @@ extension _ListExtension<E> on List<E> {
       yield convert(index, this[index]);
     }
   }
+}
+
+/// Helper function to create a map with image data and unique ID
+Map<String, dynamic> createImageMap(dynamic imageData) {
+  return {
+    'id': const Uuid().v4(),
+    'data': imageData,
+  };
 }
 
 /// Options where a user can pick images from
