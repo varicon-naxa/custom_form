@@ -242,10 +242,11 @@ class _VariconMultiSignatureFieldState
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         ...signaturePads.map((e) {
-          String dateFormat = e.createdAt == null
-              ? ''
-              : DateFormat('dd MMM yyyy hh:mm a')
-                  .format(DateTime.parse(e.createdAt!));
+          String dateFormat =
+              (e.createdAt == null || e.createdAt.toString() == "null")
+                  ? ''
+                  : DateFormat('dd MMM yyyy hh:mm a')
+                      .format(DateTime.parse(e.createdAt!));
           String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
           String signatoryName =
               (e.signatoryName == null) ? '' : 'By ${e.signatoryName}';
