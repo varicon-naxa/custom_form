@@ -624,7 +624,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       isImage: true,
                     ),
                     if (answer['created_at'] != null &&
-                        answer['created_at'].isNotEmpty)
+                        answer['created_at'].isNotEmpty &&
+                        answer['created_at'].toString() != "null")
                       Text(
                         'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(answer['created_at'].toString()))}',
                       ),
