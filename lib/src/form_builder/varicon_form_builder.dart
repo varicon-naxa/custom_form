@@ -204,6 +204,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
+                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: FormBuilder(
                     key: _formKey,
