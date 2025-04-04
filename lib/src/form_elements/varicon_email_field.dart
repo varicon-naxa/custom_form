@@ -30,7 +30,7 @@ class VariconEmailField extends ConsumerWidget {
       ),
       validator: (value) {
         return textValidator(
-          value: value,
+          value: (value ?? '').trim(),
           inputType: "email",
           isRequired: field.isRequired,
           requiredErrorText: null,
