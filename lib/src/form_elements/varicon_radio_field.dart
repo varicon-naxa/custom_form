@@ -46,7 +46,7 @@ class VariconRadioField extends ConsumerWidget {
         if (field.isRequired && value == null) {
           return 'This field is required';
         } else if (value?.isOtherField == true &&
-            (value?.value ?? '').isEmpty) {
+            (value?.value ?? '').trim().isEmpty) {
           return 'Please specify other in textbox';
         }
         return null;

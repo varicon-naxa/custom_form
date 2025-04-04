@@ -193,10 +193,11 @@ class _VariconMultiSignatureFieldState
                     } else if (data.image == null && data.name == null) {
                       return 'This field is required';
                     } else {
-                      if (data.image == null && (data.name ?? '').isNotEmpty) {
+                      if (data.image == null &&
+                          (data.name ?? '').trim().isNotEmpty) {
                         return 'Signature is required';
                       } else if ((data.name == null ||
-                              (data.name ?? '').isEmpty) &&
+                              (data.name ?? '').trim().isEmpty) &&
                           (data.image != null)) {
                         return 'Signatory Name is required';
                       } else {

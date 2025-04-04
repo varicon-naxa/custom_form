@@ -34,7 +34,7 @@ class VariconNumberField extends ConsumerWidget {
         FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
         TextInputFormatter.withFunction((oldValue, newValue) {
           final text = newValue.text;
-          return text.isEmpty
+          return text.trim().isEmpty
               ? newValue
               : double.tryParse(text) == null
                   ? oldValue
@@ -43,7 +43,7 @@ class VariconNumberField extends ConsumerWidget {
       ],
       validator: (value) {
         return numberValidator(
-          value: (value?.isNotEmpty ?? false)
+          value: (value?.trim().isNotEmpty ?? false)
               ? num.tryParse(value.toString())
               : null,
           isRequired: field.isRequired,
