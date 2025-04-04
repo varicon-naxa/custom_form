@@ -39,6 +39,7 @@ class VariconImageField extends StatefulHookConsumerWidget {
 
 class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   List<Map<String, dynamic>> currentAttachments = [];
+  String? loadingId;
 
   @override
   void initState() {
@@ -64,9 +65,12 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   }
 
   saveFileToServer(List<dynamic> files) async {
-    final loadingId = const Uuid().v4();
-    try {
-      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
+       ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId!);
+        loadingId = const Uuid().v4();
+        ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId!);
+      }  try {
+      if (loadingId != null) {
+   
 
       List<String> paths = await Future.wait(files.map((e) async {
         if (e is XFile) {
@@ -94,7 +98,10 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
             wholeAttachments,
           );
     } finally {
-      ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+      if (loadingId != null) {
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId!);
+        loadingId = null;
+      }
     }
   }
 

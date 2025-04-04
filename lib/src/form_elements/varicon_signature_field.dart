@@ -40,6 +40,7 @@ class VariconSignatureField extends StatefulHookConsumerWidget {
 class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   Map<String, dynamic> _signature = {};
   SignatureController controller = SignatureController();
+  String? loadingId;
 
   @override
   void initState() {
@@ -51,10 +52,10 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   @override
   Widget build(BuildContext context) {
     Future modifyAnswer(Uint8List data) async {
-      final loadingId = const Uuid().v4();
+      loadingId = const Uuid().v4();
 
       try {
-        ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
+        ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId!);
 
         Map<String, dynamic> answer = {};
 
@@ -75,12 +76,30 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
             .read(currentStateNotifierProvider.notifier)
             .saveMap(widget.field.id, answer);
       } finally {
-        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+        if (loadingId != null) {
+          ref
+              .read(attachmentLoadingProvider.notifier)
+              .removeLoading(loadingId!);
+          loadingId = null;
+        }
       }
     }
 
     deleteAnswer() {
-      ref.read(currentStateNotifierProvider.notifier).remove(widget.field.id);
+      if (loadingId != null) {
+        try {
+          ref
+              .read(currentStateNotifierProvider.notifier)
+              .remove(widget.field.id);
+        } finally {
+          ref
+              .read(attachmentLoadingProvider.notifier)
+              .removeLoading(loadingId!);
+          loadingId = null;
+        }
+      } else {
+        ref.read(currentStateNotifierProvider.notifier).remove(widget.field.id);
+      }
     }
 
     void signatureDialog() {
@@ -218,7 +237,9 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                               : MainAxisAlignment.start,
                       children: [
                         if (widget.field.answer?['created_at'] != null &&
-                            widget.field.answer?['created_at'].isNotEmpty)
+                            widget.field.answer?['created_at'].isNotEmpty &&
+                            widget.field.answer?['created_at'].toString() !=
+                                "null")
                           Expanded(
                             child: Text(
                               'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(widget.field.answer?['created_at']))}',

@@ -82,9 +82,8 @@ class _VariconMultiSignatureFieldState
   }
 
   Future<void> modifyAnswer(SingleSignature file) async {
-    final loadingId = const Uuid().v4();
+
     try {
-      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
 
       File singleFile = await Utils.getConvertToFile(file.uniImage);
 
@@ -108,7 +107,7 @@ class _VariconMultiSignatureFieldState
 
       setState(() {});
     } finally {
-      ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId);
+   
     }
   }
 
@@ -270,6 +269,7 @@ class _VariconMultiSignatureFieldState
                             .removeWhere((element) => element.id == e.id);
                       }
                     });
+
                     modifyAnswerinList();
                     _editingController.text = (signaturePads.isNotEmpty)
                         ? signaturePads.length.toString()
