@@ -136,7 +136,7 @@ class FormBuilderMultiSignaturePad
                       contentPadding: EdgeInsets.all(8.0),
                     ),
                     onChanged: (value) {
-                      state.value?.name = value;
+                      state.value?.name = (value ?? '').trim();
                       state.didChange(state.value);
                     },
                   ),

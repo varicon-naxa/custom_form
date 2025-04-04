@@ -157,15 +157,22 @@ class _VariconMultiSignatureFieldState
                       onPressed: () {
                         if (_validateCurrentSignaturePad(key)) {
                           MultiSignature value = key.currentState!.value;
-
-                          SingleSignature singleSignature = SingleSignature(
-                            attachmentId: '${value.name}-${const Uuid().v4()}',
-                            signatoryName: value.name,
-                            uniImage: value.image,
-                            createdAt: DateTime.now().toString(),
-                          );
-                          addSignature(singleSignature);
-                          Navigator.pop(context);
+                          if (value.image != null &&
+                              (value.name ?? '').trim().isNotEmpty) {
+                            SingleSignature singleSignature = SingleSignature(
+                              attachmentId:
+                                  '${value.name}-${const Uuid().v4()}',
+                              signatoryName: value.name,
+                              uniImage: value.image,
+                              createdAt: DateTime.now().toString(),
+                            );
+                            addSignature(singleSignature);
+                            Navigator.pop(context);
+                          } else {
+                            Fluttertoast.showToast(
+                                msg:
+                                    'Please add both signature and signatory name');
+                          }
                         } else {
                           Fluttertoast.showToast(
                               msg:

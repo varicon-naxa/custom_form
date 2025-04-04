@@ -251,7 +251,7 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
 
   void saveString(String k, String? v) {
     if (v == null || v.isEmpty) {
-      state.remove(k);
+      state.remove(k.trim());
     } else {
       state[k] = v;
     }

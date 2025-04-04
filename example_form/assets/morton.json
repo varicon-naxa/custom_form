@@ -315,16 +315,6 @@
                         "id": "item-f82d8cad-07e3-4d89-ab26-8c3ad00216ed",
                         "type": "multisignature",
                         "label": "Column 10",
-                        "answer": [
-                            {
-                                "id": "item-0dae31aa-ddb5-4de0-a9c8-f712eef9af37",
-                                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/attachments/bcb69dc0-505d-4ed1-b664-421ce3c4d248.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWC4X2A2K6XDGACTA%2F20241210%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20241210T161101Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Signature=070d3bed184cdc9205fdfb600e2ff420cc0a630b8a812cb9545912ac43e07a58",
-                                "name": "Susan",
-                                "isLoading": false,
-                                "attachmentId": "bedc5e13-5b8f-4fb2-9b2e-e2c3278b5dd8",
-                                "signatory_name": null
-                            }
-                        ],
                         "visible": true,
                         "readOnly": false,
                         "isRequired": false,
@@ -693,7 +683,7 @@
                 "Single select dropdown",
                 "Single select dropdown conditional",
                 "Single select dropdown linked list",
-                "Multi select dropdown",
+                " select dropdown",
                 "Multi select dropdown conditional",
                 "Multi select dropdown linked list",
                 "Photo upload",

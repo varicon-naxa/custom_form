@@ -11,7 +11,7 @@ String? textValidator({
     return requiredErrorText ?? 'Response required.';
   }
 
-  if (inputType == "email" && (value ?? '').isNotEmpty) {
+  if (inputType == "email" && (value ?? '').trim().isNotEmpty) {
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(value ?? '')) {
@@ -29,7 +29,7 @@ String? requiredValidator({
   bool isRequired = false,
   String? requiredErrorText,
 }) {
-  if (isRequired && (value?.isEmpty ?? true)) {
+  if (isRequired && (value?.trim().isEmpty ?? true)) {
     return requiredErrorText ?? 'Response required.';
   }
 
