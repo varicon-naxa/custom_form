@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:varicon_form_builder/src/form_elements/varicon_image_field.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/src/state/custom_simple_table_row_provider.dart';
 import '../../varicon_form_builder.dart';
@@ -361,6 +362,11 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       }
     } else if (field is ImageInputField) {
       if (state.containsKey(field.id)) {
+        Future.microtask(() {
+          ref
+              .read(initialAttachmentsProvider(field.id).notifier)
+              .setAttachments(field.answer ?? []);
+        });
         field = field.copyWith(
             answer: List<Map<String, dynamic>>.from(state[field.id]));
       }
