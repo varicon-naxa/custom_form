@@ -145,12 +145,16 @@ class _SurveyPageState extends State<SurveyPage> {
             .toList();
       },
       imageBuild: (Map<String, dynamic> data) {
-        return CachedNetworkImage(
-          imageUrl: data['image'],
-          height: data['height'],
-          width: data['width'],
-          placeholderFadeInDuration: const Duration(seconds: 1),
-          placeholder: (context, url) => const Icon(Icons.image),
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: CachedNetworkImage(
+            imageUrl: data['image'],
+            height: data['height'],
+            width: data['width'],
+            fit: BoxFit.cover,
+            placeholderFadeInDuration: const Duration(seconds: 1),
+            placeholder: (context, url) => const Icon(Icons.image),
+          ),
         );
       },
       fileClick: (Map<String, dynamic> stringURl) {},

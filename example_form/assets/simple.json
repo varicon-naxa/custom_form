@@ -5,145 +5,228 @@
     "title": "City of Swan (ABM Sample)",
     "elements": [
         {
-            "id": "item-bc3a564c-232b-4261-80eb-ed5d42fe2661",
-            "name": "Predefined Table",
-            "type": "advtable",
-            "isRow": true,
-            "label": "Predefined Table",
-            "headers": [
-                "Checkbox",
-                "Radio",
-                "Column 3"
-            ],
-            "contents": [
-                [
-                    {
-                        "id": "item-d0a2ca11-d27d-409f-8472-ca29c6456049",
-                        "name": "Checkboxes",
-                        "type": "checkbox",
-                        "label": "Checkbox",
-                        "answer": "",
-                        "choice": [
-                            {
-                                "id": "item-a2627d97-5fda-4472-ad21-9a43802660bd",
-                                "label": "Testing CF",
-                                "action": false,
-                                "notify_To": []
-                            },
-                            {
-                                "id": "item-32393bc9-c6c3-42fe-ad0d-310796f0017c",
-                                "label": "Testing BE",
-                                "action": false,
-                                "notify_To": []
-                            },
-                            {
-                                "id": "item-7ca90e54-74a0-4eb9-a49b-e1e9e9c4e4b0",
-                                "label": "Testing FE",
-                                "action": false,
-                                "notify_To": []
-                            }
-                        ],
-                        "isRequired": true,
-                        "instruction": "",
-                        "actionMessage": "",
-                        "isConditional": false,
-                        "showOtherItem": false,
-                        "fromManualList": true
-                    },
-                    {
-                        "id": "item-d17f38b0-0bbd-4331-b0b7-e5682c2a0c72",
-                        "name": "Radio",
-                        "type": "radiogroup",
-                        "label": "Radio",
-                        "answer": "",
-                        "choice": [
-                            {
-                                "id": "item-9ea68a7c-f618-49a6-b947-f65a14a3d90d",
-                                "label": "Yes",
-                                "action": false,
-                                "notify_To": []
-                            },
-                            {
-                                "id": "item-26e7b968-b5ec-4282-85ae-80af49a23810",
-                                "label": "No",
-                                "action": false,
-                                "notify_To": []
-                            }
-                        ],
-                        "isRequired": true,
-                        "instruction": "",
-                        "actionMessage": "",
-                        "isConditional": false,
-                        "showOtherItem": false,
-                        "fromManualList": true
-                    },
-                    {
-                        "id": "item-d893f208-898d-4662-9531-bdd54459ce20",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Column 3",
-                        "answer": "",
-                        "isRequired": false,
-                        "instruction": ""
-                    }
-                ]
-            ],
-            "isRequired": false
+            "id": "item-565f9001-7fa6-4f80-8be3-4adb030f2d48",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "General Information",
+            "isRequired": false,
+            "instruction": "",
+            "selectedLinkListLabel": ""
         },
         {
-            "id": "item-af89874e-7c48-4bff-b08c-6496aa5aa07a",
-            "name": "Long Text",
+            "id": "item-45f25978-7910-4630-bfb6-eae47efd3d94",
+            "name": "Short Text",
             "type": "text",
-            "label": "Long Text",
+            "label": "Audit Title",
             "answer": "",
-            "isRequired": false
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         },
         {
-            "id": "item-87c5c266-3d3a-44f2-ad72-55da50da8982",
-            "name": "Date",
-            "type": "date",
-            "label": "Date",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-f77769c7-1a16-46e2-aa29-234837be1f24",
+            "id": "item-10aa684c-56cd-4970-b6ca-d7b2e12d4f19",
             "name": "Single Select Dropdown",
             "type": "dropdown",
-            "label": "Single Select Dropdown",
+            "label": "Project",
             "answer": "",
             "choice": [],
             "isRequired": true,
             "isConditional": false,
             "fromManualList": false,
-            "islinked_query": "equipment",
+            "islinked_query": "project",
             "selectedLinkListLabel": ""
         },
         {
-            "id": "item-f6f19b4c-5ab0-490b-b69d-82bcb1499813",
-            "name": "Multiple Signature",
-            "type": "multisignature",
-            "label": "Multiple Signature",
-            "answer": [],
-            "isRequired": false
+            "id": "item-9044e985-dd13-4307-99a1-f2b8fcb9727e",
+            "name": "Date",
+            "type": "date",
+            "label": "Date",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         },
         {
-            "id": "item-f1ef85e4-290d-43eb-8da9-1352eaa12072",
-            "name": "File Upload",
-            "type": "files",
-            "label": "File Upload",
-            "answer": [],
-            "isMultiple": true,
-            "isRequired": true
+            "id": "item-f4f75720-ada3-419a-8543-65b6c50446a8",
+            "name": "Address",
+            "type": "text",
+            "label": "Address",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         },
         {
-            "id": "item-8b914e86-fafa-46d0-8201-ae8d7394d536",
+            "id": "item-7e35ef29-e18a-4dde-8cbb-7fd40f925a9e",
+            "name": "Multi-Select Dropdown",
+            "type": "multipleselect",
+            "label": "Personnel",
+            "answer": "",
+            "choice": [],
+            "isRequired": false,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "employee",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-6fc5092a-2a8f-4235-864a-a446f4e1059e",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "Daily Work Summary",
+            "isRequired": false,
+            "instruction": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7456f2e6-2e61-4193-b5cc-425520ffbe49",
+            "name": "Checkboxes",
+            "type": "checkbox",
+            "label": "What type(s) of work are being performed today? Select all that apply.",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-bac580dd-bdea-4366-a81f-69d4d9fa4295",
+                    "label": "General"
+                },
+                {
+                    "id": "item-ba5607b0-85fc-486d-81e4-0de06afb5e51",
+                    "label": "Abatement"
+                },
+                {
+                    "id": "item-32feafa1-360a-4ba8-bf36-71640c5dafe7",
+                    "label": "Demolition"
+                },
+                {
+                    "id": "item-6fe3f018-3a60-492e-8d78-33f1666bdc02",
+                    "label": "Earthwork"
+                },
+                {
+                    "id": "item-0f8e8613-6651-4510-b15d-74eaa856f239",
+                    "label": "Pile Driving"
+                },
+                {
+                    "id": "item-69b3cdce-35d3-439d-bcf8-3506e3604440",
+                    "label": "Formwork"
+                },
+                {
+                    "id": "item-b8a6c33e-0a52-4376-9a41-168234dbda37",
+                    "label": "Mechanical"
+                },
+                {
+                    "id": "item-7016f12c-90b3-4825-9c12-dd5fd7ad2b52",
+                    "label": "Electrical"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-e9701026-a84a-4a0b-bdba-195d0d4a8a0c",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Describe the works to be undertaken today",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a8498cbc-0949-4252-aa4a-77e49e8f1c97",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have all crew members performed daily stretch and flex activities?",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-c8f367f2-7ecf-4533-99f2-d892d75cbfc5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f54d39b6-fa50-41cd-a6f8-85d1cb146619",
+                    "label": "No"
+                },
+                {
+                    "id": "item-b345c41b-f41e-4b01-9b3f-5634b3f49868",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-c7cca62c-a210-4109-96cd-f6ce972ed0e8",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Any comment you want to add",
+            "answer": "",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-68553de3-eb78-43ca-b28f-8d552a25fb79",
             "name": "Image Upload",
             "type": "images",
-            "label": "Image Upload",
+            "label": "Any images you want to add",
             "answer": [],
             "isMultiple": true,
-            "isRequired": true
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a19f351d-8910-469d-80b1-9074594b93aa",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "Final Checks",
+            "isRequired": false,
+            "instruction": "",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-d7d4b5d0-a714-4c1e-b771-53161fdb3a41",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": " Does every member of the on-duty crew have adequate and appropriate PPE for today's work tasks?",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-c8f367f2-7ecf-4533-99f2-d892d75cbfc5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f54d39b6-fa50-41cd-a6f8-85d1cb146619",
+                    "label": "No"
+                },
+                {
+                    "id": "item-b345c41b-f41e-4b01-9b3f-5634b3f49868",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7daa1fe2-f36c-466d-88bc-26dff7d7e67e",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "Crew Sign Of",
+            "isRequired": false,
+            "instruction": "Each present team member to sign name and signature acknowledging the above tasks, hazards and controls.",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ab671c9b-0573-49a7-a206-5e34d1241996",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Add name and signature",
+            "answer": [],
+            "isRequired": true,
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "Record of works completed"
