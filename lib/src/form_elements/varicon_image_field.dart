@@ -64,6 +64,10 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   }
 
   removeFileFromServer(List<Map<String, dynamic>> remainingFiles) async {
+    // if (remainingFiles.isEmpty) {
+    //   await saveFileToServer([]);
+    // } else {
+
     final loadingIds = remainingFiles.map((_) => const Uuid().v4()).toList();
     for (var id in loadingIds) {
       ref.read(attachmentLoadingProvider.notifier).addLoading(id);
@@ -76,9 +80,17 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
         ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
       }
     }
+    // }
   }
 
   saveFileToServer(List<Map<String, dynamic>> files) async {
+    // if (files.isEmpty) {
+    //   ref.read(currentStateNotifierProvider.notifier).saveList(
+    //     widget.field.id,
+    //     [],
+    //   );
+    // } else {
+
     final loadingIds = files.map((_) => const Uuid().v4()).toList();
     for (var id in loadingIds) {
       ref.read(attachmentLoadingProvider.notifier).addLoading(id);
@@ -115,6 +127,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
       for (var id in loadingIds) {
         ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
       }
+      // }
     }
   }
 

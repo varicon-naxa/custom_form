@@ -5,47 +5,145 @@
     "title": "City of Swan (ABM Sample)",
     "elements": [
         {
-            "id": "item-12b39851-622c-4a87-8782-124b80ddc771",
+            "id": "item-bc3a564c-232b-4261-80eb-ed5d42fe2661",
+            "name": "Predefined Table",
+            "type": "advtable",
+            "isRow": true,
+            "label": "Predefined Table",
+            "headers": [
+                "Checkbox",
+                "Radio",
+                "Column 3"
+            ],
+            "contents": [
+                [
+                    {
+                        "id": "item-d0a2ca11-d27d-409f-8472-ca29c6456049",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Checkbox",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-a2627d97-5fda-4472-ad21-9a43802660bd",
+                                "label": "Testing CF",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-32393bc9-c6c3-42fe-ad0d-310796f0017c",
+                                "label": "Testing BE",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-7ca90e54-74a0-4eb9-a49b-e1e9e9c4e4b0",
+                                "label": "Testing FE",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": true,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-d17f38b0-0bbd-4331-b0b7-e5682c2a0c72",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Radio",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-9ea68a7c-f618-49a6-b947-f65a14a3d90d",
+                                "label": "Yes",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-26e7b968-b5ec-4282-85ae-80af49a23810",
+                                "label": "No",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": true,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-d893f208-898d-4662-9531-bdd54459ce20",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 3",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": ""
+                    }
+                ]
+            ],
+            "isRequired": false
+        },
+        {
+            "id": "item-af89874e-7c48-4bff-b08c-6496aa5aa07a",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "answer": "",
+            "isRequired": false
+        },
+        {
+            "id": "item-87c5c266-3d3a-44f2-ad72-55da50da8982",
+            "name": "Date",
+            "type": "date",
+            "label": "Date",
+            "answer": "",
+            "isRequired": false
+        },
+        {
+            "id": "item-f77769c7-1a16-46e2-aa29-234837be1f24",
+            "name": "Single Select Dropdown",
+            "type": "dropdown",
+            "label": "Single Select Dropdown",
+            "answer": "",
+            "choice": [],
+            "isRequired": true,
+            "isConditional": false,
+            "fromManualList": false,
+            "islinked_query": "equipment",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f6f19b4c-5ab0-490b-b69d-82bcb1499813",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multiple Signature",
+            "answer": [],
+            "isRequired": false
+        },
+        {
+            "id": "item-f1ef85e4-290d-43eb-8da9-1352eaa12072",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true
+        },
+        {
+            "id": "item-8b914e86-fafa-46d0-8201-ae8d7394d536",
             "name": "Image Upload",
             "type": "images",
             "label": "Image Upload",
+            "answer": [],
             "isMultiple": true,
-            "isRequired": true,
-            "answer": [
-                {
-                    "id": "85474ec4-4439-496b-9239-cc31dbf7a121",
-                    "file": "https://dev-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/69af7402-804e-4af5-b223-b8dbc5f0ec8f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KUEHSPTKZ%2F20240803%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240803T055525Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD21zq9Mw6146fJl4WsV1hsGwaHNmzBrx2LSA7%2BvKVPYQIgY6qMzhheTjvDFddivmSFyGYFsvAI%2BPcgW79mR5ZgxVwqxAUInf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDIfOArw%2BrN89GfUi1yqYBVf8wBt6rLrLnF%2FeBeQ34AuSSlhLUlE3QdHZPLCMy9vc3r778q4qIyndqsppGL8FVFYxZh0EBc8k%2BO2D4n4K7MkvgB88gB5MM9z5XbyTAXZ2PGn9kYcRx9ZdKHAhnmsWE6UDJitvM075Iwz4I1gj85595sRl8oq1matRBN8qs8W5sL3D2Dq5Rp%2BmyH%2FkmMV7XUYMXlDgn8bGKPk5ywaIfNd93IYdYlAJZwwhRidKyHrV1ZzSfLH1X2aQcS2MUjzrO2i1WI6tBIANdOwazk6jxq3Mf3O3UClv35HKU27yKVO6ZLEx1A%2Bvk%2B680RgctnCMepBG7WDFCJ52hvvApvlz%2FSkOa%2FeagESsd1LhMoin9dXl6WEtgHZRQfTa7Wqp0NGirrr0B5%2F%2FtkW5LdbhOALjt5mrXGAOxcCP5Ar8mlLO49u0c7x0aouzxP%2FwX7kOwCgnCRt7dnzupeBNLwO%2BiPA9JY1JBSecq723gXoNNEGMkn0pZQ8eWtpjfaNJMDRYnWM05098WKxLpVeKmPhQDxCDBC3rgCbeXxaRLunhKssc4f%2Bjllclzbl%2Fw4m0OsvjpUigg%2F7U6NwMnZUUa1dfb5sIbbBepH7RgseL20xgyVfBf%2BpRFlpubSYVCToHsg5bUTGFEIlF1r8h8kt2oYCKXnvVGP7uaFehYTqYmqPbGP6HEHx%2B6M7d%2FGb1UK8WQ0GOr5niYAuxtHHt6%2FjB0GYVFvpFg41HVDvw43SDJT2EJg81JXQ6bCv435sIN%2FaUqHBTDaFIkFAKzRw4gBLXHnjYpmJZGUSx3ku%2FPJ2aDJx1IS6onbDupF%2BQIZmh2B2nj1SlA07FN%2BXXiPXRtsbxYAe%2FYl5da%2F1yfa%2FvRv0qqoA5kOK9nc4CFjLmau7s7PMw8Ma2tQY6sQHgFPhZKWf8FsjdBLU15Jb8ZEZ%2Fr16tTrNn6Mb5rMK5FOPonKgwQlrBnd16oYoYFxlWzMeV3wncDAF5Vo5voQJC8ph4UX3u1BUQP9f61wxkg%2BPohu7DNMtc0%2B%2BKdeSpowLuXECbE5nmTnoCwTb%2F9RI%2BjmFHjNA3m1Oyk%2FRdDU7Ak4abwE%2BMjpynXeIMeeawxnZGgruYjjKjSDvRQ%2Bj7u%2FhGTFYC6x%2FBY%2B7xNHTQQBFg3iE%3D&X-Amz-Signature=591e7ff0b4aab9250707bc9f444a68604759ebb0eec46e37c834a6a108fd9fb7",
-                    "name": "Screenshot 2024-08-01 at 2.29.54 PM.png",
-                    "mime_type": "png",
-                    "tenant_id": "bf8dae02-d55d-448f-b1ed-feddd60c9f1d",
-                    "thumbnail": "https://dev-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/69af7402-804e-4af5-b223-b8dbc5f0ec8f_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KUEHSPTKZ%2F20240803%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240803T055525Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD21zq9Mw6146fJl4WsV1hsGwaHNmzBrx2LSA7%2BvKVPYQIgY6qMzhheTjvDFddivmSFyGYFsvAI%2BPcgW79mR5ZgxVwqxAUInf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDIfOArw%2BrN89GfUi1yqYBVf8wBt6rLrLnF%2FeBeQ34AuSSlhLUlE3QdHZPLCMy9vc3r778q4qIyndqsppGL8FVFYxZh0EBc8k%2BO2D4n4K7MkvgB88gB5MM9z5XbyTAXZ2PGn9kYcRx9ZdKHAhnmsWE6UDJitvM075Iwz4I1gj85595sRl8oq1matRBN8qs8W5sL3D2Dq5Rp%2BmyH%2FkmMV7XUYMXlDgn8bGKPk5ywaIfNd93IYdYlAJZwwhRidKyHrV1ZzSfLH1X2aQcS2MUjzrO2i1WI6tBIANdOwazk6jxq3Mf3O3UClv35HKU27yKVO6ZLEx1A%2Bvk%2B680RgctnCMepBG7WDFCJ52hvvApvlz%2FSkOa%2FeagESsd1LhMoin9dXl6WEtgHZRQfTa7Wqp0NGirrr0B5%2F%2FtkW5LdbhOALjt5mrXGAOxcCP5Ar8mlLO49u0c7x0aouzxP%2FwX7kOwCgnCRt7dnzupeBNLwO%2BiPA9JY1JBSecq723gXoNNEGMkn0pZQ8eWtpjfaNJMDRYnWM05098WKxLpVeKmPhQDxCDBC3rgCbeXxaRLunhKssc4f%2Bjllclzbl%2Fw4m0OsvjpUigg%2F7U6NwMnZUUa1dfb5sIbbBepH7RgseL20xgyVfBf%2BpRFlpubSYVCToHsg5bUTGFEIlF1r8h8kt2oYCKXnvVGP7uaFehYTqYmqPbGP6HEHx%2B6M7d%2FGb1UK8WQ0GOr5niYAuxtHHt6%2FjB0GYVFvpFg41HVDvw43SDJT2EJg81JXQ6bCv435sIN%2FaUqHBTDaFIkFAKzRw4gBLXHnjYpmJZGUSx3ku%2FPJ2aDJx1IS6onbDupF%2BQIZmh2B2nj1SlA07FN%2BXXiPXRtsbxYAe%2FYl5da%2F1yfa%2FvRv0qqoA5kOK9nc4CFjLmau7s7PMw8Ma2tQY6sQHgFPhZKWf8FsjdBLU15Jb8ZEZ%2Fr16tTrNn6Mb5rMK5FOPonKgwQlrBnd16oYoYFxlWzMeV3wncDAF5Vo5voQJC8ph4UX3u1BUQP9f61wxkg%2BPohu7DNMtc0%2B%2BKdeSpowLuXECbE5nmTnoCwTb%2F9RI%2BjmFHjNA3m1Oyk%2FRdDU7Ak4abwE%2BMjpynXeIMeeawxnZGgruYjjKjSDvRQ%2Bj7u%2FhGTFYC6x%2FBY%2B7xNHTQQBFg3iE%3D&X-Amz-Signature=5943ad5be8f022972535a9ed300a55d63f2af458a379aa3ee864d9d6d3f38ed4",
-                    "created_at": "2024-08-03T05:55:25.020532Z",
-                    "created_by": {
-                        "id": "2b41c213-9756-40b2-be5f-a47d34464210",
-                        "email": "anu.prajapati@varicon.com.au",
-                        "last_name": "Prajapati",
-                        "first_name": "AnuDon",
-                        "is_archived": false
-                    }
-                },
-                {
-                    "id": "2b737cbc-d914-4cc5-81ce-d516edbc79b3",
-                    "file": "https://dev-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/4ee5e3da-c490-49f9-9b3d-b97d6899f7a6.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KUEHSPTKZ%2F20240803%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240803T055645Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD21zq9Mw6146fJl4WsV1hsGwaHNmzBrx2LSA7%2BvKVPYQIgY6qMzhheTjvDFddivmSFyGYFsvAI%2BPcgW79mR5ZgxVwqxAUInf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDIfOArw%2BrN89GfUi1yqYBVf8wBt6rLrLnF%2FeBeQ34AuSSlhLUlE3QdHZPLCMy9vc3r778q4qIyndqsppGL8FVFYxZh0EBc8k%2BO2D4n4K7MkvgB88gB5MM9z5XbyTAXZ2PGn9kYcRx9ZdKHAhnmsWE6UDJitvM075Iwz4I1gj85595sRl8oq1matRBN8qs8W5sL3D2Dq5Rp%2BmyH%2FkmMV7XUYMXlDgn8bGKPk5ywaIfNd93IYdYlAJZwwhRidKyHrV1ZzSfLH1X2aQcS2MUjzrO2i1WI6tBIANdOwazk6jxq3Mf3O3UClv35HKU27yKVO6ZLEx1A%2Bvk%2B680RgctnCMepBG7WDFCJ52hvvApvlz%2FSkOa%2FeagESsd1LhMoin9dXl6WEtgHZRQfTa7Wqp0NGirrr0B5%2F%2FtkW5LdbhOALjt5mrXGAOxcCP5Ar8mlLO49u0c7x0aouzxP%2FwX7kOwCgnCRt7dnzupeBNLwO%2BiPA9JY1JBSecq723gXoNNEGMkn0pZQ8eWtpjfaNJMDRYnWM05098WKxLpVeKmPhQDxCDBC3rgCbeXxaRLunhKssc4f%2Bjllclzbl%2Fw4m0OsvjpUigg%2F7U6NwMnZUUa1dfb5sIbbBepH7RgseL20xgyVfBf%2BpRFlpubSYVCToHsg5bUTGFEIlF1r8h8kt2oYCKXnvVGP7uaFehYTqYmqPbGP6HEHx%2B6M7d%2FGb1UK8WQ0GOr5niYAuxtHHt6%2FjB0GYVFvpFg41HVDvw43SDJT2EJg81JXQ6bCv435sIN%2FaUqHBTDaFIkFAKzRw4gBLXHnjYpmJZGUSx3ku%2FPJ2aDJx1IS6onbDupF%2BQIZmh2B2nj1SlA07FN%2BXXiPXRtsbxYAe%2FYl5da%2F1yfa%2FvRv0qqoA5kOK9nc4CFjLmau7s7PMw8Ma2tQY6sQHgFPhZKWf8FsjdBLU15Jb8ZEZ%2Fr16tTrNn6Mb5rMK5FOPonKgwQlrBnd16oYoYFxlWzMeV3wncDAF5Vo5voQJC8ph4UX3u1BUQP9f61wxkg%2BPohu7DNMtc0%2B%2BKdeSpowLuXECbE5nmTnoCwTb%2F9RI%2BjmFHjNA3m1Oyk%2FRdDU7Ak4abwE%2BMjpynXeIMeeawxnZGgruYjjKjSDvRQ%2Bj7u%2FhGTFYC6x%2FBY%2B7xNHTQQBFg3iE%3D&X-Amz-Signature=5795e32207403df454683fda97c3164c0df0a093b9524b2fbc8bb244f49b79b8",
-                    "name": "Background 2.png",
-                    "mime_type": "png",
-                    "tenant_id": "bf8dae02-d55d-448f-b1ed-feddd60c9f1d",
-                    "thumbnail": "https://dev-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/thumbnails/4ee5e3da-c490-49f9-9b3d-b97d6899f7a6_thumbnail.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KUEHSPTKZ%2F20240803%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240803T055645Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD21zq9Mw6146fJl4WsV1hsGwaHNmzBrx2LSA7%2BvKVPYQIgY6qMzhheTjvDFddivmSFyGYFsvAI%2BPcgW79mR5ZgxVwqxAUInf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDIfOArw%2BrN89GfUi1yqYBVf8wBt6rLrLnF%2FeBeQ34AuSSlhLUlE3QdHZPLCMy9vc3r778q4qIyndqsppGL8FVFYxZh0EBc8k%2BO2D4n4K7MkvgB88gB5MM9z5XbyTAXZ2PGn9kYcRx9ZdKHAhnmsWE6UDJitvM075Iwz4I1gj85595sRl8oq1matRBN8qs8W5sL3D2Dq5Rp%2BmyH%2FkmMV7XUYMXlDgn8bGKPk5ywaIfNd93IYdYlAJZwwhRidKyHrV1ZzSfLH1X2aQcS2MUjzrO2i1WI6tBIANdOwazk6jxq3Mf3O3UClv35HKU27yKVO6ZLEx1A%2Bvk%2B680RgctnCMepBG7WDFCJ52hvvApvlz%2FSkOa%2FeagESsd1LhMoin9dXl6WEtgHZRQfTa7Wqp0NGirrr0B5%2F%2FtkW5LdbhOALjt5mrXGAOxcCP5Ar8mlLO49u0c7x0aouzxP%2FwX7kOwCgnCRt7dnzupeBNLwO%2BiPA9JY1JBSecq723gXoNNEGMkn0pZQ8eWtpjfaNJMDRYnWM05098WKxLpVeKmPhQDxCDBC3rgCbeXxaRLunhKssc4f%2Bjllclzbl%2Fw4m0OsvjpUigg%2F7U6NwMnZUUa1dfb5sIbbBepH7RgseL20xgyVfBf%2BpRFlpubSYVCToHsg5bUTGFEIlF1r8h8kt2oYCKXnvVGP7uaFehYTqYmqPbGP6HEHx%2B6M7d%2FGb1UK8WQ0GOr5niYAuxtHHt6%2FjB0GYVFvpFg41HVDvw43SDJT2EJg81JXQ6bCv435sIN%2FaUqHBTDaFIkFAKzRw4gBLXHnjYpmJZGUSx3ku%2FPJ2aDJx1IS6onbDupF%2BQIZmh2B2nj1SlA07FN%2BXXiPXRtsbxYAe%2FYl5da%2F1yfa%2FvRv0qqoA5kOK9nc4CFjLmau7s7PMw8Ma2tQY6sQHgFPhZKWf8FsjdBLU15Jb8ZEZ%2Fr16tTrNn6Mb5rMK5FOPonKgwQlrBnd16oYoYFxlWzMeV3wncDAF5Vo5voQJC8ph4UX3u1BUQP9f61wxkg%2BPohu7DNMtc0%2B%2BKdeSpowLuXECbE5nmTnoCwTb%2F9RI%2BjmFHjNA3m1Oyk%2FRdDU7Ak4abwE%2BMjpynXeIMeeawxnZGgruYjjKjSDvRQ%2Bj7u%2FhGTFYC6x%2FBY%2B7xNHTQQBFg3iE%3D&X-Amz-Signature=af58754ed1b41c5e216a360da4a68bf5bdfe2b6f21c37de19cfacb9815c3bc85",
-                    "created_at": "2024-08-03T05:56:45.786740Z",
-                    "created_by": {
-                        "id": "2b41c213-9756-40b2-be5f-a47d34464210",
-                        "email": "anu.prajapati@varicon.com.au",
-                        "last_name": "Prajapati",
-                        "first_name": "AnuDon",
-                        "is_archived": false
-                    }
-                }
-            ],
-            "selectedLinkListLabel": ""
+            "isRequired": true
         }
     ],
     "description": "Record of works completed"

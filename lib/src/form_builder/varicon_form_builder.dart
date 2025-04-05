@@ -204,7 +204,8 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
               Expanded(
                 child: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   physics: const AlwaysScrollableScrollPhysics(),
                   child: FormBuilder(
                     key: _formKey,
@@ -362,7 +363,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                           if (ref.read(attachmentLoadingProvider).isNotEmpty) {
                             Fluttertoast.showToast(
                               msg:
-                                  'Please wait while attachments are being saved',
+                                  'Please wait while attachments are being saved/deleted',
                               backgroundColor: Colors.orange,
                               textColor: Colors.white,
                             );

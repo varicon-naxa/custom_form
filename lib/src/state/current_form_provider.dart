@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:collection/collection.dart';
 import 'package:riverpod/riverpod.dart';
+import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/src/state/custom_simple_table_row_provider.dart';
 import '../../varicon_form_builder.dart';
 import 'link_label_provider.dart';
@@ -119,7 +120,9 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       }
     } else if (field is ImageInputField) {
       if (state.containsKey(field.id)) {
-        field = field.copyWith(answer: state[field.id]);
+        log(state[field.id].toString());
+        field = field.copyWith(
+            answer: List<Map<String, dynamic>>.from(state[field.id]));
       }
     } else if (field is MapField) {
       if (state.containsKey(field.id)) {
@@ -358,7 +361,8 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       }
     } else if (field is ImageInputField) {
       if (state.containsKey(field.id)) {
-        field = field.copyWith(answer: state[field.id]);
+        field = field.copyWith(
+            answer: List<Map<String, dynamic>>.from(state[field.id]));
       }
     } else if (field is MapField) {
       if (state.containsKey(field.id)) {
