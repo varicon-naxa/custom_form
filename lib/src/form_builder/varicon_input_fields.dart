@@ -57,7 +57,7 @@ class VariconInputFields extends ConsumerWidget {
     Debouncer debouncer = Debouncer(milliseconds: 500);
 
     String stripHtml(String text) {
-      return text.replaceAll(RegExp(r"<[^>]*>"), ' ');
+      return text.trim().replaceAll(RegExp(r"<[^>]*>"), ' ');
     }
 
     final labelText = hasLabel ? '${field.label ?? ''} ' : '';

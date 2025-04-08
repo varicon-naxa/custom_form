@@ -75,8 +75,13 @@ class _VariconLongTextContentState extends State<_VariconLongTextContent> {
               callbacks: Callbacks(
                 onChangeContent: (code) {
                   final strippedCode = stripHtml(code.toString()).trim();
-                  widget.state.didChange(code.toString().trim());
-                  widget.onChanged?.call(code.toString().trim());
+                  final trimmedCode = code
+                      .toString()
+                      .replaceAll('&nbsp;', ' ')
+                      .replaceAll(RegExp(r'\s+'), ' ')
+                      .trim();
+                  widget.state.didChange(trimmedCode);
+                  widget.onChanged?.call(trimmedCode);
 
                   if (strippedCode.isEmpty) {
                     setState(() {

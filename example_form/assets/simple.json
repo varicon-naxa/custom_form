@@ -4,32 +4,14 @@
     "collect_geolocation": false,
     "title": "City of Swan (ABM Sample)",
     "elements": [
-
         {
-            "id": "item-5612ae39-7bea-4d6e-a455-35ed63a793ba",
-            "name": "Dynamic Table",
-            "type": "table",
-            "isRow": true,
-            "label": "Dynamic Table",
-            "headers": [
-                "Image"
-            ],
-            "maxRows": "",
-            "contents": [
-                [
-                    {
-                        "id": "item-f6741a92-5a50-4f58-aa65-66d95226eb6b",
-                        "name": "Image Upload",
-                        "type": "images",
-                        "label": "Image",
-                        "answer": [],
-                        "isMultiple": true,
-                        "isRequired": true,
-                        "instruction": ""
-                    }
-                ]
-            ],
-            "isRequired": false
+            "id": "item-f6823360-c14b-4b0f-ac5e-6d782c56f652",
+            "name": "Long Text",
+            "type": "text",
+            "label": "Long Text",
+            "isRequired": true,
+            "selectedLinkListLabel": "",
+            "answer": ""
         }
     ],
     "description": "Record of works completed"
