@@ -253,22 +253,20 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
                               //       ),
                               //     ),
                               //   ),
-                            
-                            
                             ],
                           )),
                       PositionedDirectional(
                         top: 0,
                         end: 12,
                         child: InkWell(
-                          onTap: 
-                          // isLoading
-                          //     ? null
-                          //     : 
-                              
+                          onTap:
+                              // isLoading
+                              //     ? null
+                              //     :
+
                               () {
-                                  removeFileFromServer(e);
-                                },
+                            removeFileFromServer(e);
+                          },
                           child: Container(
                             margin: const EdgeInsets.all(3),
                             decoration: const BoxDecoration(
@@ -295,20 +293,10 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
           onChanged: (value) {
             saveFileToServer(value ?? []);
           },
-          // onAdd: (value) {
-          //   saveFileToServer(value);
-          // },
-          // onDelete: (deletedImage, updatedList) {
-          //   removeFileFromServer(updatedList);
-          // },
           validator: (value) {
             if (widget.field.isRequired &&
                 ((value == null || value.isEmpty) &&
-                    ref
-                        .read(initialAttachmentsProvider(widget.field.id)
-                            .notifier)
-                        .state
-                        .isEmpty)) {
+                    initalAttachments.isEmpty)) {
               return "This field is required";
             }
             return null;
