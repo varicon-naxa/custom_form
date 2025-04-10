@@ -277,6 +277,27 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     }
   }
 
+  void addList(String k, List? v) {
+    if (v == null || v.isEmpty) {
+      state[k] = [];
+    } else {
+      List currentData = [];
+      if (state.containsKey(k)) {
+        currentData.addAll(state[k] ?? []);
+      }
+
+      // Add only unique items
+      for (var item in v) {
+        if (!currentData
+            .any((existingItem) => existingItem['id'] == item['id'])) {
+          currentData.add(item);
+        }
+      }
+
+      state[k] = currentData;
+    }
+  }
+
   void saveList(String k, List? v) {
     try {
       if (v == null || v.isEmpty) {

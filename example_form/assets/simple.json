@@ -4,79 +4,23 @@
     "collect_geolocation": false,
     "title": "City of Swan (ABM Sample)",
     "elements": [
+     
         {
-            "id": "item-2c27fa91-20a9-4abf-bda9-faeeb1c7e90b",
-            "name": "Instruction",
-            "type": "instruction",
-            "label": "Instructions for Employees",
-            "isRequired": false,
-            "attachments": [],
-            "instruction": "<p><strong>Purpose</strong></p><p>This form helps us track your office attendance, clock-in/out times, and lunch breaks accurately. Your cooperation ensures smooth payroll processing, office scheduling, and compliance with company policies.</p><p><br></p><p><strong>General Guidelines</strong></p><p><br></p><ol><li>Complete Daily: Submit the form every day you come to the office, even if you arrive late or leave early.</li><li>Be Accurate: Enter times and locations as precisely as possible.</li><li>Submit Promptly: Complete the form at the end of your workday or as soon as your lunch break ends to avoid forgetting details.</li><li>Contact Engineer lead: If you encounter issues (e.g., app errors or location detection problems), reach out to lead immediately.</li></ol>"
-        },
-        {
-            "id": "item-ad39cae6-0512-496b-9597-13dad2664649",
-            "name": "Full Name",
-            "type": "text",
-            "label": "Your Name",
-            "answer": "",
-            "isRequired": true
-        },
-        {
-            "id": "item-04fad6d3-41db-41fd-8c8a-3628fa7be6f8",
-            "name": "Date",
-            "type": "date",
-            "label": "Date",
-            "answer": "",
-            "isRequired": true
-        },
-        {
-            "id": "item-5f6746d9-2f0e-4176-9772-12c70c5d8176",
-            "name": "Address",
-            "type": "text",
-            "label": "Address",
-            "answer": "",
-            "isRequired": true
-        },
-        {
-            "id": "item-8bfacc19-5eaa-4c4f-9a61-533b4bdb6eb6",
-            "name": "Time",
-            "type": "time",
-            "label": "Lunch Start Time",
-            "answer": "",
-            "isRequired": true
-        },
-        {
-            "id": "item-439c3743-68cb-4b93-a08a-98bd19124056",
-            "name": "Time",
-            "type": "time",
-            "label": "Lunch End Time",
-            "answer": "",
-            "isRequired": true
-        },
-        {
-            "id": "item-062fedb4-05ae-47ee-b068-39f7398e653c",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Additional Notes",
-            "answer": "",
-            "isRequired": false
-        },
-        {
-            "id": "item-448464fc-db2d-4582-b5a9-35f72042f122",
+            "id": "item-5745bab1-0bfa-4417-8192-47d73b971c4b",
             "name": "Image Upload",
             "type": "images",
-            "label": "Launch Photo",
-            "answer": [],
+            "label": "Driver Licence / ID",
+            "answer": [
+                {
+                    "id": "2cc04896-544b-4675-a174-4d090c244169",
+                    "file": "https://apptest-varicon.s3.amazonaws.com/a7",
+                    "name": "4b708450-4a57-11ef-af83-2b6f673697d3.png",
+                    "mime_type": "png"
+                }
+            ],
             "isMultiple": true,
-            "isRequired": true
-        },
-        {
-            "id": "item-c0c9ec63-a85c-40e3-8ab5-5ec900c3ec5a",
-            "name": "Signature",
-            "type": "signature",
-            "label": "Your Signature",
-            "answer": {},
-            "isRequired": true
+            "isRequired": true,
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "Record of works completed"
