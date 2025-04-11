@@ -9,6 +9,7 @@ import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_image_picker.dart';
 import '../helpers/utils.dart';
+import 'package:intl/intl.dart';
 
 class VariconImageField extends StatefulHookConsumerWidget {
   const VariconImageField({
@@ -39,6 +40,12 @@ class VariconImageField extends StatefulHookConsumerWidget {
 class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   List<Map<String, dynamic>> initalAttachments = [];
   List<Map<String, dynamic>> currentAttachments = [];
+
+  String formatDateTime(String dateTimeString) {
+    final dateTime = DateTime.parse(dateTimeString);
+    final formatter = DateFormat('dd MMM yyyy hh:mm a');
+    return formatter.format(dateTime);
+  }
 
   @override
   void initState() {

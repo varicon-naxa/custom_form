@@ -5,97 +5,21 @@
     "title": "City of Swan (ABM Sample)",
     "elements": [
         {
-            "id": "item-4831f483-c31c-4bd3-a387-780c163c3b6a",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Radio",
-            "answer": "",
-            "choice": [
-                {
-                    "id": "item-eeb0152e-c811-4c29-a10d-08a11ef45e4c",
-                    "label": "Routine Inspection"
-                },
-                {
-                    "id": "item-d5063a1a-eeaa-4dc8-ac35-78295e037902",
-                    "label": "Hazard Report"
-                },
-                {
-                    "id": "item-fef2ff58-9b06-486a-b34f-ad61c0ba8904",
-                    "label": "Other",
-                    "isOtherField": true
-                }
-            ],
-            "isRequired": true,
-            "isConditional": false,
-            "showOtherItem": true,
-            "fromManualList": true
+            "id": "item-c39b17c1-ade1-40b1-9d33-c828705bb5cf",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Column 10",
+            "answer": {},
+            "isRequired": true
         },
         {
-            "id": "item-a9f20dd3-d8b7-46e6-85af-bf863s0dd993a",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photos",
-            "width": 238,
+            "id": "item-c8f262ac-d94d-4d96-8089-e17ad631c6ee",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multi signature",
             "answer": [],
-            "isMultiple": true,
             "isRequired": false,
-            "instruction": ""
-        },
-        {
-            "id": "item-df40984c-258e-4bae-b739-20663814ae35",
-            "name": "Dynamic Table",
-            "type": "table",
-            "isRow": true,
-            "label": "Hazards Identified",
-            "headers": [
-                "Hazard Description",
-                "Risk Level",
-                "Recommended Controls",
-                "Photos"
-            ],
-            "maxRows": "",
-            "contents": [
-                [
-                    {
-                        "id": "item-4831f483-c31c-4bd3-a387-780c163c3sb6a",
-                        "name": "Radio",
-                        "type": "radiogroup",
-                        "label": "Radio",
-                        "answer": "",
-                        "choice": [
-                            {
-                                "id": "item-eeb0152e-c811-a4c29-a10d-08a11ef45e4c",
-                                "label": "Routine Inspection"
-                            },
-                            {
-                                "id": "item-d5063a1a-eeaaa-4dc8-ac35-78295e037902",
-                                "label": "Hazard Report"
-                            },
-                            {
-                                "id": "item-fef2ff58-9bd06-486a-b34f-ad61c0ba8904",
-                                "label": "Other",
-                                "isOtherField": true
-                            }
-                        ],
-                        "isRequired": true,
-                        "isConditional": false,
-                        "showOtherItem": true,
-                        "fromManualList": true
-                    },
-                    {
-                        "id": "item-a9f20dd3-d8b7-46e6-85af-bf8630dd993a",
-                        "name": "Image Upload",
-                        "type": "images",
-                        "label": "Photos",
-                        "width": 238,
-                        "answer": [],
-                        "isMultiple": true,
-                        "isRequired": false,
-                        "instruction": ""
-                    }
-                ]
-            ],
-            "isRequired": false
+            "initialAnswer": []
         }
     ],
     "description": "Record of works completed"
