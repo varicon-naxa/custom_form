@@ -46,6 +46,16 @@ class _VariconFilePickerFieldState
     setState(() {});
   }
 
+  @override
+  void didUpdateWidget(VariconFilePickerField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.field.answer != widget.field.answer) {
+      initalAttachments.clear();
+      initalAttachments.addAll(widget.field.answer ?? []);
+      setState(() {});
+    }
+  }
+
   removeFileFromServer(Map<String, dynamic> file) {
     initalAttachments.removeWhere((element) => element['id'] == file['id']);
     List<Map<String, dynamic>> wholeAttachments = [
