@@ -48,10 +48,10 @@ class TableExpandableHeaderWidget extends StatelessWidget {
                 size: 18,
               ),
             ),
-          Icon(
-            isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
-            color: hasError ? Theme.of(context).colorScheme.error : null,
-          ),
+          // Icon(
+          //   isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+          //   color: hasError ? Theme.of(context).colorScheme.error : null,
+          // ),
         ],
       ),
     );

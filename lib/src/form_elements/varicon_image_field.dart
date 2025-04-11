@@ -43,14 +43,18 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   @override
   void initState() {
     super.initState();
-
     initalAttachments.addAll(widget.field.answer ?? []);
     setState(() {});
-    // Future.microtask(() {
-    //   ref
-    //       .read(initialAttachmentsProvider(widget.field.id).notifier)
-    //       .setAttachments(widget.field.answer ?? []);
-    // });
+  }
+
+  @override
+  void didUpdateWidget(VariconImageField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.field.answer != widget.field.answer) {
+      initalAttachments.clear();
+      initalAttachments.addAll(widget.field.answer ?? []);
+      setState(() {});
+    }
   }
 
   removeFileFromServer(Map<String, dynamic> file) {
@@ -105,88 +109,6 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
       }
     }
   }
-
-  // clearPreviousAnswer(Map<String, dynamic> file) {
-  //   final notifier =
-  //       ref.read(initialAttachmentsProvider(widget.field.id).notifier);
-  //   notifier.removeAttachment(file['id']);
-
-  //   final wholeAttachments = [...notifier.state, ...currentAttachments];
-
-  //   ref.read(currentStateNotifierProvider.notifier).saveList(
-  //         widget.field.id,
-  //         wholeAttachments,
-  //       );
-  // }
-
-  // removeFileFromServer(List<Map<String, dynamic>> remainingFiles) async {
-  //   // if (remainingFiles.isEmpty) {
-  //   //   await saveFileToServer([]);
-  //   // } else {
-
-  //   final loadingIds = remainingFiles.map((_) => const Uuid().v4()).toList();
-  //   for (var id in loadingIds) {
-  //     ref.read(attachmentLoadingProvider.notifier).addLoading(id);
-  //   }
-
-  //   try {
-  //     await saveFileToServer(remainingFiles);
-  //   } finally {
-  //     for (var id in loadingIds) {
-  //       ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
-  //     }
-  //   }
-  //   // }
-  // }
-
-  // saveFileToServer(List<Map<String, dynamic>> files) async {
-  //   // if (files.isEmpty) {
-  //   //   ref.read(currentStateNotifierProvider.notifier).saveList(
-  //   //     widget.field.id,
-  //   //     [],
-  //   //   );
-  //   // } else {
-
-  //   final loadingIds = files.map((_) => const Uuid().v4()).toList();
-  //   for (var id in loadingIds) {
-  //     ref.read(attachmentLoadingProvider.notifier).addLoading(id);
-  //   }
-
-  //   try {
-  //     List<String> paths = await Future.wait(files.map((element) async {
-  //       final e = element['data'];
-  //       if (e is XFile) {
-  //         return e.path.toString();
-  //       } else if (e is Uint8List) {
-  //         File data = await Utils.getConvertToFile(e);
-  //         return data.path.toString();
-  //       } else {
-  //         return e.toString();
-  //       }
-  //     }).toList());
-
-  //     final data = await widget.attachmentSave(
-  //       paths,
-  //     );
-  //     currentAttachments = data;
-
-  //     List<Map<String, dynamic>> wholeAttachments = [
-  //       ...(ref
-  //           .read(initialAttachmentsProvider(widget.field.id).notifier)
-  //           .state),
-  //       ...data
-  //     ];
-  //     ref.read(currentStateNotifierProvider.notifier).addList(
-  //           widget.field.id,
-  //           wholeAttachments,
-  //         );
-  //   } finally {
-  //     for (var id in loadingIds) {
-  //       ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
-  //     }
-  //     // }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {

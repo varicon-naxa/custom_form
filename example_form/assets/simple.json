@@ -5,75 +5,97 @@
     "title": "City of Swan (ABM Sample)",
     "elements": [
         {
-            "id": "item-d03c5629-82b8-4328-82f3-05b41fa748aa",
-            "name": "Image Upload",
-            "type": "files",
-            "label": "Upload your image after work",
-            "answer": [
+            "id": "item-4831f483-c31c-4bd3-a387-780c163c3b6a",
+            "name": "Radio",
+            "type": "radiogroup",
+            "label": "Radio",
+            "answer": "",
+            "choice": [
                 {
-                    "id": "e452dbfa-6811-4b47-bace-164c8bb904da",
-                    "file": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/attachments/db5f982d-0bef-4720-bc84-8964a1b1dde0.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K7AZIL7FR%2F20250410%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250410T070534Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECQaCXVzLWVhc3QtMiJHMEUCICOGOblC6dnT5%2BY6kp%2BJQrKGuShSsuyoofUr8GcPp6zOAiEAhUvgD0Lfrr5%2FGvLZowtwiaUjCjEhiscZ%2BV1ih9HBMBAqxAUInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDNDGEpBgUbyTqwwb8yqYBbIhoQNLnhpMRntsLksE5H8R%2BuO93P76Zwi8WsExn%2BtzB9wvY07V7C4XYhHKBoMh%2FzOrzk7SdJtEYWTSdwsZc1kNzz1lQId59pl5%2Blj7qFUBM6Wdgx622AXfqteYo8uKYbxh8l%2BdsCXXx4%2BNi82ndbpnl%2B2X4%2Bv5MA01OAnr6UJbAiXYV3WEnSa4Qs0vsZ37tzLrdGQvAOGchsDznxomc8wbIzyHjCRye7Pzzn%2Bararihsxn6fAaOsgOEzA1Zl0KNQJJEtnElAw2Y9KaqgO3Q8k0esXkUwVBaO4FVSfFpLm%2BhJ6G88USY32qlD5mosVn%2FenDzVL91EB%2F7EDp66ELwBrX%2FcIYoX8CeCdSQ1PXNhpebk5XXJgGHFCv2AKKBxsesZN6v1cUt1%2BkwRGCT2GanhBdsoeF2P5018crrQvwAPRkr0c%2FI1ROBMkyoDgTet3NQ0pHJdCJAC%2F6akbLIeQ5SbliHsUBclzbWinCUDNBzre2qL7deqmcLcTeY1Vh72RQZvZvFsDAV36%2BTnASIsPnkXZ0TB7ssEeUm4piGFDvIZmx%2FEj6MNtetghveZsocOhEC5sDrRNZSr%2FjSNY6YT%2BtL7LJ20BEMxLnXMxSUdpV%2BMJw9RxWBESOnyEpDgxRD6FlgAf%2FsjkespEC6qY2qdBKI57WTJ4pFq6oHD24400gzoV5uVR5qUOd53SsfYjPnA6gO%2BNATi54bNwjAbUkgYrqiOrXOA4klPxZ4Bv2OFDmjwkpi8w9RboGxCzObhA7g%2Bf%2BvLhZ2%2B5nyEY9WtiqZHBykaVQiyWcXk%2Bmx474yX63vlDXFc9NodlE%2FZX0I8G08JDqDal%2BqIRGpzIAuWkNuI6B1q7qUciisU60BfuKz3lbMSm9Lv0344YBRXcw1JDdvwY6sQHh8DBba96ww4t6ivkMQQRt0oBY8F4ytGmny2AgyePxwTFNGRJYwZc9e8xQ8Vl9AR4gtzsgvc4YBXuWfgIOTyZA3oymkzsRtVFWhQ5AjxFoVHAEbkqlWa72b9W%2BoRAtx3rRwl4Co8dG1VEj1KqZZY8A%2BvyYRbYydaexIPBzr4bQ3YTiCXY3amyr6bcZXITEQ%2FYHIMgK8bb0%2Btwsu7%2Fbjv9GSDNtnR0OfJz6Em6Baze874w%3D&X-Amz-Signature=6b3cd7fec80dc42a953daa156029124ec0b983d6415de6c124ac0ec5c443f824",
-                    "name": "scaled_ce55e164-e4a9-430d-af9b-c0b4e8828cff2909626402974982626.jpg",
-                    "mime_type": "jpg",
-                    "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/thumbnails/db5f982d-0bef-4720-bc84-8964a1b1dde0_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K7AZIL7FR%2F20250410%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250410T070534Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECQaCXVzLWVhc3QtMiJHMEUCICOGOblC6dnT5%2BY6kp%2BJQrKGuShSsuyoofUr8GcPp6zOAiEAhUvgD0Lfrr5%2FGvLZowtwiaUjCjEhiscZ%2BV1ih9HBMBAqxAUInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDNDGEpBgUbyTqwwb8yqYBbIhoQNLnhpMRntsLksE5H8R%2BuO93P76Zwi8WsExn%2BtzB9wvY07V7C4XYhHKBoMh%2FzOrzk7SdJtEYWTSdwsZc1kNzz1lQId59pl5%2Blj7qFUBM6Wdgx622AXfqteYo8uKYbxh8l%2BdsCXXx4%2BNi82ndbpnl%2B2X4%2Bv5MA01OAnr6UJbAiXYV3WEnSa4Qs0vsZ37tzLrdGQvAOGchsDznxomc8wbIzyHjCRye7Pzzn%2Bararihsxn6fAaOsgOEzA1Zl0KNQJJEtnElAw2Y9KaqgO3Q8k0esXkUwVBaO4FVSfFpLm%2BhJ6G88USY32qlD5mosVn%2FenDzVL91EB%2F7EDp66ELwBrX%2FcIYoX8CeCdSQ1PXNhpebk5XXJgGHFCv2AKKBxsesZN6v1cUt1%2BkwRGCT2GanhBdsoeF2P5018crrQvwAPRkr0c%2FI1ROBMkyoDgTet3NQ0pHJdCJAC%2F6akbLIeQ5SbliHsUBclzbWinCUDNBzre2qL7deqmcLcTeY1Vh72RQZvZvFsDAV36%2BTnASIsPnkXZ0TB7ssEeUm4piGFDvIZmx%2FEj6MNtetghveZsocOhEC5sDrRNZSr%2FjSNY6YT%2BtL7LJ20BEMxLnXMxSUdpV%2BMJw9RxWBESOnyEpDgxRD6FlgAf%2FsjkespEC6qY2qdBKI57WTJ4pFq6oHD24400gzoV5uVR5qUOd53SsfYjPnA6gO%2BNATi54bNwjAbUkgYrqiOrXOA4klPxZ4Bv2OFDmjwkpi8w9RboGxCzObhA7g%2Bf%2BvLhZ2%2B5nyEY9WtiqZHBykaVQiyWcXk%2Bmx474yX63vlDXFc9NodlE%2FZX0I8G08JDqDal%2BqIRGpzIAuWkNuI6B1q7qUciisU60BfuKz3lbMSm9Lv0344YBRXcw1JDdvwY6sQHh8DBba96ww4t6ivkMQQRt0oBY8F4ytGmny2AgyePxwTFNGRJYwZc9e8xQ8Vl9AR4gtzsgvc4YBXuWfgIOTyZA3oymkzsRtVFWhQ5AjxFoVHAEbkqlWa72b9W%2BoRAtx3rRwl4Co8dG1VEj1KqZZY8A%2BvyYRbYydaexIPBzr4bQ3YTiCXY3amyr6bcZXITEQ%2FYHIMgK8bb0%2Btwsu7%2Fbjv9GSDNtnR0OfJz6Em6Baze874w%3D&X-Amz-Signature=37732c5a1f2cb5facbbc3a82fb4ecda153cff95f8d2efe708863eb369d3be728",
-                    "created_at": "2025-04-10T07:05:34.620228Z",
-                    "created_by": {
-                        "id": "2b41c213-9756-40b2-be5f-a47d34464210",
-                        "email": "anu.prajapati@varicon.com.au",
-                        "last_name": "Prajapati",
-                        "first_name": "AnuDon",
-                        "is_archived": false
-                    }
+                    "id": "item-eeb0152e-c811-4c29-a10d-08a11ef45e4c",
+                    "label": "Routine Inspection"
                 },
                 {
-                    "id": "991ff2fc-2259-4f38-96e1-6f646fa32d51",
-                    "file": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/attachments/3f96591e-ab76-4bf7-82ec-218a3c91bfb4.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K7AZIL7FR%2F20250410%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250410T070534Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECQaCXVzLWVhc3QtMiJHMEUCICOGOblC6dnT5%2BY6kp%2BJQrKGuShSsuyoofUr8GcPp6zOAiEAhUvgD0Lfrr5%2FGvLZowtwiaUjCjEhiscZ%2BV1ih9HBMBAqxAUInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDNDGEpBgUbyTqwwb8yqYBbIhoQNLnhpMRntsLksE5H8R%2BuO93P76Zwi8WsExn%2BtzB9wvY07V7C4XYhHKBoMh%2FzOrzk7SdJtEYWTSdwsZc1kNzz1lQId59pl5%2Blj7qFUBM6Wdgx622AXfqteYo8uKYbxh8l%2BdsCXXx4%2BNi82ndbpnl%2B2X4%2Bv5MA01OAnr6UJbAiXYV3WEnSa4Qs0vsZ37tzLrdGQvAOGchsDznxomc8wbIzyHjCRye7Pzzn%2Bararihsxn6fAaOsgOEzA1Zl0KNQJJEtnElAw2Y9KaqgO3Q8k0esXkUwVBaO4FVSfFpLm%2BhJ6G88USY32qlD5mosVn%2FenDzVL91EB%2F7EDp66ELwBrX%2FcIYoX8CeCdSQ1PXNhpebk5XXJgGHFCv2AKKBxsesZN6v1cUt1%2BkwRGCT2GanhBdsoeF2P5018crrQvwAPRkr0c%2FI1ROBMkyoDgTet3NQ0pHJdCJAC%2F6akbLIeQ5SbliHsUBclzbWinCUDNBzre2qL7deqmcLcTeY1Vh72RQZvZvFsDAV36%2BTnASIsPnkXZ0TB7ssEeUm4piGFDvIZmx%2FEj6MNtetghveZsocOhEC5sDrRNZSr%2FjSNY6YT%2BtL7LJ20BEMxLnXMxSUdpV%2BMJw9RxWBESOnyEpDgxRD6FlgAf%2FsjkespEC6qY2qdBKI57WTJ4pFq6oHD24400gzoV5uVR5qUOd53SsfYjPnA6gO%2BNATi54bNwjAbUkgYrqiOrXOA4klPxZ4Bv2OFDmjwkpi8w9RboGxCzObhA7g%2Bf%2BvLhZ2%2B5nyEY9WtiqZHBykaVQiyWcXk%2Bmx474yX63vlDXFc9NodlE%2FZX0I8G08JDqDal%2BqIRGpzIAuWkNuI6B1q7qUciisU60BfuKz3lbMSm9Lv0344YBRXcw1JDdvwY6sQHh8DBba96ww4t6ivkMQQRt0oBY8F4ytGmny2AgyePxwTFNGRJYwZc9e8xQ8Vl9AR4gtzsgvc4YBXuWfgIOTyZA3oymkzsRtVFWhQ5AjxFoVHAEbkqlWa72b9W%2BoRAtx3rRwl4Co8dG1VEj1KqZZY8A%2BvyYRbYydaexIPBzr4bQ3YTiCXY3amyr6bcZXITEQ%2FYHIMgK8bb0%2Btwsu7%2Fbjv9GSDNtnR0OfJz6Em6Baze874w%3D&X-Amz-Signature=4f6cd3ec197c04c3c360b6067579db3d24a6e8f73828dc60d01042aacd7fb4de",
-                    "name": "scaled_aafc151a-256e-4758-9a57-7fb366fa59e86728122203888308111.jpg",
-                    "mime_type": "jpg",
-                    "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/thumbnails/3f96591e-ab76-4bf7-82ec-218a3c91bfb4_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K7AZIL7FR%2F20250410%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250410T070534Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECQaCXVzLWVhc3QtMiJHMEUCICOGOblC6dnT5%2BY6kp%2BJQrKGuShSsuyoofUr8GcPp6zOAiEAhUvgD0Lfrr5%2FGvLZowtwiaUjCjEhiscZ%2BV1ih9HBMBAqxAUInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDNDGEpBgUbyTqwwb8yqYBbIhoQNLnhpMRntsLksE5H8R%2BuO93P76Zwi8WsExn%2BtzB9wvY07V7C4XYhHKBoMh%2FzOrzk7SdJtEYWTSdwsZc1kNzz1lQId59pl5%2Blj7qFUBM6Wdgx622AXfqteYo8uKYbxh8l%2BdsCXXx4%2BNi82ndbpnl%2B2X4%2Bv5MA01OAnr6UJbAiXYV3WEnSa4Qs0vsZ37tzLrdGQvAOGchsDznxomc8wbIzyHjCRye7Pzzn%2Bararihsxn6fAaOsgOEzA1Zl0KNQJJEtnElAw2Y9KaqgO3Q8k0esXkUwVBaO4FVSfFpLm%2BhJ6G88USY32qlD5mosVn%2FenDzVL91EB%2F7EDp66ELwBrX%2FcIYoX8CeCdSQ1PXNhpebk5XXJgGHFCv2AKKBxsesZN6v1cUt1%2BkwRGCT2GanhBdsoeF2P5018crrQvwAPRkr0c%2FI1ROBMkyoDgTet3NQ0pHJdCJAC%2F6akbLIeQ5SbliHsUBclzbWinCUDNBzre2qL7deqmcLcTeY1Vh72RQZvZvFsDAV36%2BTnASIsPnkXZ0TB7ssEeUm4piGFDvIZmx%2FEj6MNtetghveZsocOhEC5sDrRNZSr%2FjSNY6YT%2BtL7LJ20BEMxLnXMxSUdpV%2BMJw9RxWBESOnyEpDgxRD6FlgAf%2FsjkespEC6qY2qdBKI57WTJ4pFq6oHD24400gzoV5uVR5qUOd53SsfYjPnA6gO%2BNATi54bNwjAbUkgYrqiOrXOA4klPxZ4Bv2OFDmjwkpi8w9RboGxCzObhA7g%2Bf%2BvLhZ2%2B5nyEY9WtiqZHBykaVQiyWcXk%2Bmx474yX63vlDXFc9NodlE%2FZX0I8G08JDqDal%2BqIRGpzIAuWkNuI6B1q7qUciisU60BfuKz3lbMSm9Lv0344YBRXcw1JDdvwY6sQHh8DBba96ww4t6ivkMQQRt0oBY8F4ytGmny2AgyePxwTFNGRJYwZc9e8xQ8Vl9AR4gtzsgvc4YBXuWfgIOTyZA3oymkzsRtVFWhQ5AjxFoVHAEbkqlWa72b9W%2BoRAtx3rRwl4Co8dG1VEj1KqZZY8A%2BvyYRbYydaexIPBzr4bQ3YTiCXY3amyr6bcZXITEQ%2FYHIMgK8bb0%2Btwsu7%2Fbjv9GSDNtnR0OfJz6Em6Baze874w%3D&X-Amz-Signature=1af3d86277d7cc81ce1060cf1cc56943796bdef2b0893aa2a66b501868b8cde2",
-                    "created_at": "2025-04-10T07:05:34.776937Z",
-                    "created_by": {
-                        "id": "2b41c213-9756-40b2-be5f-a47d34464210",
-                        "email": "anu.prajapati@varicon.com.au",
-                        "last_name": "Prajapati",
-                        "first_name": "AnuDon",
-                        "is_archived": false
-                    }
+                    "id": "item-d5063a1a-eeaa-4dc8-ac35-78295e037902",
+                    "label": "Hazard Report"
                 },
                 {
-                    "id": "5d22e85d-db79-45aa-b4e7-24a4b6b2d26e",
-                    "file": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/attachments/8e2bef70-5614-4b75-ad2d-ced8894f98b1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K7AZIL7FR%2F20250410%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250410T070534Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECQaCXVzLWVhc3QtMiJHMEUCICOGOblC6dnT5%2BY6kp%2BJQrKGuShSsuyoofUr8GcPp6zOAiEAhUvgD0Lfrr5%2FGvLZowtwiaUjCjEhiscZ%2BV1ih9HBMBAqxAUInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDNDGEpBgUbyTqwwb8yqYBbIhoQNLnhpMRntsLksE5H8R%2BuO93P76Zwi8WsExn%2BtzB9wvY07V7C4XYhHKBoMh%2FzOrzk7SdJtEYWTSdwsZc1kNzz1lQId59pl5%2Blj7qFUBM6Wdgx622AXfqteYo8uKYbxh8l%2BdsCXXx4%2BNi82ndbpnl%2B2X4%2Bv5MA01OAnr6UJbAiXYV3WEnSa4Qs0vsZ37tzLrdGQvAOGchsDznxomc8wbIzyHjCRye7Pzzn%2Bararihsxn6fAaOsgOEzA1Zl0KNQJJEtnElAw2Y9KaqgO3Q8k0esXkUwVBaO4FVSfFpLm%2BhJ6G88USY32qlD5mosVn%2FenDzVL91EB%2F7EDp66ELwBrX%2FcIYoX8CeCdSQ1PXNhpebk5XXJgGHFCv2AKKBxsesZN6v1cUt1%2BkwRGCT2GanhBdsoeF2P5018crrQvwAPRkr0c%2FI1ROBMkyoDgTet3NQ0pHJdCJAC%2F6akbLIeQ5SbliHsUBclzbWinCUDNBzre2qL7deqmcLcTeY1Vh72RQZvZvFsDAV36%2BTnASIsPnkXZ0TB7ssEeUm4piGFDvIZmx%2FEj6MNtetghveZsocOhEC5sDrRNZSr%2FjSNY6YT%2BtL7LJ20BEMxLnXMxSUdpV%2BMJw9RxWBESOnyEpDgxRD6FlgAf%2FsjkespEC6qY2qdBKI57WTJ4pFq6oHD24400gzoV5uVR5qUOd53SsfYjPnA6gO%2BNATi54bNwjAbUkgYrqiOrXOA4klPxZ4Bv2OFDmjwkpi8w9RboGxCzObhA7g%2Bf%2BvLhZ2%2B5nyEY9WtiqZHBykaVQiyWcXk%2Bmx474yX63vlDXFc9NodlE%2FZX0I8G08JDqDal%2BqIRGpzIAuWkNuI6B1q7qUciisU60BfuKz3lbMSm9Lv0344YBRXcw1JDdvwY6sQHh8DBba96ww4t6ivkMQQRt0oBY8F4ytGmny2AgyePxwTFNGRJYwZc9e8xQ8Vl9AR4gtzsgvc4YBXuWfgIOTyZA3oymkzsRtVFWhQ5AjxFoVHAEbkqlWa72b9W%2BoRAtx3rRwl4Co8dG1VEj1KqZZY8A%2BvyYRbYydaexIPBzr4bQ3YTiCXY3amyr6bcZXITEQ%2FYHIMgK8bb0%2Btwsu7%2Fbjv9GSDNtnR0OfJz6Em6Baze874w%3D&X-Amz-Signature=d920fbec4b9aea4da92572436322af0b0daea0026909afc7b22b7acc4f747d0d",
-                    "name": "scaled_b7de9508-7450-49aa-b7a8-9ffa4ab5dfff2792115875440476544.jpg",
-                    "mime_type": "jpg",
-                    "thumbnail": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/thumbnails/8e2bef70-5614-4b75-ad2d-ced8894f98b1_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K7AZIL7FR%2F20250410%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250410T070534Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECQaCXVzLWVhc3QtMiJHMEUCICOGOblC6dnT5%2BY6kp%2BJQrKGuShSsuyoofUr8GcPp6zOAiEAhUvgD0Lfrr5%2FGvLZowtwiaUjCjEhiscZ%2BV1ih9HBMBAqxAUInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDNDGEpBgUbyTqwwb8yqYBbIhoQNLnhpMRntsLksE5H8R%2BuO93P76Zwi8WsExn%2BtzB9wvY07V7C4XYhHKBoMh%2FzOrzk7SdJtEYWTSdwsZc1kNzz1lQId59pl5%2Blj7qFUBM6Wdgx622AXfqteYo8uKYbxh8l%2BdsCXXx4%2BNi82ndbpnl%2B2X4%2Bv5MA01OAnr6UJbAiXYV3WEnSa4Qs0vsZ37tzLrdGQvAOGchsDznxomc8wbIzyHjCRye7Pzzn%2Bararihsxn6fAaOsgOEzA1Zl0KNQJJEtnElAw2Y9KaqgO3Q8k0esXkUwVBaO4FVSfFpLm%2BhJ6G88USY32qlD5mosVn%2FenDzVL91EB%2F7EDp66ELwBrX%2FcIYoX8CeCdSQ1PXNhpebk5XXJgGHFCv2AKKBxsesZN6v1cUt1%2BkwRGCT2GanhBdsoeF2P5018crrQvwAPRkr0c%2FI1ROBMkyoDgTet3NQ0pHJdCJAC%2F6akbLIeQ5SbliHsUBclzbWinCUDNBzre2qL7deqmcLcTeY1Vh72RQZvZvFsDAV36%2BTnASIsPnkXZ0TB7ssEeUm4piGFDvIZmx%2FEj6MNtetghveZsocOhEC5sDrRNZSr%2FjSNY6YT%2BtL7LJ20BEMxLnXMxSUdpV%2BMJw9RxWBESOnyEpDgxRD6FlgAf%2FsjkespEC6qY2qdBKI57WTJ4pFq6oHD24400gzoV5uVR5qUOd53SsfYjPnA6gO%2BNATi54bNwjAbUkgYrqiOrXOA4klPxZ4Bv2OFDmjwkpi8w9RboGxCzObhA7g%2Bf%2BvLhZ2%2B5nyEY9WtiqZHBykaVQiyWcXk%2Bmx474yX63vlDXFc9NodlE%2FZX0I8G08JDqDal%2BqIRGpzIAuWkNuI6B1q7qUciisU60BfuKz3lbMSm9Lv0344YBRXcw1JDdvwY6sQHh8DBba96ww4t6ivkMQQRt0oBY8F4ytGmny2AgyePxwTFNGRJYwZc9e8xQ8Vl9AR4gtzsgvc4YBXuWfgIOTyZA3oymkzsRtVFWhQ5AjxFoVHAEbkqlWa72b9W%2BoRAtx3rRwl4Co8dG1VEj1KqZZY8A%2BvyYRbYydaexIPBzr4bQ3YTiCXY3amyr6bcZXITEQ%2FYHIMgK8bb0%2Btwsu7%2Fbjv9GSDNtnR0OfJz6Em6Baze874w%3D&X-Amz-Signature=010f8959b8bb75deb8af2d918bb6e6252119ea2435ba0a74782a84d335b2fad9",
-                    "created_at": "2025-04-10T07:05:34.869933Z",
-                    "created_by": {
-                        "id": "2b41c213-9756-40b2-be5f-a47d34464210",
-                        "email": "anu.prajapati@varicon.com.au",
-                        "last_name": "Prajapati",
-                        "first_name": "AnuDon",
-                        "is_archived": false
-                    }
+                    "id": "item-fef2ff58-9b06-486a-b34f-ad61c0ba8904",
+                    "label": "Other",
+                    "isOtherField": true
                 }
             ],
-            "isMultiple": true,
             "isRequired": true,
-            "description": null
+            "isConditional": false,
+            "showOtherItem": true,
+            "fromManualList": true
         },
         {
-            "id": "item-31e9ed86-8d2e-4f9e-b3d7-a1aa6fe432bb",
-            "name": "Signature",
-            "type": "signature",
-            "label": "Signature",
-            "answer": {
-                "id": "e17323d0-d062-4670-92c4-dfedb18c747c",
-                "file": "https://staging-server-varicon-backend.s3.amazonaws.com/35b9e9fe-03f2-4531-b28f-7a6a47553a35/attachments/dbe5ebe5-5d86-4c52-8945-596849d25f4e.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2K7AZIL7FR%2F20250410%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20250410T070514Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjECQaCXVzLWVhc3QtMiJHMEUCICOGOblC6dnT5%2BY6kp%2BJQrKGuShSsuyoofUr8GcPp6zOAiEAhUvgD0Lfrr5%2FGvLZowtwiaUjCjEhiscZ%2BV1ih9HBMBAqxAUInv%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDNDGEpBgUbyTqwwb8yqYBbIhoQNLnhpMRntsLksE5H8R%2BuO93P76Zwi8WsExn%2BtzB9wvY07V7C4XYhHKBoMh%2FzOrzk7SdJtEYWTSdwsZc1kNzz1lQId59pl5%2Blj7qFUBM6Wdgx622AXfqteYo8uKYbxh8l%2BdsCXXx4%2BNi82ndbpnl%2B2X4%2Bv5MA01OAnr6UJbAiXYV3WEnSa4Qs0vsZ37tzLrdGQvAOGchsDznxomc8wbIzyHjCRye7Pzzn%2Bararihsxn6fAaOsgOEzA1Zl0KNQJJEtnElAw2Y9KaqgO3Q8k0esXkUwVBaO4FVSfFpLm%2BhJ6G88USY32qlD5mosVn%2FenDzVL91EB%2F7EDp66ELwBrX%2FcIYoX8CeCdSQ1PXNhpebk5XXJgGHFCv2AKKBxsesZN6v1cUt1%2BkwRGCT2GanhBdsoeF2P5018crrQvwAPRkr0c%2FI1ROBMkyoDgTet3NQ0pHJdCJAC%2F6akbLIeQ5SbliHsUBclzbWinCUDNBzre2qL7deqmcLcTeY1Vh72RQZvZvFsDAV36%2BTnASIsPnkXZ0TB7ssEeUm4piGFDvIZmx%2FEj6MNtetghveZsocOhEC5sDrRNZSr%2FjSNY6YT%2BtL7LJ20BEMxLnXMxSUdpV%2BMJw9RxWBESOnyEpDgxRD6FlgAf%2FsjkespEC6qY2qdBKI57WTJ4pFq6oHD24400gzoV5uVR5qUOd53SsfYjPnA6gO%2BNATi54bNwjAbUkgYrqiOrXOA4klPxZ4Bv2OFDmjwkpi8w9RboGxCzObhA7g%2Bf%2BvLhZ2%2B5nyEY9WtiqZHBykaVQiyWcXk%2Bmx474yX63vlDXFc9NodlE%2FZX0I8G08JDqDal%2BqIRGpzIAuWkNuI6B1q7qUciisU60BfuKz3lbMSm9Lv0344YBRXcw1JDdvwY6sQHh8DBba96ww4t6ivkMQQRt0oBY8F4ytGmny2AgyePxwTFNGRJYwZc9e8xQ8Vl9AR4gtzsgvc4YBXuWfgIOTyZA3oymkzsRtVFWhQ5AjxFoVHAEbkqlWa72b9W%2BoRAtx3rRwl4Co8dG1VEj1KqZZY8A%2BvyYRbYydaexIPBzr4bQ3YTiCXY3amyr6bcZXITEQ%2FYHIMgK8bb0%2Btwsu7%2Fbjv9GSDNtnR0OfJz6Em6Baze874w%3D&X-Amz-Signature=a75fdfa013fbc19f367cd38d7fbd5842443e7ed8dd668462b6c5a20ee79d00a2",
-                "created_at": "2025-04-10T07:05:14.838142Z",
-                "attachmentId": "e17323d0-d062-4670-92c4-dfedb18c747c"
-            },
-            "visible": true,
-            "isRequired": true,
-            "description": null
+            "id": "item-a9f20dd3-d8b7-46e6-85af-bf863s0dd993a",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Photos",
+            "width": 238,
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": false,
+            "instruction": ""
+        },
+        {
+            "id": "item-df40984c-258e-4bae-b739-20663814ae35",
+            "name": "Dynamic Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Hazards Identified",
+            "headers": [
+                "Hazard Description",
+                "Risk Level",
+                "Recommended Controls",
+                "Photos"
+            ],
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-4831f483-c31c-4bd3-a387-780c163c3sb6a",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Radio",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-eeb0152e-c811-a4c29-a10d-08a11ef45e4c",
+                                "label": "Routine Inspection"
+                            },
+                            {
+                                "id": "item-d5063a1a-eeaaa-4dc8-ac35-78295e037902",
+                                "label": "Hazard Report"
+                            },
+                            {
+                                "id": "item-fef2ff58-9bd06-486a-b34f-ad61c0ba8904",
+                                "label": "Other",
+                                "isOtherField": true
+                            }
+                        ],
+                        "isRequired": true,
+                        "isConditional": false,
+                        "showOtherItem": true,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-a9f20dd3-d8b7-46e6-85af-bf8630dd993a",
+                        "name": "Image Upload",
+                        "type": "images",
+                        "label": "Photos",
+                        "width": 238,
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "instruction": ""
+                    }
+                ]
+            ],
+            "isRequired": false
         }
     ],
     "description": "Record of works completed"

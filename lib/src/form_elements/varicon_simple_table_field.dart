@@ -203,7 +203,7 @@ class VariconSimpleTableField extends ConsumerWidget {
         ),
         expandedHeader: TableExpandableHeaderWidget(
           index: index,
-          isExpanded: true,
+          isExpanded: false,
           hasError: false,
         ),
         expandableChild: Container(

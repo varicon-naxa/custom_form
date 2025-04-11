@@ -47,7 +47,15 @@ class _ExpandableWidgetState extends State<ExpandableWidget> {
   Widget build(BuildContext context) {
     return ExpandableNotifier(
       controller: controller,
-      child: Expandable(
+      child:
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.stretch,
+          //   children: [
+          //     widget.expandedHeader,
+          //     widget.expandableChild,
+          //   ],
+          // ),
+          Expandable(
         collapsed: ExpandableButton(
           child: widget.expandableHeader,
         ),
