@@ -41,10 +41,11 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   List<Map<String, dynamic>> initalAttachments = [];
   List<Map<String, dynamic>> currentAttachments = [];
 
-  String formatDateTime(String dateTimeString) {
-    final dateTime = DateTime.parse(dateTimeString);
+  String convertToLocalTime(String utcDateTimeString) {
+    final utcDateTime = DateTime.parse(utcDateTimeString);
+    final localDateTime = utcDateTime.toLocal();
     final formatter = DateFormat('dd MMM yyyy hh:mm a');
-    return formatter.format(dateTime);
+    return formatter.format(localDateTime);
   }
 
   @override

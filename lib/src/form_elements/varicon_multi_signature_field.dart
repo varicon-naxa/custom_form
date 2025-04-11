@@ -8,7 +8,6 @@ import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/src/helpers/validators.dart';
-import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/widget/action_button.dart';
 import '../../varicon_form_builder.dart';
@@ -240,8 +239,7 @@ class _VariconMultiSignatureFieldState
           String dateFormat =
               (e.createdAt == null || e.createdAt.toString() == "null")
                   ? ''
-                  : DateFormat('dd MMM yyyy hh:mm a')
-                      .format(DateTime.parse(e.createdAt!));
+                  : Utils.convertToLocalTime(e.createdAt!);
           String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
           String signatoryName =
               (e.signatoryName == null) ? '' : 'By ${e.signatoryName}';

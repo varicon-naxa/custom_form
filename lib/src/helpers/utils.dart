@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 
 class Utils {
@@ -14,6 +15,14 @@ class Utils {
     file.writeAsBytesSync(filebytes);
     return file;
   }
+
+  static String convertToLocalTime(String utcDateTimeString) {
+  final utcDateTime = DateTime.parse(utcDateTimeString);
+  final localDateTime = utcDateTime.toLocal();
+  final formatter = DateFormat('dd MMM yyyy hh:mm a');
+  return formatter.format(localDateTime);
+}
+
 
   static IconData getIconData(String fileExtension) {
     const imageFileExts = [

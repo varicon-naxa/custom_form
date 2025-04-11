@@ -8,6 +8,7 @@ import 'package:varicon_form_builder/src/form_elements/varicon_checkbox_field.da
 import 'package:varicon_form_builder/src/form_elements/varicon_instruction_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_other_radio_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_radio_field.dart';
+import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import '../custom_element/date_time_form_field.dart';
 import '../models/value_text.dart';
@@ -627,7 +628,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                         answer['created_at'].isNotEmpty &&
                         answer['created_at'].toString() != "null")
                       Text(
-                        'Signed On: ${DateFormat('dd MMM yyyy hh:mm a').format(DateTime.parse(answer['created_at'].toString()))}',
+                        'Signed On: ${Utils.convertToLocalTime(answer['created_at'].toString())}',
                       ),
                   ],
                 ),
@@ -977,8 +978,7 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
             String dateFormat =
                 (e.createdAt == null || e.createdAt.toString() == 'null')
                     ? ''
-                    : DateFormat('dd MMM yyyy hh:mm a')
-                        .format(DateTime.parse(e.createdAt!));
+                    : Utils.convertToLocalTime(e.createdAt!);
             String dateText = dateFormat.isEmpty ? '' : ' on $dateFormat';
             String signatoryNameDetail =
                 'Signed By ${e.signatoryName} $dateText';
