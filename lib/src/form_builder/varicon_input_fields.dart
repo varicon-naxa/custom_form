@@ -54,7 +54,7 @@ class VariconInputFields extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Debouncer debouncer = Debouncer(milliseconds: 500);
+    // Debouncer debouncer = Debouncer(milliseconds: 500);
 
     String stripHtml(String text) {
       return text.trim().replaceAll(RegExp(r"<[^>]*>"), ' ');
@@ -91,11 +91,11 @@ class VariconInputFields extends ConsumerWidget {
                     );
                   },
                   onChanged: (data) {
-                    debouncer.run(() {
+                    // debouncer.run(() {
                       ref
                           .read(currentStateNotifierProvider.notifier)
                           .saveString(value.id, data);
-                    });
+                    // });
                   },
                   onSaved: (value) {
                     // Handle saved value

@@ -298,7 +298,7 @@
             "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
             "isRequired": true,
             "fromManualList": false,
-            "islinked_query": "equipment",
+            "   ": "equipment",
             "requiredErrorText": "Drop down is required",
             "commentPlaceholder": "comment are place",
             "choice": [
