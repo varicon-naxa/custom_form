@@ -135,10 +135,6 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
             ImageSourceOption.camera
           ],
           initialWidget: Consumer(builder: (context, ref, child) {
-            // final initialAttachments =
-            //     ref.watch(initialAttachmentsProvider(widget.field.id));
-            // final loadingStates = ref.watch(attachmentLoadingProvider);
-
             return Wrap(
               children: [
                 ...initalAttachments.map((e) {

@@ -343,7 +343,7 @@ class FormBuilderImagePicker
             );
             return InputDecorator(
               decoration:
-                  state.decoration.copyWith(contentPadding: EdgeInsets.all(10)),
+                  state.decoration.copyWith(contentPadding: const EdgeInsets.all(10)),
               child: child,
             );
           },
