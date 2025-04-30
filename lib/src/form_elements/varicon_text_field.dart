@@ -16,7 +16,7 @@ class VariconTextField extends ConsumerWidget {
   final String labelText;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Debouncer debouncer = Debouncer(milliseconds: 500);
+    // Debouncer debouncer = Debouncer(milliseconds: 500);
     return TextFormField(
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
       style: Theme.of(context).textTheme.bodyLarge,
@@ -41,11 +41,11 @@ class VariconTextField extends ConsumerWidget {
         );
       },
       onChanged: (value) {
-        debouncer.run(() {
+        // debouncer.run(() {
           ref
               .read(currentStateNotifierProvider.notifier)
               .saveString(field.id, value);
-        });
+        // });
       },
     );
   }

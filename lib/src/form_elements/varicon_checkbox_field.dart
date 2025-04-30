@@ -25,7 +25,7 @@ class VariconCheckboxField extends ConsumerWidget {
   final bool? isResponse;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    Debouncer debouncer = Debouncer(milliseconds: 500);
+    // Debouncer debouncer = Debouncer(milliseconds: 500);
 
     final otherValue = ref.watch(otherFieldValue);
     List<String> data = (field.answer ?? '').split(',');
@@ -65,11 +65,11 @@ class VariconCheckboxField extends ConsumerWidget {
               ref.read(requiredNotifierProvider.notifier).remove(field.id);
             }
             if (isSelected == true) {
-              debouncer.run(() {
+              // debouncer.run(() {
                 ref.read(linklabelProvider.notifier).saveString(field.id, text);
                 ref.read(radiotherFieldValue.notifier).state =
                     ValueText(isOtherField: isSelected, value: text, text: '');
-              });
+              // });
             } else {
               ref.read(linklabelProvider.notifier).remove(field.id);
             }

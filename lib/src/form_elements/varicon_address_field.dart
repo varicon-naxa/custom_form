@@ -4,7 +4,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:varicon_form_builder/src/custom_element/widget/custom_map_picker.dart';
-import 'package:varicon_form_builder/src/helpers/debouncer.dart';
 import '../../varicon_form_builder.dart';
 import '../helpers/validators.dart';
 import '../state/current_form_provider.dart';
@@ -73,7 +72,7 @@ class _VariconAddressFieldState extends ConsumerState<VariconAddressField> {
 
   @override
   Widget build(BuildContext context) {
-    Debouncer debouncer = Debouncer(milliseconds: 500);
+    // Debouncer debouncer = Debouncer(milliseconds: 500);
 
     return TextFormField(
       onTapOutside: (event) => FocusManager.instance.primaryFocus?.unfocus(),
@@ -128,11 +127,11 @@ class _VariconAddressFieldState extends ConsumerState<VariconAddressField> {
         );
       },
       onChanged: (value) {
-        debouncer.run(() {
+        // debouncer.run(() {
           ref
               .read(currentStateNotifierProvider.notifier)
               .saveString(widget.field.id, value);
-        });
+        // });
       },
     );
   }
