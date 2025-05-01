@@ -129,24 +129,26 @@ class _SurveyPageState extends State<SurveyPage> {
       },
       formtitle: 'Submit Form',
       attachmentSave: (List<String> data) async {
-        await Future.delayed(const Duration(seconds: 3));
-        log('dpme');
+        await Future.delayed(const Duration(seconds: 1));
+        // throw Exception('Error');
+        return [];
+        // log('dpme');
 
-        final val =
-            data.map((e) {
-              final mapdata = {
-                'id': '${Rand.Random().nextDouble() * 10000}',
-                'file':
-                    'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-                'thumbnail':
-                    'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-                'name': '300.jpg',
-                "created_at": '2025-04-11T13:13:24.784615Z',
-              };
-              log(jsonEncode(mapdata).toString());
-              return mapdata;
-            }).toList();
-        return val;
+        // final val =
+        //     data.map((e) {
+        //       final mapdata = {
+        //         'id': '${Rand.Random().nextDouble() * 10000}',
+        //         'file':
+        //             'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+        //         'thumbnail':
+        //             'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+        //         'name': '300.jpg',
+        //         "created_at": '2025-04-11T13:13:24.784615Z',
+        //       };
+        //       log(jsonEncode(mapdata).toString());
+        //       return mapdata;
+        //     }).toList();
+        // return val;
       },
       imageBuild: (Map<String, dynamic> data) {
         return ClipRRect(

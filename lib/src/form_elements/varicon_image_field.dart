@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   List<Map<String, dynamic>> currentAttachments = [];
 
   ValueNotifier<bool> isLoading = ValueNotifier(false);
-
+  ValueNotifier<bool> isError = ValueNotifier(false);
   String convertToLocalTime(String utcDateTimeString) {
     final utcDateTime = DateTime.parse(utcDateTimeString);
     final localDateTime = utcDateTime.toLocal();
@@ -83,7 +84,10 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
 
   saveFileToServer(List<Map<String, dynamic>> files) async {
     final loadingIds = files.map((_) => const Uuid().v4()).toList();
+    isLoading.value = true;
+
     try {
+      isError.value = false;
       for (var id in loadingIds) {
         ref.read(attachmentLoadingProvider.notifier).addLoading(id);
       }
@@ -103,6 +107,10 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
       final data = await widget.attachmentSave(
         filePath,
       );
+      if (data.isEmpty) {
+        isError.value = true;
+        return;
+      }
       currentAttachments = data;
       List<Map<String, dynamic>> wholeAttachments = [
         ...initalAttachments,
@@ -113,7 +121,11 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
             widget.field.id,
             wholeAttachments,
           );
+    } catch (e) {
+      isError.value = true;
+      log(e.toString());
     } finally {
+      isLoading.value = false;
       for (var id in loadingIds) {
         ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
       }
@@ -128,6 +140,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
           key: Key(const Uuid().v4()),
           customPainter: widget.customPainter,
           isLoading: isLoading,
+          isError: isError,
           locationData: widget.locationData,
           preventPop: true,
           name: const Uuid().v4(),
@@ -220,7 +233,6 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
             );
           }),
           onChanged: (value) async {
-            isLoading.value = true;
             await saveFileToServer(value ?? []);
             isLoading.value = false;
           },

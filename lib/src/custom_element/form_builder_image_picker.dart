@@ -99,12 +99,14 @@ class FormBuilderImagePicker
   final String locationData;
   final Widget Function(File imageFile) customPainter;
   final ValueNotifier<bool> isLoading;
+  final ValueNotifier<bool> isError;
 
   FormBuilderImagePicker(
       {super.key,
       required super.name,
       required this.customPainter,
       required this.isLoading,
+      required this.isError,
       super.validator,
       super.initialValue,
       super.decoration = const InputDecoration(),
@@ -261,70 +263,77 @@ class FormBuilderImagePicker
                                   fit: fit,
                                   loadingWidget: loadingWidget,
                                 );
-              return Stack(
-                key: ObjectKey(item),
-                children: <Widget>[
-                  ValueListenableBuilder(
-                    valueListenable: isLoading,
-                    builder: (context, value, child) {
-                      return Container(
-                        height: height,
-                        margin: const EdgeInsets.only(
-                          right: 8.0,
-                          // bottom: 8.0,
-                        ),
-                        width: width,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.grey,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Stack(
-                          children: [
-                            displayWidget,
-                            if (value)
-                              const Center(
-                                child: CircularProgressIndicator(
-                                  strokeWidth: 2,
-                                ),
+              return ValueListenableBuilder(
+                  valueListenable: isError,
+                  builder: (context, hasError, child) {
+                    return hasError
+                        ? const SizedBox.shrink()
+                        : Stack(
+                            key: ObjectKey(item),
+                            children: <Widget>[
+                              ValueListenableBuilder(
+                                valueListenable: isLoading,
+                                builder: (context, value, child) {
+                                  return Container(
+                                    height: height,
+                                    margin: const EdgeInsets.only(
+                                      right: 8.0,
+                                      // bottom: 8.0,
+                                    ),
+                                    width: width,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                        color: Colors.grey,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
+                                    child: Stack(
+                                      children: [
+                                        displayWidget,
+                                        if (value)
+                                          const Center(
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
+                                            ),
+                                          ),
+                                      ],
+                                    ),
+                                  );
+                                },
                               ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                  if (state.enabled)
-                    PositionedDirectional(
-                      top: 0,
-                      end: 12,
-                      child: InkWell(
-                        onTap: () {
-                          state.focus();
-                          final deletedImage = value[index];
-                          final newValue = value.toList()..removeAt(index);
-                          field.didChange(newValue);
-                          onDelete?.call(deletedImage, newValue);
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.all(3),
-                          decoration: const BoxDecoration(
-                            color: Colors.red,
-                            shape: BoxShape.circle,
-                          ),
-                          alignment: Alignment.center,
-                          height: 18,
-                          width: 18,
-                          child: const Icon(
-                            Icons.close,
-                            size: 12,
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ),
-                ],
-              );
+                              if (state.enabled)
+                                PositionedDirectional(
+                                  top: 0,
+                                  end: 12,
+                                  child: InkWell(
+                                    onTap: () {
+                                      state.focus();
+                                      final deletedImage = value[index];
+                                      final newValue = value.toList()
+                                        ..removeAt(index);
+                                      field.didChange(newValue);
+                                      onDelete?.call(deletedImage, newValue);
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.all(3),
+                                      decoration: const BoxDecoration(
+                                        color: Colors.red,
+                                        shape: BoxShape.circle,
+                                      ),
+                                      alignment: Alignment.center,
+                                      height: 18,
+                                      width: 18,
+                                      child: const Icon(
+                                        Icons.close,
+                                        size: 12,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
+                          );
+                  });
             }
 
             if (previewBuilder != null) {
