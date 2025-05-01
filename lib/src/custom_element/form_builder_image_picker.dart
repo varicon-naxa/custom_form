@@ -98,11 +98,13 @@ class FormBuilderImagePicker
   final Widget? initialWidget;
   final String locationData;
   final Widget Function(File imageFile) customPainter;
+  final ValueNotifier<bool> isLoading;
 
   FormBuilderImagePicker(
       {super.key,
       required super.name,
       required this.customPainter,
+      required this.isLoading,
       super.validator,
       super.initialValue,
       super.decoration = const InputDecoration(),
@@ -262,20 +264,35 @@ class FormBuilderImagePicker
               return Stack(
                 key: ObjectKey(item),
                 children: <Widget>[
-                  Container(
-                    height: height,
-                    margin: const EdgeInsets.only(
-                      right: 8.0,
-                      // bottom: 8.0,
-                    ),
-                    width: width,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.grey,
-                      ),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: displayWidget,
+                  ValueListenableBuilder(
+                    valueListenable: isLoading,
+                    builder: (context, value, child) {
+                      return Container(
+                        height: height,
+                        margin: const EdgeInsets.only(
+                          right: 8.0,
+                          // bottom: 8.0,
+                        ),
+                        width: width,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.grey,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Stack(
+                          children: [
+                            displayWidget,
+                            if (value)
+                              const Center(
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                ),
+                              ),
+                          ],
+                        ),
+                      );
+                    },
                   ),
                   if (state.enabled)
                     PositionedDirectional(
@@ -342,8 +359,8 @@ class FormBuilderImagePicker
               ],
             );
             return InputDecorator(
-              decoration:
-                  state.decoration.copyWith(contentPadding: const EdgeInsets.all(10)),
+              decoration: state.decoration
+                  .copyWith(contentPadding: const EdgeInsets.all(10)),
               child: child,
             );
           },

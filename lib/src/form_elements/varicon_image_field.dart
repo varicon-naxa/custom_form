@@ -41,6 +41,8 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   List<Map<String, dynamic>> initalAttachments = [];
   List<Map<String, dynamic>> currentAttachments = [];
 
+  ValueNotifier<bool> isLoading = ValueNotifier(false);
+
   String convertToLocalTime(String utcDateTimeString) {
     final utcDateTime = DateTime.parse(utcDateTimeString);
     final localDateTime = utcDateTime.toLocal();
@@ -125,6 +127,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
         FormBuilderImagePicker(
           key: Key(const Uuid().v4()),
           customPainter: widget.customPainter,
+          isLoading: isLoading,
           locationData: widget.locationData,
           preventPop: true,
           name: const Uuid().v4(),
@@ -216,8 +219,10 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
               ],
             );
           }),
-          onChanged: (value) {
-            saveFileToServer(value ?? []);
+          onChanged: (value) async {
+            isLoading.value = true;
+            await saveFileToServer(value ?? []);
+            isLoading.value = false;
           },
           validator: (value) {
             if (widget.field.isRequired &&

@@ -75,6 +75,7 @@ class FormBuilderFilePicker
   final Widget Function(List<Widget> types)? customTypeViewerBuilder;
   final Widget? previousImage;
   final Widget Function(File imageFile) customPainter;
+  final ValueNotifier<bool> isLoading;
 
   /// Creates field for image(s) from user device storage
   FormBuilderFilePicker(
@@ -83,6 +84,7 @@ class FormBuilderFilePicker
       super.key,
       required super.name,
       required this.customPainter,
+      required this.isLoading,
       super.validator,
       super.initialValue,
       super.decoration,
@@ -228,52 +230,65 @@ class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
           children: List.generate(
             files.length,
             (index) {
-              return Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
-                    color: Colors.grey,
-                    width: 1,
+              return Column(
+                children: [
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          getIconData(files[index].extension!),
+                          color: Colors.grey,
+                        ),
+                        const SizedBox(width: 8.0),
+                        Expanded(
+                          child: Text(
+                            files[index].name,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            files.removeAt(index);
+                            setter.call([...files]);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                              color: Colors.red.withValues(alpha: .7),
+                              shape: BoxShape.circle,
+                            ),
+                            alignment: Alignment.center,
+                            height: 18,
+                            width: 18,
+                            child: const Icon(
+                              Icons.close,
+                              size: 18,
+                              color: Colors.white,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      getIconData(files[index].extension!),
-                      color: Colors.grey,
-                    ),
-                    const SizedBox(width: 8.0),
-                    Expanded(
-                      child: Text(
-                        files[index].name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        files.removeAt(index);
-                        setter.call([...files]);
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: Colors.red.withValues(alpha: .7),
-                          shape: BoxShape.circle,
-                        ),
-                        alignment: Alignment.center,
-                        height: 18,
-                        width: 18,
-                        child: const Icon(
-                          Icons.close,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  ValueListenableBuilder(
+                    valueListenable: widget.isLoading,
+                    builder: (context, value, child) {
+                      return value
+                          ? const LinearProgressIndicator()
+                          : const SizedBox();
+                    },
+                  ),
+                ],
               );
             },
           ),

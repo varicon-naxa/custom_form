@@ -13,6 +13,16 @@
             "isMultiple": true,
             "isRequired": false,
             "selectedLinkListLabel": ""
+        },  
+        {
+            "id": "item-9e123a57-e45e-4fff-9e6f-c6d548f7c72e",
+            "name": "File Upload",
+            "type": "files",
+            "label": "File Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         }
     ]
 }

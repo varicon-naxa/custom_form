@@ -37,6 +37,7 @@ class _VariconFilePickerFieldState
     extends ConsumerState<VariconFilePickerField> {
   List<Map<String, dynamic>> initalAttachments = [];
   List<Map<String, dynamic>> currentAttachments = [];
+  ValueNotifier<bool> isLoading = ValueNotifier(false);
 
   @override
   void initState() {
@@ -107,6 +108,7 @@ class _VariconFilePickerFieldState
       allowCompression: true,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       withData: true,
+      isLoading: isLoading,
       previousImage: Wrap(
         children: initalAttachments
             .map(
@@ -162,9 +164,11 @@ class _VariconFilePickerFieldState
             )
             .toList(),
       ),
-      onChanged: (value) {
+      onChanged: (value) async {
         List<PlatformFile> values = value ?? [];
-        saveFileToServer(values);
+        isLoading.value = true;
+        await saveFileToServer(values);
+        isLoading.value = false;
       },
       validator: (value) {
         if (widget.field.isRequired &&

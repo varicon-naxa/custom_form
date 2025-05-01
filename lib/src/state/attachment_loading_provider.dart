@@ -16,6 +16,8 @@ class AttachmentLoadingNotifier extends StateNotifier<Set<String>> {
   }
 }
 
-final attachmentLoadingProvider = StateNotifierProvider<AttachmentLoadingNotifier, Set<String>>((ref) {
+final attachmentLoadingProvider =
+    StateNotifierProvider.autoDispose<AttachmentLoadingNotifier, Set<String>>(
+        (ref) {
   return AttachmentLoadingNotifier();
 });
