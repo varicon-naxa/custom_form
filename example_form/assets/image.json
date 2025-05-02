@@ -11,7 +11,7 @@
             "label": "Image Upload",
             "answer": [],
             "isMultiple": true,
-            "isRequired": false,
+            "isRequired": true,
             "selectedLinkListLabel": ""
         },  
         {
