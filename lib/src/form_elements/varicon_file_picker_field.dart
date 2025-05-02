@@ -38,7 +38,6 @@ class _VariconFilePickerFieldState
   List<Map<String, dynamic>> initalAttachments = [];
   List<Map<String, dynamic>> currentAttachments = [];
   ValueNotifier<bool> isLoading = ValueNotifier(false);
-  ValueNotifier<bool> isError = ValueNotifier(false);
 
   @override
   void initState() {
@@ -74,11 +73,7 @@ class _VariconFilePickerFieldState
 
   saveFileToServer(List<PlatformFile> files) async {
     final loadingIds = files.map((_) => const Uuid().v4()).toList();
-    isLoading.value = true;
-
     try {
-      isError.value = false;
-
       for (var id in loadingIds) {
         ref.read(attachmentLoadingProvider.notifier).addLoading(id);
       }
@@ -86,10 +81,6 @@ class _VariconFilePickerFieldState
       final data = await widget.attachmentSave(
         filePath,
       );
-      if (data.isEmpty) {
-        isError.value = true;
-        return;
-      }
       currentAttachments = data;
       List<Map<String, dynamic>> wholeAttachments = [
         ...initalAttachments,
@@ -100,11 +91,7 @@ class _VariconFilePickerFieldState
             widget.field.id,
             wholeAttachments,
           );
-    } catch (e) {
-      isError.value = true;
     } finally {
-      isLoading.value = false;
-
       for (var id in loadingIds) {
         ref.read(attachmentLoadingProvider.notifier).removeLoading(id);
       }
@@ -121,7 +108,6 @@ class _VariconFilePickerFieldState
       allowCompression: true,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       withData: true,
-      hasError: isError,
       isLoading: isLoading,
       previousImage: Wrap(
         children: initalAttachments
