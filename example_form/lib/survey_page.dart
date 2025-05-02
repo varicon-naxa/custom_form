@@ -130,8 +130,8 @@ class _SurveyPageState extends State<SurveyPage> {
       formtitle: 'Submit Form',
       attachmentSave: (List<String> data) async {
         await Future.delayed(const Duration(seconds: 1));
-        // throw Exception('Error');
-        return [];
+        throw Exception('Error');
+        // return [];
         // log('dpme');
 
         // final val =
