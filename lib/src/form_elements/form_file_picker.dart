@@ -2,27 +2,23 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:varicon_form_builder/src/form_elements/simple_file_picker.dart';
 import 'package:varicon_form_builder/src/state/attachment_provider.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import '../models/attachment.dart';
-import 'simple_image_picker.dart';
 
-class FormImagePicker extends ConsumerWidget {
-  const FormImagePicker({
+class FormFilePicker extends ConsumerWidget {
+  const FormFilePicker({
     super.key,
-    required this.imageField,
+    required this.fileField,
     required this.labelText,
-    required this.locationData,
     required this.imageBuild,
-    required this.customPainter,
     required this.attachmentSave,
   });
-  final ImageInputField imageField;
+  final FileInputField fileField;
   final String labelText;
-  final String locationData;
 
   final Widget Function(Map<String, dynamic>) imageBuild;
-  final Widget Function(File imageFile) customPainter;
 
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)
@@ -30,16 +26,16 @@ class FormImagePicker extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(simpleImagePickerProvider(imageField.id), (previous, next) {});
-    ref.read(simpleImagePickerProvider(imageField.id));
+    ref.listen(simpleFilePickerProvider(fileField.id), (previous, next) {});
+    ref.read(simpleFilePickerProvider(fileField.id));
 
     return FormField<List<Attachment>>(
       validator: (List<Attachment>? value) {
-        if (imageField.isRequired) {
+        if (fileField.isRequired) {
           if (value == null || value.isEmpty) {
-            return 'Please select at least one image';
+            return 'Please select at least one file';
           } else if (value.any((element) => element.isUploaded == false)) {
-            return 'Some Image are processing';
+            return 'Some files are processing';
           }
         }
         return null;
@@ -50,16 +46,15 @@ class FormImagePicker extends ConsumerWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SimpleImagePicker(
-              fieldId: imageField.id,
-              imageBuild: imageBuild,
-              customPainter: customPainter,
-              locationData: locationData,
-              initialImages: imageField.answer
+            SimpleFilePicker(
+              fieldId: fileField.id,
+              
+              fileBuild: imageBuild,
+              initialFiles: fileField.answer
                       ?.map((e) => Attachment.fromJson(e))
                       .toList() ??
                   [],
-              onImagesSelected: (image) async {
+              onFilesSelected: (image) async {
                 try {
                   final result =
                       await attachmentSave(image.map((e) => e.file!).toList());
@@ -68,7 +63,7 @@ class FormImagePicker extends ConsumerWidget {
                   throw Exception(e);
                 }
               },
-              savedCurrentImages: (images) {
+              savedCurrentFiles: (images) {
                 field.didChange(images);
               },
             ),

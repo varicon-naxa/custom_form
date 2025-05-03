@@ -75,6 +75,16 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         ref
             .read(currentStateNotifierProvider.notifier)
             .saveMap(widget.field.id, answer);
+      } catch (e) {
+        controller.clear();
+        _signature = {};
+        setState(() {});
+        if (loadingId != null) {
+          ref
+              .read(attachmentLoadingProvider.notifier)
+              .removeLoading(loadingId!);
+          loadingId = null;
+        }
       } finally {
         if (loadingId != null) {
           ref
@@ -132,9 +142,8 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
               initialWidget: null,
               name: const Uuid().v4(),
               onSavedClicked: (data) {
-                _signature = {'value': data, 'date': DateTime.now()};
                 modifyAnswer(data!);
-                setState(() {});
+
                 Navigator.pop(context);
               },
               onDeletedPressed: () {

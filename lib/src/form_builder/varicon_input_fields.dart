@@ -1,8 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:varicon_form_builder/src/form_elements/form_file_picker.dart';
 import 'package:varicon_form_builder/src/form_elements/form_image_picker.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_image_field_test.dart';
 import 'package:varicon_form_builder/src/helpers/validators.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
@@ -15,7 +15,6 @@ import 'package:varicon_form_builder/src/form_elements/varicon_date_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_signature_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_multi_signature_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_file_picker_field.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_image_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_radio_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_checkbox_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_dropdown_field.dart';
@@ -212,12 +211,18 @@ class VariconInputFields extends ConsumerWidget {
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
-          child: VariconFilePickerField(
-            field: value,
+          child: FormFilePicker(
+            fileField: value,
             attachmentSave: attachmentSave,
-            customPainter: customPainter,
             labelText: labelText,
+            imageBuild: imageBuild,
           ),
+          //  VariconFilePickerField(
+          //   field: value,
+          //   attachmentSave: attachmentSave,
+          //   customPainter: customPainter,
+          //   labelText: labelText,
+          // ),
         );
       },
       images: (value) {

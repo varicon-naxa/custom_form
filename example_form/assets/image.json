@@ -7,7 +7,7 @@
         {
             "id": "item-9e123a57-e45e-4fff-9e6f-c6d548f7c71e",
             "name": "Image Upload",
-            "type": "images",
+            "type": "files",
             "label": "Image Upload",
             "answer": [
                 {
@@ -50,7 +50,7 @@
         {
             "id": "item-9e123a57-e45e-4fff-9e6f-c6d548f7c72e",
             "name": "File Upload",
-            "type": "images",
+            "type": "files",
             "label": "File Upload",
             "answer": [],
             "isMultiple": true,
@@ -60,7 +60,7 @@
         {
             "id": "item-9e123a57-e45e-4fff-9e6f-cas6d548f7c72e",
             "name": "File Upload",
-            "type": "images",
+            "type": "files",
             "label": "File Upload",
             "answer": [],
             "isMultiple": true,

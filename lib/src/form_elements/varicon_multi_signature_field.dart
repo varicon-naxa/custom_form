@@ -100,8 +100,11 @@ class _VariconMultiSignatureFieldState
         );
       }
       modifyAnswerinList();
-
       setState(() {});
+    } catch (e) {
+      signaturePads.removeLast();
+      setState(() {});
+      print(e);
     } finally {}
   }
 
