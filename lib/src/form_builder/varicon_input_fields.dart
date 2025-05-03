@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:varicon_form_builder/src/form_elements/form_image_picker.dart';
+import 'package:varicon_form_builder/src/form_elements/varicon_image_field_test.dart';
 import 'package:varicon_form_builder/src/helpers/validators.dart';
 import 'package:varicon_form_builder/src/models/models.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
@@ -90,9 +92,9 @@ class VariconInputFields extends ConsumerWidget {
                   },
                   onChanged: (data) {
                     // debouncer.run(() {
-                      ref
-                          .read(currentStateNotifierProvider.notifier)
-                          .saveString(value.id, data);
+                    ref
+                        .read(currentStateNotifierProvider.notifier)
+                        .saveString(value.id, data);
                     // });
                   },
                   onSaved: (value) {
@@ -220,18 +222,26 @@ class VariconInputFields extends ConsumerWidget {
       },
       images: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
-          isRequired: value.isRequired,
-          labelText: labelText,
-          child: VariconImageField(
-            field: value,
-            locationData: locationData,
-            customPainter: customPainter,
+            key: GlobalObjectKey(value.id),
+            isRequired: value.isRequired,
             labelText: labelText,
-            imageBuild: imageBuild,
-            attachmentSave: attachmentSave,
-          ),
-        );
+            child: FormImagePicker(
+              imageField: value,
+              labelText: labelText,
+              locationData: locationData,
+              imageBuild: imageBuild,
+              customPainter: customPainter,
+              attachmentSave: attachmentSave,
+            )
+            // VariconImageField(
+            //   field: value,
+            //   locationData: locationData,
+            //   customPainter: customPainter,
+            //   labelText: labelText,
+            //   imageBuild: imageBuild,
+            //   attachmentSave: attachmentSave,
+            // ),
+            );
       },
       radiogroup: (value) {
         return LabelWidget(
