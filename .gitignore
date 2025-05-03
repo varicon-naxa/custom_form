@@ -12,10 +12,6 @@
 .vscode/
 
 
-# Generated files
-**.freezed.dart
-**.g.dart
-**.gr.dart
 
 # IntelliJ related
 *.iml
