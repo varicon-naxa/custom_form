@@ -2,6 +2,14 @@
     "title": "QA forms ",
     "elements": [
         {
+            "id": "item-d025a3cd-0ef8-4b5b-ac4b-d92a36f28139",
+            "name": "Full Name",
+            "type": "text",
+            "label": "Witness full name:",
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },    
+        {
             "id": "item-60b0dc71-16b0-4806-97da-80d541b00a84",
             "name": "Multiple Signature",
             "type": "multisignature",

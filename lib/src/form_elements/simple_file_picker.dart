@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
@@ -251,6 +252,9 @@ class _SimpleFilePickerState extends ConsumerState<SimpleFilePicker> {
 
   /// Handles file selection
   Future<void> _handleFileSelection() async {
+    FocusManager.instance.primaryFocus?.unfocus();
+    FocusScope.of(context).unfocus();
+    SystemChannels.textInput.invokeMethod('TextInput.hide');
     final result = await FilePicker.platform.pickFiles(
       type: FileType.any,
       // allowedExtensions: widget.allowedExtensions,
