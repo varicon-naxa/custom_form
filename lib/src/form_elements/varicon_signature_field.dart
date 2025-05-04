@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:signature/signature.dart';
@@ -64,6 +65,25 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
         List<Map<String, dynamic>> attachments = await widget.attachmentSave(
           [singleFile.path],
         );
+        if (attachments.isEmpty) {
+          Fluttertoast.showToast(
+            msg: 'Error saving signature',
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+          );
+          controller.clear();
+          _signature = {};
+          setState(() {});
+          if (loadingId != null) {
+            ref
+                .read(attachmentLoadingProvider.notifier)
+                .removeLoading(loadingId!);
+            loadingId = null;
+          }
+          return;
+        }
         answer.addAll({
           'id': attachments.first['id'],
           'attachmentId': attachments.first['id'],
@@ -142,8 +162,9 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
               initialWidget: null,
               name: const Uuid().v4(),
               onSavedClicked: (data) {
+                _signature = {'value': data, 'date': DateTime.now()};
                 modifyAnswer(data!);
-
+                setState(() {});
                 Navigator.pop(context);
               },
               onDeletedPressed: () {

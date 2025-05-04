@@ -86,6 +86,18 @@ class _VariconMultiSignatureFieldState
       List<Map<String, dynamic>> attachments = await widget.attachmentSave(
         [singleFile.path],
       );
+      if (attachments.isEmpty) {
+        Fluttertoast.showToast(
+          msg: 'Error saving signature',
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+        );
+        signaturePads.removeLast();
+        setState(() {});
+        return;
+      }
 
       int index = signaturePads.indexWhere(
         (element) => element.attachmentId == file.attachmentId,
@@ -104,7 +116,6 @@ class _VariconMultiSignatureFieldState
     } catch (e) {
       signaturePads.removeLast();
       setState(() {});
-      print(e);
     } finally {}
   }
 
