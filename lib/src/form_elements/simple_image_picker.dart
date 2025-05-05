@@ -18,8 +18,6 @@ import '../models/attachment.dart';
 /// Configuration constants for the image picker
 class ImagePickerConfig {
   static const double maxImageSizeMB = 25.0;
-  static const double maxImageWidth = 800.0;
-  static const double maxImageHeight = 800.0;
   static const int imageQuality = 80;
   static const int maxMultiImageLimit = 5;
   static const double previewImageSize = 100.0;
@@ -384,14 +382,17 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
       Editor.EditorText(
         offset: const Offset(10, 10),
         text: lines,
-        fontSizePx: 75,
+        fontSizePx: Platform.isIOS ? 18 : 75,
         textColor: Colors.red,
         textAlign: TextAlign.left,
       ),
     );
 
     option.addOption(textOption);
-    option.outputFormat = Editor.OutputFormat.jpeg(20);
+    option.outputFormat = Editor.OutputFormat.jpeg(
+        Platform.isIOS ? 40 : 20);
+    
+
 
     final editedImage = await Editor.ImageEditor.editImage(
       image: currentImage,
@@ -504,8 +505,6 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
       final ImagePicker picker = ImagePicker();
       return await picker.pickImage(
         source: ImageSource.camera,
-        maxWidth: ImagePickerConfig.maxImageWidth,
-        maxHeight: ImagePickerConfig.maxImageHeight,
         imageQuality: ImagePickerConfig.imageQuality,
       );
     } catch (e) {
@@ -519,8 +518,6 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     try {
       final ImagePicker picker = ImagePicker();
       return await picker.pickMultiImage(
-        maxWidth: ImagePickerConfig.maxImageWidth,
-        maxHeight: ImagePickerConfig.maxImageHeight,
         imageQuality: ImagePickerConfig.imageQuality,
         limit: ImagePickerConfig.maxMultiImageLimit,
       );
