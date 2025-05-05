@@ -42,8 +42,8 @@ final simpleImagePickerProvider = StateNotifierProvider.family<
 });
 
 /// Provider for managing file picker state
-final simpleFilePickerProvider = StateNotifierProvider.family<
-    SimpleFilePickerNotifier, List<Attachment>, String>(
+final simpleFilePickerProvider = StateNotifierProvider.family
+    .autoDispose<SimpleFilePickerNotifier, List<Attachment>, String>(
   (ref, fieldId) => SimpleFilePickerNotifier(),
 );
 
