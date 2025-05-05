@@ -382,7 +382,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
       Editor.EditorText(
         offset: const Offset(10, 10),
         text: lines,
-        fontSizePx: Platform.isIOS ? 18 : 75,
+        fontSizePx: 75,
         textColor: Colors.red,
         textAlign: TextAlign.left,
       ),
