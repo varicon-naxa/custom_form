@@ -3,6 +3,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -14,6 +15,7 @@ import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/state/attachment_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import '../models/attachment.dart';
+import 'package:mime/mime.dart';
 
 /// Configuration constants for the image picker
 class ImagePickerConfig {
@@ -282,12 +284,66 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     );
   }
 
+  static bool isImage({required String path}) {
+    final mimeType = lookupMimeType(path) ?? '';
+
+    return mimeType.startsWith('image/');
+  }
+
+  static Future<File> compressImage(String path, {int quality = 10}) async {
+    try {
+      var dir = await getApplicationSupportDirectory();
+      final target =
+          '${dir.path}/${DateTime.now().millisecondsSinceEpoch}.jpeg';
+      XFile? compressedXFile = await FlutterImageCompress.compressAndGetFile(
+          path, target,
+          quality: quality, keepExif: true);
+      File? compressedFile =
+          compressedXFile == null ? null : File(compressedXFile.path);
+
+      return compressedFile ?? File(path);
+    } catch (_) {
+      return File(path);
+    }
+  }
+
+  Future<File?> compressMaxImage(String path) async {
+    File file = File(path);
+    if (await file.length() > 25000 * 1000) {
+      Fluttertoast.showToast(
+        msg: 'The file may not be greater than 25 MB.',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+      );
+      return null;
+    } else {
+      if (isImage(path: path)) {
+        final heicFormat = path.split('.').last.toLowerCase();
+
+        if (heicFormat == 'heic' || heicFormat == 'hevc') {
+          File compressedFile = await compressImage(path);
+          return compressedFile;
+        } else {
+          return File(path);
+        }
+      } else {
+        return File(path);
+      }
+    }
+  }
+
   /// Handles camera image selection
   Future<void> _handleCameraSelection() async {
     Navigator.pop(context);
     final XFile? image = await _pickImage();
+
     if (image != null) {
-      await _processSingleImage(image);
+      final compressedFile = await compressMaxImage(image.path);
+      if (compressedFile != null) {
+        await _processSingleImage(XFile(compressedFile.path));
+      }
     }
   }
 
@@ -315,7 +371,16 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
 
   /// Processes multiple images from gallery
   Future<void> _processMultipleImages(List<XFile> images) async {
-    final attachments = images
+    List<File> compressedImages = [];
+
+    for (var image in images) {
+      final compressedFile = await compressMaxImage(image.path);
+      if (compressedFile != null) {
+        compressedImages.add(compressedFile);
+      }
+    }
+
+    final attachments = compressedImages
         .map((e) => Attachment(
               file: e.path,
               isUploaded: false,
@@ -389,10 +454,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     );
 
     option.addOption(textOption);
-    option.outputFormat = Editor.OutputFormat.jpeg(
-        Platform.isIOS ? 40 : 20);
-    
-
+    option.outputFormat = Editor.OutputFormat.jpeg(Platform.isIOS ? 40 : 20);
 
     final editedImage = await Editor.ImageEditor.editImage(
       image: currentImage,
