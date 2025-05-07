@@ -43,7 +43,7 @@ class InputField with _$InputField implements BasicInputField {
   const factory InputField.multisignature(
           {@JsonKey(name: 'id') required String id,
           @JsonKey(name: 'label') String? label,
-            @JsonKey(name: 'name') String? name,
+          @JsonKey(name: 'name') String? name,
           @JsonKey(name: 'description') String? description,
           @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
           @JsonKey(name: 'answer') List<SingleSignature>? answer}) =
@@ -62,7 +62,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'answer') String? answer,
-        @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'name') String? name,
     @JsonKey(readValue: readInstruction) String? instruction,
     String? description,
     @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
@@ -166,6 +166,8 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'islinked_query') String? linkedQuery,
     @JsonKey(name: 'isConditional') bool? isConditional,
     @JsonKey(name: 'actionMessage') String? actionMessage,
+    @JsonKey(name: 'association') bool? association,
+
     // Fields.
     @JsonKey(name: 'allowClear') @Default(true) bool allowClear,
     @JsonKey(name: 'placeholder') String? hintText,
@@ -182,7 +184,6 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'otherPlaceholder') String? otherPlaceholder,
   }) = DropdownInputField;
 
-
   const factory InputField.multipleselect({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'label') String? label,
@@ -191,6 +192,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'association') bool? association,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
@@ -227,6 +229,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
+    @JsonKey(name: 'association') bool? association,
     @JsonKey(name: 'isConditional') @Default(false) bool isConditional,
     @Default(true) @JsonKey(name: 'fromManualList') bool fromManualList,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
@@ -257,6 +260,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
+    @JsonKey(name: 'association') bool? association,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
     @JsonKey(name: 'selectedLinkListLabel') String? selectedLinkListLabel,
@@ -437,4 +441,3 @@ abstract class BasicInputField {
 }
 
 String? readInstruction(Map map, String key) => map[key] ?? map['description'];
-
