@@ -84,6 +84,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   /// Initializes the widget with any provided initial images
   void _initializeImages() {
     Future.microtask(() {
+      ref.invalidate(simpleImagePickerProvider(widget.fieldId));
       if (widget.initialImages.isNotEmpty) {
         ref
             .read(simpleImagePickerProvider(widget.fieldId).notifier)
