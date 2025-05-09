@@ -1,0 +1,26 @@
+{
+    "name": "",
+    "version": "1.0.0",
+    "collect_geolocation": false,
+    "title": "City of Swan (ABM Sample)",
+    "elements": [
+        {
+            "id": "item-c39b17c1-ade1-40b1-9d33-c828705bb5cf",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Column 10",
+            "answer": {},
+            "isRequired": true
+        },
+        {
+            "id": "item-c8f262ac-d94d-4d96-8089-e17ad631c6ee",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Multi signature",
+            "answer": [],
+            "isRequired": false,
+            "initialAnswer": []
+        }
+    ],
+    "description": "Record of works completed"
+}

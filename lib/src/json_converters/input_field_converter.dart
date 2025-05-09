@@ -14,5 +14,5 @@ class InputFieldConverter
   }
 
   @override
-  Map<String, dynamic> toJson(InputField object) => {'default': object};
+  Map<String, dynamic> toJson(InputField object) => object.toJson();
 }

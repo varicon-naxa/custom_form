@@ -12,6 +12,7 @@ part 'survey_page_form.g.dart';
 class SurveyPageForm with _$SurveyPageForm {
   const factory SurveyPageForm({
     @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'id') String? id,
     String? timesheet,
     @JsonKey(name: 'title') String? title,
     @JsonKey(name: 'description') String? description,
@@ -30,8 +31,7 @@ class SurveyPageForm with _$SurveyPageForm {
     @JsonKey(name: 'equipment_name') String? equipmentName,
     @JsonKey(name: 'project') String? project,
     @JsonKey(name: 'job_number') String? jobNumber,
-
-    
+    @JsonKey(name: 'collect_geolocation') bool? collectGeolocation,
     Map<String, dynamic>? setting,
     Map<String, dynamic>? status,
     @JsonKey(name: 'elements')

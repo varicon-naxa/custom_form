@@ -1,0 +1,889 @@
+{
+    "title": "Forms okay okay",
+    "description": "Dynamic form generator is a form of the things in the line",
+    "name": "",
+    "version": "1.0.0",
+    "hasLocation": true,
+    "elements": [
+        {
+            "id": "item-d96da0ca-d361-42c9-8ccd-91d371debab2",
+            "name": "Number Input",
+            "type": "number",
+            "label": "Machine Hours - Picture required below",
+            "answer": "",
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-1d82ced4-5c08-4bb0-b855-7f92546a958b",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ce70d1f5-7569-41d8-b160-b769a52a55ae",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "ISOLATION POINTS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-deb61968-e60c-4722-bace-4f6ce6b255a5",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "EQUIPMENT IDENTIFICATION",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": "750855f9-2e86-4772-ac5e-8192c6f8b76a",
+                            "email": "marlene.binzer@minemend.com.au",
+                            "label": "MARLENE BINZER"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-efbd0b00-22a3-4303-bfa7-297c3c8e58d2",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "FLUID LEVELS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-bec5fa41-cd98-4121-af0c-c6ac476a6e5f",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "FLUID LEAKS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7262fe5d-64a0-4d57-b579-00a6d0e8aee2",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Fluid Leak Photo",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7d7d6f2e-bac7-4f64-8754-4d91dc57212b",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "TOW HITCH AND TOW SAFETY PIN",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-efc392ac-37e9-42cf-b597-b7f99974cff2",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "TYRES/RIMS/NUTS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3d4ba615-2d05-42f3-aaa4-8ba4590b3785",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "FIRE EXTINGUISHER",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": "750855f9-2e86-4772-ac5e-8192c6f8b76a",
+                            "email": "marlene.binzer@minemend.com.au",
+                            "label": "MARLENE BINZER"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-3b9f8c0b-2100-433b-a0cb-8f91ea0ab616",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "PLEASE TAKE A PHOTO OF EXTINGUISHER TAG FOR COMPLIANCE",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-8f637269-f5ca-4099-add3-0b985612ff04",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "ATTACHMENT AND PINS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-66f74719-d83b-49f8-8610-39a581fa9e73",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "PRIMARY ACESS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-222b533b-dc49-499b-be2d-efdb5b0fc6f0",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "EMERGENCY ACCESS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-a3f737e2-7cdc-42d8-9d28-e17a02996487",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "ROPS AND FOPS INTEGRITY",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f0cede81-4a74-453c-9a51-397dfa411a86",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "WINDSCREEN VISABILITY",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ac84a20c-87b9-452b-b696-6ec5e1e66b77",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "WINDOW AND DOOR SEALS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7aab41ad-d57c-4605-9031-3f25f87bea16",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "HEADLIGHTS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": [
+                        {
+                            "id": "750855f9-2e86-4772-ac5e-8192c6f8b76a",
+                            "email": "marlene.binzer@minemend.com.au",
+                            "label": "MARLENE BINZER"
+                        }
+                    ]
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f84d844e-e756-40ea-a4b6-92ee661e8725",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "INDICATORS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-2df0c2df-4044-49fc-83c6-03b339a08bc5",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "FLASHING LIGHT",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-56455070-6b2a-4e6f-8873-05ab13829def",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "INSTRUMENTS AND GAUGES",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7248c887-1a1b-4c5d-81ea-e098570fd599",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "MINE RADIO",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-fd629169-68c4-48eb-b1fd-463bed0c2b4c",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "LOADRITE (SCALES)",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-b5630033-74e6-42e6-8794-5ac992655d37",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "HORN",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-76a2dbff-8b56-4a38-a89f-84ff2d963d51",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "REVERSING ALARM",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-cbdc1a6d-6f8f-47fb-88be-8ed7e62814d4",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "SEAT",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-aabb6377-d2dd-4e8c-b6ed-79664b31fc11",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "SEATBELT",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ca88c534-da5b-4ca6-b68f-4571ab36454d",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "SEATBELT  ALARM",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-47ac7bff-f5fe-4b15-9198-332382de8331",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "MIRRORS",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-bdcc0fda-0b2c-4d26-9bd9-6dbedba92aef",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "MACHINE COMPLIANCE",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No"
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": true,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-f7d2f35a-5a75-42ca-8be2-198d179d8ab8",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "LOOSE ITEMS SECURED IN CAB",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-12139726-074b-43e2-b7b2-b6702decdb74",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "EMERGENCY STOP",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-ec5cba12-7fac-4ea5-8e7e-b9237b65167c",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-610ea802-7055-445e-8a94-2fbdc79ad789",
+                    "label": "No"
+                },
+                {
+                    "id": "item-837bd232-4802-4374-9ea6-00d9ba6bdb5b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-725fc139-0db6-4633-b21c-e6d9f5db2108",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "STEERING SYSTEM",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-59285e80-2c8f-40f8-9d2b-1eefeb0027ef",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "BRAKES",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-a7a8ddc5-2a95-4059-af9e-0fc1321eebe2",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-ef973852-515f-4d34-9d8f-fe6b108eb105",
+                    "label": "No",
+                    "action": true,
+                    "notify_To": []
+                },
+                {
+                    "id": "item-6adbf07a-0b77-43c8-b881-e312a08b712b",
+                    "label": "NA"
+                }
+            ],
+            "isRequired": false,
+            "actionMessage": "There has been an A category defect on this vehicle. Do not use and advise your supervisor",
+            "isConditional": true,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-2f16cbc7-2933-4dee-8018-61adb4697481",
+            "name": "Signature",
+            "type": "signature",
+            "label": "Signature",
+            "answer": {},
+            "isRequired": false,
+            "selectedLinkListLabel": ""
+        }
+    ]
+}

@@ -24,13 +24,19 @@ mixin _$SingleSignature {
   String? get id => throw _privateConstructorUsedError;
   String? get attachmentId => throw _privateConstructorUsedError;
   String? get file => throw _privateConstructorUsedError;
-  String? get name => throw _privateConstructorUsedError;
+  @JsonKey(name: 'created_at')
+  String? get createdAt => throw _privateConstructorUsedError;
+  dynamic get uniImage => throw _privateConstructorUsedError;
   @JsonKey(name: 'signatory_name')
   String? get signatoryName => throw _privateConstructorUsedError;
-  bool? get isLoading => throw _privateConstructorUsedError;
+  bool? get changeToImage => throw _privateConstructorUsedError;
 
+  /// Serializes this SingleSignature to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SingleSignatureCopyWith<SingleSignature> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,9 +51,10 @@ abstract class $SingleSignatureCopyWith<$Res> {
       {String? id,
       String? attachmentId,
       String? file,
-      String? name,
+      @JsonKey(name: 'created_at') String? createdAt,
+      dynamic uniImage,
       @JsonKey(name: 'signatory_name') String? signatoryName,
-      bool? isLoading});
+      bool? changeToImage});
 }
 
 /// @nodoc
@@ -60,15 +67,18 @@ class _$SingleSignatureCopyWithImpl<$Res, $Val extends SingleSignature>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? attachmentId = freezed,
     Object? file = freezed,
-    Object? name = freezed,
+    Object? createdAt = freezed,
+    Object? uniImage = freezed,
     Object? signatoryName = freezed,
-    Object? isLoading = freezed,
+    Object? changeToImage = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -83,17 +93,21 @@ class _$SingleSignatureCopyWithImpl<$Res, $Val extends SingleSignature>
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      uniImage: freezed == uniImage
+          ? _value.uniImage
+          : uniImage // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       signatoryName: freezed == signatoryName
           ? _value.signatoryName
           : signatoryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoading: freezed == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      changeToImage: freezed == changeToImage
+          ? _value.changeToImage
+          : changeToImage // ignore: cast_nullable_to_non_nullable
               as bool?,
     ) as $Val);
   }
@@ -111,9 +125,10 @@ abstract class _$$SingleSignatureImplCopyWith<$Res>
       {String? id,
       String? attachmentId,
       String? file,
-      String? name,
+      @JsonKey(name: 'created_at') String? createdAt,
+      dynamic uniImage,
       @JsonKey(name: 'signatory_name') String? signatoryName,
-      bool? isLoading});
+      bool? changeToImage});
 }
 
 /// @nodoc
@@ -124,15 +139,18 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
       _$SingleSignatureImpl _value, $Res Function(_$SingleSignatureImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = freezed,
     Object? attachmentId = freezed,
     Object? file = freezed,
-    Object? name = freezed,
+    Object? createdAt = freezed,
+    Object? uniImage = freezed,
     Object? signatoryName = freezed,
-    Object? isLoading = freezed,
+    Object? changeToImage = freezed,
   }) {
     return _then(_$SingleSignatureImpl(
       id: freezed == id
@@ -147,17 +165,21 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
           ? _value.file
           : file // ignore: cast_nullable_to_non_nullable
               as String?,
-      name: freezed == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      createdAt: freezed == createdAt
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
               as String?,
+      uniImage: freezed == uniImage
+          ? _value.uniImage
+          : uniImage // ignore: cast_nullable_to_non_nullable
+              as dynamic,
       signatoryName: freezed == signatoryName
           ? _value.signatoryName
           : signatoryName // ignore: cast_nullable_to_non_nullable
               as String?,
-      isLoading: freezed == isLoading
-          ? _value.isLoading
-          : isLoading // ignore: cast_nullable_to_non_nullable
+      changeToImage: freezed == changeToImage
+          ? _value.changeToImage
+          : changeToImage // ignore: cast_nullable_to_non_nullable
               as bool?,
     ));
   }
@@ -165,14 +187,17 @@ class __$$SingleSignatureImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$SingleSignatureImpl implements _SingleSignature {
+class _$SingleSignatureImpl
+    with DiagnosticableTreeMixin
+    implements _SingleSignature {
   const _$SingleSignatureImpl(
       {this.id,
       this.attachmentId,
       this.file,
-      this.name,
+      @JsonKey(name: 'created_at') this.createdAt,
+      this.uniImage,
       @JsonKey(name: 'signatory_name') this.signatoryName,
-      this.isLoading});
+      this.changeToImage});
 
   factory _$SingleSignatureImpl.fromJson(Map<String, dynamic> json) =>
       _$$SingleSignatureImplFromJson(json);
@@ -185,16 +210,33 @@ class _$SingleSignatureImpl implements _SingleSignature {
   @override
   final String? file;
   @override
-  final String? name;
+  @JsonKey(name: 'created_at')
+  final String? createdAt;
+  @override
+  final dynamic uniImage;
   @override
   @JsonKey(name: 'signatory_name')
   final String? signatoryName;
   @override
-  final bool? isLoading;
+  final bool? changeToImage;
 
   @override
-  String toString() {
-    return 'SingleSignature(id: $id, attachmentId: $attachmentId, file: $file, name: $name, signatoryName: $signatoryName, isLoading: $isLoading)';
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'SingleSignature(id: $id, attachmentId: $attachmentId, file: $file, createdAt: $createdAt, uniImage: $uniImage, signatoryName: $signatoryName, changeToImage: $changeToImage)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SingleSignature'))
+      ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('attachmentId', attachmentId))
+      ..add(DiagnosticsProperty('file', file))
+      ..add(DiagnosticsProperty('createdAt', createdAt))
+      ..add(DiagnosticsProperty('uniImage', uniImage))
+      ..add(DiagnosticsProperty('signatoryName', signatoryName))
+      ..add(DiagnosticsProperty('changeToImage', changeToImage));
   }
 
   @override
@@ -206,19 +248,30 @@ class _$SingleSignatureImpl implements _SingleSignature {
             (identical(other.attachmentId, attachmentId) ||
                 other.attachmentId == attachmentId) &&
             (identical(other.file, file) || other.file == file) &&
-            (identical(other.name, name) || other.name == name) &&
+            (identical(other.createdAt, createdAt) ||
+                other.createdAt == createdAt) &&
+            const DeepCollectionEquality().equals(other.uniImage, uniImage) &&
             (identical(other.signatoryName, signatoryName) ||
                 other.signatoryName == signatoryName) &&
-            (identical(other.isLoading, isLoading) ||
-                other.isLoading == isLoading));
+            (identical(other.changeToImage, changeToImage) ||
+                other.changeToImage == changeToImage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
-      runtimeType, id, attachmentId, file, name, signatoryName, isLoading);
+      runtimeType,
+      id,
+      attachmentId,
+      file,
+      createdAt,
+      const DeepCollectionEquality().hash(uniImage),
+      signatoryName,
+      changeToImage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SingleSignatureImplCopyWith<_$SingleSignatureImpl> get copyWith =>
@@ -238,30 +291,36 @@ abstract class _SingleSignature implements SingleSignature {
       {final String? id,
       final String? attachmentId,
       final String? file,
-      final String? name,
+      @JsonKey(name: 'created_at') final String? createdAt,
+      final dynamic uniImage,
       @JsonKey(name: 'signatory_name') final String? signatoryName,
-      final bool? isLoading}) = _$SingleSignatureImpl;
+      final bool? changeToImage}) = _$SingleSignatureImpl;
 
   factory _SingleSignature.fromJson(Map<String, dynamic> json) =
       _$SingleSignatureImpl.fromJson;
 
-  @override
-
   /// Option Action to have color
+  @override
   String? get id;
   @override
   String? get attachmentId;
   @override
   String? get file;
   @override
-  String? get name;
+  @JsonKey(name: 'created_at')
+  String? get createdAt;
+  @override
+  dynamic get uniImage;
   @override
   @JsonKey(name: 'signatory_name')
   String? get signatoryName;
   @override
-  bool? get isLoading;
+  bool? get changeToImage;
+
+  /// Create a copy of SingleSignature
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SingleSignatureImplCopyWith<_$SingleSignatureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

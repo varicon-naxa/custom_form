@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'single_signature.freezed.dart';
 part 'single_signature.g.dart';
@@ -11,9 +12,10 @@ class SingleSignature with _$SingleSignature {
     String? id,
     String? attachmentId,
     String? file,
-    String? name,
+    @JsonKey(name: 'created_at') String? createdAt,
+    dynamic uniImage,
     @JsonKey(name: 'signatory_name') String? signatoryName,
-    bool? isLoading
+    bool? changeToImage,
   }) = _SingleSignature;
 
   factory SingleSignature.fromJson(Map<String, dynamic> json) =>
