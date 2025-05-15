@@ -40,6 +40,8 @@ class FormFilePicker extends ConsumerWidget {
         }
         return null;
       },
+      initialValue:
+          fileField.answer?.map((e) => Attachment.fromJson(e)).toList() ?? [],
       onSaved: (List<Attachment>? value) {},
       autovalidateMode: AutovalidateMode.onUserInteraction,
       builder: (field) {
@@ -48,7 +50,6 @@ class FormFilePicker extends ConsumerWidget {
           children: [
             SimpleFilePicker(
               fieldId: fileField.id,
-              
               fileBuild: imageBuild,
               initialFiles: fileField.answer
                       ?.map((e) => Attachment.fromJson(e))

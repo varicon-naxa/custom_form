@@ -34,6 +34,8 @@ class FormImagePicker extends ConsumerWidget {
     ref.read(simpleImagePickerProvider(imageField.id));
 
     return FormField<List<Attachment>>(
+      initialValue:
+          imageField.answer?.map((e) => Attachment.fromJson(e)).toList() ?? [],
       validator: (List<Attachment>? value) {
         if (imageField.isRequired) {
           if (value == null || value.isEmpty) {
