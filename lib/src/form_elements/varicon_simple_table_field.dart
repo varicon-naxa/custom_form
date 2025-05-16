@@ -111,11 +111,14 @@ class VariconSimpleTableField extends ConsumerWidget {
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Column(
-            children: (singleData?.rowList ?? []).mapIndexed((index, model) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: (singleData?.rowList ?? []).mapIndexed((index, model) {
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 8),
             child: index == 0
                 ? _buildTableRowContent(context, index, model, ref)
                 : Dismissible(

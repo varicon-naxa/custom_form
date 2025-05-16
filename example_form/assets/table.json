@@ -2,640 +2,523 @@
     "title": "Linked to list test is a type of list where we can add list here",
     "elements": [
         {
-            "id": "item-89b2e6e8-5d57-4401-927f-a469706c2218",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "General Information",
-            "answer": null,
-            "isRequired": false,
-            "description": "",
-            "instruction": null
-        },
-        {
-            "id": "item-4d5d6f0d-afb2-4f05-8838-f6e9fc4ca45f",
-            "name": "Multi-Select Dropdown",
-            "type": "multipleselect",
-            "label": "Project",
-            "answer": "c69817ff-b316-44ea-8518-ed32b37c1bfa",
-            "choice": [],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "showNoneItem": false,
-            "actionMessage": null,
-            "isConditional": false,
-            "showOtherItem": false,
-            "fromManualList": false,
-            "islinked_query": "project",
-            "otherErrorText": null,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "showSelectAllItem": false,
-            "maxSelectedChoices": null,
-            "selectedLinkListLabel": "(00001)Golden Gate Expansion"
-        },
-        {
-            "id": "item-af543a96-7717-45ad-8d8f-9ab26306ab55",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Machine",
-            "answer": "80bd3286-c3f9-4165-884d-750eb7ecd0d1",
-            "choice": [],
-            "noneText": null,
-            "otherText": null,
-            "allowClear": true,
-            "isRequired": true,
-            "description": null,
-            "placeholder": null,
-            "showNoneItem": false,
-            "actionMessage": null,
-            "isConditional": false,
-            "showOtherItem": false,
-            "fromManualList": false,
-            "islinked_query": "equipment",
-            "otherPlaceholder": null,
-            "selectedLinkListLabel": "(HY005)Grader 12H"
-        },
-        {
-            "id": "item-7e6dd07b-ff36-4403-b580-1077c303268a",
-            "name": "Single Select Dropdown",
-            "type": "dropdown",
-            "label": "Operator",
-            "answer": "cb49a964-2346-4055-9e85-9c5ac80a04c1",
-            "choice": [],
-            "noneText": null,
-            "otherText": null,
-            "allowClear": true,
-            "isRequired": true,
-            "description": null,
-            "placeholder": null,
-            "showNoneItem": false,
-            "actionMessage": null,
-            "isConditional": false,
-            "showOtherItem": false,
-            "fromManualList": false,
-            "islinked_query": "employee",
-            "otherPlaceholder": null,
-            "selectedLinkListLabel": "(BishwasShrestha)Bishwas Shrestha"
-        },
-        {
-            "id": "item-e870fe48-4a17-4938-b444-177b6c5c3b60",
-            "name": "Address",
-            "type": "text",
-            "label": "Location of Machine",
-            "answer": "15 Bligh St, Sydney NSW 2000 Australia",
-            "isRequired": true,
-            "description": null
-        },
-        {
-            "id": "item-982b5959-b135-4438-92d4-043f01f1df41",
-            "name": "Number Input",
-            "type": "number",
-            "label": "Current Hours",
-            "answer": "5",
-            "isRequired": true,
-            "description": null
-        },
-        {
-            "id": "item-cfed8f92-fdfd-4075-b699-aaaa1e426cb0",
-            "name": "Number Input",
-            "type": "number",
-            "label": "Next Service Due",
-            "answer": "12",
-            "isRequired": true,
-            "description": null
-        },
-        {
-            "id": "item-5de70c09-9afb-4c25-a24c-8b980d24a83f",
-            "name": "Instruction",
-            "type": "instruction",
-            "label": "Ensure all checks are completed before operating the plant. Report any issues immediately.",
-            "answer": null,
-            "isRequired": false,
-            "attachments": [],
-            "description": "",
-            "instruction": ""
-        },
-        {
-            "id": "item-b34c8992-0475-46ac-bb7a-da570c2cfe5a",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Damages/ Issues ",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK -No Damage",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention - Damage Noted ",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "DANGER - Needs Immediate Attention",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
+            "id": "item-ee4d8157-f20b-4b9c-ac07-8d73987b347c",
+            "name": "Dynamic Table",
+            "type": "table",
+            "isRow": true,
+            "label": "Dynamic Table",
+            "headers": [
+                "Name",
+                "Checkbox",
+                "Checkbox",
+                "Test",
+                "Column 5",
+                "Column 6",
+                "Checkbox",
+                "Column 8",
+                "Column 9",
+                "Column 10"
             ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS.",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK -No Damage"
-        },
-        {
-            "id": "item-55f69faf-6f65-48d2-a6ec-2fb799a6751e",
-            "name": "Yes/No/NA",
-            "type": "yesnona",
-            "label": "HAVE YOU A VALID VOC/SOA FOR THIS PLANT? HAVE YOU READ AND UNDERSTOOD THE OPERATORS MANUAL?",
-            "answer": "item-67fd3fed-e876-49dd-8ffd-157c8f1faf64",
-            "choice": [
-                {
-                    "id": "item-67fd3fed-e876-49dd-8ffd-157c8f1faf64",
-                    "label": "Yes",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-c6027fcc-fb38-42af-9ac1-21b7b090d5d4",
-                    "label": "No",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b914d967-863a-4c2d-919c-85c9f85e1ca9",
-                    "label": "NA",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "showNoneItem": false,
-            "actionMessage": null,
-            "isConditional": false,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "Yes"
-        },
-        {
-            "id": "item-eb0620f7-421b-4ff7-a846-f965f79d97ff",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Engine - Engine Oil level, Coolant level, AIR FILTERS (Check for dust/Tap out) Battery connections, Loose nuts and bolts",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "DANGER",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS. ENGINE MAY SIEZE",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-57d48615-387c-4824-8f4f-dc3e8ad8f112",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Hydraulics - Oil Level, Leaks (Check lines on arms, connections, engine bay and undercarriage for any signs of leaks)",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "DANGER",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS.",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-0a68bb5d-f292-4eaf-88e5-681afcd91cc7",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Pins - Pivots, Rams, Lift Arms, Bucket pins, Quick release, etc",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "DANGER",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS.",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-9bc4d1a0-bad0-4f28-b10d-16f1d7eb03da",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Wheels/Tracks - Tyres, Loose or missing nuts, Wheel nut indicators if needed, Tracks, Pads, Wear",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "SAFETY RISK",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS.",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-c9a0d169-6a33-43c6-8238-af8f98f1318f",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "GUARDS - In place, Any damage, Missing bolts",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "SAFETY RISK Do not Operate",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS.",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-5cecf1b9-8fc8-4059-9ae7-99d2ee4c2f5a",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Other - Fire extinguisher (attached and in date) Electrical connections, Wiring, Safety Rails, Mirrors",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "SAFETY RISK Do not Operate",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS.",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-48fc3605-0591-49d2-86ba-9f3e350ffa30",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Cabin - Cleanliness, Controls, Seat Belt, Safety Bar, UHF Radio, Air Con (Check filter under seat) Glass, Rear View Mirror, First Aid Kit",
-            "answer": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-            "choice": [
-                {
-                    "id": "item-fccd1b31-f21e-48a9-ba56-e2538bd76f76",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-b5d972a2-11f9-4135-b2c7-e0de1786b53f",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-abe3a10f-68ce-49cb-ae98-810a5391cca8",
-                    "label": "Missing items or damage",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "NOTIFY SUPERVISOR/FITTER/ALLOCATIONS AND DO NOT USE IF ISSUE PRESENTS DANGER TO PEOPLE OR PLANT",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-b0156813-870f-4549-9b46-fd84a5c74ce2",
-            "name": "Section Heading",
-            "type": "section",
-            "label": "START MACHINE IF COMPLIANT",
-            "answer": null,
-            "isRequired": false,
-            "description": "Start and run machine to warm up. Do final checks and make sure you check your surroundings before you move machine. Are you signed onto SWMS/DIG OR ANY OTHER PERMITS?",
-            "instruction": null
-        },
-        {
-            "id": "item-5ce64fac-9848-45f2-ba86-dd2e5ec7a7ff",
-            "name": "Radio",
-            "type": "radiogroup",
-            "label": "Electrical - Flashing lights, Reverse Buzzer, Reverse Camera, Horn, Dash, Head/Tail lights, Blinkers",
-            "answer": "item-771adcdc-9bc9-4277-b83e-1444bcc8da53",
-            "choice": [
-                {
-                    "id": "item-771adcdc-9bc9-4277-b83e-1444bcc8da53",
-                    "label": "OK",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-183b0414-8ccc-40e5-b899-1bb4d862c6f2",
-                    "label": "Needs Attention",
-                    "action": null,
-                    "notify_To": null,
-                    "isOtherField": null
-                },
-                {
-                    "id": "item-54b70164-1142-4c64-b482-25095cb4fabe",
-                    "label": "Safety Risk - DO NOT OPERATE",
-                    "action": true,
-                    "notify_To": null,
-                    "isOtherField": null
-                }
-            ],
-            "visible": true,
-            "noneText": null,
-            "readOnly": false,
-            "otherText": null,
-            "isRequired": true,
-            "description": null,
-            "otherAnswer": null,
-            "showNoneItem": false,
-            "actionMessage": "DO NOT OPERATE - NOTIFY SUPERVISOR/FITTER/ALLOCATIONS.",
-            "isConditional": true,
-            "showOtherItem": false,
-            "otherErrorText": null,
-            "showClearButton": false,
-            "otherPlaceholder": null,
-            "requiredErrorText": null,
-            "selectedLinkListLabel": "OK"
-        },
-        {
-            "id": "item-8c536120-c386-4c1a-9331-4e83da2cfded",
-            "name": "Long Text",
-            "type": "text",
-            "label": "Faults Found or General Comments",
-            "answer": "<div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div>Guy</div><div><br></div><div><br></div>",
-            "isRequired": true,
-            "description": null
-        },
-        {
-            "id": "item-701170ba-8232-4834-af13-71893b5108a0",
-            "name": "Image Upload",
-            "type": "images",
-            "label": "Photos of machine (Front, back, left, right sides) Photos can help to assertain when damage was caused. Meaning you could be cleared the more photos you log. ",
-            "answer": [
-                {
-                    "id": "fd7712fd-31c2-42a2-b675-3e0379c0d83f",
-                    "file": "https://app-varicon.s3.amazonaws.com/ded90e85-c8dd-4bea-91d1-50ee8435d720/attachments/f0219571-9293-4d36-b0cc-710b1e4658d1.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KU7VTKEI6%2F20250404%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20250404T044849Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0yIkcwRQIhAMLMajV2cyuaNSKadB5MyXjEiku6H7Yuo56PLeSQwRTRAiAOzFdFFg1aHu3RDiVX%2FvZYRD9pPf%2Fit%2F7qcINlngCIoCr9Awj%2B%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDQxODU0MDgxNjAyMSIMD0d%2BjoyUiZWSPW2vKtEDkHuv5tIaBESBAELuJLDb%2BYg%2FnC%2FnI0WX%2BX%2FiCNnQwyx%2FuPDtS8kMveAlM4p1WcIWc8tFhJLb2v7JDzHQlLxQdd8%2Fd%2Bc6sDENxnthUfvMbfa1fc5XcdLphjRciklmBUDY1dB2a2N7Z7CJo9R2XEKCrPYCxHW4JHV%2FAmwTJ7RJjiChRX%2Bs5Luvk0jN63dUXUxbAGwzi4AGDL3EfmVVtCLioJps1xj9RHeGUKDOfVytL57r%2BHZhYED1LMuvO9iGxCrq%2BjHe7WkqZb1CzR%2FTJL9F2cqXUpnpTSnEJ6J3wicG3DrO2V2i0v%2Bx479fw10xAB9tsUQ8WXBMtc%2FGTsnLT91FOhlPICGPz%2BRtCtkXcwGt95ql84WuFHJPXKIL8Ze9QBBLUoqNIy1UIw%2FLk8vjAap7WOfEkdjK4uPRKpHSHk%2FQk0rSL7zs5qYhhsAEJq7l0s5NwW%2BdSsD2EfjDsNa07L6JKNNozctfswSljQatZ%2Fa%2BjmaZGhTfeuzAJGAyoT0n0jkBF7lPnfjFT%2FZxVRGuRnNHmlgDnoD5IJ7hiKckhW%2FvYDuuwdl%2Bp3ZQcF2BJYp3%2BOBXLxBAmaVf9vkSRHGF27eShJF2RZw%2BZf2qtnxkKLpSPu20MN%2B%2Bvb8GOqUBhf0ilUR9r%2BvCQ%2BzrJD7jSE1WjHB%2BQpd9EylQF88NUP1CyV%2FWKalOB218ay36plEyHYh2P3o6AmqhgNS%2BrhGJQcFUvRxVZvGKCVzhqZ9oZyUBxuqj%2Fv77Tk%2F6FwW3VgCr9ZBe7rnTtVpPoKUwSq8VXiwdpwM6RPtHDvUGqN0W0fyuHsvFVpagDhxQWJFBuz6cLvI0wXOfvITd6MngJ2g1A9I3I%2BMM&X-Amz-Signature=f0438d0ff40dd1cb47b2e5b2056a6da650807a4fe7e8f8994ee04378df070f3f",
-                    "name": "image_picker_12157D0E-55C0-4ACE-96C7-6456D56638D3-2303-000000914F94A70A.jpg",
-                    "mime_type": "jpg",
-                    "thumbnail": "https://app-varicon.s3.amazonaws.com/ded90e85-c8dd-4bea-91d1-50ee8435d720/thumbnails/f0219571-9293-4d36-b0cc-710b1e4658d1_thumbnail.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KU7VTKEI6%2F20250404%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20250404T044849Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJX%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0yIkcwRQIhAMLMajV2cyuaNSKadB5MyXjEiku6H7Yuo56PLeSQwRTRAiAOzFdFFg1aHu3RDiVX%2FvZYRD9pPf%2Fit%2F7qcINlngCIoCr9Awj%2B%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAEaDDQxODU0MDgxNjAyMSIMD0d%2BjoyUiZWSPW2vKtEDkHuv5tIaBESBAELuJLDb%2BYg%2FnC%2FnI0WX%2BX%2FiCNnQwyx%2FuPDtS8kMveAlM4p1WcIWc8tFhJLb2v7JDzHQlLxQdd8%2Fd%2Bc6sDENxnthUfvMbfa1fc5XcdLphjRciklmBUDY1dB2a2N7Z7CJo9R2XEKCrPYCxHW4JHV%2FAmwTJ7RJjiChRX%2Bs5Luvk0jN63dUXUxbAGwzi4AGDL3EfmVVtCLioJps1xj9RHeGUKDOfVytL57r%2BHZhYED1LMuvO9iGxCrq%2BjHe7WkqZb1CzR%2FTJL9F2cqXUpnpTSnEJ6J3wicG3DrO2V2i0v%2Bx479fw10xAB9tsUQ8WXBMtc%2FGTsnLT91FOhlPICGPz%2BRtCtkXcwGt95ql84WuFHJPXKIL8Ze9QBBLUoqNIy1UIw%2FLk8vjAap7WOfEkdjK4uPRKpHSHk%2FQk0rSL7zs5qYhhsAEJq7l0s5NwW%2BdSsD2EfjDsNa07L6JKNNozctfswSljQatZ%2Fa%2BjmaZGhTfeuzAJGAyoT0n0jkBF7lPnfjFT%2FZxVRGuRnNHmlgDnoD5IJ7hiKckhW%2FvYDuuwdl%2Bp3ZQcF2BJYp3%2BOBXLxBAmaVf9vkSRHGF27eShJF2RZw%2BZf2qtnxkKLpSPu20MN%2B%2Bvb8GOqUBhf0ilUR9r%2BvCQ%2BzrJD7jSE1WjHB%2BQpd9EylQF88NUP1CyV%2FWKalOB218ay36plEyHYh2P3o6AmqhgNS%2BrhGJQcFUvRxVZvGKCVzhqZ9oZyUBxuqj%2Fv77Tk%2F6FwW3VgCr9ZBe7rnTtVpPoKUwSq8VXiwdpwM6RPtHDvUGqN0W0fyuHsvFVpagDhxQWJFBuz6cLvI0wXOfvITd6MngJ2g1A9I3I%2BMM&X-Amz-Signature=f5dde4d5a65594e5fc4a0ba997d946c7e3dc659dd2e5e58b6c6349aa644ec648",
-                    "created_by": {
-                        "id": "d0afe536-e610-46c6-b9fb-38521fc083a1",
-                        "email": "",
-                        "last_name": "",
-                        "first_name": "",
-                        "is_archived": false
+            "maxRows": "",
+            "contents": [
+                [
+                    {
+                        "id": "item-481a7674-982c-4967-95d4-d66f7225324f",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Name",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-e4ea41ef-e5fd-457b-8e4b-672ef1c23441",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Checkbox",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-6d89be64-8385-416b-8363-a1c866cd9726",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-35581200-0f00-476f-90c6-9a75c9f4792a",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-7bf75e37-6108-4924-ad2d-858699e51132",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-d3fac969-703b-4197-b83e-8cffbaa4ec9d",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-fb89deee-782e-4e85-83cb-71629fa51d66",
+                                "label": "Other",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": true
+                            }
+                        ],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": true,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-cc25f377-c3e5-410f-b191-5e45eeaf297a",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Checkbox",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-7ba9fc9c-5fd5-4e25-af76-e4ac2ca74430",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-058f2f46-2867-4103-85ab-a90c933dd949",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-d5ace07e-edad-4e8a-ade8-067162a62ffb",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-1666e392-0ed8-4778-9a02-63ff4c8d8af0",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-bdb040ca-a126-4e6c-b527-0ba30bb5d6c3",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Test",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-ccc9f718-0df7-4833-a426-f233c54e00e6",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-bc9a944e-5051-4a31-abf7-e05f751ee2c9",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-164cb428-1df1-4a5f-9b04-be1d1c13f0ba",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-50ce2c4b-ccfd-445a-8cf7-3f7c3c0daf2c",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "association": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "fromManualList": true,
+                        "islinked_query": "",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-660b6680-4234-4191-be32-694e31bb0be2",
+                        "name": "Date Time",
+                        "type": "datetimelocal",
+                        "label": "Column 5",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-31814247-d827-4a88-ae4c-5aaa50813c9e",
+                        "name": "Image Upload",
+                        "type": "images",
+                        "label": "Column 6",
+                        "answer": [],
+                        "isMultiple": true,
+                        "isRequired": false,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-759f622d-4642-4faa-bb40-e88d5e52741d",
+                        "name": "Radio",
+                        "type": "radiogroup",
+                        "label": "Checkbox",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-83cace5f-bdc0-4a85-b7fe-066e7e95fb43",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-9263e125-0ca6-47be-ac5b-6515a31fde88",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-8bd55d05-d24a-4dcb-b8d1-c1526704c9dd",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-5d6fa155-0cd4-4c0a-a3a4-e0b2dff81928",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-cca173a0-0bda-4b19-bc41-d6e89ef28976",
+                                "label": "Option 5",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-0566b056-d2a1-4a8d-9263-7519650448fd",
+                                "label": "Other",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": true
+                            }
+                        ],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": true,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-684e3f39-ead8-41b6-898c-41c68a6e5514",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 8",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-f6e6b215-99b9-4fa3-868f-b2c242a750ed",
+                        "name": "Long Text",
+                        "type": "text",
+                        "label": "Column 9",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-2f38f5b5-7662-498b-bfcf-8905209b173d",
+                        "name": "Signature",
+                        "type": "signature",
+                        "label": "Column 10",
+                        "answer": {},
+                        "isRequired": false,
+                        "instruction": ""
                     }
-                }
+                ]
             ],
-            "isMultiple": true,
-            "isRequired": true,
-            "description": null
+            "isRequired": false
         },
         {
-            "id": "item-9e4c5716-fe3d-453c-89fd-29752bf8421b",
-            "name": "Signature",
-            "type": "signature",
-            "label": "Signature",
-            "answer": {
-                "id": "14bae1c6-5874-4a0b-a5e0-d1053c2dedad",
-                "file": "https://app-varicon.s3.amazonaws.com/ded90e85-c8dd-4bea-91d1-50ee8435d720/attachments/761adbf4-c1a4-4aa5-8f1e-7a0e2da5555f.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KXSUUKV7P%2F20250404%2Fap-southeast-2%2Fs3%2Faws4_request&X-Amz-Date=20250404T044851Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJT%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDmFwLXNvdXRoZWFzdC0yIkgwRgIhAL6MPHfLwpR3tenZfrHgFinKpFtHFScUhc4YyMbKjgc2AiEA%2B7REv35kHo4VlKxsqIItSj7GyTgIajZGHajsehLujpQq%2FQMI%2Ff%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDM7rHmP3uOqRyaROKSrRA%2BhfAWhTJ4e%2B7LEUlk6rEekmuTJsYJu4ccLuxrOHn3I45tTAEos3ame%2BQHtim8NpRVDNLKQdk8fVqbFboe55a7CxlnhjWWXLbEAfGpwq7bkYmY4mSVkfDIXwhUQ2P6l1Z4WVyqMq2l0AZ9Mf7PWq2K41fRTmKsb25jPnIkINCUI8TFULwEjgE%2F0ktSwK8FsmqlwOYgqatYXe97O%2FqmXtmOa2oVizIagA1b32ZLw2sNsC12k6wS%2Bq7SF57yPiLrxeY8AOrYcqI3F%2Bj4aWGLfM8mhsfeY5mLv6pIV5wT0Zrdb2rCs%2BcjQFErVMatHx5kIp4NzRxNuof7L%2Bg%2FdefxqVN%2FP2XvYh6rHv7xh3ArdNiMjLooM8nrAAZYeSvIz9bOBYq685yUXlC4tdtt1FXr9QQ3Q8wXnm4Fi%2FpBrSxqFpT8ba1mtRpPEnM%2F3HIfl1qc3QKQVCqkN%2BC9vRbIueI0gJ8xH6O7LTTM%2BV7i4cakayWDToWMXGtxLBs7X6l8zTzhF4tPBBo2hC%2Bxe3Jj17wJr28DghT3%2BTvJDegWlZTLclx%2BUKngavtO3mXTc%2B0J6HevPZTYxxjQWihZfxCQE4N7MlteGs80osr5xbGe5FozE4k2ihNDCOtr2%2FBjqkATU8h%2BUkUUgSKU8UHJdHXCDvkAGCgn1vyA7y73ZpDEpi7snIPwqwZgEEayjq0mpVAkmDPM5fOblJGPE4FnWLv1DrjVcLIyu2VsvgsrGYuIfESsO%2BXH%2F%2FwcNNuvjul4Mo1l%2Bb3gis5o0pkefQ2nZKCcG0KefL2iXsqF3DxchD7yeKj3ZQ8xCesVpZIHc9j%2FNkDyyyqobDTyFhAyBdFyUeji2XLz8X&X-Amz-Signature=a82542c25322f3090c8b3546979814e5eca1b4cbc7cc02ff61ef55c47e576ff5",
-                "created_at": "null",
-                "attachmentId": "14bae1c6-5874-4a0b-a5e0-d1053c2dedad"
-            },
-            "visible": true,
-            "isRequired": false,
-            "description": null
+            "id": "item-8b746934-9078-431a-b682-2f47d7e0237b",
+            "name": "Predefined Table",
+            "type": "advtable",
+            "isRow": true,
+            "label": "Predefined Table",
+            "headers": [
+                "Column 1",
+                "Column 2",
+                "Column 3",
+                "Column 4",
+                "Column 5",
+                "Column 6",
+                "Column 7",
+                "Column 8"
+            ],
+            "contents": [
+                [
+                    {
+                        "id": "item-ed435200-7c6f-473f-aba0-9bb9d5d1aef8",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 1",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-b908dfb1-fd7a-4f8e-a664-421dcfed3fb8",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Column 2",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-843a90e3-89a3-4007-8199-73beb1334b59",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-510302bf-22c6-4c5e-85f9-fd973fe43280",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-ea15c24f-1ee3-46a1-b997-3b21011157c6",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-30fd900a-70af-4ad0-9041-e3befc54a4a7",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-8e9c378e-ac7a-49a8-8ac7-521fbb9d02f7",
+                        "name": "Short Text",
+                        "type": "text",
+                        "label": "Column 3",
+                        "answer": "",
+                        "isRequired": false,
+                        "instruction": ""
+                    },
+                    {
+                        "id": "item-79282db5-0894-4e5e-b866-5fb8cf9c722b",
+                        "name": "Checkboxes",
+                        "type": "checkbox",
+                        "label": "Column 4",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-c8e05612-bdd4-43a5-8e67-05bcd1b09695",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-d11849d0-8c90-4a6d-9ff4-fbf415823fa0",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-f0b52836-f1f8-4fb2-b4de-524f25166ccb",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-e9dcf7ad-a4c8-4eb0-8096-bade9aabd744",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-de935316-902d-4c64-a2e0-4acf53c4b756",
+                                "label": "Option 5",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-f2446048-6197-4f6e-ac75-035a689dd7a4",
+                                "label": "Other",
+                                "action": false,
+                                "notify_To": [],
+                                "isOtherField": true
+                            }
+                        ],
+                        "isRequired": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": true,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-e82d7c8d-a108-41fd-8433-c86880010d06",
+                        "name": "Yes/No",
+                        "type": "yesno",
+                        "label": "Column 5",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-aa077d05-3add-439a-9a6b-b2475902e963",
+                                "label": "Yes",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-890b0df5-26a8-4dde-932c-aeebee46dac9",
+                                "label": "No",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": true,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "showOtherItem": false,
+                        "fromManualList": true
+                    },
+                    {
+                        "id": "item-fc832c6a-1619-4e90-b9ec-601b38caf9d4",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Column 6",
+                        "answer": "",
+                        "choice": [
+                            {
+                                "id": "item-3d54f73c-1799-4838-8f10-7b441f2bb246",
+                                "label": "Option 1",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-38f31a05-e31f-41f2-a443-542bc438165a",
+                                "label": "Option 2",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-92422d03-a644-4ff6-8fd5-3a8d631cb5ab",
+                                "label": "Option 3",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-924a1a1d-b1b7-4317-85c8-8aeac3c00071",
+                                "label": "Option 4",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-35f9a3ba-c846-4739-81db-2738b396b9af",
+                                "label": "Option 5",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-3ae28767-4806-43bc-819a-e52eaca32c05",
+                                "label": "Option 6",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-01e43e67-d5ed-4214-800a-344c6bbc56da",
+                                "label": "Option 7",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-e35f0db9-bd94-4fe3-8faf-b548959785eb",
+                                "label": "Option 8",
+                                "action": false,
+                                "notify_To": []
+                            },
+                            {
+                                "id": "item-1f00a787-4434-4778-a49d-52c8649f45d5",
+                                "label": "Option 9",
+                                "action": false,
+                                "notify_To": []
+                            }
+                        ],
+                        "isRequired": false,
+                        "association": false,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "fromManualList": true,
+                        "islinked_query": "",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-a756cc07-95a4-44e7-a357-70181677ce8c",
+                        "name": "Single Select Dropdown",
+                        "type": "dropdown",
+                        "label": "Column 7",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "association": true,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "project",
+                        "selectedLinkListLabel": ""
+                    },
+                    {
+                        "id": "item-4063fa56-0d40-4a37-adb9-baf3adc848bf",
+                        "name": "Multi-Select Dropdown",
+                        "type": "multipleselect",
+                        "label": "Column 8",
+                        "answer": "",
+                        "choice": [],
+                        "isRequired": false,
+                        "association": true,
+                        "instruction": "",
+                        "actionMessage": "",
+                        "isConditional": false,
+                        "fromManualList": false,
+                        "islinked_query": "equipment",
+                        "selectedLinkListLabel": ""
+                    }
+                ]
+            ],
+            "isRequired": false
         }
     ],
     "description": "Description is the describing method which describes the title in various way"

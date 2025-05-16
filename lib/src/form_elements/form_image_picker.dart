@@ -51,6 +51,7 @@ class FormImagePicker extends ConsumerWidget {
       builder: (field) {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SimpleImagePicker(
               fieldId: imageField.id,

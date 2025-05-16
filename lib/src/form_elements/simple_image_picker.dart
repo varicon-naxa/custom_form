@@ -95,17 +95,22 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            _buildAddImageButton(),
-            _buildImagePreviews(),
-          ],
-        ),
-      ],
+    return SizedBox(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              _buildAddImageButton(),
+              _buildImagePreviews(),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

@@ -119,6 +119,8 @@ class _SimpleFilePickerState extends ConsumerState<SimpleFilePicker> {
         final isUploaded = ref.watch(simpleFilePickerProvider(widget.fieldId));
         return Column(
           spacing: 12,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ...isUploaded.map((file) => _buildFileContainer(file)),
           ],
