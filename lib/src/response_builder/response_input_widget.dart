@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html_core/flutter_widget_from_html_core.dart';
@@ -797,21 +796,10 @@ class _AnswerDesign extends StatelessWidget {
                     'height': isSignature ? 100.0 : 120.0,
                     'width': isSignature ? 100.0 : 150.0,
                   })
-                : CachedNetworkImage(
-                    imageUrl: answer,
-                    height: 250.0,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                    placeholderFadeInDuration: const Duration(seconds: 1),
-                    placeholder: (context, url) => const Icon(Icons.image),
-                    errorWidget: (context, error, stackTrace) => const SizedBox(
-                      height: 75,
-                      child: Icon(
-                        Icons.image,
-                        size: 40,
-                      ),
-                    ),
-                  )
+                : imageBuild!({
+                    'image': answer,
+                    'height': 250.0,
+                  })
             : isFile
                 ? GestureDetector(
                     behavior: HitTestBehavior.translucent,
@@ -991,22 +979,10 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
                         'height': 75.0,
                         'width': 75.0,
                       })
-                    : CachedNetworkImage(
-                        imageUrl: e.file ?? '',
-                        height: 75,
-                        width: double.infinity,
-                        placeholderFadeInDuration: const Duration(seconds: 1),
-                        placeholder: (context, url) => const Icon(Icons.image),
-                        fit: BoxFit.fill,
-                        errorWidget: (context, error, stackTrace) =>
-                            const SizedBox(
-                          height: 75,
-                          child: Icon(
-                            Icons.image,
-                            size: 40,
-                          ),
-                        ),
-                      ),
+                    : imageBuild!({
+                        'image': e.file ?? '',
+                        'height': 75.0,
+                      }),
                 Text(
                   signatoryNameDetail,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(

@@ -8,7 +8,6 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
-  cached_network_image: ^3.4.1
   collection: ^1.19.0
   dotted_line: ^3.2.2
   expandable: ^5.0.1

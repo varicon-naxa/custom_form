@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -306,14 +305,15 @@ class _VariconMultiSignatureFieldState
                         ? Image.memory(
                             e.uniImage,
                           )
-                        : CachedNetworkImage(
-                            imageUrl: e.file ?? '',
-                            height: 100.0,
-                            placeholderFadeInDuration:
-                                const Duration(seconds: 1),
-                            placeholder: (context, url) =>
-                                const Icon(Icons.image),
-                          ),
+                        :
+
+                        widget.imageBuild(
+                          {
+                            'image': e.file ?? '',
+                            'height': 100.0,
+                          }
+                        )
+                     
                   ),
                 ),
                 Text(signatoryNameDetail,
