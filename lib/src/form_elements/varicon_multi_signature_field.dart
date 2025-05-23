@@ -293,28 +293,23 @@ class _VariconMultiSignatureFieldState
                     ),
                   ),
                   child: Container(
-                    height: 120,
-                    padding: const EdgeInsets.all(16.0),
-                    margin: const EdgeInsets.only(bottom: 8.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    width: double.infinity,
-                    child: e.uniImage != null
-                        ? Image.memory(
-                            e.uniImage,
-                          )
-                        :
-
-                        widget.imageBuild(
-                          {
-                            'image': e.file ?? '',
-                            'height': 100.0,
-                          }
-                        )
-                     
-                  ),
+                      height: 120,
+                      padding: const EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.only(bottom: 8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      width: double.infinity,
+                      child: e.uniImage != null
+                          ? Image.memory(
+                              e.uniImage,
+                            )
+                          : widget.imageBuild({
+                              'image': e.file ?? '',
+                              'height': 100.0,
+                              'id': e.id,
+                            })),
                 ),
                 Text(signatoryNameDetail,
                     style: Theme.of(context).textTheme.labelMedium),

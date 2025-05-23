@@ -256,6 +256,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                     widget.imageBuild({
                       'image': widget.field.answer?['file'],
                       'height': 100.0,
+                      'id': widget.field.answer?['id'],
                     }),
                     // CachedNetworkImage(
                     //   imageUrl: widget.field.answer?['file'],

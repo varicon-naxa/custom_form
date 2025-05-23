@@ -175,7 +175,8 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
                               widget.imageBuild({
                                 'image': e['file'],
                                 'height': 75.0,
-                                'width': 75.0
+                                'width': 75.0,
+                                'id': e['id'],
                               }),
                               // if (isLoading)
                               //   Positioned.fill(

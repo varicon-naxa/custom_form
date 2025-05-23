@@ -44,6 +44,7 @@ class VariconInstructionField extends ConsumerWidget {
                       fileClick({
                         'data': e['file'].toString(),
                         'title': e['name'].toString(),
+                        
                       });
                     },
                     child: Padding(
@@ -53,7 +54,8 @@ class VariconInstructionField extends ConsumerWidget {
                       child: imageBuild({
                         'image': e['file'],
                         'height': 200.0,
-                        'width': double.infinity
+                        'width': double.infinity,
+                        'id': e['id'],
                       }),
                     ));
               } else {

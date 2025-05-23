@@ -189,6 +189,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     if (image.isUploaded == true) {
       return widget.imageBuild({
         'image': image.file,
+        'id': image.id,
         'height': 75.0,
         'width': 75.0,
       });
