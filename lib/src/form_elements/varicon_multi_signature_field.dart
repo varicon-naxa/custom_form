@@ -124,104 +124,106 @@ class _VariconMultiSignatureFieldState
 
     scrollBottomSheet(context,
         height: 550,
-        child: Scaffold(
-          resizeToAvoidBottomInset: true,
-          backgroundColor: Colors.white,
-          appBar: AppBar(
+        child: SafeArea(
+          child: Scaffold(
+            resizeToAvoidBottomInset: true,
             backgroundColor: Colors.white,
-            elevation: 0,
-            title: Text(
-              'Add Signature Details',
-              style: Theme.of(context).textTheme.labelLarge,
-            ),
-          ),
-          bottomNavigationBar: SizedBox(
-            height: 55,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: 8.0,
-                horizontal: 12,
+            appBar: AppBar(
+              backgroundColor: Colors.white,
+              elevation: 0,
+              title: Text(
+                'Add Signature Details',
+                style: Theme.of(context).textTheme.labelLarge,
               ),
-              child: Row(
-                spacing: 12.0,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: ActionButton(
-                      buttonText: 'Cancel',
-                      buttonColor: Colors.white,
-                      borderColor: Colors.black,
-                      verticalPadding: 8.0,
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
+            ),
+            bottomNavigationBar: SizedBox(
+              height: 55,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8.0,
+                  horizontal: 12,
+                ),
+                child: Row(
+                  spacing: 12.0,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: ActionButton(
+                        buttonText: 'Cancel',
+                        buttonColor: Colors.white,
+                        borderColor: Colors.black,
+                        verticalPadding: 8.0,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                      ),
                     ),
-                  ),
-                  Expanded(
-                    child: ActionButton(
-                      buttonText: 'Save',
-                      verticalPadding: 8.0,
-                      onPressed: () {
-                        if (_validateCurrentSignaturePad(key)) {
-                          MultiSignature value = key.currentState!.value;
-                          if (value.image != null &&
-                              (value.name ?? '').trim().isNotEmpty) {
-                            SingleSignature singleSignature = SingleSignature(
-                              attachmentId:
-                                  '${value.name}-${const Uuid().v4()}',
-                              signatoryName: value.name,
-                              uniImage: value.image,
-                              createdAt: DateTime.now().toString(),
-                            );
-                            addSignature(singleSignature);
-                            Navigator.pop(context);
+                    Expanded(
+                      child: ActionButton(
+                        buttonText: 'Save',
+                        verticalPadding: 8.0,
+                        onPressed: () {
+                          if (_validateCurrentSignaturePad(key)) {
+                            MultiSignature value = key.currentState!.value;
+                            if (value.image != null &&
+                                (value.name ?? '').trim().isNotEmpty) {
+                              SingleSignature singleSignature = SingleSignature(
+                                attachmentId:
+                                    '${value.name}-${const Uuid().v4()}',
+                                signatoryName: value.name,
+                                uniImage: value.image,
+                                createdAt: DateTime.now().toString(),
+                              );
+                              addSignature(singleSignature);
+                              Navigator.pop(context);
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg:
+                                      'Please add both signature and signatory name');
+                            }
                           } else {
                             Fluttertoast.showToast(
                                 msg:
                                     'Please add both signature and signatory name');
                           }
-                        } else {
-                          Fluttertoast.showToast(
-                              msg:
-                                  'Please add both signature and signatory name');
-                        }
-                      },
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: FormBuilderMultiSignaturePad(
-                key: key,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                name: 'signature_${const Uuid().v4()}',
-                onChanged: (value) {},
-                validator: (data) {
-                  if (widget.field.isRequired) {
-                    if (data == null) {
-                      return 'This field is required';
-                    } else if (data.image == null && data.name == null) {
-                      return 'This field is required';
-                    } else {
-                      if (data.image == null &&
-                          (data.name ?? '').trim().isNotEmpty) {
-                        return 'Signature is required';
-                      } else if ((data.name == null ||
-                              (data.name ?? '').trim().isEmpty) &&
-                          (data.image != null)) {
-                        return 'Signatory Name is required';
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: FormBuilderMultiSignaturePad(
+                  key: key,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  name: 'signature_${const Uuid().v4()}',
+                  onChanged: (value) {},
+                  validator: (data) {
+                    if (widget.field.isRequired) {
+                      if (data == null) {
+                        return 'This field is required';
+                      } else if (data.image == null && data.name == null) {
+                        return 'This field is required';
                       } else {
-                        return null;
+                        if (data.image == null &&
+                            (data.name ?? '').trim().isNotEmpty) {
+                          return 'Signature is required';
+                        } else if ((data.name == null ||
+                                (data.name ?? '').trim().isEmpty) &&
+                            (data.image != null)) {
+                          return 'Signatory Name is required';
+                        } else {
+                          return null;
+                        }
                       }
                     }
-                  }
-                  return null;
-                },
-                border: Border.all(color: Colors.green),
+                    return null;
+                  },
+                  border: Border.all(color: Colors.green),
+                ),
               ),
             ),
           ),
