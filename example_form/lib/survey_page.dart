@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:math' as Rand;
 import 'dart:typed_data';
+import 'package:example_form/cache_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 // ignore: depend_on_referenced_packages
@@ -129,8 +131,28 @@ class _SurveyPageState extends State<SurveyPage> {
       },
       formtitle: 'Submit Form',
       attachmentSave: (List<String> data) async {
-        await Future.delayed(const Duration(seconds: 3));
-        throw Exception('Error');
+        List<Map<String, dynamic>> _data = [];
+        for (var path in data) {
+          File _file = File(path);
+          String _ext = _file.path.split('.').last;
+          String _key = DateTime.now().millisecondsSinceEpoch.toString();
+          File file = await LocalCacheManager.instance.putFile(
+            _file.uri.toString(),
+            _file.readAsBytesSync(),
+            key: _key.toString(),
+            maxAge: const Duration(days: 30),
+            eTag: '1',
+            fileExtension: _ext,
+          );
+          _data.add({
+            'id': _key,
+            'file': file.path,
+            'name': _file.path.split('.').last,
+            'created_at': DateTime.now().toIso8601String(),
+          });
+          log('file: ' + file.path);
+        }
+        return _data;
         // return [];
         // log('dpme');
 

@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -296,27 +295,23 @@ class _VariconMultiSignatureFieldState
                     ),
                   ),
                   child: Container(
-                    height: 120,
-                    padding: const EdgeInsets.all(16.0),
-                    margin: const EdgeInsets.only(bottom: 8.0),
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey),
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    width: double.infinity,
-                    child: e.uniImage != null
-                        ? Image.memory(
-                            e.uniImage,
-                          )
-                        : CachedNetworkImage(
-                            imageUrl: e.file ?? '',
-                            height: 100.0,
-                            placeholderFadeInDuration:
-                                const Duration(seconds: 1),
-                            placeholder: (context, url) =>
-                                const Icon(Icons.image),
-                          ),
-                  ),
+                      height: 120,
+                      padding: const EdgeInsets.all(16.0),
+                      margin: const EdgeInsets.only(bottom: 8.0),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      width: double.infinity,
+                      child: e.uniImage != null
+                          ? Image.memory(
+                              e.uniImage,
+                            )
+                          : widget.imageBuild({
+                              'image': e.file ?? '',
+                              'height': 100.0,
+                              'id': e.id,
+                            })),
                 ),
                 Text(signatoryNameDetail,
                     style: Theme.of(context).textTheme.labelMedium),

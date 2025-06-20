@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -254,12 +253,17 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: [
-                    CachedNetworkImage(
-                      imageUrl: widget.field.answer?['file'],
-                      height: 100.0,
-                      placeholderFadeInDuration: const Duration(seconds: 1),
-                      placeholder: (context, url) => const Icon(Icons.image),
-                    ),
+                    widget.imageBuild({
+                      'image': widget.field.answer?['file'],
+                      'height': 100.0,
+                      'id': widget.field.answer?['id'],
+                    }),
+                    // CachedNetworkImage(
+                    //   imageUrl: widget.field.answer?['file'],
+                    //   height: 100.0,
+                    //   placeholderFadeInDuration: const Duration(seconds: 1),
+                    //   placeholder: (context, url) => const Icon(Icons.image),
+                    // ),
                     Row(
                       mainAxisAlignment:
                           (widget.field.answer?['created_at'] == null)
