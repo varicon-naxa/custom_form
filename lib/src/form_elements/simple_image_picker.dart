@@ -22,6 +22,7 @@ class ImagePickerConfig {
   static const double maxImageSizeMB = 25.0;
   static const int imageQuality = 80;
   static const int maxMultiImageLimit = 5;
+  static const int maxTotalImageLimit = 15;
   static const double previewImageSize = 100.0;
   static const double previewImageIconSize = 32.0;
   static const double previewImageCloseIconSize = 16.0;
@@ -257,6 +258,14 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
 
   /// Shows the image source picker bottom sheet
   void _showImageSourcePicker(BuildContext context) {
+    // Check if user has reached maximum total image limit
+    final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
+    if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
+      _showErrorToast(
+          'You can only have a maximum of ${ImagePickerConfig.maxTotalImageLimit} images in total.');
+      return;
+    }
+
     FocusManager.instance.primaryFocus?.unfocus();
     FocusScope.of(context).unfocus();
     SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -344,6 +353,15 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   /// Handles camera image selection
   Future<void> _handleCameraSelection() async {
     Navigator.pop(context);
+
+    // Check if user has reached maximum total image limit
+    final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
+    if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
+      _showErrorToast(
+          'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
+      return;
+    }
+
     final XFile? image = await _pickImage();
 
     if (image != null) {
@@ -359,7 +377,25 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     Navigator.pop(context);
     final List<XFile>? images = await _pickMultiImage();
     if (images != null) {
-      await _processMultipleImages(images);
+      // Check total image limit and trim if necessary
+      final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
+      final remainingSlots =
+          ImagePickerConfig.maxTotalImageLimit - currentImages.length;
+
+      if (remainingSlots <= 0) {
+        _showErrorToast(
+            'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
+        return;
+      }
+
+      List<XFile> imagesToProcess = images;
+      if (images.length > remainingSlots) {
+        imagesToProcess = images.sublist(0, remainingSlots);
+        _showErrorToast(
+            'You can only add ${remainingSlots} more images to reach the total limit of ${ImagePickerConfig.maxTotalImageLimit}.');
+      }
+
+      await _processMultipleImages(imagesToProcess);
     }
   }
 
@@ -586,10 +622,17 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   Future<List<XFile>?> _pickMultiImage() async {
     try {
       final ImagePicker picker = ImagePicker();
-      return await picker.pickMultiImage(
+      final result = await picker.pickMultiImage(
         imageQuality: ImagePickerConfig.imageQuality,
         limit: ImagePickerConfig.maxMultiImageLimit,
       );
+      if (result.isNotEmpty && result.length > 5) {
+        _showErrorToast('You can only select up to 5 images.');
+
+        /// return first 5 images here
+        return result.sublist(0, 5);
+      }
+      return result;
     } catch (e) {
       debugPrint('Error picking image: $e');
       return null;

@@ -17,6 +17,7 @@ class FilePickerConfig {
   static const double previewFileHeight = 40.0;
   static const double previewFileBorderRadius = 8.0;
   static const int maxFileCount = 5;
+  static const int maxTotalFileLimit = 15;
 }
 
 /// A widget that provides file picking functionality.
@@ -254,6 +255,14 @@ class _SimpleFilePickerState extends ConsumerState<SimpleFilePicker> {
 
   /// Handles file selection
   Future<void> _handleFileSelection() async {
+    // Check if user has reached maximum total file limit
+    final currentFiles = ref.read(simpleFilePickerProvider(widget.fieldId));
+    if (currentFiles.length >= FilePickerConfig.maxTotalFileLimit) {
+      _showErrorToast(
+          'You can only have a maximum of ${FilePickerConfig.maxTotalFileLimit} files in total.');
+      return;
+    }
+
     FocusManager.instance.primaryFocus?.unfocus();
     FocusScope.of(context).unfocus();
     SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -272,11 +281,29 @@ class _SimpleFilePickerState extends ConsumerState<SimpleFilePicker> {
   Future<void> _processFiles(List<PlatformFile> files) async {
     if (files.length > FilePickerConfig.maxFileCount) {
       _showErrorToast(
-          "You can only select up to ${FilePickerConfig.maxFileCount} files.");
+          "You can only select up to ${FilePickerConfig.maxFileCount} files at once.");
       return;
     }
 
-    final attachments = files
+    // Check total file limit and trim if necessary
+    final currentFiles = ref.read(simpleFilePickerProvider(widget.fieldId));
+    final remainingSlots =
+        FilePickerConfig.maxTotalFileLimit - currentFiles.length;
+
+    if (remainingSlots <= 0) {
+      _showErrorToast(
+          'You have reached the maximum limit of ${FilePickerConfig.maxTotalFileLimit} files.');
+      return;
+    }
+
+    List<PlatformFile> filesToProcess = files;
+    if (files.length > remainingSlots) {
+      filesToProcess = files.sublist(0, remainingSlots);
+      _showErrorToast(
+          'You can only add ${remainingSlots} more files to reach the total limit of ${FilePickerConfig.maxTotalFileLimit}.');
+    }
+
+    final attachments = filesToProcess
         .map((file) => Attachment(
               file: file.path!,
               name: file.name,
