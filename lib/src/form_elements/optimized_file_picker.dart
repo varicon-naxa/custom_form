@@ -356,8 +356,21 @@ class _OptimizedFilePickerState extends ConsumerState<OptimizedFilePicker> {
         // Update form state
         _updateFileList();
 
-        // Upload files
-        await widget.onFilesSelected(processedFiles);
+        // Upload files and update status
+        final uploadResult = await widget.onFilesSelected(processedFiles);
+
+        // Update upload status based on result
+        if (uploadResult != null && uploadResult.isNotEmpty) {
+          // Mark files as uploaded
+          final updatedFiles = processedFiles
+              .map((file) => file.copyWith(isUploaded: true))
+              .toList();
+
+          // Update state with uploaded status
+          ref
+              .read(simpleFilePickerProvider(widget.fieldId).notifier)
+              .updateFilesWithUploadStatus(processedFiles, updatedFiles);
+        }
       }
     } catch (e) {
       _showErrorToast('Error processing files: $e');

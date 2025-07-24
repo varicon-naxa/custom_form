@@ -224,7 +224,8 @@ class _OptimizedImagePickerState extends ConsumerState<OptimizedImagePicker> {
     return Stack(
       children: [
         _buildImageContainer(image),
-        if (image.isUploaded ?? false) _buildRemoveButton(image),
+        // Show remove button for all images (both uploaded and local)
+        _buildRemoveButton(image),
       ],
     );
   }
@@ -246,7 +247,8 @@ class _OptimizedImagePickerState extends ConsumerState<OptimizedImagePicker> {
           fit: StackFit.expand,
           children: [
             _buildImageContent(image),
-            if (image.isUploaded == false) _buildLoadingOverlay(),
+            // Show loading overlay only for newly added images that haven't been uploaded yet
+            if (image.isUploaded == false && image.id == null) _buildLoadingOverlay(),
           ],
         ),
       ),
@@ -425,7 +427,7 @@ class _OptimizedImagePickerState extends ConsumerState<OptimizedImagePicker> {
       }
 
       if (pickedFiles.isNotEmpty) {
-        await _processAndAddImages(pickedFiles);
+        await _processAndAddImages(pickedFiles, source);
       }
     } catch (e) {
       _showErrorToast('Error picking images: $e');
@@ -433,7 +435,8 @@ class _OptimizedImagePickerState extends ConsumerState<OptimizedImagePicker> {
   }
 
   /// Processes and adds images to the list
-  Future<void> _processAndAddImages(List<XFile> pickedFiles) async {
+  Future<void> _processAndAddImages(
+      List<XFile> pickedFiles, ImageSource source) async {
     try {
       List<Attachment> processedImages = [];
 
@@ -447,9 +450,11 @@ class _OptimizedImagePickerState extends ConsumerState<OptimizedImagePicker> {
           continue;
         }
 
-        // Process image with custom painter if needed
+        // Process image based on source
         File processedFile = File(file.path);
-        if (widget.customPainter != null) {
+
+        // Only use image editor for camera images, not gallery images
+        if (source == ImageSource.camera && widget.customPainter != null) {
           final editedImage = await Navigator.push(
             context,
             MaterialPageRoute(
@@ -483,8 +488,21 @@ class _OptimizedImagePickerState extends ConsumerState<OptimizedImagePicker> {
         // Update form state
         _updateImageList();
 
-        // Upload images
-        await widget.onImagesSelected(processedImages);
+        // Upload images and update status
+        final uploadResult = await widget.onImagesSelected(processedImages);
+
+        // Update upload status based on result
+        if (uploadResult != null && uploadResult.isNotEmpty) {
+          // Mark images as uploaded
+          final updatedImages = processedImages
+              .map((img) => img.copyWith(isUploaded: true))
+              .toList();
+
+          // Update state with uploaded status
+          ref
+              .read(simpleImagePickerProvider(widget.fieldId).notifier)
+              .updateImagesWithUploadStatus(processedImages, updatedImages);
+        }
       }
     } catch (e) {
       _showErrorToast('Error processing images: $e');

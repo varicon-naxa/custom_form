@@ -32,6 +32,20 @@ class SimpleImagePickerProvider extends StateNotifier<List<Attachment>> {
     }
   }
 
+  /// Updates multiple images with new upload status
+  void updateImagesWithUploadStatus(
+      List<Attachment> originalImages, List<Attachment> updatedImages) {
+    final updatedState = state.map((img) {
+      final originalIndex = originalImages
+          .indexWhere((original) => original.localId == img.localId);
+      if (originalIndex != -1) {
+        return updatedImages[originalIndex];
+      }
+      return img;
+    }).toList();
+    state = updatedState;
+  }
+
   void removeImage(Attachment image) {
     state = state.where((i) => i.id != image.id).toList();
   }
@@ -79,6 +93,20 @@ class SimpleFilePickerNotifier extends StateNotifier<List<Attachment>> {
   /// Updates a file in the state
   void updateFile(Attachment file) {
     state = state.map((f) => f.localId == file.localId ? file : f).toList();
+  }
+
+  /// Updates multiple files with new upload status
+  void updateFilesWithUploadStatus(
+      List<Attachment> originalFiles, List<Attachment> updatedFiles) {
+    final updatedState = state.map((file) {
+      final originalIndex = originalFiles
+          .indexWhere((original) => original.localId == file.localId);
+      if (originalIndex != -1) {
+        return updatedFiles[originalIndex];
+      }
+      return file;
+    }).toList();
+    state = updatedState;
   }
 
   /// Removes a file from the state
