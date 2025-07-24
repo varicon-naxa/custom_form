@@ -222,76 +222,214 @@ class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
       List<PlatformFile> files, FormFieldSetter<List<PlatformFile>> setter) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        return Wrap(
-          alignment: WrapAlignment.start,
-          runAlignment: WrapAlignment.start,
-          runSpacing: 10,
-          spacing: 10,
-          children: List.generate(
-            files.length,
-            (index) {
-              return Column(
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(
-                        color: Colors.grey,
-                        width: 1,
+        // Add "See More" functionality
+        final initialFileCount = 5;
+        final showSeeMore = files.length > initialFileCount;
+        final filesToShow =
+            showSeeMore ? files.take(initialFileCount).toList() : files;
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Wrap(
+              alignment: WrapAlignment.start,
+              runAlignment: WrapAlignment.start,
+              runSpacing: 10,
+              spacing: 10,
+              children: List.generate(
+                filesToShow.length,
+                (index) {
+                  return Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 4),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(
+                            color: Colors.grey,
+                            width: 1,
+                          ),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              getIconData(files[index].extension!),
+                              color: Colors.grey,
+                            ),
+                            const SizedBox(width: 8.0),
+                            Expanded(
+                              child: Text(
+                                files[index].name,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () {
+                                final actualIndex =
+                                    files.indexOf(filesToShow[index]);
+                                files.removeAt(actualIndex);
+                                setter.call([...files]);
+                              },
+                              child: Container(
+                                margin: const EdgeInsets.all(3),
+                                decoration: BoxDecoration(
+                                  color: Colors.red.withValues(alpha: .7),
+                                  shape: BoxShape.circle,
+                                ),
+                                alignment: Alignment.center,
+                                height: 18,
+                                width: 18,
+                                child: const Icon(
+                                  Icons.close,
+                                  size: 18,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
+                      ValueListenableBuilder(
+                        valueListenable: widget.isLoading,
+                        builder: (context, value, child) {
+                          return value
+                              ? const LinearProgressIndicator()
+                              : const SizedBox();
+                        },
+                      ),
+                    ],
+                  );
+                },
+              ),
+            ),
+            if (showSeeMore)
+              Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: GestureDetector(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => Dialog(
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text('All Files',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold)),
+                                  IconButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    icon: const Icon(Icons.close),
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(height: 16),
+                              Wrap(
+                                alignment: WrapAlignment.start,
+                                runAlignment: WrapAlignment.start,
+                                runSpacing: 10,
+                                spacing: 10,
+                                children: List.generate(
+                                  files.length,
+                                  (index) {
+                                    return Column(
+                                      children: [
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8, vertical: 4),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                                color: Colors.grey, width: 1),
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              Icon(
+                                                  getIconData(
+                                                      files[index].extension!),
+                                                  color: Colors.grey),
+                                              const SizedBox(width: 8.0),
+                                              Expanded(
+                                                child: Text(
+                                                  files[index].name,
+                                                  maxLines: 1,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                              InkWell(
+                                                onTap: () {
+                                                  files.removeAt(index);
+                                                  setter.call([...files]);
+                                                  Navigator.pop(context);
+                                                },
+                                                child: Container(
+                                                  margin:
+                                                      const EdgeInsets.all(3),
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.red
+                                                        .withValues(alpha: .7),
+                                                    shape: BoxShape.circle,
+                                                  ),
+                                                  alignment: Alignment.center,
+                                                  height: 18,
+                                                  width: 18,
+                                                  child: const Icon(Icons.close,
+                                                      size: 18,
+                                                      color: Colors.white),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: Colors.blue.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(color: Colors.blue.withOpacity(0.3)),
                     ),
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(
-                          getIconData(files[index].extension!),
-                          color: Colors.grey,
-                        ),
-                        const SizedBox(width: 8.0),
-                        Expanded(
-                          child: Text(
-                            files[index].name,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
+                        const Icon(Icons.keyboard_arrow_down,
+                            size: 16, color: Colors.blue),
+                        const SizedBox(width: 4),
+                        Text(
+                          'See More (${files.length - initialFileCount} more)',
+                          style: const TextStyle(
+                            color: Colors.blue,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        InkWell(
-                          onTap: () {
-                            files.removeAt(index);
-                            setter.call([...files]);
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.all(3),
-                            decoration: BoxDecoration(
-                              color: Colors.red.withValues(alpha: .7),
-                              shape: BoxShape.circle,
-                            ),
-                            alignment: Alignment.center,
-                            height: 18,
-                            width: 18,
-                            child: const Icon(
-                              Icons.close,
-                              size: 18,
-                              color: Colors.white,
-                            ),
-                          ),
-                        )
                       ],
                     ),
                   ),
-                  ValueListenableBuilder(
-                    valueListenable: widget.isLoading,
-                    builder: (context, value, child) {
-                      return value
-                          ? const LinearProgressIndicator()
-                          : const SizedBox();
-                    },
-                  ),
-                ],
-              );
-            },
-          ),
+                ),
+              ),
+          ],
         );
       },
     );

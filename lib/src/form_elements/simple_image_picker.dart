@@ -140,11 +140,128 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     return Consumer(
       builder: (context, ref, child) {
         final isUploaded = ref.watch(simpleImagePickerProvider(widget.fieldId));
-        return Wrap(
-          spacing: 8,
-          runSpacing: 8,
+
+        // Add "See More" functionality
+        final initialImageCount = 5;
+        final showSeeMore = isUploaded.length > initialImageCount;
+        final imagesToShow = showSeeMore
+            ? isUploaded.take(initialImageCount).toList()
+            : isUploaded;
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...isUploaded.map((image) => _buildImagePreview(image)),
+            Consumer(
+              builder: (context, ref, child) {
+                final currentImages =
+                    ref.watch(simpleImagePickerProvider(widget.fieldId));
+                final showSeeMore = currentImages.length > initialImageCount;
+                final imagesToShow = showSeeMore
+                    ? currentImages.take(initialImageCount).toList()
+                    : currentImages;
+
+                return Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ...imagesToShow.map((image) => _buildImagePreview(image)),
+                  ],
+                );
+              },
+            ),
+            Consumer(
+              builder: (context, ref, child) {
+                final currentImages =
+                    ref.watch(simpleImagePickerProvider(widget.fieldId));
+                final showSeeMore = currentImages.length > initialImageCount;
+
+                if (!showSeeMore) return const SizedBox.shrink();
+
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text('All Images',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold)),
+                                    IconButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      icon: const Icon(Icons.close),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 16),
+                                Consumer(
+                                  builder: (context, ref, child) {
+                                    final currentImages = ref.watch(
+                                        simpleImagePickerProvider(
+                                            widget.fieldId));
+                                    return Wrap(
+                                      spacing: 8,
+                                      runSpacing: 8,
+                                      children: currentImages
+                                          .map((image) =>
+                                              _buildImagePreview(image))
+                                          .toList(),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.blue.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.keyboard_arrow_down,
+                              size: 16, color: Colors.blue),
+                          const SizedBox(width: 4),
+                          Consumer(
+                            builder: (context, ref, child) {
+                              final currentImages = ref.watch(
+                                  simpleImagePickerProvider(widget.fieldId));
+                              final remainingCount =
+                                  currentImages.length - initialImageCount;
+                              return Text(
+                                'See More ($remainingCount more)',
+                                style: const TextStyle(
+                                  color: Colors.blue,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         );
       },

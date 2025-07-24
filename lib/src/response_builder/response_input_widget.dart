@@ -62,6 +62,234 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
     return logicalShortestSide > 600;
   }
 
+  Widget _buildImagesWithSeeMore(List<Map<String, dynamic>> answer) {
+    final initialImageCount = 5;
+    final showSeeMore = answer.length > initialImageCount;
+    final imagesToShow =
+        showSeeMore ? answer.take(initialImageCount).toList() : answer;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isTablet ? 5 : 3,
+            mainAxisSpacing: 6,
+            crossAxisSpacing: 6,
+            childAspectRatio: 0.75,
+          ),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: imagesToShow.length,
+          itemBuilder: (context, index) {
+            return _AnswerDesign(
+              answer: imagesToShow[index]['file'],
+              isImage: true,
+              fileClick: () {
+                widget.fileClick({
+                  'data': imagesToShow[index]['file'] ?? '',
+                  'title': imagesToShow[index]['name'] ?? ''
+                });
+              },
+              imageBuild: widget.imageBuild,
+            );
+          },
+        ),
+        if (showSeeMore)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => Dialog(
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('All Images',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: const Icon(Icons.close),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: isTablet ? 5 : 3,
+                              mainAxisSpacing: 6,
+                              crossAxisSpacing: 6,
+                              childAspectRatio: 0.75,
+                            ),
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: answer.length,
+                            itemBuilder: (context, index) {
+                              return _AnswerDesign(
+                                answer: answer[index]['file'],
+                                isImage: true,
+                                fileClick: () {
+                                  widget.fileClick({
+                                    'data': answer[index]['file'] ?? '',
+                                    'title': answer[index]['name'] ?? ''
+                                  });
+                                },
+                                imageBuild: widget.imageBuild,
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.keyboard_arrow_down,
+                        size: 16, color: Colors.blue),
+                    const SizedBox(width: 4),
+                    Text(
+                      'See More (${answer.length - initialImageCount} more)',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildFilesWithSeeMore(List<Map<String, dynamic>> answer) {
+    final initialFileCount = 5;
+    final showSeeMore = answer.length > initialFileCount;
+    final filesToShow =
+        showSeeMore ? answer.take(initialFileCount).toList() : answer;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          runSpacing: 8,
+          children: filesToShow
+              .map(
+                (e) => _AnswerDesign(
+                  answer: e['name'],
+                  isFile: true,
+                  isImage: false,
+                  fileClick: () {
+                    widget.fileClick({'data': e['file'], 'title': e['name']});
+                  },
+                ),
+              )
+              .toList(),
+        ),
+        if (showSeeMore)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => Dialog(
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('All Files',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: const Icon(Icons.close),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Wrap(
+                            runSpacing: 8,
+                            children: answer
+                                .map(
+                                  (e) => _AnswerDesign(
+                                    answer: e['name'],
+                                    isFile: true,
+                                    isImage: false,
+                                    fileClick: () {
+                                      widget.fileClick({
+                                        'data': e['file'],
+                                        'title': e['name']
+                                      });
+                                    },
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.blue.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.keyboard_arrow_down,
+                        size: 16, color: Colors.blue),
+                    const SizedBox(width: 4),
+                    Text(
+                      'See More (${answer.length - initialFileCount} more)',
+                      style: const TextStyle(
+                        color: Colors.blue,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -529,22 +757,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             labelText: labelText,
             isRequired: e.isRequired,
             child: answer.isNotEmpty
-                ? Wrap(
-                    runSpacing: 8,
-                    children: answer
-                        .map(
-                          (e) => _AnswerDesign(
-                            answer: e['name'],
-                            isFile: true,
-                            isImage: false,
-                            fileClick: () {
-                              widget.fileClick(
-                                  {'data': e['file'], 'title': e['name']});
-                            },
-                          ),
-                        )
-                        .toList(),
-                  )
+                ? _buildFilesWithSeeMore(answer)
                 : _AnswerDesign(
                     answer: '',
                   ));
@@ -558,29 +771,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             labelText: labelText,
             isRequired: e.isRequired,
             child: answer.isNotEmpty
-                ? GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: isTablet ? 5 : 3,
-                      mainAxisSpacing: 6,
-                      crossAxisSpacing: 6,
-                      childAspectRatio: 0.75,
-                    ),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: answer.length,
-                    itemBuilder: (context, index) {
-                      return _AnswerDesign(
-                        answer: answer[index]['file'],
-                        isImage: true,
-                        fileClick: () {
-                          widget.fileClick({
-                            'data': answer[index]['file'] ?? '',
-                            'title': answer[index]['name'] ?? ''
-                          });
-                        },
-                        imageBuild: widget.imageBuild,
-                      );
-                    })
+                ? _buildImagesWithSeeMore(answer)
                 // Wrap(
                 //     spacing: 8,
                 //     runSpacing: 8,
