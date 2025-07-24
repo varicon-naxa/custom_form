@@ -9,6 +9,7 @@ import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart'
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_file_picker.dart';
+import 'optimized_file_picker.dart';
 
 class VariconFilePickerField extends StatefulHookConsumerWidget {
   const VariconFilePickerField({
@@ -60,8 +61,8 @@ class _VariconFilePickerFieldState
   removeFileFromServer(Map<String, dynamic> file) {
     initalAttachments.removeWhere((element) => element['id'] == file['id']);
     List<Map<String, dynamic>> wholeAttachments = [
+      ...currentAttachments, // New attachments at the beginning
       ...initalAttachments,
-      ...currentAttachments
     ];
     setState(() {});
 
@@ -83,8 +84,8 @@ class _VariconFilePickerFieldState
       );
       currentAttachments = data;
       List<Map<String, dynamic>> wholeAttachments = [
+        ...data, // New attachments at the beginning (most recent first)
         ...initalAttachments,
-        ...data
       ];
 
       ref.read(currentStateNotifierProvider.notifier).saveList(
@@ -100,97 +101,49 @@ class _VariconFilePickerFieldState
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderFilePicker(
-      name: const Uuid().v4(),
-      customPainter: widget.customPainter,
-      previewImages: true,
-      allowMultiple: true,
-      allowCompression: true,
-      autovalidateMode: AutovalidateMode.onUserInteraction,
-      withData: true,
-      isLoading: isLoading,
-      previousImage: Wrap(
-        children: initalAttachments
-            .map(
-              (attachment) => Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                margin: const EdgeInsets.only(bottom: 10.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  border: Border.all(
+    return Column(
+      children: [
+        // Use optimized file picker for better performance
+        OptimizedFilePicker(
+          fieldId: widget.field.id,
+          savedCurrentFiles: (files) {
+            // Convert Attachment objects to Map format for compatibility
+            final fileMaps = files.map((file) => file.toJson()).toList();
+            ref.read(currentStateNotifierProvider.notifier).saveList(
+                  widget.field.id,
+                  fileMaps,
+                );
+          },
+          onFilesSelected: (files) async {
+            // Convert Attachment objects to file paths for upload
+            final filePaths = files.map((file) => file.file!).toList();
+            return await widget.attachmentSave(filePaths);
+          },
+          initialFiles:
+              initalAttachments.map((e) => Attachment.fromJson(e)).toList(),
+          fileBuild: (fileData) {
+            // This can be customized based on your needs
+            return Container(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                children: [
+                  Icon(
+                    Utils.getIconData(fileData['mime_type'] ?? ''),
                     color: Colors.grey,
-                    width: 1,
                   ),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Utils.getIconData(
-                        attachment['mime_type'],
-                      ),
-                      color: Colors.grey,
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      fileData['name'] ?? 'Unknown File',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    const SizedBox(width: 8.0),
-                    Expanded(
-                      child: Text(
-                        attachment['name'],
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        removeFileFromServer(attachment);
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          color: Colors.red.withValues(alpha: .7),
-                          shape: BoxShape.circle,
-                        ),
-                        alignment: Alignment.center,
-                        height: 18,
-                        width: 18,
-                        child: const Icon(
-                          Icons.close,
-                          size: 18,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )
-            .toList(),
-      ),
-      onChanged: (value) async {
-        List<PlatformFile> values = value ?? [];
-        isLoading.value = true;
-        await saveFileToServer(values);
-        isLoading.value = false;
-      },
-      validator: (value) {
-        if (widget.field.isRequired &&
-            ((value == null || value.isEmpty) && initalAttachments.isEmpty)) {
-          return "This field is required";
-        }
-        return null;
-      },
-      typeSelectors: const [
-        TypeSelector(
-          type: FileType.any,
-          selector: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Icon(Icons.file_present),
-              Padding(
-                padding: EdgeInsets.only(left: 8.0),
-                child: Text("Upload File"),
-              ),
-            ],
-          ),
+            );
+          },
+          allowedExtensions: const [], // Allow all file types
         ),
       ],
     );

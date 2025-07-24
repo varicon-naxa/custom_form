@@ -15,6 +15,8 @@ import '../widget/custom_location.dart';
 import '../widget/expandable_widget.dart';
 import '../widget/label_widget.dart';
 import '../widget/table_expandable_header_widget.dart';
+import 'optimized_response_image_widget.dart';
+import 'optimized_response_file_widget.dart';
 
 class ResponseInputWidget extends StatefulWidget {
   const ResponseInputWidget({
@@ -529,21 +531,27 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             labelText: labelText,
             isRequired: e.isRequired,
             child: answer.isNotEmpty
-                ? Wrap(
-                    runSpacing: 8,
-                    children: answer
-                        .map(
-                          (e) => _AnswerDesign(
-                            answer: e['name'],
-                            isFile: true,
-                            isImage: false,
-                            fileClick: () {
-                              widget.fileClick(
-                                  {'data': e['file'], 'title': e['name']});
-                            },
-                          ),
-                        )
+                ? OptimizedResponseFileWidget(
+                    files: answer
+                        .map((file) => Attachment.fromJson(file))
                         .toList(),
+                    fileBuild: (fileData) {
+                      return _AnswerDesign(
+                        answer: fileData['name'] ?? '',
+                        isFile: true,
+                        isImage: false,
+                        fileClick: () {
+                          widget.fileClick({
+                            'data': fileData['file'] ?? '',
+                            'title': fileData['name'] ?? ''
+                          });
+                        },
+                      );
+                    },
+                    onFileTap: (file) {
+                      widget.fileClick(
+                          {'data': file.file ?? '', 'title': file.name ?? ''});
+                    },
                   )
                 : _AnswerDesign(
                     answer: '',
@@ -558,45 +566,17 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             labelText: labelText,
             isRequired: e.isRequired,
             child: answer.isNotEmpty
-                ? GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: isTablet ? 5 : 3,
-                      mainAxisSpacing: 6,
-                      crossAxisSpacing: 6,
-                      childAspectRatio: 0.75,
-                    ),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: answer.length,
-                    itemBuilder: (context, index) {
-                      return _AnswerDesign(
-                        answer: answer[index]['file'],
-                        isImage: true,
-                        fileClick: () {
-                          widget.fileClick({
-                            'data': answer[index]['file'] ?? '',
-                            'title': answer[index]['name'] ?? ''
-                          });
-                        },
-                        imageBuild: widget.imageBuild,
-                      );
-                    })
-                // Wrap(
-                //     spacing: 8,
-                //     runSpacing: 8,
-                //     children: answer
-                //         .map(
-                //           (e) => _AnswerDesign(
-                //             answer: e['file'],
-                //             isImage: true,
-                //             containsLine: false,
-                //             imageBuild: widget.imageBuild,
-                //           ),
-                //         )
-                //         .toList(),
-
-                //     // _queueManager.getProcessedWidgets(),
-                //   )
+                ? OptimizedResponseImageWidget(
+                    images:
+                        answer.map((img) => Attachment.fromJson(img)).toList(),
+                    imageBuild: widget.imageBuild,
+                    onImageTap: (image) {
+                      widget.fileClick({
+                        'data': image.file ?? '',
+                        'title': image.name ?? ''
+                      });
+                    },
+                  )
                 : _AnswerDesign(
                     answer: '',
                   ));

@@ -16,6 +16,11 @@ class SimpleImagePickerProvider extends StateNotifier<List<Attachment>> {
     state = [...state, ...images];
   }
 
+  /// Adds multiple images to the beginning of the state (most recent first)
+  void addMultiImageAtBeginning(List<Attachment> images) {
+    state = [...images, ...state];
+  }
+
   void removeLocalImage(Attachment image) {
     state = state.where((i) => i.localId != image.localId).toList();
   }
@@ -59,6 +64,11 @@ class SimpleFilePickerNotifier extends StateNotifier<List<Attachment>> {
   /// Adds multiple files to the state
   void addMultiFile(List<Attachment> files) {
     state = [...state, ...files];
+  }
+
+  /// Adds multiple files to the beginning of the state (most recent first)
+  void addMultiFileAtBeginning(List<Attachment> files) {
+    state = [...files, ...state];
   }
 
   /// Adds all files to the state

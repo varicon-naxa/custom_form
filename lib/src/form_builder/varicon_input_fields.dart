@@ -15,6 +15,7 @@ import 'package:varicon_form_builder/src/form_elements/varicon_date_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_signature_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_multi_signature_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_file_picker_field.dart';
+import 'package:varicon_form_builder/src/form_elements/varicon_image_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_radio_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_checkbox_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_dropdown_field.dart';
@@ -211,42 +212,28 @@ class VariconInputFields extends ConsumerWidget {
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
-          child: FormFilePicker(
-            fileField: value,
+          child: VariconFilePickerField(
+            field: value,
             attachmentSave: attachmentSave,
+            customPainter: customPainter,
             labelText: labelText,
-            imageBuild: imageBuild,
           ),
-          //  VariconFilePickerField(
-          //   field: value,
-          //   attachmentSave: attachmentSave,
-          //   customPainter: customPainter,
-          //   labelText: labelText,
-          // ),
         );
       },
       images: (value) {
         return LabelWidget(
-            key: GlobalObjectKey(value.id),
-            isRequired: value.isRequired,
+          key: GlobalObjectKey(value.id),
+          isRequired: value.isRequired,
+          labelText: labelText,
+          child: VariconImageField(
+            field: value,
+            locationData: locationData,
+            customPainter: customPainter,
             labelText: labelText,
-            child: FormImagePicker(
-              imageField: value,
-              labelText: labelText,
-              locationData: locationData,
-              imageBuild: imageBuild,
-              customPainter: customPainter,
-              attachmentSave: attachmentSave,
-            )
-            // VariconImageField(
-            //   field: value,
-            //   locationData: locationData,
-            //   customPainter: customPainter,
-            //   labelText: labelText,
-            //   imageBuild: imageBuild,
-            //   attachmentSave: attachmentSave,
-            // ),
-            );
+            imageBuild: imageBuild,
+            attachmentSave: attachmentSave,
+          ),
+        );
       },
       radiogroup: (value) {
         return LabelWidget(

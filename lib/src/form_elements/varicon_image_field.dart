@@ -11,6 +11,7 @@ import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_image_picker.dart';
 import '../helpers/utils.dart';
 import 'package:intl/intl.dart';
+import 'optimized_image_picker.dart';
 
 class VariconImageField extends StatefulHookConsumerWidget {
   const VariconImageField({
@@ -71,8 +72,8 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   removeFileFromServer(Map<String, dynamic> file) {
     initalAttachments.removeWhere((element) => element['id'] == file['id']);
     List<Map<String, dynamic>> wholeAttachments = [
+      ...currentAttachments, // New attachments at the beginning
       ...initalAttachments,
-      ...currentAttachments
     ];
     setState(() {});
 
@@ -113,8 +114,8 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
       }
       currentAttachments = data;
       List<Map<String, dynamic>> wholeAttachments = [
+        ...data, // New attachments at the beginning (most recent first)
         ...initalAttachments,
-        ...data
       ];
 
       ref.read(currentStateNotifierProvider.notifier).saveList(
@@ -136,116 +137,27 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FormBuilderImagePicker(
-          key: Key(const Uuid().v4()),
+        // Use optimized image picker for better performance
+        OptimizedImagePicker(
+          fieldId: widget.field.id,
+          savedCurrentImages: (images) {
+            // Convert Attachment objects to Map format for compatibility
+            final imageMaps = images.map((img) => img.toJson()).toList();
+            ref.read(currentStateNotifierProvider.notifier).saveList(
+                  widget.field.id,
+                  imageMaps,
+                );
+          },
+          onImagesSelected: (images) async {
+            // Convert Attachment objects to file paths for upload
+            final filePaths = images.map((img) => img.file!).toList();
+            return await widget.attachmentSave(filePaths);
+          },
+          initialImages:
+              initalAttachments.map((e) => Attachment.fromJson(e)).toList(),
+          imageBuild: widget.imageBuild,
           customPainter: widget.customPainter,
-          isLoading: isLoading,
-          isError: isError,
           locationData: widget.locationData,
-          preventPop: true,
-          name: const Uuid().v4(),
-          autovalidateMode: AutovalidateMode.onUserInteraction,
-          imageQuality: 40,
-          availableImageSources: const [
-            ImageSourceOption.gallery,
-            ImageSourceOption.camera
-          ],
-          initialWidget: Consumer(builder: (context, ref, child) {
-            return Wrap(
-              children: [
-                ...initalAttachments.map((e) {
-                  // final isLoading = loadingStates.isNotEmpty;
-                  return Stack(
-                    key: ObjectKey(e),
-                    children: <Widget>[
-                      Container(
-                          height: 75,
-                          margin: const EdgeInsets.only(
-                            right: 8.0,
-                          ),
-                          width: 75,
-                          decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Stack(
-                            children: [
-                              widget.imageBuild({
-                                'image': e['file'],
-                                'height': 75.0,
-                                'width': 75.0,
-                                'id': e['id'],
-                              }),
-                              // if (isLoading)
-                              //   Positioned.fill(
-                              //     child: Container(
-                              //       decoration: BoxDecoration(
-                              //         color: Colors.black.withOpacity(0.1),
-                              //         borderRadius: BorderRadius.circular(8.0),
-                              //       ),
-                              //       child: const Center(
-                              //         child: SizedBox(
-                              //           width: 20,
-                              //           height: 20,
-                              //           child: CircularProgressIndicator(
-                              //             strokeWidth: 2,
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     ),
-                              //   ),
-                            ],
-                          )),
-                      PositionedDirectional(
-                        top: 0,
-                        end: 12,
-                        child: InkWell(
-                          onTap:
-                              // isLoading
-                              //     ? null
-                              //     :
-
-                              () {
-                            removeFileFromServer(e);
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.all(3),
-                            decoration: const BoxDecoration(
-                              color: Colors.red,
-                              shape: BoxShape.circle,
-                            ),
-                            alignment: Alignment.center,
-                            height: 18,
-                            width: 18,
-                            child: const Icon(
-                              Icons.close,
-                              size: 12,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                }),
-              ],
-            );
-          }),
-          onChanged: (value) async {
-            await saveFileToServer(value ?? []);
-            isLoading.value = false;
-          },
-          validator: (value) {
-            if (widget.field.isRequired &&
-                ((value == null || value.isEmpty) &&
-                    initalAttachments.isEmpty)) {
-              return "This field is required";
-            }
-            return null;
-          },
-          maxImages: 10,
         ),
       ],
     );

@@ -315,7 +315,8 @@ class _SimpleFilePickerState extends ConsumerState<SimpleFilePicker> {
 
     ref
         .read(simpleFilePickerProvider(widget.fieldId).notifier)
-        .addMultiFile(attachments);
+        .addMultiFileAtBeginning(
+            attachments); // Add at beginning (most recent first)
     _updateFileList();
 
     try {
