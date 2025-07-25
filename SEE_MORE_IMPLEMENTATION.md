@@ -75,6 +75,7 @@ final filesToShow = showSeeMore ? isUploaded.take(initialFileCount).toList() : i
 - Preserves all existing functionality (camera, gallery, editing, removal)
 - No changes to existing APIs or component interfaces
 - **Reactive State Management**: Dialog content updates automatically when items are removed
+- **Image Editor Integration**: Camera images properly redirect to image editor before processing
 
 ### ✅ **Performance Optimization**
 - Only renders 5 items initially

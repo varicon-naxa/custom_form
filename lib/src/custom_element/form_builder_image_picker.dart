@@ -200,7 +200,7 @@ class FormBuilderImagePicker
                         state.focus();
                         final newImages =
                             image.map((img) => createImageMap(img)).toList();
-                        final newValue = [...value, ...newImages];
+                        final newValue = [...newImages, ...value];
                         field.didChange(newValue);
                         onAdd?.call(newImages);
                         Navigator.pop(state.context);
@@ -356,15 +356,18 @@ class FormBuilderImagePicker
             // Add "See More" functionality
             final initialImageCount = 5;
             final showSeeMore = value.length > initialImageCount;
-            final imagesToShow = showSeeMore ? value.take(initialImageCount).toList() : value;
-            
+            final imagesToShow =
+                showSeeMore ? value.take(initialImageCount).toList() : value;
+
             final child = Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Wrap(
                   runSpacing: 8,
                   children: [
-                    canUpload ? addButtonBuilder(state.context) : const SizedBox(),
+                    canUpload
+                        ? addButtonBuilder(state.context)
+                        : const SizedBox(),
                     SizedBox(
                       width: canUpload ? 12.0 : 0,
                     ),
@@ -392,9 +395,13 @@ class FormBuilderImagePicker
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: [
-                                      const Text('All Images', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                                      const Text('All Images',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold)),
                                       IconButton(
                                         onPressed: () => Navigator.pop(context),
                                         icon: const Icon(Icons.close),
@@ -404,13 +411,15 @@ class FormBuilderImagePicker
                                   const SizedBox(height: 16),
                                   Wrap(
                                     runSpacing: 8,
-                                    children: value.map(
-                                      (e) => itemBuilder(
-                                        context,
-                                        e,
-                                        value.indexOf(e),
-                                      ),
-                                    ).toList(),
+                                    children: value
+                                        .map(
+                                          (e) => itemBuilder(
+                                            context,
+                                            e,
+                                            value.indexOf(e),
+                                          ),
+                                        )
+                                        .toList(),
                                   ),
                                 ],
                               ),
@@ -419,21 +428,24 @@ class FormBuilderImagePicker
                         );
                       },
                       child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                          color: Colors.blue.withOpacity(0.1),
+                          color: Colors.black.withOpacity(0.1),
                           borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                          border:
+                              Border.all(color: Colors.black.withOpacity(0.3)),
                         ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            const Icon(Icons.keyboard_arrow_down, size: 16, color: Colors.blue),
+                            const Icon(Icons.keyboard_arrow_down,
+                                size: 16, color: Colors.black),
                             const SizedBox(width: 4),
                             Text(
                               'See More (${value.length - initialImageCount} more)',
                               style: const TextStyle(
-                                color: Colors.blue,
+                                color: Colors.black,
                                 fontSize: 12,
                                 fontWeight: FontWeight.w500,
                               ),

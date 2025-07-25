@@ -202,7 +202,7 @@ class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
     if (!mounted) return;
 
     if (resultList != null) {
-      setState(() => _files = [..._files, ...resultList!.files]);
+      setState(() => _files = [...resultList!.files, ..._files]);
       field.didChange(_files);
     }
   }
@@ -406,20 +406,20 @@ class _FormBuilderFilePickerState extends FormBuilderFieldDecorationState<
                     padding:
                         const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
-                      color: Colors.blue.withOpacity(0.1),
+                      color: Colors.black.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                      border: Border.all(color: Colors.black.withOpacity(0.3)),
                     ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         const Icon(Icons.keyboard_arrow_down,
-                            size: 16, color: Colors.blue),
+                            size: 16, color: Colors.black),
                         const SizedBox(width: 4),
                         Text(
                           'See More (${files.length - initialFileCount} more)',
                           style: const TextStyle(
-                            color: Colors.blue,
+                            color: Colors.black,
                             fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),

@@ -229,15 +229,16 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 12, vertical: 6),
                       decoration: BoxDecoration(
-                        color: Colors.blue.withOpacity(0.1),
+                        color: Colors.black.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.blue.withOpacity(0.3)),
+                        border:
+                            Border.all(color: Colors.black.withOpacity(0.3)),
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Icon(Icons.keyboard_arrow_down,
-                              size: 16, color: Colors.blue),
+                              size: 16, color: Colors.black),
                           const SizedBox(width: 4),
                           Consumer(
                             builder: (context, ref, child) {
@@ -248,7 +249,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
                               return Text(
                                 'See More ($remainingCount more)',
                                 style: const TextStyle(
-                                  color: Colors.blue,
+                                  color: Colors.black,
                                   fontSize: 12,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -484,7 +485,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     if (image != null) {
       final compressedFile = await compressMaxImage(image.path);
       if (compressedFile != null) {
-        await _processSingleImage(XFile(compressedFile.path));
+        await _processSingleImageWithEditor(XFile(compressedFile.path));
       }
     }
   }
@@ -516,7 +517,33 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     }
   }
 
-  /// Processes a single image from camera
+  /// Processes a single image from camera with image editor
+  Future<void> _processSingleImageWithEditor(XFile image) async {
+    if (await _validateImageSize(image)) {
+      final File imageFile = File(image.path);
+
+      // Navigate to image editor for camera images
+      final editedImage = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => widget.customPainter(imageFile),
+        ),
+      );
+
+      if (editedImage != null) {
+        // Add timestamp and location to the edited image
+        final File? finalImage = await _editImage(
+          editedImage, // editedImage is already Uint8List
+          widget.locationData,
+        );
+        if (finalImage != null) {
+          await _uploadSingleImage(finalImage);
+        }
+      }
+    }
+  }
+
+  /// Processes a single image from camera (for gallery images)
   Future<void> _processSingleImage(XFile image) async {
     if (await _validateImageSize(image)) {
       final File? editedImage = await _editImage(
