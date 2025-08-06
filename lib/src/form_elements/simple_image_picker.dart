@@ -183,46 +183,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
                     onTap: () {
                       showDialog(
                         context: context,
-                        builder: (context) => Dialog(
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text('All Images',
-                                        style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold)),
-                                    IconButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      icon: const Icon(Icons.close),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 16),
-                                Consumer(
-                                  builder: (context, ref, child) {
-                                    final currentImages = ref.watch(
-                                        simpleImagePickerProvider(
-                                            widget.fieldId));
-                                    return Wrap(
-                                      spacing: 8,
-                                      runSpacing: 8,
-                                      children: currentImages
-                                          .map((image) =>
-                                              _buildImagePreview(image))
-                                          .toList(),
-                                    );
-                                  },
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                        builder: (context) => _buildPaginatedImageDialog(),
                       );
                     },
                     child: Container(
@@ -350,6 +311,48 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
             size: ImagePickerConfig.previewImageCloseIconSize,
             color: Colors.white,
           ),
+        ),
+      ),
+    );
+  }
+
+  /// Builds the paginated image dialog
+  Widget _buildPaginatedImageDialog() {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        constraints: const BoxConstraints(maxHeight: 600),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('All Images',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.close),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final currentImages =
+                      ref.watch(simpleImagePickerProvider(widget.fieldId));
+                  // Show only the remaining images (after the first 5 shown in main view)
+                  final remainingImages = currentImages.skip(5).toList();
+                  return _PaginatedImageGrid(
+                    images: remainingImages,
+                    onImageTap: (image) => _buildImagePreview(image),
+                  );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -781,5 +784,89 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
       debugPrint('Error picking image: $e');
       return null;
     }
+  }
+}
+
+/// A widget that displays images in a paginated grid
+class _PaginatedImageGrid extends StatefulWidget {
+  final List<Attachment> images;
+  final Widget Function(Attachment) onImageTap;
+
+  const _PaginatedImageGrid({
+    required this.images,
+    required this.onImageTap,
+  });
+
+  @override
+  State<_PaginatedImageGrid> createState() => _PaginatedImageGridState();
+}
+
+class _PaginatedImageGridState extends State<_PaginatedImageGrid> {
+  static const int _imagesPerPage = 10;
+  int _currentPage = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final totalPages = (widget.images.length / _imagesPerPage).ceil();
+    final startIndex = _currentPage * _imagesPerPage;
+    final endIndex =
+        (startIndex + _imagesPerPage).clamp(0, widget.images.length);
+    final currentPageImages = widget.images.sublist(startIndex, endIndex);
+
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: currentPageImages
+                  .map((image) => widget.onImageTap(image))
+                  .toList(),
+            ),
+          ),
+        ),
+        if (totalPages > 1) ...[
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(color: Colors.grey.withOpacity(0.3)),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: _currentPage > 0
+                      ? () => setState(() => _currentPage--)
+                      : null,
+                  icon: const Icon(Icons.chevron_left),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    'Page ${_currentPage + 1} of $totalPages',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                IconButton(
+                  onPressed: _currentPage < totalPages - 1
+                      ? () => setState(() => _currentPage++)
+                      : null,
+                  icon: const Icon(Icons.chevron_right),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
   }
 }
