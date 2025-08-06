@@ -343,10 +343,9 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
                 builder: (context, ref, child) {
                   final currentImages =
                       ref.watch(simpleImagePickerProvider(widget.fieldId));
-                  // Show only the remaining images (after the first 5 shown in main view)
-                  final remainingImages = currentImages.skip(5).toList();
+                  // Show all images in the dialog (including the first 5 from main view)
                   return _PaginatedImageGrid(
-                    images: remainingImages,
+                    images: currentImages,
                     onImageTap: (image) => _buildImagePreview(image),
                   );
                 },
@@ -787,7 +786,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   }
 }
 
-/// A widget that displays images in a paginated grid
+/// A widget that displays images in a paginated grid with lazy loading
 class _PaginatedImageGrid extends StatefulWidget {
   final List<Attachment> images;
   final Widget Function(Attachment) onImageTap;
@@ -803,15 +802,76 @@ class _PaginatedImageGrid extends StatefulWidget {
 
 class _PaginatedImageGridState extends State<_PaginatedImageGrid> {
   static const int _imagesPerPage = 10;
+  static const int _batchSize = 3; // Load 3 images at a time
   int _currentPage = 0;
+  int _loadedImagesCount = 0;
+  final List<Attachment> _loadedImages = [];
 
   @override
-  Widget build(BuildContext context) {
-    final totalPages = (widget.images.length / _imagesPerPage).ceil();
+  void initState() {
+    super.initState();
+    _loadNextBatch();
+  }
+
+  void _loadNextBatch() {
+    if (_loadedImagesCount >= widget.images.length) return;
+
     final startIndex = _currentPage * _imagesPerPage;
     final endIndex =
         (startIndex + _imagesPerPage).clamp(0, widget.images.length);
     final currentPageImages = widget.images.sublist(startIndex, endIndex);
+
+    final remainingToLoad = currentPageImages.length - _loadedImages.length;
+    final batchSize =
+        remainingToLoad > _batchSize ? _batchSize : remainingToLoad;
+
+    if (batchSize > 0) {
+      final nextBatch = currentPageImages.sublist(
+          _loadedImages.length, _loadedImages.length + batchSize);
+      _loadedImages.addAll(nextBatch);
+      _loadedImagesCount += batchSize;
+
+      if (mounted) {
+        setState(() {});
+      }
+
+      // Load next batch after a short delay
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (mounted) {
+          _loadNextBatch();
+        }
+      });
+    }
+  }
+
+  void _onPageChanged(int newPage) {
+    setState(() {
+      _currentPage = newPage;
+      _loadedImages.clear();
+      _loadedImagesCount = 0;
+    });
+    _loadNextBatch();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Handle empty images list
+    if (widget.images.isEmpty) {
+      return const Center(
+        child: Text('No images to display'),
+      );
+    }
+
+    final totalPages = (widget.images.length / _imagesPerPage).ceil();
+    final startIndex = _currentPage * _imagesPerPage;
+    final endIndex =
+        (startIndex + _imagesPerPage).clamp(0, widget.images.length);
+
+    // Ensure we don't go out of bounds
+    if (startIndex >= widget.images.length) {
+      _currentPage = 0;
+      return build(context);
+    }
 
     return Column(
       children: [
@@ -820,9 +880,25 @@ class _PaginatedImageGridState extends State<_PaginatedImageGrid> {
             child: Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: currentPageImages
-                  .map((image) => widget.onImageTap(image))
-                  .toList(),
+              children: [
+                ..._loadedImages.map((image) => widget.onImageTap(image)),
+                if (_loadedImages.length < (endIndex - startIndex))
+                  ...List.generate(
+                    (endIndex - startIndex) - _loadedImages.length,
+                    (index) => Container(
+                      height: ImagePickerConfig.previewImageSize,
+                      width: ImagePickerConfig.previewImageSize,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(
+                            ImagePickerConfig.previewImageBorderRadius),
+                      ),
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  ),
+              ],
             ),
           ),
         ),
@@ -840,7 +916,7 @@ class _PaginatedImageGridState extends State<_PaginatedImageGrid> {
               children: [
                 IconButton(
                   onPressed: _currentPage > 0
-                      ? () => setState(() => _currentPage--)
+                      ? () => _onPageChanged(_currentPage - 1)
                       : null,
                   icon: const Icon(Icons.chevron_left),
                 ),
@@ -858,7 +934,7 @@ class _PaginatedImageGridState extends State<_PaginatedImageGrid> {
                 ),
                 IconButton(
                   onPressed: _currentPage < totalPages - 1
-                      ? () => setState(() => _currentPage++)
+                      ? () => _onPageChanged(_currentPage + 1)
                       : null,
                   icon: const Icon(Icons.chevron_right),
                 ),
