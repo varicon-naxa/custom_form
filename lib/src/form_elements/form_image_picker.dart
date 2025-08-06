@@ -75,6 +75,12 @@ class FormImagePicker extends ConsumerWidget {
                 field.didChange(images);
               },
             ),
+            const Text(
+              'You can only select up to 10 images at once and 25 images in total',
+              style: TextStyle(
+                fontSize: 12,
+              ),
+            ),
             if (field.hasError)
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),

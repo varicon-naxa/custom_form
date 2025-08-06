@@ -21,8 +21,8 @@ import 'package:mime/mime.dart';
 class ImagePickerConfig {
   static const double maxImageSizeMB = 25.0;
   static const int imageQuality = 80;
-  static const int maxMultiImageLimit = 5;
-  static const int maxTotalImageLimit = 15;
+  static const int maxMultiImageLimit = 10;
+  static const int maxTotalImageLimit = 25;
   static const double previewImageSize = 100.0;
   static const double previewImageIconSize = 32.0;
   static const double previewImageCloseIconSize = 16.0;
@@ -773,11 +773,11 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
         imageQuality: ImagePickerConfig.imageQuality,
         limit: ImagePickerConfig.maxMultiImageLimit,
       );
-      if (result.isNotEmpty && result.length > 5) {
-        _showErrorToast('You can only select up to 5 images.');
+      if (result.isNotEmpty && result.length > 10) {
+        _showErrorToast('You can only select up to 10 images.');
 
         /// return first 5 images here
-        return result.sublist(0, 5);
+        return result.sublist(0, 10);
       }
       return result;
     } catch (e) {
