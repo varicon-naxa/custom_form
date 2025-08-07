@@ -88,44 +88,78 @@ class _SurveyPageState extends State<SurveyPage> {
         log(valueList.toString());
       },
       apiCall: (mapData) async {
+        List<Map<String, dynamic>> data = [
+          {"id": '12345', "label": 'equipment1'},
+          {"id": '54123', "label": 'equipment2'},
+          {"id": '123461', "label": 'equipment3'},
+          {"id": '123462', "label": 'excavator'},
+          {"id": '123463', "label": 'dozer'},
+          {"id": '123464', "label": 'wheel loader'},
+          {"id": '123465', "label": 'grader'},
+          {"id": '123466', "label": 'crane'},
+          {"id": '123467', "label": 'puller'},
+          {"id": '123468', "label": 'bulldozer'},
+          {"id": '123469', "label": 'hydraulic excavator'},
+          {"id": '1234610', "label": 'crawler excavator'},
+          {"id": '1234611', "label": 'crawler dozer'},
+          {"id": '1234612', "label": 'crawler wheel loader'},
+          {"id": '1234613', "label": 'crawler grader'},
+          {"id": '1234614', "label": 'crawler crane'},
+          {"id": '1234615', "label": 'crawler puller'},
+          {"id": '1234616', "label": 'crawler bulldozer'},
+          {"id": '1234617', "label": 'crawler hydraulic excavator'},
+          {"id": '1234618', "label": 'crawler crawler excavator'},
+        ];
+
         if (mapData['page'] == '1' && mapData['q'].toString().isEmpty) {
           await Future.delayed(const Duration(seconds: 2));
-          return [
-            {"id": '12345', "label": 'equipment1'},
-            {"id": '54123', "label": 'equipment2'},
-            {"id": '123461', "label": 'equipment3'},
-            {"id": '123462', "label": 'equipment31'},
-            {"id": '123463', "label": 'equipment32'},
-            {"id": '123464', "label": 'equipment33'},
-            {"id": '123465', "label": 'equipment34'},
-            {"id": '123466', "label": 'equipment35'},
-            {"id": '123467', "label": 'equipment36'},
-            {"id": '123468', "label": 'equipment37'},
-            {"id": '123469', "label": 'equipment38'},
-            {"id": '1234610', "label": 'equipment39'},
-            {"id": '1234611', "label": 'equipment310'},
-          ];
+          return data;
         } else if (mapData['page'] == '2') {
-          await Future.delayed(const Duration(seconds: 5));
+          await Future.delayed(const Duration(seconds: 2));
           return [
             {'id': '123451', 'label': 'equipment4'},
             {'id': '541213', 'label': 'equipment5'},
             {'id': '123146', 'label': 'equipment6'},
+            {'id': '123147', 'label': 'equipment7'},
+            {'id': '123148', 'label': 'equipment8'},
+            {'id': '123149', 'label': 'equipment9'},
+            {'id': '123150', 'label': 'equipment10'},
+            {'id': '123151', 'label': 'equipment11'},
+            {'id': '123152', 'label': 'equipment12'},
+            {'id': '123153', 'label': 'equipment13'},
+            {'id': '123154', 'label': 'equipment14'},
+            {'id': '123155', 'label': 'equipment15'},
+            {'id': '123156', 'label': 'equipment16'},
+            {'id': '123157', 'label': 'equipment17'},
+            {'id': '123158', 'label': 'equipment18'},
+            {'id': '123159', 'label': 'equipment19'},
+            {'id': '123160', 'label': 'equipment20'},
+            {'id': '123161', 'label': 'equipment21'},
           ];
         } else if (mapData['page'] == '1' &&
             mapData['q'].toString().isNotEmpty) {
-          await Future.delayed(const Duration(seconds: 5));
-          return [
-            {'id': '121345', 'label': 'equipment7'},
-            {'id': '5411123', 'label': 'equipment8'},
-            {'id': '123416', 'label': 'equipment9'},
-          ];
+          await Future.delayed(const Duration(seconds: 2));
+          return data.where((e) => e['label'].contains(mapData['q'])).toList();
         } else {
           await Future.delayed(const Duration(seconds: 5));
           return [
             {'id': '132345', 'label': 'equipment10'},
             {'id': '154123', 'label': 'equipment11'},
             {'id': '212346', 'label': 'equipment12'},
+            {'id': '212347', 'label': 'equipment13'},
+            {'id': '212348', 'label': 'equipment14'},
+            {'id': '212349', 'label': 'equipment15'},
+            {'id': '212350', 'label': 'equipment16'},
+            {'id': '212351', 'label': 'equipment17'},
+            {'id': '212352', 'label': 'equipment18'},
+            {'id': '212353', 'label': 'equipment19'},
+            {'id': '212354', 'label': 'equipment20'},
+            {'id': '212355', 'label': 'equipment21'},
+            {'id': '212356', 'label': 'equipment22'},
+            {'id': '212357', 'label': 'equipment23'},
+            {'id': '212358', 'label': 'equipment24'},
+            {'id': '212359', 'label': 'equipment25'},
+            {'id': '212360', 'label': 'equipment26'},
           ];
         }
       },

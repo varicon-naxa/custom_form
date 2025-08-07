@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:uuid/uuid.dart';
@@ -41,6 +42,9 @@ class _CustomFormBuilderQueryDropdownState
   bool startSearch = true;
   bool isLoading = true;
 
+  // Debouncer for search
+  Timer? _debounceTimer;
+
   ///Method to call paginated api
   ///
   ///Accepts query string to search
@@ -60,7 +64,14 @@ class _CustomFormBuilderQueryDropdownState
           startSearch = false;
         }
         isLoading = false;
-        searchedChoice = [...searchedChoice, ...retrievedData];
+
+        // If it's a new search (page = 1), replace the list
+        // If it's pagination (page > 1), append to the list
+        if (page == 1) {
+          searchedChoice = retrievedData;
+        } else {
+          searchedChoice = [...searchedChoice, ...retrievedData];
+        }
 
         page = page + 1;
       });
@@ -103,6 +114,7 @@ class _CustomFormBuilderQueryDropdownState
   @override
   void dispose() {
     _scrollController.dispose();
+    _debounceTimer?.cancel();
     super.dispose();
   }
 
@@ -127,12 +139,22 @@ class _CustomFormBuilderQueryDropdownState
             ),
             controller: searchCon,
             onChanged: (value) {
+              // Cancel previous timer
+              _debounceTimer?.cancel();
+
+              // Set loading state
               setState(() {
                 page = 1;
                 isLoading = true;
                 searchedChoice = [];
               });
-              hitApi(value);
+
+              // Debounce the API call
+              _debounceTimer = Timer(const Duration(milliseconds: 500), () {
+                if (mounted) {
+                  hitApi(value);
+                }
+              });
             }),
         isLoading
             ? const CircularProgressIndicator.adaptive()
