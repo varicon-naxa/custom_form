@@ -38,6 +38,7 @@ class VariconInputFields extends ConsumerWidget {
   final Widget Function(File imageFile) customPainter;
   final String locationData;
   final Function(Map<String, dynamic> url) fileClick;
+  final bool hasCustomPainter;
 
   const VariconInputFields({
     super.key,
@@ -49,6 +50,7 @@ class VariconInputFields extends ConsumerWidget {
     this.apiCall,
     required this.locationData,
     required this.fileClick,
+    required this.hasCustomPainter,
   });
 
   @override
@@ -231,6 +233,7 @@ class VariconInputFields extends ConsumerWidget {
             isRequired: value.isRequired,
             labelText: labelText,
             child: FormImagePicker(
+              hasCustomPainter: hasCustomPainter,
               imageField: value,
               labelText: labelText,
               locationData: locationData,

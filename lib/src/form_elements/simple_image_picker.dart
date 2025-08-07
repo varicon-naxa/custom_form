@@ -46,6 +46,7 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
     this.initialImages = const [],
     required this.imageBuild,
     required this.customPainter,
+    required this.hasCustomPainter,
     required this.locationData,
   });
 
@@ -70,6 +71,9 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
 
   /// Location data to be added to images
   final String locationData;
+
+  /// to handle the use of custom painter
+  final bool hasCustomPainter;
 
   @override
   ConsumerState<SimpleImagePicker> createState() => _SimpleImagePickerState();
@@ -523,7 +527,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   Future<void> _processSingleImageWithEditor(XFile image) async {
     if (await _validateImageSize(image)) {
       final File imageFile = File(image.path);
-      if (widget.customPainter != null) {
+      if (widget.hasCustomPainter) {
         // Navigate to image editor for camera images
         final editedImage = await Navigator.push(
           context,

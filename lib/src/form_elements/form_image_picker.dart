@@ -16,8 +16,10 @@ class FormImagePicker extends ConsumerWidget {
     required this.imageBuild,
     required this.customPainter,
     required this.attachmentSave,
+    required this.hasCustomPainter,
   });
   final ImageInputField imageField;
+  final bool hasCustomPainter;
   final String labelText;
   final String locationData;
 
@@ -57,6 +59,7 @@ class FormImagePicker extends ConsumerWidget {
               fieldId: imageField.id,
               imageBuild: imageBuild,
               customPainter: customPainter,
+              hasCustomPainter: hasCustomPainter,
               locationData: locationData,
               initialImages: imageField.answer
                       ?.map((e) => Attachment.fromJson(e))

@@ -84,6 +84,7 @@ class VariconAdvanceTableField extends ConsumerWidget {
                   field: singleField,
                   apiCall: apiCall,
                   customPainter: customPainter,
+                  hasCustomPainter: true,
                   imageBuild: imageBuild,
                   attachmentSave: attachmentSave,
                   fileClick: fileClick,
