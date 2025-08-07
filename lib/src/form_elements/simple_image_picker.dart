@@ -89,8 +89,9 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   /// Initializes the widget with any provided initial images
   void _initializeImages() {
     Future.microtask(() {
-      ref.invalidate(simpleImagePickerProvider(widget.fieldId));
-      if (widget.initialImages.isNotEmpty) {
+      // Only add initial images if the provider is empty
+      final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
+      if (currentImages.isEmpty && widget.initialImages.isNotEmpty) {
         ref
             .read(simpleImagePickerProvider(widget.fieldId).notifier)
             .addAll(widget.initialImages);
@@ -551,8 +552,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
         final finalImage = await _convertUint8ListToFile(
           await image.readAsBytes(),
         );
-          await _uploadSingleImage(finalImage);
-        
+        await _uploadSingleImage(finalImage);
       }
     }
   }
