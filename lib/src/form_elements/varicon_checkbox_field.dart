@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -72,8 +70,6 @@ class VariconCheckboxField extends ConsumerWidget {
             } else {
               ref.read(linklabelProvider.notifier).remove(field.id);
             }
-
-            log('Selected: $isSelected, Text: $text');
           },
           actionMessage: field.actionMessage,
           validator: (value) {

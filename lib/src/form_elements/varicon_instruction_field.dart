@@ -16,7 +16,7 @@ class VariconInstructionField extends ConsumerWidget {
   final String labelText;
 
   ///Function to build image
-  final Widget Function(Map<String, dynamic>) imageBuild;
+  final Widget? Function(Map<String, dynamic>) imageBuild;
 
   ///Function to call on tap o field
   final Function(Map<String, dynamic> url) fileClick;

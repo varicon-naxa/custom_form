@@ -66,7 +66,7 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
   final Widget Function(Map<String, dynamic>) imageBuild;
 
   /// Custom painter for image editing
-  final Widget Function(File imageFile) customPainter;
+  final Widget? Function(File imageFile) customPainter;
 
   /// Location data to be added to images
   final String locationData;
@@ -523,24 +523,32 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   Future<void> _processSingleImageWithEditor(XFile image) async {
     if (await _validateImageSize(image)) {
       final File imageFile = File(image.path);
-
-      // Navigate to image editor for camera images
-      final editedImage = await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => widget.customPainter(imageFile),
-        ),
-      );
-
-      if (editedImage != null) {
-        // Add timestamp and location to the edited image
-        final File? finalImage = await _editImage(
-          editedImage, // editedImage is already Uint8List
-          widget.locationData,
+      if (widget.customPainter != null) {
+        // Navigate to image editor for camera images
+        final editedImage = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => widget.customPainter(imageFile)!,
+          ),
         );
-        if (finalImage != null) {
-          await _uploadSingleImage(finalImage);
+
+        if (editedImage != null) {
+          // Add timestamp and location to the edited image
+          final File? finalImage = await _editImage(
+            editedImage, // editedImage is already Uint8List
+            widget.locationData,
+          );
+          if (finalImage != null) {
+            await _uploadSingleImage(finalImage);
+          }
         }
+      } else {
+        //_convertUint8ListToFile
+        final finalImage = await _convertUint8ListToFile(
+          await image.readAsBytes(),
+        );
+          await _uploadSingleImage(finalImage);
+        
       }
     }
   }

@@ -31,7 +31,7 @@ class VariconAdvanceTableField extends ConsumerWidget {
 
   ///Function to build image
   final Widget Function(Map<String, dynamic>) imageBuild;
-  final Widget Function(File imageFile) customPainter;
+  final Widget? Function(File imageFile) customPainter;
 
   final Future<List<Map<String, dynamic>>> Function(List<String>)
       attachmentSave;
