@@ -69,7 +69,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
   final void Function(List<Map<String, dynamic>> formValue) onSubmit;
 
   ///Widget for custom image painter
-  final Widget? Function(File imageFile) customPainter;
+  final Widget Function(File imageFile) customPainter;
 
   ///Current Location
   final String locationData;

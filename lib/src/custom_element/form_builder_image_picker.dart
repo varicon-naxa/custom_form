@@ -97,7 +97,7 @@ class FormBuilderImagePicker
   final WidgetBuilder? loadingWidget;
   final Widget? initialWidget;
   final String locationData;
-  final Widget Function(File imageFile) customPainter;
+  final Widget? Function(File imageFile) customPainter;
   final ValueNotifier<bool> isLoading;
   final ValueNotifier<bool> isError;
 

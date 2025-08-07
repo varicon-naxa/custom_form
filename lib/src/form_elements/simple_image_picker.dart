@@ -66,7 +66,7 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
   final Widget Function(Map<String, dynamic>) imageBuild;
 
   /// Custom painter for image editing
-  final Widget? Function(File imageFile) customPainter;
+  final Widget Function(File imageFile) customPainter;
 
   /// Location data to be added to images
   final String locationData;

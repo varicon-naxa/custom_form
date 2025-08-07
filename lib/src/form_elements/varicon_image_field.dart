@@ -28,7 +28,7 @@ class VariconImageField extends StatefulHookConsumerWidget {
   final String locationData;
 
   final Widget Function(Map<String, dynamic>) imageBuild;
-  final Widget Function(File imageFile) customPainter;
+  final Widget? Function(File imageFile) customPainter;
 
   ///Function to save attachment
   final Future<List<Map<String, dynamic>>> Function(List<String>)

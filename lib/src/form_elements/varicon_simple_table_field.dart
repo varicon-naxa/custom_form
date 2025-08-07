@@ -37,7 +37,7 @@ class VariconSimpleTableField extends ConsumerWidget {
 
   final Future<List<dynamic>> Function(Map<String, dynamic>)? apiCall;
 
-  final Widget? Function(File imageFile) customPainter;
+  final Widget Function(File imageFile) customPainter;
   final String locationData;
   final Function(Map<String, dynamic> url) fileClick;
 
