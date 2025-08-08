@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
 import 'dart:io';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -349,6 +350,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
                       ref.watch(simpleImagePickerProvider(widget.fieldId));
                   // Show all images in the dialog (including the first 5 from main view)
                   return _PaginatedImageGrid(
+                    key: ValueKey('paginated_grid_${currentImages.length}'),
                     images: currentImages,
                     onImageTap: (image) => _buildImagePreview(image),
                   );
@@ -367,6 +369,11 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
         .read(simpleImagePickerProvider(widget.fieldId).notifier)
         .removeImage(image);
     _updateImageList();
+
+    // Force a rebuild of the dialog if it's open
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   /// Updates the image list in the state
@@ -551,8 +558,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
         final finalImage = await _convertUint8ListToFile(
           await image.readAsBytes(),
         );
-          await _uploadSingleImage(finalImage);
-        
+        await _uploadSingleImage(finalImage);
       }
     }
   }
@@ -804,6 +810,7 @@ class _PaginatedImageGrid extends StatefulWidget {
   final Widget Function(Attachment) onImageTap;
 
   const _PaginatedImageGrid({
+    super.key,
     required this.images,
     required this.onImageTap,
   });
@@ -818,11 +825,37 @@ class _PaginatedImageGridState extends State<_PaginatedImageGrid> {
   int _currentPage = 0;
   int _loadedImagesCount = 0;
   final List<Attachment> _loadedImages = [];
+  List<Attachment> _previousImages = [];
 
   @override
   void initState() {
     super.initState();
+    _previousImages = List.from(widget.images);
     _loadNextBatch();
+  }
+
+  @override
+  void didUpdateWidget(_PaginatedImageGrid oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // Check if images list has changed (e.g., due to deletion)
+    if (_previousImages.length != widget.images.length ||
+        !const DeepCollectionEquality()
+            .equals(_previousImages, widget.images)) {
+      _previousImages = List.from(widget.images);
+      _refreshLoadedImages();
+    }
+  }
+
+  void _refreshLoadedImages() {
+    setState(() {
+      // Remove any images that are no longer in the widget.images list
+      _loadedImages.removeWhere((loadedImage) => !widget.images.any(
+          (widgetImage) =>
+              widgetImage.localId == loadedImage.localId ||
+              widgetImage.id == loadedImage.id));
+      _loadedImagesCount = _loadedImages.length;
+    });
   }
 
   void _loadNextBatch() {

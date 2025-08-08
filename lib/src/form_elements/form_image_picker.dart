@@ -8,7 +8,7 @@ import '../models/attachment.dart';
 import 'simple_image_picker.dart';
 
 class FormImagePicker extends ConsumerWidget {
-  const   FormImagePicker({
+  const FormImagePicker({
     super.key,
     required this.imageField,
     required this.labelText,
@@ -77,6 +77,9 @@ class FormImagePicker extends ConsumerWidget {
               savedCurrentImages: (images) {
                 field.didChange(images);
               },
+            ),
+            const SizedBox(
+              height: 10,
             ),
             const Text(
               'You can only select up to 10 images at once and 25 images in total',
