@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
+import 'dart:async';
 import 'dart:io';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
@@ -81,6 +82,8 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
 }
 
 class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
+  Timer? _updateDebounceTimer;
+
   @override
   void initState() {
     super.initState();
@@ -97,6 +100,12 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
             .addAll(widget.initialImages);
       }
     });
+  }
+
+  @override
+  void dispose() {
+    _updateDebounceTimer?.cancel();
+    super.dispose();
   }
 
   @override
@@ -376,15 +385,27 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     }
   }
 
-  /// Updates the image list in the state
+  /// Updates the image list in the state with debouncing
   void _updateImageList() {
-    final currentImages =
-        ref.read(simpleImagePickerProvider(widget.fieldId).notifier).state;
-    widget.savedCurrentImages(currentImages);
-    ref.read(currentStateNotifierProvider.notifier).saveList(
-          widget.fieldId,
-          currentImages.map((e) => e.toJson()).toList(),
-        );
+    // Cancel any pending update
+    _updateDebounceTimer?.cancel();
+
+    // Debounce the update to prevent rapid successive calls
+    _updateDebounceTimer = Timer(const Duration(milliseconds: 100), () {
+      if (mounted) {
+        final currentImages =
+            ref.read(simpleImagePickerProvider(widget.fieldId).notifier).state;
+
+        // Only call savedCurrentImages if the widget is still mounted
+        widget.savedCurrentImages(currentImages);
+
+        // Save to the current state provider
+        ref.read(currentStateNotifierProvider.notifier).saveList(
+              widget.fieldId,
+              currentImages.map((e) => e.toJson()).toList(),
+            );
+      }
+    });
   }
 
   /// Shows the image source picker bottom sheet
@@ -396,7 +417,6 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
           'You can only have a maximum of ${ImagePickerConfig.maxTotalImageLimit} images in total.');
       return;
     }
-
     FocusManager.instance.primaryFocus?.unfocus();
     FocusScope.of(context).unfocus();
     SystemChannels.textInput.invokeMethod('TextInput.hide');
@@ -701,7 +721,6 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     ref
         .read(simpleImagePickerProvider(widget.fieldId).notifier)
         .addImage(attachment);
-    _updateImageList();
 
     try {
       final result = await widget.onImagesSelected([attachment]);
@@ -713,6 +732,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     } catch (e) {
       _removeSingleImage(attachment);
     } finally {
+      // Only update the image list once at the end
       _updateImageList();
     }
   }
@@ -730,7 +750,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
             isUploaded: true,
           ),
         );
-    _updateImageList();
+    // Don't call _updateImageList here - it will be called in the finally block
   }
 
   /// Removes a single image
