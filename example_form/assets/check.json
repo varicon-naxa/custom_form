@@ -1,155 +1,86 @@
 {
     "title": "Linked to list test is a type of list where we can add list here",
     "elements": [
+
         {
-            "id": "item-0ad0387b-0c8a-431a-9485-9f4f73a0e6c7",
-            "name": "Simple Table",
-            "type": "table",
-            "isRow": true,
-            "label": "Required question, without required column",
-            "headers": [
-                "Column 1",
-                "Column 2",
-                "Column 3"
+            "id": "item-a8498cbc-0949-4252-aa4a-77e49e8f1c97",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": "Have all crew members performed daily stretch and flex activities?",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-c8f367f2-7ecf-4533-99f2-d892d75cbfc5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f54d39b6-fa50-41cd-a6f8-85d1cb146619",
+                    "label": "No"
+                },
+                {
+                    "id": "item-b345c41b-f41e-4b01-9b3f-5634b3f49868",
+                    "label": "NA"
+                }
             ],
-            "maxRows": "",
-            "contents": [
-                [
-                    {
-                        "type": "checkbox",
-                        "name": "checkbox1",
-                        "id": "checkbox1",
-                        "fromManualList": false,
-                        "isConditional": true,
-                        "islinked": true,
-                        "islinked_query": "equipment",
-                        "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
-                        "isRequired": true,
-                        "requiredErrorText": "At least one item must be selected",
-                        "actionMessage": "This is the action message ",
-                        "choice": [
-                            {
-                                "value": "item1",
-                                "text": "This is item 1.",
-                                "action": true
-                            },
-                            {
-                                "value": "item2",
-                                "text": "This is item 2.",
-                                "action": false
-                            },
-                            {
-                                "value": "item3",
-                                "text": "This is item 3.",
-                                "action": true
-                            },
-                            {
-                                "value": "item4",
-                                "text": "This is item 4.",
-                                "action": false
-                            },
-                            {
-                                "value": "item5",
-                                "text": "This is item 5.",
-                                "action": true
-                            }
-                        ],
-                        "otherErrorText": "Other field comment is required."
-                    },
-                   
-                    {
-                        "type": "dropdown",
-                        "name": "select1",
-                        "id": "select1",
-                        "label": "Select from below drop down testelect from below drop down testelect from below drop down testelect from below drop down testelect from below drop down test",
-                        "isRequired": true,
-                        "islinked": true,
-                        "islinked_query": "equipment",
-                        "fromManualList": false,
-                        "isConditional": true,
-                        "actionMessage": "This is the action message ",
-                        "requiredErrorText": "Drop down is required",
-                        "commentPlaceholder": "comment are place",
-                        "choice": [
-                            {
-                                "value": "item1",
-                                "text": "This is item 1.",
-                                "action": true
-                            },
-                            {
-                                "value": "item2",
-                                "text": "This is item 2.",
-                                "action": false
-                            },
-                            {
-                                "value": "item3",
-                                "text": "This is item 3.",
-                                "action": false
-                            }
-                        ],
-                        "showOtherItem": false,
-                        "showNoneItem": false,
-                        "otherErrorText": "Empty comment required",
-                        "placeholder": "Select...OKkk"
-                    },
-                 {
-                        "id": "item-a55dbedf-4e17-4a89-8c44-49323fdc9cc67",
-                        "name": "Multiple Choice",
-                        "type": "multipleselect",
-                        "label": "Biget item",
-                        "isConditional": false,
-                        "actionMessage": "",
-                        "fromManualList": false,
-                        "isRequired": true,
-                        "choice": []
-                    }
-                ]
-            ],
-            "isRequired": false
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
         },
         {
-            "id": "item-e4c84afc-be83-40d5-b99d-be3e1ddbbc89",
-            "name": "Simple Table",
-            "type": "table",
-            "isRow": true,
-            "label": "Required question, with 1 required column",
-            "headers": [
-                "Name",
-                "Column 2",
-                "Column 3"
+            "id": "item-d7d4b5d0-a714-4c1e-b771-53161fdb3a41",
+            "name": "Yes/No/NA",
+            "type": "yesnona",
+            "label": " Does every member of the on-duty crew have adequate and appropriate PPE for today's work tasks?",
+            "answer": "",
+            "choice": [
+                {
+                    "id": "item-c8f367f2-7ecf-4533-99f2-d892d75cbfc5",
+                    "label": "Yes"
+                },
+                {
+                    "id": "item-f54d39b6-fa50-41cd-a6f8-85d1cb146619",
+                    "label": "No"
+                },
+                {
+                    "id": "item-b345c41b-f41e-4b01-9b3f-5634b3f49868",
+                    "label": "NA"
+                }
             ],
-            "maxRows": "",
-            "contents": [
-                [
-                    {
-                        "id": "item-05879c4c-dab9-4573-bce7-15092946a284",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Name",
-                        "answer": "",
-                        "isRequired": true
-                    },
-                    {
-                        "id": "item-5157b434-70e4-44cf-a71a-4f794865fd0c",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Column 2",
-                        "answer": "",
-                        "isRequired": false
-                    },
-                    {
-                        "id": "item-eef173b7-9edf-4216-b6c5-4973826d45db",
-                        "name": "Short Text",
-                        "type": "text",
-                        "label": "Column 3",
-                        "answer": "",
-                        "isRequired": false
-                    }
-                ]
-            ],
-            "isRequired": false
+            "isRequired": false,
+            "isConditional": false,
+            "showOtherItem": false,
+            "fromManualList": true,
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-7daa1fe2-f36c-466d-88bc-26dff7d7e67e",
+            "name": "Section Heading",
+            "type": "section",
+            "label": "Crew Sign Of",
+            "isRequired": false,
+            "instruction": "Each present team member to sign name and signature acknowledging the above tasks, hazards and controls.",
+            "selectedLinkListLabel": ""
+        },
+        {
+            "id": "item-ab671c9b-0573-49a7-a206-5e34d1241996",
+            "name": "Multiple Signature",
+            "type": "multisignature",
+            "label": "Add name and signature",
+            "answer": [],
+            "isRequired": true,
+            "selectedLinkListLabel": ""
+        }, {
+            "id": "item-68553de3-eb78-43ca-b28f-8d552a25fb79",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Any images you want to add",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": false,
+            "selectedLinkListLabel": ""
         }
     ],
     "description": "Description is the describing method which describes the title in various way"
 }
-

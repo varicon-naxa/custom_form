@@ -5,6 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import '../../varicon_form_builder.dart';
 import '../custom_element/custom_form_builder_radio_group.dart';
+import '../models/value_text.dart';
 import '../state/current_form_provider.dart';
 import '../state/link_label_provider.dart';
 
@@ -20,22 +21,30 @@ class VariconYesNoRadioField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentValue = ref.watch(currentStateNotifierProvider)[field.id];
+    ValueText? initialValue = currentValue != null && currentValue.isNotEmpty
+        ? field.choices
+            .firstWhereOrNull((element) => element.value == currentValue)
+        : (field.answer ?? '').isEmpty
+            ? null
+            : field.choices
+                .firstWhereOrNull((element) => element.value == field.answer);
+
     return CustomFromBuilderRadioGroup(
       name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
-      initialValue: (field.answer ?? '').isEmpty
-          ? null
-          : field.choices
-              .firstWhereOrNull((element) => element.value == field.answer),
+      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onOtherSelectedValue: (isSelected, text) {},
       onChanged: (value) {
         if (value != null) {
           ref
               .read(currentStateNotifierProvider.notifier)
-              .saveString(field.id, value.value);
-          ref.read(linklabelProvider.notifier).saveString(field.id, value.text);
+              .saveString(field.id, (value).value);
+          ref
+              .read(linklabelProvider.notifier)
+              .saveString(field.id, (value).text);
         }
       },
       validator: (value) {
@@ -66,22 +75,30 @@ class VariconYesNoNaRadioField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentValue = ref.watch(currentStateNotifierProvider)[field.id];
+    ValueText? initialValue = currentValue != null && currentValue.isNotEmpty
+        ? field.choices
+            .firstWhereOrNull((element) => element.value == currentValue)
+        : (field.answer ?? '').isEmpty
+            ? null
+            : field.choices
+                .firstWhereOrNull((element) => element.value == field.answer);
+
     return CustomFromBuilderRadioGroup(
       name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       onOtherSelectedValue: (isSelected, text) {},
       orientation: OptionsOrientation.vertical,
-      initialValue: (field.answer ?? '').isEmpty
-          ? null
-          : field.choices
-              .firstWhereOrNull((element) => element.value == field.answer),
+      initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: (value) {
         if (value != null) {
           ref
               .read(currentStateNotifierProvider.notifier)
-              .saveString(field.id, value.value);
-          ref.read(linklabelProvider.notifier).saveString(field.id, value.text);
+              .saveString(field.id, (value).value);
+          ref
+              .read(linklabelProvider.notifier)
+              .saveString(field.id, (value).text);
         }
       },
       validator: (value) {

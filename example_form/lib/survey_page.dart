@@ -166,6 +166,7 @@ class _SurveyPageState extends State<SurveyPage> {
       },
       formtitle: 'Submit Form',
       attachmentSave: (List<String> data) async {
+        await Future.delayed(const Duration(seconds: 2));
         List<Map<String, dynamic>> _data = [];
         for (var path in data) {
           File _file = File(path);

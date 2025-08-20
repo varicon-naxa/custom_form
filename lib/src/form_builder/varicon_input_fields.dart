@@ -14,7 +14,6 @@ import 'package:varicon_form_builder/src/form_elements/varicon_phone_field.dart'
 import 'package:varicon_form_builder/src/form_elements/varicon_date_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_signature_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_multi_signature_field.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_file_picker_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_radio_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_checkbox_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_dropdown_field.dart';
