@@ -63,7 +63,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
   }
 
   Widget _buildImagesWithSeeMore(List<Map<String, dynamic>> answer) {
-    final initialImageCount = 5;
+    int initialImageCount = 5;
     final showSeeMore = answer.length > initialImageCount;
     final imagesToShow =
         showSeeMore ? answer.take(initialImageCount).toList() : answer;
@@ -85,17 +85,14 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             return _AnswerDesign(
               answer: imagesToShow[index]['file'],
               isImage: true,
-              fileClick: () {
-                // Send all attachments along with the clicked image index
-                widget.fileClick({
-                  'data': imagesToShow[index]['file'] ?? '',
-                  'title': imagesToShow[index]['name'] ?? '',
-                  'allAttachments': answer, // All image attachments
-                  'clickedIndex': index, // Index of the clicked image
-                  'totalImages': answer.length, // Total number of images
-                });
+              imageBuild: (imageData) {
+                  // For images field, pass additional context through imageBuild
+                  return widget.imageBuild({
+                    ...imageData,
+                    'allAttachments': answer, // All image attachments
+                    'clickedIndex': index, // Index of the clicked image
+                  });
               },
-              imageBuild: widget.imageBuild,
             );
           },
         ),
@@ -141,20 +138,16 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                               return _AnswerDesign(
                                 answer: answer[index]['file'],
                                 isImage: true,
-                                fileClick: () {
-                                  // Send all attachments along with the clicked image index
-                                  widget.fileClick({
-                                    'data': answer[index]['file'] ?? '',
-                                    'title': answer[index]['name'] ?? '',
-                                    'allAttachments':
-                                        answer, // All image attachments
-                                    'clickedIndex':
-                                        index, // Index of the clicked image
-                                    'totalImages':
-                                        answer.length, // Total number of images
-                                  });
+                                imageBuild: (imageData) {
+                                    // For images field, pass additional context through imageBuild
+                                    return widget.imageBuild({
+                                      ...imageData,
+                                      'allAttachments':
+                                          answer, // All image attachments
+                                      'clickedIndex':
+                                          index, // Index of the clicked image
+                                    });
                                 },
-                                imageBuild: widget.imageBuild,
                               );
                             },
                           ),
@@ -447,66 +440,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                   ),
                 );
               },
-            )
-            // : Column(
-            //     children: [
-            //       for (int columnIndex = 0;
-            //           columnIndex < (field.inputFields?.length ?? 0);
-            //           columnIndex++)
-            //         Container(
-            //           width: double.infinity,
-            //           decoration: BoxDecoration(
-            //             color: const Color(0xffF5F5F5),
-            //             borderRadius: BorderRadius.circular(8.0),
-            //           ),
-            //           padding: const EdgeInsets.all(8),
-            //           margin: const EdgeInsets.only(bottom: 12),
-            //           child: ExpandableWidget(
-            //             initialExpanded: true,
-            //             expandableHeader: Row(
-            //               children: [
-            //                 Text(
-            //                   'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
-            //                 ),
-            //                 const Spacer(),
-            //                 const Icon(Icons.keyboard_arrow_down)
-            //               ],
-            //             ),
-            //             expandedHeader: Padding(
-            //               padding: const EdgeInsets.only(
-            //                 bottom: 8,
-            //               ),
-            //               child: Row(
-            //                 children: [
-            //                   Text(
-            //                     'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
-            //                   ),
-            //                   const Spacer(),
-            //                   const Icon(Icons.keyboard_arrow_up)
-            //                 ],
-            //               ),
-            //             ),
-            //             expandableChild: Column(
-            //               children: (field.inputFields ?? [])
-            //                   .asMap()
-            //                   .entries
-            //                   .map((entry) {
-            //                 final row = entry.value;
-            //                 return Container(
-            //                     width: double.infinity,
-            //                     padding: const EdgeInsets.symmetric(
-            //                       horizontal: 8,
-            //                     ),
-            //                     child: _buildInputField(row[columnIndex],
-            //                         haslabel: true));
-            //               }).toList(),
-            //             ),
-            //           ),
-            //         ),
-            //     ],
-            //   ),
-
-            );
+            ));
       },
       text: (field) {
         return LabelWidget(
@@ -993,15 +927,16 @@ class _AnswerDesign extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         isImage
-            ? imageBuild != null
+            ? (imageBuild != null && !isSignature)
                 ? imageBuild!({
                     'image': answer,
-                    'height': isSignature ? 100.0 : 120.0,
-                    'width': isSignature ? 100.0 : 150.0,
+                    'height': 120.0,
+                    'width': 150.0,
                   })
                 : imageBuild!({
                     'image': answer,
-                    'height': 250.0,
+                    'height': isSignature ? 100.0 : 250.0,
+                    if (isSignature) 'width': 100.0,
                   })
             : isFile
                 ? GestureDetector(
