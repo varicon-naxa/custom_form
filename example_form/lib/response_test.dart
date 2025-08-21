@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:example_form/carousel_page.dart';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 import 'package:cached_network_image/cached_network_image.dart';
@@ -21,14 +22,9 @@ class _SurveyPageState extends State<ResponseTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'SurveyJs Form',
-          style: TextStyle(),
-        ),
-      ),
-      // understand this full code and have a condition in here where if the form is filled but bot saved and back button is pressed then alert dialog should appear
+      appBar: AppBar(title: const Text('SurveyJs Form', style: TextStyle())),
 
+      // understand this full code and have a condition in here where if the form is filled but bot saved and back button is pressed then alert dialog should appear
       body: VariconResponseBuilder(
         key: childKey,
         surveyForm: widget.form,
@@ -37,22 +33,59 @@ class _SurveyPageState extends State<ResponseTest> {
           log('Timesheet Id $timesheetId');
         },
         imageBuild: (Map<String, dynamic> data) {
-          return CachedNetworkImage(
-            fit: BoxFit.fitHeight,
-            placeholderFadeInDuration: const Duration(seconds: 3),
-            placeholder: (context, url) => const Icon(Icons.image),
-            imageUrl: data['image'],
-            height: data['height'],
-            width: data['width'],
-            // height: data['height'] == null
-            //     ? null
-            //     : double.parse(data['height'].toString()),
-            // width: data['width'] == null
-            //     ? null
-            //     : double.parse(data['width'].toString()),
-          );
+          if (data.containsKey('allAttachments')) {
+            return GestureDetector(
+              onTap: () {
+                log('allAttachments: ${data['allAttachments']}');
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder:
+                //         (context) => CarouselImagePage(
+                //           attachments:
+                //               (data['allAttachments']
+                //                       as List<Map<String, dynamic>>)
+                //                   .map((e) => Attachment.fromJson(e))
+                //                   .toList(),
+                //           initialIndex: data['clickedIndex'],
+                //         ),
+                //   ),
+                // );
+              },
+              child: CachedNetworkImage(
+                fit: BoxFit.fitHeight,
+                placeholderFadeInDuration: const Duration(seconds: 3),
+                placeholder: (context, url) => const Icon(Icons.image),
+                imageUrl: data['image'],
+                height: data['height'],
+                width: data['width'],
+                // height: data['height'] == null
+                //     ? null
+                //     : double.parse(data['height'].toString()),
+                // width: data['width'] == null
+                //     ? null
+                //     : double.parse(data['width'].toString()),
+              ),
+            );
+          } else {
+            return CachedNetworkImage(
+              fit: BoxFit.fitHeight,
+              placeholderFadeInDuration: const Duration(seconds: 3),
+              placeholder: (context, url) => const Icon(Icons.image),
+              imageUrl: data['image'],
+              height: data['height'],
+              width: data['width'],
+              // height: data['height'] == null
+              //     ? null
+              //     : double.parse(data['height'].toString()),
+              // width: data['width'] == null
+              //     ? null
+              //     : double.parse(data['width'].toString()),
+            );
+          }
         },
-        fileClick: (Map<String, dynamic> url) {}, formtitle: '',
+        fileClick: (Map<String, dynamic> url) {},
+        formtitle: '',
       ),
     );
   }

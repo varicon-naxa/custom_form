@@ -86,12 +86,12 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               answer: imagesToShow[index]['file'],
               isImage: true,
               imageBuild: (imageData) {
-                  // For images field, pass additional context through imageBuild
-                  return widget.imageBuild({
-                    ...imageData,
-                    'allAttachments': answer, // All image attachments
-                    'clickedIndex': index, // Index of the clicked image
-                  });
+                // For images field, pass additional context through imageBuild
+                return widget.imageBuild({
+                  ...imageData,
+                  'allAttachments': answer, // All image attachments
+                  'clickedIndex': index, // Index of the clicked image
+                });
               },
             );
           },
@@ -138,15 +138,19 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                               return _AnswerDesign(
                                 answer: answer[index]['file'],
                                 isImage: true,
+                                additionalData: {
+                                  'allAttachments': answer,
+                                  'clickedIndex': index,
+                                },
                                 imageBuild: (imageData) {
-                                    // For images field, pass additional context through imageBuild
-                                    return widget.imageBuild({
-                                      ...imageData,
-                                      'allAttachments':
-                                          answer, // All image attachments
-                                      'clickedIndex':
-                                          index, // Index of the clicked image
-                                    });
+                                  // For images field, pass additional context through imageBuild
+                                  return widget.imageBuild({
+                                    ...imageData,
+                                    'allAttachments':
+                                        answer, // All image attachments
+                                    'clickedIndex':
+                                        index, // Index of the clicked image
+                                  });
                                 },
                               );
                             },
@@ -901,6 +905,7 @@ class _AnswerDesign extends StatelessWidget {
     this.imageBuild,
     this.fileClick,
     this.isFile = false,
+    this.additionalData,
   });
 
   ///String values for text, image urls, files content
@@ -911,6 +916,9 @@ class _AnswerDesign extends StatelessWidget {
 
   ///Function to handle file cliks action
   final Function? fileClick;
+
+  ///Additional data to pass through imageBuild
+  final Map<String, dynamic>? additionalData;
 
   ///Checking for image
   bool isImage;
@@ -929,6 +937,7 @@ class _AnswerDesign extends StatelessWidget {
         isImage
             ? (imageBuild != null && !isSignature)
                 ? imageBuild!({
+                    ...?additionalData,
                     'image': answer,
                     'height': 120.0,
                     'width': 150.0,
