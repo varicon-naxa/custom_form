@@ -86,9 +86,13 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               answer: imagesToShow[index]['file'],
               isImage: true,
               fileClick: () {
+                // Send all attachments along with the clicked image index
                 widget.fileClick({
                   'data': imagesToShow[index]['file'] ?? '',
-                  'title': imagesToShow[index]['name'] ?? ''
+                  'title': imagesToShow[index]['name'] ?? '',
+                  'allAttachments': answer, // All image attachments
+                  'clickedIndex': index, // Index of the clicked image
+                  'totalImages': answer.length, // Total number of images
                 });
               },
               imageBuild: widget.imageBuild,
@@ -138,9 +142,16 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                                 answer: answer[index]['file'],
                                 isImage: true,
                                 fileClick: () {
+                                  // Send all attachments along with the clicked image index
                                   widget.fileClick({
                                     'data': answer[index]['file'] ?? '',
-                                    'title': answer[index]['name'] ?? ''
+                                    'title': answer[index]['name'] ?? '',
+                                    'allAttachments':
+                                        answer, // All image attachments
+                                    'clickedIndex':
+                                        index, // Index of the clicked image
+                                    'totalImages':
+                                        answer.length, // Total number of images
                                   });
                                 },
                                 imageBuild: widget.imageBuild,
@@ -806,9 +817,10 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       answer: answer['file'],
                       isSignature: true,
                       fileClick: () {
+                        // For signature fields, we still send the data but without attachments context
                         widget.fileClick({
                           'data': answer['file'] ?? '',
-                          'title': answer['name'] ?? ''
+                          'title': answer['name'] ?? '',
                         });
                       },
                       imageBuild: widget.imageBuild,
