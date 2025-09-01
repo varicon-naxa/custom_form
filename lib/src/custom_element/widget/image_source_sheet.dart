@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import '../form_builder_image_picker.dart';
+import 'package:varicon_form_builder/src/helpers/image_quality.dart';
 
 typedef FutureVoidCallBack = Future<void> Function();
 
@@ -80,7 +81,8 @@ class ImageSourceBottomSheet extends StatefulWidget {
 class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
   bool _isPickingImage = false;
 
-  static Future<File> compressImage(String path, {int quality = 80}) async {
+  static Future<File> compressImage(String path,
+      {int quality = kImageCompressionQuality}) async {
     try {
       var dir = await getApplicationSupportDirectory();
       final target =
@@ -139,11 +141,11 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
           // fontName: fontName,
           textAlign: TextAlign.left),
     );
-    option.outputFormat = Editor.OutputFormat.jpeg(85);
+    option.outputFormat = Editor.OutputFormat.jpeg(kImageCompressionQuality);
 
     option.addOption(textOption);
 
-    option.outputFormat = Editor.OutputFormat.jpeg(85);
+    option.outputFormat = Editor.OutputFormat.jpeg(kImageCompressionQuality);
 
     final unifileImage = await Editor.ImageEditor.editImage(
       image: currentImage,
