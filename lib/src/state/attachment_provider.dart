@@ -9,11 +9,11 @@ class SimpleImagePickerProvider extends StateNotifier<List<Attachment>> {
   }
 
   void addImage(Attachment image) {
-    state = [...state, image];
+    state = [image, ...state];
   }
 
   void addMultiImage(List<Attachment> images) {
-    state = [...state, ...images];
+    state = [...images, ...state];
   }
 
   void removeLocalImage(Attachment image) {
@@ -53,12 +53,12 @@ class SimpleFilePickerNotifier extends StateNotifier<List<Attachment>> {
 
   /// Adds a single file to the state
   void addFile(Attachment file) {
-    state = [...state, file];
+    state = [file, ...state];
   }
 
   /// Adds multiple files to the state
   void addMultiFile(List<Attachment> files) {
-    state = [...state, ...files];
+    state = [...files, ...state];
   }
 
   /// Adds all files to the state

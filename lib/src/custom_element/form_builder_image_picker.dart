@@ -97,7 +97,7 @@ class FormBuilderImagePicker
   final WidgetBuilder? loadingWidget;
   final Widget? initialWidget;
   final String locationData;
-  final Widget Function(File imageFile) customPainter;
+  final Widget? Function(File imageFile) customPainter;
   final ValueNotifier<bool> isLoading;
   final ValueNotifier<bool> isError;
 
@@ -200,7 +200,7 @@ class FormBuilderImagePicker
                         state.focus();
                         final newImages =
                             image.map((img) => createImageMap(img)).toList();
-                        final newValue = [...value, ...newImages];
+                        final newValue = [...newImages, ...value];
                         field.didChange(newValue);
                         onAdd?.call(newImages);
                         Navigator.pop(state.context);
@@ -353,21 +353,108 @@ class FormBuilderImagePicker
               });
             }
 
-            final child = Wrap(
-              runSpacing: 8,
+            // Add "See More" functionality
+            final initialImageCount = 5;
+            final showSeeMore = value.length > initialImageCount;
+            final imagesToShow =
+                showSeeMore ? value.take(initialImageCount).toList() : value;
+
+            final child = Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                canUpload ? addButtonBuilder(state.context) : const SizedBox(),
-                SizedBox(
-                  width: canUpload ? 12.0 : 0,
+                Wrap(
+                  runSpacing: 8,
+                  children: [
+                    canUpload
+                        ? addButtonBuilder(state.context)
+                        : const SizedBox(),
+                    SizedBox(
+                      width: canUpload ? 12.0 : 0,
+                    ),
+                    initialWidget ?? const SizedBox.shrink(),
+                    ...imagesToShow.map(
+                      (e) => itemBuilder(
+                        state.context,
+                        e,
+                        value.indexOf(e),
+                      ),
+                    ),
+                  ],
                 ),
-                initialWidget ?? const SizedBox.shrink(),
-                ...value.map(
-                  (e) => itemBuilder(
-                    state.context,
-                    e,
-                    value.indexOf(e),
+                if (showSeeMore)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: state.context,
+                          builder: (context) => Dialog(
+                            child: Container(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      const Text('All Images',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold)),
+                                      IconButton(
+                                        onPressed: () => Navigator.pop(context),
+                                        icon: const Icon(Icons.close),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Wrap(
+                                    runSpacing: 8,
+                                    children: value
+                                        .map(
+                                          (e) => itemBuilder(
+                                            context,
+                                            e,
+                                            value.indexOf(e),
+                                          ),
+                                        )
+                                        .toList(),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withOpacity(0.1),
+                          borderRadius: BorderRadius.circular(16),
+                          border:
+                              Border.all(color: Colors.black.withOpacity(0.3)),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Icon(Icons.keyboard_arrow_down,
+                                size: 16, color: Colors.black),
+                            const SizedBox(width: 4),
+                            Text(
+                              'See More (${value.length - initialImageCount} more)',
+                              style: const TextStyle(
+                                color: Colors.black,
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ),
-                ),
               ],
             );
             return InputDecorator(

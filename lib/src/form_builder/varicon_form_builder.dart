@@ -40,6 +40,7 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
     this.apiCall,
     this.padding,
     this.hasSave = false,
+    this.hasCustomPainter = true,
     this.hasAutoSave = false,
   });
 
@@ -114,6 +115,10 @@ class VariconFormBuilder extends StatefulHookConsumerWidget {
   ///
   ///Returns the file path for form contents like images, files, instructions
   final Function(Map<String, dynamic> url) fileClick;
+
+  /// to handle the use of custom painter
+  final bool hasCustomPainter;
+
   final void Function(bool stringURl) onBackPressed;
   final String formtitle;
 
@@ -273,6 +278,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                           }),
                         ...widget.surveyForm.inputFields.map<Widget?>((e) {
                           return VariconInputFields(
+                            hasCustomPainter: widget.hasCustomPainter,
                             field: e,
                             locationData: widget.locationData,
                             apiCall: widget.apiCall,

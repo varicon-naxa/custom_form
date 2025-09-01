@@ -19,6 +19,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = _FallbackInputField;
 
   const factory InputField.text({
@@ -28,6 +29,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
     @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = TextInputField;
 
   const factory InputField.signature({
@@ -38,6 +40,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
     @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = SignatureInputField;
 
   const factory InputField.multisignature(
@@ -46,7 +49,8 @@ class InputField with _$InputField implements BasicInputField {
           @JsonKey(name: 'name') String? name,
           @JsonKey(name: 'description') String? description,
           @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
-          @JsonKey(name: 'answer') List<SingleSignature>? answer}) =
+          @JsonKey(name: 'answer') List<SingleSignature>? answer,
+          @JsonKey(name: 'is_editable') @Default(true) bool isEditable}) =
       MultiSignatureInputField;
 
   const factory InputField.date({
@@ -56,6 +60,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = DateInputField;
 
   const factory InputField.instruction({
@@ -67,6 +72,7 @@ class InputField with _$InputField implements BasicInputField {
     String? description,
     @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = InstructionInputField;
 
   const factory InputField.section({
@@ -77,6 +83,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'instruction') String? instruction,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = SectionInputField;
 
   const factory InputField.time({
@@ -86,6 +93,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = TimeInputField;
 
   const factory InputField.url({
@@ -95,6 +103,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = UrlInputField;
 
   const factory InputField.number({
@@ -104,6 +113,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = NumberInputField;
 
   const factory InputField.phone({
@@ -114,6 +124,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     // @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     // @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     // @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     // // Fields.
@@ -134,6 +145,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = EmailInputField;
 
   const factory InputField.datetimelocal({
@@ -143,6 +155,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = DateTimeInputField;
 
   const factory InputField.comment({
@@ -152,6 +165,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = CommentInputField;
 
   const factory InputField.dropdown({
@@ -161,6 +175,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @Default(true) @JsonKey(name: 'fromManualList') bool fromManualList,
     @JsonKey(name: 'selectedLinkListLabel') String? answerList,
     @JsonKey(name: 'islinked_query') String? linkedQuery,
@@ -192,6 +207,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'association') bool? association,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
@@ -226,6 +242,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
@@ -259,6 +276,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'association') bool? association,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
@@ -292,6 +310,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'isConditional') @Default(false) bool isConditional,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
@@ -323,6 +342,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'readOnly') @Default(false) bool readOnly,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'actionMessage') String? actionMessage,
@@ -354,6 +374,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isMultiple') @Default(false) bool isMultiple,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = FileInputField;
 
   const factory InputField.images({
@@ -364,6 +385,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isMultiple') @Default(false) bool isMultiple,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = ImageInputField;
 
   const factory InputField.geolocation({
@@ -373,6 +395,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') Map<String, dynamic>? answer,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
   }) = GeolocationField;
 
   const factory InputField.map({
@@ -380,6 +403,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'addressLine') String? addressLine,
     @JsonKey(name: 'answer') String? answer,
     @JsonKey(name: 'description') String? description,
@@ -392,6 +416,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
@@ -410,6 +435,7 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'label') String? label,
     @JsonKey(name: 'name') String? name,
     @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
     @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
     @JsonKey(name: 'description') String? description,
     @JsonKey(name: 'visible') @Default(true) bool visible,
@@ -432,12 +458,14 @@ abstract class BasicInputField {
     this.label,
     this.description,
     this.isRequired,
+    this.isEditable,
   );
 
   final String id;
   final String? label;
   final String? description;
   final bool? isRequired;
+  final bool isEditable;
 }
 
 String? readInstruction(Map map, String key) => map[key] ?? map['description'];

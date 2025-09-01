@@ -22,5 +22,26 @@
   <string>1.0</string>
   <key>MinimumOSVersion</key>
   <string>12.0</string>
+  <key>NSAppleMusicUsageDescription</key>
+	<string>Varicon Timesheet needs access to your Apple Music library to play audio content.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Varicon Timesheet needs access to your calendar to help you track important dates and events related to Daily Cost.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Varicon Timesheet needs access to your camera to allow you to take and upload photos for tracking your daily cost and update user profile.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Varicon Timesheet needs access to your contacts to help you manage and track user identities within the app.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Varicon Timesheet needs access to your location at all times to track user&apos;s current location in timesheet.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Varicon Timesheet needs access to your location even when the app is not in use to track user&apos;s current location in timesheet.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Varicon Timesheet needs access to your location while the app is in use to track user&apos;s current location in timesheet.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Varicon Timesheet needs access to your microphone to allow you to record and upload audio and video content for tracking your Daily Cost.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Varicon Timesheet needs access to your motion data to track the movement of your device for enhanced tracking features.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Varicon Timesheet needs access to your photo library to allow you to upload photos for tracking your Daily Cost and update user profile.</string>
+
 </dict>
 </plist>

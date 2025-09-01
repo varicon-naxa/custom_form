@@ -10,6 +10,7 @@ import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import '../form_builder_image_picker.dart';
+import 'package:varicon_form_builder/src/helpers/image_quality.dart';
 
 typedef FutureVoidCallBack = Future<void> Function();
 
@@ -46,7 +47,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
   final Widget? galleryLabel;
   final EdgeInsets? bottomSheetPadding;
   final bool preventPop;
-  final Widget Function(File imageFile) customPainter;
+  final Widget? Function(File imageFile) customPainter;
   final String locationData;
 
   final Widget Function(
@@ -80,7 +81,8 @@ class ImageSourceBottomSheet extends StatefulWidget {
 class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
   bool _isPickingImage = false;
 
-  static Future<File> compressImage(String path, {int quality = 10}) async {
+  static Future<File> compressImage(String path,
+      {int quality = kImageCompressionQuality}) async {
     try {
       var dir = await getApplicationSupportDirectory();
       final target =
@@ -139,11 +141,11 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
           // fontName: fontName,
           textAlign: TextAlign.left),
     );
-    option.outputFormat = Editor.OutputFormat.jpeg(20);
+    option.outputFormat = Editor.OutputFormat.jpeg(kImageCompressionQuality);
 
     option.addOption(textOption);
 
-    option.outputFormat = Editor.OutputFormat.jpeg(20);
+    option.outputFormat = Editor.OutputFormat.jpeg(kImageCompressionQuality);
 
     final unifileImage = await Editor.ImageEditor.editImage(
       image: currentImage,
@@ -187,22 +189,34 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
             );
             return;
           } else {
-            final editedImage = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => widget.customPainter(
-                  file,
+            if (widget.customPainter != null) {
+              final editedImage = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => widget.customPainter(
+                    file,
+                  )!,
                 ),
-              ),
-            );
-            File? fileCustomImage = await handleOption(
-                currentImage: editedImage, address: widget.locationData);
-            if (fileCustomImage != null) {
-              widget.onImageSelected([XFile(fileCustomImage.path)]);
+              );
+              File? fileCustomImage = await handleOption(
+                  currentImage: editedImage, address: widget.locationData);
+              if (fileCustomImage != null) {
+                widget.onImageSelected([XFile(fileCustomImage.path)]);
+                return;
+              }
+              widget.onImageSelected([pickedFile]);
+              return;
+            } else {
+              File? fileCustomImage = await handleOption(
+                  currentImage: await file.readAsBytes(),
+                  address: widget.locationData);
+              if (fileCustomImage != null) {
+                widget.onImageSelected([XFile(fileCustomImage.path)]);
+                return;
+              }
+              widget.onImageSelected([pickedFile]);
               return;
             }
-            widget.onImageSelected([pickedFile]);
-            return;
           }
         }
       } else {

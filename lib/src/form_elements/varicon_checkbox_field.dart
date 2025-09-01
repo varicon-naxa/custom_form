@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -27,7 +25,11 @@ class VariconCheckboxField extends ConsumerWidget {
     // Debouncer debouncer = Debouncer(milliseconds: 500);
 
     final otherValue = ref.watch(otherFieldValue);
-    List<String> data = (field.answer ?? '').split(',');
+
+    // Get current value from provider state, fallback to field.answer
+    final currentValue = ref.watch(currentStateNotifierProvider)[field.id];
+    String answerData = currentValue ?? field.answer ?? '';
+    List<String> data = answerData.split(',');
     List<ValueText> filteredData =
         field.choices.where((item) => data.contains(item.value)).toList();
 
@@ -65,15 +67,13 @@ class VariconCheckboxField extends ConsumerWidget {
             }
             if (isSelected == true) {
               // debouncer.run(() {
-                ref.read(linklabelProvider.notifier).saveString(field.id, text);
-                ref.read(radiotherFieldValue.notifier).state =
-                    ValueText(isOtherField: isSelected, value: text, text: '');
+              ref.read(linklabelProvider.notifier).saveString(field.id, text);
+              ref.read(radiotherFieldValue.notifier).state =
+                  ValueText(isOtherField: isSelected, value: text, text: '');
               // });
             } else {
               ref.read(linklabelProvider.notifier).remove(field.id);
             }
-
-            log('Selected: $isSelected, Text: $text');
           },
           actionMessage: field.actionMessage,
           validator: (value) {

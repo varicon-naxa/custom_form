@@ -6,6 +6,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/helpers/utils.dart';
 import 'package:varicon_form_builder/src/helpers/validators.dart';
+import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/widget/action_button.dart';
 import '../../varicon_form_builder.dart';
@@ -40,6 +41,7 @@ class _VariconMultiSignatureFieldState
     extends ConsumerState<VariconMultiSignatureField> {
   List<SingleSignature> signaturePads = [];
   TextEditingController _editingController = TextEditingController();
+  String? loadingId;
 
   @override
   void initState() {
@@ -70,6 +72,19 @@ class _VariconMultiSignatureFieldState
         );
   }
 
+  void deleteAnswer() {
+    if (loadingId != null) {
+      try {
+        ref.read(currentStateNotifierProvider.notifier).remove(widget.field.id);
+      } finally {
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId!);
+        loadingId = null;
+      }
+    } else {
+      ref.read(currentStateNotifierProvider.notifier).remove(widget.field.id);
+    }
+  }
+
   Future<void> addSignature(SingleSignature signature) async {
     signaturePads.add(signature);
     _editingController.text =
@@ -79,7 +94,11 @@ class _VariconMultiSignatureFieldState
   }
 
   Future<void> modifyAnswer(SingleSignature file) async {
+    loadingId = const Uuid().v4();
+
     try {
+      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId!);
+
       File singleFile = await Utils.getConvertToFile(file.uniImage);
 
       List<Map<String, dynamic>> attachments = await widget.attachmentSave(
@@ -95,6 +114,12 @@ class _VariconMultiSignatureFieldState
         );
         signaturePads.removeLast();
         setState(() {});
+        if (loadingId != null) {
+          ref
+              .read(attachmentLoadingProvider.notifier)
+              .removeLoading(loadingId!);
+          loadingId = null;
+        }
         return;
       }
 
@@ -115,7 +140,16 @@ class _VariconMultiSignatureFieldState
     } catch (e) {
       signaturePads.removeLast();
       setState(() {});
-    } finally {}
+      if (loadingId != null) {
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId!);
+        loadingId = null;
+      }
+    } finally {
+      if (loadingId != null) {
+        ref.read(attachmentLoadingProvider.notifier).removeLoading(loadingId!);
+        loadingId = null;
+      }
+    }
   }
 
   void signatureDialog() {

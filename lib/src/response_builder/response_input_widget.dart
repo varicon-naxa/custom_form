@@ -62,6 +62,242 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
     return logicalShortestSide > 600;
   }
 
+  Widget _buildImagesWithSeeMore(List<Map<String, dynamic>> answer) {
+    int initialImageCount = 5;
+    final showSeeMore = answer.length > initialImageCount;
+    final imagesToShow =
+        showSeeMore ? answer.take(initialImageCount).toList() : answer;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: isTablet ? 5 : 3,
+            mainAxisSpacing: 6,
+            crossAxisSpacing: 6,
+            childAspectRatio: 0.75,
+          ),
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          itemCount: imagesToShow.length,
+          itemBuilder: (context, index) {
+            return _AnswerDesign(
+              answer: imagesToShow[index]['file'],
+              isImage: true,
+              imageBuild: (imageData) {
+                // For images field, pass additional context through imageBuild
+                return widget.imageBuild({
+                  ...imageData,
+                  'allAttachments': answer, // All image attachments
+                  'clickedIndex': index, // Index of the clicked image
+                });
+              },
+            );
+          },
+        ),
+        if (showSeeMore)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => Dialog(
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('All Images',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: const Icon(Icons.close),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          GridView.builder(
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: isTablet ? 5 : 3,
+                              mainAxisSpacing: 6,
+                              crossAxisSpacing: 6,
+                              childAspectRatio: 0.75,
+                            ),
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: answer.length,
+                            itemBuilder: (context, index) {
+                              return _AnswerDesign(
+                                answer: answer[index]['file'],
+                                isImage: true,
+                                additionalData: {
+                                  'allAttachments': answer,
+                                  'clickedIndex': index,
+                                },
+                                imageBuild: (imageData) {
+                                  // For images field, pass additional context through imageBuild
+                                  return widget.imageBuild({
+                                    ...imageData,
+                                    'allAttachments':
+                                        answer, // All image attachments
+                                    'clickedIndex':
+                                        index, // Index of the clicked image
+                                  });
+                                },
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.black.withOpacity(0.3)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.keyboard_arrow_down,
+                        size: 16, color: Colors.black),
+                    const SizedBox(width: 4),
+                    Text(
+                      'See More (${answer.length - initialImageCount} more)',
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildFilesWithSeeMore(List<Map<String, dynamic>> answer) {
+    final initialFileCount = 5;
+    final showSeeMore = answer.length > initialFileCount;
+    final filesToShow =
+        showSeeMore ? answer.take(initialFileCount).toList() : answer;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          runSpacing: 8,
+          children: filesToShow
+              .map(
+                (e) => _AnswerDesign(
+                  answer: e['name'],
+                  isFile: true,
+                  isImage: false,
+                  fileClick: () {
+                    widget.fileClick({'data': e['file'], 'title': e['name']});
+                  },
+                ),
+              )
+              .toList(),
+        ),
+        if (showSeeMore)
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: GestureDetector(
+              onTap: () {
+                showDialog(
+                  context: context,
+                  builder: (context) => Dialog(
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text('All Files',
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold)),
+                              IconButton(
+                                onPressed: () => Navigator.pop(context),
+                                icon: const Icon(Icons.close),
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: 16),
+                          Wrap(
+                            runSpacing: 8,
+                            children: answer
+                                .map(
+                                  (e) => _AnswerDesign(
+                                    answer: e['name'],
+                                    isFile: true,
+                                    isImage: false,
+                                    fileClick: () {
+                                      widget.fileClick({
+                                        'data': e['file'],
+                                        'title': e['name']
+                                      });
+                                    },
+                                  ),
+                                )
+                                .toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(color: Colors.black.withOpacity(0.3)),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.keyboard_arrow_down,
+                        size: 16, color: Colors.black),
+                    const SizedBox(width: 4),
+                    Text(
+                      'See More (${answer.length - initialFileCount} more)',
+                      style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -208,66 +444,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                   ),
                 );
               },
-            )
-            // : Column(
-            //     children: [
-            //       for (int columnIndex = 0;
-            //           columnIndex < (field.inputFields?.length ?? 0);
-            //           columnIndex++)
-            //         Container(
-            //           width: double.infinity,
-            //           decoration: BoxDecoration(
-            //             color: const Color(0xffF5F5F5),
-            //             borderRadius: BorderRadius.circular(8.0),
-            //           ),
-            //           padding: const EdgeInsets.all(8),
-            //           margin: const EdgeInsets.only(bottom: 12),
-            //           child: ExpandableWidget(
-            //             initialExpanded: true,
-            //             expandableHeader: Row(
-            //               children: [
-            //                 Text(
-            //                   'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
-            //                 ),
-            //                 const Spacer(),
-            //                 const Icon(Icons.keyboard_arrow_down)
-            //               ],
-            //             ),
-            //             expandedHeader: Padding(
-            //               padding: const EdgeInsets.only(
-            //                 bottom: 8,
-            //               ),
-            //               child: Row(
-            //                 children: [
-            //                   Text(
-            //                     'Column ${columnIndex + 1} (${field.inputFields?[columnIndex].length} Questions)',
-            //                   ),
-            //                   const Spacer(),
-            //                   const Icon(Icons.keyboard_arrow_up)
-            //                 ],
-            //               ),
-            //             ),
-            //             expandableChild: Column(
-            //               children: (field.inputFields ?? [])
-            //                   .asMap()
-            //                   .entries
-            //                   .map((entry) {
-            //                 final row = entry.value;
-            //                 return Container(
-            //                     width: double.infinity,
-            //                     padding: const EdgeInsets.symmetric(
-            //                       horizontal: 8,
-            //                     ),
-            //                     child: _buildInputField(row[columnIndex],
-            //                         haslabel: true));
-            //               }).toList(),
-            //             ),
-            //           ),
-            //         ),
-            //     ],
-            //   ),
-
-            );
+            ));
       },
       text: (field) {
         return LabelWidget(
@@ -529,22 +706,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             labelText: labelText,
             isRequired: e.isRequired,
             child: answer.isNotEmpty
-                ? Wrap(
-                    runSpacing: 8,
-                    children: answer
-                        .map(
-                          (e) => _AnswerDesign(
-                            answer: e['name'],
-                            isFile: true,
-                            isImage: false,
-                            fileClick: () {
-                              widget.fileClick(
-                                  {'data': e['file'], 'title': e['name']});
-                            },
-                          ),
-                        )
-                        .toList(),
-                  )
+                ? _buildFilesWithSeeMore(answer)
                 : _AnswerDesign(
                     answer: '',
                   ));
@@ -558,29 +720,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             labelText: labelText,
             isRequired: e.isRequired,
             child: answer.isNotEmpty
-                ? GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: isTablet ? 5 : 3,
-                      mainAxisSpacing: 6,
-                      crossAxisSpacing: 6,
-                      childAspectRatio: 0.75,
-                    ),
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: answer.length,
-                    itemBuilder: (context, index) {
-                      return _AnswerDesign(
-                        answer: answer[index]['file'],
-                        isImage: true,
-                        fileClick: () {
-                          widget.fileClick({
-                            'data': answer[index]['file'] ?? '',
-                            'title': answer[index]['name'] ?? ''
-                          });
-                        },
-                        imageBuild: widget.imageBuild,
-                      );
-                    })
+                ? _buildImagesWithSeeMore(answer)
                 // Wrap(
                 //     spacing: 8,
                 //     runSpacing: 8,
@@ -615,9 +755,10 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
                       answer: answer['file'],
                       isSignature: true,
                       fileClick: () {
+                        // For signature fields, we still send the data but without attachments context
                         widget.fileClick({
                           'data': answer['file'] ?? '',
-                          'title': answer['name'] ?? ''
+                          'title': answer['name'] ?? '',
                         });
                       },
                       imageBuild: widget.imageBuild,
@@ -764,6 +905,7 @@ class _AnswerDesign extends StatelessWidget {
     this.imageBuild,
     this.fileClick,
     this.isFile = false,
+    this.additionalData,
   });
 
   ///String values for text, image urls, files content
@@ -774,6 +916,9 @@ class _AnswerDesign extends StatelessWidget {
 
   ///Function to handle file cliks action
   final Function? fileClick;
+
+  ///Additional data to pass through imageBuild
+  final Map<String, dynamic>? additionalData;
 
   ///Checking for image
   bool isImage;
@@ -790,15 +935,17 @@ class _AnswerDesign extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         isImage
-            ? imageBuild != null
+            ? (imageBuild != null && !isSignature)
                 ? imageBuild!({
+                    ...?additionalData,
                     'image': answer,
-                    'height': isSignature ? 100.0 : 120.0,
-                    'width': isSignature ? 100.0 : 150.0,
+                    'height': 120.0,
+                    'width': 150.0,
                   })
                 : imageBuild!({
                     'image': answer,
-                    'height': 250.0,
+                    'height': isSignature ? 100.0 : 250.0,
+                    if (isSignature) 'width': 100.0,
                   })
             : isFile
                 ? GestureDetector(

@@ -11,12 +11,11 @@ import '../models/value_text.dart';
 import '../state/required_id_provider.dart';
 
 class VariconRadioField extends ConsumerWidget {
-  const VariconRadioField({
-    super.key,
-    required this.field,
-    required this.labelText,
-    this.isResponse
-  });
+  const VariconRadioField(
+      {super.key,
+      required this.field,
+      required this.labelText,
+      this.isResponse});
 
   final RadioInputField field;
   final String labelText;
@@ -25,10 +24,19 @@ class VariconRadioField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Debouncer debouncer = Debouncer(milliseconds: 500);
 
-    ValueText? initialValue = (field.answer ?? '').isEmpty
-        ? null
-        : field.choices
-            .firstWhereOrNull((element) => element.value == field.answer);
+    // ValueText? initialValue = (field.answer ?? '').isEmpty
+    //     ? null
+    //     : field.choices
+    //         .firstWhereOrNull((element) => element.value == field.answer);
+
+    final currentValue = ref.watch(currentStateNotifierProvider)[field.id];
+    ValueText? initialValue = currentValue != null && currentValue.isNotEmpty
+        ? field.choices
+            .firstWhereOrNull((element) => element.value == currentValue)
+        : (field.answer ?? '').isEmpty
+            ? null
+            : field.choices
+                .firstWhereOrNull((element) => element.value == field.answer);
 
     return CustomFromBuilderRadioGroup(
       name: const Uuid().v4(),
@@ -68,9 +76,9 @@ class VariconRadioField extends ConsumerWidget {
         }
         if (isSelected == true) {
           // debouncer.run(() {
-            ref.read(linklabelProvider.notifier).saveString(field.id, text);
-            ref.read(radiotherFieldValue.notifier).state =
-                ValueText(isOtherField: isSelected, value: text, text: '');
+          ref.read(linklabelProvider.notifier).saveString(field.id, text);
+          ref.read(radiotherFieldValue.notifier).state =
+              ValueText(isOtherField: isSelected, value: text, text: '');
           // });
         } else {
           ref.read(linklabelProvider.notifier).remove(field.id);

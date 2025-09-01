@@ -14,6 +14,7 @@ _$FallbackInputFieldImpl _$$FallbackInputFieldImplFromJson(
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -25,6 +26,7 @@ Map<String, dynamic> _$$FallbackInputFieldImplToJson(
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -36,6 +38,7 @@ _$TextInputFieldImpl _$$TextInputFieldImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
       answer: json['answer'] as String?,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -48,6 +51,7 @@ Map<String, dynamic> _$$TextInputFieldImplToJson(
       'description': instance.description,
       'isRequired': instance.isRequired,
       'answer': instance.answer,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -61,6 +65,7 @@ _$SignatureInputFieldImpl _$$SignatureInputFieldImplFromJson(
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
       answer: json['answer'] as Map<String, dynamic>?,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -74,6 +79,7 @@ Map<String, dynamic> _$$SignatureInputFieldImplToJson(
       'visible': instance.visible,
       'isRequired': instance.isRequired,
       'answer': instance.answer,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -88,6 +94,7 @@ _$MultiSignatureInputFieldImpl _$$MultiSignatureInputFieldImplFromJson(
       answer: (json['answer'] as List<dynamic>?)
           ?.map((e) => SingleSignature.fromJson(e as Map<String, dynamic>))
           .toList(),
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -100,6 +107,7 @@ Map<String, dynamic> _$$MultiSignatureInputFieldImplToJson(
       'description': instance.description,
       'isRequired': instance.isRequired,
       'answer': instance.answer,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -111,6 +119,7 @@ _$DateInputFieldImpl _$$DateInputFieldImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -123,6 +132,7 @@ Map<String, dynamic> _$$DateInputFieldImplToJson(
       'name': instance.name,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -139,6 +149,7 @@ _$InstructionInputFieldImpl _$$InstructionInputFieldImplFromJson(
           ?.map((e) => e as Map<String, dynamic>)
           .toList(),
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -153,6 +164,7 @@ Map<String, dynamic> _$$InstructionInputFieldImplToJson(
       'description': instance.description,
       'attachments': instance.attachments,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -166,6 +178,7 @@ _$SectionInputFieldImpl _$$SectionInputFieldImplFromJson(
       description: json['description'] as String?,
       instruction: json['instruction'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -179,6 +192,7 @@ Map<String, dynamic> _$$SectionInputFieldImplToJson(
       'description': instance.description,
       'instruction': instance.instruction,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -190,6 +204,7 @@ _$TimeInputFieldImpl _$$TimeInputFieldImplFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -202,6 +217,7 @@ Map<String, dynamic> _$$TimeInputFieldImplToJson(
       'name': instance.name,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -213,6 +229,7 @@ _$UrlInputFieldImpl _$$UrlInputFieldImplFromJson(Map<String, dynamic> json) =>
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -224,6 +241,7 @@ Map<String, dynamic> _$$UrlInputFieldImplToJson(_$UrlInputFieldImpl instance) =>
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -236,6 +254,7 @@ _$NumberInputFieldImpl _$$NumberInputFieldImplFromJson(
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -248,6 +267,7 @@ Map<String, dynamic> _$$NumberInputFieldImplToJson(
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -260,6 +280,7 @@ _$PhoneInputFieldImpl _$$PhoneInputFieldImplFromJson(
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -272,6 +293,7 @@ Map<String, dynamic> _$$PhoneInputFieldImplToJson(
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -284,6 +306,7 @@ _$EmailInputFieldImpl _$$EmailInputFieldImplFromJson(
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -296,6 +319,7 @@ Map<String, dynamic> _$$EmailInputFieldImplToJson(
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -308,6 +332,7 @@ _$DateTimeInputFieldImpl _$$DateTimeInputFieldImplFromJson(
       name: json['name'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -320,6 +345,7 @@ Map<String, dynamic> _$$DateTimeInputFieldImplToJson(
       'name': instance.name,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -332,6 +358,7 @@ _$CommentInputFieldImpl _$$CommentInputFieldImplFromJson(
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -344,6 +371,7 @@ Map<String, dynamic> _$$CommentInputFieldImplToJson(
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -356,6 +384,7 @@ _$DropdownInputFieldImpl _$$DropdownInputFieldImplFromJson(
       answer: json['answer'] as String?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       fromManualList: json['fromManualList'] as bool? ?? true,
       answerList: json['selectedLinkListLabel'] as String?,
       linkedQuery: json['islinked_query'] as String?,
@@ -385,6 +414,7 @@ Map<String, dynamic> _$$DropdownInputFieldImplToJson(
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'fromManualList': instance.fromManualList,
       'selectedLinkListLabel': instance.answerList,
       'islinked_query': instance.linkedQuery,
@@ -413,6 +443,7 @@ _$MultipleInputFieldImpl _$$MultipleInputFieldImplFromJson(
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       association: json['association'] as bool?,
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
@@ -446,6 +477,7 @@ Map<String, dynamic> _$$MultipleInputFieldImplToJson(
       'description': instance.description,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'association': instance.association,
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
@@ -477,6 +509,7 @@ _$CheckboxInputFieldImpl _$$CheckboxInputFieldImplFromJson(
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
@@ -509,6 +542,7 @@ Map<String, dynamic> _$$CheckboxInputFieldImplToJson(
       'description': instance.description,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
@@ -539,6 +573,7 @@ _$RadioInputFieldImpl _$$RadioInputFieldImplFromJson(
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       readOnly: json['readOnly'] as bool? ?? false,
       association: json['association'] as bool?,
       requiredErrorText: json['requiredErrorText'] as String?,
@@ -570,6 +605,7 @@ Map<String, dynamic> _$$RadioInputFieldImplToJson(
       'description': instance.description,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'readOnly': instance.readOnly,
       'association': instance.association,
       'requiredErrorText': instance.requiredErrorText,
@@ -599,6 +635,7 @@ _$YesNoInputFieldImpl _$$YesNoInputFieldImplFromJson(
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       readOnly: json['readOnly'] as bool? ?? false,
       isConditional: json['isConditional'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
@@ -628,6 +665,7 @@ Map<String, dynamic> _$$YesNoInputFieldImplToJson(
       'description': instance.description,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'readOnly': instance.readOnly,
       'isConditional': instance.isConditional,
       'requiredErrorText': instance.requiredErrorText,
@@ -655,6 +693,7 @@ _$YesNoNaInputFieldImpl _$$YesNoNaInputFieldImplFromJson(
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       readOnly: json['readOnly'] as bool? ?? false,
       requiredErrorText: json['requiredErrorText'] as String?,
       actionMessage: json['actionMessage'] as String?,
@@ -684,6 +723,7 @@ Map<String, dynamic> _$$YesNoNaInputFieldImplToJson(
       'description': instance.description,
       'visible': instance.visible,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'readOnly': instance.readOnly,
       'requiredErrorText': instance.requiredErrorText,
       'actionMessage': instance.actionMessage,
@@ -712,6 +752,7 @@ _$FileInputFieldImpl _$$FileInputFieldImplFromJson(Map<String, dynamic> json) =>
       description: json['description'] as String?,
       isMultiple: json['isMultiple'] as bool? ?? false,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -725,6 +766,7 @@ Map<String, dynamic> _$$FileInputFieldImplToJson(
       'description': instance.description,
       'isMultiple': instance.isMultiple,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -740,6 +782,7 @@ _$ImageInputFieldImpl _$$ImageInputFieldImplFromJson(
       description: json['description'] as String?,
       isMultiple: json['isMultiple'] as bool? ?? false,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -753,6 +796,7 @@ Map<String, dynamic> _$$ImageInputFieldImplToJson(
       'description': instance.description,
       'isMultiple': instance.isMultiple,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -765,6 +809,7 @@ _$GeolocationFieldImpl _$$GeolocationFieldImplFromJson(
       answer: json['answer'] as Map<String, dynamic>?,
       description: json['description'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       $type: json['type'] as String?,
     );
 
@@ -777,6 +822,7 @@ Map<String, dynamic> _$$GeolocationFieldImplToJson(
       'answer': instance.answer,
       'description': instance.description,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'type': instance.$type,
     };
 
@@ -786,6 +832,7 @@ _$MapFieldImpl _$$MapFieldImplFromJson(Map<String, dynamic> json) =>
       label: json['label'] as String?,
       name: json['name'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       addressLine: json['addressLine'] as String?,
       answer: json['answer'] as String?,
       description: json['description'] as String?,
@@ -798,6 +845,7 @@ Map<String, dynamic> _$$MapFieldImplToJson(_$MapFieldImpl instance) =>
       'label': instance.label,
       'name': instance.name,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'addressLine': instance.addressLine,
       'answer': instance.answer,
       'description': instance.description,
@@ -813,6 +861,7 @@ _$TableFieldImpl _$$TableFieldImplFromJson(Map<String, dynamic> json) =>
       label: json['label'] as String?,
       name: json['name'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       requiredErrorText: json['requiredErrorText'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
@@ -836,6 +885,7 @@ Map<String, dynamic> _$$TableFieldImplToJson(_$TableFieldImpl instance) =>
       'label': instance.label,
       'name': instance.name,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'requiredErrorText': instance.requiredErrorText,
       'description': instance.description,
       'visible': instance.visible,
@@ -857,6 +907,7 @@ _$AdvTableFieldImpl _$$AdvTableFieldImplFromJson(Map<String, dynamic> json) =>
       label: json['label'] as String?,
       name: json['name'] as String?,
       isRequired: json['isRequired'] as bool? ?? false,
+      isEditable: json['is_editable'] as bool? ?? true,
       requiredErrorText: json['requiredErrorText'] as String?,
       description: json['description'] as String?,
       visible: json['visible'] as bool? ?? true,
@@ -880,6 +931,7 @@ Map<String, dynamic> _$$AdvTableFieldImplToJson(_$AdvTableFieldImpl instance) =>
       'label': instance.label,
       'name': instance.name,
       'isRequired': instance.isRequired,
+      'is_editable': instance.isEditable,
       'requiredErrorText': instance.requiredErrorText,
       'description': instance.description,
       'visible': instance.visible,

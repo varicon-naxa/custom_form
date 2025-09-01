@@ -29,7 +29,7 @@
             "actionMessage": "This is the action message ",
             "requiredErrorText": "Drop down is required",
             "commentPlaceholder": "comment are place",
-            "answer": "item1",
+            "answer": "",
             "choice": [
                 {
                     "value": "item1",
@@ -62,7 +62,7 @@
             "islinked_query": "equipment",
             "label": "Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test Check boxes type test ",
             "isRequired": true,
-            "answer": "item1,item2",
+            "answer": "",
             "requiredErrorText": "At least one item must be selected",
             "actionMessage": "This is the action message ",
             "choice": [
@@ -99,7 +99,7 @@
             "name": "Multiple Choice",
             "type": "multipleselect",
             "label": "Biget item",
-            "answer": "12345",
+            "answer": "",
             "isConditional": false,
             "actionMessage": "",
             "fromManualList": false,
@@ -111,7 +111,7 @@
             "name": "Multiple Choice",
             "type": "multipleselect",
             "label": "Biget item",
-            "answer": "item-200e3185-3906-4d91-a03f-62f35e8547de",
+            "answer": "",
             "isConditional": false,
             "actionMessage": "",
             "fromManualList": true,
@@ -141,7 +141,7 @@
             "type": "radiogroup",
             "label": "Did you work remotely",
             "actionMessage": "Better to work from home.",
-            "answer": "item-e56636ff-0522-4a0a-b4e2-f2397414f964",
+            "answer": "",
             "isRequired": true,
             "isConditional": true,
             "showOtherItem": true,
@@ -171,6 +171,16 @@
                     "notify_To": []
                 }
             ]
+        },
+        {
+            "id": "item-f2f96d40-52ba-40d6-9955-6c6b63999656",
+            "name": "Image Upload",
+            "type": "images",
+            "label": "Image Upload",
+            "answer": [],
+            "isMultiple": true,
+            "isRequired": true,
+            "description": null
         },
         {
             "id": "item-cc4c729d-6f89-4539-aa89-a38345df865d",

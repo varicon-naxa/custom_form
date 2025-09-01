@@ -15,14 +15,7 @@
             "type": "multisignature",
             "label": "Multiple Signature",
             "isRequired": true,
-            "answer": [
-                {
-                    "id": "22be61a4-2202-4232-8eda-4cb7c87f6824",
-                    "file": "https://dev-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/7e6b7769-9fa1-4007-b0a6-83c7a7559e26.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KUEHSPTKZ%2F20240803%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240803T055725Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD21zq9Mw6146fJl4WsV1hsGwaHNmzBrx2LSA7%2BvKVPYQIgY6qMzhheTjvDFddivmSFyGYFsvAI%2BPcgW79mR5ZgxVwqxAUInf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDIfOArw%2BrN89GfUi1yqYBVf8wBt6rLrLnF%2FeBeQ34AuSSlhLUlE3QdHZPLCMy9vc3r778q4qIyndqsppGL8FVFYxZh0EBc8k%2BO2D4n4K7MkvgB88gB5MM9z5XbyTAXZ2PGn9kYcRx9ZdKHAhnmsWE6UDJitvM075Iwz4I1gj85595sRl8oq1matRBN8qs8W5sL3D2Dq5Rp%2BmyH%2FkmMV7XUYMXlDgn8bGKPk5ywaIfNd93IYdYlAJZwwhRidKyHrV1ZzSfLH1X2aQcS2MUjzrO2i1WI6tBIANdOwazk6jxq3Mf3O3UClv35HKU27yKVO6ZLEx1A%2Bvk%2B680RgctnCMepBG7WDFCJ52hvvApvlz%2FSkOa%2FeagESsd1LhMoin9dXl6WEtgHZRQfTa7Wqp0NGirrr0B5%2F%2FtkW5LdbhOALjt5mrXGAOxcCP5Ar8mlLO49u0c7x0aouzxP%2FwX7kOwCgnCRt7dnzupeBNLwO%2BiPA9JY1JBSecq723gXoNNEGMkn0pZQ8eWtpjfaNJMDRYnWM05098WKxLpVeKmPhQDxCDBC3rgCbeXxaRLunhKssc4f%2Bjllclzbl%2Fw4m0OsvjpUigg%2F7U6NwMnZUUa1dfb5sIbbBepH7RgseL20xgyVfBf%2BpRFlpubSYVCToHsg5bUTGFEIlF1r8h8kt2oYCKXnvVGP7uaFehYTqYmqPbGP6HEHx%2B6M7d%2FGb1UK8WQ0GOr5niYAuxtHHt6%2FjB0GYVFvpFg41HVDvw43SDJT2EJg81JXQ6bCv435sIN%2FaUqHBTDaFIkFAKzRw4gBLXHnjYpmJZGUSx3ku%2FPJ2aDJx1IS6onbDupF%2BQIZmh2B2nj1SlA07FN%2BXXiPXRtsbxYAe%2FYl5da%2F1yfa%2FvRv0qqoA5kOK9nc4CFjLmau7s7PMw8Ma2tQY6sQHgFPhZKWf8FsjdBLU15Jb8ZEZ%2Fr16tTrNn6Mb5rMK5FOPonKgwQlrBnd16oYoYFxlWzMeV3wncDAF5Vo5voQJC8ph4UX3u1BUQP9f61wxkg%2BPohu7DNMtc0%2B%2BKdeSpowLuXECbE5nmTnoCwTb%2F9RI%2BjmFHjNA3m1Oyk%2FRdDU7Ak4abwE%2BMjpynXeIMeeawxnZGgruYjjKjSDvRQ%2Bj7u%2FhGTFYC6x%2FBY%2B7xNHTQQBFg3iE%3D&X-Amz-Signature=bc96870569f9a9393fd3e45020fe3a6de2de1d0fccfdef99a99141418a3b663e",
-                    "attachmentId": "22be61a4-2202-4232-8eda-4cb7c87f6824",
-                    "signatory_name": "1"
-                }
-            ],
+            "answer": [],
             "selectedLinkListLabel": ""
         },
         {
@@ -30,14 +23,9 @@
             "name": "Signature",
             "type": "signature",
             "label": "please enter the signature",
-            "isRequired": true,
+            "isRequired": false,
             "selectedLinkListLabel": "",
-            "answer": {
-                "id": "22be61a4-2202-4232-8eda-4cb7c87f68asd24",
-                "file": "https://dev-server-varicon-backend.s3.amazonaws.com/bf8dae02-d55d-448f-b1ed-feddd60c9f1d/attachments/7e6b7769-9fa1-4007-b0a6-83c7a7559e26.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=ASIAWC4X2A2KUEHSPTKZ%2F20240803%2Fus-east-2%2Fs3%2Faws4_request&X-Amz-Date=20240803T055725Z&X-Amz-Expires=3600&X-Amz-SignedHeaders=host&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMiJHMEUCIQD21zq9Mw6146fJl4WsV1hsGwaHNmzBrx2LSA7%2BvKVPYQIgY6qMzhheTjvDFddivmSFyGYFsvAI%2BPcgW79mR5ZgxVwqxAUInf%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARABGgw0MTg1NDA4MTYwMjEiDIfOArw%2BrN89GfUi1yqYBVf8wBt6rLrLnF%2FeBeQ34AuSSlhLUlE3QdHZPLCMy9vc3r778q4qIyndqsppGL8FVFYxZh0EBc8k%2BO2D4n4K7MkvgB88gB5MM9z5XbyTAXZ2PGn9kYcRx9ZdKHAhnmsWE6UDJitvM075Iwz4I1gj85595sRl8oq1matRBN8qs8W5sL3D2Dq5Rp%2BmyH%2FkmMV7XUYMXlDgn8bGKPk5ywaIfNd93IYdYlAJZwwhRidKyHrV1ZzSfLH1X2aQcS2MUjzrO2i1WI6tBIANdOwazk6jxq3Mf3O3UClv35HKU27yKVO6ZLEx1A%2Bvk%2B680RgctnCMepBG7WDFCJ52hvvApvlz%2FSkOa%2FeagESsd1LhMoin9dXl6WEtgHZRQfTa7Wqp0NGirrr0B5%2F%2FtkW5LdbhOALjt5mrXGAOxcCP5Ar8mlLO49u0c7x0aouzxP%2FwX7kOwCgnCRt7dnzupeBNLwO%2BiPA9JY1JBSecq723gXoNNEGMkn0pZQ8eWtpjfaNJMDRYnWM05098WKxLpVeKmPhQDxCDBC3rgCbeXxaRLunhKssc4f%2Bjllclzbl%2Fw4m0OsvjpUigg%2F7U6NwMnZUUa1dfb5sIbbBepH7RgseL20xgyVfBf%2BpRFlpubSYVCToHsg5bUTGFEIlF1r8h8kt2oYCKXnvVGP7uaFehYTqYmqPbGP6HEHx%2B6M7d%2FGb1UK8WQ0GOr5niYAuxtHHt6%2FjB0GYVFvpFg41HVDvw43SDJT2EJg81JXQ6bCv435sIN%2FaUqHBTDaFIkFAKzRw4gBLXHnjYpmJZGUSx3ku%2FPJ2aDJx1IS6onbDupF%2BQIZmh2B2nj1SlA07FN%2BXXiPXRtsbxYAe%2FYl5da%2F1yfa%2FvRv0qqoA5kOK9nc4CFjLmau7s7PMw8Ma2tQY6sQHgFPhZKWf8FsjdBLU15Jb8ZEZ%2Fr16tTrNn6Mb5rMK5FOPonKgwQlrBnd16oYoYFxlWzMeV3wncDAF5Vo5voQJC8ph4UX3u1BUQP9f61wxkg%2BPohu7DNMtc0%2B%2BKdeSpowLuXECbE5nmTnoCwTb%2F9RI%2BjmFHjNA3m1Oyk%2FRdDU7Ak4abwE%2BMjpynXeIMeeawxnZGgruYjjKjSDvRQ%2Bj7u%2FhGTFYC6x%2FBY%2B7xNHTQQBFg3iE%3D&X-Amz-Signature=bc96870569f9a9393fd3e45020fe3a6de2de1d0fccfdef99a99141418a3b663e",
-                "attachmentId": "22be61a4-2202-4232-8eda-4cb7c87f68asd24",
-                "signatory_name": "1asdasdasd"
-            }
+            "answer": {}
         }
     ],
     "description": "Description"

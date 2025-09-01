@@ -14,7 +14,6 @@ import 'package:varicon_form_builder/src/form_elements/varicon_phone_field.dart'
 import 'package:varicon_form_builder/src/form_elements/varicon_date_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_signature_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_multi_signature_field.dart';
-import 'package:varicon_form_builder/src/form_elements/varicon_file_picker_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_radio_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_checkbox_field.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_dropdown_field.dart';
@@ -38,6 +37,7 @@ class VariconInputFields extends ConsumerWidget {
   final Widget Function(File imageFile) customPainter;
   final String locationData;
   final Function(Map<String, dynamic> url) fileClick;
+  final bool hasCustomPainter;
 
   const VariconInputFields({
     super.key,
@@ -49,6 +49,7 @@ class VariconInputFields extends ConsumerWidget {
     this.apiCall,
     required this.locationData,
     required this.fileClick,
+    required this.hasCustomPainter,
   });
 
   @override
@@ -76,6 +77,7 @@ class VariconInputFields extends ConsumerWidget {
         return LabelWidget(
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
+          isEditable: value.isEditable,
           labelText: labelText,
           child: (value.name ?? '').toLowerCase().contains('long')
               ? VariconLongText(
@@ -113,6 +115,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       number: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -124,6 +127,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       email: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -135,6 +139,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       phone: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -146,6 +151,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       date: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -158,6 +164,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       time: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -170,6 +177,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       datetimelocal: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -182,6 +190,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       signature: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -195,6 +204,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       multisignature: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -208,6 +218,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       files: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -228,9 +239,11 @@ class VariconInputFields extends ConsumerWidget {
       images: (value) {
         return LabelWidget(
             key: GlobalObjectKey(value.id),
+            isEditable: value.isEditable,
             isRequired: value.isRequired,
             labelText: labelText,
             child: FormImagePicker(
+              hasCustomPainter: hasCustomPainter,
               imageField: value,
               labelText: labelText,
               locationData: locationData,
@@ -250,6 +263,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       radiogroup: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -261,6 +275,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       yesno: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -272,6 +287,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       yesnona: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -283,6 +299,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       checkbox: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -294,6 +311,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       dropdown: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           key: GlobalObjectKey(value.id),
           isRequired: value.isRequired,
           labelText: labelText,
@@ -306,9 +324,10 @@ class VariconInputFields extends ConsumerWidget {
       },
       multipleselect: (value) {
         return LabelWidget(
-          key: GlobalObjectKey(value.id),
-          isRequired: value.isRequired,
+          isEditable: value.isEditable,
+            isRequired: value.isRequired,
           labelText: labelText,
+          key: GlobalObjectKey(value.id),
           child: VariconMultiDropdownField(
             field: value,
             labelText: labelText,
@@ -324,6 +343,7 @@ class VariconInputFields extends ConsumerWidget {
       },
       table: (value) {
         return LabelWidget(
+          isEditable: value.isEditable,
           isRequired: value.isRequired,
           labelText: labelText,
           hasSpacing: false,
@@ -344,6 +364,7 @@ class VariconInputFields extends ConsumerWidget {
           isRequired: value.isRequired,
           labelText: labelText,
           hasSpacing: false,
+          isEditable: value.isEditable,
           child: VariconAdvanceTableField(
             field: value,
             locationData: locationData,

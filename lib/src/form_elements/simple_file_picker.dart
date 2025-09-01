@@ -118,12 +118,129 @@ class _SimpleFilePickerState extends ConsumerState<SimpleFilePicker> {
     return Consumer(
       builder: (context, ref, child) {
         final isUploaded = ref.watch(simpleFilePickerProvider(widget.fieldId));
+
+        // Add "See More" functionality
+        final initialFileCount = 5;
+        final showSeeMore = isUploaded.length > initialFileCount;
+        final filesToShow = showSeeMore
+            ? isUploaded.take(initialFileCount).toList()
+            : isUploaded;
+
         return Column(
-          spacing: 12,
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...isUploaded.map((file) => _buildFileContainer(file)),
+            Consumer(
+              builder: (context, ref, child) {
+                final currentFiles =
+                    ref.watch(simpleFilePickerProvider(widget.fieldId));
+                final showSeeMore = currentFiles.length > initialFileCount;
+                final filesToShow = showSeeMore
+                    ? currentFiles.take(initialFileCount).toList()
+                    : currentFiles;
+
+                return Column(
+                  spacing: 12,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ...filesToShow.map((file) => _buildFileContainer(file)),
+                  ],
+                );
+              },
+            ),
+            Consumer(
+              builder: (context, ref, child) {
+                final currentFiles =
+                    ref.watch(simpleFilePickerProvider(widget.fieldId));
+                final showSeeMore = currentFiles.length > initialFileCount;
+
+                if (!showSeeMore) return const SizedBox.shrink();
+
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => Dialog(
+                          child: Container(
+                            padding: const EdgeInsets.all(16),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    const Text('All Files',
+                                        style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold)),
+                                    IconButton(
+                                      onPressed: () => Navigator.pop(context),
+                                      icon: const Icon(Icons.close),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 16),
+                                Consumer(
+                                  builder: (context, ref, child) {
+                                    final currentFiles = ref.watch(
+                                        simpleFilePickerProvider(
+                                            widget.fieldId));
+                                    return Column(
+                                      spacing: 12,
+                                      children: currentFiles
+                                          .map((file) =>
+                                              _buildFileContainer(file))
+                                          .toList(),
+                                    );
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                            color: Colors.black.withOpacity(0.3)),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.keyboard_arrow_down,
+                              size: 16, color: Colors.black),
+                          const SizedBox(width: 4),
+                          Consumer(
+                            builder: (context, ref, child) {
+                              final currentFiles = ref.watch(
+                                  simpleFilePickerProvider(widget.fieldId));
+                              final remainingCount =
+                                  currentFiles.length - initialFileCount;
+                              return Text(
+                                'See More ($remainingCount more)',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         );
       },

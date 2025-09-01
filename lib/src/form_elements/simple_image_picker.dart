@@ -1,6 +1,7 @@
 // ignore_for_file: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
 
 import 'dart:io';
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
@@ -14,15 +15,16 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/state/attachment_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
+import 'package:varicon_form_builder/src/helpers/image_quality.dart';
 import '../models/attachment.dart';
 import 'package:mime/mime.dart';
 
 /// Configuration constants for the image picker
 class ImagePickerConfig {
   static const double maxImageSizeMB = 25.0;
-  static const int imageQuality = 80;
-  static const int maxMultiImageLimit = 5;
-  static const int maxTotalImageLimit = 15;
+  static const int imageQuality = kImageCompressionQuality;
+  static const int maxMultiImageLimit = 10;
+  static const int maxTotalImageLimit = 25;
   static const double previewImageSize = 100.0;
   static const double previewImageIconSize = 32.0;
   static const double previewImageCloseIconSize = 16.0;
@@ -46,6 +48,7 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
     this.initialImages = const [],
     required this.imageBuild,
     required this.customPainter,
+    required this.hasCustomPainter,
     required this.locationData,
   });
 
@@ -70,6 +73,9 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
 
   /// Location data to be added to images
   final String locationData;
+
+  /// to handle the use of custom painter
+  final bool hasCustomPainter;
 
   @override
   ConsumerState<SimpleImagePicker> createState() => _SimpleImagePickerState();
@@ -140,11 +146,90 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     return Consumer(
       builder: (context, ref, child) {
         final isUploaded = ref.watch(simpleImagePickerProvider(widget.fieldId));
-        return Wrap(
-          spacing: 8,
-          runSpacing: 8,
+
+        // Add "See More" functionality
+        final initialImageCount = 5;
+        final showSeeMore = isUploaded.length > initialImageCount;
+        final imagesToShow = showSeeMore
+            ? isUploaded.take(initialImageCount).toList()
+            : isUploaded;
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ...isUploaded.map((image) => _buildImagePreview(image)),
+            Consumer(
+              builder: (context, ref, child) {
+                final currentImages =
+                    ref.watch(simpleImagePickerProvider(widget.fieldId));
+                final showSeeMore = currentImages.length > initialImageCount;
+                final imagesToShow = showSeeMore
+                    ? currentImages.take(initialImageCount).toList()
+                    : currentImages;
+
+                return Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: [
+                    ...imagesToShow.map((image) => _buildImagePreview(image)),
+                  ],
+                );
+              },
+            ),
+            Consumer(
+              builder: (context, ref, child) {
+                final currentImages =
+                    ref.watch(simpleImagePickerProvider(widget.fieldId));
+                final showSeeMore = currentImages.length > initialImageCount;
+
+                if (!showSeeMore) return const SizedBox.shrink();
+
+                return Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) => _buildPaginatedImageDialog(),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 12, vertical: 6),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(16),
+                        border:
+                            Border.all(color: Colors.black.withOpacity(0.3)),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Icon(Icons.keyboard_arrow_down,
+                              size: 16, color: Colors.black),
+                          const SizedBox(width: 4),
+                          Consumer(
+                            builder: (context, ref, child) {
+                              final currentImages = ref.watch(
+                                  simpleImagePickerProvider(widget.fieldId));
+                              final remainingCount =
+                                  currentImages.length - initialImageCount;
+                              return Text(
+                                'See More ($remainingCount more)',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              },
+            ),
           ],
         );
       },
@@ -237,12 +322,59 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     );
   }
 
+  /// Builds the paginated image dialog
+  Widget _buildPaginatedImageDialog() {
+    return Dialog(
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        constraints: const BoxConstraints(maxHeight: 600),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('All Images',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(Icons.close),
+                ),
+              ],
+            ),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Consumer(
+                builder: (context, ref, child) {
+                  final currentImages =
+                      ref.watch(simpleImagePickerProvider(widget.fieldId));
+                  // Show all images in the dialog (including the first 5 from main view)
+                  return _PaginatedImageGrid(
+                    key: ValueKey('paginated_grid_${currentImages.length}'),
+                    images: currentImages,
+                    onImageTap: (image) => _buildImagePreview(image),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   /// Removes an image from the list
   void _removeImage(Attachment image) {
     ref
         .read(simpleImagePickerProvider(widget.fieldId).notifier)
         .removeImage(image);
     _updateImageList();
+
+    // Force a rebuild of the dialog if it's open
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   /// Updates the image list in the state
@@ -306,7 +438,8 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     return mimeType.startsWith('image/');
   }
 
-  static Future<File> compressImage(String path, {int quality = 10}) async {
+  static Future<File> compressImage(String path,
+      {int quality = kImageCompressionQuality}) async {
     try {
       var dir = await getApplicationSupportDirectory();
       final target =
@@ -353,22 +486,25 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   /// Handles camera image selection
   Future<void> _handleCameraSelection() async {
     Navigator.pop(context);
-
-    // Check if user has reached maximum total image limit
-    final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
-    if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
-      _showErrorToast(
-          'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
-      return;
-    }
-
-    final XFile? image = await _pickImage();
-
-    if (image != null) {
-      final compressedFile = await compressMaxImage(image.path);
-      if (compressedFile != null) {
-        await _processSingleImage(XFile(compressedFile.path));
+    try {
+      // Check if user has reached maximum total image limit
+      final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
+      if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
+        _showErrorToast(
+            'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
+        return;
       }
+
+      final XFile? image = await _pickImage();
+
+      if (image != null) {
+        final compressedFile = await compressMaxImage(image.path);
+        if (compressedFile != null) {
+          await _processSingleImageWithEditor(XFile(compressedFile.path));
+        }
+      }
+    } catch (e) {
+      debugPrint('Error picking image: $e');
     }
   }
 
@@ -399,7 +535,40 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     }
   }
 
-  /// Processes a single image from camera
+  /// Processes a single image from camera with image editor
+  Future<void> _processSingleImageWithEditor(XFile image) async {
+    if (await _validateImageSize(image)) {
+      final File imageFile = File(image.path);
+      if (widget.hasCustomPainter) {
+        // Navigate to image editor for camera images
+        final editedImage = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => widget.customPainter(imageFile)!,
+          ),
+        );
+
+        if (editedImage != null) {
+          // Add timestamp and location to the edited image
+          final File? finalImage = await _editImage(
+            editedImage, // editedImage is already Uint8List
+            widget.locationData,
+          );
+          if (finalImage != null) {
+            await _uploadSingleImage(finalImage);
+          }
+        }
+      } else {
+        //_convertUint8ListToFile
+        final finalImage = await _convertUint8ListToFile(
+          await image.readAsBytes(),
+        );
+        await _uploadSingleImage(finalImage);
+      }
+    }
+  }
+
+  /// Processes a single image from camera (for gallery images)
   Future<void> _processSingleImage(XFile image) async {
     if (await _validateImageSize(image)) {
       final File? editedImage = await _editImage(
@@ -497,7 +666,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     );
 
     option.addOption(textOption);
-    option.outputFormat = Editor.OutputFormat.jpeg(Platform.isIOS ? 40 : 20);
+    option.outputFormat = Editor.OutputFormat.jpeg(kImageCompressionQuality);
 
     final editedImage = await Editor.ImageEditor.editImage(
       image: currentImage,
@@ -626,16 +795,204 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
         imageQuality: ImagePickerConfig.imageQuality,
         limit: ImagePickerConfig.maxMultiImageLimit,
       );
-      if (result.isNotEmpty && result.length > 5) {
-        _showErrorToast('You can only select up to 5 images.');
+      if (result.isNotEmpty && result.length > 10) {
+        _showErrorToast('You can only select up to 10 images.');
 
         /// return first 5 images here
-        return result.sublist(0, 5);
+        return result.sublist(0, 10);
       }
       return result;
     } catch (e) {
       debugPrint('Error picking image: $e');
       return null;
     }
+  }
+}
+
+/// A widget that displays images in a paginated grid with lazy loading
+class _PaginatedImageGrid extends StatefulWidget {
+  final List<Attachment> images;
+  final Widget Function(Attachment) onImageTap;
+
+  const _PaginatedImageGrid({
+    super.key,
+    required this.images,
+    required this.onImageTap,
+  });
+
+  @override
+  State<_PaginatedImageGrid> createState() => _PaginatedImageGridState();
+}
+
+class _PaginatedImageGridState extends State<_PaginatedImageGrid> {
+  static const int _imagesPerPage = 10;
+  static const int _batchSize = 3; // Load 3 images at a time
+  int _currentPage = 0;
+  int _loadedImagesCount = 0;
+  final List<Attachment> _loadedImages = [];
+  List<Attachment> _previousImages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _previousImages = List.from(widget.images);
+    _loadNextBatch();
+  }
+
+  @override
+  void didUpdateWidget(_PaginatedImageGrid oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    // Check if images list has changed (e.g., due to deletion)
+    if (_previousImages.length != widget.images.length ||
+        !const DeepCollectionEquality()
+            .equals(_previousImages, widget.images)) {
+      _previousImages = List.from(widget.images);
+      _refreshLoadedImages();
+    }
+  }
+
+  void _refreshLoadedImages() {
+    setState(() {
+      // Remove any images that are no longer in the widget.images list
+      _loadedImages.removeWhere((loadedImage) => !widget.images.any(
+          (widgetImage) =>
+              widgetImage.localId == loadedImage.localId ||
+              widgetImage.id == loadedImage.id));
+      _loadedImagesCount = _loadedImages.length;
+    });
+  }
+
+  void _loadNextBatch() {
+    if (_loadedImagesCount >= widget.images.length) return;
+
+    final startIndex = _currentPage * _imagesPerPage;
+    final endIndex =
+        (startIndex + _imagesPerPage).clamp(0, widget.images.length);
+    final currentPageImages = widget.images.sublist(startIndex, endIndex);
+
+    final remainingToLoad = currentPageImages.length - _loadedImages.length;
+    final batchSize =
+        remainingToLoad > _batchSize ? _batchSize : remainingToLoad;
+
+    if (batchSize > 0) {
+      final nextBatch = currentPageImages.sublist(
+          _loadedImages.length, _loadedImages.length + batchSize);
+      _loadedImages.addAll(nextBatch);
+      _loadedImagesCount += batchSize;
+
+      if (mounted) {
+        setState(() {});
+      }
+
+      // Load next batch after a short delay
+      Future.delayed(const Duration(milliseconds: 500), () {
+        if (mounted) {
+          _loadNextBatch();
+        }
+      });
+    }
+  }
+
+  void _onPageChanged(int newPage) {
+    setState(() {
+      _currentPage = newPage;
+      _loadedImages.clear();
+      _loadedImagesCount = 0;
+    });
+    _loadNextBatch();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // Handle empty images list
+    if (widget.images.isEmpty) {
+      return const Center(
+        child: Text('No images to display'),
+      );
+    }
+
+    final totalPages = (widget.images.length / _imagesPerPage).ceil();
+    final startIndex = _currentPage * _imagesPerPage;
+    final endIndex =
+        (startIndex + _imagesPerPage).clamp(0, widget.images.length);
+
+    // Ensure we don't go out of bounds
+    if (startIndex >= widget.images.length) {
+      _currentPage = 0;
+      return build(context);
+    }
+
+    return Column(
+      children: [
+        Expanded(
+          child: SingleChildScrollView(
+            child: Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                ..._loadedImages.map((image) => widget.onImageTap(image)),
+                if (_loadedImages.length < (endIndex - startIndex))
+                  ...List.generate(
+                    (endIndex - startIndex) - _loadedImages.length,
+                    (index) => Container(
+                      height: ImagePickerConfig.previewImageSize,
+                      width: ImagePickerConfig.previewImageSize,
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey),
+                        borderRadius: BorderRadius.circular(
+                            ImagePickerConfig.previewImageBorderRadius),
+                      ),
+                      child: const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
+        ),
+        if (totalPages > 1) ...[
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 6),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border(
+                top: BorderSide(color: Colors.grey.withOpacity(0.3)),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: _currentPage > 0
+                      ? () => _onPageChanged(_currentPage - 1)
+                      : null,
+                  icon: const Icon(Icons.chevron_left),
+                ),
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  decoration: BoxDecoration(
+                    color: Colors.grey.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    'Page ${_currentPage + 1} of $totalPages',
+                    style: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                IconButton(
+                  onPressed: _currentPage < totalPages - 1
+                      ? () => _onPageChanged(_currentPage + 1)
+                      : null,
+                  icon: const Icon(Icons.chevron_right),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ],
+    );
   }
 }
