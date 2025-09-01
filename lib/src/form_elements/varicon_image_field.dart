@@ -145,7 +145,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
           preventPop: true,
           name: const Uuid().v4(),
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          imageQuality: 40,
+          imageQuality: 80,
           availableImageSources: const [
             ImageSourceOption.gallery,
             ImageSourceOption.camera

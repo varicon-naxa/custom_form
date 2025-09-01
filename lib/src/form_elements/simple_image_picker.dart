@@ -437,7 +437,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     return mimeType.startsWith('image/');
   }
 
-  static Future<File> compressImage(String path, {int quality = 10}) async {
+  static Future<File> compressImage(String path, {int quality = 80}) async {
     try {
       var dir = await getApplicationSupportDirectory();
       final target =
@@ -484,22 +484,25 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   /// Handles camera image selection
   Future<void> _handleCameraSelection() async {
     Navigator.pop(context);
-
-    // Check if user has reached maximum total image limit
-    final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
-    if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
-      _showErrorToast(
-          'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
-      return;
-    }
-
-    final XFile? image = await _pickImage();
-
-    if (image != null) {
-      final compressedFile = await compressMaxImage(image.path);
-      if (compressedFile != null) {
-        await _processSingleImageWithEditor(XFile(compressedFile.path));
+    try {
+      // Check if user has reached maximum total image limit
+      final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
+      if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
+        _showErrorToast(
+            'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
+        return;
       }
+
+      final XFile? image = await _pickImage();
+
+      if (image != null) {
+        final compressedFile = await compressMaxImage(image.path);
+        if (compressedFile != null) {
+          await _processSingleImageWithEditor(XFile(compressedFile.path));
+        }
+      }
+    } catch (e) {
+      debugPrint('Error picking image: $e');
     }
   }
 

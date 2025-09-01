@@ -80,7 +80,7 @@ class ImageSourceBottomSheet extends StatefulWidget {
 class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
   bool _isPickingImage = false;
 
-  static Future<File> compressImage(String path, {int quality = 10}) async {
+  static Future<File> compressImage(String path, {int quality = 80}) async {
     try {
       var dir = await getApplicationSupportDirectory();
       final target =
@@ -139,11 +139,11 @@ class ImageSourceBottomSheetState extends State<ImageSourceBottomSheet> {
           // fontName: fontName,
           textAlign: TextAlign.left),
     );
-    option.outputFormat = Editor.OutputFormat.jpeg(20);
+    option.outputFormat = Editor.OutputFormat.jpeg(85);
 
     option.addOption(textOption);
 
-    option.outputFormat = Editor.OutputFormat.jpeg(20);
+    option.outputFormat = Editor.OutputFormat.jpeg(85);
 
     final unifileImage = await Editor.ImageEditor.editImage(
       image: currentImage,
