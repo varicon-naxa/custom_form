@@ -15,13 +15,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/state/attachment_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
+import 'package:varicon_form_builder/src/helpers/image_quality.dart';
 import '../models/attachment.dart';
 import 'package:mime/mime.dart';
 
 /// Configuration constants for the image picker
 class ImagePickerConfig {
   static const double maxImageSizeMB = 25.0;
-  static const int imageQuality = 80;
+  static const int imageQuality = kImageCompressionQuality;
   static const int maxMultiImageLimit = 10;
   static const int maxTotalImageLimit = 25;
   static const double previewImageSize = 100.0;
@@ -437,7 +438,8 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     return mimeType.startsWith('image/');
   }
 
-  static Future<File> compressImage(String path, {int quality = 10}) async {
+  static Future<File> compressImage(String path,
+      {int quality = kImageCompressionQuality}) async {
     try {
       var dir = await getApplicationSupportDirectory();
       final target =
@@ -484,22 +486,25 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
   /// Handles camera image selection
   Future<void> _handleCameraSelection() async {
     Navigator.pop(context);
-
-    // Check if user has reached maximum total image limit
-    final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
-    if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
-      _showErrorToast(
-          'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
-      return;
-    }
-
-    final XFile? image = await _pickImage();
-
-    if (image != null) {
-      final compressedFile = await compressMaxImage(image.path);
-      if (compressedFile != null) {
-        await _processSingleImageWithEditor(XFile(compressedFile.path));
+    try {
+      // Check if user has reached maximum total image limit
+      final currentImages = ref.read(simpleImagePickerProvider(widget.fieldId));
+      if (currentImages.length >= ImagePickerConfig.maxTotalImageLimit) {
+        _showErrorToast(
+            'You have reached the maximum limit of ${ImagePickerConfig.maxTotalImageLimit} images.');
+        return;
       }
+
+      final XFile? image = await _pickImage();
+
+      if (image != null) {
+        final compressedFile = await compressMaxImage(image.path);
+        if (compressedFile != null) {
+          await _processSingleImageWithEditor(XFile(compressedFile.path));
+        }
+      }
+    } catch (e) {
+      debugPrint('Error picking image: $e');
     }
   }
 
@@ -661,7 +666,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     );
 
     option.addOption(textOption);
-    option.outputFormat = Editor.OutputFormat.jpeg(Platform.isIOS ? 40 : 20);
+    option.outputFormat = Editor.OutputFormat.jpeg(kImageCompressionQuality);
 
     final editedImage = await Editor.ImageEditor.editImage(
       image: currentImage,

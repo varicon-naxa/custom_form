@@ -11,6 +11,7 @@ import '../../varicon_form_builder.dart';
 import '../custom_element/form_builder_image_picker.dart';
 import '../helpers/utils.dart';
 import 'package:intl/intl.dart';
+import 'package:varicon_form_builder/src/helpers/image_quality.dart';
 
 class VariconImageField extends StatefulHookConsumerWidget {
   const VariconImageField({
@@ -145,7 +146,7 @@ class _VariconImageFieldState extends ConsumerState<VariconImageField> {
           preventPop: true,
           name: const Uuid().v4(),
           autovalidateMode: AutovalidateMode.onUserInteraction,
-          imageQuality: 40,
+          imageQuality: kImageCompressionQuality,
           availableImageSources: const [
             ImageSourceOption.gallery,
             ImageSourceOption.camera
