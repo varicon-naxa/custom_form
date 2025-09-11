@@ -261,67 +261,65 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
     // Check if gridview parameters are provided
     if (widget.crossAxisCount != null && widget.childAspectRatio != null) {
       // Use GridView layout
-      finalWidget = SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            GridView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: widget.crossAxisCount!,
-                childAspectRatio: widget.childAspectRatio!,
-                crossAxisSpacing: 12.0,
-                mainAxisSpacing: 12.0,
-              ),
-              itemCount: widgetList.length,
-              itemBuilder: (context, index) => widgetList[index],
+      finalWidget = Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: widget.crossAxisCount!,
+              childAspectRatio: widget.childAspectRatio!,
+              crossAxisSpacing: 12.0,
+              mainAxisSpacing: 12.0,
             ),
-            Visibility(
-              visible: ((widget.value ?? []) as List<ValueText>)
-                      .where((element) => element.action == true)
-                      .isNotEmpty &&
-                  (widget.actionMessage ?? '').isNotEmpty,
-              child: Container(
-                width: double.infinity,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-                decoration: BoxDecoration(
-                  color: Colors.red.shade500,
-                  borderRadius: BorderRadius.circular(8.0),
-                ),
-                child: Text(
-                  widget.actionMessage ?? '',
-                  style: const TextStyle(color: Colors.white),
-                ),
+            itemCount: widgetList.length,
+            itemBuilder: (context, index) => widgetList[index],
+          ),
+          Visibility(
+            visible: ((widget.value ?? []) as List<ValueText>)
+                    .where((element) => element.action == true)
+                    .isNotEmpty &&
+                (widget.actionMessage ?? '').isNotEmpty,
+            child: Container(
+              width: double.infinity,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+              decoration: BoxDecoration(
+                color: Colors.red.shade500,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Text(
+                widget.actionMessage ?? '',
+                style: const TextStyle(color: Colors.white),
               ),
             ),
-            Visibility(
-              visible: ((widget.value ?? []) as List<ValueText>)
-                  .where((element) => element.isOtherField == true)
-                  .isNotEmpty,
-              child: FormBuilderTextField(
-                name: const Uuid().v4(),
-                autofocus: widget.isResponse == false,
-                onTapOutside: (val) {
-                  otherFieldFocusNode.unfocus();
-                },
-                controller: otherFieldController,
-                focusNode: otherFieldFocusNode,
-                decoration: const InputDecoration(
-                  labelText: 'Other (please specify)',
-                  contentPadding: EdgeInsets.all(8.0),
-                ),
-                onChanged: (data) {
-                  widget.onOtherSelectedValue!(true, data ?? '');
-                },
-                validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(),
-                ]),
+          ),
+          Visibility(
+            visible: ((widget.value ?? []) as List<ValueText>)
+                .where((element) => element.isOtherField == true)
+                .isNotEmpty,
+            child: FormBuilderTextField(
+              name: const Uuid().v4(),
+              autofocus: widget.isResponse == false,
+              onTapOutside: (val) {
+                otherFieldFocusNode.unfocus();
+              },
+              controller: otherFieldController,
+              focusNode: otherFieldFocusNode,
+              decoration: const InputDecoration(
+                labelText: 'Other (please specify)',
+                contentPadding: EdgeInsets.all(8.0),
               ),
+              onChanged: (data) {
+                widget.onOtherSelectedValue!(true, data ?? '');
+              },
+              validator: FormBuilderValidators.compose([
+                FormBuilderValidators.required(),
+              ]),
             ),
-          ],
-        ),
+          ),
+        ],
       );
     } else if (widget.orientation == OptionsOrientation.auto) {
       finalWidget = OverflowBar(
@@ -503,14 +501,11 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                   ? 8
                   : 4),
           // Text widget
-          Expanded(child: option),
+          option,
         ],
       );
     } else {
-      contentWidget =
-          widget.crossAxisCount != null && widget.childAspectRatio != null
-              ? Expanded(child: option)
-              : option;
+      contentWidget = option;
     }
 
     // For gridview layout, use a different structure
@@ -575,7 +570,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                 control,
                 const SizedBox(height: 8),
                 // Content below
-                Expanded(child: label),
+                label,
               ],
             )
           : // Regular layout - horizontal row
