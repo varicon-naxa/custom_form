@@ -190,11 +190,20 @@ class CustomGroupedRadio<T> extends StatefulWidget {
 
   final Function(bool isSelected, String text)? onOtherSelectedValue;
 
+  /// Number of columns in the grid when orientation is horizontal
+  final int? crossAxisCount;
+
+  /// Aspect ratio of each grid item when orientation is horizontal
+  final double? childAspectRatio;
+
+  final Widget Function(Map<String, dynamic>) imageBuild;
+
   const CustomGroupedRadio(
       {super.key,
       required this.options,
       required this.orientation,
       required this.onChanged,
+      required this.imageBuild,
       this.value,
       this.isResponse,
       this.disabled,
@@ -215,7 +224,9 @@ class CustomGroupedRadio<T> extends StatefulWidget {
       this.separator,
       this.controlAffinity = ControlAffinity.leading,
       this.itemDecoration,
-      this.onOtherSelectedValue});
+      this.onOtherSelectedValue,
+      this.crossAxisCount,
+      this.childAspectRatio});
 
   @override
   State<CustomGroupedRadio<T?>> createState() => _CustomGroupedRadioState<T>();
@@ -298,10 +309,40 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
           ),
         );
       case OptionsOrientation.horizontal:
-        return SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(children: widgetList),
-        );
+        // Check if gridview parameters are provided for horizontal layout
+        if (widget.crossAxisCount != null && widget.childAspectRatio != null) {
+          return GridView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: widget.crossAxisCount!,
+              childAspectRatio: widget.childAspectRatio!,
+              crossAxisSpacing: 12.0,
+              mainAxisSpacing: 12.0,
+            ),
+            itemCount: widgetList.length,
+            itemBuilder: (context, index) {
+              return widgetList[index];
+            },
+          );
+        } else {
+          // Use Row layout for horizontal orientation without gridview
+          return SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                for (int i = 0; i < widgetList.length; i++) ...[
+                  widgetList[i],
+                  if (i < widgetList.length - 1)
+                    SizedBox(
+                        width:
+                            widget.wrapSpacing > 0 ? widget.wrapSpacing : 8.0),
+                ],
+              ],
+            ),
+          );
+        }
+
       case OptionsOrientation.wrap:
         return SingleChildScrollView(
           child: Wrap(
@@ -349,21 +390,81 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
 
     final label = option;
 
+    // Check if the option has an image
+    ValueText? currentValueText = option.value as ValueText?;
+    bool hasImage = currentValueText?.image != null;
+
+    // Create the content widget (text or image + text)
+    Widget contentWidget;
+    if (hasImage) {
+      contentWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Image widget - same for both horizontal and vertical
+          SizedBox(
+            height:
+                widget.orientation == OptionsOrientation.horizontal ? 50 : 60,
+            width: double.infinity,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: widget.imageBuild({
+                'image': currentValueText?.image?['file'],
+                'height': widget.orientation == OptionsOrientation.horizontal
+                    ? 50.0
+                    : 60.0,
+                'width': double.infinity,
+              }),
+            ),
+          ),
+          SizedBox(
+              height:
+                  widget.orientation == OptionsOrientation.horizontal ? 6 : 4),
+          // Text widget
+          Expanded(child: label),
+        ],
+      );
+    } else {
+      contentWidget = label;
+    }
+
     Widget compositeItem = Container(
-      width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 8.0),
+      width: widget.orientation == OptionsOrientation.horizontal
+          ? 200
+          : double.infinity,
+      height: widget.orientation == OptionsOrientation.horizontal ? 120 : null,
+      margin: EdgeInsets.only(
+        bottom: widget.orientation == OptionsOrientation.horizontal ? 0.0 : 8.0,
+        right: widget.orientation == OptionsOrientation.horizontal ? 8.0 : 0.0,
+      ),
+      padding: widget.orientation == OptionsOrientation.horizontal
+          ? const EdgeInsets.all(8.0)
+          : EdgeInsets.zero,
       decoration: BoxDecoration(
         border: Border.all(
           color: isSelected
               ? currentOption?.action == true
                   ? Colors.red
-                  : Colors.grey.shade400
-              : Colors.transparent,
+                  : Colors.grey.shade600
+              : Colors.grey.shade300,
+          width: 1.0,
         ),
         color: (isSelected && currentOption?.action == true)
             ? Colors.red.shade100
-            : Colors.transparent,
+            : widget.orientation == OptionsOrientation.horizontal
+                ? Colors.white
+                : Colors.transparent,
         borderRadius: BorderRadius.circular(8.0),
+        boxShadow: widget.orientation == OptionsOrientation.horizontal
+            ? [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.1),
+                  spreadRadius: 1,
+                  blurRadius: 2,
+                  offset: const Offset(0, 1),
+                ),
+              ]
+            : null,
       ),
       child: GestureDetector(
         behavior: HitTestBehavior.translucent,
@@ -379,22 +480,31 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                 }
                 widget.onChanged(optionValue);
               },
-        child: IntrinsicHeight(
-          child: SizedBox(
-            height: 40,
-            child: Row(
-              children: [
-                control,
-                Flexible(child: label),
-                // if (widget.controlAffinity == ControlAffinity.trailing) control,
-                // if (widget.orientation != OptionsOrientation.vertical &&
-                //     widget.separator != null &&
-                //     index != widget.options.length - 1)
-                //   widget.separator!,
-              ],
-            ),
-          ),
-        ),
+        child: widget.orientation == OptionsOrientation.horizontal
+            ? // Horizontal layout - radio button at top, content below
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Radio button at the top
+                  control,
+                  const SizedBox(height: 8),
+                  // Content below (image + text in two rows)
+                  Expanded(child: contentWidget),
+                ],
+              )
+            : // Vertical layout - original design
+            IntrinsicHeight(
+                child: SizedBox(
+                  height: hasImage ? 120 : 40,
+                  child: Row(
+                    children: [
+                      control,
+                      const SizedBox(width: 8),
+                      Expanded(child: contentWidget),
+                    ],
+                  ),
+                ),
+              ),
       ),
     );
 

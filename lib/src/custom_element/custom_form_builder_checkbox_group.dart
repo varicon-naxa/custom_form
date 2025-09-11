@@ -3,7 +3,8 @@ import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'widget/custom_grouped_checkbox.dart';
 
 /// A list of Checkboxes for selecting multiple options
-class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<T>> {
+class CustomFormBuilderCheckboxGroup<T>
+    extends FormBuilderFieldDecoration<List<T>> {
   final List<FormBuilderFieldOption<T>> options;
   final Color? activeColor;
   final VisualDensity? visualDensity;
@@ -27,53 +28,61 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
   final OptionsOrientation orientation;
   final String? otherText;
   final Function(bool isSelected, String text)? onOtherSelectedValue;
+  final Widget Function(Map<String, dynamic>) imageBuild;
 
   /// Added to each item if provided.
   /// [GroupedCheckbox] applies the [itemDecorator] to each Checkbox
   final BoxDecoration? itemDecoration;
   final bool? isResponse;
 
+  /// GridView parameters for checkbox layout
+  final int? crossAxisCount;
+  final double? childAspectRatio;
+
   /// Creates a list of Checkboxes for selecting multiple options
-  CustomFormBuilderCheckboxGroup({
-    super.key,
-    required super.name,
-    this.visualDensity,
-    super.validator,
-    super.initialValue,
-    super.decoration,
-    super.onChanged,
-    super.valueTransformer,
-    super.enabled,
-    super.onSaved,
-    super.autovalidateMode = AutovalidateMode.disabled,
-    super.onReset,
-    super.focusNode,
-    super.restorationId,
-    required this.options,
-    this.isResponse,
-    this.actionMessage,
-    this.activeColor,
-    this.checkColor,
-    this.focusColor,
-    this.hoverColor,
-    this.disabled,
-    this.otherText,
-    this.materialTapTargetSize,
-    this.tristate = false,
-    this.wrapDirection = Axis.horizontal,
-    this.wrapAlignment = WrapAlignment.start,
-    this.wrapSpacing = 0.0,
-    this.wrapRunAlignment = WrapAlignment.start,
-    this.wrapRunSpacing = 0.0,
-    this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
-    this.wrapTextDirection,
-    this.wrapVerticalDirection = VerticalDirection.down,
-    this.separator,
-    this.controlAffinity = ControlAffinity.leading,
-    this.orientation = OptionsOrientation.wrap,
-    this.itemDecoration,
-    this.onOtherSelectedValue
-  }) : super(
+  CustomFormBuilderCheckboxGroup(
+      {super.key,
+      required super.name,
+      this.visualDensity,
+      super.validator,
+      super.initialValue,
+      super.decoration,
+      super.onChanged,
+      super.valueTransformer,
+      super.enabled,
+      super.onSaved,
+      super.autovalidateMode = AutovalidateMode.disabled,
+      super.onReset,
+      super.focusNode,
+      super.restorationId,
+      required this.options,
+      this.isResponse,
+      this.actionMessage,
+      this.activeColor,
+      this.checkColor,
+      this.focusColor,
+      this.hoverColor,
+      this.disabled,
+      this.otherText,
+      this.materialTapTargetSize,
+      this.tristate = false,
+      this.wrapDirection = Axis.horizontal,
+      this.wrapAlignment = WrapAlignment.start,
+      this.wrapSpacing = 0.0,
+      this.wrapRunAlignment = WrapAlignment.start,
+      this.wrapRunSpacing = 0.0,
+      this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
+      this.wrapTextDirection,
+      this.wrapVerticalDirection = VerticalDirection.down,
+      this.separator,
+      this.controlAffinity = ControlAffinity.leading,
+      this.orientation = OptionsOrientation.wrap,
+      this.itemDecoration,
+      this.onOtherSelectedValue,
+      this.crossAxisCount,
+      this.childAspectRatio,
+      required this.imageBuild})
+      : super(
           builder: (FormFieldState<List<T>?> field) {
             final state = field as _CustomFormBuilderCheckboxGroupState<T>;
             return InputDecorator(
@@ -83,12 +92,15 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
                   CustomGroupedCheckbox<T>(
                     actionMessage: actionMessage,
                     orientation: orientation,
+                    imageBuild: imageBuild,
                     value: state.value,
                     otherText: otherText,
                     isResponse: isResponse,
+                    crossAxisCount: crossAxisCount,
+                    childAspectRatio: childAspectRatio,
                     options: options,
                     onChanged: (val) {
-                      field.didChange(val);                    
+                      field.didChange(val);
                     },
                     disabled: state.enabled
                         ? disabled
@@ -124,5 +136,6 @@ class CustomFormBuilderCheckboxGroup<T> extends FormBuilderFieldDecoration<List<
       createState() => _CustomFormBuilderCheckboxGroupState<T>();
 }
 
-class _CustomFormBuilderCheckboxGroupState<T> extends FormBuilderFieldDecorationState<
-    CustomFormBuilderCheckboxGroup<T>, List<T>> {}
+class _CustomFormBuilderCheckboxGroupState<T>
+    extends FormBuilderFieldDecorationState<CustomFormBuilderCheckboxGroup<T>,
+        List<T>> {}

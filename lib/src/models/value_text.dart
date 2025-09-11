@@ -17,6 +17,9 @@ class ValueText with _$ValueText {
 
     /// Text that is displayed to the frontend.
     @JsonKey(readValue: readText) required String text,
+
+    /// Image data associated with this value text option.
+    @JsonKey(name: 'image') Map<String, dynamic>? image,
   }) = _ValueText;
 
   const factory ValueText.none({
@@ -25,6 +28,7 @@ class ValueText with _$ValueText {
     bool? action,
     bool? isOtherField,
     @JsonKey(name: 'notify_To') List? notifyTo,
+    @JsonKey(name: 'image') Map<String, dynamic>? image,
   }) = NoneValueText;
 
   const factory ValueText.other({
@@ -33,6 +37,7 @@ class ValueText with _$ValueText {
     bool? action,
     bool? isOtherField,
     @JsonKey(name: 'notify_To') List? notifyTo,
+    @JsonKey(name: 'image') Map<String, dynamic>? image,
   }) = OtherValueText;
 
   factory ValueText.fromJson(Map<String, dynamic> json) =>

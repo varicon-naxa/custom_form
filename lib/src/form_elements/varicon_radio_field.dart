@@ -15,11 +15,17 @@ class VariconRadioField extends ConsumerWidget {
       {super.key,
       required this.field,
       required this.labelText,
-      this.isResponse});
+      required this.imageBuild,
+      this.isResponse,
+      this.crossAxisCount,
+      this.childAspectRatio});
 
   final RadioInputField field;
   final String labelText;
+  final Widget Function(Map<String, dynamic>) imageBuild;
   final bool? isResponse;
+  final int? crossAxisCount;
+  final double? childAspectRatio;
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Debouncer debouncer = Debouncer(milliseconds: 500);
@@ -42,7 +48,10 @@ class VariconRadioField extends ConsumerWidget {
       name: const Uuid().v4(),
       isResponse: isResponse,
       actionMessage: field.actionMessage,
-      orientation: OptionsOrientation.vertical,
+      orientation: OptionsOrientation.horizontal,
+      imageBuild: imageBuild,
+      crossAxisCount: crossAxisCount,
+      childAspectRatio: childAspectRatio,
       otherText: (initialValue?.isOtherField == true &&
               field.selectedLinkListLabel != null)
           ? field.selectedLinkListLabel

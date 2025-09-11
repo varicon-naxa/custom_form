@@ -14,10 +14,12 @@ class VariconYesNoRadioField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
+    required this.imageBuild,
   });
 
   final YesNoInputField field;
   final String labelText;
+  final Widget Function(Map<String, dynamic>) imageBuild;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -34,6 +36,7 @@ class VariconYesNoRadioField extends ConsumerWidget {
       name: const Uuid().v4(),
       actionMessage: field.actionMessage,
       orientation: OptionsOrientation.vertical,
+      imageBuild: imageBuild, // Empty container for vertical radio fields
       initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onOtherSelectedValue: (isSelected, text) {},
@@ -68,10 +71,12 @@ class VariconYesNoNaRadioField extends ConsumerWidget {
     super.key,
     required this.field,
     required this.labelText,
+    required this.imageBuild,
   });
 
   final YesNoNaInputField field;
   final String labelText;
+  final Widget Function(Map<String, dynamic>) imageBuild;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -89,6 +94,8 @@ class VariconYesNoNaRadioField extends ConsumerWidget {
       actionMessage: field.actionMessage,
       onOtherSelectedValue: (isSelected, text) {},
       orientation: OptionsOrientation.vertical,
+      imageBuild: (imageData) =>
+          Container(), // Empty container for vertical radio fields
       initialValue: initialValue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       onChanged: (value) {

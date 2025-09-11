@@ -196,6 +196,11 @@ class CustomGroupedCheckbox<T> extends StatefulWidget {
   final BoxDecoration? itemDecoration;
   final Function(bool isSelected, String text)? onOtherSelectedValue;
 
+  /// GridView parameters for checkbox layout
+  final int? crossAxisCount;
+  final double? childAspectRatio;
+  final Widget Function(Map<String, dynamic>) imageBuild;
+
   const CustomGroupedCheckbox({
     super.key,
     required this.options,
@@ -225,6 +230,9 @@ class CustomGroupedCheckbox<T> extends StatefulWidget {
     this.visualDensity,
     this.itemDecoration,
     this.onOtherSelectedValue,
+    this.crossAxisCount,
+    this.childAspectRatio,
+    required this.imageBuild,
   });
 
   @override
@@ -249,7 +257,73 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
       widgetList.add(buildItem(i, otherFieldController, otherFieldFocusNode));
     }
     Widget finalWidget;
-    if (widget.orientation == OptionsOrientation.auto) {
+
+    // Check if gridview parameters are provided
+    if (widget.crossAxisCount != null && widget.childAspectRatio != null) {
+      // Use GridView layout
+      finalWidget = SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            GridView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: widget.crossAxisCount!,
+                childAspectRatio: widget.childAspectRatio!,
+                crossAxisSpacing: 12.0,
+                mainAxisSpacing: 12.0,
+              ),
+              itemCount: widgetList.length,
+              itemBuilder: (context, index) => widgetList[index],
+            ),
+            Visibility(
+              visible: ((widget.value ?? []) as List<ValueText>)
+                      .where((element) => element.action == true)
+                      .isNotEmpty &&
+                  (widget.actionMessage ?? '').isNotEmpty,
+              child: Container(
+                width: double.infinity,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+                decoration: BoxDecoration(
+                  color: Colors.red.shade500,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Text(
+                  widget.actionMessage ?? '',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: ((widget.value ?? []) as List<ValueText>)
+                  .where((element) => element.isOtherField == true)
+                  .isNotEmpty,
+              child: FormBuilderTextField(
+                name: const Uuid().v4(),
+                autofocus: widget.isResponse == false,
+                onTapOutside: (val) {
+                  otherFieldFocusNode.unfocus();
+                },
+                controller: otherFieldController,
+                focusNode: otherFieldFocusNode,
+                decoration: const InputDecoration(
+                  labelText: 'Other (please specify)',
+                  contentPadding: EdgeInsets.all(8.0),
+                ),
+                onChanged: (data) {
+                  widget.onOtherSelectedValue!(true, data ?? '');
+                },
+                validator: FormBuilderValidators.compose([
+                  FormBuilderValidators.required(),
+                ]),
+              ),
+            ),
+          ],
+        ),
+      );
+    } else if (widget.orientation == OptionsOrientation.auto) {
       finalWidget = OverflowBar(
         alignment: MainAxisAlignment.spaceEvenly,
         children: widgetList,
@@ -387,11 +461,81 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
     );
 
     // Remove the GestureDetector from the label
-    final label = Flexible(flex: 1, child: option);
+    // Lets add a imagebuild here
+    ValueText? currentValueText = option.value as ValueText?;
+    bool hasImage = currentValueText?.image != null;
+
+    // Create the content widget (text or image + text)
+    Widget contentWidget;
+    if (hasImage) {
+      contentWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Image widget
+          if (currentValueText?.image != null &&
+              currentValueText?.image?.containsKey('file') == true)
+            Container(
+              height: widget.crossAxisCount != null &&
+                      widget.childAspectRatio != null
+                  ? 80
+                  : 60,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(4),
+                color: Colors.grey.shade100,
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: widget.imageBuild({
+                  'image': currentValueText?.image?['file'],
+                  'height': widget.crossAxisCount != null &&
+                          widget.childAspectRatio != null
+                      ? 80.0
+                      : 60.0,
+                  'width': double.infinity,
+                }),
+              ),
+            ),
+          SizedBox(
+              height: widget.crossAxisCount != null &&
+                      widget.childAspectRatio != null
+                  ? 8
+                  : 4),
+          // Text widget
+          Expanded(child: option),
+        ],
+      );
+    } else {
+      contentWidget =
+          widget.crossAxisCount != null && widget.childAspectRatio != null
+              ? Expanded(child: option)
+              : option;
+    }
+
+    // For gridview layout, use a different structure
+    Widget label;
+    if (widget.crossAxisCount != null && widget.childAspectRatio != null) {
+      // GridView layout - stack checkbox and content vertically
+      label = Expanded(child: contentWidget);
+    } else {
+      // Regular layout - use Flexible
+      label = Flexible(flex: 1, child: contentWidget);
+    }
 
     Widget compositeItem = Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(bottom: 8.0),
+      height: widget.crossAxisCount != null && widget.childAspectRatio != null
+          ? null
+          : null,
+      margin: EdgeInsets.only(
+        bottom: widget.crossAxisCount != null && widget.childAspectRatio != null
+            ? 0.0
+            : 8.0,
+      ),
+      padding: widget.crossAxisCount != null && widget.childAspectRatio != null
+          ? const EdgeInsets.all(12.0)
+          : EdgeInsets.zero,
       decoration: BoxDecoration(
         border: Border.all(
           color: widget.value?.contains(optionValue) == true
@@ -399,38 +543,66 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                       (optionValue as ValueText).action == true
                   ? Colors.red
                   : Colors.grey.shade600
-              : Colors.transparent,
+              : Colors.grey.shade300,
           width: 1.0,
         ),
         color: (widget.value?.contains(optionValue) == true &&
                 optionValue is ValueText &&
                 (optionValue as ValueText).action == true)
             ? Colors.red.shade100
-            : Colors.transparent,
+            : widget.crossAxisCount != null && widget.childAspectRatio != null
+                ? Colors.white
+                : Colors.transparent,
         borderRadius: BorderRadius.circular(8.0),
+        boxShadow:
+            widget.crossAxisCount != null && widget.childAspectRatio != null
+                ? [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: const Offset(0, 1),
+                    ),
+                  ]
+                : null,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              if (widget.controlAffinity == ControlAffinity.leading) control,
-              label,
-              if (widget.controlAffinity == ControlAffinity.trailing) control,
-              if (widget.orientation != OptionsOrientation.vertical &&
-                  widget.separator != null &&
-                  index != widget.options.length - 1)
-                widget.separator!,
-            ],
-          ),
-          if (widget.orientation == OptionsOrientation.vertical &&
-              widget.separator != null &&
-              index != widget.options.length - 1)
-            widget.separator!,
-        ],
-      ),
+      child: widget.crossAxisCount != null && widget.childAspectRatio != null
+          ? // GridView layout - vertical stack
+          Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Checkbox at the top
+                control,
+                const SizedBox(height: 8),
+                // Content below
+                Expanded(child: label),
+              ],
+            )
+          : // Regular layout - horizontal row
+          Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    if (widget.controlAffinity == ControlAffinity.leading)
+                      control,
+                    label,
+                    if (widget.controlAffinity == ControlAffinity.trailing)
+                      control,
+                    if (widget.orientation != OptionsOrientation.vertical &&
+                        widget.separator != null &&
+                        index != widget.options.length - 1)
+                      widget.separator!,
+                  ],
+                ),
+                if (widget.orientation == OptionsOrientation.vertical &&
+                    widget.separator != null &&
+                    index != widget.options.length - 1)
+                  widget.separator!,
+              ],
+            ),
     );
 
     // Wrap the entire compositeItem with GestureDetector

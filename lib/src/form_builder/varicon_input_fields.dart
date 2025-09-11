@@ -270,6 +270,9 @@ class VariconInputFields extends ConsumerWidget {
           child: VariconRadioField(
             field: value,
             labelText: labelText,
+            imageBuild: imageBuild,
+            crossAxisCount: 2,
+            childAspectRatio: 0.8,
           ),
         );
       },
@@ -282,6 +285,7 @@ class VariconInputFields extends ConsumerWidget {
           child: VariconYesNoRadioField(
             field: value,
             labelText: labelText,
+            imageBuild: imageBuild,
           ),
         );
       },
@@ -294,6 +298,7 @@ class VariconInputFields extends ConsumerWidget {
           child: VariconYesNoNaRadioField(
             field: value,
             labelText: labelText,
+            imageBuild: imageBuild,
           ),
         );
       },
@@ -306,6 +311,9 @@ class VariconInputFields extends ConsumerWidget {
           child: VariconCheckboxField(
             field: value,
             labelText: labelText,
+            imageBuild: imageBuild,
+            crossAxisCount: 2,
+            childAspectRatio: 0.8,
           ),
         );
       },
@@ -325,7 +333,7 @@ class VariconInputFields extends ConsumerWidget {
       multipleselect: (value) {
         return LabelWidget(
           isEditable: value.isEditable,
-            isRequired: value.isRequired,
+          isRequired: value.isRequired,
           labelText: labelText,
           key: GlobalObjectKey(value.id),
           child: VariconMultiDropdownField(

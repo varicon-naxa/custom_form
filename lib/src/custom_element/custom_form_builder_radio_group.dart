@@ -26,6 +26,7 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
   final String? actionMessage;
   final String? otherText;
   final bool? isResponse;
+  final Widget Function(Map<String, dynamic>) imageBuild;
 
   /// Added to each item if provided.
   /// [GroupedRadio] applies the [itemDecorator] to each Radio
@@ -33,46 +34,53 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
 
   final Function(bool isSelected, String text)? onOtherSelectedValue;
 
+  /// Number of columns in the grid when orientation is horizontal
+  final int? crossAxisCount;
 
+  /// Aspect ratio of each grid item when orientation is horizontal
+  final double? childAspectRatio;
 
   /// Creates field to select one value from a list of Radio Widgets
-  CustomFromBuilderRadioGroup(
-      {super.autovalidateMode = AutovalidateMode.disabled,
-      super.enabled,
-      super.focusNode,
-      super.onSaved,
-      super.validator,
-      super.decoration,
-      super.key,
-      required super.name,
-      required this.options,
-      super.initialValue,
-      this.actionMessage,
-      this.activeColor,
-      this.controlAffinity = ControlAffinity.leading,
-      this.disabled,
-      this.focusColor,
-      this.hoverColor,
-      this.materialTapTargetSize,
-      this.isResponse,
-      this.orientation = OptionsOrientation.wrap,
-      this.separator,
-      this.wrapAlignment = WrapAlignment.start,
-      this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
-      this.wrapDirection = Axis.horizontal,
-      this.wrapRunAlignment = WrapAlignment.start,
-      this.wrapRunSpacing = 0.0,
-      this.wrapSpacing = 0.0,
-      this.wrapTextDirection,
-      this.wrapVerticalDirection = VerticalDirection.down,
-      super.onChanged,
-      super.valueTransformer,
-      super.onReset,
-      super.restorationId,
-      this.itemDecoration,
-      this.otherText,
-      this.onOtherSelectedValue})
-      : super(
+  CustomFromBuilderRadioGroup({
+    super.autovalidateMode = AutovalidateMode.disabled,
+    super.enabled,
+    super.focusNode,
+    super.onSaved,
+    super.validator,
+    super.decoration,
+    super.key,
+    required super.name,
+    required this.options,
+    super.initialValue,
+    this.actionMessage,
+    this.activeColor,
+    this.controlAffinity = ControlAffinity.leading,
+    this.disabled,
+    this.focusColor,
+    this.hoverColor,
+    this.materialTapTargetSize,
+    this.isResponse,
+    this.orientation = OptionsOrientation.wrap,
+    this.separator,
+    this.wrapAlignment = WrapAlignment.start,
+    this.wrapCrossAxisAlignment = WrapCrossAlignment.start,
+    this.wrapDirection = Axis.horizontal,
+    this.wrapRunAlignment = WrapAlignment.start,
+    this.wrapRunSpacing = 0.0,
+    this.wrapSpacing = 0.0,
+    this.wrapTextDirection,
+    this.wrapVerticalDirection = VerticalDirection.down,
+    super.onChanged,
+    super.valueTransformer,
+    super.onReset,
+    super.restorationId,
+    this.itemDecoration,
+    this.otherText,
+    this.onOtherSelectedValue,
+    this.crossAxisCount,
+    this.childAspectRatio,
+    required this.imageBuild,
+  }) : super(
           builder: (FormFieldState<T?> field) {
             final state = field as _CustomFromBuilderRadioGroupState<T>;
 
@@ -82,6 +90,7 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                 activeColor: activeColor,
                 actionMessage: actionMessage,
                 isResponse: isResponse,
+                imageBuild: imageBuild,
                 controlAffinity: controlAffinity,
                 otherText: otherText,
                 disabled: state.enabled
@@ -107,6 +116,8 @@ class CustomFromBuilderRadioGroup<T> extends FormBuilderFieldDecoration<T> {
                 wrapVerticalDirection: wrapVerticalDirection,
                 itemDecoration: itemDecoration,
                 onOtherSelectedValue: onOtherSelectedValue,
+                crossAxisCount: crossAxisCount,
+                childAspectRatio: childAspectRatio,
               ),
             );
           },

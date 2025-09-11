@@ -15,11 +15,18 @@ class VariconCheckboxField extends ConsumerWidget {
       {super.key,
       required this.field,
       required this.labelText,
-      this.isResponse});
+      required this.imageBuild,
+      this.isResponse,
+      this.crossAxisCount,
+      this.childAspectRatio});
 
   final CheckboxInputField field;
   final String labelText;
   final bool? isResponse;
+  final Widget Function(Map<String, dynamic>) imageBuild;
+  final int? crossAxisCount;
+  final double? childAspectRatio;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Debouncer debouncer = Debouncer(milliseconds: 500);
@@ -39,11 +46,13 @@ class VariconCheckboxField extends ConsumerWidget {
       children: [
         CustomFormBuilderCheckboxGroup<ValueText>(
           autovalidateMode: AutovalidateMode.onUserInteraction,
+          imageBuild: imageBuild,
           name: const Uuid().v4(),
           otherText: field.answerList,
           isResponse: isResponse,
+          crossAxisCount: crossAxisCount,
+          childAspectRatio: childAspectRatio,
           initialValue: filteredData,
-
           // initialValue: const ['Dart'],
           options: field.choices
               .map((lang) => FormBuilderFieldOption(

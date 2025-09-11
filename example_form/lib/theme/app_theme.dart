@@ -64,7 +64,7 @@ class AppTheme {
     iconTheme: const IconThemeData(
       color: Palette.primaryColor,
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       color: Colors.white,
       surfaceTintColor: Colors.white,
     ),
@@ -104,7 +104,7 @@ class AppTheme {
       side: BorderSide(
           color: Palette.primaryColor), // Set border side color to black
     ),
-    dialogTheme: const DialogTheme(
+    dialogTheme: const DialogThemeData(
       backgroundColor: Colors.white,
       surfaceTintColor: Colors.white,
     ),

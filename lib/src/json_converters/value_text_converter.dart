@@ -14,6 +14,7 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
     } else {
       return ValueText(
           value: json['value'] ?? json['id'],
+          image: json['image'],
           text: json['text'] ?? json['label'],
           isOtherField: json['isOtherField'],
           notifyTo: json['notify_To'],
@@ -28,6 +29,7 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
         'id': object.value,
         'label': object.text,
         'action': object.action,
+        'image': object.image,
         'isOtherField': object.isOtherField,
         'notify_To': object.notifyTo,
       };

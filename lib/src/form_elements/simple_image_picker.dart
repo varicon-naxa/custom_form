@@ -544,7 +544,7 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
         final editedImage = await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => widget.customPainter(imageFile)!,
+            builder: (context) => widget.customPainter(imageFile),
           ),
         );
 

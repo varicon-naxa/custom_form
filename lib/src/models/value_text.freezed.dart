@@ -46,6 +46,10 @@ mixin _$ValueText {
   /// Text that is displayed to the frontend.
   @JsonKey(readValue: readText)
   String get text => throw _privateConstructorUsedError;
+
+  /// Image data associated with this value text option.
+  @JsonKey(name: 'image')
+  Map<String, dynamic>? get image => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(
@@ -53,21 +57,24 @@ mixin _$ValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         none,
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         other,
   }) =>
       throw _privateConstructorUsedError;
@@ -78,21 +85,24 @@ mixin _$ValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
   }) =>
       throw _privateConstructorUsedError;
@@ -103,21 +113,24 @@ mixin _$ValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
     required TResult orElse(),
   }) =>
@@ -165,7 +178,8 @@ abstract class $ValueTextCopyWith<$Res> {
       @JsonKey(name: 'action') bool? action,
       @JsonKey(readValue: readValue) String value,
       @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-      @JsonKey(readValue: readText) String text});
+      @JsonKey(readValue: readText) String text,
+      @JsonKey(name: 'image') Map<String, dynamic>? image});
 }
 
 /// @nodoc
@@ -188,6 +202,7 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
     Object? value = null,
     Object? notifyTo = freezed,
     Object? text = null,
+    Object? image = freezed,
   }) {
     return _then(_value.copyWith(
       isOtherField: freezed == isOtherField
@@ -210,6 +225,10 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ) as $Val);
   }
 }
@@ -227,7 +246,8 @@ abstract class _$$ValueTextImplCopyWith<$Res>
       @JsonKey(name: 'action') bool? action,
       @JsonKey(readValue: readValue) String value,
       @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-      @JsonKey(readValue: readText) String text});
+      @JsonKey(readValue: readText) String text,
+      @JsonKey(name: 'image') Map<String, dynamic>? image});
 }
 
 /// @nodoc
@@ -248,6 +268,7 @@ class __$$ValueTextImplCopyWithImpl<$Res>
     Object? value = null,
     Object? notifyTo = freezed,
     Object? text = null,
+    Object? image = freezed,
   }) {
     return _then(_$ValueTextImpl(
       isOtherField: freezed == isOtherField
@@ -270,6 +291,10 @@ class __$$ValueTextImplCopyWithImpl<$Res>
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
+      image: freezed == image
+          ? _value._image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -283,8 +308,10 @@ class _$ValueTextImpl implements _ValueText {
       @JsonKey(readValue: readValue) required this.value,
       @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
       @JsonKey(readValue: readText) required this.text,
+      @JsonKey(name: 'image') final Map<String, dynamic>? image,
       final String? $type})
       : _notifyTo = notifyTo,
+        _image = image,
         $type = $type ?? 'default';
 
   factory _$ValueTextImpl.fromJson(Map<String, dynamic> json) =>
@@ -318,12 +345,26 @@ class _$ValueTextImpl implements _ValueText {
   @JsonKey(readValue: readText)
   final String text;
 
+  /// Image data associated with this value text option.
+  final Map<String, dynamic>? _image;
+
+  /// Image data associated with this value text option.
+  @override
+  @JsonKey(name: 'image')
+  Map<String, dynamic>? get image {
+    final value = _image;
+    if (value == null) return null;
+    if (_image is EqualUnmodifiableMapView) return _image;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ValueText(isOtherField: $isOtherField, action: $action, value: $value, notifyTo: $notifyTo, text: $text)';
+    return 'ValueText(isOtherField: $isOtherField, action: $action, value: $value, notifyTo: $notifyTo, text: $text, image: $image)';
   }
 
   @override
@@ -336,13 +377,20 @@ class _$ValueTextImpl implements _ValueText {
             (identical(other.action, action) || other.action == action) &&
             (identical(other.value, value) || other.value == value) &&
             const DeepCollectionEquality().equals(other._notifyTo, _notifyTo) &&
-            (identical(other.text, text) || other.text == text));
+            (identical(other.text, text) || other.text == text) &&
+            const DeepCollectionEquality().equals(other._image, _image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, isOtherField, action, value,
-      const DeepCollectionEquality().hash(_notifyTo), text);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isOtherField,
+      action,
+      value,
+      const DeepCollectionEquality().hash(_notifyTo),
+      text,
+      const DeepCollectionEquality().hash(_image));
 
   /// Create a copy of ValueText
   /// with the given fields replaced by the non-null parameter values.
@@ -360,24 +408,27 @@ class _$ValueTextImpl implements _ValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         none,
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         other,
   }) {
-    return $default(isOtherField, action, value, notifyTo, text);
+    return $default(isOtherField, action, value, notifyTo, text, image);
   }
 
   @override
@@ -388,24 +439,27 @@ class _$ValueTextImpl implements _ValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
   }) {
-    return $default?.call(isOtherField, action, value, notifyTo, text);
+    return $default?.call(isOtherField, action, value, notifyTo, text, image);
   }
 
   @override
@@ -416,26 +470,29 @@ class _$ValueTextImpl implements _ValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(isOtherField, action, value, notifyTo, text);
+      return $default(isOtherField, action, value, notifyTo, text, image);
     }
     return orElse();
   }
@@ -488,7 +545,8 @@ abstract class _ValueText implements ValueText {
           @JsonKey(name: 'action') final bool? action,
           @JsonKey(readValue: readValue) required final String value,
           @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
-          @JsonKey(readValue: readText) required final String text}) =
+          @JsonKey(readValue: readText) required final String text,
+          @JsonKey(name: 'image') final Map<String, dynamic>? image}) =
       _$ValueTextImpl;
 
   factory _ValueText.fromJson(Map<String, dynamic> json) =
@@ -515,6 +573,11 @@ abstract class _ValueText implements ValueText {
   @JsonKey(readValue: readText)
   String get text;
 
+  /// Image data associated with this value text option.
+  @override
+  @JsonKey(name: 'image')
+  Map<String, dynamic>? get image;
+
   /// Create a copy of ValueText
   /// with the given fields replaced by the non-null parameter values.
   @override
@@ -536,7 +599,8 @@ abstract class _$$NoneValueTextImplCopyWith<$Res>
       String text,
       bool? action,
       bool? isOtherField,
-      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo});
+      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+      @JsonKey(name: 'image') Map<String, dynamic>? image});
 }
 
 /// @nodoc
@@ -557,6 +621,7 @@ class __$$NoneValueTextImplCopyWithImpl<$Res>
     Object? action = freezed,
     Object? isOtherField = freezed,
     Object? notifyTo = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$NoneValueTextImpl(
       value: null == value
@@ -579,6 +644,10 @@ class __$$NoneValueTextImplCopyWithImpl<$Res>
           ? _value._notifyTo
           : notifyTo // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
+      image: freezed == image
+          ? _value._image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -592,8 +661,10 @@ class _$NoneValueTextImpl implements NoneValueText {
       this.action,
       this.isOtherField,
       @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
+      @JsonKey(name: 'image') final Map<String, dynamic>? image,
       final String? $type})
       : _notifyTo = notifyTo,
+        _image = image,
         $type = $type ?? 'none';
 
   factory _$NoneValueTextImpl.fromJson(Map<String, dynamic> json) =>
@@ -619,12 +690,23 @@ class _$NoneValueTextImpl implements NoneValueText {
     return EqualUnmodifiableListView(value);
   }
 
+  final Map<String, dynamic>? _image;
+  @override
+  @JsonKey(name: 'image')
+  Map<String, dynamic>? get image {
+    final value = _image;
+    if (value == null) return null;
+    if (_image is EqualUnmodifiableMapView) return _image;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ValueText.none(value: $value, text: $text, action: $action, isOtherField: $isOtherField, notifyTo: $notifyTo)';
+    return 'ValueText.none(value: $value, text: $text, action: $action, isOtherField: $isOtherField, notifyTo: $notifyTo, image: $image)';
   }
 
   @override
@@ -637,13 +719,20 @@ class _$NoneValueTextImpl implements NoneValueText {
             (identical(other.action, action) || other.action == action) &&
             (identical(other.isOtherField, isOtherField) ||
                 other.isOtherField == isOtherField) &&
-            const DeepCollectionEquality().equals(other._notifyTo, _notifyTo));
+            const DeepCollectionEquality().equals(other._notifyTo, _notifyTo) &&
+            const DeepCollectionEquality().equals(other._image, _image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, value, text, action,
-      isOtherField, const DeepCollectionEquality().hash(_notifyTo));
+  int get hashCode => Object.hash(
+      runtimeType,
+      value,
+      text,
+      action,
+      isOtherField,
+      const DeepCollectionEquality().hash(_notifyTo),
+      const DeepCollectionEquality().hash(_image));
 
   /// Create a copy of ValueText
   /// with the given fields replaced by the non-null parameter values.
@@ -661,24 +750,27 @@ class _$NoneValueTextImpl implements NoneValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         none,
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         other,
   }) {
-    return none(value, text, action, isOtherField, notifyTo);
+    return none(value, text, action, isOtherField, notifyTo, image);
   }
 
   @override
@@ -689,24 +781,27 @@ class _$NoneValueTextImpl implements NoneValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
   }) {
-    return none?.call(value, text, action, isOtherField, notifyTo);
+    return none?.call(value, text, action, isOtherField, notifyTo, image);
   }
 
   @override
@@ -717,26 +812,29 @@ class _$NoneValueTextImpl implements NoneValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
     required TResult orElse(),
   }) {
     if (none != null) {
-      return none(value, text, action, isOtherField, notifyTo);
+      return none(value, text, action, isOtherField, notifyTo, image);
     }
     return orElse();
   }
@@ -789,7 +887,8 @@ abstract class NoneValueText implements ValueText {
           required final String text,
           final bool? action,
           final bool? isOtherField,
-          @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo}) =
+          @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
+          @JsonKey(name: 'image') final Map<String, dynamic>? image}) =
       _$NoneValueTextImpl;
 
   factory NoneValueText.fromJson(Map<String, dynamic> json) =
@@ -806,6 +905,9 @@ abstract class NoneValueText implements ValueText {
   @override
   @JsonKey(name: 'notify_To')
   List<dynamic>? get notifyTo;
+  @override
+  @JsonKey(name: 'image')
+  Map<String, dynamic>? get image;
 
   /// Create a copy of ValueText
   /// with the given fields replaced by the non-null parameter values.
@@ -828,7 +930,8 @@ abstract class _$$OtherValueTextImplCopyWith<$Res>
       String text,
       bool? action,
       bool? isOtherField,
-      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo});
+      @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+      @JsonKey(name: 'image') Map<String, dynamic>? image});
 }
 
 /// @nodoc
@@ -849,6 +952,7 @@ class __$$OtherValueTextImplCopyWithImpl<$Res>
     Object? action = freezed,
     Object? isOtherField = freezed,
     Object? notifyTo = freezed,
+    Object? image = freezed,
   }) {
     return _then(_$OtherValueTextImpl(
       value: null == value
@@ -871,6 +975,10 @@ class __$$OtherValueTextImplCopyWithImpl<$Res>
           ? _value._notifyTo
           : notifyTo // ignore: cast_nullable_to_non_nullable
               as List<dynamic>?,
+      image: freezed == image
+          ? _value._image
+          : image // ignore: cast_nullable_to_non_nullable
+              as Map<String, dynamic>?,
     ));
   }
 }
@@ -884,8 +992,10 @@ class _$OtherValueTextImpl implements OtherValueText {
       this.action,
       this.isOtherField,
       @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
+      @JsonKey(name: 'image') final Map<String, dynamic>? image,
       final String? $type})
       : _notifyTo = notifyTo,
+        _image = image,
         $type = $type ?? 'other';
 
   factory _$OtherValueTextImpl.fromJson(Map<String, dynamic> json) =>
@@ -911,12 +1021,23 @@ class _$OtherValueTextImpl implements OtherValueText {
     return EqualUnmodifiableListView(value);
   }
 
+  final Map<String, dynamic>? _image;
+  @override
+  @JsonKey(name: 'image')
+  Map<String, dynamic>? get image {
+    final value = _image;
+    if (value == null) return null;
+    if (_image is EqualUnmodifiableMapView) return _image;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(value);
+  }
+
   @JsonKey(name: 'runtimeType')
   final String $type;
 
   @override
   String toString() {
-    return 'ValueText.other(value: $value, text: $text, action: $action, isOtherField: $isOtherField, notifyTo: $notifyTo)';
+    return 'ValueText.other(value: $value, text: $text, action: $action, isOtherField: $isOtherField, notifyTo: $notifyTo, image: $image)';
   }
 
   @override
@@ -929,13 +1050,20 @@ class _$OtherValueTextImpl implements OtherValueText {
             (identical(other.action, action) || other.action == action) &&
             (identical(other.isOtherField, isOtherField) ||
                 other.isOtherField == isOtherField) &&
-            const DeepCollectionEquality().equals(other._notifyTo, _notifyTo));
+            const DeepCollectionEquality().equals(other._notifyTo, _notifyTo) &&
+            const DeepCollectionEquality().equals(other._image, _image));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, value, text, action,
-      isOtherField, const DeepCollectionEquality().hash(_notifyTo));
+  int get hashCode => Object.hash(
+      runtimeType,
+      value,
+      text,
+      action,
+      isOtherField,
+      const DeepCollectionEquality().hash(_notifyTo),
+      const DeepCollectionEquality().hash(_image));
 
   /// Create a copy of ValueText
   /// with the given fields replaced by the non-null parameter values.
@@ -954,24 +1082,27 @@ class _$OtherValueTextImpl implements OtherValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         none,
     required TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)
         other,
   }) {
-    return other(value, text, action, isOtherField, notifyTo);
+    return other(value, text, action, isOtherField, notifyTo, image);
   }
 
   @override
@@ -982,24 +1113,27 @@ class _$OtherValueTextImpl implements OtherValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult? Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
   }) {
-    return other?.call(value, text, action, isOtherField, notifyTo);
+    return other?.call(value, text, action, isOtherField, notifyTo, image);
   }
 
   @override
@@ -1010,26 +1144,29 @@ class _$OtherValueTextImpl implements OtherValueText {
             @JsonKey(name: 'action') bool? action,
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
-            @JsonKey(readValue: readText) String text)?
+            @JsonKey(readValue: readText) String text,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         none,
     TResult Function(
             String value,
             String text,
             bool? action,
             bool? isOtherField,
-            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo)?
+            @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
+            @JsonKey(name: 'image') Map<String, dynamic>? image)?
         other,
     required TResult orElse(),
   }) {
     if (other != null) {
-      return other(value, text, action, isOtherField, notifyTo);
+      return other(value, text, action, isOtherField, notifyTo, image);
     }
     return orElse();
   }
@@ -1082,7 +1219,8 @@ abstract class OtherValueText implements ValueText {
           required final String text,
           final bool? action,
           final bool? isOtherField,
-          @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo}) =
+          @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
+          @JsonKey(name: 'image') final Map<String, dynamic>? image}) =
       _$OtherValueTextImpl;
 
   factory OtherValueText.fromJson(Map<String, dynamic> json) =
@@ -1099,6 +1237,9 @@ abstract class OtherValueText implements ValueText {
   @override
   @JsonKey(name: 'notify_To')
   List<dynamic>? get notifyTo;
+  @override
+  @JsonKey(name: 'image')
+  Map<String, dynamic>? get image;
 
   /// Create a copy of ValueText
   /// with the given fields replaced by the non-null parameter values.

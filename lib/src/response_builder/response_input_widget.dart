@@ -621,6 +621,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
             child: VariconYesNoNaRadioField(
               field: field,
               labelText: labelText,
+              imageBuild: widget.imageBuild,
             ),
           ),
         );
@@ -680,6 +681,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               field: field,
               isResponse: true,
               labelText: labelText,
+              imageBuild: widget.imageBuild,
             ),
           ),
         );
@@ -694,6 +696,7 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               field: field,
               isResponse: true,
               labelText: labelText,
+              imageBuild: widget.imageBuild,
             ),
           ),
         );
