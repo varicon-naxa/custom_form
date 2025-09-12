@@ -48,7 +48,11 @@ class VariconRadioField extends ConsumerWidget {
       name: const Uuid().v4(),
       isResponse: isResponse,
       actionMessage: field.actionMessage,
-      orientation: OptionsOrientation.horizontal,
+
+      /// if any of the choices has image not null then use horizontal otherwise 
+      orientation:  field.choices.any((element) => element.image != null)
+          ? OptionsOrientation.horizontal
+          : OptionsOrientation.vertical,
       imageBuild: imageBuild,
       crossAxisCount: crossAxisCount,
       childAspectRatio: childAspectRatio,

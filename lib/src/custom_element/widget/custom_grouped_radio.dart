@@ -272,7 +272,9 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                 child: Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0, vertical: 4.0),
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.red.shade500,
                     borderRadius: BorderRadius.circular(8.0),
@@ -335,8 +337,8 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                   widgetList[i],
                   if (i < widgetList.length - 1)
                     SizedBox(
-                        width:
-                            widget.wrapSpacing > 0 ? widget.wrapSpacing : 8.0),
+                      width: widget.wrapSpacing > 0 ? widget.wrapSpacing : 8.0,
+                    ),
                 ],
               ],
             ),
@@ -418,8 +420,8 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
             ),
           ),
           SizedBox(
-              height:
-                  widget.orientation == OptionsOrientation.horizontal ? 6 : 4),
+            height: widget.orientation == OptionsOrientation.horizontal ? 6 : 4,
+          ),
           // Text widget
           Expanded(child: label),
         ],
@@ -481,15 +483,62 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                 widget.onChanged(optionValue);
               },
         child: widget.orientation == OptionsOrientation.horizontal
-            ? // Horizontal layout - radio button at top, content below
+            ? // Horizontal layout - image first, then radio with text below
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Radio button at the top
-                  control,
-                  const SizedBox(height: 8),
-                  // Content below (image + text in two rows)
-                  Expanded(child: contentWidget),
+                  // Image first (if available)
+                  if (hasImage) ...[
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        // Calculate image height based on grid aspect ratio
+                        double imageHeight;
+                        if (widget.childAspectRatio != null) {
+                          // Calculate height based on aspect ratio: height = width / aspectRatio
+                          // Reserve more space for radio button and text (approximately 60px for 2 lines)
+                          double availableHeight = (constraints.maxWidth /
+                                  widget.childAspectRatio!) -
+                              60;
+                          imageHeight =
+                              availableHeight > 80 ? availableHeight : 80;
+                        } else {
+                          imageHeight = 80; // increased fallback height
+                        }
+
+                        return SizedBox(
+                          height: imageHeight,
+                          width: double.infinity,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: widget.imageBuild({
+                              'image': currentValueText?.image?['file'],
+                              'height': imageHeight,
+                              'width': double.infinity,
+                            }),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                  // Radio button with text below
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      control,
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: DefaultTextStyle(
+                          style: const TextStyle(
+                            height: 1.2, // Line height for better text spacing
+                            color: Colors.black87, // Ensure text is visible
+                            fontSize: 14, // Ensure text size is readable
+                          ),
+                          child: label,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               )
             : // Vertical layout - original design

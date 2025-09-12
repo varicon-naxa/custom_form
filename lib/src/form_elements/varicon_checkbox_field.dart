@@ -26,7 +26,6 @@ class VariconCheckboxField extends ConsumerWidget {
   final Widget Function(Map<String, dynamic>) imageBuild;
   final int? crossAxisCount;
   final double? childAspectRatio;
-
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Debouncer debouncer = Debouncer(milliseconds: 500);
@@ -94,7 +93,9 @@ class VariconCheckboxField extends ConsumerWidget {
             }
             return null;
           },
-          orientation: OptionsOrientation.vertical,
+          orientation: field.choices.any((element) => element.image != null)
+              ? OptionsOrientation.horizontal
+              : OptionsOrientation.vertical,
         ),
       ],
     );
