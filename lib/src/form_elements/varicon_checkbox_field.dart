@@ -56,9 +56,13 @@ class VariconCheckboxField extends ConsumerWidget {
           options: field.choices
               .map((lang) => FormBuilderFieldOption(
                     value: lang,
-                    child: Text((lang.isOtherField ?? false)
-                        ? 'Other (please specify)'
-                        : lang.text),
+                    child: Text(
+                      (lang.isOtherField ?? false)
+                          ? 'Other (please specify)'
+                          : lang.text,
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ))
               .toList(growable: false),
           onChanged: (data) {

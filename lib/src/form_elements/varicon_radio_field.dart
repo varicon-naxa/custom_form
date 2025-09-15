@@ -49,8 +49,8 @@ class VariconRadioField extends ConsumerWidget {
       isResponse: isResponse,
       actionMessage: field.actionMessage,
 
-      /// if any of the choices has image not null then use horizontal otherwise 
-      orientation:  field.choices.any((element) => element.image != null)
+      /// if any of the choices has image not null then use horizontal otherwise
+      orientation: field.choices.any((element) => element.image != null)
           ? OptionsOrientation.horizontal
           : OptionsOrientation.vertical,
       imageBuild: imageBuild,
@@ -100,9 +100,13 @@ class VariconRadioField extends ConsumerWidget {
       options: field.choices
           .map((lang) => FormBuilderFieldOption(
                 value: lang,
-                child: Text((lang.isOtherField ?? false)
-                    ? 'Other (please specify)'
-                    : lang.text),
+                child: Text(
+                  (lang.isOtherField ?? false)
+                      ? 'Other (please specify)'
+                      : lang.text,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
               ))
           .toList(growable: false),
     );
