@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:heif_converter/heif_converter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:image_editor/image_editor.dart' as Editor;
 import 'package:image_picker/image_picker.dart';
@@ -469,10 +470,13 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
       return null;
     } else {
       if (isImage(path: path)) {
+        String currentPath = path;
         final heicFormat = path.split('.').last.toLowerCase();
 
         if (heicFormat == 'heic' || heicFormat == 'hevc') {
-          File compressedFile = await compressImage(path);
+          String? pngPath =
+              await HeifConverter.convert(currentPath, format: 'jpeg');
+          File compressedFile = await compressImage(pngPath ?? path);
           return compressedFile;
         } else {
           return File(path);

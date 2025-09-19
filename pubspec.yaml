@@ -36,6 +36,7 @@ dependencies:
   riverpod: ^2.6.1
   signature: ^5.5.0
   uuid: ^4.5.1
+  heif_converter: ^1.0.1
 
 
 dev_dependencies:
