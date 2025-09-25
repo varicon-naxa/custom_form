@@ -38,6 +38,7 @@ class VariconCheckboxField extends ConsumerWidget {
     List<String> data = answerData.split(',');
     List<ValueText> filteredData =
         field.choices.where((item) => data.contains(item.value)).toList();
+    bool hasImage = field.choices.any((element) => element.image != null);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,8 +50,8 @@ class VariconCheckboxField extends ConsumerWidget {
           name: const Uuid().v4(),
           otherText: field.answerList,
           isResponse: isResponse,
-          crossAxisCount: crossAxisCount,
-          childAspectRatio: childAspectRatio,
+          crossAxisCount: hasImage ? crossAxisCount : null,
+          childAspectRatio: hasImage ? childAspectRatio : null,
           initialValue: filteredData,
           // initialValue: const ['Dart'],
           options: field.choices
