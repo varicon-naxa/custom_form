@@ -465,22 +465,28 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
       widget.onChanged(selectedListItems);
     }
 
-    final control = Checkbox(
-      visualDensity: widget.visualDensity,
-      activeColor: widget.activeColor,
-      checkColor: widget.checkColor,
-      focusColor: widget.focusColor,
-      hoverColor: widget.hoverColor,
-      materialTapTargetSize: widget.materialTapTargetSize,
-      value: widget.tristate
-          ? widget.value?.contains(optionValue)
-          : true == widget.value?.contains(optionValue),
-      tristate: widget.tristate,
-      onChanged: isOptionDisabled
-          ? null
-          : (selected) {
-              handleTap();
-            },
+    final control = SizedBox(
+      width: widget.crossAxisCount != null && widget.childAspectRatio != null
+          ? 20
+          : 35,
+      height: 20,
+      child: Checkbox(
+        visualDensity: widget.visualDensity,
+        activeColor: widget.activeColor,
+        checkColor: widget.checkColor,
+        focusColor: widget.focusColor,
+        hoverColor: widget.hoverColor,
+        materialTapTargetSize: widget.materialTapTargetSize,
+        value: widget.tristate
+            ? widget.value?.contains(optionValue)
+            : true == widget.value?.contains(optionValue),
+        tristate: widget.tristate,
+        onChanged: isOptionDisabled
+            ? null
+            : (selected) {
+                handleTap();
+              },
+      ),
     );
 
     // Remove the GestureDetector from the label
@@ -665,29 +671,34 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                   ],
                 )
               : // Regular layout - horizontal row
-              Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        if (widget.controlAffinity == ControlAffinity.leading)
-                          control,
-                        label,
-                        if (widget.controlAffinity == ControlAffinity.trailing)
-                          control,
-                        if (widget.orientation != OptionsOrientation.vertical &&
-                            widget.separator != null &&
-                            index != widget.options.length - 1)
-                          widget.separator!,
-                      ],
-                    ),
-                    if (widget.orientation == OptionsOrientation.vertical &&
-                        widget.separator != null &&
-                        index != widget.options.length - 1)
-                      widget.separator!,
-                  ],
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          if (widget.controlAffinity == ControlAffinity.leading)
+                            control,
+                          label,
+                          if (widget.controlAffinity ==
+                              ControlAffinity.trailing)
+                            control,
+                          if (widget.orientation !=
+                                  OptionsOrientation.vertical &&
+                              widget.separator != null &&
+                              index != widget.options.length - 1)
+                            widget.separator!,
+                        ],
+                      ),
+                      if (widget.orientation == OptionsOrientation.vertical &&
+                          widget.separator != null &&
+                          index != widget.options.length - 1)
+                        widget.separator!,
+                    ],
+                  ),
                 ),
     );
 

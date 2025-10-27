@@ -369,25 +369,31 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
     final isSelected = widget.value == optionValue;
     ValueText? currentOption = optionValue as ValueText?;
     final isOptionDisabled = true == widget.disabled?.contains(optionValue);
-    final control = Radio<T?>(
-      groupValue: widget.value,
-      activeColor: widget.activeColor,
-      focusColor: widget.focusColor,
-      hoverColor: widget.hoverColor,
-      materialTapTargetSize: widget.materialTapTargetSize,
-      value: optionValue,
-      onChanged: isOptionDisabled
-          ? null
-          : (T? selected) {
-              ValueText? selectedOption = selected as ValueText?;
-              if (selectedOption?.isOtherField == true) {
-                widget.onOtherSelectedValue!(true, '');
-              } else {
-                otherFieldController.clear();
-                widget.onOtherSelectedValue!(false, '');
-              }
-              widget.onChanged(selected);
-            },
+    final control = SizedBox(
+      width: widget.crossAxisCount != null && widget.childAspectRatio != null
+          ? 20
+          : 35,
+      height: 20,
+      child: Radio<T?>(
+        groupValue: widget.value,
+        activeColor: widget.activeColor,
+        focusColor: widget.focusColor,
+        hoverColor: widget.hoverColor,
+        materialTapTargetSize: widget.materialTapTargetSize,
+        value: optionValue,
+        onChanged: isOptionDisabled
+            ? null
+            : (T? selected) {
+                ValueText? selectedOption = selected as ValueText?;
+                if (selectedOption?.isOtherField == true) {
+                  widget.onOtherSelectedValue!(true, '');
+                } else {
+                  otherFieldController.clear();
+                  widget.onOtherSelectedValue!(false, '');
+                }
+                widget.onChanged(selected);
+              },
+      ),
     );
 
     final label = option;
@@ -542,15 +548,18 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                 ],
               )
             : // Vertical layout - original design
-            IntrinsicHeight(
-                child: SizedBox(
-                  height: hasImage ? 120 : 40,
-                  child: Row(
-                    children: [
-                      control,
-                      const SizedBox(width: 8),
-                      Expanded(child: contentWidget),
-                    ],
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: IntrinsicHeight(
+                  child: SizedBox(
+                    height: hasImage ? 120 : 40,
+                    child: Row(
+                      children: [
+                        control,
+                        const SizedBox(width: 8),
+                        Expanded(child: contentWidget),
+                      ],
+                    ),
                   ),
                 ),
               ),
