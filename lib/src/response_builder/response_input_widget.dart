@@ -682,6 +682,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               isResponse: true,
               labelText: labelText,
               imageBuild: widget.imageBuild,
+              crossAxisCount: 2,
+              childAspectRatio: 0.8,
             ),
           ),
         );
@@ -697,6 +699,8 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               isResponse: true,
               labelText: labelText,
               imageBuild: widget.imageBuild,
+              crossAxisCount: 2,
+              childAspectRatio: 0.8,
             ),
           ),
         );
