@@ -52,6 +52,46 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
   }
 
   @override
+  void didUpdateWidget(VariconDropdownField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Sync controller when answerList changes for non-manual list fields
+    if (!widget.field.fromManualList &&
+        widget.field.answer != null &&
+        widget.field.answer != '') {
+      final newAnswerList = widget.field.answerList ?? '';
+      // Only update if the answerList actually changed to avoid unnecessary updates
+      if (oldWidget.field.answerList != newAnswerList &&
+          dropdownController.text != newAnswerList) {
+        dropdownController.text = newAnswerList;
+      }
+    } else if (widget.field.fromManualList &&
+        widget.field.answer != null &&
+        widget.field.answer != '' &&
+        oldWidget.field.answer != widget.field.answer) {
+      // Handle manual list updates
+      try {
+        final matchingChoice = widget.field.choices.firstWhere((element) {
+          return element.value == widget.field.answer;
+        });
+        if (dropdownController.text != matchingChoice.text) {
+          dropdownController.text = matchingChoice.text;
+          setState(() {
+            selectedValue = matchingChoice;
+          });
+        }
+      } catch (e) {
+        // Choice not found, ignore
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    dropdownController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
