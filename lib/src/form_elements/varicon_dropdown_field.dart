@@ -48,9 +48,9 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
     } else if (widget.field.fromManualList == false &&
         widget.field.answer != null &&
         widget.field.answer != '') {
-      log('Init 1 : ${widget.field.answer}');
-      log('Init 2 : ${widget.field.answerList}');
-
+      ref
+          .read(linklabelProvider.notifier)
+          .saveString(widget.field.id, widget.field.answerList);
       String selectedAnswer = widget.field.answerList ?? '';
       dropdownController.text = selectedAnswer;
     }
