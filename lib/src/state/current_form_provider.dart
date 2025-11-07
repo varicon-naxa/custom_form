@@ -238,6 +238,7 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     } catch (e) {
       log('Error: $e');
     }
+    log('Initial Answer save: ${initialAnswer.toString()}');
   }
 
   List getListValue(String k) {

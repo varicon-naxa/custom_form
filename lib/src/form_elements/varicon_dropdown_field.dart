@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -46,6 +48,9 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
     } else if (widget.field.fromManualList == false &&
         widget.field.answer != null &&
         widget.field.answer != '') {
+      log('Init 1 : ${widget.field.answer}');
+      log('Init 2 : ${widget.field.answerList}');
+
       String selectedAnswer = widget.field.answerList ?? '';
       dropdownController.text = selectedAnswer;
     }
@@ -134,6 +139,7 @@ class _VariconDropdownFieldState extends ConsumerState<VariconDropdownField> {
                   apiCall: widget.apiCall!,
                   linkedQuery: widget.field.linkedQuery ?? '',
                   onChanged: (ValueText data) {
+                    log('On Changed: $data');
                     setState(() {
                       selectedValue = data;
                     });
