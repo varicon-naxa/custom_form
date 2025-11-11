@@ -313,6 +313,15 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                       child: NavigationButton(
                         buttonText: 'SUBMIT LATER',
                         onComplete: () {
+                          if (ref.read(attachmentLoadingProvider).isNotEmpty) {
+                            Fluttertoast.showToast(
+                              msg:
+                                  'Please wait while attachments are being saved/deleted',
+                              backgroundColor: Colors.orange,
+                              textColor: Colors.white,
+                            );
+                            return;
+                          }
                           showDialog(
                             context: context,
                             barrierDismissible: false,
