@@ -35,10 +35,10 @@ class VariconInstructionField extends ConsumerWidget {
             ),
           Wrap(
             children: (field.attachments ?? []).map((e) {
-              if (e['mime_type'] == 'png' ||
-                  e['mime_type'] == 'jpg' ||
-                  e['mime_type'] == 'jpeg' ||
-                  e['mime_type'] == 'gif') {
+              if (e['mime_type'].toLowerCase() == 'png' ||
+                  e['mime_type'].toLowerCase() == 'jpg' ||
+                  e['mime_type'].toLowerCase() == 'jpeg' ||
+                  e['mime_type'].toLowerCase() == 'gif') {
                 return GestureDetector(
                     onTap: () {
                       fileClick({
@@ -64,10 +64,10 @@ class VariconInstructionField extends ConsumerWidget {
             }).toList(),
           ),
           ...(field.attachments ?? []).map((e) {
-            if (e['mime_type'] != 'png' &&
-                e['mime_type'] != 'jpg' &&
-                e['mime_type'] != 'jpeg' &&
-                e['mime_type'] != 'gif') {
+            if (e['mime_type'].toLowerCase() != 'png' &&
+                e['mime_type'].toLowerCase() != 'jpg' &&
+                e['mime_type'].toLowerCase() != 'jpeg' &&
+                e['mime_type'].toLowerCase() != 'gif') {
               return GestureDetector(
                 onTap: () {
                   fileClick({
