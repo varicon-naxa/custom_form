@@ -59,6 +59,8 @@ mixin _$SurveyPageForm {
   String? get project => throw _privateConstructorUsedError;
   @JsonKey(name: 'job_number')
   String? get jobNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'form_status')
+  String? get formStatus => throw _privateConstructorUsedError;
   @JsonKey(name: 'collect_geolocation')
   bool? get collectGeolocation => throw _privateConstructorUsedError;
   Map<String, dynamic>? get setting => throw _privateConstructorUsedError;
@@ -104,6 +106,7 @@ abstract class $SurveyPageFormCopyWith<$Res> {
       @JsonKey(name: 'equipment_name') String? equipmentName,
       @JsonKey(name: 'project') String? project,
       @JsonKey(name: 'job_number') String? jobNumber,
+      @JsonKey(name: 'form_status') String? formStatus,
       @JsonKey(name: 'collect_geolocation') bool? collectGeolocation,
       Map<String, dynamic>? setting,
       Map<String, dynamic>? status,
@@ -147,6 +150,7 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
     Object? equipmentName = freezed,
     Object? project = freezed,
     Object? jobNumber = freezed,
+    Object? formStatus = freezed,
     Object? collectGeolocation = freezed,
     Object? setting = freezed,
     Object? status = freezed,
@@ -233,6 +237,10 @@ class _$SurveyPageFormCopyWithImpl<$Res, $Val extends SurveyPageForm>
           ? _value.jobNumber
           : jobNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      formStatus: freezed == formStatus
+          ? _value.formStatus
+          : formStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
       collectGeolocation: freezed == collectGeolocation
           ? _value.collectGeolocation
           : collectGeolocation // ignore: cast_nullable_to_non_nullable
@@ -282,6 +290,7 @@ abstract class _$$SurveyPageFormImplCopyWith<$Res>
       @JsonKey(name: 'equipment_name') String? equipmentName,
       @JsonKey(name: 'project') String? project,
       @JsonKey(name: 'job_number') String? jobNumber,
+      @JsonKey(name: 'form_status') String? formStatus,
       @JsonKey(name: 'collect_geolocation') bool? collectGeolocation,
       Map<String, dynamic>? setting,
       Map<String, dynamic>? status,
@@ -323,6 +332,7 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
     Object? equipmentName = freezed,
     Object? project = freezed,
     Object? jobNumber = freezed,
+    Object? formStatus = freezed,
     Object? collectGeolocation = freezed,
     Object? setting = freezed,
     Object? status = freezed,
@@ -409,6 +419,10 @@ class __$$SurveyPageFormImplCopyWithImpl<$Res>
           ? _value.jobNumber
           : jobNumber // ignore: cast_nullable_to_non_nullable
               as String?,
+      formStatus: freezed == formStatus
+          ? _value.formStatus
+          : formStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
       collectGeolocation: freezed == collectGeolocation
           ? _value.collectGeolocation
           : collectGeolocation // ignore: cast_nullable_to_non_nullable
@@ -453,6 +467,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
       @JsonKey(name: 'equipment_name') this.equipmentName,
       @JsonKey(name: 'project') this.project,
       @JsonKey(name: 'job_number') this.jobNumber,
+      @JsonKey(name: 'form_status') this.formStatus,
       @JsonKey(name: 'collect_geolocation') this.collectGeolocation,
       final Map<String, dynamic>? setting,
       final Map<String, dynamic>? status,
@@ -535,6 +550,9 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
   @JsonKey(name: 'job_number')
   final String? jobNumber;
   @override
+  @JsonKey(name: 'form_status')
+  final String? formStatus;
+  @override
   @JsonKey(name: 'collect_geolocation')
   final bool? collectGeolocation;
   final Map<String, dynamic>? _setting;
@@ -569,7 +587,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
 
   @override
   String toString() {
-    return 'SurveyPageForm(name: $name, id: $id, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, timesheetNumber: $timesheetNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, jobNumber: $jobNumber, collectGeolocation: $collectGeolocation, setting: $setting, status: $status, inputFields: $inputFields)';
+    return 'SurveyPageForm(name: $name, id: $id, timesheet: $timesheet, title: $title, description: $description, isResponse: $isResponse, assignToDisplay: $assignToDisplay, updatedAt: $updatedAt, createdAt: $createdAt, needAction: $needAction, submittedBy: $submittedBy, updatedBy: $updatedBy, submissionNumber: $submissionNumber, formNumber: $formNumber, timesheetNumber: $timesheetNumber, equipment: $equipment, equipmentCode: $equipmentCode, equipmentName: $equipmentName, project: $project, jobNumber: $jobNumber, formStatus: $formStatus, collectGeolocation: $collectGeolocation, setting: $setting, status: $status, inputFields: $inputFields)';
   }
 
   @override
@@ -613,6 +631,8 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
             (identical(other.project, project) || other.project == project) &&
             (identical(other.jobNumber, jobNumber) ||
                 other.jobNumber == jobNumber) &&
+            (identical(other.formStatus, formStatus) ||
+                other.formStatus == formStatus) &&
             (identical(other.collectGeolocation, collectGeolocation) ||
                 other.collectGeolocation == collectGeolocation) &&
             const DeepCollectionEquality().equals(other._setting, _setting) &&
@@ -645,6 +665,7 @@ class _$SurveyPageFormImpl implements _SurveyPageForm {
         equipmentName,
         project,
         jobNumber,
+        formStatus,
         collectGeolocation,
         const DeepCollectionEquality().hash(_setting),
         const DeepCollectionEquality().hash(_status),
@@ -690,6 +711,7 @@ abstract class _SurveyPageForm implements SurveyPageForm {
       @JsonKey(name: 'equipment_name') final String? equipmentName,
       @JsonKey(name: 'project') final String? project,
       @JsonKey(name: 'job_number') final String? jobNumber,
+      @JsonKey(name: 'form_status') final String? formStatus,
       @JsonKey(name: 'collect_geolocation') final bool? collectGeolocation,
       final Map<String, dynamic>? setting,
       final Map<String, dynamic>? status,
@@ -759,6 +781,9 @@ abstract class _SurveyPageForm implements SurveyPageForm {
   @override
   @JsonKey(name: 'job_number')
   String? get jobNumber;
+  @override
+  @JsonKey(name: 'form_status')
+  String? get formStatus;
   @override
   @JsonKey(name: 'collect_geolocation')
   bool? get collectGeolocation;
