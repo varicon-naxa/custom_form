@@ -1,15 +1,12 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
-import 'dart:math' as Rand;
-import 'dart:typed_data';
 import 'package:example_form/cache_manager.dart';
 import 'package:example_form/custom_image_editor.dart';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 // ignore: depend_on_referenced_packages
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:intl/intl.dart';
 
 class SurveyPage extends StatefulWidget {
   const SurveyPage({super.key, required this.form, required this.formData});
