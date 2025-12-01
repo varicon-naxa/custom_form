@@ -36,7 +36,6 @@ example_form/
 .pub-cache/
 .pub/
 /build/
-/example_form/
 
 # Web related
 lib/generated_plugin_registrant.dart

@@ -50,6 +50,15 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
   }
 
   @override
+  void didUpdateWidget(VariconSignatureField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.field.answer != widget.field.answer) {
+      _signature = (widget.field.answer ?? {});
+      setState(() {});
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     Future modifyAnswer(Uint8List data) async {
       loadingId = const Uuid().v4();
@@ -365,9 +374,6 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                     }
                     return answer;
                   }
-                  // if (data == null || _signature.isEmpty) {
-                  //   return 'This field is required';
-                  // }
                 }
                 return null;
               },

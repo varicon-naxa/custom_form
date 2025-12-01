@@ -53,6 +53,20 @@ class _VariconMultiSignatureFieldState
     }
   }
 
+  @override
+  void didUpdateWidget(VariconMultiSignatureField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.field.answer != widget.field.answer) {
+      signaturePads.clear();
+      if ((widget.field.answer ?? []).isNotEmpty) {
+        signaturePads.addAll(widget.field.answer ?? []);
+      }
+      _editingController.text =
+          (signaturePads.isNotEmpty) ? signaturePads.length.toString() : '';
+      setState(() {});
+    }
+  }
+
   void modifyAnswerinList() {
     List<SingleSignature> answer = [];
     for (var element in signaturePads) {
