@@ -2,12 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'dart:math' as Rand;
-import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:varicon_form_builder/varicon_form_builder.dart';
 // ignore: depend_on_referenced_packages
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:intl/intl.dart';
 
 class SurveyPage extends StatefulWidget {
   const SurveyPage({super.key, required this.form, required this.formData});
@@ -164,7 +162,8 @@ class _SurveyPageState extends State<SurveyPage> {
       },
       formtitle: 'Submit Form',
       attachmentSave: (List<String> data) async {
-        // await Future.delayed(const Duration(seconds: 2));
+        await Future.delayed(const Duration(seconds: 2));
+        return [];
         // List<Map<String, dynamic>> _data = [];
         // for (var path in data) {
         //   File _file = File(path);
@@ -188,25 +187,25 @@ class _SurveyPageState extends State<SurveyPage> {
         // }
         // return _data;
         // return [];
-        log('dpme');
+        // log('dpme');
 
-        final val =
-            data.map((e) {
-              final random = Rand.Random().nextDouble() * 10000;
+        // final val =
+        //     data.map((e) {
+        //       final random = Rand.Random().nextDouble() * 10000;
 
-              final mapdata = {
-                'id': '${random}',
-                'file':
-                    'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-                'thumbnail':
-                    'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
-                'name': '${random}.jpg',
-                "created_at": '2025-04-11T13:13:24.784615Z',
-              };
-              log('mapdata: ' + jsonEncode(mapdata).toString());
-              return mapdata;
-            }).toList();
-        return val;
+        //       final mapdata = {
+        //         'id': '${random}',
+        //         'file':
+        //             'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+        //         'thumbnail':
+        //             'https://fastly.picsum.photos/id/654/200/300.jpg?hmac=JhhoLGzzNeSmL5tgcWbz2N4DiYmrpTPsjKCw4MeIcps',
+        //         'name': '${random}.jpg',
+        //         "created_at": '2025-04-11T13:13:24.784615Z',
+        //       };
+        //       log('mapdata: ' + jsonEncode(mapdata).toString());
+        //       return mapdata;
+        //     }).toList();
+        // return val;
       },
       imageBuild: (Map<String, dynamic> data) {
         return ClipRRect(
@@ -224,7 +223,6 @@ class _SurveyPageState extends State<SurveyPage> {
       fileClick: (Map<String, dynamic> stringURl) {},
       customPainter: (File data) {
         return Container();
-        // return CustomImageEditor(imageFile: data);
       },
       locationData: '',
       onPopPressed: () {},
