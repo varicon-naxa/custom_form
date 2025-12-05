@@ -14,6 +14,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
+import 'package:varicon_form_builder/src/state/attachment_loading_provider.dart';
 import 'package:varicon_form_builder/src/state/attachment_provider.dart';
 import 'package:varicon_form_builder/src/state/current_form_provider.dart';
 import 'package:varicon_form_builder/src/helpers/image_quality.dart';
@@ -83,6 +84,9 @@ class SimpleImagePicker extends StatefulHookConsumerWidget {
 }
 
 class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
+  // Map to track loading IDs for each attachment (key: localId, value: loadingId)
+  final Map<String, String> _loadingIds = {};
+
   @override
   void initState() {
     super.initState();
@@ -604,12 +608,24 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
             ))
         .toList();
 
+    // Generate and track loading IDs for all attachments
+    final loadingIds = attachments.map((attachment) {
+      final loadingId = const Uuid().v4();
+      _loadingIds[attachment.localId!] = loadingId;
+      return loadingId;
+    }).toList();
+
     ref
         .read(simpleImagePickerProvider(widget.fieldId).notifier)
         .addMultiImage(attachments);
     _updateImageList();
 
     try {
+      // Add loading state for all attachments
+      for (var loadingId in loadingIds) {
+        ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
+      }
+
       final result = await widget.onImagesSelected(attachments);
       if (result.isNotEmpty) {
         await _updateMultipleImages(attachments, result);
@@ -619,6 +635,15 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     } catch (e) {
       _removeMultipleImages(attachments);
     } finally {
+      // Remove loading state for all attachments
+      for (var attachment in attachments) {
+        if (_loadingIds.containsKey(attachment.localId)) {
+          ref
+              .read(attachmentLoadingProvider.notifier)
+              .removeLoading(_loadingIds[attachment.localId]!);
+          _loadingIds.remove(attachment.localId);
+        }
+      }
       _updateImageList();
     }
   }
@@ -707,12 +732,19 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
       localId: const Uuid().v4(),
     );
 
+    // Generate and track loading ID
+    final loadingId = const Uuid().v4();
+    _loadingIds[attachment.localId!] = loadingId;
+
     ref
         .read(simpleImagePickerProvider(widget.fieldId).notifier)
         .addImage(attachment);
     _updateImageList();
 
     try {
+      // Add loading state
+      ref.read(attachmentLoadingProvider.notifier).addLoading(loadingId);
+
       final result = await widget.onImagesSelected([attachment]);
       if (result.isNotEmpty) {
         _updateSingleImage(attachment, result[0]);
@@ -722,6 +754,13 @@ class _SimpleImagePickerState extends ConsumerState<SimpleImagePicker> {
     } catch (e) {
       _removeSingleImage(attachment);
     } finally {
+      // Remove loading state
+      if (_loadingIds.containsKey(attachment.localId)) {
+        ref
+            .read(attachmentLoadingProvider.notifier)
+            .removeLoading(_loadingIds[attachment.localId]!);
+        _loadingIds.remove(attachment.localId);
+      }
       _updateImageList();
     }
   }
