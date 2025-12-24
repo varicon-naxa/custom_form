@@ -801,6 +801,16 @@ class _ResponseInputWidgetState extends State<ResponseInputWidget> {
               labelText: e.label ?? '',
             ));
       },
+      equipment: (field) {
+        return LabelWidget(
+          labelText: labelText,
+          isRequired: e.isRequired,
+          child: _EquipmentAnswerDesign(
+            field: field,
+            imageBuild: widget.imageBuild,
+          ),
+        );
+      },
       section: (field) {
         return Padding(
           padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -1159,6 +1169,198 @@ class _MultiSignatureAnswerDesign extends StatelessWidget {
           dashGapColor: Colors.white,
           dashGapRadius: 0.0,
         )
+      ],
+    );
+  }
+}
+
+/// Widget that represents equipment field answer design
+///
+/// Displays:
+/// - Selected equipment name
+/// - Meter reading / Engine hours (if collectMeterReading is true)
+/// - Evidence images (if collectEvidence is true)
+class _EquipmentAnswerDesign extends StatelessWidget {
+  const _EquipmentAnswerDesign({
+    required this.field,
+    this.imageBuild,
+  });
+
+  /// Equipment field with all answer data
+  final EquipmentValueInputField field;
+
+  /// Image builder for evidence images
+  final Widget Function(Map<String, dynamic>)? imageBuild;
+
+  @override
+  Widget build(BuildContext context) {
+    final hasEquipment = field.answer != null && field.answer!.isNotEmpty;
+    final equipmentName = field.answerList ?? field.answer ?? '';
+    final hasMeterReading = (field.collectMeterReading ?? false) &&
+        field.subAnswer != null &&
+        field.subAnswer!.isNotEmpty;
+    final hasEvidence = (field.collectEvidence ?? false) &&
+        field.attachments != null &&
+        field.attachments!.isNotEmpty;
+    final isEngineHour = field.isEngineHour ?? false;
+
+    if (!hasEquipment) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'No Response',
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Colors.grey,
+                ),
+          ),
+          const DottedLine(
+            direction: Axis.horizontal,
+            alignment: WrapAlignment.center,
+            lineLength: double.infinity,
+            lineThickness: 1.0,
+            dashLength: 4.0,
+            dashColor: Colors.grey,
+            dashRadius: 0.0,
+            dashGapLength: 4.0,
+            dashGapColor: Colors.white,
+            dashGapRadius: 0.0,
+          ),
+        ],
+      );
+    }
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Equipment Name
+        Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            color: const Color(0xFFF5F7FA),
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: const Color(0xFFE1E5EB)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Equipment Selection
+              Row(
+                children: [
+                  const Icon(
+                    Icons.precision_manufacturing_outlined,
+                    size: 20,
+                    color: Color(0xFF6A737B),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      equipmentName,
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF233759),
+                          ),
+                    ),
+                  ),
+                ],
+              ),
+
+              // Meter Reading / Engine Hours
+              if (hasMeterReading) ...[
+                const SizedBox(height: 12),
+                const Divider(height: 1, color: Color(0xFFE1E5EB)),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    Icon(
+                      isEngineHour
+                          ? Icons.timer_outlined
+                          : Icons.speed_outlined,
+                      size: 18,
+                      color: const Color(0xFF6A737B),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      isEngineHour ? 'Engine Hours:' : 'Meter Reading:',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: const Color(0xFF6A737B),
+                          ),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      field.subAnswer ?? '',
+                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                            color: const Color(0xFF233759),
+                          ),
+                    ),
+                  ],
+                ),
+              ],
+
+              // Evidence Images
+              if (hasEvidence) ...[
+                const SizedBox(height: 12),
+                const Divider(height: 1, color: Color(0xFFE1E5EB)),
+                const SizedBox(height: 12),
+                Row(
+                  children: [
+                    const Icon(
+                      Icons.photo_library_outlined,
+                      size: 18,
+                      color: Color(0xFF6A737B),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Evidence (${field.attachments!.length})',
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: const Color(0xFF6A737B),
+                          ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: field.attachments!.map((attachment) {
+                    return Container(
+                      width: 75,
+                      height: 75,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        border: Border.all(color: const Color(0xFFE1E5EB)),
+                      ),
+                      clipBehavior: Clip.antiAlias,
+                      child: imageBuild != null
+                          ? imageBuild!({
+                              'image': attachment['file'] ?? '',
+                              'height': 75.0,
+                              'width': 75.0,
+                              'id': attachment['id'],
+                            })
+                          : const Icon(Icons.image, color: Colors.grey),
+                    );
+                  }).toList(),
+                ),
+              ],
+            ],
+          ),
+        ),
+        const SizedBox(height: 8),
+        const DottedLine(
+          direction: Axis.horizontal,
+          alignment: WrapAlignment.center,
+          lineLength: double.infinity,
+          lineThickness: 1.0,
+          dashLength: 4.0,
+          dashColor: Colors.grey,
+          dashRadius: 0.0,
+          dashGapLength: 4.0,
+          dashGapColor: Colors.white,
+          dashGapRadius: 0.0,
+        ),
       ],
     );
   }
