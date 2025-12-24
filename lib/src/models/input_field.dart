@@ -391,6 +391,22 @@ class InputField with _$InputField implements BasicInputField {
     @JsonKey(name: 'answer') String? answer,
   }) = MapField;
 
+  const factory InputField.equipment({
+    @JsonKey(name: 'id') required String id,
+    @JsonKey(name: 'label') String? label,
+    @JsonKey(name: 'name') String? name,
+    @JsonKey(name: 'isRequired') @Default(false) bool isRequired,
+    @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+    @JsonKey(name: 'isEngineHour') @Default(false) bool? isEngineHour,
+    @JsonKey(name: 'association') bool? association,
+    @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+    @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+    @JsonKey(name: 'answer') String? answer,
+    @JsonKey(name: 'subAnswer') String? subAnswer,
+    @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
+    @JsonKey(name: 'is_editable') @Default(true) bool isEditable,
+  }) = EquipmentValueInputField;
+
   const factory InputField.table({
     @JsonKey(name: 'id') required String id,
     @JsonKey(name: 'tableId') String? tableId,

@@ -62,6 +62,8 @@ InputField _$InputFieldFromJson(Map<String, dynamic> json) {
       return GeolocationField.fromJson(json);
     case 'map':
       return MapField.fromJson(json);
+    case 'equipment':
+      return EquipmentValueInputField.fromJson(json);
     case 'table':
       return TableField.fromJson(json);
     case 'advtable':
@@ -346,6 +348,22 @@ mixin _$InputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)
         map,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
     required TResult Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -641,6 +659,22 @@ mixin _$InputField {
         map,
     TResult? Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -934,6 +968,22 @@ mixin _$InputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -989,6 +1039,7 @@ mixin _$InputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) =>
@@ -1019,6 +1070,7 @@ mixin _$InputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) =>
@@ -1049,6 +1101,7 @@ mixin _$InputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -1507,6 +1560,22 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -1801,6 +1870,22 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -2099,6 +2184,22 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -2160,6 +2261,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -2193,6 +2295,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -2226,6 +2329,7 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -2684,6 +2788,22 @@ class _$TextInputFieldImpl implements TextInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -2978,6 +3098,22 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -3276,6 +3412,22 @@ class _$TextInputFieldImpl implements TextInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -3337,6 +3489,7 @@ class _$TextInputFieldImpl implements TextInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -3370,6 +3523,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -3403,6 +3557,7 @@ class _$TextInputFieldImpl implements TextInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -3884,6 +4039,22 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -4178,6 +4349,22 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -4477,6 +4664,22 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -4539,6 +4742,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -4572,6 +4776,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -4605,6 +4810,7 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -5080,6 +5286,22 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -5374,6 +5596,22 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -5673,6 +5911,22 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -5734,6 +5988,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -5767,6 +6022,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -5800,6 +6056,7 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -6261,6 +6518,22 @@ class _$DateInputFieldImpl implements DateInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -6555,6 +6828,22 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -6853,6 +7142,22 @@ class _$DateInputFieldImpl implements DateInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -6914,6 +7219,7 @@ class _$DateInputFieldImpl implements DateInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -6947,6 +7253,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -6980,6 +7287,7 @@ class _$DateInputFieldImpl implements DateInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -7495,6 +7803,22 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -7790,6 +8114,22 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -8089,6 +8429,22 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -8151,6 +8507,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -8184,6 +8541,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -8217,6 +8575,7 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -8710,6 +9069,22 @@ class _$SectionInputFieldImpl implements SectionInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -9005,6 +9380,22 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -9304,6 +9695,22 @@ class _$SectionInputFieldImpl implements SectionInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -9366,6 +9773,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -9399,6 +9807,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -9432,6 +9841,7 @@ class _$SectionInputFieldImpl implements SectionInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -9899,6 +10309,22 @@ class _$TimeInputFieldImpl implements TimeInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -10193,6 +10619,22 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -10491,6 +10933,22 @@ class _$TimeInputFieldImpl implements TimeInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -10552,6 +11010,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -10585,6 +11044,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -10618,6 +11078,7 @@ class _$TimeInputFieldImpl implements TimeInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -11078,6 +11539,22 @@ class _$UrlInputFieldImpl implements UrlInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -11372,6 +11849,22 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -11670,6 +12163,22 @@ class _$UrlInputFieldImpl implements UrlInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -11731,6 +12240,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -11764,6 +12274,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -11797,6 +12308,7 @@ class _$UrlInputFieldImpl implements UrlInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -12258,6 +12770,22 @@ class _$NumberInputFieldImpl implements NumberInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -12552,6 +13080,22 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -12850,6 +13394,22 @@ class _$NumberInputFieldImpl implements NumberInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -12911,6 +13471,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -12944,6 +13505,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -12977,6 +13539,7 @@ class _$NumberInputFieldImpl implements NumberInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -13439,6 +14002,22 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -13733,6 +14312,22 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -14031,6 +14626,22 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -14092,6 +14703,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -14125,6 +14737,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -14158,6 +14771,7 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -14620,6 +15234,22 @@ class _$EmailInputFieldImpl implements EmailInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -14914,6 +15544,22 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -15212,6 +15858,22 @@ class _$EmailInputFieldImpl implements EmailInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -15273,6 +15935,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -15306,6 +15969,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -15339,6 +16003,7 @@ class _$EmailInputFieldImpl implements EmailInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -15800,6 +16465,22 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -16094,6 +16775,22 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -16392,6 +17089,22 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -16453,6 +17166,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -16486,6 +17200,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -16519,6 +17234,7 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -16991,6 +17707,22 @@ class _$CommentInputFieldImpl implements CommentInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -17286,6 +18018,22 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -17585,6 +18333,22 @@ class _$CommentInputFieldImpl implements CommentInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -17647,6 +18411,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -17680,6 +18445,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -17713,6 +18479,7 @@ class _$CommentInputFieldImpl implements CommentInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -18288,6 +19055,22 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -18595,6 +19378,22 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -18906,6 +19705,22 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -18980,6 +19795,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -19013,6 +19829,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -19046,6 +19863,7 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -19680,6 +20498,22 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -19990,6 +20824,22 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -20304,6 +21154,22 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -20381,6 +21247,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -20414,6 +21281,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -20447,6 +21315,7 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -21052,6 +21921,22 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -21359,6 +22244,22 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -21670,6 +22571,22 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -21744,6 +22661,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -21777,6 +22695,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -21810,6 +22729,7 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -22429,6 +23349,22 @@ class _$RadioInputFieldImpl implements RadioInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -22737,6 +23673,22 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -23049,6 +24001,22 @@ class _$RadioInputFieldImpl implements RadioInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -23124,6 +24092,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -23157,6 +24126,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -23190,6 +24160,7 @@ class _$RadioInputFieldImpl implements RadioInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -23806,6 +24777,22 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -24113,6 +25100,22 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -24424,6 +25427,22 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -24498,6 +25517,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -24531,6 +25551,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -24564,6 +25585,7 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -25149,6 +26171,22 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -25454,6 +26492,22 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -25763,6 +26817,22 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -25835,6 +26905,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -25868,6 +26939,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -25901,6 +26973,7 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -26429,6 +27502,22 @@ class _$FileInputFieldImpl implements FileInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -26724,6 +27813,22 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -27023,6 +28128,22 @@ class _$FileInputFieldImpl implements FileInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -27085,6 +28206,7 @@ class _$FileInputFieldImpl implements FileInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -27118,6 +28240,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -27151,6 +28274,7 @@ class _$FileInputFieldImpl implements FileInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -27658,6 +28782,22 @@ class _$ImageInputFieldImpl implements ImageInputField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -27953,6 +29093,22 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -28252,6 +29408,22 @@ class _$ImageInputFieldImpl implements ImageInputField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -28314,6 +29486,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -28347,6 +29520,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -28380,6 +29554,7 @@ class _$ImageInputFieldImpl implements ImageInputField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -28843,6 +30018,22 @@ class _$GeolocationFieldImpl implements GeolocationField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -29137,6 +30328,22 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -29435,6 +30642,22 @@ class _$GeolocationFieldImpl implements GeolocationField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -29496,6 +30719,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -29529,6 +30753,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -29562,6 +30787,7 @@ class _$GeolocationFieldImpl implements GeolocationField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -30018,6 +31244,22 @@ class _$MapFieldImpl implements MapField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -30312,6 +31554,22 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -30610,6 +31868,22 @@ class _$MapFieldImpl implements MapField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -30671,6 +31945,7 @@ class _$MapFieldImpl implements MapField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -30704,6 +31979,7 @@ class _$MapFieldImpl implements MapField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -30737,6 +32013,7 @@ class _$MapFieldImpl implements MapField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -30790,6 +32067,1406 @@ abstract class MapField implements InputField {
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MapFieldImplCopyWith<_$MapFieldImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EquipmentValueInputFieldImplCopyWith<$Res>
+    implements $InputFieldCopyWith<$Res> {
+  factory _$$EquipmentValueInputFieldImplCopyWith(
+          _$EquipmentValueInputFieldImpl value,
+          $Res Function(_$EquipmentValueInputFieldImpl) then) =
+      __$$EquipmentValueInputFieldImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(name: 'id') String id,
+      @JsonKey(name: 'label') String? label,
+      @JsonKey(name: 'name') String? name,
+      @JsonKey(name: 'isRequired') bool isRequired,
+      @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+      @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+      @JsonKey(name: 'association') bool? association,
+      @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+      @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+      @JsonKey(name: 'answer') String? answer,
+      @JsonKey(name: 'subAnswer') String? subAnswer,
+      @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
+      @JsonKey(name: 'is_editable') bool isEditable});
+}
+
+/// @nodoc
+class __$$EquipmentValueInputFieldImplCopyWithImpl<$Res>
+    extends _$InputFieldCopyWithImpl<$Res, _$EquipmentValueInputFieldImpl>
+    implements _$$EquipmentValueInputFieldImplCopyWith<$Res> {
+  __$$EquipmentValueInputFieldImplCopyWithImpl(
+      _$EquipmentValueInputFieldImpl _value,
+      $Res Function(_$EquipmentValueInputFieldImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of InputField
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? label = freezed,
+    Object? name = freezed,
+    Object? isRequired = null,
+    Object? answerList = freezed,
+    Object? isEngineHour = freezed,
+    Object? association = freezed,
+    Object? collectMeterReading = freezed,
+    Object? collectEvidence = freezed,
+    Object? answer = freezed,
+    Object? subAnswer = freezed,
+    Object? attachments = freezed,
+    Object? isEditable = null,
+  }) {
+    return _then(_$EquipmentValueInputFieldImpl(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      label: freezed == label
+          ? _value.label
+          : label // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name: freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isRequired: null == isRequired
+          ? _value.isRequired
+          : isRequired // ignore: cast_nullable_to_non_nullable
+              as bool,
+      answerList: freezed == answerList
+          ? _value.answerList
+          : answerList // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isEngineHour: freezed == isEngineHour
+          ? _value.isEngineHour
+          : isEngineHour // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      association: freezed == association
+          ? _value.association
+          : association // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      collectMeterReading: freezed == collectMeterReading
+          ? _value.collectMeterReading
+          : collectMeterReading // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      collectEvidence: freezed == collectEvidence
+          ? _value.collectEvidence
+          : collectEvidence // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      answer: freezed == answer
+          ? _value.answer
+          : answer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      subAnswer: freezed == subAnswer
+          ? _value.subAnswer
+          : subAnswer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      attachments: freezed == attachments
+          ? _value._attachments
+          : attachments // ignore: cast_nullable_to_non_nullable
+              as List<Map<String, dynamic>>?,
+      isEditable: null == isEditable
+          ? _value.isEditable
+          : isEditable // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
+  const _$EquipmentValueInputFieldImpl(
+      {@JsonKey(name: 'id') required this.id,
+      @JsonKey(name: 'label') this.label,
+      @JsonKey(name: 'name') this.name,
+      @JsonKey(name: 'isRequired') this.isRequired = false,
+      @JsonKey(name: 'selectedLinkListLabel') this.answerList,
+      @JsonKey(name: 'isEngineHour') this.isEngineHour = false,
+      @JsonKey(name: 'association') this.association,
+      @JsonKey(name: 'collectMeterReading') this.collectMeterReading,
+      @JsonKey(name: 'collectEvidence') this.collectEvidence,
+      @JsonKey(name: 'answer') this.answer,
+      @JsonKey(name: 'subAnswer') this.subAnswer,
+      @JsonKey(name: 'attachments')
+      final List<Map<String, dynamic>>? attachments,
+      @JsonKey(name: 'is_editable') this.isEditable = true,
+      final String? $type})
+      : _attachments = attachments,
+        $type = $type ?? 'equipment';
+
+  factory _$EquipmentValueInputFieldImpl.fromJson(Map<String, dynamic> json) =>
+      _$$EquipmentValueInputFieldImplFromJson(json);
+
+  @override
+  @JsonKey(name: 'id')
+  final String id;
+  @override
+  @JsonKey(name: 'label')
+  final String? label;
+  @override
+  @JsonKey(name: 'name')
+  final String? name;
+  @override
+  @JsonKey(name: 'isRequired')
+  final bool isRequired;
+  @override
+  @JsonKey(name: 'selectedLinkListLabel')
+  final String? answerList;
+  @override
+  @JsonKey(name: 'isEngineHour')
+  final bool? isEngineHour;
+  @override
+  @JsonKey(name: 'association')
+  final bool? association;
+  @override
+  @JsonKey(name: 'collectMeterReading')
+  final bool? collectMeterReading;
+  @override
+  @JsonKey(name: 'collectEvidence')
+  final bool? collectEvidence;
+  @override
+  @JsonKey(name: 'answer')
+  final String? answer;
+  @override
+  @JsonKey(name: 'subAnswer')
+  final String? subAnswer;
+  final List<Map<String, dynamic>>? _attachments;
+  @override
+  @JsonKey(name: 'attachments')
+  List<Map<String, dynamic>>? get attachments {
+    final value = _attachments;
+    if (value == null) return null;
+    if (_attachments is EqualUnmodifiableListView) return _attachments;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  @JsonKey(name: 'is_editable')
+  final bool isEditable;
+
+  @JsonKey(name: 'type')
+  final String $type;
+
+  @override
+  String toString() {
+    return 'InputField.equipment(id: $id, label: $label, name: $name, isRequired: $isRequired, answerList: $answerList, isEngineHour: $isEngineHour, association: $association, collectMeterReading: $collectMeterReading, collectEvidence: $collectEvidence, answer: $answer, subAnswer: $subAnswer, attachments: $attachments, isEditable: $isEditable)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EquipmentValueInputFieldImpl &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.label, label) || other.label == label) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.isRequired, isRequired) ||
+                other.isRequired == isRequired) &&
+            (identical(other.answerList, answerList) ||
+                other.answerList == answerList) &&
+            (identical(other.isEngineHour, isEngineHour) ||
+                other.isEngineHour == isEngineHour) &&
+            (identical(other.association, association) ||
+                other.association == association) &&
+            (identical(other.collectMeterReading, collectMeterReading) ||
+                other.collectMeterReading == collectMeterReading) &&
+            (identical(other.collectEvidence, collectEvidence) ||
+                other.collectEvidence == collectEvidence) &&
+            (identical(other.answer, answer) || other.answer == answer) &&
+            (identical(other.subAnswer, subAnswer) ||
+                other.subAnswer == subAnswer) &&
+            const DeepCollectionEquality()
+                .equals(other._attachments, _attachments) &&
+            (identical(other.isEditable, isEditable) ||
+                other.isEditable == isEditable));
+  }
+
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      label,
+      name,
+      isRequired,
+      answerList,
+      isEngineHour,
+      association,
+      collectMeterReading,
+      collectEvidence,
+      answer,
+      subAnswer,
+      const DeepCollectionEquality().hash(_attachments),
+      isEditable);
+
+  /// Create a copy of InputField
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EquipmentValueInputFieldImplCopyWith<_$EquipmentValueInputFieldImpl>
+      get copyWith => __$$EquipmentValueInputFieldImplCopyWithImpl<
+          _$EquipmentValueInputFieldImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        fallback,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        text,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        signature,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') List<SingleSignature>? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        multisignature,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        date,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        instruction,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        section,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        time,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        url,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        number,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        phone,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        email,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        datetimelocal,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        comment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'isConditional') bool? isConditional,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices)
+        dropdown,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery)
+        multipleselect,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices)
+        checkbox,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'otherAnswer') String? otherAnswer,
+            @JsonKey(name: 'showClearButton') bool showClearButton)
+        radiogroup,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'showClearButton') bool showClearButton)
+        yesno,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showClearButton') bool showClearButton)
+        yesnona,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        files,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        images,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'isRequired') bool isRequired)
+        geolocation,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer)
+        map,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'answer') dynamic answer,
+            @JsonKey(name: 'isRow') bool isRow,
+            @JsonKey(name: 'contents')
+            @InputFieldConverter()
+            List<List<InputField>>? inputFields)
+        table,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
+            List<String>? headers,
+            @JsonKey(name: 'tableId') String? tableId,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'answer') dynamic answer,
+            @JsonKey(name: 'isRow') bool isRow,
+            @JsonKey(name: 'contents')
+            @InputFieldConverter()
+            List<List<InputField>>? inputFields)
+        advtable,
+  }) {
+    return equipment(
+        id,
+        label,
+        name,
+        isRequired,
+        answerList,
+        isEngineHour,
+        association,
+        collectMeterReading,
+        collectEvidence,
+        answer,
+        subAnswer,
+        attachments,
+        isEditable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        fallback,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        text,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        signature,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') List<SingleSignature>? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        multisignature,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        date,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        instruction,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        section,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        time,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        url,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        number,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        phone,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        email,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        datetimelocal,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        comment,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'isConditional') bool? isConditional,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices)?
+        dropdown,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery)?
+        multipleselect,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices)?
+        checkbox,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'otherAnswer') String? otherAnswer,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        radiogroup,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesno,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesnona,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        files,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        images,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'isRequired') bool isRequired)?
+        geolocation,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer)?
+        map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'answer') dynamic answer,
+            @JsonKey(name: 'isRow') bool isRow,
+            @JsonKey(name: 'contents')
+            @InputFieldConverter()
+            List<List<InputField>>? inputFields)?
+        table,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            List<String>? headers,
+            @JsonKey(name: 'tableId') String? tableId,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'answer') dynamic answer,
+            @JsonKey(name: 'isRow') bool isRow,
+            @JsonKey(name: 'contents')
+            @InputFieldConverter()
+            List<List<InputField>>? inputFields)?
+        advtable,
+  }) {
+    return equipment?.call(
+        id,
+        label,
+        name,
+        isRequired,
+        answerList,
+        isEngineHour,
+        association,
+        collectMeterReading,
+        collectEvidence,
+        answer,
+        subAnswer,
+        attachments,
+        isEditable);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        fallback,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        text,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'visible') bool visible,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        signature,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'answer') List<SingleSignature>? answer,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        multisignature,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        date,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(readValue: readInstruction) String? instruction,
+            String? description,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        instruction,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'instruction') String? instruction,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        section,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        time,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        url,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        number,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        phone,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        email,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        datetimelocal,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        comment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'isConditional') bool? isConditional,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices)?
+        dropdown,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'maxSelectedChoices') int? maxSelectedChoices,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery)?
+        multipleselect,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'fromManualList') bool fromManualList,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'islinked_query') String? linkedQuery,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices)?
+        checkbox,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'requiredErrorText') String? requiredErrorText,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'otherAnswer') String? otherAnswer,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        radiogroup,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'readOnly') bool readOnly,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showOtherItem') bool showOtherItem,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesno,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'actionMessage') String? actionMessage,
+            @JsonKey(name: 'isConditional') bool isConditional,
+            @JsonKey(name: 'selectedLinkListLabel')
+            String? selectedLinkListLabel,
+            @JsonKey(name: 'choice')
+            @ValueTextConverter()
+            List<ValueText> choices,
+            @JsonKey(name: 'showClearButton') bool showClearButton)?
+        yesnona,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        files,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') List<Map<String, dynamic>>? answer,
+            @JsonKey(name: 'description') String? description,
+            @JsonKey(name: 'isMultiple') bool isMultiple,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        images,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'answer') Map<String, dynamic>? answer,
+            @JsonKey(name: 'isRequired') bool isRequired)?
+        geolocation,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'addressLine') String? addressLine,
+            @JsonKey(name: 'answer') String? answer)?
+        map,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'tableId') String? tableId,
+            List<String>? headers,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'answer') dynamic answer,
+            @JsonKey(name: 'isRow') bool isRow,
+            @JsonKey(name: 'contents')
+            @InputFieldConverter()
+            List<List<InputField>>? inputFields)?
+        table,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
+            List<String>? headers,
+            @JsonKey(name: 'tableId') String? tableId,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'is_editable') bool isEditable,
+            @JsonKey(name: 'answer') dynamic answer,
+            @JsonKey(name: 'isRow') bool isRow,
+            @JsonKey(name: 'contents')
+            @InputFieldConverter()
+            List<List<InputField>>? inputFields)?
+        advtable,
+    required TResult orElse(),
+  }) {
+    if (equipment != null) {
+      return equipment(
+          id,
+          label,
+          name,
+          isRequired,
+          answerList,
+          isEngineHour,
+          association,
+          collectMeterReading,
+          collectEvidence,
+          answer,
+          subAnswer,
+          attachments,
+          isEditable);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_FallbackInputField value) fallback,
+    required TResult Function(TextInputField value) text,
+    required TResult Function(SignatureInputField value) signature,
+    required TResult Function(MultiSignatureInputField value) multisignature,
+    required TResult Function(DateInputField value) date,
+    required TResult Function(InstructionInputField value) instruction,
+    required TResult Function(SectionInputField value) section,
+    required TResult Function(TimeInputField value) time,
+    required TResult Function(UrlInputField value) url,
+    required TResult Function(NumberInputField value) number,
+    required TResult Function(PhoneInputField value) phone,
+    required TResult Function(EmailInputField value) email,
+    required TResult Function(DateTimeInputField value) datetimelocal,
+    required TResult Function(CommentInputField value) comment,
+    required TResult Function(DropdownInputField value) dropdown,
+    required TResult Function(MultipleInputField value) multipleselect,
+    required TResult Function(CheckboxInputField value) checkbox,
+    required TResult Function(RadioInputField value) radiogroup,
+    required TResult Function(YesNoInputField value) yesno,
+    required TResult Function(YesNoNaInputField value) yesnona,
+    required TResult Function(FileInputField value) files,
+    required TResult Function(ImageInputField value) images,
+    required TResult Function(GeolocationField value) geolocation,
+    required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
+    required TResult Function(TableField value) table,
+    required TResult Function(AdvTableField value) advtable,
+  }) {
+    return equipment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_FallbackInputField value)? fallback,
+    TResult? Function(TextInputField value)? text,
+    TResult? Function(SignatureInputField value)? signature,
+    TResult? Function(MultiSignatureInputField value)? multisignature,
+    TResult? Function(DateInputField value)? date,
+    TResult? Function(InstructionInputField value)? instruction,
+    TResult? Function(SectionInputField value)? section,
+    TResult? Function(TimeInputField value)? time,
+    TResult? Function(UrlInputField value)? url,
+    TResult? Function(NumberInputField value)? number,
+    TResult? Function(PhoneInputField value)? phone,
+    TResult? Function(EmailInputField value)? email,
+    TResult? Function(DateTimeInputField value)? datetimelocal,
+    TResult? Function(CommentInputField value)? comment,
+    TResult? Function(DropdownInputField value)? dropdown,
+    TResult? Function(MultipleInputField value)? multipleselect,
+    TResult? Function(CheckboxInputField value)? checkbox,
+    TResult? Function(RadioInputField value)? radiogroup,
+    TResult? Function(YesNoInputField value)? yesno,
+    TResult? Function(YesNoNaInputField value)? yesnona,
+    TResult? Function(FileInputField value)? files,
+    TResult? Function(ImageInputField value)? images,
+    TResult? Function(GeolocationField value)? geolocation,
+    TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
+    TResult? Function(TableField value)? table,
+    TResult? Function(AdvTableField value)? advtable,
+  }) {
+    return equipment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_FallbackInputField value)? fallback,
+    TResult Function(TextInputField value)? text,
+    TResult Function(SignatureInputField value)? signature,
+    TResult Function(MultiSignatureInputField value)? multisignature,
+    TResult Function(DateInputField value)? date,
+    TResult Function(InstructionInputField value)? instruction,
+    TResult Function(SectionInputField value)? section,
+    TResult Function(TimeInputField value)? time,
+    TResult Function(UrlInputField value)? url,
+    TResult Function(NumberInputField value)? number,
+    TResult Function(PhoneInputField value)? phone,
+    TResult Function(EmailInputField value)? email,
+    TResult Function(DateTimeInputField value)? datetimelocal,
+    TResult Function(CommentInputField value)? comment,
+    TResult Function(DropdownInputField value)? dropdown,
+    TResult Function(MultipleInputField value)? multipleselect,
+    TResult Function(CheckboxInputField value)? checkbox,
+    TResult Function(RadioInputField value)? radiogroup,
+    TResult Function(YesNoInputField value)? yesno,
+    TResult Function(YesNoNaInputField value)? yesnona,
+    TResult Function(FileInputField value)? files,
+    TResult Function(ImageInputField value)? images,
+    TResult Function(GeolocationField value)? geolocation,
+    TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
+    TResult Function(TableField value)? table,
+    TResult Function(AdvTableField value)? advtable,
+    required TResult orElse(),
+  }) {
+    if (equipment != null) {
+      return equipment(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$EquipmentValueInputFieldImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class EquipmentValueInputField implements InputField {
+  const factory EquipmentValueInputField(
+          {@JsonKey(name: 'id') required final String id,
+          @JsonKey(name: 'label') final String? label,
+          @JsonKey(name: 'name') final String? name,
+          @JsonKey(name: 'isRequired') final bool isRequired,
+          @JsonKey(name: 'selectedLinkListLabel') final String? answerList,
+          @JsonKey(name: 'isEngineHour') final bool? isEngineHour,
+          @JsonKey(name: 'association') final bool? association,
+          @JsonKey(name: 'collectMeterReading') final bool? collectMeterReading,
+          @JsonKey(name: 'collectEvidence') final bool? collectEvidence,
+          @JsonKey(name: 'answer') final String? answer,
+          @JsonKey(name: 'subAnswer') final String? subAnswer,
+          @JsonKey(name: 'attachments')
+          final List<Map<String, dynamic>>? attachments,
+          @JsonKey(name: 'is_editable') final bool isEditable}) =
+      _$EquipmentValueInputFieldImpl;
+
+  factory EquipmentValueInputField.fromJson(Map<String, dynamic> json) =
+      _$EquipmentValueInputFieldImpl.fromJson;
+
+  @override
+  @JsonKey(name: 'id')
+  String get id;
+  @override
+  @JsonKey(name: 'label')
+  String? get label;
+  @JsonKey(name: 'name')
+  String? get name;
+  @override
+  @JsonKey(name: 'isRequired')
+  bool get isRequired;
+  @JsonKey(name: 'selectedLinkListLabel')
+  String? get answerList;
+  @JsonKey(name: 'isEngineHour')
+  bool? get isEngineHour;
+  @JsonKey(name: 'association')
+  bool? get association;
+  @JsonKey(name: 'collectMeterReading')
+  bool? get collectMeterReading;
+  @JsonKey(name: 'collectEvidence')
+  bool? get collectEvidence;
+  @override
+  @JsonKey(name: 'answer')
+  String? get answer;
+  @JsonKey(name: 'subAnswer')
+  String? get subAnswer;
+  @JsonKey(name: 'attachments')
+  List<Map<String, dynamic>>? get attachments;
+  @JsonKey(name: 'is_editable')
+  bool get isEditable;
+
+  /// Create a copy of InputField
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$EquipmentValueInputFieldImplCopyWith<_$EquipmentValueInputFieldImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -31271,6 +33948,22 @@ class _$TableFieldImpl implements TableField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -31566,6 +34259,22 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -31865,6 +34574,22 @@ class _$TableFieldImpl implements TableField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -31927,6 +34652,7 @@ class _$TableFieldImpl implements TableField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -31960,6 +34686,7 @@ class _$TableFieldImpl implements TableField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -31993,6 +34720,7 @@ class _$TableFieldImpl implements TableField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),
@@ -32541,6 +35269,22 @@ class _$AdvTableFieldImpl implements AdvTableField {
         map,
     required TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)
+        equipment,
+    required TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -32836,6 +35580,22 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'addressLine') String? addressLine,
             @JsonKey(name: 'answer') String? answer)?
         map,
+    TResult? Function(
+            @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
     TResult? Function(
             @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
@@ -33135,6 +35895,22 @@ class _$AdvTableFieldImpl implements AdvTableField {
         map,
     TResult Function(
             @JsonKey(name: 'id') String id,
+            @JsonKey(name: 'label') String? label,
+            @JsonKey(name: 'name') String? name,
+            @JsonKey(name: 'isRequired') bool isRequired,
+            @JsonKey(name: 'selectedLinkListLabel') String? answerList,
+            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
+            @JsonKey(name: 'association') bool? association,
+            @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
+            @JsonKey(name: 'collectEvidence') bool? collectEvidence,
+            @JsonKey(name: 'answer') String? answer,
+            @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'attachments')
+            List<Map<String, dynamic>>? attachments,
+            @JsonKey(name: 'is_editable') bool isEditable)?
+        equipment,
+    TResult Function(
+            @JsonKey(name: 'id') String id,
             @JsonKey(name: 'tableId') String? tableId,
             List<String>? headers,
             @JsonKey(name: 'label') String? label,
@@ -33197,6 +35973,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
     required TResult Function(ImageInputField value) images,
     required TResult Function(GeolocationField value) geolocation,
     required TResult Function(MapField value) map,
+    required TResult Function(EquipmentValueInputField value) equipment,
     required TResult Function(TableField value) table,
     required TResult Function(AdvTableField value) advtable,
   }) {
@@ -33230,6 +36007,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
     TResult? Function(ImageInputField value)? images,
     TResult? Function(GeolocationField value)? geolocation,
     TResult? Function(MapField value)? map,
+    TResult? Function(EquipmentValueInputField value)? equipment,
     TResult? Function(TableField value)? table,
     TResult? Function(AdvTableField value)? advtable,
   }) {
@@ -33263,6 +36041,7 @@ class _$AdvTableFieldImpl implements AdvTableField {
     TResult Function(ImageInputField value)? images,
     TResult Function(GeolocationField value)? geolocation,
     TResult Function(MapField value)? map,
+    TResult Function(EquipmentValueInputField value)? equipment,
     TResult Function(TableField value)? table,
     TResult Function(AdvTableField value)? advtable,
     required TResult orElse(),

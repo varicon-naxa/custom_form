@@ -128,6 +128,8 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       if (state.containsKey(field.id)) {
         field = field.copyWith(answer: state[field.id]);
       }
+    } else if (field is EquipmentValueInputField) {
+      field = getEquipmentFieldWithAnswer(field, selectedListLabel);
     } else {}
     return field;
   }
@@ -215,6 +217,22 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
                 }
               }
             }
+          }
+        } else if (field is EquipmentValueInputField) {
+          // Handle equipment field - save answer, subAnswer, and attachments
+          if (field.answer != null && field.answer!.isNotEmpty) {
+            state.addAll({field.id: field.answer});
+            initialAnswer.addAll({field.id: field.answer});
+          }
+          if (field.subAnswer != null && field.subAnswer!.isNotEmpty) {
+            final subAnswerKey = '${field.id}_subAnswer';
+            state.addAll({subAnswerKey: field.subAnswer});
+            initialAnswer.addAll({subAnswerKey: field.subAnswer});
+          }
+          if (field.attachments != null && field.attachments!.isNotEmpty) {
+            final attachmentsKey = '${field.id}_attachments';
+            state.addAll({attachmentsKey: field.attachments});
+            initialAnswer.addAll({attachmentsKey: field.attachments});
           }
         } else {
           if (field.answer is Map<String, dynamic>) {
@@ -311,6 +329,73 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     log('IMAGE VALUES: \n\n KEy=$k');
   }
 
+  /// Save equipment sub-answer (meter reading / engine hours)
+  void saveEquipmentSubAnswer(String k, String? v) {
+    final subAnswerKey = '${k}_subAnswer';
+    if (v == null || v.isEmpty) {
+      state.remove(subAnswerKey);
+    } else {
+      state[subAnswerKey] = v;
+    }
+  }
+
+  /// Get equipment sub-answer
+  String? getEquipmentSubAnswer(String k) {
+    final subAnswerKey = '${k}_subAnswer';
+    return state[subAnswerKey];
+  }
+
+  /// Save equipment attachments (evidence images)
+  void saveEquipmentAttachments(String k, List<Map<String, dynamic>>? v) {
+    final attachmentsKey = '${k}_attachments';
+    if (v == null || v.isEmpty) {
+      state.remove(attachmentsKey);
+    } else {
+      state[attachmentsKey] = v;
+    }
+  }
+
+  /// Get equipment attachments
+  List<Map<String, dynamic>> getEquipmentAttachments(String k) {
+    final attachmentsKey = '${k}_attachments';
+    return List<Map<String, dynamic>>.from(state[attachmentsKey] ?? []);
+  }
+
+  /// Get equipment field with all data (answer, subAnswer, attachments)
+  EquipmentValueInputField getEquipmentFieldWithAnswer(
+    EquipmentValueInputField field,
+    Map<String, dynamic> selectedListLabel,
+  ) {
+    var updatedField = field;
+
+    // Get main answer (equipment ID)
+    if (state.containsKey(field.id)) {
+      updatedField = updatedField.copyWith(answer: state[field.id]);
+    }
+
+    // Get selected link list label (equipment name)
+    if (selectedListLabel.containsKey(field.id)) {
+      updatedField =
+          updatedField.copyWith(answerList: selectedListLabel[field.id]);
+    }
+
+    // Get sub answer (meter reading)
+    final subAnswerKey = '${field.id}_subAnswer';
+    if (state.containsKey(subAnswerKey)) {
+      updatedField = updatedField.copyWith(subAnswer: state[subAnswerKey]);
+    }
+
+    // Get attachments (evidence images)
+    final attachmentsKey = '${field.id}_attachments';
+    if (state.containsKey(attachmentsKey)) {
+      updatedField = updatedField.copyWith(
+        attachments: List<Map<String, dynamic>>.from(state[attachmentsKey]),
+      );
+    }
+
+    return updatedField;
+  }
+
   InputField getFieldWithAnswer(InputField singleField) {
     InputField field = singleField;
     if (field is TextInputField) {
@@ -395,6 +480,9 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
       if (state.containsKey(field.id)) {
         field = field.copyWith(answer: state[field.id]);
       }
+    } else if (field is EquipmentValueInputField) {
+      final selectedListLabel = ref.read(linklabelProvider);
+      field = getEquipmentFieldWithAnswer(field, selectedListLabel);
     } else {}
     return field;
   }

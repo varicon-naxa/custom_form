@@ -60,6 +60,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
 
   @override
   Widget build(BuildContext context) {
+    
     Future modifyAnswer(Uint8List data) async {
       loadingId = const Uuid().v4();
 

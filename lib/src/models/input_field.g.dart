@@ -712,6 +712,46 @@ Map<String, dynamic> _$$MapFieldImplToJson(_$MapFieldImpl instance) =>
       'type': instance.$type,
     };
 
+_$EquipmentValueInputFieldImpl _$$EquipmentValueInputFieldImplFromJson(
+        Map<String, dynamic> json) =>
+    _$EquipmentValueInputFieldImpl(
+      id: json['id'] as String,
+      label: json['label'] as String?,
+      name: json['name'] as String?,
+      isRequired: json['isRequired'] as bool? ?? false,
+      answerList: json['selectedLinkListLabel'] as String?,
+      isEngineHour: json['isEngineHour'] as bool? ?? false,
+      association: json['association'] as bool?,
+      collectMeterReading: json['collectMeterReading'] as bool?,
+      collectEvidence: json['collectEvidence'] as bool?,
+      answer: json['answer'] as String?,
+      subAnswer: json['subAnswer'] as String?,
+      attachments: (json['attachments'] as List<dynamic>?)
+          ?.map((e) => e as Map<String, dynamic>)
+          .toList(),
+      isEditable: json['is_editable'] as bool? ?? true,
+      $type: json['type'] as String?,
+    );
+
+Map<String, dynamic> _$$EquipmentValueInputFieldImplToJson(
+        _$EquipmentValueInputFieldImpl instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'label': instance.label,
+      'name': instance.name,
+      'isRequired': instance.isRequired,
+      'selectedLinkListLabel': instance.answerList,
+      'isEngineHour': instance.isEngineHour,
+      'association': instance.association,
+      'collectMeterReading': instance.collectMeterReading,
+      'collectEvidence': instance.collectEvidence,
+      'answer': instance.answer,
+      'subAnswer': instance.subAnswer,
+      'attachments': instance.attachments,
+      'is_editable': instance.isEditable,
+      'type': instance.$type,
+    };
+
 _$TableFieldImpl _$$TableFieldImplFromJson(Map<String, dynamic> json) =>
     _$TableFieldImpl(
       id: json['id'] as String,

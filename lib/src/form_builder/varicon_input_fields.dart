@@ -24,6 +24,7 @@ import '../form_elements/varicon_address_field.dart';
 import '../form_elements/varicon_advance_table_field.dart';
 import '../form_elements/varicon_instruction_field.dart';
 import '../form_elements/varicon_long_text.dart';
+import '../form_elements/varicon_equipment_dropdown_field.dart';
 import '../form_elements/varicon_other_radio_field.dart';
 import '../form_elements/varicon_simple_table_field.dart';
 
@@ -382,6 +383,23 @@ class VariconInputFields extends ConsumerWidget {
             apiCall: apiCall,
             attachmentSave: attachmentSave,
             fileClick: fileClick,
+          ),
+        );
+      },
+      equipment: (value) {
+        return LabelWidget(
+          isEditable: value.isEditable,
+          key: GlobalObjectKey(value.id),
+          isRequired: value.isRequired,
+          labelText: labelText,
+          child: VariconEquipmentDropdownField(
+            field: value,
+            labelText: labelText,
+            apiCall: apiCall!,
+            attachmentSave: attachmentSave,
+            imageBuild: imageBuild,
+            customPainter: hasCustomPainter ? customPainter : null,
+            locationData: locationData,
           ),
         );
       },
