@@ -30,6 +30,7 @@ import '../form_elements/varicon_simple_table_field.dart';
 
 class VariconInputFields extends ConsumerWidget {
   final InputField field;
+  final String? formId;
   final bool hasLabel;
   final Widget Function(Map<String, dynamic>) imageBuild;
   final Future<List<Map<String, dynamic>>> Function(List<String>)
@@ -47,6 +48,7 @@ class VariconInputFields extends ConsumerWidget {
     required this.imageBuild,
     required this.attachmentSave,
     required this.customPainter,
+    this.formId,
     this.apiCall,
     required this.locationData,
     required this.fileClick,
@@ -396,6 +398,7 @@ class VariconInputFields extends ConsumerWidget {
             field: value,
             labelText: labelText,
             apiCall: apiCall!,
+            formId: formId,
             attachmentSave: attachmentSave,
             imageBuild: imageBuild,
             customPainter: hasCustomPainter ? customPainter : null,

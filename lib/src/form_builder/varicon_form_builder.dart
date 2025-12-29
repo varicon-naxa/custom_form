@@ -280,6 +280,7 @@ class VariconFormBuilderState extends ConsumerState<VariconFormBuilder> {
                           return VariconInputFields(
                             hasCustomPainter: widget.hasCustomPainter,
                             field: e,
+                            formId: widget.surveyForm.id,
                             locationData: widget.locationData,
                             apiCall: widget.apiCall,
                             imageBuild: widget.imageBuild,

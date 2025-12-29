@@ -14,6 +14,7 @@ class CustomFormBuilderQueryDropdown extends StatefulWidget {
     required this.apiCall,
     required this.onChanged,
     required this.linkedQuery,
+    this.formId,
   });
 
   ///Api call function to get data
@@ -24,6 +25,9 @@ class CustomFormBuilderQueryDropdown extends StatefulWidget {
 
   ///Linked query to get data
   final String linkedQuery;
+
+  ///Form ID to pass to API
+  final String? formId;
 
   @override
   State<CustomFormBuilderQueryDropdown> createState() =>
@@ -54,7 +58,8 @@ class _CustomFormBuilderQueryDropdownState
     final data = await widget.apiCall({
       'choice_id': widget.linkedQuery,
       'page': page.toString(),
-      'q': q ?? ''
+      'q': q ?? '',
+      if (widget.formId != null) 'form_id': widget.formId,
     });
     Future.microtask(() {
       setState(() {

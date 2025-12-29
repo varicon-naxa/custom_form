@@ -354,12 +354,12 @@ mixin _$InputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -663,12 +663,12 @@ mixin _$InputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -972,12 +972,12 @@ mixin _$InputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -1564,12 +1564,12 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -1876,12 +1876,12 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -2188,12 +2188,12 @@ class _$FallbackInputFieldImpl implements _FallbackInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -2792,12 +2792,12 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -3104,12 +3104,12 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -3416,12 +3416,12 @@ class _$TextInputFieldImpl implements TextInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -4043,12 +4043,12 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -4355,12 +4355,12 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -4668,12 +4668,12 @@ class _$SignatureInputFieldImpl implements SignatureInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -5290,12 +5290,12 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -5602,12 +5602,12 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -5915,12 +5915,12 @@ class _$MultiSignatureInputFieldImpl implements MultiSignatureInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -6522,12 +6522,12 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -6834,12 +6834,12 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -7146,12 +7146,12 @@ class _$DateInputFieldImpl implements DateInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -7807,12 +7807,12 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -8120,12 +8120,12 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -8433,12 +8433,12 @@ class _$InstructionInputFieldImpl implements InstructionInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -9073,12 +9073,12 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -9386,12 +9386,12 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -9699,12 +9699,12 @@ class _$SectionInputFieldImpl implements SectionInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -10313,12 +10313,12 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -10625,12 +10625,12 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -10937,12 +10937,12 @@ class _$TimeInputFieldImpl implements TimeInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -11543,12 +11543,12 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -11855,12 +11855,12 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -12167,12 +12167,12 @@ class _$UrlInputFieldImpl implements UrlInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -12774,12 +12774,12 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -13086,12 +13086,12 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -13398,12 +13398,12 @@ class _$NumberInputFieldImpl implements NumberInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -14006,12 +14006,12 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -14318,12 +14318,12 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -14630,12 +14630,12 @@ class _$PhoneInputFieldImpl implements PhoneInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -15238,12 +15238,12 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -15550,12 +15550,12 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -15862,12 +15862,12 @@ class _$EmailInputFieldImpl implements EmailInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -16469,12 +16469,12 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -16781,12 +16781,12 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -17093,12 +17093,12 @@ class _$DateTimeInputFieldImpl implements DateTimeInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -17711,12 +17711,12 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -18024,12 +18024,12 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -18337,12 +18337,12 @@ class _$CommentInputFieldImpl implements CommentInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -19059,12 +19059,12 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -19384,12 +19384,12 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -19709,12 +19709,12 @@ class _$DropdownInputFieldImpl implements DropdownInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -20502,12 +20502,12 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -20830,12 +20830,12 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -21158,12 +21158,12 @@ class _$MultipleInputFieldImpl implements MultipleInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -21925,12 +21925,12 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -22250,12 +22250,12 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -22575,12 +22575,12 @@ class _$CheckboxInputFieldImpl implements CheckboxInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -23353,12 +23353,12 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -23679,12 +23679,12 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -24005,12 +24005,12 @@ class _$RadioInputFieldImpl implements RadioInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -24781,12 +24781,12 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -25106,12 +25106,12 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -25431,12 +25431,12 @@ class _$YesNoInputFieldImpl implements YesNoInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -26175,12 +26175,12 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -26498,12 +26498,12 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -26821,12 +26821,12 @@ class _$YesNoNaInputFieldImpl implements YesNoNaInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -27506,12 +27506,12 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -27819,12 +27819,12 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -28132,12 +28132,12 @@ class _$FileInputFieldImpl implements FileInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -28786,12 +28786,12 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -29099,12 +29099,12 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -29412,12 +29412,12 @@ class _$ImageInputFieldImpl implements ImageInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -30022,12 +30022,12 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -30334,12 +30334,12 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -30646,12 +30646,12 @@ class _$GeolocationFieldImpl implements GeolocationField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -31248,12 +31248,12 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -31560,12 +31560,12 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -31872,12 +31872,12 @@ class _$MapFieldImpl implements MapField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -32084,12 +32084,12 @@ abstract class _$$EquipmentValueInputFieldImplCopyWith<$Res>
       @JsonKey(name: 'name') String? name,
       @JsonKey(name: 'isRequired') bool isRequired,
       @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-      @JsonKey(name: 'isEngineHour') bool? isEngineHour,
       @JsonKey(name: 'association') bool? association,
       @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
       @JsonKey(name: 'collectEvidence') bool? collectEvidence,
       @JsonKey(name: 'answer') String? answer,
       @JsonKey(name: 'subAnswer') String? subAnswer,
+      @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
       @JsonKey(name: 'attachments') List<Map<String, dynamic>>? attachments,
       @JsonKey(name: 'is_editable') bool isEditable});
 }
@@ -32113,12 +32113,12 @@ class __$$EquipmentValueInputFieldImplCopyWithImpl<$Res>
     Object? name = freezed,
     Object? isRequired = null,
     Object? answerList = freezed,
-    Object? isEngineHour = freezed,
     Object? association = freezed,
     Object? collectMeterReading = freezed,
     Object? collectEvidence = freezed,
     Object? answer = freezed,
     Object? subAnswer = freezed,
+    Object? meterReadingUnit = freezed,
     Object? attachments = freezed,
     Object? isEditable = null,
   }) {
@@ -32143,10 +32143,6 @@ class __$$EquipmentValueInputFieldImplCopyWithImpl<$Res>
           ? _value.answerList
           : answerList // ignore: cast_nullable_to_non_nullable
               as String?,
-      isEngineHour: freezed == isEngineHour
-          ? _value.isEngineHour
-          : isEngineHour // ignore: cast_nullable_to_non_nullable
-              as bool?,
       association: freezed == association
           ? _value.association
           : association // ignore: cast_nullable_to_non_nullable
@@ -32166,6 +32162,10 @@ class __$$EquipmentValueInputFieldImplCopyWithImpl<$Res>
       subAnswer: freezed == subAnswer
           ? _value.subAnswer
           : subAnswer // ignore: cast_nullable_to_non_nullable
+              as String?,
+      meterReadingUnit: freezed == meterReadingUnit
+          ? _value.meterReadingUnit
+          : meterReadingUnit // ignore: cast_nullable_to_non_nullable
               as String?,
       attachments: freezed == attachments
           ? _value._attachments
@@ -32188,12 +32188,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
       @JsonKey(name: 'name') this.name,
       @JsonKey(name: 'isRequired') this.isRequired = false,
       @JsonKey(name: 'selectedLinkListLabel') this.answerList,
-      @JsonKey(name: 'isEngineHour') this.isEngineHour = false,
       @JsonKey(name: 'association') this.association,
       @JsonKey(name: 'collectMeterReading') this.collectMeterReading,
       @JsonKey(name: 'collectEvidence') this.collectEvidence,
       @JsonKey(name: 'answer') this.answer,
       @JsonKey(name: 'subAnswer') this.subAnswer,
+      @JsonKey(name: 'meterReadingUnit') this.meterReadingUnit,
       @JsonKey(name: 'attachments')
       final List<Map<String, dynamic>>? attachments,
       @JsonKey(name: 'is_editable') this.isEditable = true,
@@ -32220,9 +32220,6 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
   @JsonKey(name: 'selectedLinkListLabel')
   final String? answerList;
   @override
-  @JsonKey(name: 'isEngineHour')
-  final bool? isEngineHour;
-  @override
   @JsonKey(name: 'association')
   final bool? association;
   @override
@@ -32237,6 +32234,9 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
   @override
   @JsonKey(name: 'subAnswer')
   final String? subAnswer;
+  @override
+  @JsonKey(name: 'meterReadingUnit')
+  final String? meterReadingUnit;
   final List<Map<String, dynamic>>? _attachments;
   @override
   @JsonKey(name: 'attachments')
@@ -32257,7 +32257,7 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
 
   @override
   String toString() {
-    return 'InputField.equipment(id: $id, label: $label, name: $name, isRequired: $isRequired, answerList: $answerList, isEngineHour: $isEngineHour, association: $association, collectMeterReading: $collectMeterReading, collectEvidence: $collectEvidence, answer: $answer, subAnswer: $subAnswer, attachments: $attachments, isEditable: $isEditable)';
+    return 'InputField.equipment(id: $id, label: $label, name: $name, isRequired: $isRequired, answerList: $answerList, association: $association, collectMeterReading: $collectMeterReading, collectEvidence: $collectEvidence, answer: $answer, subAnswer: $subAnswer, meterReadingUnit: $meterReadingUnit, attachments: $attachments, isEditable: $isEditable)';
   }
 
   @override
@@ -32272,8 +32272,6 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
                 other.isRequired == isRequired) &&
             (identical(other.answerList, answerList) ||
                 other.answerList == answerList) &&
-            (identical(other.isEngineHour, isEngineHour) ||
-                other.isEngineHour == isEngineHour) &&
             (identical(other.association, association) ||
                 other.association == association) &&
             (identical(other.collectMeterReading, collectMeterReading) ||
@@ -32283,6 +32281,8 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
             (identical(other.answer, answer) || other.answer == answer) &&
             (identical(other.subAnswer, subAnswer) ||
                 other.subAnswer == subAnswer) &&
+            (identical(other.meterReadingUnit, meterReadingUnit) ||
+                other.meterReadingUnit == meterReadingUnit) &&
             const DeepCollectionEquality()
                 .equals(other._attachments, _attachments) &&
             (identical(other.isEditable, isEditable) ||
@@ -32298,12 +32298,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
       name,
       isRequired,
       answerList,
-      isEngineHour,
       association,
       collectMeterReading,
       collectEvidence,
       answer,
       subAnswer,
+      meterReadingUnit,
       const DeepCollectionEquality().hash(_attachments),
       isEditable);
 
@@ -32586,12 +32586,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -32631,12 +32631,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
         name,
         isRequired,
         answerList,
-        isEngineHour,
         association,
         collectMeterReading,
         collectEvidence,
         answer,
         subAnswer,
+        meterReadingUnit,
         attachments,
         isEditable);
   }
@@ -32911,12 +32911,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -32956,12 +32956,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
         name,
         isRequired,
         answerList,
-        isEngineHour,
         association,
         collectMeterReading,
         collectEvidence,
         answer,
         subAnswer,
+        meterReadingUnit,
         attachments,
         isEditable);
   }
@@ -33236,12 +33236,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -33283,12 +33283,12 @@ class _$EquipmentValueInputFieldImpl implements EquipmentValueInputField {
           name,
           isRequired,
           answerList,
-          isEngineHour,
           association,
           collectMeterReading,
           collectEvidence,
           answer,
           subAnswer,
+          meterReadingUnit,
           attachments,
           isEditable);
     }
@@ -33416,12 +33416,12 @@ abstract class EquipmentValueInputField implements InputField {
           @JsonKey(name: 'name') final String? name,
           @JsonKey(name: 'isRequired') final bool isRequired,
           @JsonKey(name: 'selectedLinkListLabel') final String? answerList,
-          @JsonKey(name: 'isEngineHour') final bool? isEngineHour,
           @JsonKey(name: 'association') final bool? association,
           @JsonKey(name: 'collectMeterReading') final bool? collectMeterReading,
           @JsonKey(name: 'collectEvidence') final bool? collectEvidence,
           @JsonKey(name: 'answer') final String? answer,
           @JsonKey(name: 'subAnswer') final String? subAnswer,
+          @JsonKey(name: 'meterReadingUnit') final String? meterReadingUnit,
           @JsonKey(name: 'attachments')
           final List<Map<String, dynamic>>? attachments,
           @JsonKey(name: 'is_editable') final bool isEditable}) =
@@ -33443,8 +33443,6 @@ abstract class EquipmentValueInputField implements InputField {
   bool get isRequired;
   @JsonKey(name: 'selectedLinkListLabel')
   String? get answerList;
-  @JsonKey(name: 'isEngineHour')
-  bool? get isEngineHour;
   @JsonKey(name: 'association')
   bool? get association;
   @JsonKey(name: 'collectMeterReading')
@@ -33456,6 +33454,8 @@ abstract class EquipmentValueInputField implements InputField {
   String? get answer;
   @JsonKey(name: 'subAnswer')
   String? get subAnswer;
+  @JsonKey(name: 'meterReadingUnit')
+  String? get meterReadingUnit;
   @JsonKey(name: 'attachments')
   List<Map<String, dynamic>>? get attachments;
   @JsonKey(name: 'is_editable')
@@ -33952,12 +33952,12 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -34265,12 +34265,12 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -34578,12 +34578,12 @@ class _$TableFieldImpl implements TableField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -35273,12 +35273,12 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)
@@ -35586,12 +35586,12 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?
@@ -35899,12 +35899,12 @@ class _$AdvTableFieldImpl implements AdvTableField {
             @JsonKey(name: 'name') String? name,
             @JsonKey(name: 'isRequired') bool isRequired,
             @JsonKey(name: 'selectedLinkListLabel') String? answerList,
-            @JsonKey(name: 'isEngineHour') bool? isEngineHour,
             @JsonKey(name: 'association') bool? association,
             @JsonKey(name: 'collectMeterReading') bool? collectMeterReading,
             @JsonKey(name: 'collectEvidence') bool? collectEvidence,
             @JsonKey(name: 'answer') String? answer,
             @JsonKey(name: 'subAnswer') String? subAnswer,
+            @JsonKey(name: 'meterReadingUnit') String? meterReadingUnit,
             @JsonKey(name: 'attachments')
             List<Map<String, dynamic>>? attachments,
             @JsonKey(name: 'is_editable') bool isEditable)?

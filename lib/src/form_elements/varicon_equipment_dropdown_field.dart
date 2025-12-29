@@ -36,6 +36,7 @@ class VariconEquipmentDropdownField extends StatefulHookConsumerWidget {
     required this.imageBuild,
     this.customPainter,
     this.locationData = '',
+    this.formId,
   });
 
   /// Equipment field model containing field configuration
@@ -59,6 +60,9 @@ class VariconEquipmentDropdownField extends StatefulHookConsumerWidget {
 
   /// Location data for image metadata
   final String locationData;
+
+  /// Form ID to pass to the API call
+  final String? formId;
 
   @override
   ConsumerState<VariconEquipmentDropdownField> createState() =>
@@ -153,6 +157,7 @@ class _VariconEquipmentDropdownFieldState
       child: CustomFormBuilderQueryDropdown(
         apiCall: widget.apiCall,
         linkedQuery: 'equipment',
+        formId: widget.formId,
         onChanged: (ValueText data) {
           setState(() {
             selectedValue = data;
@@ -279,8 +284,8 @@ class _VariconEquipmentDropdownFieldState
         if (showMeterReading) ...[
           const SizedBox(height: 16),
           Text(
-            (widget.field.isEngineHour ?? false)
-                ? 'Engine Hours'
+            widget.field.meterReadingUnit?.isNotEmpty == true
+                ? widget.field.meterReadingUnit!
                 : 'Meter Reading',
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
@@ -299,8 +304,8 @@ class _VariconEquipmentDropdownFieldState
             textInputAction: TextInputAction.done,
             autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: InputDecoration(
-              hintText: (widget.field.isEngineHour ?? false)
-                  ? 'Enter engine hours'
+              hintText: widget.field.meterReadingUnit?.isNotEmpty == true
+                  ? 'Enter ${widget.field.meterReadingUnit!.toLowerCase()}'
                   : 'Enter meter reading',
               contentPadding: const EdgeInsets.all(8.0),
             ),
@@ -324,8 +329,10 @@ class _VariconEquipmentDropdownFieldState
                       ? num.tryParse(value.toString())
                       : null,
                   isRequired: true,
-                  requiredErrorText: (widget.field.isEngineHour ?? false)
-                      ? 'Please enter engine hours'
+                  requiredErrorText: widget
+                              .field.meterReadingUnit?.isNotEmpty ==
+                          true
+                      ? 'Please enter ${widget.field.meterReadingUnit!.toLowerCase()}'
                       : 'Please enter meter reading',
                 );
               }
