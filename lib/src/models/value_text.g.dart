@@ -12,6 +12,7 @@ _$ValueTextImpl _$$ValueTextImplFromJson(Map<String, dynamic> json) =>
       action: json['action'] as bool?,
       value: readValue(json, 'value') as String,
       notifyTo: json['notify_To'] as List<dynamic>?,
+      engineType: json['engine_type'] as String?,
       text: readText(json, 'text') as String,
       image: json['image'] as Map<String, dynamic>?,
       $type: json['runtimeType'] as String?,
@@ -23,6 +24,7 @@ Map<String, dynamic> _$$ValueTextImplToJson(_$ValueTextImpl instance) =>
       'action': instance.action,
       'value': instance.value,
       'notify_To': instance.notifyTo,
+      'engine_type': instance.engineType,
       'text': instance.text,
       'image': instance.image,
       'runtimeType': instance.$type,
@@ -35,6 +37,7 @@ _$NoneValueTextImpl _$$NoneValueTextImplFromJson(Map<String, dynamic> json) =>
       action: json['action'] as bool?,
       isOtherField: json['isOtherField'] as bool?,
       notifyTo: json['notify_To'] as List<dynamic>?,
+      engineType: json['engine_type'] as String?,
       image: json['image'] as Map<String, dynamic>?,
       $type: json['runtimeType'] as String?,
     );
@@ -46,6 +49,7 @@ Map<String, dynamic> _$$NoneValueTextImplToJson(_$NoneValueTextImpl instance) =>
       'action': instance.action,
       'isOtherField': instance.isOtherField,
       'notify_To': instance.notifyTo,
+      'engine_type': instance.engineType,
       'image': instance.image,
       'runtimeType': instance.$type,
     };
@@ -57,6 +61,7 @@ _$OtherValueTextImpl _$$OtherValueTextImplFromJson(Map<String, dynamic> json) =>
       action: json['action'] as bool?,
       isOtherField: json['isOtherField'] as bool?,
       notifyTo: json['notify_To'] as List<dynamic>?,
+      engineType: json['engine_type'] as String?,
       image: json['image'] as Map<String, dynamic>?,
       $type: json['runtimeType'] as String?,
     );
@@ -69,6 +74,7 @@ Map<String, dynamic> _$$OtherValueTextImplToJson(
       'action': instance.action,
       'isOtherField': instance.isOtherField,
       'notify_To': instance.notifyTo,
+      'engine_type': instance.engineType,
       'image': instance.image,
       'runtimeType': instance.$type,
     };

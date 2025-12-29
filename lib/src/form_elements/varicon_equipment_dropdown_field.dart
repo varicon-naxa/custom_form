@@ -164,7 +164,6 @@ class _VariconEquipmentDropdownFieldState
           });
 
           dropdownController.text = data.text;
-
           // Save the selected value (equipment ID)
           ref
               .read(currentStateNotifierProvider.notifier)
@@ -283,65 +282,72 @@ class _VariconEquipmentDropdownFieldState
         // Meter Reading Text Field
         if (showMeterReading) ...[
           const SizedBox(height: 16),
-          Text(
-            widget.field.meterReadingUnit?.isNotEmpty == true
-                ? widget.field.meterReadingUnit!
-                : 'Meter Reading',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.w500,
+          Builder(builder: (context) {
+            final meterReadingUnit = selectedValue?.engineType ??
+                widget.field.meterReadingUnit ??
+                '';
+            final hasUnit = meterReadingUnit.isNotEmpty;
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  hasUnit ? meterReadingUnit : 'Meter Reading',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        fontWeight: FontWeight.w500,
+                      ),
                 ),
-          ),
-          const SizedBox(height: 8),
-          TextFormField(
-            controller: meterReadingController,
-            onTapOutside: (event) =>
-                FocusManager.instance.primaryFocus?.unfocus(),
-            style: Theme.of(context).textTheme.bodyLarge,
-            keyboardType: const TextInputType.numberWithOptions(
-              signed: false,
-              decimal: true,
-            ),
-            textInputAction: TextInputAction.done,
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            decoration: InputDecoration(
-              hintText: widget.field.meterReadingUnit?.isNotEmpty == true
-                  ? 'Enter ${widget.field.meterReadingUnit!.toLowerCase()}'
-                  : 'Enter meter reading',
-              contentPadding: const EdgeInsets.all(8.0),
-            ),
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
-              TextInputFormatter.withFunction((oldValue, newValue) {
-                final text = newValue.text;
-                return text.trim().isEmpty
-                    ? newValue
-                    : double.tryParse(text) == null
-                        ? oldValue
-                        : newValue;
-              }),
-            ],
-            validator: (value) {
-              // Meter reading is required when collectMeterReading is true
-              if ((widget.field.collectMeterReading ?? false) &&
-                  isEquipmentSelected) {
-                return numberValidator(
-                  value: (value?.trim().isNotEmpty ?? false)
-                      ? num.tryParse(value.toString())
-                      : null,
-                  isRequired: true,
-                  requiredErrorText: widget
-                              .field.meterReadingUnit?.isNotEmpty ==
-                          true
-                      ? 'Please enter ${widget.field.meterReadingUnit!.toLowerCase()}'
-                      : 'Please enter meter reading',
-                );
-              }
-              return null;
-            },
-            onChanged: (value) {
-              _saveMeterReading(value);
-            },
-          ),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: meterReadingController,
+                  onTapOutside: (event) =>
+                      FocusManager.instance.primaryFocus?.unfocus(),
+                  style: Theme.of(context).textTheme.bodyLarge,
+                  keyboardType: const TextInputType.numberWithOptions(
+                    signed: false,
+                    decimal: true,
+                  ),
+                  textInputAction: TextInputAction.done,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  decoration: InputDecoration(
+                    hintText: hasUnit
+                        ? 'Enter ${meterReadingUnit.toLowerCase()}'
+                        : 'Enter meter reading',
+                    contentPadding: const EdgeInsets.all(8.0),
+                  ),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
+                    TextInputFormatter.withFunction((oldValue, newValue) {
+                      final text = newValue.text;
+                      return text.trim().isEmpty
+                          ? newValue
+                          : double.tryParse(text) == null
+                              ? oldValue
+                              : newValue;
+                    }),
+                  ],
+                  validator: (value) {
+                    // Meter reading is required when collectMeterReading is true
+                    if ((widget.field.collectMeterReading ?? false) &&
+                        isEquipmentSelected) {
+                      return numberValidator(
+                        value: (value?.trim().isNotEmpty ?? false)
+                            ? num.tryParse(value.toString())
+                            : null,
+                        isRequired: true,
+                        requiredErrorText: hasUnit
+                            ? 'Please enter ${meterReadingUnit.toLowerCase()}'
+                            : 'Please enter meter reading',
+                      );
+                    }
+                    return null;
+                  },
+                  onChanged: (value) {
+                    _saveMeterReading(value);
+                  },
+                ),
+              ],
+            );
+          }),
         ],
 
         // Evidence Image Picker
