@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -174,6 +172,14 @@ class _VariconEquipmentDropdownFieldState
               .read(linklabelProvider.notifier)
               .saveString(widget.field.id, data.text);
 
+          // Save the engine type as meter reading unit
+          if (data.engineType != null && data.engineType!.isNotEmpty) {
+            ref
+                .read(currentStateNotifierProvider.notifier)
+                .saveEquipmentMeterReadingUnit(
+                    widget.field.id, data.engineType);
+          }
+
           Navigator.pop(context);
         },
       ),
@@ -283,6 +289,7 @@ class _VariconEquipmentDropdownFieldState
         if (showMeterReading) ...[
           const SizedBox(height: 16),
           Builder(builder: (context) {
+            // Use engineType from selected equipment, fallback to initial meterReadingUnit
             final meterReadingUnit = selectedValue?.engineType ??
                 widget.field.meterReadingUnit ??
                 '';
@@ -291,7 +298,7 @@ class _VariconEquipmentDropdownFieldState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  hasUnit ? meterReadingUnit : 'Meter Reading',
+                  'Meter Reading',
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w500,
                       ),
@@ -309,10 +316,14 @@ class _VariconEquipmentDropdownFieldState
                   textInputAction: TextInputAction.done,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   decoration: InputDecoration(
-                    hintText: hasUnit
-                        ? 'Enter ${meterReadingUnit.toLowerCase()}'
-                        : 'Enter meter reading',
+                    hintText: 'Enter meter reading',
                     contentPadding: const EdgeInsets.all(8.0),
+                    suffixText: hasUnit ? meterReadingUnit : null,
+                    suffixStyle:
+                        Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: Colors.grey[600],
+                              fontWeight: FontWeight.w500,
+                            ),
                   ),
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp(r"[0-9.]")),
@@ -334,9 +345,7 @@ class _VariconEquipmentDropdownFieldState
                             ? num.tryParse(value.toString())
                             : null,
                         isRequired: true,
-                        requiredErrorText: hasUnit
-                            ? 'Please enter ${meterReadingUnit.toLowerCase()}'
-                            : 'Please enter meter reading',
+                        requiredErrorText: 'Please enter meter reading',
                       );
                     }
                     return null;

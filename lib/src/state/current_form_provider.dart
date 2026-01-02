@@ -219,7 +219,7 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
             }
           }
         } else if (field is EquipmentValueInputField) {
-          // Handle equipment field - save answer, subAnswer, and attachments
+          // Handle equipment field - save answer, subAnswer, attachments, and meterReadingUnit
           if (field.answer != null && field.answer!.isNotEmpty) {
             state.addAll({field.id: field.answer});
             initialAnswer.addAll({field.id: field.answer});
@@ -233,6 +233,12 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
             final attachmentsKey = '${field.id}_attachments';
             state.addAll({attachmentsKey: field.attachments});
             initialAnswer.addAll({attachmentsKey: field.attachments});
+          }
+          if (field.meterReadingUnit != null &&
+              field.meterReadingUnit!.isNotEmpty) {
+            final meterReadingUnitKey = '${field.id}_meterReadingUnit';
+            state.addAll({meterReadingUnitKey: field.meterReadingUnit});
+            initialAnswer.addAll({meterReadingUnitKey: field.meterReadingUnit});
           }
         } else {
           if (field.answer is Map<String, dynamic>) {
@@ -355,6 +361,22 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     }
   }
 
+  /// Save equipment meter reading unit (engine type)
+  void saveEquipmentMeterReadingUnit(String k, String? v) {
+    final meterReadingUnitKey = '${k}_meterReadingUnit';
+    if (v == null || v.isEmpty) {
+      state.remove(meterReadingUnitKey);
+    } else {
+      state[meterReadingUnitKey] = v;
+    }
+  }
+
+  /// Get equipment meter reading unit
+  String? getEquipmentMeterReadingUnit(String k) {
+    final meterReadingUnitKey = '${k}_meterReadingUnit';
+    return state[meterReadingUnitKey];
+  }
+
   /// Get equipment attachments
   List<Map<String, dynamic>> getEquipmentAttachments(String k) {
     final attachmentsKey = '${k}_attachments';
@@ -390,6 +412,14 @@ class CurrentFormNotifier extends StateNotifier<Map<String, dynamic>> {
     if (state.containsKey(attachmentsKey)) {
       updatedField = updatedField.copyWith(
         attachments: List<Map<String, dynamic>>.from(state[attachmentsKey]),
+      );
+    }
+
+    // Get meter reading unit (engine type)
+    final meterReadingUnitKey = '${field.id}_meterReadingUnit';
+    if (state.containsKey(meterReadingUnitKey)) {
+      updatedField = updatedField.copyWith(
+        meterReadingUnit: state[meterReadingUnitKey],
       );
     }
 

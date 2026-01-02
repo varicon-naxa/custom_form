@@ -290,16 +290,23 @@ class FormBuilderImagePicker
                                 ),
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
-                              child: Stack(
-                                children: [
-                                  displayWidget,
-                                  if (value)
-                                    const Center(
-                                      child: CircularProgressIndicator(
-                                        strokeWidth: 2,
-                                      ),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(7.0),
+                                child: Stack(
+                                  children: [
+                                    SizedBox(
+                                      height: height,
+                                      width: width,
+                                      child: displayWidget,
                                     ),
-                                ],
+                                    if (value)
+                                      const Center(
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2,
+                                        ),
+                                      ),
+                                  ],
+                                ),
                               ),
                             );
                           },

@@ -1202,7 +1202,6 @@ class _EquipmentAnswerDesign extends StatelessWidget {
     final hasEvidence = (field.collectEvidence ?? false) &&
         field.attachments != null &&
         field.attachments!.isNotEmpty;
-    final isEngineHour = field.meterReadingUnit ?? 'N/A';
 
     if (!hasEquipment) {
       return Column(
@@ -1276,7 +1275,7 @@ class _EquipmentAnswerDesign extends StatelessWidget {
                     const Icon(
                       Icons.speed_outlined,
                       size: 18,
-                      color: const Color(0xFF6A737B),
+                      color: Color(0xFF6A737B),
                     ),
                     const SizedBox(width: 8),
                     Text(
@@ -1286,6 +1285,17 @@ class _EquipmentAnswerDesign extends StatelessWidget {
                             color: const Color(0xFF233759),
                           ),
                     ),
+                    if (field.meterReadingUnit != null &&
+                        field.meterReadingUnit!.isNotEmpty) ...[
+                      const SizedBox(width: 4),
+                      Text(
+                        field.meterReadingUnit!,
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              color: const Color(0xFF6A737B),
+                              fontWeight: FontWeight.w500,
+                            ),
+                      ),
+                    ],
                   ],
                 ),
               ],

@@ -20,8 +20,6 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
           notifyTo: json['notify_To'],
           engineType: json['engine_type'],
           action: json['action']);
-          
-          
     }
   }
 
@@ -36,4 +34,3 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
         'engine_type': object.engineType,
       };
 }
-
