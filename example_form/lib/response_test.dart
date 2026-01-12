@@ -31,6 +31,10 @@ class _SurveyPageState extends State<ResponseTest> {
         timesheetClick: (String timesheetId) {
           log('Timesheet Id $timesheetId');
         },
+        onStatusTap: () {
+          log('Status tapped');
+        },
+        canChangeStatus: true,
         imageBuild: (Map<String, dynamic> data) {
           if (data.containsKey('allAttachments')) {
             return GestureDetector(

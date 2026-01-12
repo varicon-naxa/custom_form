@@ -17,6 +17,8 @@ class VariconResponseBuilder extends StatelessWidget {
     required this.hasGeolocation,
     required this.formtitle,
     required this.timesheetClick,
+    this.canChangeStatus = false,
+    this.onStatusTap,
   });
 
   ///Survey page form model
@@ -47,6 +49,14 @@ class VariconResponseBuilder extends StatelessWidget {
   ///
   ///  Redirect to timesheet detail page
   final Function(String) timesheetClick;
+
+  ///Check if the user can change the status of the form
+  ///
+  ///If true, the user can change the status of the form
+  final bool canChangeStatus;
+
+  ///Callback when status is tapped
+  final VoidCallback? onStatusTap;
 
   final String formtitle;
 
@@ -311,17 +321,24 @@ class VariconResponseBuilder extends StatelessWidget {
                     ),
                     if (surveyForm.status != null &&
                         surveyForm.status?['id'] != null)
-                      Container(
-                        padding: const EdgeInsets.all(4),
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                            color: HexColor.fromHex(
-                                surveyForm.status!['color'] ?? ''),
-                            borderRadius: BorderRadius.circular(4)),
-                        child: Text(
-                          surveyForm.status!['label'].toString(),
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.white),
+                      GestureDetector(
+                        onTap: () {
+                          if (canChangeStatus) {
+                            onStatusTap?.call();
+                          }
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: HexColor.fromHex(
+                                  surveyForm.status!['color'] ?? ''),
+                              borderRadius: BorderRadius.circular(4)),
+                          child: Text(
+                            surveyForm.status!['label'].toString(),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(color: Colors.white),
+                          ),
                         ),
                       )
                   ],
