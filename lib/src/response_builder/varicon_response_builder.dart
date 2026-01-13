@@ -319,38 +319,58 @@ class VariconResponseBuilder extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    // if (surveyForm.status != null &&
-                    //     surveyForm.status?['id'] != null)
-                    GestureDetector(
-                      onTap: () {
-                        if (canChangeStatus) {
-                          onStatusTap?.call();
-                        }
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(4),
-                        width: double.infinity,
-                        decoration: (surveyForm.status != null &&
-                                surveyForm.status?['id'] != null)
-                            ? BoxDecoration(
-                                color: HexColor.fromHex(
-                                    surveyForm.status!['color'] ?? ''),
-                                borderRadius: BorderRadius.circular(4))
-                            : BoxDecoration(
-                                border: Border.all(color: Colors.amberAccent),
-                                borderRadius: BorderRadius.circular(4)),
-                        child: Text(
-                          surveyForm.status!['label'].toString(),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: (surveyForm.status != null &&
-                                    surveyForm.status?['id'] != null)
-                                ? Colors.white
-                                : Colors.black,
-                          ),
-                        ),
-                      ),
-                    )
+                    (surveyForm.status != null &&
+                            surveyForm.status?['id'] != null)
+                        ? GestureDetector(
+                            onTap: () {
+                              if (canChangeStatus) {
+                                onStatusTap?.call();
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              width: double.infinity,
+                              decoration: (surveyForm.status != null &&
+                                      surveyForm.status?['id'] != null)
+                                  ? BoxDecoration(
+                                      color: HexColor.fromHex(
+                                          surveyForm.status!['color'] ?? ''),
+                                      borderRadius: BorderRadius.circular(4))
+                                  : BoxDecoration(
+                                      border:
+                                          Border.all(color: Colors.amberAccent),
+                                      borderRadius: BorderRadius.circular(4)),
+                              child: Text(
+                                surveyForm.status!['label'].toString(),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: (surveyForm.status != null &&
+                                          surveyForm.status?['id'] != null)
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ),
+                            ),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              if (canChangeStatus) {
+                                onStatusTap?.call();
+                              }
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(4),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.amberAccent),
+                                  borderRadius: BorderRadius.circular(4)),
+                              child: Text(
+                                'Change Status',
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.bodyMedium,
+                              ),
+                            ),
+                          )
                   ],
                 ),
               ),
