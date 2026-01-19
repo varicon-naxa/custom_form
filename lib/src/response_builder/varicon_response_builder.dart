@@ -362,6 +362,7 @@ class VariconResponseBuilder extends StatelessWidget {
                               padding: const EdgeInsets.all(4),
                               width: double.infinity,
                               decoration: BoxDecoration(
+                                  color: Colors.white,
                                   border: Border.all(color: Colors.amberAccent),
                                   borderRadius: BorderRadius.circular(4)),
                               child: Text(
