@@ -352,26 +352,30 @@ class VariconResponseBuilder extends StatelessWidget {
                               ),
                             ),
                           )
-                        : GestureDetector(
-                            onTap: () {
-                              if (canChangeStatus) {
-                                onStatusTap?.call();
-                              }
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(4),
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(color: Colors.amberAccent),
-                                  borderRadius: BorderRadius.circular(4)),
-                              child: Text(
-                                'Change Status',
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context).textTheme.bodyMedium,
-                              ),
-                            ),
-                          )
+                        : (canChangeStatus)
+                            ? GestureDetector(
+                                onTap: () {
+                                  if (canChangeStatus) {
+                                    onStatusTap?.call();
+                                  }
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(4),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      border:
+                                          Border.all(color: Colors.amberAccent),
+                                      borderRadius: BorderRadius.circular(4)),
+                                  child: Text(
+                                    'Change Status',
+                                    textAlign: TextAlign.center,
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ),
+                              )
+                            : const SizedBox.shrink()
                   ],
                 ),
               ),
