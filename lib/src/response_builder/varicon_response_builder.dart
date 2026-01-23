@@ -367,8 +367,7 @@ class VariconResponseBuilder extends StatelessWidget {
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
-                                      border:
-                                          Border.all(color: Colors.amberAccent),
+                                      border: Border.all(color: Colors.black),
                                       borderRadius: BorderRadius.circular(4)),
                                   child: Text(
                                     'Change Status',
