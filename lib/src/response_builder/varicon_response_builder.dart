@@ -360,7 +360,10 @@ class VariconResponseBuilder extends StatelessWidget {
                                   }
                                 },
                                 child: Container(
-                                  padding: const EdgeInsets.all(4),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 4,
+                                    vertical: 8,
+                                  ),
                                   width: double.infinity,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
@@ -370,8 +373,14 @@ class VariconResponseBuilder extends StatelessWidget {
                                   child: Text(
                                     'Change Status',
                                     textAlign: TextAlign.center,
-                                    style:
-                                        Theme.of(context).textTheme.bodyMedium,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(
+                                          color: Colors.black,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                   ),
                                 ),
                               )
