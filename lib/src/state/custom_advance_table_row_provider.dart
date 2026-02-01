@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:uuid/uuid.dart';
 import 'package:varicon_form_builder/src/models/custom_table_model.dart';

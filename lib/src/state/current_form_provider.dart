@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:collection/collection.dart';
-import 'package:riverpod/riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:varicon_form_builder/src/form_elements/varicon_image_field.dart';
 import 'package:varicon_form_builder/src/state/custom_simple_table_row_provider.dart';
 import '../../varicon_form_builder.dart';

@@ -11,13 +11,13 @@ dependencies:
   collection: ^1.19.0
   dotted_line: ^3.2.2
   expandable: ^5.0.1
-  file_picker: ^8.1.4
+  file_picker: ^8.0.7
   flutter:
     sdk: flutter
   flutter_form_builder: ^10.2.0
   mime_type: ^1.0.1
-  flutter_image_compress: ^2.4.0
-  flutter_riverpod: ^2.6.1
+  flutter_image_compress: ^2.3.0
+  flutter_riverpod: ^3.0.3
   flutter_timezone: ^4.1.0
   flutter_widget_from_html_core: ^0.16.0
   fluttertoast: ^8.2.2
@@ -26,14 +26,14 @@ dependencies:
   geocoding: ^3.0.0
   geolocator: ^13.0.2
   google_maps_flutter: ^2.10.0
-  hooks_riverpod: ^2.6.1
+  hooks_riverpod: ^3.0.3
   html_editor_enhanced: ^2.6.0
   image_editor: ^1.6.0
   image_picker: ^1.1.2
   intl_phone_field: ^3.2.0
   json_annotation: ^4.9.0
   path_provider: ^2.1.5
-  riverpod: ^2.6.1
+  riverpod: ^3.1.0
   signature: ^5.5.0
   uuid: ^4.5.1
   heif_converter: ^1.0.1

@@ -1,4 +1,4 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:varicon_form_builder/src/models/attachment.dart';
 
 class SimpleImagePickerProvider extends StateNotifier<List<Attachment>> {

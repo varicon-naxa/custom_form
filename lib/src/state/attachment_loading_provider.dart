@@ -1,4 +1,4 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 
 class AttachmentLoadingNotifier extends StateNotifier<Set<String>> {
   AttachmentLoadingNotifier() : super({});
