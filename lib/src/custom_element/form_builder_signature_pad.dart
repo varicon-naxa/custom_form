@@ -244,6 +244,11 @@ class FormBuilderSignaturePadState extends FormBuilderFieldDecorationState<
     if (null == widget.controller) {
       _controller.dispose();
     }
-    super.dispose();
+    try {
+      super.dispose();
+    } on AssertionError {
+      // FormBuilder may have already cleared _fields (e.g. duplicate names or
+      // disposal order). Avoid crashing when unregistering.
+    }
   }
 }

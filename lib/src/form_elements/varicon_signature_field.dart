@@ -356,7 +356,7 @@ class _VariconSignatureFieldState extends ConsumerState<VariconSignatureField> {
                   ],
                 ),
               ),
-              name: 'signature',
+              name: widget.field.id,
               onSavedClicked: (data) {},
               onDeletedPressed: () {},
               onChanged: (value) {},
