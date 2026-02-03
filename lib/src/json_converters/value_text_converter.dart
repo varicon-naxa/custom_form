@@ -18,6 +18,7 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
           text: json['text'] ?? json['label'],
           isOtherField: json['isOtherField'],
           notifyTo: json['notify_To'],
+          previousReading: json['previous_reading'],
           engineType: json['engine_type'],
           action: json['action']);
     }
@@ -32,5 +33,6 @@ class ValueTextConverter implements JsonConverter<ValueText, dynamic> {
         'isOtherField': object.isOtherField,
         'notify_To': object.notifyTo,
         'engine_type': object.engineType,
+        'previous_reading': object.previousReading,
       };
 }

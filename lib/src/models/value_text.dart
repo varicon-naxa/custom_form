@@ -15,6 +15,7 @@ class ValueText with _$ValueText {
     @JsonKey(readValue: readValue) required String value,
     @JsonKey(name: 'notify_To') List? notifyTo,
     @JsonKey(name: 'engine_type') String? engineType,
+    @JsonKey(name: 'previous_reading') String? previousReading,
 
     /// Text that is displayed to the frontend.
     @JsonKey(readValue: readText) required String text,
@@ -30,6 +31,7 @@ class ValueText with _$ValueText {
     bool? isOtherField,
     @JsonKey(name: 'notify_To') List? notifyTo,
     @JsonKey(name: 'engine_type') String? engineType,
+    @JsonKey(name: 'previous_reading') String? previousReading,
     @JsonKey(name: 'image') Map<String, dynamic>? image,
   }) = NoneValueText;
 
@@ -39,6 +41,7 @@ class ValueText with _$ValueText {
     bool? action,
     bool? isOtherField,
     @JsonKey(name: 'notify_To') List? notifyTo,
+    @JsonKey(name: 'previous_reading') String? previousReading,
     @JsonKey(name: 'engine_type') String? engineType,
     @JsonKey(name: 'image') Map<String, dynamic>? image,
   }) = OtherValueText;

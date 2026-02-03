@@ -1233,121 +1233,77 @@ class _EquipmentAnswerDesign extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Equipment Name
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(12),
-          decoration: BoxDecoration(
-            color: const Color(0xFFF5F7FA),
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: const Color(0xFFE1E5EB)),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Equipment Selection
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Equipment Selection
+            Text(
+              equipmentName,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
+
+            // Meter Reading / Engine Hours
+            if (hasMeterReading) ...[
+              const SizedBox(height: 8),
+              const Divider(height: 1, color: Color(0xFFE1E5EB)),
+              const SizedBox(height: 8),
+              Text('Meter Reading',
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: const Color(0xFF5F6D83),
+                      )),
+              const SizedBox(height: 8),
               Row(
                 children: [
-                  const Icon(
-                    Icons.precision_manufacturing_outlined,
-                    size: 20,
-                    color: Color(0xFF6A737B),
+                  Text(
+                    field.subAnswer ?? '',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: const Color(0xFF6A737B),
+                        ),
                   ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      equipmentName,
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF233759),
-                          ),
-                    ),
-                  ),
-                ],
-              ),
-
-              // Meter Reading / Engine Hours
-              if (hasMeterReading) ...[
-                const SizedBox(height: 12),
-                const Divider(height: 1, color: Color(0xFFE1E5EB)),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.speed_outlined,
-                      size: 18,
-                      color: Color(0xFF6A737B),
-                    ),
-                    const SizedBox(width: 8),
+                  if (field.meterReadingUnit != null &&
+                      field.meterReadingUnit!.isNotEmpty) ...[
+                    const SizedBox(width: 4),
                     Text(
-                      field.subAnswer ?? '',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            fontWeight: FontWeight.w600,
-                            color: const Color(0xFF233759),
-                          ),
-                    ),
-                    if (field.meterReadingUnit != null &&
-                        field.meterReadingUnit!.isNotEmpty) ...[
-                      const SizedBox(width: 4),
-                      Text(
-                        field.meterReadingUnit!,
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: const Color(0xFF6A737B),
-                              fontWeight: FontWeight.w500,
-                            ),
-                      ),
-                    ],
-                  ],
-                ),
-              ],
-
-              // Evidence Images
-              if (hasEvidence) ...[
-                const SizedBox(height: 12),
-                const Divider(height: 1, color: Color(0xFFE1E5EB)),
-                const SizedBox(height: 12),
-                Row(
-                  children: [
-                    const Icon(
-                      Icons.photo_library_outlined,
-                      size: 18,
-                      color: Color(0xFF6A737B),
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      'Evidence (${field.attachments!.length})',
+                      field.meterReadingUnit!,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: const Color(0xFF6A737B),
                           ),
                     ),
                   ],
-                ),
-                const SizedBox(height: 8),
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: field.attachments!.map((attachment) {
-                    return Container(
-                      width: 75,
-                      height: 75,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        border: Border.all(color: const Color(0xFFE1E5EB)),
-                      ),
-                      clipBehavior: Clip.antiAlias,
-                      child: imageBuild != null
-                          ? imageBuild!({
-                              'image': attachment['file'] ?? '',
-                              'height': 75.0,
-                              'width': 75.0,
-                              'id': attachment['id'],
-                            })
-                          : const Icon(Icons.image, color: Colors.grey),
-                    );
-                  }).toList(),
-                ),
-              ],
+                ],
+              ),
             ],
-          ),
+
+            // Evidence Images
+            if (hasEvidence) ...[
+              const SizedBox(height: 12),
+              const Divider(height: 1, color: Color(0xFFE1E5EB)),
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                children: field.attachments!.map((attachment) {
+                  return Container(
+                    width: 75,
+                    height: 75,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(color: const Color(0xFFE1E5EB)),
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: imageBuild != null
+                        ? imageBuild!({
+                            'image': attachment['file'] ?? '',
+                            'height': 75.0,
+                            'width': 75.0,
+                            'id': attachment['id'],
+                          })
+                        : const Icon(Icons.image, color: Colors.grey),
+                  );
+                }).toList(),
+              ),
+            ],
+          ],
         ),
         const SizedBox(height: 8),
         const DottedLine(

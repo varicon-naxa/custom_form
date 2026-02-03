@@ -354,6 +354,30 @@ class _VariconEquipmentDropdownFieldState
                     _saveMeterReading(value);
                   },
                 ),
+                if (selectedValue?.previousReading != null) ...[
+                  Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    margin: const EdgeInsets.only(top: 8),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF4F6FB),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.history,
+                          size: 18,
+                          color: Colors.grey,
+                        ),
+                        const SizedBox(width: 8),
+                        Text(
+                            'Previous Reading: ${selectedValue?.previousReading ?? ''}',
+                            style: Theme.of(context).textTheme.bodyMedium),
+                      ],
+                    ),
+                  ),
+                ],
               ],
             );
           }),
