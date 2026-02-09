@@ -340,15 +340,31 @@ class VariconResponseBuilder extends StatelessWidget {
                                       border:
                                           Border.all(color: Colors.amberAccent),
                                       borderRadius: BorderRadius.circular(4)),
-                              child: Text(
-                                surveyForm.status!['label'].toString(),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: (surveyForm.status != null &&
-                                          surveyForm.status?['id'] != null)
-                                      ? Colors.white
-                                      : Colors.black,
-                                ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    surveyForm.status!['label'].toString(),
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: (surveyForm.status != null &&
+                                              surveyForm.status?['id'] != null)
+                                          ? Colors.white
+                                          : Colors.black,
+                                    ),
+                                  ),
+                                  canChangeStatus
+                                      ? Icon(
+                                          Icons.arrow_drop_down,
+                                          color: (surveyForm.status != null &&
+                                                  surveyForm.status?['id'] !=
+                                                      null)
+                                              ? Colors.white
+                                              : Colors.black,
+                                        )
+                                      : const SizedBox.shrink(),
+                                ],
                               ),
                             ),
                           )
