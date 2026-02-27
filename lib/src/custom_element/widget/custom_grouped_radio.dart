@@ -311,53 +311,103 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
           ),
         );
       case OptionsOrientation.horizontal:
-        // Check if gridview parameters are provided for horizontal layout
-        if (widget.crossAxisCount != null && widget.childAspectRatio != null) {
-          return GridView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            shrinkWrap: true,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: widget.crossAxisCount!,
-              childAspectRatio: widget.childAspectRatio!,
-              crossAxisSpacing: 12.0,
-              mainAxisSpacing: 12.0,
-            ),
-            itemCount: widgetList.length,
-            itemBuilder: (context, index) {
-              return widgetList[index];
-            },
-          );
-        } else {
-          // Use Row layout for horizontal orientation without gridview
-          return SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                for (int i = 0; i < widgetList.length; i++) ...[
-                  widgetList[i],
-                  if (i < widgetList.length - 1)
-                    SizedBox(
-                      width: widget.wrapSpacing > 0 ? widget.wrapSpacing : 8.0,
+        final content =
+            widget.crossAxisCount != null && widget.childAspectRatio != null
+                ? GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: widget.crossAxisCount!,
+                      childAspectRatio: widget.childAspectRatio!,
+                      crossAxisSpacing: 12.0,
+                      mainAxisSpacing: 12.0,
                     ),
-                ],
-              ],
+                    itemCount: widgetList.length,
+                    itemBuilder: (context, index) => widgetList[index],
+                  )
+                : SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (int i = 0; i < widgetList.length; i++) ...[
+                          widgetList[i],
+                          if (i < widgetList.length - 1)
+                            SizedBox(
+                              width: widget.wrapSpacing > 0
+                                  ? widget.wrapSpacing
+                                  : 8.0,
+                            ),
+                        ],
+                      ],
+                    ),
+                  );
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            content,
+            Visibility(
+              visible: (widget.value as ValueText?)?.action == true &&
+                  (widget.actionMessage ?? '').isNotEmpty,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 4.0,
+                ),
+                margin: const EdgeInsets.only(top: 8.0),
+                decoration: BoxDecoration(
+                  color: Colors.red.shade500,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Text(
+                  widget.actionMessage ?? '',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
             ),
-          );
-        }
+          ],
+        );
 
       case OptionsOrientation.wrap:
-        return SingleChildScrollView(
-          child: Wrap(
-            spacing: widget.wrapSpacing,
-            runSpacing: widget.wrapRunSpacing,
-            textDirection: widget.wrapTextDirection,
-            crossAxisAlignment: widget.wrapCrossAxisAlignment,
-            verticalDirection: widget.wrapVerticalDirection,
-            alignment: widget.wrapAlignment,
-            direction: Axis.horizontal,
-            runAlignment: widget.wrapRunAlignment,
-            children: widgetList,
-          ),
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SingleChildScrollView(
+              child: Wrap(
+                spacing: widget.wrapSpacing,
+                runSpacing: widget.wrapRunSpacing,
+                textDirection: widget.wrapTextDirection,
+                crossAxisAlignment: widget.wrapCrossAxisAlignment,
+                verticalDirection: widget.wrapVerticalDirection,
+                alignment: widget.wrapAlignment,
+                direction: Axis.horizontal,
+                runAlignment: widget.wrapRunAlignment,
+                children: widgetList,
+              ),
+            ),
+            Visibility(
+              visible: (widget.value as ValueText?)?.action == true &&
+                  (widget.actionMessage ?? '').isNotEmpty,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 4.0,
+                ),
+                margin: const EdgeInsets.only(top: 8.0),
+                decoration: BoxDecoration(
+                  color: Colors.red.shade500,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                child: Text(
+                  widget.actionMessage ?? '',
+                  style: const TextStyle(color: Colors.white),
+                ),
+              ),
+            ),
+          ],
         );
     }
   }
@@ -397,6 +447,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
     );
 
     final label = option;
+    final hasAction = currentOption?.action == true;
 
     // Check if the option has an image
     ValueText? currentValueText = option.value as ValueText?;
@@ -405,31 +456,39 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
     // Create the content widget (text or image + text)
     Widget contentWidget;
     if (hasImage) {
+      // Image with overlay (radio only), text below
+      final showRed = isSelected && hasAction;
       contentWidget = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Image widget - same for both horizontal and vertical
-          SizedBox(
-            height:
-                widget.orientation == OptionsOrientation.horizontal ? 50 : 60,
-            width: double.infinity,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: widget.imageBuild({
-                'image': currentValueText?.image?['file'],
-                'height': widget.orientation == OptionsOrientation.horizontal
-                    ? 50.0
-                    : 60.0,
-                'width': double.infinity,
-              }),
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: widget.imageBuild({
+                  'image': currentValueText?.image?['file'],
+                  'height': 100.0,
+                  'width': double.infinity,
+                }),
+              ),
+              Positioned(
+                top: 8,
+                left: 8,
+                child: control,
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          DefaultTextStyle(
+            style: TextStyle(
+              color: showRed ? Colors.red : Colors.black87,
+              fontSize: 14,
+              height: 1.2,
             ),
+            child: label,
           ),
-          SizedBox(
-            height: widget.orientation == OptionsOrientation.horizontal ? 6 : 4,
-          ),
-          // Text widget
-          Expanded(child: label),
         ],
       );
     } else {
@@ -438,9 +497,11 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
 
     Widget compositeItem = Container(
       width: widget.orientation == OptionsOrientation.horizontal
-          ? 200
+          ? (hasImage ? 240 : 200)
           : double.infinity,
-      height: widget.orientation == OptionsOrientation.horizontal ? 120 : null,
+      height: widget.orientation == OptionsOrientation.horizontal
+          ? (hasImage ? 380 : 120)
+          : null,
       margin: EdgeInsets.only(
         bottom: widget.orientation == OptionsOrientation.horizontal ? 0.0 : 8.0,
         right: widget.orientation == OptionsOrientation.horizontal ? 8.0 : 0.0,
@@ -450,15 +511,15 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
           : EdgeInsets.zero,
       decoration: BoxDecoration(
         border: Border.all(
-          color: isSelected
-              ? currentOption?.action == true
-                  ? Colors.red
-                  : Colors.grey.shade600
-              : Colors.grey.shade300,
-          width: 1.0,
+          color: (isSelected && hasAction)
+              ? Colors.red
+              : hasImage
+                  ? (isSelected ? Colors.orange : Colors.grey.shade300)
+                  : (isSelected ? Colors.grey.shade600 : Colors.grey.shade300),
+          width: (hasImage && isSelected) ? 2.0 : 1.0,
         ),
-        color: (isSelected && currentOption?.action == true)
-            ? Colors.red.shade100
+        color: (isSelected && hasAction)
+            ? Colors.red.shade50
             : widget.orientation == OptionsOrientation.horizontal
                 ? Colors.white
                 : Colors.transparent,
@@ -500,11 +561,10 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                         // Calculate image height based on grid aspect ratio
                         double imageHeight;
                         if (widget.childAspectRatio != null) {
-                          // Calculate height based on aspect ratio: height = width / aspectRatio
-                          // Reserve more space for radio button and text (approximately 60px for 2 lines)
+                          // Reserve ~90px for radio + text (5 lines at 14px * 1.2)
                           double availableHeight = (constraints.maxWidth /
                                   widget.childAspectRatio!) -
-                              60;
+                              90;
                           imageHeight =
                               availableHeight > 80 ? availableHeight : 80;
                         } else {
@@ -514,54 +574,74 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                         return SizedBox(
                           height: imageHeight,
                           width: double.infinity,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(4),
-                            child: widget.imageBuild({
-                              'image': currentValueText?.image?['file'],
-                              'height': imageHeight,
-                              'width': double.infinity,
-                            }),
+                          child: Stack(
+                            fit: StackFit.expand,
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: widget.imageBuild({
+                                  'image': currentValueText?.image?['file'],
+                                  'height': imageHeight,
+                                  'width': double.infinity,
+                                }),
+                              ),
+                              Positioned(
+                                top: 8,
+                                left: 8,
+                                child: control,
+                              ),
+                            ],
                           ),
                         );
                       },
                     ),
                     const SizedBox(height: 8),
                   ],
-                  // Radio button with text below
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      control,
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: DefaultTextStyle(
-                          style: const TextStyle(
-                            height: 1.2, // Line height for better text spacing
-                            color: Colors.black87, // Ensure text is visible
-                            fontSize: 14, // Ensure text size is readable
-                          ),
-                          child: label,
+                  if (hasImage)
+                    Expanded(
+                      child: DefaultTextStyle(
+                        style: const TextStyle(
+                          height: 1.2,
+                          color: Colors.black87,
+                          fontSize: 14,
                         ),
+                        child: label,
                       ),
-                    ],
-                  ),
-                ],
-              )
-            : // Vertical layout - original design
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IntrinsicHeight(
-                  child: SizedBox(
-                    height: hasImage ? 120 : 40,
-                    child: Row(
+                    )
+                  else
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         control,
                         const SizedBox(width: 8),
-                        Expanded(child: contentWidget),
+                        Expanded(
+                          child: DefaultTextStyle(
+                            style: const TextStyle(
+                              height: 1.2,
+                              color: Colors.black87,
+                              fontSize: 14,
+                            ),
+                            child: label,
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ),
+                ],
+              )
+            : // Vertical layout
+            Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: hasImage
+                    ? contentWidget
+                    : IntrinsicHeight(
+                        child: Row(
+                          children: [
+                            control,
+                            const SizedBox(width: 8),
+                            Expanded(child: contentWidget),
+                          ],
+                        ),
+                      ),
               ),
       ),
     );

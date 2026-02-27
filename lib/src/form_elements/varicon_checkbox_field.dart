@@ -61,8 +61,11 @@ class VariconCheckboxField extends ConsumerWidget {
                       (lang.isOtherField ?? false)
                           ? 'Other (please specify)'
                           : lang.text,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
+                      maxLines:
+                          field.choices.any((e) => e.image != null) ? 5 : null,
+                      overflow: field.choices.any((e) => e.image != null)
+                          ? TextOverflow.ellipsis
+                          : null,
                     ),
                   ))
               .toList(growable: false),

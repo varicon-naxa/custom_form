@@ -380,52 +380,105 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
         ),
       );
     } else if (widget.orientation == OptionsOrientation.horizontal) {
-      // Check if gridview parameters are provided for horizontal layout
-      if (widget.crossAxisCount != null && widget.childAspectRatio != null) {
-        finalWidget = GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: widget.crossAxisCount!,
-            childAspectRatio: widget.childAspectRatio!,
-            crossAxisSpacing: 12.0,
-            mainAxisSpacing: 12.0,
+      final content = widget.crossAxisCount != null &&
+              widget.childAspectRatio != null
+          ? GridView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: widget.crossAxisCount!,
+                childAspectRatio: widget.childAspectRatio!,
+                crossAxisSpacing: 12.0,
+                mainAxisSpacing: 12.0,
+              ),
+              itemCount: widgetList.length,
+              itemBuilder: (context, index) => widgetList[index],
+            )
+          : SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (int i = 0; i < widgetList.length; i++) ...[
+                    widgetList[i],
+                    if (i < widgetList.length - 1)
+                      SizedBox(
+                        width:
+                            widget.wrapSpacing > 0 ? widget.wrapSpacing : 8.0,
+                      ),
+                  ],
+                ],
+              ),
+            );
+      finalWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          content,
+          Visibility(
+            visible: ((widget.value ?? []) as List<ValueText>)
+                    .where((element) => element.action == true)
+                    .isNotEmpty &&
+                (widget.actionMessage ?? '').isNotEmpty,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 4.0,
+              ),
+              margin: const EdgeInsets.only(top: 8.0),
+              decoration: BoxDecoration(
+                color: Colors.red.shade500,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Text(
+                widget.actionMessage ?? '',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
           ),
-          itemCount: widgetList.length,
-          itemBuilder: (context, index) {
-            return widgetList[index];
-          },
-        );
-      } else {
-        // Use Row layout for horizontal orientation without gridview
-        finalWidget = SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              for (int i = 0; i < widgetList.length; i++) ...[
-                widgetList[i],
-                if (i < widgetList.length - 1)
-                  SizedBox(
-                    width: widget.wrapSpacing > 0 ? widget.wrapSpacing : 8.0,
-                  ),
-              ],
-            ],
-          ),
-        );
-      }
+        ],
+      );
     } else {
-      finalWidget = SingleChildScrollView(
-        child: Wrap(
-          spacing: widget.wrapSpacing,
-          runSpacing: widget.wrapRunSpacing,
-          textDirection: widget.wrapTextDirection,
-          crossAxisAlignment: widget.wrapCrossAxisAlignment,
-          verticalDirection: widget.wrapVerticalDirection,
-          alignment: widget.wrapAlignment,
-          direction: Axis.horizontal,
-          runAlignment: widget.wrapRunAlignment,
-          children: widgetList,
-        ),
+      finalWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SingleChildScrollView(
+            child: Wrap(
+              spacing: widget.wrapSpacing,
+              runSpacing: widget.wrapRunSpacing,
+              textDirection: widget.wrapTextDirection,
+              crossAxisAlignment: widget.wrapCrossAxisAlignment,
+              verticalDirection: widget.wrapVerticalDirection,
+              alignment: widget.wrapAlignment,
+              direction: Axis.horizontal,
+              runAlignment: widget.wrapRunAlignment,
+              children: widgetList,
+            ),
+          ),
+          Visibility(
+            visible: ((widget.value ?? []) as List<ValueText>)
+                    .where((element) => element.action == true)
+                    .isNotEmpty &&
+                (widget.actionMessage ?? '').isNotEmpty,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 8.0,
+                vertical: 4.0,
+              ),
+              margin: const EdgeInsets.only(top: 8.0),
+              decoration: BoxDecoration(
+                color: Colors.red.shade500,
+                borderRadius: BorderRadius.circular(8.0),
+              ),
+              child: Text(
+                widget.actionMessage ?? '',
+                style: const TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ],
       );
     }
     return finalWidget;
@@ -489,58 +542,53 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
       ),
     );
 
-    // Remove the GestureDetector from the label
-    // Lets add a imagebuild here
     ValueText? currentValueText = option.value as ValueText?;
     bool hasImage = currentValueText?.image != null;
+    final hasAction =
+        optionValue is ValueText && (optionValue as ValueText).action == true;
+    final isSelected = widget.value?.contains(optionValue) == true;
+    final showRed = isSelected && hasAction;
 
-    // Create the content widget (text or image + text) - only for non-horizontal layouts
+    // Create the content widget (text or image + text)
     Widget contentWidget;
-    if (widget.orientation != OptionsOrientation.horizontal) {
-      if (hasImage) {
-        contentWidget = Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Image widget
-            if (currentValueText?.image != null &&
-                currentValueText?.image?.containsKey('file') == true)
-              Container(
-                height: widget.crossAxisCount != null &&
-                        widget.childAspectRatio != null
-                    ? 80
-                    : 60,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(4),
-                  color: Colors.grey.shade100,
-                ),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: widget.imageBuild({
-                    'image': currentValueText?.image?['file'],
-                    'height': widget.crossAxisCount != null &&
-                            widget.childAspectRatio != null
-                        ? 80.0
-                        : 60.0,
-                    'width': double.infinity,
-                  }),
-                ),
+    if (hasImage) {
+      // Image with overlay (checkbox only), text below
+      contentWidget = Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: widget.imageBuild({
+                  'image': currentValueText?.image?['file'],
+                  'height': 100.0,
+                  'width': double.infinity,
+                }),
               ),
-            SizedBox(
-                height: widget.crossAxisCount != null &&
-                        widget.childAspectRatio != null
-                    ? 8
-                    : 4),
-            // Text widget
-            option,
-          ],
-        );
-      } else {
-        contentWidget = option;
-      }
+              Positioned(
+                top: 8,
+                left: 8,
+                child: control,
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          DefaultTextStyle(
+            style: TextStyle(
+              color: showRed ? Colors.red : Colors.black87,
+              fontSize: 14,
+              height: 1.2,
+            ),
+            child: option,
+          ),
+        ],
+      );
+    } else if (widget.orientation != OptionsOrientation.horizontal) {
+      contentWidget = option;
     } else {
-      // For horizontal layout, just use the option directly
       contentWidget = option;
     }
 
@@ -560,9 +608,11 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
 
     Widget compositeItem = Container(
       width: widget.orientation == OptionsOrientation.horizontal
-          ? 200
+          ? (hasImage ? 240 : 200)
           : double.infinity,
-      height: widget.orientation == OptionsOrientation.horizontal ? 120 : null,
+      height: widget.orientation == OptionsOrientation.horizontal
+          ? (hasImage ? 380 : 120)
+          : null,
       margin: EdgeInsets.only(
         bottom: widget.orientation == OptionsOrientation.horizontal ? 0.0 : 8.0,
         right: widget.orientation == OptionsOrientation.horizontal ? 8.0 : 0.0,
@@ -572,18 +622,15 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
           : EdgeInsets.zero,
       decoration: BoxDecoration(
         border: Border.all(
-          color: widget.value?.contains(optionValue) == true
-              ? optionValue is ValueText &&
-                      (optionValue as ValueText).action == true
-                  ? Colors.red
-                  : Colors.grey.shade600
-              : Colors.grey.shade300,
-          width: 1.0,
+          color: showRed
+              ? Colors.red
+              : isSelected
+                  ? Colors.orange
+                  : Colors.grey.shade300,
+          width: isSelected ? 2.0 : 1.0,
         ),
-        color: (widget.value?.contains(optionValue) == true &&
-                optionValue is ValueText &&
-                (optionValue as ValueText).action == true)
-            ? Colors.red.shade100
+        color: showRed
+            ? Colors.red.shade50
             : widget.orientation == OptionsOrientation.horizontal
                 ? Colors.white
                 : Colors.transparent,
@@ -600,84 +647,52 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
             : null,
       ),
       child: widget.orientation == OptionsOrientation.horizontal
-          ? // Horizontal layout - image first, then checkbox with text below
-          Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Image first (if available)
-                if (hasImage) ...[
-                  LayoutBuilder(
-                    builder: (context, constraints) {
-                      // Calculate image height based on grid aspect ratio
-                      double imageHeight;
-                      if (widget.childAspectRatio != null) {
-                        // Calculate height based on aspect ratio: height = width / aspectRatio
-                        // Reserve more space for checkbox and text (approximately 60px for 2 lines)
-                        double availableHeight =
-                            (constraints.maxWidth / widget.childAspectRatio!) -
-                                60;
-                        imageHeight =
-                            availableHeight > 80 ? availableHeight : 80;
-                      } else {
-                        imageHeight = 80; // increased fallback height
-                      }
-
-                      return SizedBox(
-                        height: imageHeight,
-                        width: double.infinity,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: widget.imageBuild({
-                            'image': currentValueText?.image?['file'],
-                            'height': imageHeight,
-                            'width': double.infinity,
-                          }),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                ],
-                // Checkbox with text below
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    control,
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: DefaultTextStyle(
-                        style: const TextStyle(
-                          height: 1.2, // Line height for better text spacing
-                          color: Colors.black87, // Ensure text is visible
-                          fontSize: 14, // Ensure text size is readable
-                        ),
-                        child: option,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            )
-          : widget.crossAxisCount != null && widget.childAspectRatio != null
-              ? // GridView layout - vertical stack
-              Column(
+          ? // Horizontal layout - overlay when hasImage, else checkbox + text
+          hasImage
+              ? contentWidget
+              : Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Checkbox at the top
-                    control,
-                    const SizedBox(height: 8),
-                    // Content below
-                    label,
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        control,
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: DefaultTextStyle(
+                            style: const TextStyle(
+                              height: 1.2,
+                              color: Colors.black87,
+                              fontSize: 14,
+                            ),
+                            child: option,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 )
-              : // Regular layout - horizontal row
-              Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
+          : widget.crossAxisCount != null && widget.childAspectRatio != null
+              ? // GridView layout
+              hasImage
+                  ? contentWidget
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        control,
+                        const SizedBox(height: 8),
+                        label,
+                      ],
+                    )
+              : // Regular layout
+              hasImage
+                  ? Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: contentWidget,
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           if (widget.controlAffinity == ControlAffinity.leading)
@@ -693,13 +708,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                             widget.separator!,
                         ],
                       ),
-                      if (widget.orientation == OptionsOrientation.vertical &&
-                          widget.separator != null &&
-                          index != widget.options.length - 1)
-                        widget.separator!,
-                    ],
-                  ),
-                ),
+                    ),
     );
 
     // Wrap the entire compositeItem with GestureDetector

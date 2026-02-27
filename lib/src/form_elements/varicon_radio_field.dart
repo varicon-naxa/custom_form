@@ -30,11 +30,6 @@ class VariconRadioField extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     // Debouncer debouncer = Debouncer(milliseconds: 500);
 
-    // ValueText? initialValue = (field.answer ?? '').isEmpty
-    //     ? null
-    //     : field.choices
-    //         .firstWhereOrNull((element) => element.value == field.answer);
-
     final currentValue = ref.watch(currentStateNotifierProvider)[field.id];
     ValueText? initialValue = currentValue != null && currentValue.isNotEmpty
         ? field.choices
@@ -104,8 +99,11 @@ class VariconRadioField extends ConsumerWidget {
                   (lang.isOtherField ?? false)
                       ? 'Other (please specify)'
                       : lang.text,
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
+                  maxLines:
+                      field.choices.any((e) => e.image != null) ? 5 : null,
+                  overflow: field.choices.any((e) => e.image != null)
+                      ? TextOverflow.ellipsis
+                      : null,
                 ),
               ))
           .toList(growable: false),
