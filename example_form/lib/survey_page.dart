@@ -226,7 +226,6 @@ class _SurveyPageState extends State<SurveyPage> {
                 'name': '${random}.jpg',
                 "created_at": '2025-04-11T13:13:24.784615Z',
               };
-              log('mapdata: ' + jsonEncode(mapdata).toString());
               return mapdata;
             }).toList();
         return val;

@@ -469,7 +469,7 @@ class _CustomGroupedRadioState<T> extends State<CustomGroupedRadio<T?>> {
                 borderRadius: BorderRadius.circular(4),
                 child: widget.imageBuild({
                   'image': currentValueText?.image?['file'],
-                  'height': 100.0,
+                  'height': 80.0,
                   'width': double.infinity,
                 }),
               ),

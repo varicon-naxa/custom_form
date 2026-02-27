@@ -380,35 +380,36 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
         ),
       );
     } else if (widget.orientation == OptionsOrientation.horizontal) {
-      final content = widget.crossAxisCount != null &&
-              widget.childAspectRatio != null
-          ? GridView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: widget.crossAxisCount!,
-                childAspectRatio: widget.childAspectRatio!,
-                crossAxisSpacing: 12.0,
-                mainAxisSpacing: 12.0,
-              ),
-              itemCount: widgetList.length,
-              itemBuilder: (context, index) => widgetList[index],
-            )
-          : SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  for (int i = 0; i < widgetList.length; i++) ...[
-                    widgetList[i],
-                    if (i < widgetList.length - 1)
-                      SizedBox(
-                        width:
-                            widget.wrapSpacing > 0 ? widget.wrapSpacing : 8.0,
-                      ),
-                  ],
-                ],
-              ),
-            );
+      final content =
+          widget.crossAxisCount != null && widget.childAspectRatio != null
+              ? GridView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: widget.crossAxisCount!,
+                    childAspectRatio: widget.childAspectRatio!,
+                    crossAxisSpacing: 12.0,
+                    mainAxisSpacing: 12.0,
+                  ),
+                  itemCount: widgetList.length,
+                  itemBuilder: (context, index) => widgetList[index],
+                )
+              : SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      for (int i = 0; i < widgetList.length; i++) ...[
+                        widgetList[i],
+                        if (i < widgetList.length - 1)
+                          SizedBox(
+                            width: widget.wrapSpacing > 0
+                                ? widget.wrapSpacing
+                                : 8.0,
+                          ),
+                      ],
+                    ],
+                  ),
+                );
       finalWidget = Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -564,7 +565,7 @@ class _CustomGroupedCheckboxState<T> extends State<CustomGroupedCheckbox<T>> {
                 borderRadius: BorderRadius.circular(4),
                 child: widget.imageBuild({
                   'image': currentValueText?.image?['file'],
-                  'height': 100.0,
+                  'height': 80.0,
                   'width': double.infinity,
                 }),
               ),
