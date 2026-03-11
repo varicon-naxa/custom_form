@@ -13,7 +13,7 @@ _$ValueTextImpl _$$ValueTextImplFromJson(Map<String, dynamic> json) =>
       value: readValue(json, 'value') as String,
       notifyTo: json['notify_To'] as List<dynamic>?,
       engineType: json['engine_type'] as String?,
-      previousReading: json['previous_reading'] as String?,
+      previousReading: (json['previous_reading'] as num?)?.toDouble(),
       text: readText(json, 'text') as String,
       image: json['image'] as Map<String, dynamic>?,
       $type: json['runtimeType'] as String?,

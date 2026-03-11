@@ -45,7 +45,7 @@ mixin _$ValueText {
   @JsonKey(name: 'engine_type')
   String? get engineType => throw _privateConstructorUsedError;
   @JsonKey(name: 'previous_reading')
-  String? get previousReading => throw _privateConstructorUsedError;
+  Object? get previousReading => throw _privateConstructorUsedError;
 
   /// Text that is displayed to the frontend.
   @JsonKey(readValue: readText)
@@ -62,7 +62,7 @@ mixin _$ValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
@@ -96,7 +96,7 @@ mixin _$ValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
@@ -130,7 +130,7 @@ mixin _$ValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
@@ -201,7 +201,6 @@ abstract class $ValueTextCopyWith<$Res> {
       @JsonKey(readValue: readValue) String value,
       @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
       @JsonKey(name: 'engine_type') String? engineType,
-      @JsonKey(name: 'previous_reading') String? previousReading,
       @JsonKey(readValue: readText) String text,
       @JsonKey(name: 'image') Map<String, dynamic>? image});
 }
@@ -226,7 +225,6 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
     Object? value = null,
     Object? notifyTo = freezed,
     Object? engineType = freezed,
-    Object? previousReading = freezed,
     Object? text = null,
     Object? image = freezed,
   }) {
@@ -250,10 +248,6 @@ class _$ValueTextCopyWithImpl<$Res, $Val extends ValueText>
       engineType: freezed == engineType
           ? _value.engineType
           : engineType // ignore: cast_nullable_to_non_nullable
-              as String?,
-      previousReading: freezed == previousReading
-          ? _value.previousReading
-          : previousReading // ignore: cast_nullable_to_non_nullable
               as String?,
       text: null == text
           ? _value.text
@@ -281,7 +275,7 @@ abstract class _$$ValueTextImplCopyWith<$Res>
       @JsonKey(readValue: readValue) String value,
       @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
       @JsonKey(name: 'engine_type') String? engineType,
-      @JsonKey(name: 'previous_reading') String? previousReading,
+      @JsonKey(name: 'previous_reading') double? previousReading,
       @JsonKey(readValue: readText) String text,
       @JsonKey(name: 'image') Map<String, dynamic>? image});
 }
@@ -332,7 +326,7 @@ class __$$ValueTextImplCopyWithImpl<$Res>
       previousReading: freezed == previousReading
           ? _value.previousReading
           : previousReading // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as double?,
       text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
@@ -393,7 +387,7 @@ class _$ValueTextImpl implements _ValueText {
   final String? engineType;
   @override
   @JsonKey(name: 'previous_reading')
-  final String? previousReading;
+  final double? previousReading;
 
   /// Text that is displayed to the frontend.
   @override
@@ -470,7 +464,7 @@ class _$ValueTextImpl implements _ValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
@@ -508,7 +502,7 @@ class _$ValueTextImpl implements _ValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
@@ -546,7 +540,7 @@ class _$ValueTextImpl implements _ValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
@@ -628,7 +622,7 @@ abstract class _ValueText implements ValueText {
           @JsonKey(readValue: readValue) required final String value,
           @JsonKey(name: 'notify_To') final List<dynamic>? notifyTo,
           @JsonKey(name: 'engine_type') final String? engineType,
-          @JsonKey(name: 'previous_reading') final String? previousReading,
+          @JsonKey(name: 'previous_reading') final double? previousReading,
           @JsonKey(readValue: readText) required final String text,
           @JsonKey(name: 'image') final Map<String, dynamic>? image}) =
       _$ValueTextImpl;
@@ -656,7 +650,7 @@ abstract class _ValueText implements ValueText {
   String? get engineType;
   @override
   @JsonKey(name: 'previous_reading')
-  String? get previousReading;
+  double? get previousReading;
 
   /// Text that is displayed to the frontend.
   @override
@@ -867,7 +861,7 @@ class _$NoneValueTextImpl implements NoneValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
@@ -905,7 +899,7 @@ class _$NoneValueTextImpl implements NoneValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
@@ -943,7 +937,7 @@ class _$NoneValueTextImpl implements NoneValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
@@ -1254,7 +1248,7 @@ class _$OtherValueTextImpl implements OtherValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)
         $default, {
@@ -1292,7 +1286,7 @@ class _$OtherValueTextImpl implements OtherValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {
@@ -1330,7 +1324,7 @@ class _$OtherValueTextImpl implements OtherValueText {
             @JsonKey(readValue: readValue) String value,
             @JsonKey(name: 'notify_To') List<dynamic>? notifyTo,
             @JsonKey(name: 'engine_type') String? engineType,
-            @JsonKey(name: 'previous_reading') String? previousReading,
+            @JsonKey(name: 'previous_reading') double? previousReading,
             @JsonKey(readValue: readText) String text,
             @JsonKey(name: 'image') Map<String, dynamic>? image)?
         $default, {

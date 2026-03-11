@@ -15,7 +15,7 @@ class ValueText with _$ValueText {
     @JsonKey(readValue: readValue) required String value,
     @JsonKey(name: 'notify_To') List? notifyTo,
     @JsonKey(name: 'engine_type') String? engineType,
-    @JsonKey(name: 'previous_reading') String? previousReading,
+    @JsonKey(name: 'previous_reading') double? previousReading,
 
     /// Text that is displayed to the frontend.
     @JsonKey(readValue: readText) required String text,
